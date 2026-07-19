@@ -226,6 +226,7 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
 {rc.THEME_SWITCH_CSS}
 {rc.SITE_HEADER_CSS}
 {ARTICLE_CSS}
+{rc.DARK_ANCHOR_CSS}
 </style>
 </head>
 <body>
