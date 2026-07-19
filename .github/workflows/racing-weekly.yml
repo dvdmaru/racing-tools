@@ -50,6 +50,12 @@ jobs:
         with:
           node-version: '22'
 
+      # 排程也擋線（比照 baseball-daily.yml／basketball-daily.yml）：管線邏輯——部署 hard gate、
+      # 草稿產物清理、快照驗證、sprint-only round 處理——壞掉時不會在畫面上立刻看見，
+      # 只會在某個賽末默默出錯。這步讓它在部署前就紅。
+      - name: Unit tests（deploy 前擋線）
+        run: python -m unittest discover -s tests -v
+
       - name: Fetch → rebuild → deploy（cron 無新資料安靜跳過；手動 dispatch 一律強制重建）
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
