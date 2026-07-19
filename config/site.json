@@ -12,17 +12,47 @@
   "feed_channel_desc": "一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。",
   "default_theme": "carbon",
   "nav": [
-    { "label": "首頁", "href": "/", "key": "home" },
-    { "label": "積分榜", "href": "/standings/", "key": "standings" },
-    { "label": "賽曆", "href": "/calendar/", "key": "calendar" },
-    { "label": "賽果", "href": "/results/", "key": "results" },
-    { "label": "文章", "href": "/articles/", "key": "articles" }
+    {
+      "label": "首頁",
+      "href": "/",
+      "key": "home"
+    },
+    {
+      "label": "積分榜",
+      "href": "/standings/",
+      "key": "standings"
+    },
+    {
+      "label": "賽曆",
+      "href": "/calendar/",
+      "key": "calendar"
+    },
+    {
+      "label": "賽果",
+      "href": "/results/",
+      "key": "results"
+    },
+    {
+      "label": "文章",
+      "href": "/articles/",
+      "key": "articles"
+    }
   ],
   "external_link": null,
   "footer_cta": null,
   "footer_links": [
-    { "label": "積分榜", "href": "/standings/" },
-    { "label": "台北時間賽曆", "href": "/calendar/" },
-    { "label": "所有文章", "href": "/articles/" }
-  ]
+    {
+      "label": "積分榜",
+      "href": "/standings/"
+    },
+    {
+      "label": "台北時間賽曆",
+      "href": "/calendar/"
+    },
+    {
+      "label": "所有文章",
+      "href": "/articles/"
+    }
+  ],
+  "ga_id": "G-DN5FKJNCVQ"
 }

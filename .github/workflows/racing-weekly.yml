@@ -50,8 +50,9 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Fetch → rebuild → deploy（無新資料安靜跳過）
+      - name: Fetch → rebuild → deploy（cron 無新資料安靜跳過；手動 dispatch 一律強制重建）
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: python scripts/update-racing.py --deploy
+        # workflow_dispatch 帶 --force：手動跑就是要重建部署（否則首次部署/改版會被 quiet-skip 擋住）
+        run: python scripts/update-racing.py --deploy ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
