@@ -22,6 +22,8 @@ except ImportError:  # pragma: no cover
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SITE = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+# 單一賽季設定源：換季只改 site.json 的 season，首頁/資料頁/編排器全跟著走
+SEASON = int(SITE.get("season", 2026))
 BASE = SITE["base"]
 PUB = ROOT / "public-racing"
 TAIPEI = ZoneInfo("Asia/Taipei") if ZoneInfo else None
@@ -506,15 +508,20 @@ def load_data(season: int, name: str):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
-def load_results(season: int):
-    """回 [(round:int, race_dict, sprint_dict_or_None)]，round 升冪。"""
-    base = ROOT / "data" / str(season) / "results"
+def load_results(season: int, base=None):
+    """回 [(round:int, race_dict_or_None, sprint_dict_or_None)]，round 升冪。
+    race=None＝sprint-only round（衝刺賽已跑、正賽未跑，六/日排程的中間態）——
+    消費端判斷「已完賽」一律看 race 是否存在，不能只看 round 有沒有出現。"""
+    base = base or (ROOT / "data" / str(season) / "results")
     out = []
     if not base.exists():
         return out
-    for p in sorted(base.glob("round-[0-9][0-9].json")):
-        rnd = int(p.stem.split("-")[1])
-        race = json.loads(p.read_text(encoding="utf-8"))
+    rounds = {int(p.stem.split("-")[1])
+              for pat in ("round-[0-9][0-9].json", "round-[0-9][0-9]-sprint.json")
+              for p in base.glob(pat)}
+    for rnd in sorted(rounds):
+        rp = base / f"round-{rnd:02d}.json"
+        race = json.loads(rp.read_text(encoding="utf-8")) if rp.exists() else None
         sp = base / f"round-{rnd:02d}-sprint.json"
         sprint = json.loads(sp.read_text(encoding="utf-8")) if sp.exists() else None
         out.append((rnd, race, sprint))

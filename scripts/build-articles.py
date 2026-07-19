@@ -150,6 +150,16 @@ HOME_FAQ = [
 
 # ---------- 文章渲染 ----------
 
+def prune_stale_article_dirs(art_root: pathlib.Path, keep_slugs: set):
+    """刪掉 public-racing/articles/ 下不屬於本次產出的目錄（草稿回收／文章下架）。"""
+    if not art_root.exists():
+        return
+    for child in sorted(art_root.iterdir()):
+        if child.is_dir() and child.name not in keep_slugs:
+            shutil.rmtree(child)
+            print(f"🗑  removed stale article output: {child.name}（草稿或已下架）")
+
+
 def _kicker(meta):
     return {"feature": "深度專題", "guide": "長青指南", "reference": "對照表",
             "preview": "賽站前瞻", "recap": "賽後復盤"}.get(meta.get("type", "feature"), "專題")
@@ -253,7 +263,7 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
 
 # ---------- 首頁 dashboard ----------
 
-def _standings_mini(season=2026):
+def _standings_mini(season=rc.SEASON):
     ds = rc.load_data(season, "driver-standings.json")
     cs = rc.load_data(season, "constructor-standings.json")
     if not ds or not ds.get("standings"):
@@ -292,9 +302,10 @@ def _standings_mini(season=2026):
             '<span class="tg">車手 / 車隊</span></div>' + tabs), rnd
 
 
-def _next_race_chip(season=2026, today=None):
+def _next_race_chip(season=rc.SEASON, today=None):
     sch = rc.load_data(season, "schedule.json")
-    results = {r for r, _, _ in rc.load_results(season)}
+    # 只算「正賽已完」的站——sprint-only round（衝刺賽先出）仍是下一站
+    results = {r for r, race, _ in rc.load_results(season) if race}
     if not sch:
         return ""
     today = today or datetime.date.today()
@@ -310,17 +321,23 @@ def _next_race_chip(season=2026, today=None):
     return ""
 
 
-def _latest_podium(season=2026):
+def _latest_podium(season=rc.SEASON):
     results = rc.load_results(season)
     if not results:
         return ""
-    rnd, race, _ = results[-1]
+    rnd, race, sprint = results[-1]
+    # sprint-only round：正賽未跑，先秀衝刺賽頒獎台（六/日排程的中間態）
+    rows = race["Results"][:3] if race else (sprint or {}).get("SprintResults", [])[:3]
+    if not rows:
+        return ""
+    label = "" if race else "衝刺賽"
     cards = ""
-    for res in race["Results"][:3]:
+    for res in rows:
         cards += (f'<div class="podium-card"><div class="pos">P{res["position"]}</div>'
                   f'<div class="who">{rc.driver_zh(res["Driver"])}</div>'
                   f'<div class="team">{rc.team_zh(res["Constructor"]["name"])}</div></div>')
-    return (f'<div class="rc-sec"><h2>最新賽果 · 第 {rnd} 站{rc.race_zh(race["raceName"])}</h2>'
+    name = rc.race_zh((race or sprint)["raceName"])
+    return (f'<div class="rc-sec"><h2>最新賽果 · 第 {rnd} 站{name}{label}</h2>'
             '<span class="ln"></span>'
             '<a class="tg" href="/results/" style="text-decoration:none">全部賽果 →</a></div>'
             f'<div class="podium-grid">{cards}</div>')
@@ -348,12 +365,14 @@ def render_home(articles):
     standings_sec, rnd = _standings_mini()
     next_chip = _next_race_chip()
     podium_sec = _latest_podium()
+    sch = rc.load_data(rc.SEASON, "schedule.json")
+    n_races = f'{len(sch["races"])} 站' if sch and sch.get("races") else "全季"
     tiles = ('<div class="rc-sec"><h2>數據頁</h2><span class="ln"></span></div>'
              '<div class="tiles">'
              '<a class="tile" href="/standings/"><span class="ic">🏆</span>'
              '<span><span class="tt">積分榜</span><span class="ds">車手 · 車隊年度積分</span></span><span class="go">→</span></a>'
              '<a class="tile" href="/calendar/"><span class="ic">🗓️</span>'
-             '<span><span class="tt">賽曆 · 台北時間</span><span class="ds">22 站正賽/排位/衝刺時刻</span></span><span class="go">→</span></a>'
+             f'<span><span class="tt">賽曆 · 台北時間</span><span class="ds">{n_races}正賽/排位/衝刺時刻</span></span><span class="go">→</span></a>'
              '<a class="tile" href="/results/"><span class="ic">🏁</span>'
              '<span><span class="tt">各站賽果</span><span class="ds">完整官方分類 · 含衝刺賽</span></span><span class="go">→</span></a>'
              '</div>')
@@ -516,6 +535,10 @@ def build():
                 shutil.copy2(asset, out_dir / asset.name)
         articles.append({"slug": slug, "meta": meta, "excerpt": excerpt,
                          "faq": faq, "body_html": body_html, "out_dir": out_dir})
+
+    # 真下架：曾上線後改回草稿或整篇移除的文章，輸出目錄必須刪掉——
+    # 只從 index/sitemap 拿掉不算下架，知道網址的人仍讀得到（含 CI 乾淨 checkout 裡已 commit 的舊產物）
+    prune_stale_article_dirs(PUB / "articles", {a["slug"] for a in articles})
 
     articles.sort(key=lambda a: (str(a["meta"].get("date", "")), a["slug"]), reverse=True)
 

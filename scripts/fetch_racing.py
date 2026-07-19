@@ -34,6 +34,15 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 UA = "racing-tools/1.0 (racing.twtools.cc; non-commercial data page)"
 
+
+def active_season() -> int:
+    """單一賽季設定源 config/site.json 的 season——換季只改一處，全管線跟著走。"""
+    try:
+        cfg = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+        return int(cfg["season"])
+    except (OSError, ValueError, KeyError):
+        return 2026
+
 # macOS python.org 版 Python 常缺系統 CA bundle → 有 certifi 就用（CI ubuntu 無害）
 try:
     import certifi
@@ -121,18 +130,27 @@ class JolpicaSource(DataSource):
         return races[0] if races else None
 
 
+def _rel(path: pathlib.Path):
+    """顯示用相對路徑；不在 repo 下（測試 tmp 目錄）就原樣印。"""
+    try:
+        return path.relative_to(ROOT)
+    except ValueError:
+        return path
+
+
 def _write(path: pathlib.Path, obj, history=False):
     path.parent.mkdir(parents=True, exist_ok=True)
     txt = json.dumps(obj, ensure_ascii=False, indent=2)
     changed = (not path.exists()) or path.read_text(encoding="utf-8") != txt
-    path.write_text(txt, encoding="utf-8")
-    print(f"  💾 {path.relative_to(ROOT)}{'' if changed else '（無變化）'}")
+    if changed:  # 無變化不重寫：避免弄髒工作樹（否則本機每跑一次就出現假 diff）
+        path.write_text(txt, encoding="utf-8")
+    print(f"  💾 {_rel(path)}{'' if changed else '（無變化，未重寫）'}")
     if history and changed:
         today = datetime.date.today().isoformat()
         h = path.parent / "history" / f"{today}-{path.name}"
         h.parent.mkdir(parents=True, exist_ok=True)
         h.write_text(txt, encoding="utf-8")
-        print(f"  🗄  {h.relative_to(ROOT)}")
+        print(f"  🗄  {_rel(h)}")
     return changed
 
 
@@ -142,7 +160,8 @@ def _strip_volatile(obj):
 
 
 def _write_snapshot(path, obj, history=False):
-    """同 _write，但 changed 判定忽略 fetched_at（否則每次跑都判定有變、安靜跳過永不觸發）。"""
+    """同 _write，但 changed 判定忽略 fetched_at（否則每次跑都判定有變、安靜跳過永不觸發）。
+    無變化時完全不重寫檔案——否則單純的 fetched_at 更新就會弄髒工作樹。"""
     path.parent.mkdir(parents=True, exist_ok=True)
     txt = json.dumps(obj, ensure_ascii=False, indent=2)
     if path.exists():
@@ -153,15 +172,50 @@ def _write_snapshot(path, obj, history=False):
         changed = _strip_volatile(old) != _strip_volatile(obj)
     else:
         changed = True
-    path.write_text(txt, encoding="utf-8")
-    print(f"  💾 {path.relative_to(ROOT)}{'' if changed else '（無變化）'}")
+    if changed:
+        path.write_text(txt, encoding="utf-8")
+    print(f"  💾 {_rel(path)}{'' if changed else '（無變化，未重寫）'}")
     if history and changed:
         today = datetime.date.today().isoformat()
         h = path.parent / "history" / f"{today}-{path.name}"
         h.parent.mkdir(parents=True, exist_ok=True)
         h.write_text(txt, encoding="utf-8")
-        print(f"  🗄  {h.relative_to(ROOT)}")
+        print(f"  🗄  {_rel(h)}")
     return changed
+
+
+def _load_json(path):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def validate_standings(ds, cs, latest, data_round, prev_round):
+    """快照寫入前驗證：API 回空殼或倒退時拒寫、保留 last-known-good。
+    回 (ok, reason)。開季前 standings 本來就空——那時 prev 也不存在，不會誤判。"""
+    if ds is None or cs is None:
+        return False, "standings 為空（API 回空 StandingsLists）"
+    if len(ds.get("DriverStandings", [])) < 10:
+        return False, f"車手榜僅 {len(ds.get('DriverStandings', []))} 筆，不合理"
+    if len(cs.get("ConstructorStandings", [])) < 5:
+        return False, f"車隊榜僅 {len(cs.get('ConstructorStandings', []))} 筆，不合理"
+    if latest is None and prev_round > 0:
+        return False, "last/results 回空但既有快照已有賽果"
+    if data_round < prev_round:
+        return False, f"data_through_round 倒退（{prev_round} → {data_round}）"
+    return True, ""
+
+
+def validate_schedule(races, prev):
+    rounds = [int(r.get("round", 0)) for r in (races or [])]
+    if not rounds:
+        return False, "schedule 為空"
+    if len(set(rounds)) != len(rounds):
+        return False, "schedule round 重複"
+    if prev and prev.get("races") and len(rounds) < len(prev["races"]) - 2:
+        return False, f"schedule 站數驟減（{len(prev['races'])} → {len(rounds)}）"
+    return True, ""
 
 
 def fetch_standings(src, season):
@@ -171,6 +225,12 @@ def fetch_standings(src, season):
     cs = src.constructor_standings(season)
     latest = src.latest_race(season)
     data_round = int(latest["round"]) if latest else 0
+    prev = _load_json(base / "driver-standings.json")
+    prev_round = int(prev.get("data_through_round", 0)) if prev else 0
+    ok, reason = validate_standings(ds, cs, latest, data_round, prev_round)
+    if not ok and prev is not None:
+        print(f"  🛑 standings 驗證未過（{reason}）→ 保留既有快照不覆寫", flush=True)
+        return False, prev_round, None
     ch1 = _write_snapshot(base / "driver-standings.json",
                           {"season": season, "fetched_at": fetched_at,
                            "data_through_round": data_round, "standings": ds}, history=True)
@@ -181,14 +241,34 @@ def fetch_standings(src, season):
 
 
 def fetch_schedule(src, season):
+    path = DATA / str(season) / "schedule.json"
     races = src.schedule(season)
-    return _write_snapshot(DATA / str(season) / "schedule.json",
-                           {"season": season, "races": races}, history=True), races
+    prev = _load_json(path)
+    ok, reason = validate_schedule(races, prev)
+    if not ok and prev is not None:
+        print(f"  🛑 schedule 驗證未過（{reason}）→ 保留既有快照不覆寫", flush=True)
+        return False, prev["races"]
+    return _write_snapshot(path, {"season": season, "races": races}, history=True), races
+
+
+def sprint_session_passed(race_entry, now_utc):
+    """該站衝刺賽 session（UTC）是否已開跑——决定正賽前要不要抓 current-round sprint。"""
+    sp = (race_entry or {}).get("Sprint")
+    if not sp or not sp.get("date"):
+        return False
+    t = (sp.get("time") or "00:00:00Z").replace("Z", "+00:00")
+    try:
+        dt = datetime.datetime.fromisoformat(f"{sp['date']}T{t}")
+    except ValueError:
+        return False
+    return now_utc >= dt
 
 
 def fetch_results(src, season, latest_round, races, force=False):
     """抓 1..latest_round 的正賽賽果（+ sprint 站的衝刺賽果）。已完賽站結果原則上不變，
-    檔案已存在就跳過；最新一站每次重抓（FIA 賽後改判/失格會回寫）。--force 全重抓。"""
+    檔案已存在就跳過；最新一站每次重抓（FIA 賽後改判/失格會回寫，sprint 同理）。
+    另外：下一站若是 sprint 站且衝刺賽已開跑（正賽還沒跑），單獨抓衝刺賽果——
+    否則六/日排程在正賽前永遠抓不到當站衝刺賽。--force 全重抓。"""
     base = DATA / str(season) / "results"
     sprint_rounds = {int(r["round"]) for r in races if "Sprint" in r}
     changed = False
@@ -199,17 +279,24 @@ def fetch_results(src, season, latest_round, races, force=False):
             if res:
                 changed |= _write(p, res)
         sp = base / f"round-{rnd:02d}-sprint.json"
-        if rnd in sprint_rounds and (force or not sp.exists()):
+        if rnd in sprint_rounds and (force or not sp.exists() or rnd == latest_round):
             res = src.sprint_results(season, rnd)
             if res:
                 changed |= _write(sp, res)
+    nxt = latest_round + 1
+    nxt_race = next((r for r in races if int(r.get("round", 0)) == nxt), None)
+    now_utc = datetime.datetime.now(datetime.timezone.utc)
+    if nxt in sprint_rounds and sprint_session_passed(nxt_race, now_utc):
+        res = src.sprint_results(season, nxt)
+        if res:
+            changed |= _write(base / f"round-{nxt:02d}-sprint.json", res)
     return changed
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["all", "standings", "schedule", "results"])
-    ap.add_argument("--season", type=int, default=2026)
+    ap.add_argument("--season", type=int, default=active_season())
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
     src = JolpicaSource()
