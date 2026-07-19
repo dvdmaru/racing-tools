@@ -1,0 +1,28 @@
+# 賽車數據誌（racing.twtools.cc）— F1 積分榜・台北時間賽曆・各站賽果
+
+> 非官方的繁體中文一級方程式（F1）數據與內容站。提供車手/車隊積分榜、全季賽曆台北時間對照、各站官方分類賽果三個每週自動更新的資料頁，以及規則解析、譯名對照等長青專題。內容以繁體中文撰寫、台灣慣用譯名、台北時間標示，面向台灣讀者。
+
+本站為獨立經營的資訊站，與 Formula 1、Formula One Licensing BV、FIA 及各車隊、車手均無任何官方關係，不使用官方標誌、字體、照片或車隊塗裝視覺，非商業性質。數據來源：Ergast 相容公開 API（jolpica-f1），每次抓取落地 JSON 快照；每週一台北時間自動更新，衝刺賽週末加跑週六日。
+
+## 重點頁面
+
+- [首頁數據儀表板](https://racing.twtools.cc/)：積分速覽、下一站台北時間、最新賽果。
+- [積分榜](https://racing.twtools.cc/standings/)：車手與車隊年度積分，台灣慣用譯名＋原文對照。
+- [賽曆 · 台北時間](https://racing.twtools.cc/calendar/)：全季 22 站正賽/排位/衝刺賽時刻換算台北時間（UTC+8）。
+- [各站賽果](https://racing.twtools.cc/results/)：已完賽站完整官方分類（含衝刺賽）。
+- [文章總覽](https://racing.twtools.cc/articles/)：規則解析與對照表長文，逐項標註來源。
+
+## 最新文章
+
+- [2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂](https://racing.twtools.cc/articles/f1-2026-rules-guide/)（2026-07-19）
+- [2026 F1 車手、車隊繁中譯名對照表：台灣慣用版（含港陸差異與術語表）](https://racing.twtools.cc/articles/f1-2026-names-glossary/)（2026-07-19）
+
+## 文章與更新
+
+- [RSS feed](https://racing.twtools.cc/feed.xml)：最新深度文章。
+- 深度文章：3000 字以上的長文，規則與事實逐項對照 FIA/官方說明查證後發布。
+
+## 使用說明
+
+- 引用本站資料時，請註明資料為非官方整理、並以 FIA 及賽事官方公告為準。
+- 內容僅供資訊參考；時間以台北時間（UTC+8）標示。

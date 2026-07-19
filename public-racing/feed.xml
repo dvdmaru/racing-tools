@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>賽車數據誌 — F1 數據頁與深度專題</title>
+  <link>https://racing.twtools.cc/</link>
+  <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
+  <language>zh-Hant</language>
+  <item>
+    <title>2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-rules-guide/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-rules-guide/</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 +0800</pubDate>
+    <description>2026 年是 F1 史上規模最大的改規年：DRS 走入歷史、由 Overtake Mode 接棒，前後翼可動的主動空力上路，動力單元電動輸出提高到接近一半，車變小變輕，還多了凱迪拉克這支第 11 隊。本文逐項拆解每一條新規則的機制與半季下來的實際效果，所有規格數字均對照 FIA 與賽事官方說明查證。</description>
+  </item>
+  <item>
+    <title>2026 F1 車手、車隊繁中譯名對照表：台灣慣用版（含港陸差異與術語表）</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-names-glossary/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-names-glossary/</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 +0800</pubDate>
+    <description>漢米爾頓還是漢密爾頓？麥拉倫還是邁凱倫？F1 的中文譯名有台、港、陸三套系統，混著用會讓讀者錯亂、也不利搜尋。本表整理 2026 年全部 22 位車手與 11 支車隊的台灣慣用譯名，逐一標註依據來源，並列出港陸差異、常用術語與最容易寫錯的雷區。本站全站採用此表定版。</description>
+  </item>
+</channel>
+</rss>

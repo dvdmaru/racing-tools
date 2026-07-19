@@ -1,0 +1,57 @@
+# racing.twtools.cc 每週自動更新（GitHub Actions cron）
+#
+# 自動化節奏是「週」不是「日」：
+#   - 台北週一 06:00（= 週日 22:00 UTC）：歐洲週日夜賽後主更新
+#   - 台北週六/週日 06:00（= 週五/週六 22:00 UTC）：sprint 週末承接衝刺賽果
+#   非賽週或賽果未出：fetch 比對快照無變化 → 安靜跳過（不重建不部署，CI 綠燈）。
+#   手動測試：Actions 分頁 → Run workflow（workflow_dispatch）。
+#
+# 需要的 repo secrets（Settings → Secrets and variables → Actions）：
+#   CLOUDFLARE_API_TOKEN   = ~/.config/cloudflare/foootball-tools-2019.token 的值
+#                            （2019 帳號，需 Workers Scripts:Edit）
+#   CLOUDFLARE_ACCOUNT_ID  = 2f123fdee05d453c8a077b6ba541c45d
+#   （jolpica 免金鑰，資料層零 secrets）
+#
+# ⚠️ schedule 只從預設分支（main）觸發 → 本檔併入 main 才會定時跑。
+# ⚠️ 本 workflow 不寫回 repo：data/ 快照的 git 落地由本機/手動流程負責；
+#    CI 每次 checkout 後現抓現建（快照比對基準是 repo 內 committed 的上一版）。
+
+name: racing weekly update
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'   # 週日 22:00 UTC = 台北週一 06:00（主更新）
+    - cron: '0 22 * * 5'   # 週五 22:00 UTC = 台北週六 06:00（sprint 週末）
+    - cron: '0 22 * * 6'   # 週六 22:00 UTC = 台北週日 06:00（sprint 週末）
+  workflow_dispatch: {}
+
+concurrency:
+  group: racing-weekly
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Install Python deps
+        # pin 版本：後續步驟帶 CLOUDFLARE_API_TOKEN，防惡意 release 供應鏈
+        run: pip install 'markdown==3.10.2'
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Fetch → rebuild → deploy（無新資料安靜跳過）
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: python scripts/update-racing.py --deploy
