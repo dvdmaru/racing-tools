@@ -45,40 +45,77 @@ def ga_snippet(site: dict = None) -> str:
     )
 
 
-# ---------- 主題家族（v2 亮色莫蘭迪 + 單 accent；鍵 rc-theme） ----------
-# Design v2「計時螢幕 × 亮色莫蘭迪」（claude.ai/design 專案「F1 數據站 UI 優化」tokens.css，
-# 快照存 design/mocks-v2/）。key 與 token 名不變、色值換亮色低飽和；仍無任何車隊色聯想。
-# Row: key, 中文, accent, bg, bg_glow, surface, surface2, surface3, accent_bright, accent_ink, header_bg
+# ---------- 主題家族（v2.2「定案 D：深色重心」；鍵 rc-theme） ----------
+# Design 專案「F1 數據站 UI 優化」mocks/standings.html v2.2：亮色莫蘭迪底＋每主題暖色調文字系
+# ＋--ink 深色錨（sticky header/表頭/切換器走深色，見 DARK_ANCHOR_CSS）。
+# ⚠️ IP 紅線改動：mock 的 carbon accent 原為 #e10600（F1 官方品牌色精確色號、label「F1 紅」）
+# → 依 IP 紅線改用非官方色號的賽車紅 #d63a2f、label「賽車紅」（2026-07-19，Charlie 可覆議）。
+# RC_THEMES 只供切換器/JS 用：key, 中文 label, 圓點色（=該主題 accent）。
 RC_THEMES = [
-    ("carbon",   "藕紫",   "#8a7aa8", "#edeaf2", "#f5f2f9", "#f8f6fb", "#efecf5", "#e5e1ed", "#77659a", "#fbfafd", "rgba(248,246,251,0.86)"),
-    ("asphalt",  "灰綠",   "#5f948d", "#e8eeec", "#f1f6f4", "#f4f8f6", "#eaf1ee", "#dee9e5", "#4d837c", "#f7fbfa", "rgba(244,248,246,0.86)"),
-    ("midnight", "霧藍金", "#b3924f", "#e9edf3", "#f2f5f9", "#f5f7fa", "#ebeff4", "#dfe5ee", "#a07f3c", "#fcfaf5", "rgba(245,247,250,0.86)"),
-    ("gravel",   "陶土",   "#b97e59", "#f0eae2", "#f8f3ec", "#faf6f1", "#f2ebe3", "#e9dfd3", "#a76c48", "#fcf8f4", "rgba(250,246,241,0.86)"),
-    ("silver",   "岩灰",   "#8494a4", "#eceef0", "#f4f6f7", "#f6f8f9", "#edf0f2", "#e2e7ea", "#718293", "#f9fbfc", "rgba(246,248,249,0.88)"),
+    ("carbon",   "賽車紅", "#d63a2f"),
+    ("asphalt",  "灰綠",   "#1f9d6b"),
+    ("midnight", "霧藍金", "#c8971f"),
+    ("gravel",   "陶土",   "#d1652f"),
+    ("silver",   "岩灰",   "#4f7cc9"),
 ]
 RC_THEME_KEYS = [t[0] for t in RC_THEMES]
 
 
-def _hexrgba(h: str, a) -> str:
-    h = h.lstrip("#")
-    return f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},{a})"
-
-
 def _theme_tokens_css() -> str:
-    """五主題 token 區塊。v2 起亮底文字色全主題共用；主題間只差 bg/surface/accent 系。
-    （v1 時代五份重複的 .site-header 主題覆寫已合併進 SITE_HEADER_CSS——五主題行為相同。）"""
-    blocks = []
-    for key, _zh, acc, bg, glow, s1, s2, s3, accb, acci, hdr in RC_THEMES:
-        blocks.append(f""":root[data-theme="{key}"] {{
-  --surface:{s1}; --surface-2:{s2}; --surface-3:{s3};
-  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
-  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
-  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
-  --bg:{bg}; --bg-glow:{glow}; --rc-header-bg:{hdr};
-  --accent:{acc}; --accent-bright:{accb}; --accent-ink:{acci};
-  --accent-soft:{_hexrgba(acc,0.14)}; --accent-line:{_hexrgba(acc,0.42)}; --accent-glow:{_hexrgba(acc,0.30)};
-}}""")
-    return "\n" + "\n".join(blocks) + "\n"
+    """五主題 token 區塊（verbatim 自 v2.2 mock，僅 carbon accent 系依 IP 紅線換色號）。
+    每主題有各自的 fg/line/shadow 暖色調與 --ink 深色錨，不再共用文字色。"""
+    return """
+:root[data-theme="carbon"] {
+  --surface:#fdf7f7; --surface-2:#f8ecec; --surface-3:#f1e0e0;
+  --fg:#241a1c; --fg-soft:#493c40; --dim:#786a6e; --faint:#a6989c;
+  --line:rgba(90,20,20,0.12); --line-2:rgba(90,20,20,0.22);
+  --sheet-shadow:rgba(150,30,30,0.13); --scrim:rgba(50,20,20,0.32);
+  --bg:#f3e9e9; --bg-glow:#fbf3f3; --rc-header-bg:rgba(253,247,247,0.88);
+  --accent:#d63a2f; --accent-bright:#b92f25; --accent-ink:#ffffff;
+  --accent-soft:rgba(214,58,47,0.10); --accent-line:rgba(214,58,47,0.40); --accent-glow:rgba(214,58,47,0.32);
+  --ink:#191114;
+}
+:root[data-theme="asphalt"] {
+  --surface:#f4f8f6; --surface-2:#eaf1ee; --surface-3:#dee9e5;
+  --fg:#22322c; --fg-soft:#42544c; --dim:#6f857b; --faint:#97ada3;
+  --line:rgba(30,70,54,0.13); --line-2:rgba(30,70,54,0.24);
+  --sheet-shadow:rgba(40,110,80,0.14); --scrim:rgba(20,50,38,0.32);
+  --bg:#e6efeb; --bg-glow:#f0f7f4; --rc-header-bg:rgba(244,248,246,0.86);
+  --accent:#1f9d6b; --accent-bright:#158a5c; --accent-ink:#f7fbfa;
+  --accent-soft:rgba(31,157,107,0.13); --accent-line:rgba(31,157,107,0.42); --accent-glow:rgba(31,157,107,0.32);
+  --ink:#10261f;
+}
+:root[data-theme="midnight"] {
+  --surface:#faf7ef; --surface-2:#f2ede1; --surface-3:#e9e2d1;
+  --fg:#33301f; --fg-soft:#54503a; --dim:#8a856c; --faint:#b0ab90;
+  --line:rgba(80,66,20,0.13); --line-2:rgba(80,66,20,0.24);
+  --sheet-shadow:rgba(150,120,40,0.15); --scrim:rgba(60,50,20,0.32);
+  --bg:#f0eadb; --bg-glow:#f8f3e7; --rc-header-bg:rgba(250,247,239,0.86);
+  --accent:#c8971f; --accent-bright:#b5851a; --accent-ink:#241c05;
+  --accent-soft:rgba(200,151,31,0.14); --accent-line:rgba(200,151,31,0.42); --accent-glow:rgba(200,151,31,0.32);
+  --ink:#241c0e;
+}
+:root[data-theme="gravel"] {
+  --surface:#faf6f1; --surface-2:#f2ebe3; --surface-3:#e9dfd3;
+  --fg:#3a271c; --fg-soft:#5a4536; --dim:#8f7863; --faint:#b59e8b;
+  --line:rgba(90,50,20,0.13); --line-2:rgba(90,50,20,0.24);
+  --sheet-shadow:rgba(160,90,40,0.15); --scrim:rgba(60,36,18,0.32);
+  --bg:#f0eae2; --bg-glow:#f8f3ec; --rc-header-bg:rgba(250,246,241,0.86);
+  --accent:#d1652f; --accent-bright:#bf5522; --accent-ink:#2a1408;
+  --accent-soft:rgba(209,101,47,0.14); --accent-line:rgba(209,101,47,0.42); --accent-glow:rgba(209,101,47,0.32);
+  --ink:#2a1a11;
+}
+:root[data-theme="silver"] {
+  --surface:#f6f8f9; --surface-2:#edf0f2; --surface-3:#e2e7ea;
+  --fg:#26313c; --fg-soft:#46515c; --dim:#728290; --faint:#9aa8b4;
+  --line:rgba(30,60,90,0.13); --line-2:rgba(30,60,90,0.24);
+  --sheet-shadow:rgba(40,90,150,0.14); --scrim:rgba(20,40,60,0.32);
+  --bg:#eaeef1; --bg-glow:#f3f6f8; --rc-header-bg:rgba(246,248,249,0.88);
+  --accent:#4f7cc9; --accent-bright:#3f6cbd; --accent-ink:#08161f;
+  --accent-soft:rgba(79,124,201,0.14); --accent-line:rgba(79,124,201,0.42); --accent-glow:rgba(79,124,201,0.32);
+  --ink:#161a22;
+}
+"""
 
 
 SHARED_TOKENS_CSS = """
@@ -547,6 +584,21 @@ DATA_CSS = """
 .ses.race { border-color: var(--accent); background: var(--accent-soft); } .ses.race b { color: var(--accent); }
 """
 
+# 深色重心（v2.2 定案 D）：sticky header／表頭／切換器壓 --ink 深色，accent 點狀用。
+# 必須排在所有元件 CSS 之後（覆寫 SITE_HEADER_CSS/DATA_CSS/THEME_SWITCH_CSS 的亮色版）。
+DARK_ANCHOR_CSS = """
+.site-header{background:var(--ink);border-bottom:1px solid rgba(255,255,255,.12)}
+.brand-mark{color:#fff}
+.brand-tag{color:rgba(255,255,255,.55)}
+.site-nav a{color:rgba(255,255,255,.68)}
+.site-nav a:hover{color:#fff;background:rgba(255,255,255,.12)}
+.site-nav a.active{color:var(--accent-ink);background:var(--accent)}
+.std-table thead th{background:var(--ink);color:rgba(255,255,255,.72);border-bottom-color:var(--ink)}
+.theme-switch{background:var(--ink);border-color:rgba(255,255,255,.16)}
+.ts-label{color:rgba(255,255,255,.6)}
+.ts-dot{border-color:var(--ink)}
+"""
+
 
 def tabgroup(group: str, tabs) -> str:
     """CSS-only tabs（radio + :checked）：所有 panel 都在 DOM（GEO-safe，crawler 全看得到）。
@@ -608,6 +660,7 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 {SITE_HEADER_CSS}
 {DATA_CSS}
 {extra_css}
+{DARK_ANCHOR_CSS}
 </style>
 </head>
 <body>
