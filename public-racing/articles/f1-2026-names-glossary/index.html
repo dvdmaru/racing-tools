@@ -32,11 +32,14 @@
 <style>
 
 :root {
-  --radius: 16px;
-  --radius-sm: 11px;
+  --radius: 12px;
+  --radius-sm: 8px;
   --font-display: 'Chakra Petch', 'Noto Sans TC', sans-serif;
   --font-ui: 'Archivo', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
   --font-mono: 'Chakra Petch', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* 頒獎台金屬色與狀態色（跨主題共用，非車隊色） */
+  --p1:#c39b3e; --p2:#8fa0b5; --p3:#b3744b;
+  --dnf:#c2605e;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
@@ -48,84 +51,61 @@ body {
   background: radial-gradient(130% 72% at 50% -12%, var(--bg-glow) 0%, transparent 56%), var(--bg);
 }
 body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; mix-blend-mode: multiply; opacity: 0.5;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
+body::after { /* 起跑線：視窗頂部的速度光帶 */
+  content: ''; position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 200; pointer-events: none;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-line) 40%, transparent 78%); opacity: .85;
+}
+a { color: var(--accent); } a:hover { color: var(--accent-bright); }
 .container { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
 
 :root[data-theme="carbon"] {
-  --surface:#1b1b2e; --surface-2:#222238; --surface-3:#2a2a44;
-  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
-  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
-  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
-  --bg:#131320; --bg-glow:#1a1a2c; --rc-header-bg:rgba(16,16,30,0.88);
-  --accent:#a78bfa; --accent-bright:#bfa8ff; --accent-ink:#131320;
-  --accent-soft:rgba(167,139,250,0.12); --accent-line:rgba(167,139,250,0.36); --accent-glow:rgba(167,139,250,0.3);
+  --surface:#f8f6fb; --surface-2:#efecf5; --surface-3:#e5e1ed;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#edeaf2; --bg-glow:#f5f2f9; --rc-header-bg:rgba(248,246,251,0.86);
+  --accent:#8a7aa8; --accent-bright:#77659a; --accent-ink:#fbfafd;
+  --accent-soft:rgba(138,122,168,0.14); --accent-line:rgba(138,122,168,0.42); --accent-glow:rgba(138,122,168,0.3);
 }
 :root[data-theme="asphalt"] {
-  --surface:#16222c; --surface-2:#1c2b36; --surface-3:#233542;
-  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
-  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
-  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
-  --bg:#101820; --bg-glow:#152029; --rc-header-bg:rgba(13,20,26,0.88);
-  --accent:#38bdb8; --accent-bright:#4fd6d0; --accent-ink:#101820;
-  --accent-soft:rgba(56,189,184,0.12); --accent-line:rgba(56,189,184,0.36); --accent-glow:rgba(56,189,184,0.3);
+  --surface:#f4f8f6; --surface-2:#eaf1ee; --surface-3:#dee9e5;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#e8eeec; --bg-glow:#f1f6f4; --rc-header-bg:rgba(244,248,246,0.86);
+  --accent:#5f948d; --accent-bright:#4d837c; --accent-ink:#f7fbfa;
+  --accent-soft:rgba(95,148,141,0.14); --accent-line:rgba(95,148,141,0.42); --accent-glow:rgba(95,148,141,0.3);
 }
 :root[data-theme="midnight"] {
-  --surface:#132540; --surface-2:#1a2f4e; --surface-3:#20395d;
-  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
-  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
-  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
-  --bg:#0d1b30; --bg-glow:#12233c; --rc-header-bg:rgba(10,22,40,0.88);
-  --accent:#e8b84b; --accent-bright:#f3c860; --accent-ink:#0d1b30;
-  --accent-soft:rgba(232,184,75,0.12); --accent-line:rgba(232,184,75,0.36); --accent-glow:rgba(232,184,75,0.3);
+  --surface:#f5f7fa; --surface-2:#ebeff4; --surface-3:#dfe5ee;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#e9edf3; --bg-glow:#f2f5f9; --rc-header-bg:rgba(245,247,250,0.86);
+  --accent:#b3924f; --accent-bright:#a07f3c; --accent-ink:#fcfaf5;
+  --accent-soft:rgba(179,146,79,0.14); --accent-line:rgba(179,146,79,0.42); --accent-glow:rgba(179,146,79,0.3);
 }
 :root[data-theme="gravel"] {
-  --surface:#281d16; --surface-2:#32251c; --surface-3:#3d2d22;
-  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
-  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
-  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
-  --bg:#1c1410; --bg-glow:#241a14; --rc-header-bg:rgba(26,18,13,0.88);
-  --accent:#e8873a; --accent-bright:#f59a4d; --accent-ink:#1c1410;
-  --accent-soft:rgba(232,135,58,0.12); --accent-line:rgba(232,135,58,0.36); --accent-glow:rgba(232,135,58,0.3);
+  --surface:#faf6f1; --surface-2:#f2ebe3; --surface-3:#e9dfd3;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#f0eae2; --bg-glow:#f8f3ec; --rc-header-bg:rgba(250,246,241,0.86);
+  --accent:#b97e59; --accent-bright:#a76c48; --accent-ink:#fcf8f4;
+  --accent-soft:rgba(185,126,89,0.14); --accent-line:rgba(185,126,89,0.42); --accent-glow:rgba(185,126,89,0.3);
 }
 :root[data-theme="silver"] {
-  --surface:#202329; --surface-2:#282c34; --surface-3:#31353f;
-  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
-  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
-  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
-  --bg:#16181d; --bg-glow:#1c1f25; --rc-header-bg:rgba(18,20,24,0.9);
-  --accent:#aebdd0; --accent-bright:#c4d2e4; --accent-ink:#16181d;
-  --accent-soft:rgba(174,189,208,0.12); --accent-line:rgba(174,189,208,0.36); --accent-glow:rgba(174,189,208,0.3);
+  --surface:#f6f8f9; --surface-2:#edf0f2; --surface-3:#e2e7ea;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#eceef0; --bg-glow:#f4f6f7; --rc-header-bg:rgba(246,248,249,0.88);
+  --accent:#8494a4; --accent-bright:#718293; --accent-ink:#f9fbfc;
+  --accent-soft:rgba(132,148,164,0.14); --accent-line:rgba(132,148,164,0.42); --accent-glow:rgba(132,148,164,0.3);
 }
-:root[data-theme="carbon"] body::before,
-:root[data-theme="asphalt"] body::before,
-:root[data-theme="midnight"] body::before,
-:root[data-theme="gravel"] body::before,
-:root[data-theme="silver"] body::before { mix-blend-mode:screen; opacity:0.16; }
-:root[data-theme="carbon"] .site-header,
-:root[data-theme="asphalt"] .site-header,
-:root[data-theme="midnight"] .site-header,
-:root[data-theme="gravel"] .site-header,
-:root[data-theme="silver"] .site-header { position:sticky; top:0; z-index:30; margin-bottom:34px;
-  padding:14px 0; background:var(--rc-header-bg); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line); }
-:root[data-theme="carbon"] .site-nav a,
-:root[data-theme="asphalt"] .site-nav a,
-:root[data-theme="midnight"] .site-nav a,
-:root[data-theme="gravel"] .site-nav a,
-:root[data-theme="silver"] .site-nav a { text-transform:none; letter-spacing:1px; font-size:13px;
-  padding:6px 13px; border-radius:999px; border-bottom:none; }
-:root[data-theme="carbon"] .site-nav a:hover,
-:root[data-theme="asphalt"] .site-nav a:hover,
-:root[data-theme="midnight"] .site-nav a:hover,
-:root[data-theme="gravel"] .site-nav a:hover,
-:root[data-theme="silver"] .site-nav a:hover { color:var(--accent); background:var(--accent-soft); border-bottom:none; }
-:root[data-theme="carbon"] .site-nav a.active,
-:root[data-theme="asphalt"] .site-nav a.active,
-:root[data-theme="midnight"] .site-nav a.active,
-:root[data-theme="gravel"] .site-nav a.active,
-:root[data-theme="silver"] .site-nav a.active { color:var(--accent-ink); background:var(--accent); border-bottom:none; }
 
 
 .theme-switch {
@@ -133,7 +113,7 @@ body::before {
   display: flex; align-items: center; gap: 11px;
   background: color-mix(in srgb, var(--surface) 86%, transparent);
   border: 1px solid var(--line); border-radius: 99px;
-  padding: 7px 13px 7px 14px; box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+  padding: 7px 13px 7px 14px; box-shadow: 0 6px 22px rgba(70,70,90,0.16);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .ts-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; color: var(--dim); text-transform: uppercase; }
@@ -153,16 +133,23 @@ body::before {
 
 
 .site-header {
+  position: sticky; top: 0; z-index: 30;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 36px 0 20px; margin-bottom: 44px;
+  gap: 14px 24px; flex-wrap: wrap;
+  padding: 14px 0; margin-bottom: 34px;
+  background: var(--rc-header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
-  gap: 24px; flex-wrap: wrap;
 }
-.brand-block { display: flex; flex-direction: column; gap: 6px; }
+.brand-block { display: flex; flex-direction: column; gap: 5px; }
 .brand-mark {
-  font-family: var(--font-display); font-weight: 700; font-size: 27px; line-height: 1;
+  font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1;
   color: var(--accent); letter-spacing: 2px; font-style: italic;
   text-decoration: none; transition: color 0.15s ease;
+  display: inline-flex; align-items: center; gap: 9px;
+}
+.brand-mark::before { /* 自繪速度斜紋 */
+  content: ''; width: 17px; height: 15px; flex: none;
+  background: repeating-linear-gradient(-62deg, var(--accent) 0 3.5px, transparent 3.5px 8px);
 }
 .brand-mark:hover { color: var(--accent-bright); }
 .brand-tag {
@@ -173,11 +160,11 @@ body::before {
   display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
   font-family: var(--font-ui); font-size: 13px;
 }
-.site-nav a { color: var(--dim); text-decoration: none; transition: color 0.15s ease, background 0.15s ease; }
-@media (max-width: 580px) {
-  .site-header { padding-top: 22px; gap: 14px; }
-  .brand-mark { font-size: 22px; }
-}
+.site-nav a { color: var(--dim); text-decoration: none; letter-spacing: 1px; font-size: 13px;
+  padding: 6px 13px; border-radius: 999px; transition: color 0.15s ease, background 0.15s ease; }
+.site-nav a:hover { color: var(--accent); background: var(--accent-soft); }
+.site-nav a.active { color: var(--accent-ink); background: var(--accent); font-weight: 700; }
+@media (max-width: 580px) { .brand-mark { font-size: 21px; } }
 .site-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.7; text-align: center; max-width: 640px; margin: 18px auto 0; }
 .site-disclaimer span { opacity: 0.75; }
 .article-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
@@ -222,11 +209,11 @@ body::before {
 <div class="theme-switch">
   <span class="ts-label">配色</span>
   <div class="ts-dots">
-    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#a78bfa" aria-label="碳黑紫"></button>
-    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#38bdb8" aria-label="柏油青"></button>
-    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#e8b84b" aria-label="夜藍金"></button>
-    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#e8873a" aria-label="礫石橘"></button>
-    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#aebdd0" aria-label="銀灰"></button>
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#8a7aa8" aria-label="藕紫"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#5f948d" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#b3924f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#b97e59" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#8494a4" aria-label="岩灰"></button>
   </div>
 </div>
 
