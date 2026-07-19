@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:2400px; height:1260px; background:#131320; color:#eef0f4;
+  font-family:'Noto Sans TC',sans-serif; overflow:hidden; position:relative;
+  background: radial-gradient(120% 80% at 80% -10%, #1e1e33 0%, #131320 60%); }
+.grid { position:absolute; inset:0; opacity:.12;
+  background-image: linear-gradient(rgba(167,139,250,.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167,139,250,.35) 1px, transparent 1px);
+  background-size: 120px 120px; }
+.wrap { position:relative; padding:110px 130px; height:100%; display:flex; flex-direction:column; }
+.brand { font-family:'Chakra Petch'; font-style:italic; font-weight:700; font-size:44px; letter-spacing:6px; color:#a78bfa; }
+.tag { font-family:'Chakra Petch'; font-size:26px; letter-spacing:10px; color:#8e99ad; margin-top:10px; text-transform:uppercase; }
+h1 { font-weight:900; font-size:112px; line-height:1.2; margin-top:56px; letter-spacing:2px; }
+h1 .y { font-family:'Chakra Petch'; font-style:italic; color:#a78bfa; }
+.sub { font-size:42px; color:#c3c9d6; margin-top:30px; letter-spacing:2px; }
+table { margin-top:auto; width:100%; border-collapse:collapse; font-size:40px; }
+th { font-family:'Chakra Petch'; font-size:30px; letter-spacing:4px; color:#8e99ad; text-align:left;
+  padding:0 24px 18px; border-bottom:3px solid rgba(167,139,250,.4); }
+td { padding:26px 24px; border-bottom:1.5px solid rgba(238,240,244,.12); }
+td.en { font-family:'Chakra Petch'; font-weight:600; color:#c3c9d6; }
+td.tw { font-weight:900; color:#a78bfa; font-size:46px; }
+td.other { color:#67728a; }
+.foot { position:absolute; bottom:44px; right:130px; font-size:24px; color:#67728a; letter-spacing:2px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 對照表</div>
+  <h1><span class="y">2026</span> F1 車手車隊<br>繁中譯名對照表</h1>
+  <div class="sub">台灣慣用定版 ・ 22 位車手 ・ 11 支車隊 ・ 含港陸差異與術語表</div>
+  <table>
+    <tr><th>原文</th><th>台灣（本站定版）</th><th>香港</th><th>中國大陸</th></tr>
+    <tr><td class="en">Hamilton</td><td class="tw">漢米爾頓</td><td class="other">咸美頓</td><td class="other">漢密爾頓</td></tr>
+    <tr><td class="en">McLaren</td><td class="tw">麥拉倫</td><td class="other">麥拿侖</td><td class="other">邁凱倫</td></tr>
+    <tr><td class="en">Mercedes</td><td class="tw">賓士</td><td class="other">平治</td><td class="other">梅賽德斯</td></tr>
+  </table>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 逐項標註媒體用例依據</div>
+</div>
+</body>
+</html>

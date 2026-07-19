@@ -1,0 +1,58 @@
+{
+  "_comment": "racing.twtools.cc 站身分單一資料源（org/website JSON-LD + 頁面 chrome）。品牌名走描述性「賽車數據誌」，不含 F1 字樣（商標紅線）；內文行文可正常指涉 F1。ga_id 未設時不輸出 GA tag（GA4 property 待 Charlie 開通後補上）。base 無尾斜線。",
+  "base": "https://racing.twtools.cc",
+  "org_name": "賽車數據誌",
+  "org_same_as": [],
+  "website_name": "賽車數據誌｜F1 積分榜・台北時間賽曆・各站賽果",
+  "brand_mark": "@RACING",
+  "brand_tag": "賽車數據 · 台北時間",
+  "title_suffix": "賽車數據誌",
+  "feed_title": "賽車數據誌 最新文章",
+  "feed_channel_title": "賽車數據誌 — F1 數據頁與深度專題",
+  "feed_channel_desc": "一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。",
+  "default_theme": "carbon",
+  "nav": [
+    {
+      "label": "首頁",
+      "href": "/",
+      "key": "home"
+    },
+    {
+      "label": "積分榜",
+      "href": "/standings/",
+      "key": "standings"
+    },
+    {
+      "label": "賽曆",
+      "href": "/calendar/",
+      "key": "calendar"
+    },
+    {
+      "label": "賽果",
+      "href": "/results/",
+      "key": "results"
+    },
+    {
+      "label": "文章",
+      "href": "/articles/",
+      "key": "articles"
+    }
+  ],
+  "external_link": null,
+  "footer_cta": null,
+  "footer_links": [
+    {
+      "label": "積分榜",
+      "href": "/standings/"
+    },
+    {
+      "label": "台北時間賽曆",
+      "href": "/calendar/"
+    },
+    {
+      "label": "所有文章",
+      "href": "/articles/"
+    }
+  ],
+  "ga_id": "G-DN5FKJNCVQ"
+}

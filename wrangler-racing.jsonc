@@ -1,0 +1,24 @@
+{
+  // racing.twtools.cc — Cloudflare Workers static-assets deploy（clone baseball 模式）。
+  // Deploy:
+  //   CLOUDFLARE_API_TOKEN=$(cat ~/.config/cloudflare/foootball-tools-2019.token) \
+  //   CLOUDFLARE_ACCOUNT_ID=2f123fdee05d453c8a077b6ba541c45d \
+  //   npx wrangler deploy -c wrangler-racing.jsonc </dev/null
+  // （2019 主帳號；token 需 Workers Scripts:Edit。custom domain 由 routes 自動建 DNS+憑證，
+  //   twtools.cc zone 須在同帳號。）
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "racing-tools",
+  "compatibility_date": "2026-07-19",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "public-racing"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "routes": [
+    { "pattern": "racing.twtools.cc", "custom_domain": true }
+  ]
+}

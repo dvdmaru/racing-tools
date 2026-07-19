@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂 | 賽車數據誌</title>
+<meta name="description" content="2026 年是 F1 史上規模最大的改規年：DRS 走入歷史、由 Overtake Mode 接棒，前後翼可動的主動空力上路，動力單元電動輸出提高到接近一半，車變小變輕，還多了凱迪拉克這支第 11 隊。本文逐項拆解每一條新規則的機制與半季下來的實際效果，所有規格數字均對照 FIA 與賽事官方說明查證。">
+<meta property="og:title" content="2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂">
+<meta property="og:description" content="2026 年是 F1 史上規模最大的改規年：DRS 走入歷史、由 Overtake Mode 接棒，前後翼可動的主動空力上路，動力單元電動輸出提高到接近一半，車變小變輕，還多了凱迪拉克這支第 11 隊。本文逐項拆解每一條新規則的機制與半季下來的實際效果，所有規格數字均對照 FIA 與賽事官方說明查證。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-2026-rules-guide/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://racing.twtools.cc/articles/f1-2026-rules-guide/cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://racing.twtools.cc/articles/f1-2026-rules-guide/cover.png">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-2026-rules-guide/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌｜F1 積分榜・台北時間賽曆・各站賽果","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"}},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-2026-rules-guide/#article","headline":"2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂","description":"2026 年是 F1 史上規模最大的改規年：DRS 走入歷史、由 Overtake Mode 接棒，前後翼可動的主動空力上路，動力單元電動輸出提高到接近一半，車變小變輕，還多了凱迪拉克這支第 11 隊。本文逐項拆解每一條新規則的機制與半季下來的實際效果，所有規格數字均對照 FIA 與賽事官方說明查證。","datePublished":"2026-07-19","dateModified":"2026-07-19","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-2026-rules-guide/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true,"image":"https://racing.twtools.cc/articles/f1-2026-rules-guide/cover.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂","item":"https://racing.twtools.cc/articles/f1-2026-rules-guide/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-2026-rules-guide/#faq","mainEntity":[{"@type":"Question","name":"2026 年 F1 還有 DRS 嗎？","acceptedAnswer":{"@type":"Answer","text":"沒有。DRS（可變尾翼減阻系統）在 2025 年賽季結束後正式退役，2026 年起由 Overtake Mode 接替超車輔助的角色——原理從「減少後翼阻力」改成「額外電量與更長的電力輸出」。直線減阻的功能則由人人可用的 Straight Mode（主動空力直線模式）承擔。"}},{"@type":"Question","name":"Overtake Mode 和 Boost 有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"Overtake Mode 需要在偵測點距前車 1 秒內才能取得，下一圈生效，給的是額外 0.5 MJ 電量與延長的輸出曲線，是「追擊獎勵」；Boost 則是車手隨時可按的按鈕，在任意位置釋放最大綜合功率，不需要距離條件。前者像加長彈匣，後者像手動點放。"}},{"@type":"Question","name":"2026 年的車比以前快還是慢？","acceptedAnswer":{"@type":"Answer","text":"單圈普遍比 2025 年慢。下壓力減少約 30%、機械抓地力下降，加上車手需要收油回充能量，圈速自然變慢；但這是規則設計的取捨——換來的是更小更靈活的車身、大幅減阻的直線模式，以及更容易跟車纏鬥的比賽。"}},{"@type":"Question","name":"為什麼 2026 年只有 22 站？","acceptedAnswer":{"@type":"Answer","text":"原公布的賽曆有 24 站，巴林站與沙烏地站（原定 4 月）在 2026 年 3 月因中東地區軍事衝突升高、基於安全考量宣布取消，且不安排遞補場次，賽季因此縮為 22 站。"}},{"@type":"Question","name":"凱迪拉克用的是誰的引擎？","acceptedAnswer":{"@type":"Answer","text":"法拉利。凱迪拉克 2026 年以客戶身分使用法拉利的動力單元與變速箱；通用汽車自研的動力單元目標 2029 年投入使用。 ---"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<style>
+
+:root {
+  --radius: 16px;
+  --radius-sm: 11px;
+  --font-display: 'Chakra Petch', 'Noto Sans TC', sans-serif;
+  --font-ui: 'Archivo', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-mono: 'Chakra Petch', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-ui);
+  line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+body {
+  min-height: 100vh; padding: 0 16px 110px; position: relative;
+  background: radial-gradient(130% 72% at 50% -12%, var(--bg-glow) 0%, transparent 56%), var(--bg);
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+.container { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
+
+:root[data-theme="carbon"] {
+  --surface:#1b1b2e; --surface-2:#222238; --surface-3:#2a2a44;
+  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
+  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
+  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
+  --bg:#131320; --bg-glow:#1a1a2c; --rc-header-bg:rgba(16,16,30,0.88);
+  --accent:#a78bfa; --accent-bright:#bfa8ff; --accent-ink:#131320;
+  --accent-soft:rgba(167,139,250,0.12); --accent-line:rgba(167,139,250,0.36); --accent-glow:rgba(167,139,250,0.3);
+}
+:root[data-theme="asphalt"] {
+  --surface:#16222c; --surface-2:#1c2b36; --surface-3:#233542;
+  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
+  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
+  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
+  --bg:#101820; --bg-glow:#152029; --rc-header-bg:rgba(13,20,26,0.88);
+  --accent:#38bdb8; --accent-bright:#4fd6d0; --accent-ink:#101820;
+  --accent-soft:rgba(56,189,184,0.12); --accent-line:rgba(56,189,184,0.36); --accent-glow:rgba(56,189,184,0.3);
+}
+:root[data-theme="midnight"] {
+  --surface:#132540; --surface-2:#1a2f4e; --surface-3:#20395d;
+  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
+  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
+  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
+  --bg:#0d1b30; --bg-glow:#12233c; --rc-header-bg:rgba(10,22,40,0.88);
+  --accent:#e8b84b; --accent-bright:#f3c860; --accent-ink:#0d1b30;
+  --accent-soft:rgba(232,184,75,0.12); --accent-line:rgba(232,184,75,0.36); --accent-glow:rgba(232,184,75,0.3);
+}
+:root[data-theme="gravel"] {
+  --surface:#281d16; --surface-2:#32251c; --surface-3:#3d2d22;
+  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
+  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
+  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
+  --bg:#1c1410; --bg-glow:#241a14; --rc-header-bg:rgba(26,18,13,0.88);
+  --accent:#e8873a; --accent-bright:#f59a4d; --accent-ink:#1c1410;
+  --accent-soft:rgba(232,135,58,0.12); --accent-line:rgba(232,135,58,0.36); --accent-glow:rgba(232,135,58,0.3);
+}
+:root[data-theme="silver"] {
+  --surface:#202329; --surface-2:#282c34; --surface-3:#31353f;
+  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
+  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
+  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
+  --bg:#16181d; --bg-glow:#1c1f25; --rc-header-bg:rgba(18,20,24,0.9);
+  --accent:#aebdd0; --accent-bright:#c4d2e4; --accent-ink:#16181d;
+  --accent-soft:rgba(174,189,208,0.12); --accent-line:rgba(174,189,208,0.36); --accent-glow:rgba(174,189,208,0.3);
+}
+:root[data-theme="carbon"] body::before,
+:root[data-theme="asphalt"] body::before,
+:root[data-theme="midnight"] body::before,
+:root[data-theme="gravel"] body::before,
+:root[data-theme="silver"] body::before { mix-blend-mode:screen; opacity:0.16; }
+:root[data-theme="carbon"] .site-header,
+:root[data-theme="asphalt"] .site-header,
+:root[data-theme="midnight"] .site-header,
+:root[data-theme="gravel"] .site-header,
+:root[data-theme="silver"] .site-header { position:sticky; top:0; z-index:30; margin-bottom:34px;
+  padding:14px 0; background:var(--rc-header-bg); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line); }
+:root[data-theme="carbon"] .site-nav a,
+:root[data-theme="asphalt"] .site-nav a,
+:root[data-theme="midnight"] .site-nav a,
+:root[data-theme="gravel"] .site-nav a,
+:root[data-theme="silver"] .site-nav a { text-transform:none; letter-spacing:1px; font-size:13px;
+  padding:6px 13px; border-radius:999px; border-bottom:none; }
+:root[data-theme="carbon"] .site-nav a:hover,
+:root[data-theme="asphalt"] .site-nav a:hover,
+:root[data-theme="midnight"] .site-nav a:hover,
+:root[data-theme="gravel"] .site-nav a:hover,
+:root[data-theme="silver"] .site-nav a:hover { color:var(--accent); background:var(--accent-soft); border-bottom:none; }
+:root[data-theme="carbon"] .site-nav a.active,
+:root[data-theme="asphalt"] .site-nav a.active,
+:root[data-theme="midnight"] .site-nav a.active,
+:root[data-theme="gravel"] .site-nav a.active,
+:root[data-theme="silver"] .site-nav a.active { color:var(--accent-ink); background:var(--accent); border-bottom:none; }
+
+
+.theme-switch {
+  position: fixed; top: 14px; right: 16px; z-index: 150;
+  display: flex; align-items: center; gap: 11px;
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border: 1px solid var(--line); border-radius: 99px;
+  padding: 7px 13px 7px 14px; box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.ts-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; color: var(--dim); text-transform: uppercase; }
+.ts-dots { display: flex; gap: 8px; }
+.ts-dot {
+  width: 19px; height: 19px; border-radius: 50%; padding: 0; cursor: pointer;
+  background: var(--sw); border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line-2);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.ts-dot:hover { transform: scale(1.14); }
+.ts-dot.active { box-shadow: 0 0 0 2px var(--sw); transform: scale(1.05); }
+@media (max-width: 520px) {
+  .theme-switch { top: 10px; right: 10px; padding: 6px 11px; gap: 9px; }
+  .ts-label { display: none; }
+}
+
+
+.site-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 36px 0 20px; margin-bottom: 44px;
+  border-bottom: 1px solid var(--line);
+  gap: 24px; flex-wrap: wrap;
+}
+.brand-block { display: flex; flex-direction: column; gap: 6px; }
+.brand-mark {
+  font-family: var(--font-display); font-weight: 700; font-size: 27px; line-height: 1;
+  color: var(--accent); letter-spacing: 2px; font-style: italic;
+  text-decoration: none; transition: color 0.15s ease;
+}
+.brand-mark:hover { color: var(--accent-bright); }
+.brand-tag {
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 2.5px; color: var(--dim); text-transform: uppercase;
+}
+.site-nav {
+  display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: 13px;
+}
+.site-nav a { color: var(--dim); text-decoration: none; transition: color 0.15s ease, background 0.15s ease; }
+@media (max-width: 580px) {
+  .site-header { padding-top: 22px; gap: 14px; }
+  .brand-mark { font-size: 22px; }
+}
+.site-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.7; text-align: center; max-width: 640px; margin: 18px auto 0; }
+.site-disclaimer span { opacity: 0.75; }
+.article-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
+.foot-links { display: flex; gap: 22px; justify-content: center; font-size: 13px; }
+.foot-links a { color: var(--dim); text-decoration: none; }
+.foot-links a:hover { color: var(--accent); }
+
+
+.art-cover { width:100%; border-radius: var(--radius); margin: 8px 0 26px; display:block; }
+.art-kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: 2.5px; color: var(--accent);
+  text-transform: uppercase; margin-bottom: 10px; }
+.art-h1 { font-family: var(--font-display); font-size: clamp(26px,4.6vw,40px); line-height: 1.22;
+  margin: 0 0 14px; font-style: italic; }
+.art-meta { color: var(--dim); font-size: 13px; margin-bottom: 26px; display:flex; gap:14px; flex-wrap:wrap; }
+.art-lede { font-size: 16.5px; color: var(--fg-soft); line-height: 1.85; border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 18px; margin: 0 0 30px; }
+.prose { font-size: 16px; line-height: 1.95; }
+.prose h2 { font-family: var(--font-display); font-size: 23px; margin: 44px 0 14px; line-height:1.35; font-style: italic; }
+.prose h3 { font-size: 17.5px; margin: 30px 0 10px; font-weight: 800; }
+.prose p { margin: 0 0 18px; }
+.prose strong { color: var(--fg); }
+.prose a { color: var(--accent); }
+.prose ul, .prose ol { margin: 0 0 18px 1.4em; }
+.prose li { margin-bottom: 6px; }
+.prose blockquote { border-left: 3px solid var(--line-2); color: var(--dim); padding-left: 16px; margin: 0 0 18px; }
+.prose hr { border: none; border-top: 1px solid var(--line); margin: 34px 0; }
+.prose table { width:100%; border-collapse: collapse; margin: 10px 0 22px; font-size: 14px; }
+.prose th, .prose td { padding: 8px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+.prose th { color: var(--dim); font-weight: 600; font-size: 12.5px; white-space: nowrap; }
+.prose .tbl-scroll, .prose-tblwrap { overflow-x: auto; }
+.art-nav { display:flex; gap:12px; margin-top: 44px; }
+.art-nav a { flex:1; border:1px solid var(--line); border-radius: 12px; padding: 12px 16px;
+  text-decoration:none; color: var(--fg-soft); font-size: 13.5px; background: var(--surface); }
+.art-nav a:hover { border-color: var(--accent-line); }
+.art-nav .lbl { display:block; color: var(--dim); font-size: 11px; font-family: var(--font-mono);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+
+</style>
+</head>
+<body>
+
+<div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#a78bfa" aria-label="碳黑紫"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#38bdb8" aria-label="柏油青"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#e8b84b" aria-label="夜藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#e8873a" aria-label="礫石橘"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#aebdd0" aria-label="銀灰"></button>
+  </div>
+</div>
+
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav">
+      <a href="/">首頁</a>
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">賽曆</a>
+      <a href="/results/">賽果</a>
+      <a href="/articles/" class="active">文章</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂</h1>
+  <div class="art-meta"><span>2026 年 7 月 19 日</span><span>賽車數據誌</span></div>
+  <img class="art-cover" src="cover.png" alt="2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂">
+  <p class="art-lede">如果你今年才回頭看 F1，會發現轉播裡少了熟悉的 DRS 字樣，多了 Overtake、Boost 這些新詞；車尾翼會在直線上自己放平，圈速慢了一些，超車卻多了一倍。這些變化全部來自 2026 年生效的新技術規則——FIA 官方自己都稱之為數十年來最徹底的一次改版。這篇指南把改了什麼、為什麼改、半季跑下來效果如何，一次講清楚。</p>
+  <article class="prose">
+<h2>為什麼 2026 年是「史上最大改規年」</h2>
+<p>F1 的技術規則每隔幾年就會翻新一次，但 2026 年這一輪的特別之處在於：底盤與動力單元<strong>同時</strong>重寫。改動規模被普遍拿來與 2014 年混合動力元年相比，甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫。動力單元的電動輸出比例大幅提高、燃料全面換成 100% 永續燃料、空力套件從固定翼面改成可動翼面、車體縮小減重，再加上凱迪拉克（Cadillac）以第 11 支車隊的身分加入。每一項單獨拿出來都是大新聞，2026 年把它們全部疊在同一季。</p>
+<p>改規的動機大致有三條：讓引擎更貼近道路車輛的電動化趨勢，藉此吸引車廠加入（奧迪與凱迪拉克確實因此進場）、讓比賽更好看（減少對前車亂流的依賴），以及永續燃料的減碳承諾。效果如何，本文最後一節用半季的實際數據來檢驗。</p>
+<h2>動力單元：接近 50/50 的油電比</h2>
+<p>2026 年動力單元保留 1.6 升 V6 渦輪引擎，但內部的權力結構徹底改變：</p>
+<div class="prose-tblwrap"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>2025 之前</th>
+<th>2026 起</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>內燃機輸出</td>
+<td>550-560 kW</td>
+<td>400 kW</td>
+</tr>
+<tr>
+<td>電動馬達（MGU-K）輸出</td>
+<td>120 kW</td>
+<td>350 kW</td>
+</tr>
+<tr>
+<td>MGU-H（熱能回收）</td>
+<td>有</td>
+<td>取消</td>
+</tr>
+<tr>
+<td>燃料</td>
+<td>E10（10% 生質乙醇）</td>
+<td>100% 永續燃料</td>
+</tr>
+<tr>
+<td>每圈煞車回收能量</td>
+<td>約 4 MJ</td>
+<td>約 8.5 MJ</td>
+</tr>
+</tbody>
+</table></div>
+<p>內燃機從約 550 kW 降到 400 kW，電動馬達從 120 kW 提高到 350 kW，官方把這個配置稱為「接近 50/50 的能量分配」（精確比例約 53% 比 47%）。合計輸出比舊世代更高，突破 1000 匹馬力。</p>
+<p>兩個配套變化值得展開。第一，結構複雜、成本高昂又難以移植到市售車的 MGU-H 正式取消，這是說服新車廠進場的關鍵讓步之一。第二，燃料改為 100% 永續燃料，碳源來自碳捕捉、都市廢棄物與非糧食生質原料，這是 F1 對「淨零」承諾的核心技術路徑。</p>
+<p>引擎供應商版圖也重新洗牌，2026 年共 5 家：賓士（Mercedes）供應自家車隊與麥拉倫、Alpine、威廉斯；法拉利供應自家、哈斯與凱迪拉克；紅牛與 Racing Bulls 使用自家與福特合作的 Red Bull Ford Powertrains；本田（Honda）獨家供應奧斯頓馬丁；奧迪（Audi）供應自家車隊。</p>
+<h2>主動空力：Straight Mode 與 Corner Mode</h2>
+<p>2026 年的車有兩種「形狀」。前翼與後翼的翼片都可以切換角度：</p>
+<ul>
+<li><strong>Corner Mode（彎道模式）</strong>：翼片閉合、下壓力全開，是預設狀態，過彎靠它。</li>
+<li><strong>Straight Mode（直線模式）</strong>：翼片打開、阻力大減，在 FIA 核准的直線區段（大約 3 秒以上的直線）任何車、任何圈都能啟用，入彎前切回 Corner Mode。</li>
+</ul>
+<p>規則制定期這兩個模式叫 X-mode 與 Z-mode，你在 2024、2025 年的報導裡看到的是舊名；季前 FIA 與 F1 官方把對外用語統一改成 Straight／Corner Mode。</p>
+<p>它與 DRS 最大的差別有兩點。其一，DRS 只動後翼，主動空力是<strong>前後翼連動</strong>切換，切換瞬間車的前後配平不變，車手不需要跟突然轉移的抓地力搏鬥。其二，DRS 是「距前車 1 秒內才能開」的追擊工具，Straight Mode 則是人人可用的減阻工具。它本身不是超車輔助，超車輔助另有其人，就是下一節的主角。</p>
+<h2>Overtake Mode：DRS 的接班人</h2>
+<p>DRS 用了 15 年（2011-2025），2026 年正式退役。接棒的超車輔助叫 <strong>Overtake Mode</strong>：在賽道指定偵測點距前車 1 秒以內，下一圈就能啟用，效果是額外獲得 0.5 MJ 的電量配額，並讓電動馬達的輸出曲線延伸到更高車速。簡單說，別人的電已經開始衰減時，你的還在全力放電。</p>
+<p>它與 DRS 的關鍵差異是原理：DRS 靠「減阻」製造尾速差，Overtake Mode 靠「電力差」。而且它不限定在特定區域使用，可以一次用完、也可以分散在一圈裡的不同路段，怎麼用變成車手與策略工程師的功課。</p>
+<p>規則書早期把這套機制叫 Manual Override Mode（MOM），季前官方統一改稱 Overtake——如果你在舊報導裡看過 MOM，指的就是它。同一批新術語還有 <strong>Boost</strong>（車手自主按鈕，任意位置釋放最大功率或車隊預設的加強輸出曲線）與 <strong>Recharge</strong>（能量回收狀態）。</p>
+<h2>車體：更小、更輕、更靈活</h2>
+<p>2026 年的車全面「瘦身」：軸距上限縮短 200 mm 到 3400 mm，車寬縮短 100 mm 到 1900 mm，最低重量降到 768 kg，較上一代低約 30 kg。輪胎維持 18 吋，但前胎變窄 25 mm、後胎變窄 30 mm。FIA 公布的空力目標是下壓力減少 30%、阻力減少 55%。</p>
+<p>方向很明確：過去十年 F1 賽車越長越大、越來越重，被批評像「開著巴士過彎」；2026 年是十多年來第一次往回收。代價是機械抓地力與下壓力都變少，單圈慢了，但車在中低速彎的靈活度與跟車能力變好。</p>
+<h2>凱迪拉克：第 11 支車隊</h2>
+<p>2026 年圍場多了一支新軍：<strong>Cadillac Formula 1 Team</strong>，由通用汽車（GM）與 TWG Motorsports 合資成立，是 2026 年新規則時代唯一的第 11 隊。車手陣容走經驗路線：芬蘭老將博塔斯（Valtteri Bottas，77 號）與墨西哥名將培瑞茲（Sergio Pérez，11 號），兩人合計超過 500 場大獎賽經驗。</p>
+<p>動力單元方面，凱迪拉克 2026 年起使用法拉利的客戶引擎與變速箱（2024 年 12 月官宣），GM 自研動力單元的目標時程是 2029 年。開季至今凱迪拉克尚未拿下積分，對一支從零開始的新車隊來說，這在多數車迷的預期之內。</p>
+<h2>賽曆與制度：22 站、6 場衝刺賽、積分不變</h2>
+<p>2026 年賽曆原公布 24 站，巴林站與沙烏地站在 2026 年 3 月因中東地區軍事衝突升高、基於安全考量取消且不遞補，賽季縮為 22 站：3 月 8 日澳洲墨爾本揭幕，12 月 6 日阿布達比收官。西班牙今年有兩站：巴塞隆納 6 月一站，馬德里新建的 Madring 市街賽道 9 月 13 日首辦，掛正式名稱「西班牙大獎賽」。完整賽程與台北時間對照，見本站的<a href="/calendar/">台北時間賽曆</a>。</p>
+<p>衝刺賽 2026 年共 6 場：中國、邁阿密、加拿大（首辦）、英國（回歸）、荷蘭（首辦）、新加坡（首辦），前 4 場已跑完。積分制度沒有改變：正賽前 10 名依 25-18-15-12-10-8-6-4-2-1 計分，衝刺賽前 8 名依 8 到 1 計分；最快單圈加分早在 2025 年就取消了。比較細的變化是排位賽：因為場上有 22 台車，Q1、Q2 各淘汰 6 台。</p>
+<h2>半季實戰檢驗：新規則跑出了什麼</h2>
+<p>規則寫在紙上是一回事，跑了 9 站之後（截至 7 月 5 日英國站），2026 年上半季給出三個答案。</p>
+<p><strong>第一，賓士掌握了新公式。</strong>前 9 站賓士拿下 7 勝——安東內利（Kimi Antonelli）5 勝、羅素（George Russell）2 勝，法拉利靠漢米爾頓（巴塞隆納站）與勒克萊爾（英國站）各拿 1 勝分走剩下兩場。多家媒體的技術分析指出，賓士的優勢除了引擎本體，還有能量管理策略：什麼時候回充、什麼時候放電這門軟體功課，對手估計落後至少 0.5 秒。這個格局像極了 2014 年：上一次動力單元大改，賓士同樣一騎絕塵。</p>
+<p><strong>第二，超車變多了，但吵得也多。</strong>開季前三站的超車次數比 2025 年同場地翻倍以上（ESPN 統計：澳洲 39 次對 17 次、中國 71 次對 31 次、日本 43 次對 15 次；各媒體因計算口徑不同數字有出入，但「翻倍以上」的方向一致）。不過 Boost 與 Overtake 造成的頻繁互換位置，也被部分車手與評論批評「像人工製造的溜溜球」，超車的含金量成為爭論焦點。</p>
+<p><strong>第三，能量管理成了新的抱怨來源，FIA 也已出手修正。</strong>車手需要在高速彎前收油回充（lift-and-coast），維斯塔潘（Max Verstappen）等多位車手公開表達不滿，車速差擴大也帶來安全疑慮。FIA 在 4 月底與各方拍板季中修正，自邁阿密站起實施：每圈回充上限由 8 MJ 降為 7 MJ、superclip 峰值功率上調至 350 kW、適用更低能量上限的場次由 8 站增為 12 站。修正緩解了最極端的收油情況，但車手的抱怨沒有完全消失，後續再調的空間仍然存在。</p>
+<p>改規的目標是「更近身的比賽」與「吸引新車廠」，後者已經兌現（奧迪、凱迪拉克進場，本田留下），前者的數據方向正確、觀感仍有爭議。2026 年剩下的 13 站，就是這套新公式繼續交卷的過程。</p>
+<h2>常見問題</h2>
+<h3>2026 年 F1 還有 DRS 嗎？</h3>
+<p>沒有。DRS（可變尾翼減阻系統）在 2025 年賽季結束後正式退役，2026 年起由 Overtake Mode 接替超車輔助的角色——原理從「減少後翼阻力」改成「額外電量與更長的電力輸出」。直線減阻的功能則由人人可用的 Straight Mode（主動空力直線模式）承擔。</p>
+<h3>Overtake Mode 和 Boost 有什麼不同？</h3>
+<p>Overtake Mode 需要在偵測點距前車 1 秒內才能取得，下一圈生效，給的是額外 0.5 MJ 電量與延長的輸出曲線，是「追擊獎勵」；Boost 則是車手隨時可按的按鈕，在任意位置釋放最大綜合功率，不需要距離條件。前者像加長彈匣，後者像手動點放。</p>
+<h3>2026 年的車比以前快還是慢？</h3>
+<p>單圈普遍比 2025 年慢。下壓力減少約 30%、機械抓地力下降，加上車手需要收油回充能量，圈速自然變慢；但這是規則設計的取捨——換來的是更小更靈活的車身、大幅減阻的直線模式，以及更容易跟車纏鬥的比賽。</p>
+<h3>為什麼 2026 年只有 22 站？</h3>
+<p>原公布的賽曆有 24 站，巴林站與沙烏地站（原定 4 月）在 2026 年 3 月因中東地區軍事衝突升高、基於安全考量宣布取消，且不安排遞補場次，賽季因此縮為 22 站。</p>
+<h3>凱迪拉克用的是誰的引擎？</h3>
+<p>法拉利。凱迪拉克 2026 年以客戶身分使用法拉利的動力單元與變速箱；通用汽車自研的動力單元目標 2029 年投入使用。</p>
+<hr />
+<h2>資料來源</h2>
+<p>規格與制度事實對照下列官方與權威來源查證（查證日 2026-07-19）：</p>
+<ul>
+<li>Formula1.com：<a href="https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-2026-regulations.6j0tS0hrHG2T01tpmK6XYz">2026 規則入門指南</a>、<a href="https://www.formula1.com/en/latest/article/explained-2026-power-unit-regulations-fia.68izKQ2tn1voQPWvgLVMXN">2026 動力單元規則解說</a>、<a href="https://www.formula1.com/en/latest/article/explained-the-new-key-terms-for-formula-1s-new-for-2026-rules.3T5BU6TC9quGcIpGzoWkY0">2026 新術語解說</a>、<a href="https://www.formula1.com/en/latest/article/explained-2026-aerodynamic-regulations-fia-x-mode-z-mode-.26c1CtOzCmN3GfLMywrgb2">2026 空力規則解說</a>、<a href="https://www.formula1.com/en/latest/article/bahrain-and-saudi-arabian-grands-prix-will-not-take-place-in-april.1hnqllVG85RSt8pbFc5Ivx">巴林與沙烏地站取消公告</a>、<a href="https://www.formula1.com/en/latest/article/formula-1-and-fia-announce-2026-sprint-calendar.3PyLPAazrBNe8kQIS3wOfY">2026 衝刺賽賽曆公告</a>、<a href="https://www.formula1.com/en/latest/article/explained-everything-you-need-to-know-about-cadillacs-2026-entry-into.7h3SiUnYcbpjoRUJ9VsL2H">Cadillac 車隊介紹</a></li>
+<li>FIA：<a href="https://www.fia.com/file/186874/download">2026 動力單元技術規則</a>、<a href="https://www.fia.com/news/refinements-2026-fia-formula-1-regulations-agreed-all-stakeholders">2026 規則季中修正公告</a></li>
+<li>媒體：<a href="https://www.motorsport.com/f1/news/f1-and-fia-unveil-new-renders-and-terminology-for-2026/10785237/">Motorsport.com（2026 術語定名）</a>、<a href="https://www.the-race.com/formula-1/2026-f1-team-engines/">The Race（各隊引擎供應）</a>、<a href="https://www.the-race.com/formula-1/what-explains-mercedes-big-early-2026-f1-advantage/">The Race（賓士優勢分析）</a>、<a href="https://www.espn.com/racing/f1/story/_/id/48428690/the-good-bad-ugly-f1-new-2026-regulations">ESPN（超車數據）</a>、<a href="https://www.skysports.com/f1/news/12433/13519453/f1-confirms-cancellation-of-bahrain-and-saudi-arabian-grands-prix-due-to-war-in-middle-east-as-2026-calendar-reduced-to-22-races">Sky Sports（22 站賽曆確認）</a></li>
+</ul>
+<p>戰績數據：本站 <a href="/results/">各站賽果</a> 與 <a href="/standings/">積分榜</a>（jolpica-f1 API，截至第 9 站英國站賽後）。本站為非官方資訊站，規則細節以 FIA 正式文件為準。</p>
+  </article>
+  <div class="art-nav"><a href="/articles/f1-2026-names-glossary/"><span class="lbl">← 前一篇</span>2026 F1 車手、車隊繁中譯名對照表：台灣慣用版（含港陸差異與術語表）</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+</script>
+</body>
+</html>
