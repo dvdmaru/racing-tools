@@ -53,7 +53,8 @@ def _indexnow_changed_urls():
     """本次 build 實際變動的頁面 URL（IndexNow 只推變動）。靠 git：public-racing/ 產物有
     commit、CI checkout 乾淨 → build 後髒檔＝本次變動。new_urls＝untracked 新頁（部署前
     404，是「真 live」的 poll 訊號；既有頁永遠 200 不能當訊號）。"""
-    out = subprocess.run(["git", "status", "--porcelain", "--", "public-racing"],
+    # -uall：porcelain 預設把整個新目錄縮成一行「?? dir/」，新文章頁的 index.html 會被漏掉
+    out = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all", "--", "public-racing"],
                          cwd=str(ROOT), capture_output=True, text=True).stdout
     urls, new = set(), []
     for line in out.splitlines():
@@ -104,8 +105,14 @@ def indexnow_after_deploy():
 
 
 def main():
+    import json
+    season_default = 2026
+    try:
+        season_default = int(json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))["season"])
+    except (OSError, ValueError, KeyError):
+        pass
     ap = argparse.ArgumentParser()
-    ap.add_argument("--season", type=int, default=2026)
+    ap.add_argument("--season", type=int, default=season_default)
     ap.add_argument("--force", action="store_true", help="無視快照比對強制重建")
     ap.add_argument("--deploy", action="store_true", help="重建後 wrangler deploy")
     args = ap.parse_args()
@@ -127,7 +134,11 @@ def main():
     run(script("gen-racing-calendar.py", "--season", s), "gen calendar")
     run(script("gen-racing-results.py", "--season", s), "gen results")
 
-    # 4.（可選）部署；pin wrangler 版本（CI 帶著 CLOUDFLARE_API_TOKEN，防供應鏈）
+    # 4.（可選）部署；pin wrangler 版本（CI 帶著 CLOUDFLARE_API_TOKEN，防供應鏈）。
+    # hard gate：任何抓取/建置步驟失敗 → 禁止部署（build 步驟照跑收集診斷，但壞產物不上線）。
+    if FAILED:
+        print(f"\n⛔ {len(FAILED)} 個前置步驟失敗（{'、'.join(FAILED)}）→ 禁止部署，正式站維持上一版", flush=True)
+        sys.exit(1)
     if args.deploy or os.environ.get("CLOUDFLARE_API_TOKEN"):
         rc_dep = run(["npx", "wrangler@4.108.0", "deploy", "-c", "wrangler-racing.jsonc"], "wrangler deploy")
         if rc_dep == 0:

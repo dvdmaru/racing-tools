@@ -89,25 +89,32 @@ def build_cards(races, results_by_round, today):
 
 
 def page_faq(season, n_races, n_sprints):
-    return [
-        (f"{season} F1 賽季共有幾站？",
-         f"{n_races} 站。賽季原公布 24 站，巴林站與沙烏地站於 2026 年 3 月因中東情勢取消且不遞補，"
-         f"縮為 {n_races} 站；3 月澳洲墨爾本揭幕、12 月阿布達比收官。其中 {n_sprints} 站為衝刺賽（sprint）週末。"),
+    # 賽季敘事（取消站、特例站）綁定年份——換季（改 site.json 的 season）後自動退場，
+    # 新賽季有類似特例時在這裡按年份補。
+    if season == 2026:
+        count_a = (f"{n_races} 站。賽季原公布 24 站，巴林站與沙烏地站於 2026 年 3 月因中東情勢取消且不遞補，"
+                   f"縮為 {n_races} 站；3 月澳洲墨爾本揭幕、12 月阿布達比收官。其中 {n_sprints} 站為衝刺賽（sprint）週末。")
+    else:
+        count_a = f"{n_races} 站，其中 {n_sprints} 站為衝刺賽（sprint）週末。詳細場次以官方公布賽曆為準。"
+    faqs = [
+        (f"{season} F1 賽季共有幾站？", count_a),
         ("表上的時間是哪個時區？",
          "全部是台北時間（UTC+8），由官方公布的 UTC 場次時刻換算，含正賽、排位賽、練習賽與衝刺賽。"
          "歐洲賽站正賽多在台北時間週日晚間 8 到 10 點，美洲賽站多在週一凌晨。"),
-        ("為什麼 2026 年西班牙有兩站？",
-         "巴塞隆納加泰隆尼亞賽道續辦一站（6 月），馬德里新建的 Madring 市街賽道 9 月首辦，"
-         "後者掛正式名稱「西班牙大獎賽」。兩站都在西班牙，是 2026 賽曆的特例。"),
-        ("衝刺賽週末和一般週末有什麼不同？",
-         "衝刺賽週末只有一節自由練習，週五進行衝刺排位、週六先跑約 100 公里的衝刺賽（前 8 名計分 8 至 1 分），"
-         "之後才是正賽排位；週日正賽照常。一般週末則有三節練習加排位、正賽。"),
     ]
+    if season == 2026:
+        faqs.append(("為什麼 2026 年西班牙有兩站？",
+                     "巴塞隆納加泰隆尼亞賽道續辦一站（6 月），馬德里新建的 Madring 市街賽道 9 月首辦，"
+                     "後者掛正式名稱「西班牙大獎賽」。兩站都在西班牙，是 2026 賽曆的特例。"))
+    faqs.append(("衝刺賽週末和一般週末有什麼不同？",
+                 "衝刺賽週末只有一節自由練習，週五進行衝刺排位、週六先跑約 100 公里的衝刺賽（前 8 名計分 8 至 1 分），"
+                 "之後才是正賽排位；週日正賽照常。一般週末則有三節練習加排位、正賽。"))
+    return faqs
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--season", type=int, default=2026)
+    ap.add_argument("--season", type=int, default=rc.SEASON)
     ap.add_argument("--today", default=datetime.date.today().isoformat())
     args = ap.parse_args()
     season = args.season
@@ -122,7 +129,7 @@ def main():
 
     canonical = f"{rc.BASE}/calendar/"
     faq = page_faq(season, len(races), n_sprints)
-    done = len(results_by_round)
+    done = sum(1 for v in results_by_round.values() if v)  # sprint-only round 不算完賽
     body = (f'<h1 class="pg-h1">F1 {season} 賽曆 · 台北時間</h1>'
             f'<div class="pg-sub">{season} 賽季全部 <b>{len(races)}</b> 站，正賽/排位/衝刺賽時刻均已換算為'
             f'<b>台北時間（UTC+8）</b>；已完賽 {done} 站標分站冠軍。</div>'
@@ -138,7 +145,7 @@ def main():
     # 賽站 SportsEvent（下一站起的未完賽站，最多 5 站——結構化資料給搜尋引擎的賽程訊號）
     events = []
     for race in races:
-        if int(race["round"]) not in results_by_round and len(events) < 5:
+        if not results_by_round.get(int(race["round"])) and len(events) < 5:
             dt = rc.to_taipei(race["date"], race.get("time"))
             loc = race["Circuit"]["Location"]
             events.append({

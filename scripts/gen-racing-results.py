@@ -31,10 +31,11 @@ RES_CSS = """
 .res-win b { color:var(--accent); }
 .res-body { padding: 0 16px 14px; }
 .res-sec { font-family:var(--font-mono); font-size:12px; letter-spacing:2px; color:var(--dim); text-transform:uppercase; margin: 12px 0 2px; }
+.res-pending { color:var(--dim); font-size:13px; margin: 10px 0 4px; }
 """
 
 
-def result_table(race_results, is_sprint=False):
+def result_table(race_results):
     rows = ""
     for res in race_results:
         drv = res["Driver"]
@@ -58,19 +59,28 @@ def result_table(race_results, is_sprint=False):
 
 def build_blocks(results):
     blocks = []
+    last_rnd = results[-1][0]
     for rnd, race, sprint in reversed(results):  # 最新在前
-        w = race["Results"][0]
-        name_zh = rc.race_zh(race["raceName"])
-        body = f'<div class="res-sec">正賽分類</div>{result_table(race["Results"])}'
-        if sprint:
-            body = (f'<div class="res-sec">衝刺賽（前 8 名計分）</div>'
-                    f'{result_table(sprint.get("SprintResults", [])[:8], is_sprint=True)}' + body)
-        d = race["date"]
+        sprint_sec = (f'<div class="res-sec">衝刺賽（前 8 名計分）</div>'
+                      f'{result_table(sprint.get("SprintResults", [])[:8])}') if sprint else ""
+        if race:
+            w = race["Results"][0]
+            src, d = race, race["date"]
+            win = (f'<span class="res-win">冠軍 <b>{rc.driver_zh(w["Driver"])}</b>｜'
+                   f'{rc.team_zh(w["Constructor"]["name"])}</span>')
+            body = sprint_sec + f'<div class="res-sec">正賽分類</div>{result_table(race["Results"])}'
+        else:
+            # sprint-only round：衝刺賽已跑、正賽未跑（六/日排程的中間態），先發衝刺賽果
+            sw = sprint.get("SprintResults", [{}])[0]
+            src, d = sprint, sprint.get("date", "")
+            win = (f'<span class="res-win">衝刺賽冠軍 <b>{rc.driver_zh(sw["Driver"])}</b>｜'
+                   f'{rc.team_zh(sw["Constructor"]["name"])}</span>') if sw.get("Driver") else ""
+            body = sprint_sec + '<p class="res-pending">正賽尚未進行；賽後首次自動重建會補上完整正賽分類。</p>'
         blocks.append(
-            f'<details class="res-block" id="round-{rnd:02d}"{" open" if rnd == results[-1][0] else ""}>'
+            f'<details class="res-block" id="round-{rnd:02d}"{" open" if rnd == last_rnd else ""}>'
             f'<summary><span class="res-rnd">Rd{rnd}</span>'
-            f'<span class="res-name">{name_zh}<span class="en">{html_lib.escape(race["raceName"])} · {d}</span></span>'
-            f'<span class="res-win">冠軍 <b>{rc.driver_zh(w["Driver"])}</b>｜{rc.team_zh(w["Constructor"]["name"])}</span>'
+            f'<span class="res-name">{rc.race_zh(src["raceName"])}<span class="en">{html_lib.escape(src["raceName"])} · {d}</span></span>'
+            f'{win}'
             f'</summary><div class="res-body">{body}</div></details>')
     return "\n".join(blocks)
 
@@ -93,7 +103,7 @@ def page_faq(season, n_done):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--season", type=int, default=2026)
+    ap.add_argument("--season", type=int, default=rc.SEASON)
     args = ap.parse_args()
     season = args.season
 
@@ -102,11 +112,14 @@ def main():
         raise SystemExit("❌ 缺賽果快照；先跑 python3 scripts/fetch_racing.py results")
 
     canonical = f"{rc.BASE}/results/"
-    faq = page_faq(season, len(results))
-    latest_rnd, latest_race, _ = results[-1]
+    n_done = sum(1 for _, race, _ in results if race)  # sprint-only round 不算完賽
+    faq = page_faq(season, n_done)
+    latest_rnd, latest_race, latest_sprint = results[-1]
+    latest_name = rc.race_zh((latest_race or latest_sprint)["raceName"])
+    latest_note = "" if latest_race else "，衝刺賽果已出、正賽待跑"
     body = (f'<h1 class="pg-h1">F1 {season} 各站賽果</h1>'
-            f'<div class="pg-sub">已完賽 <b>{len(results)}</b> 站的官方分類（最新：第 {latest_rnd} 站'
-            f'{rc.race_zh(latest_race["raceName"])}），含發車位、完賽時間/狀態、積分；'
+            f'<div class="pg-sub">已完賽 <b>{n_done}</b> 站的官方分類（最新：第 {latest_rnd} 站'
+            f'{latest_name}{latest_note}），含發車位、完賽時間/狀態、積分；'
             '衝刺賽週末附衝刺賽結果。點站名展開完整表格。</div>'
             + build_blocks(results)
             + rc.faq_html(faq)
@@ -120,7 +133,7 @@ def main():
     jsonld = rc.graph_ld([rc.org_node(), rc.website_node(), coll,
                           rc.breadcrumb_node([("首頁", f"{rc.BASE}/"), ("賽果", canonical)]),
                           rc.faq_node(faq, canonical)])
-    desc = (f"F1 {season} 賽季各站正賽與衝刺賽官方分類結果（已完賽 {len(results)} 站），"
+    desc = (f"F1 {season} 賽季各站正賽與衝刺賽官方分類結果（已完賽 {n_done} 站），"
             "台灣慣用繁中譯名，每週自動更新。")
 
     out = rc.PUB / "results"

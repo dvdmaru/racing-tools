@@ -1,0 +1,23 @@
+# 最小 quality gate：PR 與 main push 跑管線回歸測試（2026-07-19 稽核後建）。
+# 測試鎖的行為：部署 hard gate 相關的快照驗證、sprint-only round、草稿產物清理——
+# 全是「壞了不會在畫面上立刻看見、只會在某個週末排程默默出錯」的邏輯。
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - run: pip install 'markdown==3.10.2'
+      - run: python -m unittest discover -s tests -v

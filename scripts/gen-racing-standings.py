@@ -71,7 +71,7 @@ def page_faq(season, rnd, race_name):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--season", type=int, default=2026)
+    ap.add_argument("--season", type=int, default=rc.SEASON)
     args = ap.parse_args()
     season = args.season
 
@@ -84,7 +84,7 @@ def main():
     results = rc.load_results(season)
     race_name = ""
     for r, race, _ in results:
-        if r == rnd:
+        if r == rnd and race:  # race=None＝sprint-only round，不會等於 data_through_round，但保險
             race_name = rc.race_zh(race["raceName"])
 
     canonical = f"{rc.BASE}/standings/"
