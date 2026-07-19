@@ -31,7 +31,6 @@ RES_CSS = """
 .res-win b { color:var(--accent); }
 .res-body { padding: 0 16px 14px; }
 .res-sec { font-family:var(--font-mono); font-size:12px; letter-spacing:2px; color:var(--dim); text-transform:uppercase; margin: 12px 0 2px; }
-.st-status { color:var(--dim); font-size:12px; }
 """
 
 

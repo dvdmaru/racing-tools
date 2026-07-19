@@ -1,0 +1,62 @@
+/* racing.twtools.cc — design tokens v2「計時螢幕 × 亮色莫蘭迪」
+   結構不變：:root 共用 + :root[data-theme] 五主題（carbon 預設）。
+   變更：--radius 16→12、--radius-sm 11→8；新增跨主題 token：
+   --p1/--p2/--p3（頒獎台金銀銅，非任何車隊色）、--dnf（退賽狀態）。
+   五主題全面改為亮色莫蘭迪：token 名稱與主題 key 不變，色值重定義（藕紫/灰綠/霧藍金/陶土/岩灰）。 */
+
+:root {
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'Chakra Petch', 'Noto Sans TC', sans-serif;
+  --font-ui: 'Archivo', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-mono: 'Chakra Petch', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* 新增 */
+  --p1:#c39b3e; --p2:#8fa0b5; --p3:#b3744b;
+  --dnf:#c2605e;
+}
+
+:root[data-theme="carbon"] {
+  --surface:#f8f6fb; --surface-2:#efecf5; --surface-3:#e5e1ed;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#edeaf2; --bg-glow:#f5f2f9; --rc-header-bg:rgba(248,246,251,0.86);
+  --accent:#8a7aa8; --accent-bright:#77659a; --accent-ink:#fbfafd;
+  --accent-soft:rgba(138,122,168,0.14); --accent-line:rgba(138,122,168,0.42); --accent-glow:rgba(138,122,168,0.30);
+}
+:root[data-theme="asphalt"] {
+  --surface:#f4f8f6; --surface-2:#eaf1ee; --surface-3:#dee9e5;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#e8eeec; --bg-glow:#f1f6f4; --rc-header-bg:rgba(244,248,246,0.86);
+  --accent:#5f948d; --accent-bright:#4d837c; --accent-ink:#f7fbfa;
+  --accent-soft:rgba(95,148,141,0.14); --accent-line:rgba(95,148,141,0.42); --accent-glow:rgba(95,148,141,0.30);
+}
+:root[data-theme="midnight"] {
+  --surface:#f5f7fa; --surface-2:#ebeff4; --surface-3:#dfe5ee;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#e9edf3; --bg-glow:#f2f5f9; --rc-header-bg:rgba(245,247,250,0.86);
+  --accent:#b3924f; --accent-bright:#a07f3c; --accent-ink:#fcfaf5;
+  --accent-soft:rgba(179,146,79,0.14); --accent-line:rgba(179,146,79,0.42); --accent-glow:rgba(179,146,79,0.30);
+}
+:root[data-theme="gravel"] {
+  --surface:#faf6f1; --surface-2:#f2ebe3; --surface-3:#e9dfd3;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#f0eae2; --bg-glow:#f8f3ec; --rc-header-bg:rgba(250,246,241,0.86);
+  --accent:#b97e59; --accent-bright:#a76c48; --accent-ink:#fcf8f4;
+  --accent-soft:rgba(185,126,89,0.14); --accent-line:rgba(185,126,89,0.42); --accent-glow:rgba(185,126,89,0.30);
+}
+:root[data-theme="silver"] {
+  --surface:#f6f8f9; --surface-2:#edf0f2; --surface-3:#e2e7ea;
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
+  --bg:#eceef0; --bg-glow:#f4f6f7; --rc-header-bg:rgba(246,248,249,0.88);
+  --accent:#8494a4; --accent-bright:#718293; --accent-ink:#f9fbfc;
+  --accent-soft:rgba(132,148,164,0.14); --accent-line:rgba(132,148,164,0.42); --accent-glow:rgba(132,148,164,0.30);
+}

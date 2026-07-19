@@ -45,14 +45,16 @@ def ga_snippet(site: dict = None) -> str:
     )
 
 
-# ---------- 主題家族（全暗色 + 單 accent；鍵 rc-theme） ----------
+# ---------- 主題家族（v2 亮色莫蘭迪 + 單 accent；鍵 rc-theme） ----------
+# Design v2「計時螢幕 × 亮色莫蘭迪」（claude.ai/design 專案「F1 數據站 UI 優化」tokens.css，
+# 快照存 design/mocks-v2/）。key 與 token 名不變、色值換亮色低飽和；仍無任何車隊色聯想。
 # Row: key, 中文, accent, bg, bg_glow, surface, surface2, surface3, accent_bright, accent_ink, header_bg
 RC_THEMES = [
-    ("carbon",   "碳黑紫", "#a78bfa", "#131320", "#1a1a2c", "#1b1b2e", "#222238", "#2a2a44", "#bfa8ff", "#131320", "rgba(16,16,30,0.88)"),
-    ("asphalt",  "柏油青", "#38bdb8", "#101820", "#152029", "#16222c", "#1c2b36", "#233542", "#4fd6d0", "#101820", "rgba(13,20,26,0.88)"),
-    ("midnight", "夜藍金", "#e8b84b", "#0d1b30", "#12233c", "#132540", "#1a2f4e", "#20395d", "#f3c860", "#0d1b30", "rgba(10,22,40,0.88)"),
-    ("gravel",   "礫石橘", "#e8873a", "#1c1410", "#241a14", "#281d16", "#32251c", "#3d2d22", "#f59a4d", "#1c1410", "rgba(26,18,13,0.88)"),
-    ("silver",   "銀灰",   "#aebdd0", "#16181d", "#1c1f25", "#202329", "#282c34", "#31353f", "#c4d2e4", "#16181d", "rgba(18,20,24,0.9)"),
+    ("carbon",   "藕紫",   "#8a7aa8", "#edeaf2", "#f5f2f9", "#f8f6fb", "#efecf5", "#e5e1ed", "#77659a", "#fbfafd", "rgba(248,246,251,0.86)"),
+    ("asphalt",  "灰綠",   "#5f948d", "#e8eeec", "#f1f6f4", "#f4f8f6", "#eaf1ee", "#dee9e5", "#4d837c", "#f7fbfa", "rgba(244,248,246,0.86)"),
+    ("midnight", "霧藍金", "#b3924f", "#e9edf3", "#f2f5f9", "#f5f7fa", "#ebeff4", "#dfe5ee", "#a07f3c", "#fcfaf5", "rgba(245,247,250,0.86)"),
+    ("gravel",   "陶土",   "#b97e59", "#f0eae2", "#f8f3ec", "#faf6f1", "#f2ebe3", "#e9dfd3", "#a76c48", "#fcf8f4", "rgba(250,246,241,0.86)"),
+    ("silver",   "岩灰",   "#8494a4", "#eceef0", "#f4f6f7", "#f6f8f9", "#edf0f2", "#e2e7ea", "#718293", "#f9fbfc", "rgba(246,248,249,0.88)"),
 ]
 RC_THEME_KEYS = [t[0] for t in RC_THEMES]
 
@@ -63,39 +65,32 @@ def _hexrgba(h: str, a) -> str:
 
 
 def _theme_tokens_css() -> str:
+    """五主題 token 區塊。v2 起亮底文字色全主題共用；主題間只差 bg/surface/accent 系。
+    （v1 時代五份重複的 .site-header 主題覆寫已合併進 SITE_HEADER_CSS——五主題行為相同。）"""
     blocks = []
     for key, _zh, acc, bg, glow, s1, s2, s3, accb, acci, hdr in RC_THEMES:
         blocks.append(f""":root[data-theme="{key}"] {{
   --surface:{s1}; --surface-2:{s2}; --surface-3:{s3};
-  --fg:#eef0f4; --fg-soft:#c3c9d6; --dim:#8e99ad; --faint:#67728a;
-  --line:rgba(238,240,244,0.11); --line-2:rgba(238,240,244,0.20);
-  --sheet-shadow:rgba(0,0,0,0.5); --scrim:rgba(0,0,0,0.5);
+  --fg:#33343c; --fg-soft:#53555f; --dim:#7b7d8d; --faint:#a2a4b2;
+  --line:rgba(52,54,74,0.13); --line-2:rgba(52,54,74,0.24);
+  --sheet-shadow:rgba(90,85,120,0.16); --scrim:rgba(50,48,70,0.32);
   --bg:{bg}; --bg-glow:{glow}; --rc-header-bg:{hdr};
   --accent:{acc}; --accent-bright:{accb}; --accent-ink:{acci};
-  --accent-soft:{_hexrgba(acc,0.12)}; --accent-line:{_hexrgba(acc,0.36)}; --accent-glow:{_hexrgba(acc,0.30)};
+  --accent-soft:{_hexrgba(acc,0.14)}; --accent-line:{_hexrgba(acc,0.42)}; --accent-glow:{_hexrgba(acc,0.30)};
 }}""")
-
-    def sel(suffix):
-        return ",\n".join(f':root[data-theme="{k}"] {suffix}' for k in RC_THEME_KEYS)
-
-    overrides = f"""{sel('body::before')} {{ mix-blend-mode:screen; opacity:0.16; }}
-{sel('.site-header')} {{ position:sticky; top:0; z-index:30; margin-bottom:34px;
-  padding:14px 0; background:var(--rc-header-bg); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line); }}
-{sel('.site-nav a')} {{ text-transform:none; letter-spacing:1px; font-size:13px;
-  padding:6px 13px; border-radius:999px; border-bottom:none; }}
-{sel('.site-nav a:hover')} {{ color:var(--accent); background:var(--accent-soft); border-bottom:none; }}
-{sel('.site-nav a.active')} {{ color:var(--accent-ink); background:var(--accent); border-bottom:none; }}"""
-    return "\n" + "\n".join(blocks) + "\n" + overrides + "\n"
+    return "\n" + "\n".join(blocks) + "\n"
 
 
 SHARED_TOKENS_CSS = """
 :root {
-  --radius: 16px;
-  --radius-sm: 11px;
+  --radius: 12px;
+  --radius-sm: 8px;
   --font-display: 'Chakra Petch', 'Noto Sans TC', sans-serif;
   --font-ui: 'Archivo', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
   --font-mono: 'Chakra Petch', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* 頒獎台金屬色與狀態色（跨主題共用，非車隊色） */
+  --p1:#c39b3e; --p2:#8fa0b5; --p3:#b3744b;
+  --dnf:#c2605e;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
@@ -107,9 +102,14 @@ body {
   background: radial-gradient(130% 72% at 50% -12%, var(--bg-glow) 0%, transparent 56%), var(--bg);
 }
 body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; mix-blend-mode: multiply; opacity: 0.5;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
+body::after { /* 起跑線：視窗頂部的速度光帶 */
+  content: ''; position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 200; pointer-events: none;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-line) 40%, transparent 78%); opacity: .85;
+}
+a { color: var(--accent); } a:hover { color: var(--accent-bright); }
 .container { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
 """ + _theme_tokens_css()
 
@@ -119,7 +119,7 @@ THEME_SWITCH_CSS = """
   display: flex; align-items: center; gap: 11px;
   background: color-mix(in srgb, var(--surface) 86%, transparent);
   border: 1px solid var(--line); border-radius: 99px;
-  padding: 7px 13px 7px 14px; box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+  padding: 7px 13px 7px 14px; box-shadow: 0 6px 22px rgba(70,70,90,0.16);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .ts-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; color: var(--dim); text-transform: uppercase; }
@@ -165,16 +165,23 @@ function setTheme(t) {{
 
 SITE_HEADER_CSS = """
 .site-header {
+  position: sticky; top: 0; z-index: 30;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 36px 0 20px; margin-bottom: 44px;
+  gap: 14px 24px; flex-wrap: wrap;
+  padding: 14px 0; margin-bottom: 34px;
+  background: var(--rc-header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
-  gap: 24px; flex-wrap: wrap;
 }
-.brand-block { display: flex; flex-direction: column; gap: 6px; }
+.brand-block { display: flex; flex-direction: column; gap: 5px; }
 .brand-mark {
-  font-family: var(--font-display); font-weight: 700; font-size: 27px; line-height: 1;
+  font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1;
   color: var(--accent); letter-spacing: 2px; font-style: italic;
   text-decoration: none; transition: color 0.15s ease;
+  display: inline-flex; align-items: center; gap: 9px;
+}
+.brand-mark::before { /* 自繪速度斜紋 */
+  content: ''; width: 17px; height: 15px; flex: none;
+  background: repeating-linear-gradient(-62deg, var(--accent) 0 3.5px, transparent 3.5px 8px);
 }
 .brand-mark:hover { color: var(--accent-bright); }
 .brand-tag {
@@ -185,11 +192,11 @@ SITE_HEADER_CSS = """
   display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
   font-family: var(--font-ui); font-size: 13px;
 }
-.site-nav a { color: var(--dim); text-decoration: none; transition: color 0.15s ease, background 0.15s ease; }
-@media (max-width: 580px) {
-  .site-header { padding-top: 22px; gap: 14px; }
-  .brand-mark { font-size: 22px; }
-}
+.site-nav a { color: var(--dim); text-decoration: none; letter-spacing: 1px; font-size: 13px;
+  padding: 6px 13px; border-radius: 999px; transition: color 0.15s ease, background 0.15s ease; }
+.site-nav a:hover { color: var(--accent); background: var(--accent-soft); }
+.site-nav a.active { color: var(--accent-ink); background: var(--accent); font-weight: 700; }
+@media (max-width: 580px) { .brand-mark { font-size: 21px; } }
 .site-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.7; text-align: center; max-width: 640px; margin: 18px auto 0; }
 .site-disclaimer span { opacity: 0.75; }
 .article-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
@@ -489,28 +496,55 @@ FONTS_HTML = (
 # 資料頁通用 CSS（表格/tabs/FAQ；與文章頁共用 tokens）
 DATA_CSS = """
 .pg-h1 { font-family: var(--font-display); font-size: clamp(28px,5vw,42px); line-height:1.15; margin: 4px 0 6px; font-style: italic; }
-.pg-sub { color: var(--fg-soft); font-size: 15px; margin: 10px 0 22px; }
+.pg-h1::after { content:''; display:block; width:74px; height:4px; margin-top:10px;
+  background: repeating-linear-gradient(-62deg, var(--accent) 0 8px, transparent 8px 14px); }
+.pg-sub { color: var(--fg-soft); font-size: 15px; margin: 12px 0 22px; }
 .pg-sub b { color: var(--accent); }
-.sec-h { font-family: var(--font-display); font-size: 20px; letter-spacing: .5px; margin: 30px 0 6px; font-style: italic; }
+.sec-h { font-family: var(--font-display); font-size: 20px; letter-spacing: .5px; margin: 40px 0 8px; font-style: italic;
+  display:flex; align-items:center; gap:10px; }
+.sec-h::before { content:''; width:15px; height:11px; flex:none;
+  background: repeating-linear-gradient(-62deg, var(--accent) 0 3px, transparent 3px 7px); }
 .tabs > input { position:absolute; opacity:0; width:0; height:0; }
-.tablabels { display:flex; flex-wrap:wrap; gap:8px; margin: 8px 0 22px; border-bottom:1px solid var(--line); }
-.tablabels label { cursor:pointer; padding:9px 16px; font-size:14.5px; font-weight:700; color:var(--dim);
-  border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .15s, border-color .15s; }
-.tablabels label:hover { color: var(--fg); }
+.tablabels { display:flex; flex-wrap:wrap; gap:4px; margin: 8px 0 20px; border-bottom:1px solid var(--line); }
+.tablabels label { cursor:pointer; padding:9px 18px; font-size:14.5px; font-weight:700; color:var(--dim);
+  font-family: var(--font-display); font-style: italic; letter-spacing:.5px;
+  border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .15s, border-color .15s, background .15s; }
+.tablabels label:hover { color: var(--fg); background: var(--accent-soft); }
 .panel { display:none; }
-.std-table { width:100%; border-collapse:collapse; margin: 8px 0 14px; font-size: 14px; }
-.std-table th, .std-table td { padding: 8px 6px; text-align:center; border-bottom:1px solid var(--line); white-space:nowrap; }
-.std-table th { color: var(--dim); font-weight:600; font-size:12px; }
+/* 計時螢幕表格：表頭 mono 大寫、前三行金/銀/銅色條、領先者整行強調、數字 tabular */
+.std-table { width:100%; border-collapse:collapse; margin: 8px 0 14px; font-size: 14.5px; }
+.std-table th, .std-table td { padding: 10px 8px; text-align:center; border-bottom:1px solid var(--line); white-space:nowrap; }
+.std-table thead th { font-family: var(--font-mono); color: var(--dim); font-weight:600; font-size:10.5px;
+  letter-spacing:1.8px; text-transform:uppercase; border-bottom:1px solid var(--line-2); }
 .std-table td.l, .std-table th.l { text-align:left; white-space:normal; }
-.std-table td.rk { color:var(--dim); font-family:var(--font-mono); font-size:12.5px; }
+.std-table td.rk { color:var(--dim); font-family:var(--font-mono); font-style:italic; font-weight:700; font-size:13px;
+  font-variant-numeric: tabular-nums; }
+.std-table tbody tr { transition: background .12s ease; }
+.std-table tbody tr:hover { background: color-mix(in srgb, var(--surface-2) 60%, transparent); }
+.std-table tbody tr:nth-child(1) { box-shadow: inset 3px 0 0 var(--p1); }
+.std-table tbody tr:nth-child(2) { box-shadow: inset 3px 0 0 var(--p2); }
+.std-table tbody tr:nth-child(3) { box-shadow: inset 3px 0 0 var(--p3); }
+.std-table tbody tr:nth-child(1) td.rk { color: var(--p1); font-size:15px; }
+.std-table tbody tr:nth-child(2) td.rk { color: var(--p2); font-size:15px; }
+.std-table tbody tr:nth-child(3) td.rk { color: var(--p3); font-size:15px; }
+.std-table tr.lead td { background: var(--accent-soft); }
 .std-table tr.lead td.nm { font-weight:800; }
-.std-pts { color: var(--accent); font-weight:800; font-family: var(--font-mono); }
-.tbl-scroll { overflow-x:auto; }
+.std-pts { color: var(--accent); font-weight:800; font-family: var(--font-mono); font-size:15px; font-variant-numeric: tabular-nums; }
+.st-status { color: var(--dnf); font-size:12px; font-style: italic; }
+.tbl-scroll { overflow-x:auto; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
 .asof-note { color:var(--dim); font-size:12.5px; line-height:1.6; margin: 24px 0 8px; border-top:1px solid var(--line); padding-top:14px; }
 .pg-faq { margin-top: 8px; display: grid; gap: 10px; }
-.pg-faq .qa { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; }
+.pg-faq .qa { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 18px; }
 .pg-faq h3 { font-size: 15px; font-weight: 800; color: var(--fg); margin: 0 0 6px; line-height: 1.45; }
 .pg-faq p { font-size: 13.5px; color: var(--fg-soft); line-height: 1.7; margin: 0; }
+/* 場次時刻 chip（賽曆＋首頁看板共用；.q=排位 .s=衝刺 .race=正賽） */
+.ses { display:inline-flex; align-items:baseline; gap:7px; border:1px solid var(--line); border-radius:6px;
+  padding:4px 10px; background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+  font-family: var(--font-mono); font-size:12px; color:var(--fg-soft); white-space:nowrap; font-variant-numeric: tabular-nums; }
+.ses b { font-family: var(--font-ui); font-weight:600; font-size:11px; color:var(--dim); }
+.ses.q { border-color: var(--accent-line); } .ses.q b { color: var(--accent); }
+.ses.s b { font-style: italic; color: var(--fg-soft); }
+.ses.race { border-color: var(--accent); background: var(--accent-soft); } .ses.race b { color: var(--accent); }
 """
 
 
