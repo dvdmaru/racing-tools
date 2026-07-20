@@ -259,24 +259,56 @@ class CheckFactsTests(unittest.TestCase):
         rows = cf._table_rows(md)
         self.assertEqual(rows, [["名次", "車手"], ["1", "安東內利"]])
 
-    def test_numbers_in_facts_never_gates(self):
-        """提示性檢查即使發現孤兒數字也必須回 True，否則會變成擋線的循環驗證。"""
+    def test_find_result_table_maps_columns_by_header(self):
+        """欄位靠表頭語意辨識，不靠順序——順序會改，語意不會。"""
+        md = ("| 名次 | 車手 | 車隊 | 發車位 | 積分 |\n|---|---|---|---|---|\n"
+              "| 1 | 安東內利 | 賓士 | 1 | 25 |\n")
+        colmap, rows = cf._find_result_table(md)
+        self.assertEqual(colmap, {"position": 0, "driver": 1, "team": 2,
+                                  "grid": 3, "points": 4})
+        self.assertEqual(cf._cell(rows[0], colmap, "grid"), "1")
+
+    def test_verify_body_gates_on_orphan_number(self):
+        """S3：正文孤兒數字必須擋。初版只掃表格且永遠回 True，正文是防線的正門。"""
         tmp = pathlib.Path(tempfile.mkdtemp())
         try:
             facts = tmp / "f.json"
             facts.write_text(json.dumps({"points": 25}), encoding="utf-8")
             art = tmp / "a.md"
-            art.write_text("| 名次 | 積分 |\n|---|---|\n| 1 | 9999 |\n", encoding="utf-8")
-            self.assertTrue(cf.numbers_in_facts(str(facts), str(art)))
+            art.write_text("---\nslug: x\n---\n\n他在第 9999 圈退賽。\n", encoding="utf-8")
+            self.assertFalse(cf.verify_body(str(facts), str(art)))
         finally:
             shutil.rmtree(tmp)
 
-    def test_no_causal_flags_causal_sentence(self):
+    def test_verify_body_passes_when_number_in_pack(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            facts = tmp / "f.json"
+            facts.write_text(json.dumps({"lap": 41}), encoding="utf-8")
+            art = tmp / "a.md"
+            art.write_text("---\nslug: x\n---\n\n最快單圈出現在第 41 圈。\n", encoding="utf-8")
+            self.assertTrue(cf.verify_body(str(facts), str(art)))
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_no_causal_now_gates(self):
+        """S3：因果句命中即擋。降級成提示等於永不擋，等於沒有這道防線。"""
         tmp = pathlib.Path(tempfile.mkdtemp())
         try:
             art = tmp / "a.md"
-            art.write_text("羅素因為引擎問題所以退賽。\n", encoding="utf-8")
-            self.assertTrue(cf.no_causal(str(art)))  # 提示不擋
+            art.write_text("---\nslug: x\n---\n\n羅素因為引擎問題所以退賽。\n",
+                           encoding="utf-8")
+            self.assertFalse(cf.no_causal(str(art)))
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_no_causal_flags_unsourceable_tyre_terms(self):
+        """資料源沒有輪胎配方／安全車，提到就是編的。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            art = tmp / "a.md"
+            art.write_text("---\nslug: x\n---\n\n他換上軟胎後追了上來。\n", encoding="utf-8")
+            self.assertFalse(cf.no_causal(str(art)))
         finally:
             shutil.rmtree(tmp)
 
