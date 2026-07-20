@@ -31,6 +31,9 @@ concurrency:
 
 jobs:
   update:
+    # GitHub Environment 的 required reviewer 需由 Charlie 在 repo settings 手動設定；
+    # environment 保護規則套用於 job，未核准前不會取得 secrets 或執行部署管線。
+    environment: production
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
