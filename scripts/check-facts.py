@@ -10,15 +10,22 @@
 只有一列前十表、發車位寫 999、正文寫「第 9999 圈」的稿子拿到了綠燈。
 「驗了一部分」的成功訊息比沒有檢查更危險，因為它讓人以為驗過了。）
 
-三支檢查，**全部擋 gate**；要放行個別項目必須寫進 config/facts-waivers.json 並附理由：
-  verify-recap  重打 jolpica API，前十表逐格比對（名次集合／車手／車隊／發車位／積分）
-  verify-body   全文數字必須對得到 facts pack
-  no-causal     戰報禁因果；命中即擋，除非該句已列入豁免
+**設計原則三：沒有豁免機制。** 命中就是必須改稿，沒有放行選項。
+（2026-07-20 圓桌：豁免由產稿的同一個 agent 寫入＝作者可以把自己的紅燈改綠，
+機械 gate 就失去獨立性；而每週一次的例行放行必然退化成橡皮圖章。
+誤殺的正解是改稿或把正當數值補進 facts pack，不是建立一套放行治理。）
+
+四支檢查，**全部擋 gate**：
+  verify-recap     重打 jolpica API，前十表逐格比對（五欄全部必填）
+  verify-standings 用 round N/N-1 積分榜當獨立 oracle 驗 pack 的 before/after
+  verify-body      全文數字必須對得到 facts pack（含個位數）
+  no-causal        戰報禁因果與無源主張
 
 用法：
     python3 scripts/check-facts.py verify-all --round 11 --facts facts/... --article articles/<slug>/index.md
 """
 import argparse
+import datetime
 import hashlib
 import json
 import pathlib
@@ -29,8 +36,6 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import racinglib as rc  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-WAIVER_PATH = ROOT / "config" / "facts-waivers.json"
-
 # 表格欄位辨識：靠表頭關鍵字，不靠欄位順序（順序會改，語意不會）
 COL_KEYS = {
     "position": ("名次", "排名", "pos"),
@@ -44,6 +49,14 @@ COL_KEYS = {
 def _resolve(path):
     p = pathlib.Path(path)
     return p if p.is_absolute() else ROOT / p
+
+
+def _rel(path):
+    """顯示用相對路徑；ROOT 外（測試 tmpdir）就回原字串，不要因為顯示而讓流程炸掉。"""
+    try:
+        return str(_resolve(path).relative_to(ROOT))
+    except ValueError:
+        return str(path)
 
 
 def _load_article(path):
@@ -61,15 +74,6 @@ def _slug_of(text, fallback=""):
 
 def _body_of(text):
     return re.sub(r"\A---.*?\n---\s*\n", "", text, flags=re.S)
-
-
-def _load_waivers(slug):
-    if not WAIVER_PATH.exists():
-        return {"numbers": [], "causal": []}
-    data = json.loads(WAIVER_PATH.read_text(encoding="utf-8"))
-    entry = data.get(slug) or {}
-    return {"numbers": [str(x) for x in (entry.get("numbers") or [])],
-            "causal": list(entry.get("causal") or [])}
 
 
 def _tables(text):
@@ -110,6 +114,9 @@ def _find_result_table(text):
         if "position" in colmap and "driver" in colmap:
             return colmap, tbl[1:]
     return None, []
+
+
+REQUIRED_COLS = ("position", "driver", "team", "grid", "points")
 
 
 def _cell(row, colmap, field):
@@ -163,6 +170,14 @@ def verify_recap(season, rnd, article_path, expect=10):
               "對帳未實際執行，不算通過", file=sys.stderr)
         return False
 
+    # 五欄全部必填。原本是「欄位存在才驗」，於是只有兩欄的表格照樣拿綠燈——
+    # 通過條件小於 prompt 要寫手遵守的契約（2026-07-20 圓桌覆核 S2）。
+    missing_cols = [c for c in REQUIRED_COLS if c not in colmap]
+    if missing_cols:
+        print(f"❌ 前十表缺欄位：{missing_cols}（契約要求名次／車手／車隊／發車位／積分五欄）",
+              file=sys.stderr)
+        return False
+
     problems = []
     seen = []
     for row in rows:
@@ -194,18 +209,18 @@ def verify_recap(season, rnd, article_path, expect=10):
         if t["zh"] not in drv and t["family"] not in drv:
             problems.append(f"名次 {pos} 車手：文章「{drv}」≠ API {t['zh']}／{t['family']}")
 
-        if "team" in colmap:
+        if True:
             tm = _cell(row, colmap, "team") or ""
             if t["team_zh"] not in tm and t["team_en"] not in tm:
                 problems.append(f"名次 {pos} 車隊：文章「{tm}」≠ API {t['team_zh']}／{t['team_en']}")
 
-        if "grid" in colmap:
+        if True:
             g = _cell(row, colmap, "grid") or ""
             gnum = re.sub(r"[^\d]", "", g)
             if gnum != t["grid"]:
                 problems.append(f"名次 {pos} 發車位：文章「{g}」≠ API {t['grid']}")
 
-        if "points" in colmap:
+        if True:
             p = _cell(row, colmap, "points") or ""
             pnum = re.sub(r"[^\d.]", "", p)
             if pnum.rstrip(".") != t["points"]:
@@ -221,7 +236,58 @@ def verify_recap(season, rnd, article_path, expect=10):
     return True
 
 
-# ---------- ② 全文數字必須有來源（S3 修正版） ----------
+# ---------- ③ before/after 的獨立 oracle（S5 修正版） ----------
+
+def verify_standings(facts_path, season, rnd):
+    """用 round N-1 / N 的積分榜當獨立來源，驗 pack 推導出來的 before/after。
+
+    pack 的 before 是「賽後榜減本站得分」推導出來的；這裡改從 API 直接要求
+    round N-1 的榜。兩條路徑獨立，對得起來才可信——同一個 helper 既產生又
+    自我檢查，抓不到共同的邏輯錯誤（2026-07-20 圓桌 S5）。
+    """
+    import fetch_racing
+
+    pack = json.loads(_resolve(facts_path).read_text(encoding="utf-8"))
+    st = pack.get("standings") or {}
+    src = fetch_racing.JolpicaSource()
+    print(f"🌐 抓 round {rnd-1} / {rnd} 積分榜作為獨立 oracle…")
+    before_api = src.standings_after_round(season, rnd - 1) if rnd > 1 else {"driver": [], "constructor": []}
+    after_api = src.standings_after_round(season, rnd)
+
+    def idx(rows, kind):
+        out = {}
+        for r in rows:
+            key = ((r.get("Driver") or {}).get("driverId") if kind == "driver"
+                   else (r.get("Constructor") or {}).get("constructorId"))
+            out[key] = (float(r.get("points") or 0), int(r.get("wins") or 0))
+        return out
+
+    problems = []
+    for kind, pack_key in (("driver", "drivers"), ("constructor", "constructors")):
+        for when, api_rows in (("before", before_api[kind]), ("after", after_api[kind])):
+            truth = idx(api_rows, kind)
+            for row in st.get(f"{pack_key}_{when}") or []:
+                got = truth.get(row["id"])
+                if got is None:
+                    problems.append(f"{kind}/{when}：{row['id']} 不在 API round 榜中")
+                    continue
+                if abs(row["points"] - got[0]) > 0.01:
+                    problems.append(
+                        f"{kind}/{when} {row['id']} 積分：pack {row['points']} ≠ oracle {got[0]}")
+                if row.get("wins") != got[1]:
+                    problems.append(
+                        f"{kind}/{when} {row['id']} 勝場：pack {row.get('wins')} ≠ oracle {got[1]}")
+
+    if problems:
+        print(f"❌ {len(problems)} 處與 round 榜 oracle 不符：", file=sys.stderr)
+        for pr in problems[:20]:
+            print(f"   · {pr}", file=sys.stderr)
+        return False
+    print("✅ before/after 與 round N-1／N 積分榜 oracle 一致")
+    return True
+
+
+# ---------- ④ 全文數字必須有來源（S3 修正版） ----------
 
 def _flatten_nums(obj, out):
     if isinstance(obj, bool):
@@ -251,14 +317,15 @@ def verify_body(facts_path, article_path):
 
     text = _load_article(article_path)
     slug = _slug_of(text)
-    waived = set(_load_waivers(slug)["numbers"])
     body = _body_of(text)
     body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", body)  # 連結網址不算內容數字
 
     orphans = {}
     for m in re.finditer(r"\d+(?:\.\d+)?", body):
         n = m.group(0)
-        if len(n) < 2 or n in known or n in waived:
+        # 個位數以前被略過，但名次、停站數、圈次大量是個位數——那是漏放不是雜訊
+        # （2026-07-20 圓桌覆核 S3）。沒有豁免機制之後，pack 必須把正當數字補齊。
+        if n in known:
             continue
         ctx = body[max(0, m.start() - 14):m.end() + 14].replace("\n", " ")
         orphans.setdefault(n, ctx)
@@ -267,8 +334,8 @@ def verify_body(facts_path, article_path):
         print(f"❌ {len(orphans)} 個數字在 facts pack 中找不到來源：", file=sys.stderr)
         for n, ctx in list(orphans.items())[:20]:
             print(f"   · {n}  …{ctx}…", file=sys.stderr)
-        print(f"   確認無誤者請寫進 {WAIVER_PATH.relative_to(ROOT)} 的 "
-              f"\"{slug}\".numbers 並附理由。", file=sys.stderr)
+        print("   沒有豁免機制：這些數字要嘛改稿拿掉，要嘛先補進 facts pack。",
+              file=sys.stderr)
         return False
     print("✅ 全文數字均可對到 facts pack")
     return True
@@ -291,22 +358,17 @@ def no_causal(article_path):
     而是要求每個命中都被處理掉：刪除、改寫、或寫進豁免清單附理由。
     """
     text = _load_article(article_path)
-    slug = _slug_of(text)
-    waived = _load_waivers(slug)["causal"]
     hits = []
     for i, line in enumerate(_body_of(text).splitlines(), 1):
         for pat in CAUSAL_PATTERNS:
             for m in re.finditer(pat, line):
                 frag = line[max(0, m.start() - 12):m.end() + 12]
-                if any(w in line for w in waived):
-                    continue
                 hits.append(f"L{i}: …{frag}…")
     if hits:
         print(f"❌ {len(hits)} 處未裁決的因果／無源主張：", file=sys.stderr)
         for h in hits[:20]:
             print(f"   · {h}", file=sys.stderr)
-        print("   戰報只寫「發生了什麼」。請刪除、改寫，或寫進 "
-              f"{WAIVER_PATH.relative_to(ROOT)} 的 \"{slug}\".causal 並附理由。",
+        print("   戰報只寫「發生了什麼」。沒有豁免機制：命中一律改稿。",
               file=sys.stderr)
         return False
     print("✅ 無未裁決的因果／無源主張")
@@ -317,21 +379,46 @@ def _sha(path):
     return hashlib.sha256(_resolve(path).read_bytes()).hexdigest()
 
 
-def verify_all(season, rnd, facts_path, article_path):
+def verify_all(season, rnd, facts_path, article_path, report_path=None):
     results = [
         ("verify-recap", verify_recap(season, rnd, article_path)),
+        ("verify-standings", verify_standings(facts_path, season, rnd)),
         ("verify-body", verify_body(facts_path, article_path)),
         ("no-causal", no_causal(article_path)),
     ]
     failed = [n for n, ok in results if not ok]
+
+    # 結構化報告：S1 的核准清單要綁 check_report_sha256，stdout 綁不了。
+    # 沒有這份 artifact，核准就無法證明它綁的是「哪一次檢查」（圓桌 S6）。
+    report = {
+        "schema_version": 1,
+        "checked_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "season": season, "round": rnd,
+        "article": _rel(article_path),
+        "article_sha256": _sha(article_path),
+        "facts": _rel(facts_path),
+        "facts_sha256": _sha(facts_path),
+        "prompt": "scripts/prompts/race-recap.md",
+        "prompt_sha256": _sha("scripts/prompts/race-recap.md"),
+        "checks": [{"name": n, "passed": ok} for n, ok in results],
+        "passed": not failed,
+        "waivers": "none — 本管線無豁免機制，命中一律改稿",
+    }
+    out = pathlib.Path(report_path) if report_path else (
+        ROOT / "facts" / f"check-report-{season}-r{rnd:02d}.json")
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     print()
-    print(f"article sha256 = {_sha(article_path)}")
-    print(f"facts   sha256 = {_sha(facts_path)}")
+    print(f"報告：{_rel(out)}")
+    print(f"  article sha256 = {report['article_sha256']}")
+    print(f"  facts   sha256 = {report['facts_sha256']}")
+    print(f"  report  sha256 = {hashlib.sha256(out.read_bytes()).hexdigest()}")
     if failed:
         print(f"⛔ {len(failed)} 項未通過（{'、'.join(failed)}）→ 不得進入核准流程",
               file=sys.stderr)
         return False
-    print("✅ 三項全過。可提請人工 cross-check（機械對帳通過 ≠ 內容正確）")
+    print("✅ 四項全過。可提請人工 cross-check（機械對帳通過 ≠ 內容正確）")
     return True
 
 
@@ -339,8 +426,8 @@ def main():
     ap = argparse.ArgumentParser(description="發布前機械對帳（三項全部擋 gate）")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
-    for name, need in (("verify-recap", "rf"), ("verify-body", "fa"),
-                       ("no-causal", "a"), ("verify-all", "rfa")):
+    for name, need in (("verify-recap", "rf"), ("verify-standings", "rf"),
+                       ("verify-body", "fa"), ("no-causal", "a"), ("verify-all", "rfa")):
         p = sub.add_parser(name)
         if "r" in need:
             p.add_argument("--round", type=int, required=True)
@@ -352,6 +439,8 @@ def main():
     args = ap.parse_args()
     if args.cmd == "verify-recap":
         ok = verify_recap(args.season, args.round, args.article)
+    elif args.cmd == "verify-standings":
+        ok = verify_standings(args.facts, args.season, args.round)
     elif args.cmd == "verify-body":
         ok = verify_body(args.facts, args.article)
     elif args.cmd == "no-causal":

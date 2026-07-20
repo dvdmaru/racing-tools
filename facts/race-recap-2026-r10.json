@@ -2,7 +2,44 @@
   "_type": "race-recap",
   "season": 2026,
   "round": 10,
-  "generated_from": "data/2026/results/round-10.json + driver/constructor-standings.json",
+  "provenance": {
+    "schema_version": 2,
+    "generator": "scripts/build-facts.py",
+    "generator_commit": "8f7acc22e849a4aa6c493413085bd2142bd2303a",
+    "built_at": "2026-07-20T10:23:56.653620+00:00",
+    "inputs": [
+      {
+        "path": "data/2026/results/round-10.json",
+        "sha256": "2e88b6b106309b0637ceb7e0f0608e88f73321aa2997a27cf0351d2bf4e7edd5",
+        "fetched_at": null
+      },
+      {
+        "path": "data/2026/results/round-10-laps.json",
+        "sha256": "959ef080a911cdce80bd62a9b1ec1629cdf5e95111230b2f9cec39064b977bce",
+        "fetched_at": null
+      },
+      {
+        "path": "data/2026/results/round-10-pitstops.json",
+        "sha256": "2b087964bfc13d23bda297202b1deebd7719a3e66735b555a78e81690d9f7aa3",
+        "fetched_at": null
+      },
+      {
+        "path": "data/2026/driver-standings.json",
+        "sha256": "31a39cc57552247b4e84cdc673447672d29e1e45d997f68cdb2a70f3560711ea",
+        "fetched_at": "2026-07-20T00:15:08+00:00"
+      },
+      {
+        "path": "data/2026/constructor-standings.json",
+        "sha256": "9da1000363b12359bbd5f7f3eac1eab6c6ad06fde48d2f53b64831a179dcc0f7",
+        "fetched_at": "2026-07-20T00:15:08+00:00"
+      },
+      {
+        "path": "data/2026/schedule.json",
+        "sha256": "3b6a061c7f3c5ad46b198a2e736764371059641b947e10ddd7fd71d4857455bb",
+        "fetched_at": null
+      }
+    ]
+  },
   "source": "jolpica-f1 API（Ergast 相容）落地快照",
   "rule_notes": [
     "本檔所有數字皆來自 jolpica-f1 API 落地快照；文中每一個數字都必須在本檔找得到，禁止憑記憶補。",
@@ -31,7 +68,12 @@
     "date": "2026-07-19",
     "taipei": "7/19（日）21:00",
     "total_laps": 44,
-    "entries": 22
+    "entries": 22,
+    "date_year": 2026,
+    "date_month": 7,
+    "date_day": 19,
+    "round_number": 10,
+    "season_year": 2026
   },
   "winner": {
     "position": 1,
@@ -1482,9 +1524,9 @@
     ],
     "lead_change_count": 4,
     "laps_led_by": {
-      "norris": 2,
       "antonelli": 29,
-      "leclerc": 13
+      "leclerc": 13,
+      "norris": 2
     },
     "pit_strategy": [
       {
@@ -1712,7 +1754,7 @@
         ]
       }
     ],
-    "on_track_position_gains": [
+    "unexplained_position_gains": [
       {
         "lap": 5,
         "driver_id": "hadjar",
@@ -1720,8 +1762,16 @@
         "to_pos": 16,
         "gained": 5,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "stroll",
+          "alonso",
+          "perez",
+          "ocon",
+          "bottas"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 5,
@@ -1730,8 +1780,13 @@
         "to_pos": 15,
         "gained": 2,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "stroll",
+          "alonso"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 6,
@@ -1740,8 +1795,13 @@
         "to_pos": 17,
         "gained": 2,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "stroll",
+          "alonso"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 6,
@@ -1750,8 +1810,28 @@
         "to_pos": 18,
         "gained": 2,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "stroll",
+          "alonso"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 30,
+        "driver_id": "colapinto",
+        "from_pos": 12,
+        "to_pos": 10,
+        "gained": 2,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "lawson",
+          "gasly"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 5,
@@ -1760,8 +1840,12 @@
         "to_pos": 9,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "bortoleto"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 6,
@@ -1770,8 +1854,12 @@
         "to_pos": 2,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "leclerc"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 7,
@@ -1780,8 +1868,12 @@
         "to_pos": 8,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "colapinto"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 7,
@@ -1790,8 +1882,12 @@
         "to_pos": 10,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "bortoleto"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 7,
@@ -1800,8 +1896,12 @@
         "to_pos": 17,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "perez"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 7,
@@ -1810,8 +1910,12 @@
         "to_pos": 20,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "alonso"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 8,
@@ -1820,8 +1924,12 @@
         "to_pos": 6,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "lawson"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 8,
@@ -1830,8 +1938,12 @@
         "to_pos": 19,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "stroll"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 9,
@@ -1840,8 +1952,12 @@
         "to_pos": 4,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "piastri"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       },
       {
         "lap": 9,
@@ -1850,26 +1966,26 @@
         "to_pos": 7,
         "gained": 1,
         "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
-      },
-      {
-        "lap": 9,
-        "driver_id": "alonso",
-        "from_pos": 21,
-        "to_pos": 20,
-        "gained": 1,
-        "self_pitted_nearby": false,
-        "someone_else_pitted_this_lap": false,
-        "attributable_to_on_track_pass": true
+        "passed_drivers": [
+          "lawson"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
       }
     ],
-    "excluded_pit_related_moves": 66,
+    "excluded_move_count": 56,
+    "retirement_transition_laps": [
+      14,
+      26,
+      43,
+      44
+    ],
     "caveats": [
-      "「場上名次變動」≠ 確認的超車：本資料源沒有超車事件標記，只有每圈名次。",
-      "attributable_to_on_track_pass=false 的位移多半來自進站或退賽，不可寫成超車。",
+      "unexplained_position_gains 只代表「已排除進站與退場遞補後仍未解釋的名次上升」，**不等於超車**。本資料源沒有超車事件標記，也無法排除打滑、讓位、罰則。",
+      "只能寫成「第 N 圈上升到第 X 位」這種位置描述，不可寫「超越了誰」。",
       "無輪胎配方、無安全車、無事故時點——任何涉及這三者的因果都不可寫。",
-      "本站有 3 位未完賽，其退賽圈前後的名次變動特別容易誤判。"
+      "本站有 3 位未完賽；退場遞補圈為 [14, 26, 43, 44]，已排除。"
     ]
   },
   "record_claims": []

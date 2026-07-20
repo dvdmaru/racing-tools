@@ -16,8 +16,11 @@
 """
 import argparse
 import datetime
+import hashlib
 import json
 import pathlib
+import re
+import subprocess
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -30,6 +33,10 @@ FACTS_DIR = ROOT / "facts"
 POINTS_RACE = {1: 25, 2: 18, 3: 15, 4: 12, 5: 10, 6: 8, 7: 6, 8: 4, 9: 2, 10: 1}
 POINTS_SPRINT = {1: 8, 2: 7, 3: 6, 4: 5, 5: 4, 6: 3, 7: 2, 8: 1}
 
+# 「有完賽名次但不是 Finished」的允許 status。列舉制：未列到的組合一律拒絕產 pack，
+# 不猜語意。jolpica 文件本身載明 status mapping 可能更動，所以這裡不能用「其他一律當套圈」。
+LAPPED_STATUSES = re.compile(r"^(Lapped|\+\d+ Laps?)$")
+
 RULE_NOTES = [
     "本檔所有數字皆來自 jolpica-f1 API 落地快照；文中每一個數字都必須在本檔找得到，禁止憑記憶補。",
     "戰報只寫「發生了什麼」，不寫「為什麼」。輪胎策略、車隊決策、失誤歸因屬於賽後分析文型，不進戰報。",
@@ -39,6 +46,42 @@ RULE_NOTES = [
     "站名不出現 F1 字樣；不引用官方素材；賽車紅用 #d63a2f。",
     "status 欄位的英文原文（Accident／Engine／+1 Lap）不要直譯成因果句，未完賽一律寫「未完賽」並附原因原文。",
 ]
+
+
+SCHEMA_VERSION = 2
+
+
+def _sha256(path):
+    p = pathlib.Path(path)
+    return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
+
+
+def _generator_commit():
+    try:
+        return subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+                              capture_output=True, text=True, timeout=5,
+                              check=True).stdout.strip()
+    except Exception:
+        return None
+
+
+def _provenance(season, rnd, inputs):
+    """把「這份 pack 是從什麼、什麼時候、哪一版程式做出來的」寫進產物本身。
+
+    沒有這段，pack 拿在手上無法自證來源，S1 核准清單的 facts_sha256 也只是
+    綁了一個不知道從哪來的檔案（2026-07-20 圓桌 S6）。
+    """
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "generator": "scripts/build-facts.py",
+        "generator_commit": _generator_commit(),
+        "built_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "inputs": [{"path": str(pathlib.Path(p).relative_to(ROOT)),
+                    "sha256": _sha256(p),
+                    "fetched_at": (json.loads(pathlib.Path(p).read_text(encoding="utf-8"))
+                                   .get("fetched_at") if pathlib.Path(p).exists() else None)}
+                   for p in inputs if pathlib.Path(p).exists()],
+    }
 
 
 def _die(msg):
@@ -181,6 +224,19 @@ def _timeline(season, rnd, dnf_ids):
         pit_laps.setdefault(s.get("driverId", ""), set()).add(int(s.get("lap") or 0))
     pit_window = {d: {n + off for n in ns for off in (-1, 0, 1)} for d, ns in pit_laps.items()}
 
+    # 每位車手最後出現的圈——退場的那一圈之後，後車名次會自然遞補。
+    # ⚠️ 初版把 dnf_ids 傳進來卻只用在提示字串裡，判斷完全沒用到它，
+    # 而 prompt 卻宣稱「已排除退賽造成的位移」＝程式不支持的宣稱
+    # （2026-07-20 圓桌覆核 S4，實測前車退賽時後車被標成場上超越）。
+    last_seen = {}
+    for lp_entry in laps:
+        n = int(lp_entry.get("number") or 0)
+        for t in lp_entry.get("Timings") or []:
+            last_seen[t.get("driverId", "")] = n
+    total_laps = len(laps)
+    # 有人在第 L 圈之後消失 → 第 L+1 圈起的遞補都不可歸因於場上超越
+    vanish_laps = {L + 1 for L in last_seen.values() if L < total_laps}
+
     leaders, lead_changes = [], []
     prev_pos, prev_leader = {}, None
     on_track_moves = []
@@ -205,18 +261,27 @@ def _timeline(season, rnd, dnf_ids):
             if was is None or p >= was:
                 continue
             gained = was - p
-            # 自己進站窗內、或這圈有人退賽 → 不是場上超越
             self_pit = n in pit_window.get(did, ())
-            others_pit = any(n in pit_window.get(o, ()) for o in pos_now if o != did)
+            # 只看「被超過的那些人」有沒有進站，不是全場任何人——原本用全場，
+            # 不相干車手進站也會把這筆排除掉（覆核 S4：比利時站排掉 66 筆）
+            passed = [o for o, q in pos_now.items()
+                      if o != did and prev_pos.get(o) is not None
+                      and prev_pos[o] < was and q > p]
+            passed_pit = any(n in pit_window.get(o, ()) for o in passed)
+            retire_nearby = n in vanish_laps
             on_track_moves.append({
                 "lap": n, "driver_id": did, "from_pos": was, "to_pos": p, "gained": gained,
                 "self_pitted_nearby": self_pit,
-                "someone_else_pitted_this_lap": others_pit,
-                "attributable_to_on_track_pass": not self_pit and not others_pit,
+                "passed_drivers": passed,
+                "passed_driver_pitted": passed_pit,
+                "retirement_on_this_lap": retire_nearby,
+                # ⚠️ 命名刻意中性：逐圈名次無法排除打滑、讓位、罰則等其他原因，
+                # 叫它「超車」是資料撐不起的因果宣稱（覆核 S4 建議）
+                "unexplained": not self_pit and not passed_pit and not retire_nearby,
             })
         prev_pos.update(pos_now)
 
-    clean = [m for m in on_track_moves if m["attributable_to_on_track_pass"]]
+    clean = [m for m in on_track_moves if m["unexplained"]]
     clean.sort(key=lambda m: (-m["gained"], m["lap"]))
 
     strategy = []
@@ -234,13 +299,15 @@ def _timeline(season, rnd, dnf_ids):
         "laps_led_by": {d: sum(1 for x in leaders if x["driver_id"] == d)
                         for d in {x["driver_id"] for x in leaders}},
         "pit_strategy": strategy,
-        "on_track_position_gains": clean[:15],
-        "excluded_pit_related_moves": len(on_track_moves) - len(clean),
+        "unexplained_position_gains": clean[:15],
+        "excluded_move_count": len(on_track_moves) - len(clean),
+        "retirement_transition_laps": sorted(vanish_laps),
         "caveats": [
-            "「場上名次變動」≠ 確認的超車：本資料源沒有超車事件標記，只有每圈名次。",
-            "attributable_to_on_track_pass=false 的位移多半來自進站或退賽，不可寫成超車。",
+            "unexplained_position_gains 只代表「已排除進站與退場遞補後仍未解釋的名次上升」，"
+            "**不等於超車**。本資料源沒有超車事件標記，也無法排除打滑、讓位、罰則。",
+            "只能寫成「第 N 圈上升到第 X 位」這種位置描述，不可寫「超越了誰」。",
             "無輪胎配方、無安全車、無事故時點——任何涉及這三者的因果都不可寫。",
-            f"本站有 {len(dnf_ids)} 位未完賽，其退賽圈前後的名次變動特別容易誤判。",
+            f"本站有 {len(dnf_ids)} 位未完賽；退場遞補圈為 {sorted(vanish_laps)}，已排除。",
         ],
     }
 
@@ -279,6 +346,13 @@ def build_race_recap(season, rnd):
         # 完賽與否看 positionText 而非 status：positionText 是名次就代表獲判完賽名次，
         # "R" 才是退賽。status="Lapped" 的車手是被套圈但有完賽名次，寫成「退賽」是事實錯誤。
         classified = ptext.isdigit()
+        # 完賽狀態必須逐一列舉，未知組合拒絕產 pack。原本「只要有名次、status 又不是
+        # Finished，一律歸成『完賽（遭套圈）』」——上游冒出沒見過的 status 會被靜默
+        # 吞成一個看似合理的敘述（2026-07-20 圓桌覆核 S8）。
+        if classified and status != "Finished" and not LAPPED_STATUSES.match(status):
+            _die(f"未知的完賽狀態組合：positionText={ptext} status={status!r}"
+                 f"（{d.get('familyName','')}）——沒有明確映射就不產 pack，"
+                 "請先確認這個 status 的語意再把它加進 LAPPED_STATUSES")
         # grid 0＝從維修站出發，名次進退對它沒有意義，不進 movers 排行
         gain = (grid - pos) if grid > 0 and pos > 0 and classified else None
         row = {
@@ -376,11 +450,19 @@ def build_race_recap(season, rnd):
                    "has_sprint": bool(r.get("Sprint"))}
             break
 
+    dbase = ROOT / "data" / str(season)
     pack = {
         "_type": "race-recap",
         "season": season,
         "round": rnd,
-        "generated_from": "data/{}/results/round-{:02d}.json + driver/constructor-standings.json".format(season, rnd),
+        "provenance": _provenance(season, rnd, [
+            dbase / "results" / f"round-{rnd:02d}.json",
+            dbase / "results" / f"round-{rnd:02d}-laps.json",
+            dbase / "results" / f"round-{rnd:02d}-pitstops.json",
+            dbase / "driver-standings.json",
+            dbase / "constructor-standings.json",
+            dbase / "schedule.json",
+        ]),
         "source": "jolpica-f1 API（Ergast 相容）落地快照",
         "rule_notes": RULE_NOTES,
         "integrity": integrity,
@@ -395,6 +477,13 @@ def build_race_recap(season, rnd):
             "taipei": rc.taipei_disp(race.get("date", ""), race.get("time", "")),
             "total_laps": max((r["laps"] for r in rows), default=0),
             "entries": len(rows),
+            # 沒有豁免機制之後，寫手正當會用到的數值必須由 pack 供給，否則 gate 卡死
+            # 而唯一的出路會變成「刪掉這句話」。日期拆成年月日供中文寫法使用。
+            "date_year": int(race.get("date", "0-0-0").split("-")[0] or 0),
+            "date_month": int(race.get("date", "0-0-0").split("-")[1] or 0),
+            "date_day": int(race.get("date", "0-0-0").split("-")[2] or 0),
+            "round_number": rnd,
+            "season_year": season,
         },
         "winner": rows[0] if rows else None,
         "podium": rows[:3],

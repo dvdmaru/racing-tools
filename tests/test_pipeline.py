@@ -232,8 +232,8 @@ class RoundtableFixTests(unittest.TestCase):
                 t = bf._timeline(2026, 5, [])
             finally:
                 bf.ROOT = orig
-            self.assertEqual(t["on_track_position_gains"], [])
-            self.assertEqual(t["excluded_pit_related_moves"], 1)
+            self.assertEqual(t["unexplained_position_gains"], [])
+            self.assertEqual(t["excluded_move_count"], 1)
         finally:
             shutil.rmtree(tmp)
 
@@ -267,6 +267,18 @@ class CheckFactsTests(unittest.TestCase):
         self.assertEqual(colmap, {"position": 0, "driver": 1, "team": 2,
                                   "grid": 3, "points": 4})
         self.assertEqual(cf._cell(rows[0], colmap, "grid"), "1")
+
+    def test_verify_body_gates_on_single_digit_orphan(self):
+        """個位數以前被略過——名次／停站數大量是個位數，那是漏放不是雜訊。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            facts = tmp / "f.json"
+            facts.write_text(json.dumps({"points": 25}), encoding="utf-8")
+            art = tmp / "a.md"
+            art.write_text("---\nslug: x\n---\n\n他在第 9 圈進站。\n", encoding="utf-8")
+            self.assertFalse(cf.verify_body(str(facts), str(art)))
+        finally:
+            shutil.rmtree(tmp)
 
     def test_verify_body_gates_on_orphan_number(self):
         """S3：正文孤兒數字必須擋。初版只掃表格且永遠回 True，正文是防線的正門。"""
@@ -318,6 +330,71 @@ class ArticleKickerTests(unittest.TestCase):
         self.assertEqual(ba._kicker({"type": "report"}), "賽後戰報")
         self.assertEqual(ba._kicker({"type": "preview"}), "賽站前瞻")
         self.assertEqual(ba._kicker({"type": "wire"}), "外電整理")
+
+
+class RebuttalFixTests(unittest.TestCase):
+    """鎖 2026-07-20 Sol 覆核輪抓到的缺陷，含我自己在修正輪引進的那個。"""
+
+    def _timeline_in_tmp(self, laps, stops, dnf_ids=()):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            base = tmp / "data" / "2026" / "results"
+            base.mkdir(parents=True)
+            (base / "round-05-laps.json").write_text(json.dumps({"Laps": laps}), encoding="utf-8")
+            (base / "round-05-pitstops.json").write_text(
+                json.dumps({"PitStops": stops}), encoding="utf-8")
+            orig = bf.ROOT
+            bf.ROOT = tmp
+            try:
+                return bf._timeline(2026, 5, list(dnf_ids))
+            finally:
+                bf.ROOT = orig
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_retirement_gap_fill_is_not_counted_as_pass(self):
+        """我在修正輪把「已排除退賽」寫進 prompt，但程式從沒實作——這條鎖住它。"""
+        laps = [
+            {"number": "1", "Timings": [{"driverId": "a", "position": "4"},
+                                        {"driverId": "b", "position": "5"}]},
+            {"number": "2", "Timings": [{"driverId": "b", "position": "4"}]},
+        ]
+        t = self._timeline_in_tmp(laps, [], dnf_ids=["a"])
+        self.assertEqual(t["unexplained_position_gains"], [])
+        self.assertIn(2, t["retirement_transition_laps"])
+
+    def test_unrelated_driver_pit_does_not_exclude_move(self):
+        """只看被超過的人有沒有進站；不相干車手進站不該把這筆排除掉。"""
+        laps = [
+            {"number": "1", "Timings": [{"driverId": "a", "position": "4"},
+                                        {"driverId": "b", "position": "5"},
+                                        {"driverId": "z", "position": "20"}]},
+            {"number": "2", "Timings": [{"driverId": "a", "position": "5"},
+                                        {"driverId": "b", "position": "4"},
+                                        {"driverId": "z", "position": "20"}]},
+        ]
+        stops = [{"driverId": "z", "lap": "2", "stop": "1", "duration": "23.0"}]
+        t = self._timeline_in_tmp(laps, stops)
+        self.assertEqual([m["driver_id"] for m in t["unexplained_position_gains"]], ["b"])
+
+    def test_unknown_finish_status_fails_closed(self):
+        """未知的 classified+status 組合不得被靜默吞成「完賽（遭套圈）」。"""
+        self.assertTrue(bf.LAPPED_STATUSES.match("Lapped"))
+        self.assertTrue(bf.LAPPED_STATUSES.match("+1 Lap"))
+        self.assertIsNone(bf.LAPPED_STATUSES.match("Mystery Status"))
+
+    def test_result_table_requires_all_five_columns(self):
+        """只有兩欄的十列表格必須擋——通過條件不得小於 prompt 契約。"""
+        md = "| 名次 | 車手 |\n|---|---|\n| 1 | 安東內利 |\n"
+        colmap, _ = cf._find_result_table(md)
+        self.assertEqual([c for c in cf.REQUIRED_COLS if c not in colmap],
+                         ["team", "grid", "points"])
+
+    def test_no_waiver_mechanism_exists(self):
+        """豁免由產稿者自填＝作者能把自己的紅燈改綠。整個機制已移除，不得復活。"""
+        src = (ROOT / "scripts" / "check-facts.py").read_text(encoding="utf-8")
+        self.assertNotIn("facts-waivers", src)
+        self.assertFalse((ROOT / "config" / "facts-waivers.json").exists())
 
 
 if __name__ == "__main__":

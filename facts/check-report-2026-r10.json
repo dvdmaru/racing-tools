@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-07-20T10:24:28.143167+00:00",
+  "season": 2026,
+  "round": 10,
+  "article": "/Users/charlie.chien/.claude/jobs/b2555ff1/tmp/good.md",
+  "article_sha256": "560d444c6c6b91a4d7f750782953b7d0848f94f5eb8bc830796a00d338f91f97",
+  "facts": "facts/race-recap-2026-r10.json",
+  "facts_sha256": "b990a828497351722a7d878e9009971a91d65c74cad6be59f45a65f64a9a02e5",
+  "prompt": "scripts/prompts/race-recap.md",
+  "prompt_sha256": "9c9b6591cbe5040a4ed8bd3f4c1ff1be449edc6bdf68c0b389733899584aa59a",
+  "checks": [
+    {
+      "name": "verify-recap",
+      "passed": true
+    },
+    {
+      "name": "verify-standings",
+      "passed": true
+    },
+    {
+      "name": "verify-body",
+      "passed": true
+    },
+    {
+      "name": "no-causal",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "waivers": "none — 本管線無豁免機制，命中一律改稿"
+}
