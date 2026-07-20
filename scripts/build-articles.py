@@ -276,8 +276,8 @@ def _standings_mini(season=rc.SEASON):
             cons = s["Constructors"][-1]["name"] if s["Constructors"] else ""
             lead = ' class="lead"' if s["position"] == "1" else ""
             out += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                    f'<td class="l nm">{rc.driver_zh(s["Driver"])}</td>'
-                    f'<td class="l">{rc.team_zh(cons)}</td>'
+                    f'<td class="l nm">{rc.driver_pair(s["Driver"])}</td>'
+                    f'<td class="l">{rc.team_pair(cons)}</td>'
                     f'<td class="std-pts">{s["points"]}</td></tr>')
         return out
 
@@ -286,7 +286,7 @@ def _standings_mini(season=rc.SEASON):
         for s in cs["standings"]["ConstructorStandings"][:6]:
             lead = ' class="lead"' if s["position"] == "1" else ""
             out += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                    f'<td class="l nm">{rc.team_zh(s["Constructor"]["name"])}</td>'
+                    f'<td class="l nm">{rc.team_pair(s["Constructor"]["name"])}</td>'
                     f'<td class="std-pts">{s["points"]}</td></tr>')
         return out
 
@@ -334,8 +334,8 @@ def _latest_podium(season=rc.SEASON):
     cards = ""
     for res in rows:
         cards += (f'<div class="podium-card"><div class="pos">P{res["position"]}</div>'
-                  f'<div class="who">{rc.driver_zh(res["Driver"])}</div>'
-                  f'<div class="team">{rc.team_zh(res["Constructor"]["name"])}</div></div>')
+                  f'<div class="who">{rc.driver_pair(res["Driver"])}</div>'
+                  f'<div class="team">{rc.team_pair(res["Constructor"]["name"])}</div></div>')
     name = rc.race_zh((race or sprint)["raceName"])
     return (f'<div class="rc-sec"><h2>最新賽果 · 第 {rnd} 站{name}{label}</h2>'
             '<span class="ln"></span>'
