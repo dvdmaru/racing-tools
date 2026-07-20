@@ -123,6 +123,73 @@ class JolpicaSource(DataSource):
         races = d["MRData"]["RaceTable"]["Races"]
         return races[0] if races else None
 
+    def _paged(self, path, key):
+        """翻頁抓完整資料集，回 (合併後的清單, total)。
+
+        ⚠️ laps 單站約 870 筆、上限 100/頁，**不翻頁只會拿到前 2 圈而且沒有任何錯誤徵兆**——
+        回傳結構完全正常、只是內容少了 95%。這種缺損下游看不出來，所以翻頁不是最佳化。
+        """
+        merged, offset, total = [], 0, 0
+        while True:
+            d = self._get(path, f"?limit=100&offset={offset}")
+            m = d["MRData"]
+            total = int(m.get("total") or 0)
+            races = m["RaceTable"]["Races"]
+            if not races:
+                # 還沒翻完卻回空頁＝資料不完整。原本這裡直接 break 帶著半份資料返回，
+                # 下游看到的結構完全正常（2026-07-20 圓桌覆核 S4）。
+                if offset < total:
+                    raise RuntimeError(
+                        f"{path}: offset {offset} 尚未到 total {total} 卻回空頁，"
+                        "資料不完整，拒絕返回半份結果")
+                break
+            merged.extend(races[0].get(key) or [])
+            offset += 100
+            if offset >= total:
+                break
+        return merged, total
+
+    def race_laps(self, season, rnd):
+        """逐圈計時（每圈含各車手該圈名次與圈速）。"""
+        laps, total = self._paged(f"{season}/{rnd}/laps", "Laps")
+        by_num = {}
+        for lp in laps:  # 同一圈可能被切在兩頁，要合併 Timings 不是覆蓋
+            n = int(lp.get("number") or 0)
+            by_num.setdefault(n, []).extend(lp.get("Timings") or [])
+        got = sum(len(v) for v in by_num.values())
+        if got != total:
+            raise RuntimeError(f"laps 筆數不符：合併後 {got} ≠ API total {total}")
+        for n, timings in by_num.items():
+            ids = [t.get("driverId") for t in timings]
+            if len(ids) != len(set(ids)):
+                raise RuntimeError(f"第 {n} 圈有重複車手紀錄，資料異常")
+        nums = sorted(by_num)
+        if nums and nums != list(range(nums[0], nums[-1] + 1)):
+            raise RuntimeError(f"圈號不連續（缺洞）：{nums[:5]}…{nums[-5:]}")
+        return {"season": season, "round": rnd, "records_total": total,
+                "Laps": [{"number": n, "Timings": by_num[n]} for n in nums]}
+
+    def race_pitstops(self, season, rnd):
+        stops, total = self._paged(f"{season}/{rnd}/pitstops", "PitStops")
+        if len(stops) != total:
+            raise RuntimeError(f"pitstops 筆數不符：{len(stops)} ≠ API total {total}")
+        return {"season": season, "round": rnd, "records_total": total, "PitStops": stops}
+
+    def standings_after_round(self, season, rnd):
+        """指定輪次結束後的積分榜——before/after 推導的獨立 oracle。
+
+        推導值（賽後榜減本站得分）與這裡拿到的 round N-1 榜是兩條獨立路徑，
+        對得起來才可信。同一個 helper 既產生又自我檢查，抓不到共同邏輯錯誤
+        （2026-07-20 圓桌 S5）。
+        """
+        out = {}
+        for kind, key in (("driver", "DriverStandings"),
+                          ("constructor", "ConstructorStandings")):
+            d = self._get(f"{season}/{rnd}/{kind}standings", "?limit=100")
+            lists = d["MRData"]["StandingsTable"]["StandingsLists"]
+            out[kind] = (lists[0].get(key) or []) if lists else []
+        return out
+
     def latest_race(self, season):
         """最近一場「已有正賽賽果」的比賽（round 權威值——見模組 docstring）。"""
         d = self._get(f"{season}/last/results", "?limit=100")
@@ -283,6 +350,19 @@ def fetch_results(src, season, latest_round, races, force=False):
             res = src.sprint_results(season, rnd)
             if res:
                 changed |= _write(sp, res)
+    # 逐圈與進站：只抓最新一站（每站約 870 筆逐圈紀錄，全季重抓沒有必要也吃 rate limit）。
+    # 這兩份是賽後戰報敘事的唯一可查證來源——沒有它們，「全場最大轉折」這種句子只能靠編。
+    lp = base / f"round-{latest_round:02d}-laps.json"
+    ps = base / f"round-{latest_round:02d}-pitstops.json"
+    if force or not lp.exists():
+        data = src.race_laps(season, latest_round)
+        if data.get("Laps"):
+            changed |= _write(lp, data)
+    if force or not ps.exists():
+        data = src.race_pitstops(season, latest_round)
+        if data.get("PitStops"):
+            changed |= _write(ps, data)
+
     nxt = latest_round + 1
     nxt_race = next((r for r in races if int(r.get("round", 0)) == nxt), None)
     now_utc = datetime.datetime.now(datetime.timezone.utc)

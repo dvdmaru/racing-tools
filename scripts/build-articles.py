@@ -162,7 +162,8 @@ def prune_stale_article_dirs(art_root: pathlib.Path, keep_slugs: set):
 
 def _kicker(meta):
     return {"feature": "深度專題", "guide": "長青指南", "reference": "對照表",
-            "preview": "賽站前瞻", "recap": "賽後復盤"}.get(meta.get("type", "feature"), "專題")
+            "preview": "賽站前瞻", "report": "賽後戰報", "recap": "賽後復盤",
+            "wire": "外電整理"}.get(meta.get("type", "feature"), "專題")
 
 
 def _date_disp(s):
