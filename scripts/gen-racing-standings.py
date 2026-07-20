@@ -26,11 +26,9 @@ def driver_table(standings):
     for s in standings["DriverStandings"]:
         drv, cons = s["Driver"], s["Constructors"][-1] if s["Constructors"] else {}
         lead = ' class="lead"' if s["position"] == "1" else ""
-        full = f'{drv.get("givenName","")} {drv.get("familyName","")}'.strip()
         rows += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                 f'<td class="l nm">{rc.driver_zh(drv)}'
-                 f'<span style="color:var(--faint);font-size:12px">　{html_lib.escape(full)}</span></td>'
-                 f'<td class="l">{rc.team_zh(cons.get("name",""))}</td>'
+                 f'<td class="l nm">{rc.driver_pair(drv, full=True)}</td>'
+                 f'<td class="l">{rc.team_pair(cons.get("name",""))}</td>'
                  f'<td class="std-pts">{s["points"]}</td><td>{s["wins"]}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
             '<th class="rk">#</th><th class="l">車手</th><th class="l">車隊</th>'
@@ -44,8 +42,7 @@ def constructor_table(standings):
         lead = ' class="lead"' if s["position"] == "1" else ""
         name = s["Constructor"]["name"]
         rows += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                 f'<td class="l nm">{rc.team_zh(name)}'
-                 f'<span style="color:var(--faint);font-size:12px">　{html_lib.escape(name)}</span></td>'
+                 f'<td class="l nm">{rc.team_pair(name)}</td>'
                  f'<td class="std-pts">{s["points"]}</td><td>{s["wins"]}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
             '<th class="rk">#</th><th class="l">車隊</th><th>積分</th><th>分站冠軍</th>'

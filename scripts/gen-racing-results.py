@@ -47,8 +47,8 @@ def result_table(race_results):
         fl = res.get("FastestLap", {})
         fl_mark = " ⏱" if fl.get("rank") == "1" else ""
         rows += (f'<tr{lead}><td class="rk">{res.get("positionText", res.get("position",""))}</td>'
-                 f'<td class="l nm">{rc.driver_zh(drv)}{fl_mark}</td>'
-                 f'<td class="l">{rc.team_zh(res["Constructor"]["name"])}</td>'
+                 f'<td class="l nm">{rc.driver_pair(drv)}{fl_mark}</td>'
+                 f'<td class="l">{rc.team_pair(res["Constructor"]["name"])}</td>'
                  f'<td>{res.get("grid","")}</td><td>{t}</td>'
                  f'<td class="std-pts">{res.get("points","")}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
@@ -66,15 +66,15 @@ def build_blocks(results):
         if race:
             w = race["Results"][0]
             src, d = race, race["date"]
-            win = (f'<span class="res-win">冠軍 <b>{rc.driver_zh(w["Driver"])}</b>｜'
-                   f'{rc.team_zh(w["Constructor"]["name"])}</span>')
+            win = (f'<span class="res-win">冠軍 <b>{rc.driver_pair(w["Driver"])}</b>｜'
+                   f'{rc.team_pair(w["Constructor"]["name"])}</span>')
             body = sprint_sec + f'<div class="res-sec">正賽分類</div>{result_table(race["Results"])}'
         else:
             # sprint-only round：衝刺賽已跑、正賽未跑（六/日排程的中間態），先發衝刺賽果
             sw = sprint.get("SprintResults", [{}])[0]
             src, d = sprint, sprint.get("date", "")
-            win = (f'<span class="res-win">衝刺賽冠軍 <b>{rc.driver_zh(sw["Driver"])}</b>｜'
-                   f'{rc.team_zh(sw["Constructor"]["name"])}</span>') if sw.get("Driver") else ""
+            win = (f'<span class="res-win">衝刺賽冠軍 <b>{rc.driver_pair(sw["Driver"])}</b>｜'
+                   f'{rc.team_pair(sw["Constructor"]["name"])}</span>') if sw.get("Driver") else ""
             body = sprint_sec + '<p class="res-pending">正賽尚未進行；賽後首次自動重建會補上完整正賽分類。</p>'
         blocks.append(
             f'<details class="res-block" id="round-{rnd:02d}"{" open" if rnd == last_rnd else ""}>'

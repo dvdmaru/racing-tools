@@ -501,6 +501,40 @@ def team_zh(name_or_id: str) -> str:
     return TEAM_ZH.get(name_or_id, name_or_id)
 
 
+# ---------- 中英對照（站規：人名／車隊／賽道／站名一律中英並列） ----------
+# 譯名不統一是繁中賽車內容的老問題（同一車手台港陸三種寫法），並列原文讓讀者能自行對照、
+# 也讓搜尋引擎與 AI 引擎兩種寫法都抓得到。窄表格用姓氏、寬版位用全名，靠 full 參數切換。
+
+def _en(text: str) -> str:
+    """原文附註 span；與中文之間用全形空格分隔（避免半形空格被壓掉）。"""
+    return f'<span class="zh-en">　{html_lib.escape(text)}</span>' if text else ""
+
+
+def driver_pair(driver: dict, full: bool = False) -> str:
+    """中文譯名＋原文。full=True 給全名（寬表格如積分榜），否則只給姓氏（窄表格）。"""
+    if full:
+        en = f'{driver.get("givenName", "")} {driver.get("familyName", "")}'.strip()
+    else:
+        en = driver.get("familyName", "")
+    zh = driver_zh(driver)
+    return f"{zh}{_en(en)}" if en and en != zh else zh
+
+
+def team_pair(name: str) -> str:
+    zh = team_zh(name)
+    return f"{zh}{_en(name)}" if name and name != zh else zh
+
+
+def circuit_pair(cid: str, fallback: str = "") -> str:
+    zh = circuit_zh(cid, fallback)
+    return f"{zh}{_en(fallback)}" if fallback and fallback != zh else zh
+
+
+def race_pair(name: str) -> str:
+    zh = race_zh(name)
+    return f"{zh}{_en(name)}" if name and name != zh else zh
+
+
 # ---------- 資料快照讀取 ----------
 
 def load_data(season: int, name: str):
@@ -561,6 +595,9 @@ DATA_CSS = """
 .std-table thead th { font-family: var(--font-mono); color: var(--dim); font-weight:600; font-size:10.5px;
   letter-spacing:1.8px; text-transform:uppercase; border-bottom:1px solid var(--line-2); }
 .std-table td.l, .std-table th.l { text-align:left; white-space:normal; }
+/* 中英對照的原文附註（人名/車隊/賽道/站名共用；窄螢幕改成獨立一行避免撐爆表格） */
+.zh-en { color: var(--faint); font-size: 12px; font-weight: 500; font-family: var(--font-ui); }
+@media (max-width: 640px) { .zh-en { display:block; margin-left:0; font-size:11px; } }
 .std-table td.rk { color:var(--dim); font-family:var(--font-mono); font-style:italic; font-weight:700; font-size:13px;
   font-variant-numeric: tabular-nums; }
 .std-table tbody tr { transition: background .12s ease; }

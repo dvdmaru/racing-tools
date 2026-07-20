@@ -65,8 +65,8 @@ def build_cards(races, results_by_round, today):
         if res:
             cls = " done"
             w = res["Results"][0]
-            badge = (f'<span class="badge win">冠軍 {rc.driver_zh(w["Driver"])}｜'
-                     f'{rc.team_zh(w["Constructor"]["name"])}</span>')
+            badge = (f'<span class="badge win">冠軍 {rc.driver_pair(w["Driver"])}｜'
+                     f'{rc.team_pair(w["Constructor"]["name"])}</span>')
         elif not next_marked and d >= today:
             cls, next_marked = " next", True
             badge = '<span class="badge">下一站</span>'
@@ -80,7 +80,7 @@ def build_cards(races, results_by_round, today):
             f'<div class="cal-rnd">Rd<b>{rnd}</b></div>'
             f'<div><div class="cal-name">{rc.race_zh(race["raceName"])}'
             f'<span class="en">{html_lib.escape(race["raceName"])}</span>{badge}</div>'
-            f'<div class="cal-circuit">{rc.circuit_zh(cid, race["Circuit"]["circuitName"])} · '
+            f'<div class="cal-circuit">{rc.circuit_pair(cid, race["Circuit"]["circuitName"])} · '
             f'{html_lib.escape(loc.get("locality",""))}, {html_lib.escape(loc.get("country",""))}</div></div>'
             f'<div class="cal-race"><span class="d">正賽（台北時間）</span><b>{race_dt}</b></div>'
             f'<div class="cal-sessions">{session_line(race)}</div>'
