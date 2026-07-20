@@ -15,9 +15,11 @@
   ],
   "integrity": {
     "standings_data_through_round": 10,
+    "constructor_data_through_round": 10,
     "standings_match_accumulated": true,
     "mismatched_driver_ids": [],
-    "note": "積分榜與逐站累加一致"
+    "mismatched_constructor_ids": [],
+    "note": "車手榜與車隊榜均與逐站累加一致"
   },
   "race": {
     "name_zh": "比利時站",
@@ -1306,7 +1308,7 @@
         "team_en": "Mercedes",
         "position": 1,
         "points": 179.0,
-        "wins": 6
+        "wins": 5
       },
       {
         "id": "russell",
@@ -1400,7 +1402,7 @@
         "team_en": "",
         "position": 1,
         "points": 333.0,
-        "wins": 8
+        "wins": 7
       },
       {
         "id": "ferrari",
@@ -1451,6 +1453,424 @@
     "taipei": "7/26（日）21:00",
     "circuit_zh": "匈牙利賽道（Hungaroring）",
     "has_sprint": false
+  },
+  "timeline": {
+    "source": "jolpica /laps 與 /pitstops（同一志願者資料源，非 FIA 官方時序）",
+    "total_laps": 44,
+    "pit_stop_records": 28,
+    "lead_changes": [
+      {
+        "lap": 19,
+        "from_id": "antonelli",
+        "to_id": "leclerc"
+      },
+      {
+        "lap": 21,
+        "from_id": "leclerc",
+        "to_id": "norris"
+      },
+      {
+        "lap": 23,
+        "from_id": "norris",
+        "to_id": "leclerc"
+      },
+      {
+        "lap": 34,
+        "from_id": "leclerc",
+        "to_id": "antonelli"
+      }
+    ],
+    "lead_change_count": 4,
+    "laps_led_by": {
+      "norris": 2,
+      "antonelli": 29,
+      "leclerc": 13
+    },
+    "pit_strategy": [
+      {
+        "driver_id": "albon",
+        "stops": 1,
+        "laps": [
+          18
+        ],
+        "durations": [
+          "22.638"
+        ]
+      },
+      {
+        "driver_id": "alonso",
+        "stops": 2,
+        "laps": [
+          19,
+          31
+        ],
+        "durations": [
+          "23.190",
+          "24.746"
+        ]
+      },
+      {
+        "driver_id": "antonelli",
+        "stops": 1,
+        "laps": [
+          18
+        ],
+        "durations": [
+          "23.093"
+        ]
+      },
+      {
+        "driver_id": "arvid_lindblad",
+        "stops": 1,
+        "laps": [
+          16
+        ],
+        "durations": [
+          "24.810"
+        ]
+      },
+      {
+        "driver_id": "bearman",
+        "stops": 2,
+        "laps": [
+          1,
+          20
+        ],
+        "durations": [
+          "26.554",
+          "28.982"
+        ]
+      },
+      {
+        "driver_id": "bortoleto",
+        "stops": 1,
+        "laps": [
+          20
+        ],
+        "durations": [
+          "23.127"
+        ]
+      },
+      {
+        "driver_id": "bottas",
+        "stops": 2,
+        "laps": [
+          1,
+          32
+        ],
+        "durations": [
+          "30.594",
+          "25.910"
+        ]
+      },
+      {
+        "driver_id": "colapinto",
+        "stops": 1,
+        "laps": [
+          15
+        ],
+        "durations": [
+          "24.146"
+        ]
+      },
+      {
+        "driver_id": "gasly",
+        "stops": 1,
+        "laps": [
+          14
+        ],
+        "durations": [
+          "24.177"
+        ]
+      },
+      {
+        "driver_id": "hadjar",
+        "stops": 3,
+        "laps": [
+          1,
+          2,
+          20
+        ],
+        "durations": [
+          "24.156",
+          "22.997",
+          "24.727"
+        ]
+      },
+      {
+        "driver_id": "hamilton",
+        "stops": 1,
+        "laps": [
+          20
+        ],
+        "durations": [
+          "32.201"
+        ]
+      },
+      {
+        "driver_id": "hulkenberg",
+        "stops": 1,
+        "laps": [
+          20
+        ],
+        "durations": [
+          "26.098"
+        ]
+      },
+      {
+        "driver_id": "lawson",
+        "stops": 1,
+        "laps": [
+          15
+        ],
+        "durations": [
+          "23.722"
+        ]
+      },
+      {
+        "driver_id": "leclerc",
+        "stops": 1,
+        "laps": [
+          20
+        ],
+        "durations": [
+          "23.164"
+        ]
+      },
+      {
+        "driver_id": "max_verstappen",
+        "stops": 1,
+        "laps": [
+          17
+        ],
+        "durations": [
+          "23.128"
+        ]
+      },
+      {
+        "driver_id": "norris",
+        "stops": 1,
+        "laps": [
+          30
+        ],
+        "durations": [
+          "28.314"
+        ]
+      },
+      {
+        "driver_id": "ocon",
+        "stops": 2,
+        "laps": [
+          1,
+          16
+        ],
+        "durations": [
+          "33.740",
+          "24.124"
+        ]
+      },
+      {
+        "driver_id": "perez",
+        "stops": 2,
+        "laps": [
+          1,
+          12
+        ],
+        "durations": [
+          "25.372",
+          "27.617"
+        ]
+      },
+      {
+        "driver_id": "piastri",
+        "stops": 1,
+        "laps": [
+          20
+        ],
+        "durations": [
+          "23.292"
+        ]
+      },
+      {
+        "driver_id": "sainz",
+        "stops": 1,
+        "laps": [
+          14
+        ],
+        "durations": [
+          "34.841"
+        ]
+      },
+      {
+        "driver_id": "stroll",
+        "stops": 1,
+        "laps": [
+          17
+        ],
+        "durations": [
+          "31.649"
+        ]
+      }
+    ],
+    "on_track_position_gains": [
+      {
+        "lap": 5,
+        "driver_id": "hadjar",
+        "from_pos": 21,
+        "to_pos": 16,
+        "gained": 5,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 5,
+        "driver_id": "bearman",
+        "from_pos": 17,
+        "to_pos": 15,
+        "gained": 2,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 6,
+        "driver_id": "perez",
+        "from_pos": 19,
+        "to_pos": 17,
+        "gained": 2,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 6,
+        "driver_id": "ocon",
+        "from_pos": 20,
+        "to_pos": 18,
+        "gained": 2,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 5,
+        "driver_id": "norris",
+        "from_pos": 10,
+        "to_pos": 9,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 6,
+        "driver_id": "max_verstappen",
+        "from_pos": 3,
+        "to_pos": 2,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 7,
+        "driver_id": "norris",
+        "from_pos": 9,
+        "to_pos": 8,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 7,
+        "driver_id": "gasly",
+        "from_pos": 11,
+        "to_pos": 10,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 7,
+        "driver_id": "ocon",
+        "from_pos": 18,
+        "to_pos": 17,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 7,
+        "driver_id": "bottas",
+        "from_pos": 21,
+        "to_pos": 20,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 8,
+        "driver_id": "arvid_lindblad",
+        "from_pos": 7,
+        "to_pos": 6,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 8,
+        "driver_id": "bottas",
+        "from_pos": 20,
+        "to_pos": 19,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 9,
+        "driver_id": "hamilton",
+        "from_pos": 5,
+        "to_pos": 4,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 9,
+        "driver_id": "norris",
+        "from_pos": 8,
+        "to_pos": 7,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      },
+      {
+        "lap": 9,
+        "driver_id": "alonso",
+        "from_pos": 21,
+        "to_pos": 20,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "someone_else_pitted_this_lap": false,
+        "attributable_to_on_track_pass": true
+      }
+    ],
+    "excluded_pit_related_moves": 66,
+    "caveats": [
+      "「場上名次變動」≠ 確認的超車：本資料源沒有超車事件標記，只有每圈名次。",
+      "attributable_to_on_track_pass=false 的位移多半來自進站或退賽，不可寫成超車。",
+      "無輪胎配方、無安全車、無事故時點——任何涉及這三者的因果都不可寫。",
+      "本站有 3 位未完賽，其退賽圈前後的名次變動特別容易誤判。"
+    ]
   },
   "record_claims": []
 }

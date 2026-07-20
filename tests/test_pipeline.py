@@ -191,6 +191,66 @@ class FactsPackTests(unittest.TestCase):
         self.assertEqual(before[1]["position"], 2)
 
 
+class RoundtableFixTests(unittest.TestCase):
+    """鎖 2026-07-20 Sol 查核桌抓到的缺陷，防回歸。"""
+
+    def test_derive_before_also_subtracts_wins(self):
+        """S5：只減 points 不減 wins，會產出「本站冠軍賽前已有同樣勝場」的自我矛盾。"""
+        after = [{"id": "a", "zh": "A", "en": "A", "team_en": "", "position": 1,
+                  "points": 204.0, "wins": 6}]
+        before = bf._derive_before(after, {"a": 25.0}, {"a": 1}, top=1)
+        self.assertEqual(before[0]["wins"], 5)
+        self.assertEqual(before[0]["points"], 179.0)
+
+    def test_derive_before_rejects_negative_wins(self):
+        """勝場減成負數＝上游不一致，必須當場炸而不是吞掉。"""
+        after = [{"id": "a", "zh": "A", "en": "A", "team_en": "", "position": 1,
+                  "points": 25.0, "wins": 0}]
+        with self.assertRaises(SystemExit):
+            bf._derive_before(after, {"a": 25.0}, {"a": 1}, top=1)
+
+    def test_timeline_excludes_pit_related_moves(self):
+        """S4：對手進站造成的名次上升不是超車。判別責任在資料層，不留給寫手。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            base = tmp / "data" / "2026" / "results"
+            base.mkdir(parents=True)
+            laps = {"Laps": [
+                {"number": "1", "Timings": [{"driverId": "x", "position": "5"},
+                                            {"driverId": "y", "position": "4"}]},
+                {"number": "2", "Timings": [{"driverId": "x", "position": "4"},
+                                            {"driverId": "y", "position": "5"}]}]}
+            (base / "round-05-laps.json").write_text(json.dumps(laps), encoding="utf-8")
+            # y 在第 2 圈進站 → x 的名次上升不可歸因為場上超越
+            (base / "round-05-pitstops.json").write_text(
+                json.dumps({"PitStops": [{"driverId": "y", "lap": "2",
+                                          "stop": "1", "duration": "23.0"}]}),
+                encoding="utf-8")
+            orig = bf.ROOT
+            bf.ROOT = tmp
+            try:
+                t = bf._timeline(2026, 5, [])
+            finally:
+                bf.ROOT = orig
+            self.assertEqual(t["on_track_position_gains"], [])
+            self.assertEqual(t["excluded_pit_related_moves"], 1)
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_timeline_absent_returns_none(self):
+        """逐圈資料沒落地時回 None——prompt 據此禁止寫轉折，不能回空 dict 讓人誤以為有資料。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            orig = bf.ROOT
+            bf.ROOT = tmp
+            try:
+                self.assertIsNone(bf._timeline(2026, 99, []))
+            finally:
+                bf.ROOT = orig
+        finally:
+            shutil.rmtree(tmp)
+
+
 class CheckFactsTests(unittest.TestCase):
     """對帳腳本本身的行為——尤其是「沒有實際比對到東西不算通過」。"""
 

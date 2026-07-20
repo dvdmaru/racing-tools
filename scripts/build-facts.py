@@ -132,18 +132,117 @@ def _standings_rows(standings_json, kind):
     return rows
 
 
-def _derive_before(rows, delta, top=5):
+def _derive_before(rows, delta, win_delta=None, top=5):
     """賽後榜 − 本站得分 ＝ 賽前榜。重排序後回前 N 名。
-    直接減比讀舊快照可靠：舊快照的時間戳未必落在該站之前。"""
+    直接減比讀舊快照可靠：舊快照的時間戳未必落在該站之前。
+
+    ⚠️ wins 也必須跟著減。只減 points 會產出「本站冠軍賽前就已有同樣勝場數」這種
+    pack 內部自我矛盾的資料（2026-07-20 圓桌 S5：安東內利 after/before 都是 6 勝）。
+    衍生欄位漏推導比缺欄位更危險——它看起來是有根據的。
+    """
+    win_delta = win_delta or {}
     before = []
     for r in rows:
         b = dict(r)
         b["points"] = round(r["points"] - delta.get(r["id"], 0.0), 2)
+        b["wins"] = r["wins"] - win_delta.get(r["id"], 0)
+        if b["wins"] < 0:  # 減成負數＝上游資料或本站冠軍判定有問題，不吞
+            _die(f"{r['id']} 推導出的賽前勝場數為 {b['wins']}——賽果與積分榜不一致，拒絕產生 pack")
         before.append(b)
     before.sort(key=lambda x: (-x["points"], x["position"]))
     for i, b in enumerate(before, 1):
         b["position"] = i
     return before[:top]
+
+
+def _timeline(season, rnd, dnf_ids):
+    """逐圈＋進站 → 可查證的敘事素材。回 None 代表資料未落地（戰報就不准寫轉折）。
+
+    ⚠️ 這裡最重要的不是算出名次變化，是**把不能當超車的名次變化標出來**。
+    對手進站時你名次會上升，退賽時也會——這兩種都不是超車。寫手拿到未標註的
+    名次變化，會把「別人進站」寫成「精彩超車」，而且因為有逐圈資料撐著，
+    看起來比憑空瞎編更可信。所以判別責任放在資料層，不留給寫手。
+
+    ⚠️ 就算排除了進站與退賽，剩下的仍只能稱「場上名次變動」。輪胎配方、安全車、
+    事故時點在這個資料源裡完全不存在，任何涉及它們的因果都無法查證。
+    """
+    base = ROOT / "data" / str(season) / "results"
+    lp = base / f"round-{rnd:02d}-laps.json"
+    ps = base / f"round-{rnd:02d}-pitstops.json"
+    if not lp.exists():
+        return None
+
+    laps = json.loads(lp.read_text(encoding="utf-8")).get("Laps") or []
+    stops = (json.loads(ps.read_text(encoding="utf-8")).get("PitStops") or []) if ps.exists() else []
+
+    # 每位車手的進站圈（含前後一圈：出入站的名次擾動會跨圈）
+    pit_laps = {}
+    for s in stops:
+        pit_laps.setdefault(s.get("driverId", ""), set()).add(int(s.get("lap") or 0))
+    pit_window = {d: {n + off for n in ns for off in (-1, 0, 1)} for d, ns in pit_laps.items()}
+
+    leaders, lead_changes = [], []
+    prev_pos, prev_leader = {}, None
+    on_track_moves = []
+    for lp_entry in laps:
+        n = int(lp_entry.get("number") or 0)
+        pos_now = {}
+        for t in lp_entry.get("Timings") or []:
+            did = t.get("driverId", "")
+            try:
+                pos_now[did] = int(t.get("position") or 0)
+            except (TypeError, ValueError):
+                continue
+        leader = next((d for d, p in pos_now.items() if p == 1), None)
+        if leader:
+            leaders.append({"lap": n, "driver_id": leader})
+            if prev_leader and leader != prev_leader:
+                lead_changes.append({"lap": n, "from_id": prev_leader, "to_id": leader})
+            prev_leader = leader
+
+        for did, p in pos_now.items():
+            was = prev_pos.get(did)
+            if was is None or p >= was:
+                continue
+            gained = was - p
+            # 自己進站窗內、或這圈有人退賽 → 不是場上超越
+            self_pit = n in pit_window.get(did, ())
+            others_pit = any(n in pit_window.get(o, ()) for o in pos_now if o != did)
+            on_track_moves.append({
+                "lap": n, "driver_id": did, "from_pos": was, "to_pos": p, "gained": gained,
+                "self_pitted_nearby": self_pit,
+                "someone_else_pitted_this_lap": others_pit,
+                "attributable_to_on_track_pass": not self_pit and not others_pit,
+            })
+        prev_pos.update(pos_now)
+
+    clean = [m for m in on_track_moves if m["attributable_to_on_track_pass"]]
+    clean.sort(key=lambda m: (-m["gained"], m["lap"]))
+
+    strategy = []
+    for did, ns in sorted(pit_laps.items()):
+        durs = [s.get("duration", "") for s in stops if s.get("driverId") == did]
+        strategy.append({"driver_id": did, "stops": len(ns),
+                         "laps": sorted(ns), "durations": durs})
+
+    return {
+        "source": "jolpica /laps 與 /pitstops（同一志願者資料源，非 FIA 官方時序）",
+        "total_laps": len(laps),
+        "pit_stop_records": len(stops),
+        "lead_changes": lead_changes,
+        "lead_change_count": len(lead_changes),
+        "laps_led_by": {d: sum(1 for x in leaders if x["driver_id"] == d)
+                        for d in {x["driver_id"] for x in leaders}},
+        "pit_strategy": strategy,
+        "on_track_position_gains": clean[:15],
+        "excluded_pit_related_moves": len(on_track_moves) - len(clean),
+        "caveats": [
+            "「場上名次變動」≠ 確認的超車：本資料源沒有超車事件標記，只有每圈名次。",
+            "attributable_to_on_track_pass=false 的位移多半來自進站或退賽，不可寫成超車。",
+            "無輪胎配方、無安全車、無事故時點——任何涉及這三者的因果都不可寫。",
+            f"本站有 {len(dnf_ids)} 位未完賽，其退賽圈前後的名次變動特別容易誤判。",
+        ],
+    }
 
 
 def build_race_recap(season, rnd):
@@ -228,23 +327,40 @@ def build_race_recap(season, rnd):
     acc_d, acc_c = _accumulate(results, rnd)
     mismatch = [r["id"] for r in d_rows[:10]
                 if abs(r["points"] - acc_d.get(r["id"], 0.0)) > 0.01]
+    # 車隊榜也要對帳。原本只算了 acc_c 卻沒拿來比，於是
+    # standings_match_accumulated=true 從來不代表車隊榜驗過（2026-07-20 圓桌 S5）。
+    c_mismatch = [r["id"] for r in c_rows
+                  if abs(r["points"] - acc_c.get(r["id"], 0.0)) > 0.01]
     # 快照涵蓋到第幾輪必須等於本站——jolpica 的 standings round 欄位會指向「即將到來」的
     # 輪次，拿錯輪的榜去減本站得分，before/after 會整組錯位而且看起來很合理。
+    # 車手榜與車隊榜是兩份獨立快照，各自都要驗。
+    for label, snap in (("車手", ds), ("車隊", cs)):
+        t = (snap or {}).get("data_through_round")
+        if t is not None and int(t) != rnd:
+            _die(f"{label}積分榜快照涵蓋到第 {t} 輪，但要寫的是第 {rnd} 輪——"
+                 "輪次錯位會讓 before/after 整組錯，先讓排程補齊再產 pack")
     through = (ds or {}).get("data_through_round")
-    if through is not None and int(through) != rnd:
-        _die(f"積分榜快照涵蓋到第 {through} 輪，但要寫的是第 {rnd} 輪——"
-             "輪次錯位會讓 before/after 整組錯，先讓排程補齊再產 pack")
+    ok = not mismatch and not c_mismatch
     integrity = {
         "standings_data_through_round": through,
-        "standings_match_accumulated": not mismatch,
+        "constructor_data_through_round": (cs or {}).get("data_through_round"),
+        "standings_match_accumulated": ok,
         "mismatched_driver_ids": mismatch,
-        "note": ("積分榜與逐站累加一致" if not mismatch else
+        "mismatched_constructor_ids": c_mismatch,
+        "note": ("車手榜與車隊榜均與逐站累加一致" if ok else
                  "⚠️ 積分榜與逐站累加不一致——可能是賽後判罰或快照落在別的輪次；"
                  "before/after 數字在人工確認前不得寫進文章"),
     }
 
-    d_before = _derive_before(d_rows, d_delta)
-    c_before = _derive_before(c_rows, c_delta)
+    # 本站冠軍的勝場差分（正賽第 1 名才算勝，衝刺賽不計入 wins）
+    winner_entry = next((e for e in entries if str(e.get("positionText")) == "1"), None)
+    d_win_delta, c_win_delta = {}, {}
+    if winner_entry:
+        d_win_delta[(winner_entry.get("Driver") or {}).get("driverId", "")] = 1
+        c_win_delta[(winner_entry.get("Constructor") or {}).get("constructorId", "")] = 1
+
+    d_before = _derive_before(d_rows, d_delta, d_win_delta)
+    c_before = _derive_before(c_rows, c_delta, c_win_delta)
     leader_change = bool(d_before and d_rows and d_before[0]["id"] != d_rows[0]["id"])
 
     # ---- 下一站 ----
@@ -308,6 +424,7 @@ def build_race_recap(season, rnd):
                                   if len(d_before) > 1 else None),
         },
         "next_race": nxt,
+        "timeline": _timeline(season, rnd, [d["driver"]["driver_id"] for d in dnf]),
         "record_claims": [],  # 需要紀錄型主張時人工填入並附來源，空的就代表「不准寫」
     }
     return pack
@@ -323,15 +440,24 @@ def main():
 
     if args.cmd == "race-recap":
         pack = build_race_recap(args.season, args.round)
+
+        # ⚠️ 硬檢查沒過就不落地。原本是先寫檔再回 exit 1，於是磁碟上會留下一份
+        # 「失敗但看起來完整」的 pack，後續的人或 agent 照樣讀得到（2026-07-20 圓桌 S6）。
+        # 非零 exit code 擋不住已經存在的檔案。
+        if not pack["integrity"]["standings_match_accumulated"]:
+            print(f"❌ {pack['integrity']['note']}", file=sys.stderr)
+            print("   未寫出任何檔案——不合格的 pack 不落地，避免被誤用。", file=sys.stderr)
+            return 1
+
         FACTS_DIR.mkdir(exist_ok=True)
         out = FACTS_DIR / f"race-recap-{args.season}-r{args.round:02d}.json"
-        out.write_text(json.dumps(pack, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        # atomic rename：避免寫到一半被讀到半份 JSON
+        tmp = out.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(pack, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        tmp.replace(out)
         print(f"✅ {out.relative_to(ROOT)}")
         print(f"   {pack['race']['name_zh']}｜{pack['race']['entries']} 車完賽紀錄"
               f"｜退賽 {pack['dnf_count']}｜積分榜領先易主：{'是' if pack['standings']['leader_change'] else '否'}")
-        if not pack["integrity"]["standings_match_accumulated"]:
-            print(f"   ⚠️ {pack['integrity']['note']}")
-            return 1
     return 0
 
 
