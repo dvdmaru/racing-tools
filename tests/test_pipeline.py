@@ -27,6 +27,8 @@ def _load(name, fname):
 fr = _load("fetch_racing", "fetch_racing.py")
 rc = _load("racinglib", "racinglib.py")
 ba = _load("build_articles", "build-articles.py")
+bf = _load("build_facts", "build-facts.py")
+cf = _load("check_facts", "check-facts.py")
 
 
 class SnapshotWriteTests(unittest.TestCase):
@@ -138,6 +140,92 @@ class PruneStaleArticlesTests(unittest.TestCase):
         self.assertTrue(keep.exists())
         self.assertFalse(stale.exists())
         self.assertTrue((self.tmp / "index.html").exists())
+
+
+class FactsPackTests(unittest.TestCase):
+    """鎖 facts pack 的三個實作陷阱（都是初版真的踩到、抽驗才發現的）。"""
+
+    def _entry(self, pos, ptext, family, grid, status, points, laps=44):
+        return {
+            "position": str(pos), "positionText": ptext, "points": str(points),
+            "grid": str(grid), "laps": str(laps), "status": status,
+            "Driver": {"driverId": family.lower(), "familyName": family,
+                       "givenName": "X", "code": family[:3].upper()},
+            "Constructor": {"constructorId": "mercedes", "name": "Mercedes"},
+        }
+
+    def test_lapped_driver_counts_as_classified_not_dnf(self):
+        """status=Lapped 的車手有完賽名次，歸類成退賽是事實錯誤。"""
+        row = self._entry(18, "18", "Bottas", 17, "Lapped", 0, laps=43)
+        self.assertTrue(row["positionText"].isdigit())
+        ret = self._entry(22, "R", "Russell", 3, "Retired", 0, laps=0)
+        self.assertFalse(ret["positionText"].isdigit())
+
+    def test_standings_rows_rejects_wrong_envelope(self):
+        """快照外殼取錯層會回空 list，而空 list 讓一致性檢查真空通過 → 必須拋錯。"""
+        with self.assertRaises(SystemExit):
+            bf._standings_rows({"MRData": {"StandingsTable": {"StandingsLists": []}}},
+                               "driver")
+
+    def test_standings_rows_reads_snapshot_envelope(self):
+        snap = {"season": 2026, "data_through_round": 10, "standings": {
+            "DriverStandings": [
+                {"position": "1", "points": "204", "wins": "6",
+                 "Driver": {"driverId": "antonelli", "familyName": "Antonelli"},
+                 "Constructors": [{"name": "Mercedes"}]}]}}
+        rows = bf._standings_rows(snap, "driver")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["points"], 204.0)
+
+    def test_derive_before_subtracts_and_reorders(self):
+        """賽前榜＝賽後榜減本站得分，且要重新排序（本站可能發生位次交換）。"""
+        after = [{"id": "a", "zh": "A", "en": "A", "team_en": "", "position": 1,
+                  "points": 204.0, "wins": 6},
+                 {"id": "b", "zh": "B", "en": "B", "team_en": "", "position": 2,
+                  "points": 159.0, "wins": 1},
+                 {"id": "c", "zh": "C", "en": "C", "team_en": "", "position": 3,
+                  "points": 154.0, "wins": 2}]
+        before = bf._derive_before(after, {"a": 25.0, "b": 12.0, "c": 0.0}, top=3)
+        # b 本站拿 12 分後才超車 c；賽前應該是 c 在前
+        self.assertEqual([r["id"] for r in before], ["a", "c", "b"])
+        self.assertEqual(before[1]["position"], 2)
+
+
+class CheckFactsTests(unittest.TestCase):
+    """對帳腳本本身的行為——尤其是「沒有實際比對到東西不算通過」。"""
+
+    def test_table_rows_skips_separator_line(self):
+        md = "| 名次 | 車手 |\n|---|---|\n| 1 | 安東內利 |\n"
+        rows = cf._table_rows(md)
+        self.assertEqual(rows, [["名次", "車手"], ["1", "安東內利"]])
+
+    def test_numbers_in_facts_never_gates(self):
+        """提示性檢查即使發現孤兒數字也必須回 True，否則會變成擋線的循環驗證。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            facts = tmp / "f.json"
+            facts.write_text(json.dumps({"points": 25}), encoding="utf-8")
+            art = tmp / "a.md"
+            art.write_text("| 名次 | 積分 |\n|---|---|\n| 1 | 9999 |\n", encoding="utf-8")
+            self.assertTrue(cf.numbers_in_facts(str(facts), str(art)))
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_no_causal_flags_causal_sentence(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        try:
+            art = tmp / "a.md"
+            art.write_text("羅素因為引擎問題所以退賽。\n", encoding="utf-8")
+            self.assertTrue(cf.no_causal(str(art)))  # 提示不擋
+        finally:
+            shutil.rmtree(tmp)
+
+
+class ArticleKickerTests(unittest.TestCase):
+    def test_report_and_wire_types_have_kickers(self):
+        self.assertEqual(ba._kicker({"type": "report"}), "賽後戰報")
+        self.assertEqual(ba._kicker({"type": "preview"}), "賽站前瞻")
+        self.assertEqual(ba._kicker({"type": "wire"}), "外電整理")
 
 
 if __name__ == "__main__":
