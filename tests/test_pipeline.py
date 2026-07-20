@@ -7,7 +7,9 @@ load_results 的 sprint-only round、草稿/下架文章的產物清理。
 跑法：python3 -m unittest discover -s tests -v
 """
 import datetime
+import contextlib
 import importlib.util
+import io
 import json
 import pathlib
 import shutil
@@ -140,6 +142,107 @@ class PruneStaleArticlesTests(unittest.TestCase):
         self.assertTrue(keep.exists())
         self.assertFalse(stale.exists())
         self.assertTrue((self.tmp / "index.html").exists())
+
+
+class ApprovalGateIntegrationTests(unittest.TestCase):
+    """default-deny + digest 綁定的完整 build 行為（規格驗收 1-4）。"""
+
+    SLUG = "approval-gate-test"
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.src = self.tmp / "articles"
+        self.pub = self.tmp / "public-racing"
+        self.config = self.tmp / "config"
+        self.article_dir = self.src / self.SLUG
+        self.article_dir.mkdir(parents=True)
+        self.config.mkdir()
+        (self.config / "draft-exclude.json").write_text(
+            json.dumps({"exclude": []}), encoding="utf-8")
+        self.article_path = self.article_dir / "index.md"
+        self.article_path.write_text(
+            "---\n"
+            f"slug: {self.SLUG}\n"
+            "type: guide\n"
+            "date: 2026-07-20\n"
+            "title: 核准 Gate 測試文章\n"
+            "subtitle: 只有內容雜湊命中時才可發布。\n"
+            "---\n\n"
+            "# 核准 Gate 測試文章\n\n"
+            "這是一篇用來驗證發布核准機制的文章。\n",
+            encoding="utf-8")
+        self._write_approved([])
+
+        for obj, name, value in (
+                (ba, "ROOT", self.tmp), (ba, "SRC", self.src), (ba, "PUB", self.pub),
+                (rc, "ROOT", self.tmp), (rc, "PUB", self.pub)):
+            old = getattr(obj, name)
+            setattr(obj, name, value)
+            self.addCleanup(setattr, obj, name, old)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def _write_approved(self, entries):
+        (self.config / "approved.json").write_text(
+            json.dumps({"approved": entries}, ensure_ascii=False), encoding="utf-8")
+
+    def _approve_current_article(self):
+        digest = ba.article_sha256(self.article_path)
+        self._write_approved([{
+            "slug": self.SLUG,
+            "article_sha256": digest,
+            "facts_sha256": "0" * 64,
+            "check_report_sha256": "1" * 64,
+            "approved_by": "reviewer",
+            "approved_at": "2026-07-20T12:00:00+08:00",
+        }])
+        return digest
+
+    def _build_log(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            ba.build()
+        return output.getvalue()
+
+    def test_empty_approved_list_excludes_existing_article_with_reason(self):
+        log = self._build_log()
+        self.assertFalse((self.pub / "articles" / self.SLUG).exists())
+        self.assertIn(f"skip unapproved (not in config/approved.json): {self.SLUG}", log)
+
+    def test_matching_hash_publishes_every_article_surface(self):
+        self._approve_current_article()
+        log = self._build_log()
+
+        self.assertTrue((self.pub / "articles" / self.SLUG / "index.html").is_file())
+        self.assertIn(f"✅ {self.SLUG}", log)
+        for rel in ("index.html", "articles/index.html", "feed.xml", "sitemap.xml"):
+            self.assertIn(self.SLUG, (self.pub / rel).read_text(encoding="utf-8"), rel)
+
+    def test_one_character_edit_invalidates_approval_and_removes_output(self):
+        approved_digest = self._approve_current_article()
+        self._build_log()
+        self.article_path.write_text(
+            self.article_path.read_text(encoding="utf-8") + "字", encoding="utf-8")
+
+        log = self._build_log()
+        self.assertFalse((self.pub / "articles" / self.SLUG).exists())
+        self.assertIn("approval invalidated (article_sha256 mismatch)", log)
+        self.assertIn(f"approved: {approved_digest}", log)
+        self.assertIn(f"actual:   {ba.article_sha256(self.article_path)}", log)
+        for rel in ("index.html", "articles/index.html", "feed.xml", "sitemap.xml"):
+            self.assertNotIn(self.SLUG, (self.pub / rel).read_text(encoding="utf-8"), rel)
+
+    def test_removing_previously_published_approval_deletes_output_directory(self):
+        self._approve_current_article()
+        self._build_log()
+        output_dir = self.pub / "articles" / self.SLUG
+        self.assertTrue(output_dir.is_dir())
+
+        self._write_approved([])
+        log = self._build_log()
+        self.assertFalse(output_dir.exists())
+        self.assertIn(f"removed stale article output: {self.SLUG}", log)
 
 
 class FactsPackTests(unittest.TestCase):

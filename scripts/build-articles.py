@@ -5,7 +5,8 @@
 架構 clone 自 baseball-tools：
 - articles/<slug>/index.md（frontmatter + markdown）→ public-racing/articles/<slug>/
 - FAQ schema ###-gated：只有「## 常見問題」下的 ### 問答會進 FAQPage schema（鏡射可見文字）
-- 草稿 gate：config/draft-exclude.json 列的 slug 完全不進輸出（index/feed/sitemap/頁面）
+- 發布核准 gate：config/approved.json 的 slug + article SHA-256 完全命中才進輸出
+- 草稿 gate：config/draft-exclude.json 保留為輔助，列出的 slug 即使已核准也不進輸出
 - 首頁 dashboard 讀 data/ 快照 server-render（積分速覽/下一站/最新賽果），零 client fetch
 - llms.txt build-time 生成（手寫靜態檔＝staleness 炸彈）
 - ⚠️ sitemap 由本腳本整個覆寫 → 各 gen-* 之後 re-merge 自己的 path（跑序鐵則）
@@ -14,6 +15,7 @@
 需要：pip install markdown
 """
 import datetime
+import hashlib
 import html as html_lib
 import importlib.util
 import json
@@ -43,7 +45,30 @@ def load_draft_excludes() -> set:
     return set(json.loads(p.read_text(encoding="utf-8")).get("exclude", []))
 
 
-DRAFT_EXCLUDE = load_draft_excludes()
+def load_approved_entries() -> dict:
+    """讀取 default-deny 核准清單，回傳以 slug 為 key 的索引。"""
+    p = ROOT / "config" / "approved.json"
+    if not p.exists():
+        print(f"⚠️  {p} not found; default-deny: all articles are unapproved")
+        return {}
+    entries = json.loads(p.read_text(encoding="utf-8")).get("approved", [])
+    if not isinstance(entries, list):
+        raise ValueError("config/approved.json: approved must be a list")
+
+    approved = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or not entry.get("slug"):
+            raise ValueError("config/approved.json: every approved entry must contain a slug")
+        slug = entry["slug"]
+        if slug in approved:
+            raise ValueError(f"config/approved.json: duplicate slug: {slug}")
+        approved[slug] = entry
+    return approved
+
+
+def article_sha256(path: pathlib.Path) -> str:
+    """核准綁定 index.md 的原始 bytes；任何位元改動都會讓核准失效。"""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 # ---------- 文章頁 CSS ----------
@@ -511,16 +536,30 @@ def build():
         print(f"❌ {SRC} not found", file=sys.stderr)
         sys.exit(1)
 
+    draft_excludes = load_draft_excludes()
+    approved_entries = load_approved_entries()
     articles = []
     for d in sorted(SRC.iterdir()):
-        if not d.is_dir() or not (d / "index.md").exists():
+        article_path = d / "index.md"
+        if not d.is_dir() or not article_path.exists():
             continue
-        text = (d / "index.md").read_text(encoding="utf-8")
+        text = article_path.read_text(encoding="utf-8")
         meta, body = rc.parse_frontmatter(text)
         meta.setdefault("slug", d.name)
         slug = meta["slug"]
-        if slug in DRAFT_EXCLUDE:
+        if slug in draft_excludes:
             print(f"⏭  skip draft (pending review, excluded): {slug}")
+            continue
+        approval = approved_entries.get(slug)
+        if approval is None:
+            print(f"⏭  skip unapproved (not in config/approved.json): {slug}")
+            continue
+        actual_sha256 = article_sha256(article_path)
+        approved_sha256 = approval.get("article_sha256", "")
+        if approved_sha256 != actual_sha256:
+            print(f"⚠️  approval invalidated (article_sha256 mismatch): {slug}\n"
+                  f"    approved: {approved_sha256 or '<missing>'}\n"
+                  f"    actual:   {actual_sha256}")
             continue
         body = rc.strip_h1(body)
         excerpt = rc.extract_excerpt(body)
