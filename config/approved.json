@@ -1,0 +1,24 @@
+{
+  "_comment": "default-deny 發布核准清單。只有 article_sha256 完全命中的文章才會進輸出。facts_sha256 與 check_report_sha256 保留產稿及對帳證據；核准者不得與產稿者相同。",
+  "_migration_note": "下面兩篇是 2026-07-19 建站時就已上線的長青文，早於本 gate 與 facts 管線存在。Charlie 當時以合併 PR 的方式核准過它們，此處是把既有核准補記成清單條目，不是新的核准。它們不是 facts 管線產出，故 facts_sha256 與 check_report_sha256 為 null。⚠️ 清單為空時 build 會把已上線文章一併下架（default-deny 的正確行為），所以導入 gate 時務必同步補記既有內容。",
+  "approved": [
+    {
+      "slug": "f1-2026-names-glossary",
+      "article_sha256": "b124991754a930e0b63672cce4c9730b936a7cfcd43cd5a3811bae2c4d3a52ee",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-20T15:40:00+08:00",
+      "note": "建站長青文，補記既有核准"
+    },
+    {
+      "slug": "f1-2026-rules-guide",
+      "article_sha256": "2aedbccc79223d950ff4afcc2446cbc504aa41cd31aae42ad8f1bb2f1db86d26",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-20T15:40:00+08:00",
+      "note": "建站長青文，補記既有核准"
+    }
+  ]
+}
