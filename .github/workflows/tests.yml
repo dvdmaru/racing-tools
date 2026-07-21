@@ -20,4 +20,6 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install 'markdown==3.10.2'
+      # F2（Sol 五輪）：DB-backed 測試需先建 L1，否則 3 個身分比對回歸測試被靜默 skip＝CI 假覆蓋
+      - run: python scripts/build-f1-db.py
       - run: python -m unittest discover -s tests -v

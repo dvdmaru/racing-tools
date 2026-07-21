@@ -503,6 +503,26 @@ class GateTests(unittest.TestCase):
         self.assertFalse(passed)
         self.assertTrue(any("diff key 重複" in f for f in faults))
 
+    def test_f1_diff_driver_id_key_mismatch_fails(self):
+        """Sol 五輪 F1：diff 的 driver_id 改成別人、key 不動 → 身分矛盾 → FAIL。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["diffs"][0]["driver_id"] = "alonso"   # key 仍是原車手的 <id>|<field>
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts,
+                                             db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("身分矛盾" in f for f in faults))
+
+    def test_f1_diff_missing_driver_id_fails(self):
+        """Sol 五輪 F1：diff 缺 driver_id → FAIL（不得靜默通過）。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        del rep["diffs"][0]["driver_id"]
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts,
+                                             db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("缺 driver_id" in f for f in faults))
+
     def test_r5_expected_count_value_mismatch_fails(self):
         """Sol §3 S1-2：expected_champion_count=999 其餘不動 → count != len(unique ids) → FAIL。"""
         rep = self._report()

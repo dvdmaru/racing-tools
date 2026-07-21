@@ -863,6 +863,20 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
     if dup_diff_keys:
         faults.append(f"diff key 重複（需唯一）：{dup_diff_keys} → fail closed")
 
+    # --- F1（Sol 五輪）：diff 身分欄自洽——key 必須恰為 driver_id|field ---
+    # 反證：把 ascari|entries 那筆的 driver_id 改成 alonso、key 不動，裁決照樣解除
+    # → report 內部矛盾 false green。key 是裁決綁定的錨，身分欄不得與錨脫鉤。
+    for d in diffs:
+        if not isinstance(d, dict) or not str(d.get("key", "")).strip():
+            continue  # 結構不正者已由上方 schema fault 記錄
+        _did = str(d.get("driver_id", "")).strip()
+        _fld = str(d.get("field", "")).strip()
+        if not _did or not _fld:
+            faults.append(f"diff 缺 driver_id/field（key={d['key']}）→ fail closed")
+        elif d["key"] != f"{_did}|{_fld}":
+            faults.append(
+                f"diff 身分矛盾：key={d['key']} 但 driver_id|field={_did}|{_fld} → fail closed")
+
     diff_by_key = {d["key"]: d for d in diffs if isinstance(d, dict) and d.get("key")}
     unresolved = []
     for d in diffs:
