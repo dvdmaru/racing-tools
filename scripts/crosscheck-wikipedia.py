@@ -34,12 +34,15 @@
        任一改變（含公式改了但 ID 沒升版、只改 wiki_starts/classification/reason）舊裁決即失效。
     ④ 同一 diff key **恰好一條**裁決（多於一條＝FAIL，杜絕 ours_wrong 與 definition_differs 並存放行）；
        缺 key 的裁決＝FAIL（不 silently 忽略）。
-  **fail closed（覆核 §4 + 終輪 R1/R3）**：report 不完整一律 FAIL——
-    · 頂層缺 diffs/drivers/coverage 任一區塊；
+  **fail closed（覆核 §4 + 終輪 R1/R3 + 第五輪）**：report 不完整一律 FAIL——
+    · 頂層缺 diffs/drivers/coverage 任一區塊，**或型別錯**（如 diffs 是 {} 不是 list，不得 silently 轉空）；
+    · 每筆 driver 需非空 driver_id、每筆 diff 需非空 key；
     · 車手抓取/解析失敗、infobox 缺失；
     · **身分（非只列數）**：成功車手 driver_id 集合須與 coverage.expected_champion_ids exact-set 相等，
-      且 rows==unique==expected（重複列/漏人/多人皆 FAIL）；default 模式另從 DB 現算集合比對，
-      report 自報 manifest 不可自證；
+      且 rows==unique（重複列/漏人/多人皆 FAIL）；**default 與 --gate-only 都從 DB 現算集合比對**，
+      report 自報 manifest 不可自證（db 缺席＝FAIL closed）；
+    · expected_champion_count 必須 == len(unique expected_champion_ids)、manifest 內不得有重複 id；
+    · **diff key 必須唯一**（同一 diff 複製一筆＝FAIL）；verdict 缺 key＝FAIL；
     · diff 缺 definition_id 或 definition_id 未在註冊表、diff.wiki_revid=null。
   指向「已不存在的 diff」的裁決＝stale，比照 invariants exact-set 整體 FAIL。
   → passed 僅在「零未解 diff、零 stale、零 report fault」時成立。
@@ -762,41 +765,75 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
     stale      = 裁決 key 指向報告中不存在的 diff → exact-set，單獨即 FAIL。
     faults     = report 級 fail-closed 問題——report 不完整不得被當成「沒有新問題」。
 
-    db_champion_ids（終輪 R1）：非 None 時＝**權威身分集合**（default 模式從 DB 現算傳入，
-      report 自報值不可自證）；此時 report.coverage.expected_champion_ids 必須與它 exact-set 相等。
-      None 時（--gate-only 無 DB）退為驗 report 內 manifest 的唯一性與自洽 exact-set。
+    db_champion_ids（R1 / 第五輪 fix1）：**權威身分集合**（build-f1-db 現算）。
+      CLI 的 default 與 **--gate-only 都必須傳入**（gen-racing-drivers 管線裡 build-f1-db 先跑，
+      db 必在；db 缺席由 main 判 FAIL closed）；此時 report.coverage.expected_champion_ids 必須
+      與它 exact-set 相等，report 自報值不可自證。僅單元測試允許傳 None（純 schema 測試）。
     """
     faults = []
 
-    # --- R3：頂層 schema fail closed（缺塊一律 FAIL，不 silently 當空）---
-    for block in ("diffs", "drivers", "coverage"):
-        if block not in report:
-            faults.append(f"report 缺頂層區塊 `{block}` → fail closed")
-    drivers = report.get("drivers")
-    drivers = drivers if isinstance(drivers, list) else []
-    diffs = report.get("diffs")
-    diffs = diffs if isinstance(diffs, list) else []
-    cov = report.get("coverage") if isinstance(report.get("coverage"), dict) else {}
+    # --- fix2：report 必須是物件，頂層 block 存在 + 型別正確（型別錯不得 silently 轉空）---
+    if not isinstance(report, dict):
+        return False, [], [], ["report 不是物件（dict）→ fail closed"]
+
+    def _require(name, typ, typname):
+        if name not in report:
+            faults.append(f"report 缺頂層區塊 `{name}` → fail closed")
+            return None
+        val = report[name]
+        if not isinstance(val, typ):
+            faults.append(f"report.`{name}` 型別錯（需 {typname}，得 {type(val).__name__}）→ fail closed")
+            return None
+        return val
+
+    diffs = _require("diffs", list, "list") or []
+    drivers = _require("drivers", list, "list") or []
+    cov = _require("coverage", dict, "dict") or {}
+    if not isinstance(verdicts, list):
+        faults.append(f"verdicts 型別錯（需 list，得 {type(verdicts).__name__}）→ fail closed")
+        verdicts = []
+
+    # --- fix2：每筆 entry 的 required 欄位驗齊 ---
+    for i, dr in enumerate(drivers):
+        if not isinstance(dr, dict) or not str(dr.get("driver_id", "")).strip():
+            faults.append(f"drivers[{i}] 結構不正（需 dict + 非空 driver_id）→ fail closed")
+    for i, d in enumerate(diffs):
+        if not isinstance(d, dict) or not str(d.get("key", "")).strip():
+            faults.append(f"diffs[{i}] 結構不正（需 dict + 非空 key）→ fail closed")
 
     # --- 覆核 §4：車手 error / infobox 缺失 ---
     for dr in drivers:
+        if not isinstance(dr, dict):
+            continue
         if dr.get("error"):
             faults.append(f"車手抓取/解析失敗：{dr.get('driver_id')}（{dr.get('error')}）")
         elif not dr.get("infobox_found"):
             faults.append(f"infobox 缺失：{dr.get('driver_id')}")
 
-    # --- R1：coverage 驗「身分集合」不只驗列數（exact-set + 唯一 + rows==unique==expected）---
+    # --- R1：coverage 驗「身分集合」不只驗列數 ---
     expected_count = cov.get("expected_champion_count")
     manifest_ids = cov.get("expected_champion_ids")
     extra_ids = cov.get("extra_driver_ids") or []
     ok_driver_ids = [dr.get("driver_id") for dr in drivers
-                     if dr.get("infobox_found") and not dr.get("error")]
+                     if isinstance(dr, dict) and dr.get("infobox_found") and not dr.get("error")]
     if manifest_ids is None or expected_count is None:
         faults.append("report.coverage 缺 expected_champion_ids / expected_champion_count → fail closed")
+    elif not isinstance(manifest_ids, list):
+        faults.append("coverage.expected_champion_ids 型別錯（需 list）→ fail closed")
     else:
-        # default 模式：report 自報 manifest 必須與 DB 現算集合 exact-set 相等（不可自證）
+        # manifest 自身唯一
+        if len(manifest_ids) != len(set(manifest_ids)):
+            dups = sorted({i for i in manifest_ids if manifest_ids.count(i) > 1})
+            faults.append(f"expected_champion_ids 內有重複 id → fail closed：{dups}")
+        # fix4：count 必須等於 unique ids 數（不只驗存在）
+        if expected_count != len(set(manifest_ids)):
+            faults.append(f"expected_champion_count({expected_count}) != "
+                          f"len(unique expected_champion_ids)({len(set(manifest_ids))}) → fail closed")
+        # fix1/R1：report 自報 manifest 必須與 DB 現算集合 exact-set 相等（不可自證）
         if db_champion_ids is not None and set(manifest_ids) != set(db_champion_ids):
-            faults.append("coverage.expected_champion_ids 與 DB 現算冠軍集合不符（身分 manifest 被竄改/漏人/多人）")
+            miss = sorted(set(db_champion_ids) - set(manifest_ids))
+            ext = sorted(set(manifest_ids) - set(db_champion_ids))
+            faults.append(f"coverage.expected_champion_ids 與 DB 現算冠軍集合不符（DB 缺 {miss}、多 {ext}）")
         # 允許集合＝冠軍 manifest ∪ --driver 附加（default 時 extra 為空 → 純冠軍集合）
         allowed = set(manifest_ids) | set(extra_ids)
         rows = len(ok_driver_ids)
@@ -808,24 +845,29 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
             missing = sorted(allowed - uniq)
             extra = sorted(uniq - allowed)
             faults.append(f"成功車手身分集合 != 預期（缺 {missing}、多 {extra}）——身分 exact-set 失敗")
-        if len(uniq) != len(manifest_ids) + len(set(extra_ids)) or rows != len(uniq):
-            faults.append(f"rows/unique/expected 三者不一致（rows={rows}, unique={len(uniq)}, "
-                          f"expected={len(manifest_ids)}+extra{len(set(extra_ids))}）")
 
-    # --- R3 + 覆核 §4 S1①：verdict schema + 同 key 恰好一條（建 dict 前先驗）---
+    # --- verdict schema + 同 key 恰好一條（建 dict 前先驗）---
     verdicts_by_key = {}
     for i, v in enumerate(verdicts):
-        if "key" not in v or not str(v.get("key", "")).strip():
-            faults.append(f"裁決缺 key（第 {i} 條）→ fail closed（不 silently 忽略）")
+        if not isinstance(v, dict) or "key" not in v or not str(v.get("key", "")).strip():
+            faults.append(f"裁決缺 key 或結構不正（第 {i} 條）→ fail closed（不 silently 忽略）")
             continue
         verdicts_by_key.setdefault(v["key"], []).append(v)
     for k, lst in verdicts_by_key.items():
         if len(lst) > 1:
             faults.append(f"同 key 多筆裁決（需恰好一條）：{k}（{len(lst)} 筆）")
 
-    diff_by_key = {d["key"]: d for d in diffs}
+    # --- fix3：diff key 唯一性（建 diff_by_key 前驗；同一 diff 複製成第 N 筆必 FAIL）---
+    diff_keys = [d.get("key") for d in diffs if isinstance(d, dict) and d.get("key")]
+    dup_diff_keys = sorted({k for k in diff_keys if diff_keys.count(k) > 1})
+    if dup_diff_keys:
+        faults.append(f"diff key 重複（需唯一）：{dup_diff_keys} → fail closed")
+
+    diff_by_key = {d["key"]: d for d in diffs if isinstance(d, dict) and d.get("key")}
     unresolved = []
     for d in diffs:
+        if not isinstance(d, dict) or not d.get("key"):
+            continue   # 結構不正者已於上方記 schema fault
         ok, why = _diff_binding_valid(d)
         if not ok:
             unresolved.append({**d, "_gate_status": "invalid_diff", "_gate_detail": why})
@@ -888,9 +930,16 @@ def main():
     a = ap.parse_args()
 
     if a.gate_only:
-        # 無 DB：退為驗 report 內 manifest 的唯一性與自洽 exact-set（R1）
+        # 第五輪 fix1：--gate-only 也必須取得 DB 冠軍集合（gen-racing-drivers 管線裡
+        # build-f1-db 先跑，db 必在）。db 缺席＝FAIL closed，不退回 report 自證。
+        if not pathlib.Path(a.db).exists():
+            print("\n" + "-" * 70)
+            print(f"🔴 --gate-only 需要 DB 權威冠軍集合，但 db 不存在：{a.db}\n"
+                  f"    → fail closed（請先跑 build-f1-db.py）")
+            return 1
         rep = json.loads(pathlib.Path(a.out).read_text(encoding="utf-8"))
-        passed, unresolved, stale, faults = gate_diffs(rep, load_verdicts(a.verdicts))
+        passed, unresolved, stale, faults = gate_diffs(
+            rep, load_verdicts(a.verdicts), db_champion_ids=db_champion_ids(a.db))
         _print_gate(passed, unresolved, stale, faults)
         return 0 if passed else 1
 

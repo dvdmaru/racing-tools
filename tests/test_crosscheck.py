@@ -454,6 +454,90 @@ class GateTests(unittest.TestCase):
         self.assertFalse(passed)
         self.assertTrue(any("缺 key" in f for f in faults))
 
+    # ---- 第五輪 §3 新反例 ----
+
+    def test_r5_gate_only_coherent_drop_champion_fails_with_db(self):
+        """Sol §3 S0-2：report 自洽地移除一位冠軍（drivers+manifest+count 同步）；
+        --gate-only 現在也帶 DB → DB 現算集合仍完整 → exact-set 不符 → FAIL。"""
+        rep = self._report(diffs=[], champions=["a", "b"])   # 自洽地只剩 2 人
+        passed, _, _, faults = cc.gate_diffs(rep, [], db_champion_ids=["a", "b", "c"])
+        self.assertFalse(passed)
+        self.assertTrue(any("DB" in f for f in faults))
+
+    def test_r5_diffs_wrong_type_fails(self):
+        """Sol §3 S0-1：diffs 是 {} 不是 list → 不得 silently 轉空 → FAIL。"""
+        rep = self._report()
+        rep["diffs"] = {}
+        passed, _, _, faults = cc.gate_diffs(rep, [], db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("`diffs` 型別錯" in f for f in faults))
+
+    def test_r5_drivers_wrong_type_fails(self):
+        rep = self._report()
+        rep["drivers"] = {}
+        passed, _, _, faults = cc.gate_diffs(rep, self._both_valid(rep),
+                                             db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("`drivers` 型別錯" in f for f in faults))
+
+    def test_r5_coverage_wrong_type_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["coverage"] = []
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+        self.assertTrue(any("`coverage` 型別錯" in f for f in faults))
+
+    def test_r5_verdicts_wrong_type_fails(self):
+        rep = self._report()
+        passed, _, _, faults = cc.gate_diffs(rep, {}, db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("verdicts 型別錯" in f for f in faults))
+
+    def test_r5_duplicate_diff_key_fails(self):
+        """Sol §3 S1-1：同一 diff 原樣複製成第 N 筆（21 rows / 20 keys）→ FAIL。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)                       # 先綁原始 diffs
+        rep["diffs"] = rep["diffs"] + [dict(rep["diffs"][0])]   # 複製第一筆
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts, db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("diff key 重複" in f for f in faults))
+
+    def test_r5_expected_count_value_mismatch_fails(self):
+        """Sol §3 S1-2：expected_champion_count=999 其餘不動 → count != len(unique ids) → FAIL。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["coverage"]["expected_champion_count"] = 999
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts,
+                                             db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("expected_champion_count(999)" in f for f in faults))
+
+    def test_r5_manifest_duplicate_id_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["coverage"]["expected_champion_ids"] = ["fangio", "senna", "senna"]
+        rep["coverage"]["expected_champion_count"] = 3
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts,
+                                             db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("重複 id" in f for f in faults))
+
+    def test_r5_driver_missing_id_fails(self):
+        rep = self._report(extra_driver_entries=[{"infobox_found": True}])   # 無 driver_id
+        passed, _, _, faults = cc.gate_diffs(rep, self._both_valid(rep),
+                                             db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("driver_id" in f for f in faults))
+
+    def test_r5_diff_missing_key_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)                       # 先綁原始 diffs
+        rep["diffs"] = rep["diffs"] + [{"driver_id": "x", "field": "entries", "ours": 1, "wiki": 2}]
+        passed, _, _, faults = cc.gate_diffs(rep, verdicts, db_champion_ids=["fangio", "senna"])
+        self.assertFalse(passed)
+        self.assertTrue(any("非空 key" in f for f in faults))
+
     def test_recheck_diff_without_definition_id_fails(self):
         rep = self._report()
         verdicts = self._both_valid(rep)
@@ -600,6 +684,53 @@ class RealVerdictsTests(unittest.TestCase):
         rep = json.loads(cc.REPORT.read_text(encoding="utf-8"))
         self.assertEqual(set(rep["coverage"]["expected_champion_ids"]),
                          set(cc.db_champion_ids()))
+
+
+class GateOnlyCliTests(unittest.TestCase):
+    """第五輪 fix1：--gate-only 走 CLI 也必須讀 DB；db 缺席＝FAIL closed。"""
+
+    SCRIPT = ROOT / "scripts" / "crosscheck-wikipedia.py"
+
+    def _run(self, *args):
+        import subprocess, sys
+        return subprocess.run([sys.executable, str(self.SCRIPT), *args],
+                              capture_output=True, text=True)
+
+    def test_gate_only_passes_with_real_db(self):
+        if not (cc.REPORT.exists() and cc.DEFAULT_DB.exists()):
+            self.skipTest("report 或 db 不存在")
+        r = self._run("--gate-only")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_gate_only_missing_db_fails_closed(self):
+        """--gate-only 指向不存在的 db → exit 1（不退回 report 自證）。"""
+        r = self._run("--gate-only", "--db", "/tmp/__no_such_db__.sqlite")
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("fail closed", r.stdout + r.stderr)
+
+    def test_gate_only_catches_coherent_drop_via_cli(self):
+        """把真實 report 自洽地移除一位冠軍寫到暫存檔，--gate-only（帶真實 DB）必須 exit 1。"""
+        import json, tempfile, os
+        if not (cc.REPORT.exists() and cc.DEFAULT_DB.exists()):
+            self.skipTest("report 或 db 不存在")
+        rep = json.loads(cc.REPORT.read_text(encoding="utf-8"))
+        # 挑一位「沒有 diff」的冠軍（比照 Sol PoC 的 alonso），移除後只剩 coverage 身分不符
+        diff_drivers = {d["driver_id"] for d in rep["diffs"]}
+        no_diff = sorted(c for c in rep["coverage"]["expected_champion_ids"] if c not in diff_drivers)
+        victim = no_diff[0]
+        rep["drivers"] = [d for d in rep["drivers"] if d.get("driver_id") != victim]
+        rep["coverage"]["expected_champion_ids"] = [
+            i for i in rep["coverage"]["expected_champion_ids"] if i != victim]
+        rep["coverage"]["expected_champion_count"] = len(rep["coverage"]["expected_champion_ids"])
+        fd, tmp = tempfile.mkstemp(suffix=".json")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(rep, f, ensure_ascii=False)
+            r = self._run("--gate-only", "--out", tmp)
+            self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+            self.assertIn("DB 現算冠軍集合不符", r.stdout + r.stderr)
+        finally:
+            os.unlink(tmp)
 
 
 if __name__ == "__main__":
