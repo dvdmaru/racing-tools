@@ -1,0 +1,514 @@
+{
+  "_README": "F1 不變量已知例外宣告清冊（計畫 §4.4）。規則：check-f1-invariants.py 的失敗集合必須恰好等於本清冊。每條為具名、帶歷史原因與 raw 證據的斷言；status 一律 pending_review，由後續審查者稽核核准，本清冊產生者不自我核准。⚠️ 不得把查不出原因的失敗塞進此清冊漂白（計畫 §十二）。",
+  "exceptions": [
+    {
+      "id": "EX-001",
+      "invariant": "I2",
+      "scope": {
+        "season": 1951
+      },
+      "status": "approved",
+      "reason": "1951 年 shared drive（共同駕駛）：French Grand Prix（第 4 站）由 Fangio/Fagioli 共駕 Alfa Romeo，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "evidence": "data/f1/raw/results/1951-04.json 內兩列 positionText=='1'",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-002",
+      "invariant": "I2",
+      "scope": {
+        "season": 1956
+      },
+      "status": "approved",
+      "reason": "1956 年 shared drive（共同駕駛）：Argentine Grand Prix（第 1 站）由 Fangio/Musso 共駕 Ferrari，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "evidence": "data/f1/raw/results/1956-01.json 內兩列 positionText=='1'",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-003",
+      "invariant": "I2",
+      "scope": {
+        "season": 1957
+      },
+      "status": "approved",
+      "reason": "1957 年 shared drive（共同駕駛）：British Grand Prix（第 5 站）由 Brooks/Moss 共駕 Vanwall，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "evidence": "data/f1/raw/results/1957-05.json 內兩列 positionText=='1'",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-004",
+      "invariant": "I3",
+      "scope": {
+        "season": 1951
+      },
+      "status": "approved",
+      "reason": "1951 年 shared drive（共同駕駛）：French Grand Prix（第 4 站）由 Fangio/Fagioli 共駕 Alfa Romeo，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "evidence": "data/f1/raw/results/1951-04.json 內兩列 positionText=='1'",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-005",
+      "invariant": "I3",
+      "scope": {
+        "season": 1956
+      },
+      "status": "approved",
+      "reason": "1956 年 shared drive（共同駕駛）：Argentine Grand Prix（第 1 站）由 Fangio/Musso 共駕 Ferrari，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "evidence": "data/f1/raw/results/1956-01.json 內兩列 positionText=='1'",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-006",
+      "invariant": "I3",
+      "scope": {
+        "season": 1957
+      },
+      "status": "approved",
+      "reason": "1957 年 shared drive（共同駕駛）：British Grand Prix（第 5 站）由 Brooks/Moss 共駕 Vanwall，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "evidence": "data/f1/raw/results/1957-05.json 內兩列 positionText=='1'",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-007",
+      "invariant": "I6",
+      "scope": {
+        "season": 1950
+      },
+      "status": "approved",
+      "reason": "1950 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fagioli 毛 28.0 / 官方 24.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1950.json 官方積分 vs data/f1/raw/results/1950-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-008",
+      "invariant": "I6",
+      "scope": {
+        "season": 1951
+      },
+      "status": "approved",
+      "reason": "1951 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：ascari 毛 28.0 / 官方 25.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1951.json 官方積分 vs data/f1/raw/results/1951-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-009",
+      "invariant": "I6",
+      "scope": {
+        "season": 1952
+      },
+      "status": "approved",
+      "reason": "1952 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：ascari 毛 53.5 / 官方 36.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1952.json 官方積分 vs data/f1/raw/results/1952-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-010",
+      "invariant": "I6",
+      "scope": {
+        "season": 1953
+      },
+      "status": "approved",
+      "reason": "1953 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：ascari 毛 46.5 / 官方 34.5。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1953.json 官方積分 vs data/f1/raw/results/1953-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-011",
+      "invariant": "I6",
+      "scope": {
+        "season": 1954
+      },
+      "status": "approved",
+      "reason": "1954 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fangio 毛 57.14 / 官方 42.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1954.json 官方積分 vs data/f1/raw/results/1954-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-012",
+      "invariant": "I6",
+      "scope": {
+        "season": 1955
+      },
+      "status": "approved",
+      "reason": "1955 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fangio 毛 41.0 / 官方 40.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1955.json 官方積分 vs data/f1/raw/results/1955-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-013",
+      "invariant": "I6",
+      "scope": {
+        "season": 1956
+      },
+      "status": "approved",
+      "reason": "1956 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fangio 毛 34.5 / 官方 30.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1956.json 官方積分 vs data/f1/raw/results/1956-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-014",
+      "invariant": "I6",
+      "scope": {
+        "season": 1957
+      },
+      "status": "approved",
+      "reason": "1957 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fangio 毛 46.0 / 官方 40.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1957.json 官方積分 vs data/f1/raw/results/1957-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-015",
+      "invariant": "I6",
+      "scope": {
+        "season": 1958
+      },
+      "status": "approved",
+      "reason": "1958 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：hawthorn 毛 49.0 / 官方 42.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1958.json 官方積分 vs data/f1/raw/results/1958-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-016",
+      "invariant": "I6",
+      "scope": {
+        "season": 1959
+      },
+      "status": "approved",
+      "reason": "1959 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：jack_brabham 毛 34.0 / 官方 31.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1959.json 官方積分 vs data/f1/raw/results/1959-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-017",
+      "invariant": "I6",
+      "scope": {
+        "season": 1960
+      },
+      "status": "approved",
+      "reason": "1960 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：mclaren 毛 37.0 / 官方 34.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1960.json 官方積分 vs data/f1/raw/results/1960-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-018",
+      "invariant": "I6",
+      "scope": {
+        "season": 1961
+      },
+      "status": "approved",
+      "reason": "1961 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：phil_hill 毛 38.0 / 官方 34.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1961.json 官方積分 vs data/f1/raw/results/1961-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-019",
+      "invariant": "I6",
+      "scope": {
+        "season": 1962
+      },
+      "status": "approved",
+      "reason": "1962 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：hill 毛 52.0 / 官方 42.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1962.json 官方積分 vs data/f1/raw/results/1962-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-020",
+      "invariant": "I6",
+      "scope": {
+        "season": 1963
+      },
+      "status": "approved",
+      "reason": "1963 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：clark 毛 73.0 / 官方 54.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1963.json 官方積分 vs data/f1/raw/results/1963-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-021",
+      "invariant": "I6",
+      "scope": {
+        "season": 1964
+      },
+      "status": "approved",
+      "reason": "1964 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：hill 毛 41.0 / 官方 39.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1964.json 官方積分 vs data/f1/raw/results/1964-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-022",
+      "invariant": "I6",
+      "scope": {
+        "season": 1965
+      },
+      "status": "approved",
+      "reason": "1965 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：hill 毛 47.0 / 官方 40.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1965.json 官方積分 vs data/f1/raw/results/1965-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-023",
+      "invariant": "I6",
+      "scope": {
+        "season": 1966
+      },
+      "status": "approved",
+      "reason": "1966 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：jack_brabham 毛 45.0 / 官方 42.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1966.json 官方積分 vs data/f1/raw/results/1966-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-024",
+      "invariant": "I6",
+      "scope": {
+        "season": 1976
+      },
+      "status": "approved",
+      "reason": "1976 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：hunt 毛 69.0 / 官方 66.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1976.json 官方積分 vs data/f1/raw/results/1976-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-025",
+      "invariant": "I6",
+      "scope": {
+        "season": 1977
+      },
+      "status": "approved",
+      "reason": "1977 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：lauda 毛 72.0 / 官方 70.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1977.json 官方積分 vs data/f1/raw/results/1977-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-026",
+      "invariant": "I6",
+      "scope": {
+        "season": 1979
+      },
+      "status": "approved",
+      "reason": "1979 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：depailler 毛 22.0 / 官方 20.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1979.json 官方積分 vs data/f1/raw/results/1979-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-027",
+      "invariant": "I6",
+      "scope": {
+        "season": 1980
+      },
+      "status": "approved",
+      "reason": "1980 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：jones 毛 71.0 / 官方 67.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1980.json 官方積分 vs data/f1/raw/results/1980-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-028",
+      "invariant": "I6",
+      "scope": {
+        "season": 1985
+      },
+      "status": "approved",
+      "reason": "1985 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：prost 毛 76.0 / 官方 73.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1985.json 官方積分 vs data/f1/raw/results/1985-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-029",
+      "invariant": "I6",
+      "scope": {
+        "season": 1986
+      },
+      "status": "approved",
+      "reason": "1986 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：mansell 毛 72.0 / 官方 70.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1986.json 官方積分 vs data/f1/raw/results/1986-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-030",
+      "invariant": "I6",
+      "scope": {
+        "season": 1987
+      },
+      "status": "approved",
+      "reason": "1987 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：piquet 毛 76.0 / 官方 73.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1987.json 官方積分 vs data/f1/raw/results/1987-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-031",
+      "invariant": "I6",
+      "scope": {
+        "season": 1988
+      },
+      "status": "approved",
+      "reason": "1988 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：prost 毛 105.0 / 官方 87.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1988.json 官方積分 vs data/f1/raw/results/1988-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-032",
+      "invariant": "I6",
+      "scope": {
+        "season": 1989
+      },
+      "status": "approved",
+      "reason": "1989 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：prost 毛 81.0 / 官方 76.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1989.json 官方積分 vs data/f1/raw/results/1989-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-033",
+      "invariant": "I6",
+      "scope": {
+        "season": 1990
+      },
+      "status": "approved",
+      "reason": "1990 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：piquet 毛 44.0 / 官方 43.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "evidence": "data/f1/raw/standings/driver-1990.json 官方積分 vs data/f1/raw/results/1990-*.json 逐場積分加總",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-034",
+      "invariant": "I7",
+      "scope": {
+        "season": 2026
+      },
+      "status": "approved",
+      "reason": "2026 賽季進行中：races.json 排定 22 站，實跑 10 站，第 11–22 站為未來場次尚無賽果。歷史資料凍結、當季週更另跑，故全域缺漏僅此一季。",
+      "evidence": "data/f1/raw/entities/races.json 有 2026 全季，data/f1/raw/results/2026-*.json 僅到第 10 站",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-035",
+      "invariant": "I9",
+      "scope": {
+        "season": 1958
+      },
+      "status": "approved",
+      "reason": "1958 年 Indianapolis 500（第 4 站，Bryan / Epperly）計入車手世界錦標賽，但其車廠未列入車廠錦標賽（1958 車廠賽首年、Indy 用美製底盤未註冊），故車手勝場比車廠勝場多 1。1961 起 Indy 500 退出 F1 錦標賽。",
+      "evidence": "data/f1/raw/results/1958-04.json（Indy 500 冠軍車廠）不在 data/f1/raw/standings/constructor-1958.json",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-036",
+      "invariant": "I9",
+      "scope": {
+        "season": 1959
+      },
+      "status": "approved",
+      "reason": "1959 年 Indianapolis 500（第 2 站，Ward / Watson）計入車手世界錦標賽，但其車廠未列入車廠錦標賽（1958 車廠賽首年、Indy 用美製底盤未註冊），故車手勝場比車廠勝場多 1。1961 起 Indy 500 退出 F1 錦標賽。",
+      "evidence": "data/f1/raw/results/1959-02.json（Indy 500 冠軍車廠）不在 data/f1/raw/standings/constructor-1959.json",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-037",
+      "invariant": "I9",
+      "scope": {
+        "season": 1960
+      },
+      "status": "approved",
+      "reason": "1960 年 Indianapolis 500（第 3 站，Rathmann / Watson）計入車手世界錦標賽，但其車廠未列入車廠錦標賽（1958 車廠賽首年、Indy 用美製底盤未註冊），故車手勝場比車廠勝場多 1。1961 起 Indy 500 退出 F1 錦標賽。",
+      "evidence": "data/f1/raw/results/1960-03.json（Indy 500 冠軍車廠）不在 data/f1/raw/standings/constructor-1960.json",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-038",
+      "invariant": "I10",
+      "scope": {
+        "season": 2026,
+        "championship": "constructor"
+      },
+      "status": "approved",
+      "reason": "2026 賽季進行中（seasons.status='in_progress'）：constructor 榜首（mercedes）是『目前領先者』不是冠軍。比照 f1stats._is_completed，進行中賽季不頒冠軍。此為唯一 in_progress 賽季。",
+      "evidence": "data/f1/raw/standings/constructor-2026.json；races.json 顯示 2026 尚有未跑場次",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-039",
+      "invariant": "I10",
+      "scope": {
+        "season": 2026,
+        "championship": "driver"
+      },
+      "status": "approved",
+      "reason": "2026 賽季進行中（seasons.status='in_progress'）：driver 榜首（antonelli）是『目前領先者』不是冠軍。比照 f1stats._is_completed，進行中賽季不頒冠軍。此為唯一 in_progress 賽季。",
+      "evidence": "data/f1/raw/standings/driver-2026.json；races.json 顯示 2026 尚有未跑場次",
+      "approved_by": "charlie",
+      "approved_date": "2026-07-22",
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    }
+  ]
+}

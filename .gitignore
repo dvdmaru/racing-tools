@@ -4,3 +4,8 @@ __pycache__/
 node_modules/
 .wrangler/
 .claude/worktrees/
+data/f1/raw/_pages/
+# f1 百科 L1（可重建，不 commit；raw 才是凍結層）
+data/f1/db.sqlite
+data/f1/raw/_pages/
+data/f1/wiki-cache/

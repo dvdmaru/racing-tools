@@ -1,0 +1,179 @@
+{
+  "_doc": "維基外部對照的具名裁決檔（計畫 §4.5 硬 gate）。crosscheck-wikipedia.py 產出的每個 diff，都必須在此有一條對應裁決才算解除；存在未裁決 diff 時 gate exit 1，gen-racing-drivers.py 不得產出頁面。裁決是人的事——本檔由人工填寫，腳本永不自動寫入。",
+  "_schema": {
+    "key": "對應 crosscheck-report.json diff 的 key，格式 <driver_id>|<field>（field ∈ championships_count / championships_years / wins / podiums / entries）",
+    "verdict": "ours_wrong | definition_differs | wiki_wrong（三選一）",
+    "reason": "一句裁決理由（人寫）",
+    "by": "裁決者",
+    "date": "YYYY-MM-DD"
+  },
+  "_example": {
+    "key": "fangio|entries",
+    "verdict": "definition_differs",
+    "reason": "我方 entries=逐 results 列計數；維基 races 欄取 GP entries，兩者口徑不同",
+    "by": "charlie",
+    "date": "2026-07-21"
+  },
+  "verdicts": [
+    {
+      "key": "ascari|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 32 vs 維基 34（starts=32）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "clark|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 72 vs 維基 73（starts=72）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "damon_hill|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 116 vs 維基 122（starts=115）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "emerson_fittipaldi|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 146 vs 維基 149（starts=144）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "fangio|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 51 vs 維基 52（starts=51）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "farina|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 34 vs 維基 35（starts=33）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "hakkinen|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 163 vs 維基 165（starts=161）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "hawthorn|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 46 vs 維基 47（starts=45）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "hill|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 177 vs 維基 179（starts=176）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "keke_rosberg|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 114 vs 維基 128（starts=114）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "lauda|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 173 vs 維基 177（starts=171）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "mansell|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 190 vs 維基 191（starts=187）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "mario_andretti|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 128 vs 維基 131（starts=128）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "phil_hill|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 51 vs 維基 52（starts=49）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "piquet|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 205 vs 維基 207（starts=204）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "raikkonen|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 352 vs 維基 353（starts=349）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "rindt|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 61 vs 維基 62（starts=60）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "scheckter|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 112 vs 維基 113（starts=112）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "senna|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 161 vs 維基 162（starts=161）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    },
+    {
+      "key": "surtees|entries",
+      "verdict": "definition_differs",
+      "reason": "維基 races 欄計入報名場次（含未過排位/未起跑），資料源僅收錄有賽果紀錄的場次；本站口徑＝不重複有賽果場次，頁面「怎麼算的」已明文。我方 112 vs 維基 113（starts=111）。",
+      "by": "charlie",
+      "date": "2026-07-22",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+    }
+  ]
+}
