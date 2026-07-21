@@ -1,0 +1,15 @@
+{
+  "driverId": "max_verstappen",
+  "permanentNumber": "3",
+  "code": "VER",
+  "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+  "givenName": "Max",
+  "familyName": "Verstappen",
+  "dateOfBirth": "1997-09-30",
+  "nationality": "Dutch",
+  "_meta": {
+    "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen.json",
+    "fetched_at": "2026-07-20T23:08:14.790236+00:00",
+    "backfill": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "driverId": "michael_schumacher",
+  "code": "MSC",
+  "url": "http://en.wikipedia.org/wiki/Michael_Schumacher",
+  "givenName": "Michael",
+  "familyName": "Schumacher",
+  "dateOfBirth": "1969-01-03",
+  "nationality": "German",
+  "_meta": {
+    "url": "https://api.jolpi.ca/ergast/f1/drivers/michael_schumacher.json",
+    "fetched_at": "2026-07-20T23:00:26.198886+00:00",
+    "backfill": true
+  }
+}

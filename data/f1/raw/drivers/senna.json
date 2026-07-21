@@ -1,0 +1,13 @@
+{
+  "driverId": "senna",
+  "url": "http://en.wikipedia.org/wiki/Ayrton_Senna",
+  "givenName": "Ayrton",
+  "familyName": "Senna",
+  "dateOfBirth": "1960-03-21",
+  "nationality": "Brazilian",
+  "_meta": {
+    "url": "https://api.jolpi.ca/ergast/f1/drivers/senna.json",
+    "fetched_at": "2026-07-20T23:08:04.314374+00:00",
+    "backfill": true
+  }
+}

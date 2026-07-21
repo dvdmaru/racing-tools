@@ -1,0 +1,15 @@
+{
+  "driverId": "hamilton",
+  "permanentNumber": "44",
+  "code": "HAM",
+  "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+  "givenName": "Lewis",
+  "familyName": "Hamilton",
+  "dateOfBirth": "1985-01-07",
+  "nationality": "British",
+  "_meta": {
+    "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton.json",
+    "fetched_at": "2026-07-20T23:07:54.343670+00:00",
+    "backfill": true
+  }
+}
