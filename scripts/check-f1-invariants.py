@@ -5,15 +5,24 @@
 ★ 核心規則（計畫 §4.4）：**不變量不是「必須全過」，是「失敗集合必須恰好等於
    data/f1/known_exceptions.json 宣告的例外集合」。多一個少一個都整體 FAIL。**
 
-★ 指紋綁定（2026-07-22 Sol 查核桌 S0-1 反例的修正）：
+★ 指紋綁定（2026-07-21 Sol 查核桌 S0-1 反例的修正）：
    舊版比對鍵只鎖 (invariant, scope)，Sol 把 1950 某列 points 由 9 改成 1009，
    I6 detail 變 gross 1030 卻仍命中同一個 `I6|{"season":1950}` → 全綠。**任意差額被同季
    例外漂白。** 修法：每條失敗算一個 **canonical fingerprint**（sha256 蓋住 invariant＋
    scope＋完整判別明細），例外必須連指紋一起宣告；比對用 (invariant, scope, fingerprint)
-   三元組。之後**任何數值或成員變動都會改指紋 → 三元組不匹配 → FAIL**。
-   指紋由本腳本 `--seal` 從現況一次性產生、寫回 known_exceptions.json（只新增 fingerprint 欄，
-   approved_by/approved_date/reason/evidence 全部保留不動），比照 config/approved.json 的
-   sha256 default-deny 精神。
+   三元組。指紋由本腳本 `--seal` 從現況一次性產生、寫回 known_exceptions.json（只新增
+   fingerprint 欄，approved_by/approved_date/reason/evidence 全部保留不動），比照
+   config/approved.json 的 sha256 default-deny 精神。
+
+   指紋覆蓋範圍（2026-07-21 Sol 覆核 S1 修正碰撞窗後的**實際保證**）：
+   浮點值以**全精度字串**入指紋（不 round，1e-7 變動也會改指紋）；集合類明細（如 I11 孤兒）
+   以 `count + 全集 sha256` 入指紋（不截斷，第 51 個以後成員換掉也會改指紋）。因此
+   **任何數值或成員變動都會改指紋 → 三元組不匹配 → FAIL**。
+
+★ 核准進 gate（2026-07-21 Sol 覆核 S0 修正）：
+   指紋只證明「資料與封印當下相同」，不證明「這條例外已獲核准」。故通過條件除了三元組
+   匹配，**每條 matched 例外還必須 status=='approved' 且 approved_by/approved_date/reason/
+   evidence 五欄皆非空**；任一不符＝FAIL（未核准/被抽掉 metadata 的例外不得漂白失敗）。
 
 ⚠️ 計畫 §十二警告：查不出歷史原因的失敗**留在報告的未解區、不要草草塞進例外清單漂白**。
    本腳本不做核准；status 仍由 Charlie 具名核准。
@@ -100,9 +109,20 @@ def _canon(obj):
     return json.dumps(obj, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
 
 
-def _round(x):
-    """浮點統一到 6 位小數再入指紋（seal 與 check 同碼路徑，保證跨次一致）。"""
-    return round(float(x), 6)
+def _num(x):
+    """浮點以**全精度字串**入指紋（不 round；repr(float) 可 round-trip，1e-7 變動也會改）。
+
+    Sol S1：舊版 round(6) 讓 6.0→6.0000001 同指紋（碰撞窗）。改成全精度字串後，
+    同 runtime 讀同一 DB 值 → 同字串（決定性）；任何實際數值變動 → 不同字串 → 指紋變。
+    """
+    return repr(float(x))
+
+
+def _set_hash(items):
+    """集合類明細以 count + 全集 sha256 入指紋（不截斷；第 51 個以後換人也會改指紋）。"""
+    canon = _canon(sorted(items))
+    return {"count": len(items),
+            "sha256": hashlib.sha256(canon.encode("utf-8")).hexdigest()}
 
 
 def _scope_key(invariant, scope):
@@ -284,7 +304,8 @@ def inv_I6(cur):
                 "SELECT driver_id, points FROM driver_standings WHERE season=?", (s,)).fetchall():
             g = gross.get((s, d), 0.0)
             if abs(g - (off or 0.0)) > 1e-9:
-                mism.append([d, _round(g), _round(off or 0.0), _round(g - (off or 0.0))])
+                # 全精度字串（Sol S1）：gross/official/delta 不 round，任何 1e-7 變動都改指紋
+                mism.append([d, _num(g), _num(off or 0.0), _num(g - (off or 0.0))])
         if mism:
             out.append(_v("I6", {"season": s},
                           {"mismatches": sorted(mism), "count": len(mism)}))
@@ -372,31 +393,35 @@ I11_SEASON_TABLES = ["results", "qualifying", "sprint_results",
 I11_RACE_TABLES = ["results", "qualifying", "sprint_results"]
 
 
+def _i11_v(scope, items):
+    """I11 violation：指紋鎖**全集** sha256（Sol S1，不因前 50 截斷而漏掉第 51 個換人）；
+    human sample 另放 sample 欄、不影響指紋覆蓋（sha256 已蓋全集）。"""
+    detail = {"orphans": _set_hash(items), "sample": sorted(items)[:50]}
+    return _v("I11", scope, detail)
+
+
 def inv_I11(cur):
     out = []
     for tbl, col, ref_tbl, ref_col, nullable in I11_CHECKS:
         null_ok = f" AND t.{col} IS NOT NULL" if nullable else ""
-        orphans = sorted(str(r[0]) for r in cur.execute(
+        orphans = [str(r[0]) for r in cur.execute(
             f"SELECT DISTINCT t.{col} FROM {tbl} t "
             f"LEFT JOIN {ref_tbl} r ON r.{ref_col}=t.{col} "
-            f"WHERE r.{ref_col} IS NULL{null_ok}"))
+            f"WHERE r.{ref_col} IS NULL{null_ok}")]
         if orphans:
-            out.append(_v("I11", {"table": tbl, "column": col, "ref": ref_tbl},
-                          {"orphan_values": orphans[:50], "orphan_count": len(orphans)}))
+            out.append(_i11_v({"table": tbl, "column": col, "ref": ref_tbl}, orphans))
     for tbl in I11_SEASON_TABLES:
-        orphans = sorted(str(r[0]) for r in cur.execute(
+        orphans = [str(r[0]) for r in cur.execute(
             f"SELECT DISTINCT t.season FROM {tbl} t "
-            f"LEFT JOIN seasons s ON s.year=t.season WHERE s.year IS NULL"))
+            f"LEFT JOIN seasons s ON s.year=t.season WHERE s.year IS NULL")]
         if orphans:
-            out.append(_v("I11", {"table": tbl, "column": "season", "ref": "seasons"},
-                          {"orphan_values": orphans[:50], "orphan_count": len(orphans)}))
+            out.append(_i11_v({"table": tbl, "column": "season", "ref": "seasons"}, orphans))
     for tbl in I11_RACE_TABLES:
-        pairs = sorted([r[0], r[1]] for r in cur.execute(
+        pairs = [[r[0], r[1]] for r in cur.execute(
             f"SELECT DISTINCT t.season, t.round FROM {tbl} t "
-            f"LEFT JOIN races x ON x.season=t.season AND x.round=t.round WHERE x.season IS NULL"))
+            f"LEFT JOIN races x ON x.season=t.season AND x.round=t.round WHERE x.season IS NULL")]
         if pairs:
-            out.append(_v("I11", {"table": tbl, "column": "season_round", "ref": "races"},
-                          {"orphan_pairs": pairs[:50], "orphan_count": len(pairs)}))
+            out.append(_i11_v({"table": tbl, "column": "season_round", "ref": "races"}, pairs))
     return out
 
 
@@ -421,6 +446,15 @@ def _all_failures(cur):
         per_inv[fn.__name__.replace("inv_", "")] = len(vs)
         failures.extend(vs)
     return failures, per_inv
+
+
+# Sol S0：matched 例外必備且非空的核准 metadata（缺一即整體 FAIL）
+REQUIRED_APPROVAL_FIELDS = ("approved_by", "approved_date", "reason", "evidence")
+
+
+def _empty(val):
+    """視為空：None、空字串、只有空白的字串。"""
+    return val is None or (isinstance(val, str) and not val.strip()) or val == ""
 
 
 def _declared_triple(e):
@@ -454,8 +488,22 @@ def run(cur, declared):
                      if declared_map[k].get("status") == "pending_review")
     unsealed = sorted(e.get("id") for e in declared if not e.get("fingerprint"))
 
+    # Sol S0：核准進 gate——每條 matched 例外必須 status=approved 且五欄非空，否則整體 FAIL
+    unapproved = []
+    for k in matched_keys:
+        e = declared_map[k]
+        problems = []
+        if e.get("status") != "approved":
+            problems.append(f"status={e.get('status')!r}(需 approved)")
+        for f in REQUIRED_APPROVAL_FIELDS:
+            if _empty(e.get(f)):
+                problems.append(f"{f} 缺失/空")
+        if problems:
+            unapproved.append({"id": e.get("id"), "invariant": e["invariant"],
+                               "scope": e["scope"], "problems": problems})
+
     return {
-        "passed": not unexpected_keys and not missing_keys,
+        "passed": not unexpected_keys and not missing_keys and not unapproved,
         "summary": {
             "total_failures": len(actual),
             "declared_exceptions": len(declared_map),
@@ -463,12 +511,14 @@ def run(cur, declared):
             "unexpected_failures": len(unexpected_keys),
             "missing_declarations": len(missing_keys),
             "fingerprint_mismatches": len(fingerprint_mismatch),
+            "unapproved_matched": len(unapproved),
             "pending_review": len(pending),
             "unsealed_declarations": len(unsealed),
         },
         "unexpected_failures": [actual[k] for k in unexpected_keys],
         "missing_declarations": [{"triple": k, **declared_map[k]} for k in missing_keys],
         "fingerprint_mismatches": fingerprint_mismatch,
+        "unapproved_matched": unapproved,
         "matched": [{"invariant": actual[k]["invariant"], "scope": actual[k]["scope"],
                      "declared_reason": declared_map[k].get("reason"),
                      "declared_status": declared_map[k].get("status"),
@@ -527,8 +577,12 @@ def _print_human(rep):
         print(f"  {k:4s} {rep['per_invariant_failure_counts'].get(k, 0)}")
     print(f"\n總失敗 {s['total_failures']}　宣告例外 {s['declared_exceptions']}　匹配 {s['matched']}")
     print(f"未宣告失敗 {s['unexpected_failures']}　過期宣告 {s['missing_declarations']}　"
-          f"指紋不符 {s['fingerprint_mismatches']}　未封印宣告 {s['unsealed_declarations']}　"
-          f"待審核 {s['pending_review']}")
+          f"指紋不符 {s['fingerprint_mismatches']}　未核准例外 {s['unapproved_matched']}　"
+          f"未封印宣告 {s['unsealed_declarations']}　待審核 {s['pending_review']}")
+    if rep["unapproved_matched"]:
+        print("\n🔴 已匹配但未核准/缺 metadata 的例外（Sol S0：未核准不得漂白失敗）：")
+        for v in rep["unapproved_matched"]:
+            print(f"    {v['id']} {v['invariant']} {v['scope']} → {v['problems']}")
     if rep["fingerprint_mismatches"]:
         print("\n🔴 指紋不符（宣告範圍內數值/成員被竄改——這正是 S0-1 要擋的漂白）：")
         for v in rep["fingerprint_mismatches"]:

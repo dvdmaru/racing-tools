@@ -16,6 +16,7 @@
 
 跑法：python3 -m unittest discover -s tests
 """
+import copy
 import importlib.util
 import pathlib
 import shutil
@@ -179,7 +180,34 @@ class InvariantMechanismTests(unittest.TestCase):
         self.assertEqual(rep["summary"]["missing_declarations"], 0)
         self.assertEqual(rep["summary"]["fingerprint_mismatches"], 0)
         self.assertEqual(rep["summary"]["unsealed_declarations"], 0)
+        self.assertEqual(rep["summary"]["unapproved_matched"], 0)   # Sol S0
         self.assertGreater(rep["summary"]["matched"], 0)
+
+    def test_status_downgraded_to_pending_review_fails(self):
+        """Sol 覆核 S0 反例①：把一條已匹配例外的 status 改回 pending_review → 整體 FAIL。"""
+        d = copy.deepcopy(self.declared)
+        d[0]["status"] = "pending_review"
+        rep = inv.run(self.cur, d)
+        self.assertFalse(rep["passed"])
+        self.assertEqual(rep["summary"]["unapproved_matched"], 1)
+
+    def test_stripping_approval_metadata_fails(self):
+        """Sol 覆核 S0 反例②：保留 scope+fingerprint，抽掉核准 metadata → 整體 FAIL。"""
+        d = copy.deepcopy(self.declared)
+        for f in ("approved_by", "approved_date", "reason", "evidence"):
+            d[0].pop(f, None)
+        rep = inv.run(self.cur, d)
+        self.assertFalse(rep["passed"])
+        self.assertEqual(rep["summary"]["unapproved_matched"], 1)
+        self.assertEqual(len(rep["unapproved_matched"][0]["problems"]), 4)
+
+    def test_blank_reason_fails(self):
+        """核准五欄任一空白字串也算缺失（非空要求含 strip）。"""
+        d = copy.deepcopy(self.declared)
+        d[0]["reason"] = "   "
+        rep = inv.run(self.cur, d)
+        self.assertFalse(rep["passed"])
+        self.assertEqual(rep["summary"]["unapproved_matched"], 1)
 
     def test_dropping_one_declaration_makes_it_fail(self):
         """反向①：少宣告一條 → 出現未宣告失敗 → 整體 fail。"""
@@ -239,6 +267,23 @@ class SolReproRegressionTests(unittest.TestCase):
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
+    def test_i6_tiny_epsilon_change_fails_no_round(self):
+        """Sol 覆核 S1 反例：舊版 round(6) 讓 6.0→6.0000001 同指紋全綠；
+        移除 round 後，1e-7 級變動也會改指紋 → FAIL。"""
+        def mut(con):
+            row = con.execute("SELECT id, points FROM results WHERE season=1950 AND points>0 "
+                              "ORDER BY id LIMIT 1").fetchone()
+            con.execute("UPDATE results SET points=? WHERE id=?", (row[1] + 1e-7, row[0]))
+        tmp, dbp = _mutated_copy(mut)
+        try:
+            con = sqlite3.connect(str(dbp))
+            rep = inv.run(con.cursor(), inv.load_declared())
+            con.close()
+            self.assertFalse(rep["passed"])
+            self.assertGreaterEqual(rep["summary"]["fingerprint_mismatches"], 1)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
     def test_orphan_driver_now_fails_on_I11(self):
         """S1-1 反例②：2026 R10 一列 driver_id 改成不存在實體，現在 I11 抓到 FAIL。"""
         def mut(con):
@@ -254,7 +299,7 @@ class SolReproRegressionTests(unittest.TestCase):
             self.assertFalse(rep["passed"])
             self.assertEqual(rep["per_invariant_failure_counts"]["I11"], 1)
             self.assertTrue(any(v["invariant"] == "I11" and
-                                "__orphan_driver__" in v["detail"].get("orphan_values", [])
+                                "__orphan_driver__" in v["detail"].get("sample", [])
                                 for v in rep["unexpected_failures"]))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
@@ -315,7 +360,7 @@ class InvariantDetectionTests(unittest.TestCase):
                     "(1,2050,1,'1',1,'1',10.0,'d','__ghost_constructor__',1,10,'Finished')")
         vs = inv.inv_I11(con.cursor())
         self.assertTrue(any(v["invariant"] == "I11" and
-                            "__ghost_constructor__" in v["detail"].get("orphan_values", [])
+                            "__ghost_constructor__" in v["detail"].get("sample", [])
                             for v in vs))
         con.close()
 

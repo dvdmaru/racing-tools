@@ -1,5 +1,5 @@
 {
-  "_doc": "維基外部對照的具名裁決檔（計畫 §4.5 硬 gate；2026-07-22 Sol 審 S0-2 收硬）。每個 diff 必須有一條裁決，且該裁決要能『解除』它需同時滿足：verdict∈{definition_differs,wiki_wrong}（ours_wrong 永不解除）、reason/by/date 非空、且綁定值 bound_ours/bound_wiki/definition_id/wiki_revid 全部吻合當前 crosscheck-report.json。任一不符即裁決失效；指向不存在 diff 的 stale 裁決比照 invariants exact-set 整體 FAIL。本檔由人工填寫，腳本永不自動寫入。",
+  "_doc": "維基外部對照的具名裁決檔（計畫 §4.5 硬 gate；2026-07-21 Sol 審 S0-2 收硬）。每個 diff 必須有一條裁決，且該裁決要能『解除』它需同時滿足：verdict∈{definition_differs,wiki_wrong}（ours_wrong 永不解除）、reason/by/date 非空、且 wiki_revid 非 null、bound_fingerprint==diff_fingerprint(該 diff)（canonical fingerprint，涵蓋 ours/wiki/wiki_starts/年份差集/classification/definition_id/公式內容 sha256/wiki_revid）；同一 key 恰好一條裁決。report 不完整（車手 error/infobox 缺失/涵蓋不足/diff 缺綁定欄）一律 fail closed。任一不符即裁決失效；指向不存在 diff 的 stale 裁決比照 invariants exact-set 整體 FAIL。本檔由人工填寫，腳本永不自動寫入。",
   "_schema": {
     "key": "<driver_id>|<field>；field ∈ championships_count/championships_years/wins/podiums/entries",
     "verdict": "ours_wrong | definition_differs | wiki_wrong（ours_wrong 不解除 diff）",
@@ -9,7 +9,8 @@
     "definition_id": "用哪個 f1stats formula 算的（見 report.definition_registry）",
     "bound_ours": "裁決當下我方值——與 report 不符即失效",
     "bound_wiki": "裁決當下維基值——與 report 不符即失效",
-    "wiki_revid": "裁決當下該條目的 MediaWiki revid——版本變動即失效"
+    "wiki_revid": "裁決當下該條目的 MediaWiki revid——版本變動即失效",
+    "bound_fingerprint": "diff_fingerprint(該 diff) 的 sha256——decision context 任一改變即失效（權威綁定）"
   },
   "_example": {
     "key": "fangio|entries",
@@ -20,7 +21,8 @@
     "definition_id": "results_distinct_races",
     "bound_ours": 51,
     "bound_wiki": 52,
-    "wiki_revid": 1364230610
+    "wiki_revid": 1364230610,
+    "bound_fingerprint": "<sha256>"
   },
   "verdicts": [
     {
@@ -33,6 +35,7 @@
       "bound_ours": 32,
       "bound_wiki": 34,
       "wiki_revid": 1361559998,
+      "bound_fingerprint": "b2dacd6bb70d4ba121989901b6422cb343c7455e0c88efe20d244db30a0d8087",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -45,6 +48,7 @@
       "bound_ours": 72,
       "bound_wiki": 73,
       "wiki_revid": 1364783611,
+      "bound_fingerprint": "2b70c9abd215c3077439cae7d4cfb930fc8a9d57502a4a242bba699d671c5706",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -57,6 +61,7 @@
       "bound_ours": 116,
       "bound_wiki": 122,
       "wiki_revid": 1363344499,
+      "bound_fingerprint": "4ca18757e90810fd7b004e639799dbb021bf2ce7d787a87b64bdcec9a71ce608",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -69,6 +74,7 @@
       "bound_ours": 146,
       "bound_wiki": 149,
       "wiki_revid": 1363344667,
+      "bound_fingerprint": "a5ae33507c38b01b6b45adcdfbed78e9b869ff077996ac7a24eb4c6fd38f5252",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -81,6 +87,7 @@
       "bound_ours": 51,
       "bound_wiki": 52,
       "wiki_revid": 1364230610,
+      "bound_fingerprint": "7836557c2dfe79894e1f07f6dd3f8140be61a9769fab560ac7b5dfcb1b9bddc9",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -93,6 +100,7 @@
       "bound_ours": 34,
       "bound_wiki": 35,
       "wiki_revid": 1336550249,
+      "bound_fingerprint": "2758f2f877e48b202bf7701e9028eac268cb0ad6baf06d27483cdc5f0832e6c4",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -105,6 +113,7 @@
       "bound_ours": 163,
       "bound_wiki": 165,
       "wiki_revid": 1361695793,
+      "bound_fingerprint": "4b8d1b8e00a405bb27f2e7a0c3f81d610d4e63f6fb93746ae998bdc302a86ec6",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -117,6 +126,7 @@
       "bound_ours": 46,
       "bound_wiki": 47,
       "wiki_revid": 1361573865,
+      "bound_fingerprint": "bec3eae9e22960b3ab60cd7ac8cbd1d725c143e29773be0d2e3a0f32c3b623f3",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -129,6 +139,7 @@
       "bound_ours": 177,
       "bound_wiki": 179,
       "wiki_revid": 1362697943,
+      "bound_fingerprint": "1c08604e8e518e8fa2f1fd38c01fcf5ffa67c8aed58d6883b5aa03c778abde8e",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -141,6 +152,7 @@
       "bound_ours": 114,
       "bound_wiki": 128,
       "wiki_revid": 1365123311,
+      "bound_fingerprint": "225017ab52fffef324349712c41e17605808acd6012dc0a4c84fe3ed286a27af",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -153,6 +165,7 @@
       "bound_ours": 173,
       "bound_wiki": 177,
       "wiki_revid": 1363478112,
+      "bound_fingerprint": "6ecf6e9be4e3a3ad058bfdd1e55662de88cda5ab535d0d66800a075c10f18875",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -165,6 +178,7 @@
       "bound_ours": 190,
       "bound_wiki": 191,
       "wiki_revid": 1365267406,
+      "bound_fingerprint": "b5aa062b64882da75d003f0726a4f4316947b5a8f980db5d1ed293377187f49c",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -177,6 +191,7 @@
       "bound_ours": 128,
       "bound_wiki": 131,
       "wiki_revid": 1363344734,
+      "bound_fingerprint": "453a5315c36afd3ae602fd341c924ad268f8933b98b69da0fc89af9eda3d8e9f",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -189,6 +204,7 @@
       "bound_ours": 51,
       "bound_wiki": 52,
       "wiki_revid": 1356364975,
+      "bound_fingerprint": "4b5168cc2fdce9627e6356a25bec35ad0edf3eae46f2dd80f9c8f6f35431ace3",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -201,6 +217,7 @@
       "bound_ours": 205,
       "bound_wiki": 207,
       "wiki_revid": 1364510901,
+      "bound_fingerprint": "123a7cd980723fe108c7cc6652745130362bf9923714471cf0f4227ecc7b5e64",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -213,6 +230,7 @@
       "bound_ours": 352,
       "bound_wiki": 353,
       "wiki_revid": 1365208361,
+      "bound_fingerprint": "621974f5c4d1ab372809cbd1060116f41f36c51432754cf99ca78480f7c6fa0e",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -225,6 +243,7 @@
       "bound_ours": 61,
       "bound_wiki": 62,
       "wiki_revid": 1361826731,
+      "bound_fingerprint": "182f6ab4b2f13c5e2fa7eccddcac7eb077d06902b61a48ab82bd504c0aee040b",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -237,6 +256,7 @@
       "bound_ours": 112,
       "bound_wiki": 113,
       "wiki_revid": 1362689685,
+      "bound_fingerprint": "711ef95d53e17d9cb1ed5e128c4753f605718fab9440f4baa63ef6af8f167df8",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -249,6 +269,7 @@
       "bound_ours": 161,
       "bound_wiki": 162,
       "wiki_revid": 1364590193,
+      "bound_fingerprint": "3c7c3c6610b1dfee72fe4639b180bb425ed75ed989ec13a0bc08167569b244fc",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     },
     {
@@ -261,6 +282,7 @@
       "bound_ours": 112,
       "bound_wiki": 113,
       "wiki_revid": 1364521906,
+      "bound_fingerprint": "1def0aa518cdeded637429d0c73618829356ab7750190f312770ecaf3bdd7b27",
       "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
     }
   ]

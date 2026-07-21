@@ -5,7 +5,6 @@ node_modules/
 .wrangler/
 .claude/worktrees/
 data/f1/raw/_pages/
-# f1 百科 L1（可重建，不 commit；raw 才是凍結層）
+# f1 百科 L1 sqlite 可重建不 commit；wiki-cache 是釘 revid 的外部快照＝凍結層要 commit（Sol 覆核輪 Artifact 裁定）
 data/f1/db.sqlite
 data/f1/raw/_pages/
-data/f1/wiki-cache/

@@ -1,0 +1,2368 @@
+{
+  "generated_at": "2026-07-21T10:30:50.053905+00:00",
+  "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
+  "note": "維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決",
+  "coverage": {
+    "scope": "35 位已完成賽季的歷代車手冠軍（非全 881 車手，非整個 entity layer）",
+    "expected_champion_count": 35,
+    "compared_fields": [
+      "championships(count+years)",
+      "wins",
+      "podiums",
+      "entries"
+    ],
+    "blind_spots": [
+      "現役車手 volume 欄為 {{F1stat}} 模板 → template_not_literal，skip 不比對",
+      "poles / fastest_laps 第一階段不發布 → record-only，只記錄不比對"
+    ]
+  },
+  "definition_registry": {
+    "count_seasons_driver_standing_eq_1": {
+      "formula": "count(seasons where driver_standings.position==1 and season completed)",
+      "coverage": "1950-2026",
+      "unit": "季"
+    },
+    "results_position_text_eq_1": {
+      "formula": "count(results where position_text=='1')",
+      "coverage": "1950-2026",
+      "unit": "場"
+    },
+    "results_position_text_in_123": {
+      "formula": "count(results where position_text in ('1','2','3'))",
+      "coverage": "1950-2026",
+      "unit": "場"
+    },
+    "results_distinct_races": {
+      "formula": "count(distinct season-round where a results row exists)",
+      "coverage": "1950-2026",
+      "unit": "場",
+      "caveat": "不重複、有賽果紀錄的場次；非標準 GP entries（不含未過排位/未起跑）"
+    }
+  },
+  "network": {
+    "from_cache": 35,
+    "from_network": 0,
+    "total_api_requests_this_run": 0
+  },
+  "summary": {
+    "drivers_checked": 35,
+    "diffs_total": 20,
+    "diffs_by_field": {
+      "entries": 20
+    },
+    "diffs_by_classification": {
+      "likely_definition_differs": 20
+    },
+    "template_not_literal_field_count": 20,
+    "record_only_fields": [
+      "poles",
+      "fastest_laps"
+    ]
+  },
+  "diffs": [
+    {
+      "driver_id": "ascari",
+      "driver_name": "Alberto Ascari",
+      "field": "entries",
+      "ours": 32,
+      "wiki": 34,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(32) 等於維基的 starts(32)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "ascari|entries",
+      "wiki_starts": 32,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1361559998
+    },
+    {
+      "driver_id": "clark",
+      "driver_name": "Jim Clark",
+      "field": "entries",
+      "ours": 72,
+      "wiki": 73,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(72) 等於維基的 starts(72)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "clark|entries",
+      "wiki_starts": 72,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1364783611
+    },
+    {
+      "driver_id": "damon_hill",
+      "driver_name": "Damon Hill",
+      "field": "entries",
+      "ours": 116,
+      "wiki": 122,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=116 vs 維基 races=122（115 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "damon_hill|entries",
+      "wiki_starts": 115,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1363344499
+    },
+    {
+      "driver_id": "emerson_fittipaldi",
+      "driver_name": "Emerson Fittipaldi",
+      "field": "entries",
+      "ours": 146,
+      "wiki": 149,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=146 vs 維基 races=149（144 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "emerson_fittipaldi|entries",
+      "wiki_starts": 144,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1363344667
+    },
+    {
+      "driver_id": "fangio",
+      "driver_name": "Juan Fangio",
+      "field": "entries",
+      "ours": 51,
+      "wiki": 52,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(51) 等於維基的 starts(51)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "fangio|entries",
+      "wiki_starts": 51,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1364230610
+    },
+    {
+      "driver_id": "farina",
+      "driver_name": "Nino Farina",
+      "field": "entries",
+      "ours": 34,
+      "wiki": 35,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=34 vs 維基 races=35（33 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "farina|entries",
+      "wiki_starts": 33,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1336550249
+    },
+    {
+      "driver_id": "hakkinen",
+      "driver_name": "Mika Häkkinen",
+      "field": "entries",
+      "ours": 163,
+      "wiki": 165,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=163 vs 維基 races=165（161 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "hakkinen|entries",
+      "wiki_starts": 161,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1361695793
+    },
+    {
+      "driver_id": "hawthorn",
+      "driver_name": "Mike Hawthorn",
+      "field": "entries",
+      "ours": 46,
+      "wiki": 47,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=46 vs 維基 races=47（45 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "hawthorn|entries",
+      "wiki_starts": 45,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1361573865
+    },
+    {
+      "driver_id": "hill",
+      "driver_name": "Graham Hill",
+      "field": "entries",
+      "ours": 177,
+      "wiki": 179,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=177 vs 維基 races=179（176 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "hill|entries",
+      "wiki_starts": 176,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1362697943
+    },
+    {
+      "driver_id": "keke_rosberg",
+      "driver_name": "Keke Rosberg",
+      "field": "entries",
+      "ours": 114,
+      "wiki": 128,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(114) 等於維基的 starts(114)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "keke_rosberg|entries",
+      "wiki_starts": 114,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1365123311
+    },
+    {
+      "driver_id": "lauda",
+      "driver_name": "Niki Lauda",
+      "field": "entries",
+      "ours": 173,
+      "wiki": 177,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=173 vs 維基 races=177（171 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "lauda|entries",
+      "wiki_starts": 171,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1363478112
+    },
+    {
+      "driver_id": "mansell",
+      "driver_name": "Nigel Mansell",
+      "field": "entries",
+      "ours": 190,
+      "wiki": 191,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=190 vs 維基 races=191（187 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "mansell|entries",
+      "wiki_starts": 187,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1365267406
+    },
+    {
+      "driver_id": "mario_andretti",
+      "driver_name": "Mario Andretti",
+      "field": "entries",
+      "ours": 128,
+      "wiki": 131,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(128) 等於維基的 starts(128)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "mario_andretti|entries",
+      "wiki_starts": 128,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1363344734
+    },
+    {
+      "driver_id": "phil_hill",
+      "driver_name": "Phil Hill",
+      "field": "entries",
+      "ours": 51,
+      "wiki": 52,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=51 vs 維基 races=52（49 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "phil_hill|entries",
+      "wiki_starts": 49,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1356364975
+    },
+    {
+      "driver_id": "piquet",
+      "driver_name": "Nelson Piquet",
+      "field": "entries",
+      "ours": 205,
+      "wiki": 207,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=205 vs 維基 races=207（204 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "piquet|entries",
+      "wiki_starts": 204,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1364510901
+    },
+    {
+      "driver_id": "raikkonen",
+      "driver_name": "Kimi Räikkönen",
+      "field": "entries",
+      "ours": 352,
+      "wiki": 353,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=352 vs 維基 races=353（349 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "raikkonen|entries",
+      "wiki_starts": 349,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1365208361
+    },
+    {
+      "driver_id": "rindt",
+      "driver_name": "Jochen Rindt",
+      "field": "entries",
+      "ours": 61,
+      "wiki": 62,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=61 vs 維基 races=62（60 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "rindt|entries",
+      "wiki_starts": 60,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1361826731
+    },
+    {
+      "driver_id": "scheckter",
+      "driver_name": "Jody Scheckter",
+      "field": "entries",
+      "ours": 112,
+      "wiki": 113,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(112) 等於維基的 starts(112)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "scheckter|entries",
+      "wiki_starts": 112,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1362689685
+    },
+    {
+      "driver_id": "senna",
+      "driver_name": "Ayrton Senna",
+      "field": "entries",
+      "ours": 161,
+      "wiki": 162,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(161) 等於維基的 starts(161)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "senna|entries",
+      "wiki_starts": 161,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1364590193
+    },
+    {
+      "driver_id": "surtees",
+      "driver_name": "John Surtees",
+      "field": "entries",
+      "ours": 112,
+      "wiki": 113,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=112 vs 維基 races=113（111 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "surtees|entries",
+      "wiki_starts": 111,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1364521906
+    }
+  ],
+  "drivers": [
+    {
+      "driver_id": "alonso",
+      "name": "Fernando Alonso",
+      "wikipedia_title": "Fernando_Alonso",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Fernando_Alonso",
+      "from_cache": true,
+      "wiki_revid": 1365123573,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 2,
+          "ours_years": [
+            2005,
+            2006
+          ],
+          "wiki_count": 2,
+          "wiki_years": [
+            2005,
+            2006
+          ],
+          "wiki_raw": "2 ({{F1|2005}}, {{F1|2006}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 32,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|ALO|wins}}",
+          "template_not_literal": true
+        },
+        "podiums": {
+          "ours": 106,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|ALO|podiums}}",
+          "template_not_literal": true
+        },
+        "entries": {
+          "ours": 438,
+          "wiki_entries": null,
+          "wiki_starts": null,
+          "wiki_raw": "{{F1stat|ALO|entries}} ({{F1stat|ALO|starts}} starts)",
+          "template_not_literal": true
+        },
+        "poles": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|ALO|poles}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|ALO|fastestlaps}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "ascari",
+      "name": "Alberto Ascari",
+      "wikipedia_title": "Alberto_Ascari",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Alberto_Ascari",
+      "from_cache": true,
+      "wiki_revid": 1361559998,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 2,
+          "ours_years": [
+            1952,
+            1953
+          ],
+          "wiki_count": 2,
+          "wiki_years": [
+            1952,
+            1953
+          ],
+          "wiki_raw": "2 ([[1952 Formula One season|1952]], [[1953 Formula One season|1953]])",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 13,
+          "wiki": 13,
+          "wiki_raw": "13",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 17,
+          "wiki": 17,
+          "wiki_raw": "17",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 32,
+          "wiki_entries": 34,
+          "wiki_starts": 32,
+          "wiki_raw": "34 (32 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 14,
+          "wiki_raw": "14",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 12,
+          "wiki_raw": "12",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "button",
+      "name": "Jenson Button",
+      "wikipedia_title": "Jenson_Button",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jenson_Button",
+      "from_cache": true,
+      "wiki_revid": 1361029507,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            2009
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            2009
+          ],
+          "wiki_raw": "1 ({{F1|2009}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 15,
+          "wiki": 15,
+          "wiki_raw": "15",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 50,
+          "wiki": 50,
+          "wiki_raw": "50",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 309,
+          "wiki_entries": 309,
+          "wiki_starts": 306,
+          "wiki_raw": "309 (306 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 8,
+          "wiki_raw": "8",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 8,
+          "wiki_raw": "8",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "clark",
+      "name": "Jim Clark",
+      "wikipedia_title": "Jim_Clark",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jim_Clark",
+      "from_cache": true,
+      "wiki_revid": 1364783611,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 2,
+          "ours_years": [
+            1963,
+            1965
+          ],
+          "wiki_count": 2,
+          "wiki_years": [
+            1963,
+            1965
+          ],
+          "wiki_raw": "2 ({{F1|1963}}, {{F1|1965}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 25,
+          "wiki": 25,
+          "wiki_raw": "25",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 32,
+          "wiki": 32,
+          "wiki_raw": "32",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 72,
+          "wiki_entries": 73,
+          "wiki_starts": 72,
+          "wiki_raw": "73 (72 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 33,
+          "wiki_raw": "33",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 28,
+          "wiki_raw": "28",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "damon_hill",
+      "name": "Damon Hill",
+      "wikipedia_title": "Damon_Hill",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Damon_Hill",
+      "from_cache": true,
+      "wiki_revid": 1363344499,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1996
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1996
+          ],
+          "wiki_raw": "1 ({{F1|1996}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 22,
+          "wiki": 22,
+          "wiki_raw": "22",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 42,
+          "wiki": 42,
+          "wiki_raw": "42",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 116,
+          "wiki_entries": 122,
+          "wiki_starts": 115,
+          "wiki_raw": "122 (115 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 20,
+          "wiki_raw": "20",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 19,
+          "wiki_raw": "19",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "emerson_fittipaldi",
+      "name": "Emerson Fittipaldi",
+      "wikipedia_title": "Emerson_Fittipaldi",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Emerson_Fittipaldi",
+      "from_cache": true,
+      "wiki_revid": 1363344667,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 2,
+          "ours_years": [
+            1972,
+            1974
+          ],
+          "wiki_count": 2,
+          "wiki_years": [
+            1972,
+            1974
+          ],
+          "wiki_raw": "2 ({{F1|1972}}, {{F1|1974}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 14,
+          "wiki": 14,
+          "wiki_raw": "14",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 35,
+          "wiki": 35,
+          "wiki_raw": "35",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 146,
+          "wiki_entries": 149,
+          "wiki_starts": 144,
+          "wiki_raw": "149 (144 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "fangio",
+      "name": "Juan Fangio",
+      "wikipedia_title": "Juan_Manuel_Fangio",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Juan_Manuel_Fangio",
+      "from_cache": true,
+      "wiki_revid": 1364230610,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 5,
+          "ours_years": [
+            1951,
+            1954,
+            1955,
+            1956,
+            1957
+          ],
+          "wiki_count": 5,
+          "wiki_years": [
+            1951,
+            1954,
+            1955,
+            1956,
+            1957
+          ],
+          "wiki_raw": "5 ({{F1|1951}}, {{F1|1954}}, {{F1|1955}}, {{F1|1956}}, {{F1|1957}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 24,
+          "wiki": 24,
+          "wiki_raw": "24",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 35,
+          "wiki": 35,
+          "wiki_raw": "35",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 51,
+          "wiki_entries": 52,
+          "wiki_starts": 51,
+          "wiki_raw": "52 (51 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 29,
+          "wiki_raw": "29",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 23,
+          "wiki_raw": "23",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "farina",
+      "name": "Nino Farina",
+      "wikipedia_title": "Nino_Farina",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Nino_Farina",
+      "from_cache": true,
+      "wiki_revid": 1336550249,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1950
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1950
+          ],
+          "wiki_raw": "1 ({{F1|1950}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 5,
+          "wiki": 5,
+          "wiki_raw": "5",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 20,
+          "wiki": 20,
+          "wiki_raw": "20{{efn|Including both second ''and'' third place at the [[1955 Argentine Grand Prix]].}}",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 34,
+          "wiki_entries": 35,
+          "wiki_starts": 33,
+          "wiki_raw": "35 (33 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 5,
+          "wiki_raw": "5",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 5,
+          "wiki_raw": "5",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hakkinen",
+      "name": "Mika Häkkinen",
+      "wikipedia_title": "Mika_Häkkinen",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen",
+      "from_cache": true,
+      "wiki_revid": 1361695793,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 2,
+          "ours_years": [
+            1998,
+            1999
+          ],
+          "wiki_count": 2,
+          "wiki_years": [
+            1998,
+            1999
+          ],
+          "wiki_raw": "2 ({{F1|1998}}, {{F1|1999}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 20,
+          "wiki": 20,
+          "wiki_raw": "20",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 51,
+          "wiki": 51,
+          "wiki_raw": "51",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 163,
+          "wiki_entries": 165,
+          "wiki_starts": 161,
+          "wiki_raw": "165 (161 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 26,
+          "wiki_raw": "26",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 25,
+          "wiki_raw": "25",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hamilton",
+      "name": "Lewis Hamilton",
+      "wikipedia_title": "Lewis_Hamilton",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+      "from_cache": true,
+      "wiki_revid": 1365021823,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 7,
+          "ours_years": [
+            2008,
+            2014,
+            2015,
+            2017,
+            2018,
+            2019,
+            2020
+          ],
+          "wiki_count": 7,
+          "wiki_years": [
+            2008,
+            2014,
+            2015,
+            2017,
+            2018,
+            2019,
+            2020
+          ],
+          "wiki_raw": "7 ({{F1|2008}}, {{F1|2014}}, {{F1|2015}}, {{F1|2017}}, {{F1|2018}}, {{F1|2019}}, {{F1|2020}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 106,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|HAM|wins}}",
+          "template_not_literal": true
+        },
+        "podiums": {
+          "ours": 207,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|HAM|podiums}}",
+          "template_not_literal": true
+        },
+        "entries": {
+          "ours": 390,
+          "wiki_entries": null,
+          "wiki_starts": null,
+          "wiki_raw": "{{F1stat|HAM|entries}} ({{F1stat|HAM|starts}} starts)",
+          "template_not_literal": true
+        },
+        "poles": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|HAM|poles}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|HAM|fastestlaps}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hawthorn",
+      "name": "Mike Hawthorn",
+      "wikipedia_title": "Mike_Hawthorn",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Mike_Hawthorn",
+      "from_cache": true,
+      "wiki_revid": 1361573865,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1958
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1958
+          ],
+          "wiki_raw": "1 ([[1958 Formula One season|1958]])",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 3,
+          "wiki": 3,
+          "wiki_raw": "3",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 18,
+          "wiki": 18,
+          "wiki_raw": "18",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 46,
+          "wiki_entries": 47,
+          "wiki_starts": 45,
+          "wiki_raw": "47 (45 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 4,
+          "wiki_raw": "4",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hill",
+      "name": "Graham Hill",
+      "wikipedia_title": "Graham_Hill",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Graham_Hill",
+      "from_cache": true,
+      "wiki_revid": 1362697943,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 2,
+          "ours_years": [
+            1962,
+            1968
+          ],
+          "wiki_count": 2,
+          "wiki_years": [
+            1962,
+            1968
+          ],
+          "wiki_raw": "2 ({{F1|1962}}, {{F1|1968}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 14,
+          "wiki": 14,
+          "wiki_raw": "14",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 36,
+          "wiki": 36,
+          "wiki_raw": "36",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 177,
+          "wiki_entries": 179,
+          "wiki_starts": 176,
+          "wiki_raw": "179 (176 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 13,
+          "wiki_raw": "13",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 10,
+          "wiki_raw": "10",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hulme",
+      "name": "Denny Hulme",
+      "wikipedia_title": "Denny_Hulme",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Denny_Hulme",
+      "from_cache": true,
+      "wiki_revid": 1363094906,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1967
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1967
+          ],
+          "wiki_raw": "1 ({{F1|1967}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 8,
+          "wiki": 8,
+          "wiki_raw": "8",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 33,
+          "wiki": 33,
+          "wiki_raw": "33",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 112,
+          "wiki_entries": 112,
+          "wiki_starts": null,
+          "wiki_raw": "112",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 1,
+          "wiki_raw": "1",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 9,
+          "wiki_raw": "9",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hunt",
+      "name": "James Hunt",
+      "wikipedia_title": "James_Hunt",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/James_Hunt",
+      "from_cache": true,
+      "wiki_revid": 1364496072,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1976
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1976
+          ],
+          "wiki_raw": "1 ({{F1|1976}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 10,
+          "wiki": 10,
+          "wiki_raw": "10",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 23,
+          "wiki": 23,
+          "wiki_raw": "23",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 93,
+          "wiki_entries": 93,
+          "wiki_starts": 92,
+          "wiki_raw": "93 (92 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 14,
+          "wiki_raw": "14",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 8,
+          "wiki_raw": "8",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "jack_brabham",
+      "name": "Jack Brabham",
+      "wikipedia_title": "Jack_Brabham",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jack_Brabham",
+      "from_cache": true,
+      "wiki_revid": 1364347698,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 3,
+          "ours_years": [
+            1959,
+            1960,
+            1966
+          ],
+          "wiki_count": 3,
+          "wiki_years": [
+            1959,
+            1960,
+            1966
+          ],
+          "wiki_raw": "3 ({{F1|1959}}, {{F1|1960}}, {{F1|1966}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 14,
+          "wiki": 14,
+          "wiki_raw": "14",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 31,
+          "wiki": 31,
+          "wiki_raw": "31",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 128,
+          "wiki_entries": 128,
+          "wiki_starts": 126,
+          "wiki_raw": "128 (126 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 13,
+          "wiki_raw": "13",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 12,
+          "wiki_raw": "12",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "jones",
+      "name": "Alan Jones",
+      "wikipedia_title": "Alan_Jones_(Formula_1)",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Alan_Jones_(Formula_1)",
+      "from_cache": true,
+      "wiki_revid": 1363254610,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1980
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1980
+          ],
+          "wiki_raw": "1 ({{F1|1980}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 12,
+          "wiki": 12,
+          "wiki_raw": "12",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 24,
+          "wiki": 24,
+          "wiki_raw": "24",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 117,
+          "wiki_entries": 117,
+          "wiki_starts": 116,
+          "wiki_raw": "117 (116 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 13,
+          "wiki_raw": "13",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "keke_rosberg",
+      "name": "Keke Rosberg",
+      "wikipedia_title": "Keke_Rosberg",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Keke_Rosberg",
+      "from_cache": true,
+      "wiki_revid": 1365123311,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1982
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1982
+          ],
+          "wiki_raw": "1 ({{F1|1982}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 5,
+          "wiki": 5,
+          "wiki_raw": "5",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 17,
+          "wiki": 17,
+          "wiki_raw": "17",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 114,
+          "wiki_entries": 128,
+          "wiki_starts": 114,
+          "wiki_raw": "128 (114 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 5,
+          "wiki_raw": "5",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 3,
+          "wiki_raw": "3",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "lauda",
+      "name": "Niki Lauda",
+      "wikipedia_title": "Niki_Lauda",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Niki_Lauda",
+      "from_cache": true,
+      "wiki_revid": 1363478112,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 3,
+          "ours_years": [
+            1975,
+            1977,
+            1984
+          ],
+          "wiki_count": 3,
+          "wiki_years": [
+            1975,
+            1977,
+            1984
+          ],
+          "wiki_raw": "3 ({{F1|1975}}, {{F1|1977}}, {{F1|1984}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 25,
+          "wiki": 25,
+          "wiki_raw": "25",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 54,
+          "wiki": 54,
+          "wiki_raw": "54",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 173,
+          "wiki_entries": 177,
+          "wiki_starts": 171,
+          "wiki_raw": "177 (171 starts) <!-- StatsF1 lists 180 participations for Lauda, out of which AUT-76, NED-76, and CAN-77 are actually non-appearances -->",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 24,
+          "wiki_raw": "24",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 24,
+          "wiki_raw": "24",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "mansell",
+      "name": "Nigel Mansell",
+      "wikipedia_title": "Nigel_Mansell",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Nigel_Mansell",
+      "from_cache": true,
+      "wiki_revid": 1365267406,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1992
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1992
+          ],
+          "wiki_raw": "1 ({{F1|1992}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 31,
+          "wiki": 31,
+          "wiki_raw": "31",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 59,
+          "wiki": 59,
+          "wiki_raw": "59",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 190,
+          "wiki_entries": 191,
+          "wiki_starts": 187,
+          "wiki_raw": "191 (187 starts) <!-- StatsF1 lists 193 participations, out of which SMR-81 and ESP-89 are actually non-appearances -->",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 32,
+          "wiki_raw": "32",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 30,
+          "wiki_raw": "30",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "mario_andretti",
+      "name": "Mario Andretti",
+      "wikipedia_title": "Mario_Andretti",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Mario_Andretti",
+      "from_cache": true,
+      "wiki_revid": 1363344734,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1978
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1978
+          ],
+          "wiki_raw": "1 ({{F1|1978}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 12,
+          "wiki": 12,
+          "wiki_raw": "12",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 19,
+          "wiki": 19,
+          "wiki_raw": "19",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 128,
+          "wiki_entries": 131,
+          "wiki_starts": 128,
+          "wiki_raw": "131 (128 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 18,
+          "wiki_raw": "18",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 10,
+          "wiki_raw": "10",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "max_verstappen",
+      "name": "Max Verstappen",
+      "wikipedia_title": "Max_Verstappen",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+      "from_cache": true,
+      "wiki_revid": 1364971468,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 4,
+          "ours_years": [
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "wiki_count": 4,
+          "wiki_years": [
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "wiki_raw": "4 ({{F1|2021}}, {{F1|2022}}, {{F1|2023}}, {{F1|2024}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 71,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|VER|wins}}",
+          "template_not_literal": true
+        },
+        "podiums": {
+          "ours": 130,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|VER|podiums}}",
+          "template_not_literal": true
+        },
+        "entries": {
+          "ours": 243,
+          "wiki_entries": null,
+          "wiki_starts": null,
+          "wiki_raw": "{{F1stat|VER|entries}} ({{F1stat|VER|starts}} starts)",
+          "template_not_literal": true
+        },
+        "poles": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|VER|poles}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|VER|fastestlaps}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "michael_schumacher",
+      "name": "Michael Schumacher",
+      "wikipedia_title": "Michael_Schumacher",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Michael_Schumacher",
+      "from_cache": true,
+      "wiki_revid": 1364912959,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 7,
+          "ours_years": [
+            1994,
+            1995,
+            2000,
+            2001,
+            2002,
+            2003,
+            2004
+          ],
+          "wiki_count": 7,
+          "wiki_years": [
+            1994,
+            1995,
+            2000,
+            2001,
+            2002,
+            2003,
+            2004
+          ],
+          "wiki_raw": "7 ({{F1|1994}}, {{F1|1995}}, {{F1|2000}}, {{F1 |2001}}, {{F1|2002}}, {{F1|2003}}, {{F1|2004}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 91,
+          "wiki": 91,
+          "wiki_raw": "91",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 155,
+          "wiki": 155,
+          "wiki_raw": "155",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 308,
+          "wiki_entries": 308,
+          "wiki_starts": 306,
+          "wiki_raw": "308 (306 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 68,
+          "wiki_raw": "68",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 77,
+          "wiki_raw": "77",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "norris",
+      "name": "Lando Norris",
+      "wikipedia_title": "Lando_Norris",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Lando_Norris",
+      "from_cache": true,
+      "wiki_revid": 1364587058,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            2025
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            2025
+          ],
+          "wiki_raw": "1 ({{F1|2025}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 11,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|NOR|wins}}",
+          "template_not_literal": true
+        },
+        "podiums": {
+          "ours": 46,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|NOR|podiums}}",
+          "template_not_literal": true
+        },
+        "entries": {
+          "ours": 162,
+          "wiki_entries": null,
+          "wiki_starts": null,
+          "wiki_raw": "{{F1stat|NOR|entries}} ({{F1stat|NOR|starts}} starts)",
+          "template_not_literal": true
+        },
+        "poles": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|NOR|poles}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": null,
+          "wiki_raw": "{{F1stat|NOR|fastestlaps}}",
+          "template_not_literal": true,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "phil_hill",
+      "name": "Phil Hill",
+      "wikipedia_title": "Phil_Hill",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Phil_Hill",
+      "from_cache": true,
+      "wiki_revid": 1356364975,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1961
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1961
+          ],
+          "wiki_raw": "1 ([[1961 Formula One season|1961]])",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 3,
+          "wiki": 3,
+          "wiki_raw": "3",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 16,
+          "wiki": 16,
+          "wiki_raw": "16",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 51,
+          "wiki_entries": 52,
+          "wiki_starts": 49,
+          "wiki_raw": "52 (49 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "piquet",
+      "name": "Nelson Piquet",
+      "wikipedia_title": "Nelson_Piquet",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Nelson_Piquet",
+      "from_cache": true,
+      "wiki_revid": 1364510901,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 3,
+          "ours_years": [
+            1981,
+            1983,
+            1987
+          ],
+          "wiki_count": 3,
+          "wiki_years": [
+            1981,
+            1983,
+            1987
+          ],
+          "wiki_raw": "3 ({{F1|1981}}, {{F1|1983}}, {{F1|1987}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 23,
+          "wiki": 23,
+          "wiki_raw": "23",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 60,
+          "wiki": 60,
+          "wiki_raw": "60",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 205,
+          "wiki_entries": 207,
+          "wiki_starts": 204,
+          "wiki_raw": "207 (204 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 24,
+          "wiki_raw": "24",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 23,
+          "wiki_raw": "23",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "prost",
+      "name": "Alain Prost",
+      "wikipedia_title": "Alain_Prost",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Alain_Prost",
+      "from_cache": true,
+      "wiki_revid": 1365262252,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 4,
+          "ours_years": [
+            1985,
+            1986,
+            1989,
+            1993
+          ],
+          "wiki_count": 4,
+          "wiki_years": [
+            1985,
+            1986,
+            1989,
+            1993
+          ],
+          "wiki_raw": "4 ({{F1|1985}}, {{F1|1986}}, {{F1|1989}}, {{F1|1993}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 51,
+          "wiki": 51,
+          "wiki_raw": "51",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 106,
+          "wiki": 106,
+          "wiki_raw": "106",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 202,
+          "wiki_entries": 202,
+          "wiki_starts": 199,
+          "wiki_raw": "202 (199 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 33,
+          "wiki_raw": "33",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 41,
+          "wiki_raw": "41",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "raikkonen",
+      "name": "Kimi Räikkönen",
+      "wikipedia_title": "Kimi_Räikkönen",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Kimi_R%C3%A4ikk%C3%B6nen",
+      "from_cache": true,
+      "wiki_revid": 1365208361,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            2007
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            2007
+          ],
+          "wiki_raw": "1 ({{F1|2007}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 21,
+          "wiki": 21,
+          "wiki_raw": "21",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 103,
+          "wiki": 103,
+          "wiki_raw": "103",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 352,
+          "wiki_entries": 353,
+          "wiki_starts": 349,
+          "wiki_raw": "353 (349 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 18,
+          "wiki_raw": "18",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 46,
+          "wiki_raw": "46",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "rindt",
+      "name": "Jochen Rindt",
+      "wikipedia_title": "Jochen_Rindt",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jochen_Rindt",
+      "from_cache": true,
+      "wiki_revid": 1361826731,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1970
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1970
+          ],
+          "wiki_raw": "1 ({{F1|1970}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 6,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 13,
+          "wiki": 13,
+          "wiki_raw": "13",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 61,
+          "wiki_entries": 62,
+          "wiki_starts": 60,
+          "wiki_raw": "62 (60 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 10,
+          "wiki_raw": "10",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 3,
+          "wiki_raw": "3",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "rosberg",
+      "name": "Nico Rosberg",
+      "wikipedia_title": "Nico_Rosberg",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Nico_Rosberg",
+      "from_cache": true,
+      "wiki_revid": 1364514053,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            2016
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            2016
+          ],
+          "wiki_raw": "1 ({{F1|2016}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 23,
+          "wiki": 23,
+          "wiki_raw": "23",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 57,
+          "wiki": 57,
+          "wiki_raw": "57",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 206,
+          "wiki_entries": 206,
+          "wiki_starts": 206,
+          "wiki_raw": "206 (206 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 30,
+          "wiki_raw": "30",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 20,
+          "wiki_raw": "20",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "scheckter",
+      "name": "Jody Scheckter",
+      "wikipedia_title": "Jody_Scheckter",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jody_Scheckter",
+      "from_cache": true,
+      "wiki_revid": 1362689685,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1979
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1979
+          ],
+          "wiki_raw": "1 ({{F1|1979}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 10,
+          "wiki": 10,
+          "wiki_raw": "10",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 33,
+          "wiki": 33,
+          "wiki_raw": "33",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 112,
+          "wiki_entries": 113,
+          "wiki_starts": 112,
+          "wiki_raw": "113 (112 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 3,
+          "wiki_raw": "3",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 5,
+          "wiki_raw": "5",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "senna",
+      "name": "Ayrton Senna",
+      "wikipedia_title": "Ayrton_Senna",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Ayrton_Senna",
+      "from_cache": true,
+      "wiki_revid": 1364590193,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 3,
+          "ours_years": [
+            1988,
+            1990,
+            1991
+          ],
+          "wiki_count": 3,
+          "wiki_years": [
+            1988,
+            1990,
+            1991
+          ],
+          "wiki_raw": "3 ({{F1|1988}}, {{F1|1990}}, {{F1|1991}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 41,
+          "wiki": 41,
+          "wiki_raw": "41",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 80,
+          "wiki": 80,
+          "wiki_raw": "80",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 161,
+          "wiki_entries": 162,
+          "wiki_starts": 161,
+          "wiki_raw": "162 (161 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 65,
+          "wiki_raw": "65",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 19,
+          "wiki_raw": "19",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "stewart",
+      "name": "Jackie Stewart",
+      "wikipedia_title": "Jackie_Stewart",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jackie_Stewart",
+      "from_cache": true,
+      "wiki_revid": 1364117726,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 3,
+          "ours_years": [
+            1969,
+            1971,
+            1973
+          ],
+          "wiki_count": 3,
+          "wiki_years": [
+            1969,
+            1971,
+            1973
+          ],
+          "wiki_raw": "3 ({{F1|1969}}, {{F1|1971}}, {{F1|1973}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 27,
+          "wiki": 27,
+          "wiki_raw": "27",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 43,
+          "wiki": 43,
+          "wiki_raw": "43",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 100,
+          "wiki_entries": 100,
+          "wiki_starts": 99,
+          "wiki_raw": "100 (99 starts) <!-- StatsF1 lists 101 participations, out of which BEL-72 was actually a non-appearance -->",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 17,
+          "wiki_raw": "17",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 15,
+          "wiki_raw": "15",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "surtees",
+      "name": "John Surtees",
+      "wikipedia_title": "John_Surtees",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/John_Surtees",
+      "from_cache": true,
+      "wiki_revid": 1364521906,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1964
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1964
+          ],
+          "wiki_raw": "1 ({{F1|1964}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 6,
+          "wiki": 6,
+          "wiki_raw": "6",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 24,
+          "wiki": 24,
+          "wiki_raw": "24",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 112,
+          "wiki_entries": 113,
+          "wiki_starts": 111,
+          "wiki_raw": "113 (111 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 8,
+          "wiki_raw": "8",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 10,
+          "wiki_raw": "10",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "vettel",
+      "name": "Sebastian Vettel",
+      "wikipedia_title": "Sebastian_Vettel",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Sebastian_Vettel",
+      "from_cache": true,
+      "wiki_revid": 1363565102,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 4,
+          "ours_years": [
+            2010,
+            2011,
+            2012,
+            2013
+          ],
+          "wiki_count": 4,
+          "wiki_years": [
+            2010,
+            2011,
+            2012,
+            2013
+          ],
+          "wiki_raw": "4 ({{F1|2010}}, {{F1|2011}}, {{F1|2012}}, {{F1|2013}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 53,
+          "wiki": 53,
+          "wiki_raw": "53",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 122,
+          "wiki": 122,
+          "wiki_raw": "122",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 300,
+          "wiki_entries": 300,
+          "wiki_starts": 299,
+          "wiki_raw": "300 (299 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 57,
+          "wiki_raw": "57",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 38,
+          "wiki_raw": "38",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "villeneuve",
+      "name": "Jacques Villeneuve",
+      "wikipedia_title": "Jacques_Villeneuve",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Jacques_Villeneuve",
+      "from_cache": true,
+      "wiki_revid": 1364486724,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 1,
+          "ours_years": [
+            1997
+          ],
+          "wiki_count": 1,
+          "wiki_years": [
+            1997
+          ],
+          "wiki_raw": "1 ({{F1|1997}})",
+          "template_not_literal": false
+        },
+        "wins": {
+          "ours": 11,
+          "wiki": 11,
+          "wiki_raw": "11",
+          "template_not_literal": false
+        },
+        "podiums": {
+          "ours": 23,
+          "wiki": 23,
+          "wiki_raw": "23",
+          "template_not_literal": false
+        },
+        "entries": {
+          "ours": 165,
+          "wiki_entries": 165,
+          "wiki_starts": 163,
+          "wiki_raw": "165 (163 starts)",
+          "template_not_literal": false
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 13,
+          "wiki_raw": "13",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 9,
+          "wiki_raw": "9",
+          "template_not_literal": false,
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    }
+  ]
+}

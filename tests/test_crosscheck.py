@@ -237,145 +237,255 @@ class CompareTests(unittest.TestCase):
 
 
 class GateTests(unittest.TestCase):
-    """裁決硬 gate 的反向測試——計畫 §4.5 + 2026-07-22 Sol 審 S0-2 收硬後的機器保證。
+    """裁決硬 gate 的反向測試——計畫 §4.5 + 2026-07-21 Sol 審 S0-2 收硬 + 覆核 §4 再收。
 
     硬 gate＝解除一個 diff 需：verdict∈{definition_differs,wiki_wrong}（ours_wrong 不解除）
-    + reason/by/date 非空 + 綁定 bound_ours/bound_wiki/definition_id/wiki_revid 全部吻合當前 report；
-    另加 stale 裁決（指向不存在 diff）比照 invariants exact-set 整體 FAIL。
+    + reason/by/date 非空 + wiki_revid 非 null + canonical bound_fingerprint 吻合 + 同 key 恰好一條；
+    另加 stale 裁決 exact-set FAIL，且 report 不完整（車手 error/infobox 缺/涵蓋不足/diff 缺綁定欄）
+    一律 fail closed（覆核 §4）。gate_diffs 回 4 元組 (passed, unresolved, stale, faults)。
     """
 
-    def _report(self):
-        return {"diffs": [
-            {"driver_id": "fangio", "field": "entries", "ours": 51, "wiki": 52,
-             "classification": "likely_definition_differs", "reason": "x", "key": "fangio|entries",
-             "definition_id": "results_distinct_races", "wiki_revid": 111},
-            {"driver_id": "senna", "field": "entries", "ours": 161, "wiki": 162,
-             "classification": "likely_definition_differs", "reason": "x", "key": "senna|entries",
-             "definition_id": "results_distinct_races", "wiki_revid": 222},
-        ]}
+    def _diff(self, driver_id, ours, wiki, revid, starts=None,
+              definition_id="results_distinct_races", classification="likely_definition_differs"):
+        d = {"driver_id": driver_id, "field": "entries", "ours": ours, "wiki": wiki,
+             "classification": classification, "reason": "x", "key": f"{driver_id}|entries",
+             "definition_id": definition_id, "wiki_revid": revid}
+        if starts is not None:
+            d["wiki_starts"] = starts
+        return d
 
-    def _bound_verdict(self, key, ours, wiki, revid, verdict="definition_differs",
-                       reason="口徑差", by="charlie", date="2026-07-21",
-                       definition_id="results_distinct_races"):
-        """一條綁定完整的裁決（預設能解除對應 diff）。"""
-        return {"key": key, "verdict": verdict, "reason": reason, "by": by, "date": date,
-                "definition_id": definition_id, "bound_ours": ours, "bound_wiki": wiki,
-                "wiki_revid": revid}
+    def _report(self, diffs=None):
+        """把 diffs 包成**完整** report（含 drivers + coverage），讓 report 級 fail-closed 預設通過。"""
+        if diffs is None:
+            diffs = [self._diff("fangio", 51, 52, 111, starts=51),
+                     self._diff("senna", 161, 162, 222, starts=161)]
+        drivers = [{"driver_id": d["driver_id"], "infobox_found": True} for d in diffs]
+        return {"diffs": diffs, "drivers": drivers,
+                "coverage": {"expected_champion_count": len(drivers)}}
 
-    def _both_valid(self):
-        return [self._bound_verdict("fangio|entries", 51, 52, 111),
-                self._bound_verdict("senna|entries", 161, 162, 222)]
+    def _verdict_for(self, diff, verdict="definition_differs", reason="口徑差",
+                     by="charlie", date="2026-07-21"):
+        """對某個 diff 產生一條「綁定吻合」的裁決（含 canonical bound_fingerprint）。"""
+        return {"key": diff["key"], "verdict": verdict, "reason": reason, "by": by, "date": date,
+                "definition_id": diff["definition_id"], "bound_ours": diff["ours"],
+                "bound_wiki": diff["wiki"], "wiki_revid": diff["wiki_revid"],
+                "bound_fingerprint": cc.diff_fingerprint(diff)}
+
+    def _both_valid(self, rep):
+        return [self._verdict_for(d) for d in rep["diffs"]]
 
     # ---- 基本行為 ----
 
     def test_empty_verdicts_fails_all_diffs(self):
-        passed, unresolved, stale = cc.gate_diffs(self._report(), [])
+        rep = self._report()
+        passed, unresolved, stale, faults = cc.gate_diffs(rep, [])
         self.assertFalse(passed)
         self.assertEqual(len(unresolved), 2)
         self.assertTrue(all(d["_gate_status"] == "no_verdict" for d in unresolved))
 
     def test_all_bound_verdicts_pass(self):
-        passed, unresolved, stale = cc.gate_diffs(self._report(), self._both_valid())
-        self.assertTrue(passed)
-        self.assertEqual(unresolved, [])
-        self.assertEqual(stale, [])
+        rep = self._report()
+        passed, unresolved, stale, faults = cc.gate_diffs(rep, self._both_valid(rep))
+        self.assertTrue(passed, f"unresolved={unresolved} stale={stale} faults={faults}")
+        self.assertEqual((unresolved, stale, faults), ([], [], []))
 
     def test_partial_verdicts_still_fail(self):
-        passed, unresolved, _ = cc.gate_diffs(
-            self._report(), [self._bound_verdict("fangio|entries", 51, 52, 111)])
+        rep = self._report()
+        passed, unresolved, stale, faults = cc.gate_diffs(rep, [self._verdict_for(rep["diffs"][0])])
         self.assertFalse(passed)
         self.assertEqual([d["key"] for d in unresolved], ["senna|entries"])
 
     def test_invalid_verdict_value_does_not_resolve(self):
-        bad = self._bound_verdict("fangio|entries", 51, 52, 111, verdict="looks_fine")
-        passed, unresolved, _ = cc.gate_diffs(
-            self._report(), [bad, self._bound_verdict("senna|entries", 161, 162, 222)])
+        rep = self._report()
+        bad = self._verdict_for(rep["diffs"][0], verdict="looks_fine")
+        passed, unresolved, *_ = cc.gate_diffs(rep, [bad, self._verdict_for(rep["diffs"][1])])
         self.assertFalse(passed)
         self.assertIn("fangio|entries", [d["key"] for d in unresolved])
 
     def test_missing_required_field_does_not_resolve(self):
+        rep = self._report()
         for missing in ("reason", "by", "date"):
-            v = self._bound_verdict("fangio|entries", 51, 52, 111)
+            v = self._verdict_for(rep["diffs"][0])
             v[missing] = ""
-            passed, unresolved, _ = cc.gate_diffs(
-                self._report(), [v, self._bound_verdict("senna|entries", 161, 162, 222)])
+            passed, unresolved, *_ = cc.gate_diffs(rep, [v, self._verdict_for(rep["diffs"][1])])
             self.assertFalse(passed, f"缺 {missing} 應仍未解除")
             self.assertIn("fangio|entries", [d["key"] for d in unresolved])
 
-    # ---- Sol S0-2 三個 PoC 反例（改值後舊裁決必 FAIL / ours_wrong 必 FAIL / 純 stale 必 FAIL）----
+    # ---- 首輪 S0-2 三個 PoC（改值/ours_wrong/純 stale）----
 
     def test_poc_altered_diff_value_invalidates_old_verdict(self):
-        """Sol PoC：diff 值被改成荒謬值（ascari ours=999999, wiki=-123），
-        綁 51/52 的舊裁決必須失效 → binding_drift → FAIL。"""
+        """diff 值改成荒謬值後，綁舊 fingerprint 的裁決失效 → binding_drift → FAIL。"""
         rep = self._report()
+        verdicts = self._both_valid(rep)          # 先對「原始」diff 綁定
         rep["diffs"][0]["ours"] = 999999
         rep["diffs"][0]["wiki"] = -123
-        passed, unresolved, _ = cc.gate_diffs(rep, self._both_valid())
+        passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
         self.assertFalse(passed)
         drift = [d for d in unresolved if d["key"] == "fangio|entries"]
-        self.assertEqual(len(drift), 1)
         self.assertEqual(drift[0]["_gate_status"], "binding_drift")
 
     def test_poc_ours_wrong_never_resolves(self):
-        """Sol PoC：仍存在的 diff 掛 ours_wrong（結構完整）也不得放行 → ours_wrong_hold → FAIL。"""
-        v = self._bound_verdict("fangio|entries", 51, 52, 111, verdict="ours_wrong",
-                                reason="我方確實少算一場")
-        passed, unresolved, _ = cc.gate_diffs(
-            self._report(), [v, self._bound_verdict("senna|entries", 161, 162, 222)])
+        rep = self._report()
+        v = self._verdict_for(rep["diffs"][0], verdict="ours_wrong", reason="我方確實少算一場")
+        passed, unresolved, *_ = cc.gate_diffs(rep, [v, self._verdict_for(rep["diffs"][1])])
         self.assertFalse(passed)
         hold = [d for d in unresolved if d["key"] == "fangio|entries"]
-        self.assertEqual(len(hold), 1)
         self.assertEqual(hold[0]["_gate_status"], "ours_wrong_hold")
 
     def test_poc_pure_stale_verdict_fails(self):
-        """Sol PoC：報告零 diff、只留一條指向不存在 diff 的裁決 → stale → 單獨即 FAIL。"""
-        passed, unresolved, stale = cc.gate_diffs(
-            {"diffs": []}, [self._bound_verdict("ghost|wins", 1, 2, 999)])
+        ghost = self._diff("ghost", 1, 2, 999)
+        passed, unresolved, stale, faults = cc.gate_diffs(
+            {"diffs": [], "drivers": [], "coverage": {"expected_champion_count": 0}},
+            [self._verdict_for(ghost)])
         self.assertFalse(passed)
         self.assertEqual(unresolved, [])
-        self.assertEqual(stale, ["ghost|wins"])
+        self.assertEqual(stale, ["ghost|entries"])
 
-    # ---- 綁定各欄的失效 ----
+    # ---- 覆核 §4 新反例：report 不完整 fail closed ----
 
-    def test_definition_id_mismatch_invalidates(self):
-        v = self._bound_verdict("fangio|entries", 51, 52, 111, definition_id="wrong_def")
-        passed, unresolved, _ = cc.gate_diffs(
-            self._report(), [v, self._bound_verdict("senna|entries", 161, 162, 222)])
+    def test_recheck_driver_error_fails_even_if_all_diffs_resolved(self):
+        """Sol 覆核反證：一位車手 parser error + 其餘 diff 皆有效裁決 → 仍必須 FAIL。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["drivers"].append({"driver_id": "clark", "error": "parser error", "infobox_found": False})
+        passed, unresolved, stale, faults = cc.gate_diffs(rep, verdicts)
         self.assertFalse(passed)
-        self.assertIn("fangio|entries", [d["key"] for d in unresolved])
+        self.assertTrue(any("clark" in f for f in faults))
 
-    def test_wiki_revid_mismatch_invalidates(self):
-        """維基版本變動（revid 不符）→ 裁決失效，逼人工重看新版。"""
-        v = self._bound_verdict("fangio|entries", 51, 52, 999)   # revid 應為 111
-        passed, unresolved, _ = cc.gate_diffs(
-            self._report(), [v, self._bound_verdict("senna|entries", 161, 162, 222)])
+    def test_recheck_infobox_missing_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["drivers"].append({"driver_id": "clark", "infobox_found": False})
+        passed, *_ , faults = cc.gate_diffs(rep, verdicts)
         self.assertFalse(passed)
-        drift = [d for d in unresolved if d["key"] == "fangio|entries"][0]
-        self.assertEqual(drift["_gate_status"], "binding_drift")
+        self.assertTrue(any("infobox 缺失" in f for f in faults))
 
-    def test_missing_binding_fields_does_not_resolve(self):
-        """舊格式裁決（無 bound_* 欄）不得解除任何 diff。"""
+    def test_recheck_coverage_shortfall_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["coverage"]["expected_champion_count"] = 35    # 只成功對照 2 位 < 35
+        passed, *_ , faults = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+        self.assertTrue(any("涵蓋不足" in f for f in faults))
+
+    def test_recheck_missing_coverage_field_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        del rep["coverage"]["expected_champion_count"]
+        passed, *_ , faults = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+
+    def test_recheck_missing_drivers_block_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        del rep["drivers"]
+        passed, *_ , faults = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+
+    def test_recheck_diff_without_definition_id_fails(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        del rep["diffs"][0]["definition_id"]
+        passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+        inv = [d for d in unresolved if d["key"] == "fangio|entries"][0]
+        self.assertEqual(inv["_gate_status"], "invalid_diff")
+
+    def test_recheck_definition_id_not_in_registry_fails(self):
+        rep = self._report([self._diff("fangio", 51, 52, 111, definition_id="ghost_def"),
+                            self._diff("senna", 161, 162, 222)])
+        verdicts = self._both_valid(rep)
+        passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+        self.assertIn("fangio|entries",
+                      [d["key"] for d in unresolved if d["_gate_status"] == "invalid_diff"])
+
+    # ---- 覆核 §4 新反例：null revid 互解 ----
+
+    def test_recheck_null_revid_mutual_does_not_resolve(self):
+        """diff.wiki_revid=None 且 verdict.wiki_revid=None 不得互解 → invalid_diff → FAIL。"""
+        d0 = self._diff("fangio", 51, 52, None, starts=51)
+        d1 = self._diff("senna", 161, 162, 222, starts=161)
+        rep = self._report([d0, d1])
+        v0 = self._verdict_for(d0)      # 其 wiki_revid 也是 None
+        self.assertIsNone(v0["wiki_revid"])
+        passed, unresolved, *_ = cc.gate_diffs(rep, [v0, self._verdict_for(d1)])
+        self.assertFalse(passed)
+        inv = [d for d in unresolved if d["key"] == "fangio|entries"][0]
+        self.assertEqual(inv["_gate_status"], "invalid_diff")
+
+    # ---- 覆核 §4 新反例：同 key 多裁決 ----
+
+    def test_recheck_duplicate_verdict_same_key_fails(self):
+        """同 key 放 ours_wrong + definition_differs 兩條 → 不得因 any() 放行 → FAIL。"""
+        rep = self._report()
+        v_ok = self._verdict_for(rep["diffs"][0])
+        v_dup = self._verdict_for(rep["diffs"][0], verdict="ours_wrong")
+        passed, unresolved, stale, faults = cc.gate_diffs(
+            rep, [v_ok, v_dup, self._verdict_for(rep["diffs"][1])])
+        self.assertFalse(passed)
+        self.assertTrue(any("同 key 多筆" in f for f in faults))
+        self.assertIn("fangio|entries",
+                      [d["key"] for d in unresolved if d["_gate_status"] == "duplicate_verdict"])
+
+    # ---- 覆核 §4 新反例：fingerprint 抓 wiki_starts / classification ----
+
+    def test_recheck_only_wiki_starts_change_invalidates(self):
+        """只改 wiki_starts（理由實際依賴它）→ fingerprint 變 → 舊裁決失效 → FAIL。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["diffs"][0]["wiki_starts"] = 999
+        passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+        self.assertEqual([d for d in unresolved if d["key"] == "fangio|entries"][0]["_gate_status"],
+                         "binding_drift")
+
+    def test_recheck_only_classification_change_invalidates(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        rep["diffs"][0]["classification"] = "likely_ours_wrong"
+        passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+
+    def test_recheck_registry_content_change_invalidates(self):
+        """公式內容改了但 definition_id 沒升版 → registry sha 變 → fingerprint 變 → 舊裁決失效。"""
+        rep = self._report()
+        verdicts = self._both_valid(rep)     # 綁定當下的 registry sha
+        did = rep["diffs"][0]["definition_id"]
+        orig = cc.DEFINITION_REGISTRY[did]
+        cc.DEFINITION_REGISTRY[did] = {**orig, "formula": orig["formula"] + " (改過)"}
+        try:
+            passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
+        finally:
+            cc.DEFINITION_REGISTRY[did] = orig
+        self.assertFalse(passed)
+
+    # ---- 其他綁定 ----
+
+    def test_legacy_verdict_without_fingerprint_does_not_resolve(self):
+        rep = self._report()
         legacy = {"key": "fangio|entries", "verdict": "definition_differs",
-                  "reason": "x", "by": "charlie", "date": "2026-07-21"}
-        passed, unresolved, _ = cc.gate_diffs(
-            self._report(), [legacy, self._bound_verdict("senna|entries", 161, 162, 222)])
+                  "reason": "x", "by": "charlie", "date": "2026-07-21",
+                  "definition_id": "results_distinct_races", "bound_ours": 51,
+                  "bound_wiki": 52, "wiki_revid": 111}   # 無 bound_fingerprint
+        passed, unresolved, *_ = cc.gate_diffs(rep, [legacy, self._verdict_for(rep["diffs"][1])])
         self.assertFalse(passed)
         self.assertIn("fangio|entries", [d["key"] for d in unresolved])
 
     def test_stale_alongside_resolved_still_fails(self):
-        """即使兩個真 diff 都被解除，多一條 stale 裁決仍整體 FAIL（exact-set）。"""
-        verdicts = self._both_valid() + [self._bound_verdict("ghost|entries", 1, 2, 3)]
-        passed, unresolved, stale = cc.gate_diffs(self._report(), verdicts)
+        rep = self._report()
+        verdicts = self._both_valid(rep) + [self._verdict_for(self._diff("ghost", 1, 2, 3))]
+        passed, unresolved, stale, faults = cc.gate_diffs(rep, verdicts)
         self.assertFalse(passed)
         self.assertEqual(unresolved, [])
         self.assertEqual(stale, ["ghost|entries"])
 
 
 class RealVerdictsTests(unittest.TestCase):
-    """對真實裁決檔＋（若存在）真實報告的整合斷言。"""
+    """對真實裁決檔＋真實報告的整合斷言。"""
 
     def test_real_verdicts_are_named_and_bound(self):
-        """每條真實裁決必須具名完整，且帶齊綁定欄（definition_id/bound_ours/bound_wiki/wiki_revid）。"""
+        """每條真實裁決具名完整且帶齊綁定欄（含 bound_fingerprint）。"""
         allowed = {"ours_wrong", "definition_differs", "wiki_wrong"}
         verdicts = cc.load_verdicts()
         self.assertGreater(len(verdicts), 0)
@@ -383,17 +493,21 @@ class RealVerdictsTests(unittest.TestCase):
             for field in ("key", "verdict", "reason", "by", "date"):
                 self.assertTrue(str(v.get(field, "")).strip(), f"{v.get('key')} 缺 {field}")
             self.assertIn(v["verdict"], allowed, v["key"])
-            for field in ("definition_id", "bound_ours", "bound_wiki", "wiki_revid"):
+            for field in ("definition_id", "bound_ours", "bound_wiki", "wiki_revid", "bound_fingerprint"):
                 self.assertIsNotNone(v.get(field), f"{v['key']} 缺綁定欄 {field}")
 
-    def test_real_report_gate_passes_if_report_present(self):
-        """有 report 時，真實裁決應能對其通過硬 gate（回歸鎖：本 PR 的已核准狀態）。"""
+    def test_real_report_gate_passes(self):
+        """真實 report + 真實裁決必須通過硬 gate。
+
+        report 是本 PR 決定入版控的提交物（釘 revid 的外部原始快照，比照 raw 層）；
+        因此**不再 skip**——report 不存在＝提交物不完整＝視為失敗（覆核最低條件 5）。
+        """
         import json
-        if not cc.REPORT.exists():
-            self.skipTest("crosscheck-report.json 未生成，略過整合驗證")
+        self.assertTrue(cc.REPORT.exists(),
+                        "crosscheck-report.json 必須存在並入版控（跑 crosscheck-wikipedia.py 產生）")
         rep = json.loads(cc.REPORT.read_text(encoding="utf-8"))
-        passed, unresolved, stale = cc.gate_diffs(rep, cc.load_verdicts())
-        self.assertTrue(passed, f"未解={[d['key'] for d in unresolved]} stale={stale}")
+        passed, unresolved, stale, faults = cc.gate_diffs(rep, cc.load_verdicts())
+        self.assertTrue(passed, f"未解={[d['key'] for d in unresolved]} stale={stale} faults={faults}")
 
 
 if __name__ == "__main__":
