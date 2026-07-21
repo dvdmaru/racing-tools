@@ -24,6 +24,12 @@
    匹配，**每條 matched 例外還必須 status=='approved' 且 approved_by/approved_date/reason/
    evidence 五欄皆非空**；任一不符＝FAIL（未核准/被抽掉 metadata 的例外不得漂白失敗）。
 
+★ 宣告清單 fail-closed（2026-07-21 Sol 終輪 S1-2 修正）：
+   declared_map 用 dict 建立會把**同 triple 的重複宣告靜默折疊**——Sol 反證：39 條前插一條
+   同 triple 的 pending_review，後面的 approved 覆寫它，輸入 40 條卻只報 39、gate PASS。
+   故**建 dict 前先 `validate_declarations()`**：缺 required 欄位、id 重複、triple 重複、
+   或輸入條數 != 納入條數，任一即整體 FAIL（不得靜默跳過或折疊）。
+
 ⚠️ 計畫 §十二警告：查不出歷史原因的失敗**留在報告的未解區、不要草草塞進例外清單漂白**。
    本腳本不做核准；status 仍由 Charlie 具名核准。
 
@@ -457,14 +463,61 @@ def _empty(val):
     return val is None or (isinstance(val, str) and not val.strip()) or val == ""
 
 
+# Sol 終輪 S1-2：宣告清單建 dict 前必須先 fail-closed 驗證的結構欄位
+REQUIRED_DECL_FIELDS = ("id", "invariant", "scope", "status", "fingerprint")
+
+
+def _decl_field_missing(e, f):
+    v = e.get(f)
+    if f == "scope":
+        return not isinstance(v, dict) or not v   # scope 必須是非空 dict
+    return _empty(v)
+
+
 def _declared_triple(e):
     return _scope_key(e["invariant"], e["scope"]) + "@" + (e.get("fingerprint") or "<unsealed>")
+
+
+def validate_declarations(declared):
+    """建 declared_map 前 fail-closed 驗證（Sol 終輪 S1-2）。
+
+    dict 會把同 triple 的重複宣告靜默折疊——Sol 反證：39 條前插一條同 triple 的
+    pending_review，後面的 approved 覆寫它，輸入 40 條卻只報 39、gate PASS。修法：
+    ①缺 required 欄位＝fault（不得跳過）②id 重複＝fault ③triple 重複＝fault
+    ④輸入條數 != 納入 dict 條數＝fault。任一 fault → 整體 FAIL。
+    """
+    faults = []
+    id_idx, triple_idx = {}, {}
+    for i, e in enumerate(declared):
+        missing = [f for f in REQUIRED_DECL_FIELDS if _decl_field_missing(e, f)]
+        if missing:
+            faults.append({"index": i, "id": e.get("id"),
+                           "problem": f"缺 required 欄位 {missing}"})
+            continue   # 缺結構欄位無法可靠構成 triple，記 fault 後不納入唯一性統計
+        id_idx.setdefault(e["id"], []).append(i)
+        triple_idx.setdefault(_declared_triple(e), []).append(i)
+    for _id, idxs in sorted(id_idx.items()):
+        if len(idxs) > 1:
+            faults.append({"id": _id, "problem": f"重複 id（宣告 index {idxs}）"})
+    for t, idxs in sorted(triple_idx.items()):
+        if len(idxs) > 1:
+            faults.append({"triple": t, "problem": f"重複 triple（宣告 index {idxs}）"})
+    # ④ 折疊偵測：輸入條數 != 建 dict 後納入條數
+    included = len({_declared_triple(e) for e in declared
+                    if not any(_decl_field_missing(e, f) for f in REQUIRED_DECL_FIELDS)})
+    valid_input = sum(1 for e in declared
+                      if not any(_decl_field_missing(e, f) for f in REQUIRED_DECL_FIELDS))
+    if included != valid_input:
+        faults.append({"problem": f"輸入 {valid_input} 條有效宣告但納入 dict 僅 {included} 條"
+                                  "（重複 triple 被折疊）"})
+    return faults
 
 
 def run(cur, declared):
     """核心判定：actual 三元組集合 == declared 三元組集合 → passed。"""
     failures, per_inv = _all_failures(cur)
     actual = {v["triple"]: v for v in failures}
+    schema_faults = validate_declarations(declared)   # Sol S1-2：建 dict 前 fail-closed
     declared_map = {_declared_triple(e): e for e in declared}
 
     unexpected_keys = sorted(set(actual) - set(declared_map))
@@ -503,15 +556,18 @@ def run(cur, declared):
                                "scope": e["scope"], "problems": problems})
 
     return {
-        "passed": not unexpected_keys and not missing_keys and not unapproved,
+        "passed": (not unexpected_keys and not missing_keys and not unapproved
+                   and not schema_faults),
         "summary": {
             "total_failures": len(actual),
+            "declared_input": len(declared),
             "declared_exceptions": len(declared_map),
             "matched": len(matched_keys),
             "unexpected_failures": len(unexpected_keys),
             "missing_declarations": len(missing_keys),
             "fingerprint_mismatches": len(fingerprint_mismatch),
             "unapproved_matched": len(unapproved),
+            "declaration_schema_faults": len(schema_faults),
             "pending_review": len(pending),
             "unsealed_declarations": len(unsealed),
         },
@@ -519,6 +575,7 @@ def run(cur, declared):
         "missing_declarations": [{"triple": k, **declared_map[k]} for k in missing_keys],
         "fingerprint_mismatches": fingerprint_mismatch,
         "unapproved_matched": unapproved,
+        "declaration_schema_faults": schema_faults,
         "matched": [{"invariant": actual[k]["invariant"], "scope": actual[k]["scope"],
                      "declared_reason": declared_map[k].get("reason"),
                      "declared_status": declared_map[k].get("status"),
@@ -578,7 +635,12 @@ def _print_human(rep):
     print(f"\n總失敗 {s['total_failures']}　宣告例外 {s['declared_exceptions']}　匹配 {s['matched']}")
     print(f"未宣告失敗 {s['unexpected_failures']}　過期宣告 {s['missing_declarations']}　"
           f"指紋不符 {s['fingerprint_mismatches']}　未核准例外 {s['unapproved_matched']}　"
+          f"宣告 schema 錯 {s['declaration_schema_faults']}　"
           f"未封印宣告 {s['unsealed_declarations']}　待審核 {s['pending_review']}")
+    if rep["declaration_schema_faults"]:
+        print("\n🔴 宣告清單 schema/唯一性錯（Sol S1-2：重複 triple 會被 dict 靜默折疊）：")
+        for v in rep["declaration_schema_faults"]:
+            print(f"    {v}")
     if rep["unapproved_matched"]:
         print("\n🔴 已匹配但未核准/缺 metadata 的例外（Sol S0：未核准不得漂白失敗）：")
         for v in rep["unapproved_matched"]:

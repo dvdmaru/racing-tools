@@ -209,6 +209,36 @@ class InvariantMechanismTests(unittest.TestCase):
         self.assertFalse(rep["passed"])
         self.assertEqual(rep["summary"]["unapproved_matched"], 1)
 
+    def test_duplicate_triple_pending_then_approved_fails(self):
+        """Sol 終輪 S1-2 反例：同 triple 放「pending 在前、approved 在後」，dict 折疊後
+        舊版只報 39 條 PASS；validate_declarations 現在偵測重複 triple + 條數不符 → FAIL。"""
+        dup = copy.deepcopy(self.declared[0])
+        dup["status"] = "pending_review"          # 同 triple、狀態不同（放在最前面）
+        d = [dup] + copy.deepcopy(self.declared)  # 輸入 40 條
+        rep = inv.run(self.cur, d)
+        self.assertFalse(rep["passed"])
+        self.assertGreaterEqual(rep["summary"]["declaration_schema_faults"], 1)
+        self.assertEqual(rep["summary"]["declared_input"], 40)
+
+    def test_duplicate_id_fails(self):
+        """兩條宣告共用同一個 id（triple 不同）也必須 FAIL。"""
+        extra = copy.deepcopy(self.declared[1])
+        extra["id"] = self.declared[0]["id"]      # 借用 EX-001 的 id
+        d = copy.deepcopy(self.declared) + [extra]
+        rep = inv.run(self.cur, d)
+        self.assertFalse(rep["passed"])
+        self.assertTrue(any("重複 id" in f.get("problem", "")
+                            for f in rep["declaration_schema_faults"]))
+
+    def test_declaration_missing_required_field_fails(self):
+        """缺 required 欄位（如 fingerprint/status）的宣告不得被靜默跳過。"""
+        d = copy.deepcopy(self.declared)
+        d[0].pop("fingerprint", None)
+        rep = inv.run(self.cur, d)
+        self.assertFalse(rep["passed"])
+        self.assertTrue(any("缺 required" in f.get("problem", "")
+                            for f in rep["declaration_schema_faults"]))
+
     def test_dropping_one_declaration_makes_it_fail(self):
         """反向①：少宣告一條 → 出現未宣告失敗 → 整體 fail。"""
         fewer = self.declared[1:]

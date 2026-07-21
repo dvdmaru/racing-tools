@@ -30,11 +30,17 @@
     ② reason / by / date 非空、wiki_revid 非 null（不得以空版本綁定）；
     ③ **canonical fingerprint** 吻合：bound_fingerprint == diff_fingerprint(diff)。
        fingerprint 涵蓋整個 decision context——key/field/ours/wiki/wiki_starts/年份差集/
-       classification/definition_id/**該 definition 在註冊表的公式內容 sha256**/wiki_revid，
-       任一改變（含公式改了但 ID 沒升版、只改 wiki_starts/classification）舊裁決即失效。
-    ④ 同一 diff key **恰好一條**裁決（多於一條＝FAIL，杜絕 ours_wrong 與 definition_differs 並存放行）。
-  **fail closed（覆核 §4）**：report 不完整一律 FAIL——車手抓取/解析失敗、infobox 缺失、
-    對照涵蓋數 < 預期冠軍數、diff 缺 definition_id 或 definition_id 未在註冊表、diff.wiki_revid=null。
+       classification/**reason**/definition_id/**該 definition 在註冊表的公式內容 sha256**/wiki_revid，
+       任一改變（含公式改了但 ID 沒升版、只改 wiki_starts/classification/reason）舊裁決即失效。
+    ④ 同一 diff key **恰好一條**裁決（多於一條＝FAIL，杜絕 ours_wrong 與 definition_differs 並存放行）；
+       缺 key 的裁決＝FAIL（不 silently 忽略）。
+  **fail closed（覆核 §4 + 終輪 R1/R3）**：report 不完整一律 FAIL——
+    · 頂層缺 diffs/drivers/coverage 任一區塊；
+    · 車手抓取/解析失敗、infobox 缺失；
+    · **身分（非只列數）**：成功車手 driver_id 集合須與 coverage.expected_champion_ids exact-set 相等，
+      且 rows==unique==expected（重複列/漏人/多人皆 FAIL）；default 模式另從 DB 現算集合比對，
+      report 自報 manifest 不可自證；
+    · diff 缺 definition_id 或 definition_id 未在註冊表、diff.wiki_revid=null。
   指向「已不存在的 diff」的裁決＝stale，比照 invariants exact-set 整體 FAIL。
   → passed 僅在「零未解 diff、零 stale、零 report fault」時成立。
   本腳本**永不寫入裁決**（裁決是人的事）；只讀取、驗證。
@@ -383,6 +389,15 @@ def champion_ids(cur):
         "WHERE ds.position=1 AND s.status='completed' ORDER BY ds.driver_id")]
 
 
+def db_champion_ids(db_path=DEFAULT_DB):
+    """從 DB 現算歷代冠軍身分集合（排序）。gate 用它當權威 manifest，report 自報值不可自證（R1）。"""
+    con = sqlite3.connect(str(db_path))
+    try:
+        return sorted(champion_ids(con.cursor()))
+    finally:
+        con.close()
+
+
 def our_championship_years(cur, did):
     """冠軍年份集合＝該車手在 completed 賽季拿到 driver_standings position=1 的年份。
 
@@ -536,12 +551,14 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
     con = sqlite3.connect(str(db_path))
     cur = con.cursor()
     try:
-        champs = champion_ids(cur)
-        expected_champion_count = len(champs)   # gate 用來驗涵蓋數是否足額（fail closed）
+        champs = sorted(champion_ids(cur))       # DB 的 SELECT DISTINCT 結果，排序後＝身分 manifest
+        expected_champion_count = len(champs)    # gate 用來驗涵蓋數是否足額（fail closed）
         ids = list(champs)
+        extra_ids = []
         for d in (extra_drivers or []):
             if d not in ids:
                 ids.append(d)
+                extra_ids.append(d)
         drivers_meta = {r["driverId"]: r for r in
                         json.loads(DRIVERS_JSON.read_text(encoding="utf-8"))["Drivers"]}
 
@@ -592,6 +609,10 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
         "coverage": {
             "scope": "35 位已完成賽季的歷代車手冠軍（非全 881 車手，非整個 entity layer）",
             "expected_champion_count": expected_champion_count,
+            # 身分 manifest（R1）：DB SELECT DISTINCT 冠軍 id 排序後。gate 用它做 exact-set
+            # 身分比對，不只比列數——藏一個重複列偽裝成足額會被抓（35 列 34 人 → FAIL）。
+            "expected_champion_ids": champs,
+            "extra_driver_ids": sorted(extra_ids),   # --driver 附加的非冠軍（default 為空）
             "compared_fields": ["championships(count+years)", "wins", "podiums", "entries"],
             "blind_spots": [
                 "現役車手 volume 欄為 {{F1stat}} 模板 → template_not_literal，skip 不比對",
@@ -662,11 +683,12 @@ def _registry_sha(definition_id):
 
 
 def diff_fingerprint(diff):
-    """canonical diff fingerprint（覆核 §4 S1）：封印整個 decision context。
+    """canonical diff fingerprint（覆核 §4 S1 + 終輪 R2）：封印整個 decision context。
 
-    涵蓋 key/field/ours/wiki/wiki_starts/年份差集/classification/definition_id/
+    涵蓋 key/field/ours/wiki/wiki_starts/年份差集/classification/**reason**/definition_id/
     該 definition 的公式內容 sha256/wiki_revid——任一改變舊裁決即失效。
-    這比逐欄綁定強：抓得到「只改 wiki_starts 或 classification」「公式改了 ID 沒升版」。
+    這比逐欄綁定強：抓得到「只改 wiki_starts/classification/reason」「公式改了 ID 沒升版」。
+    ⚠️ reason 是裁決者當時看到的理由文字，屬 decision context 一部分（Sol 終輪 S1-1）。
     """
     did = diff.get("definition_id")
     payload = {
@@ -678,6 +700,7 @@ def diff_fingerprint(diff):
         "ours_only": diff.get("ours_only"),
         "wiki_only": diff.get("wiki_only"),
         "classification": diff.get("classification"),
+        "reason": diff.get("reason"),
         "definition_id": did,
         "definition_registry_sha256": _registry_sha(did),
         "wiki_revid": diff.get("wiki_revid"),
@@ -730,52 +753,79 @@ def _verdict_resolves(v, diff):
     return True, None
 
 
-def gate_diffs(report, verdicts):
-    """回 (passed, unresolved, stale, faults)。硬 gate（Sol 審 S0-2 + 覆核 §4 收硬後）。
+def gate_diffs(report, verdicts, db_champion_ids=None):
+    """回 (passed, unresolved, stale, faults)。硬 gate（Sol 審 S0-2 + 覆核 §4 + 終輪 R1/R3）。
 
     passed     = 零未解 diff、零 stale 裁決、零 report fault。
     unresolved = diff 沒有被一條綁定吻合的裁決解除；每筆帶 `_gate_status`/`_gate_detail`：
-                   invalid_diff     — diff 本身結構不足（缺 definition_id/未註冊/revid=null）
-                   duplicate_verdict— 同 key 有 >1 條裁決
-                   no_verdict       — 沒有對應 key 的裁決
-                   ours_wrong_hold  — 有 ours_wrong 裁決，依規則不解除（須修資料）
-                   binding_drift    — 有裁決但綁定/fingerprint 不符
+                   invalid_diff / duplicate_verdict / no_verdict / ours_wrong_hold / binding_drift
     stale      = 裁決 key 指向報告中不存在的 diff → exact-set，單獨即 FAIL。
-    faults     = report 級 fail-closed 問題（車手 error/infobox 缺失/涵蓋不足/同 key 多裁決/
-                 report 結構缺失）——**report 不完整不得被當成「沒有新問題」**（覆核 §4）。
+    faults     = report 級 fail-closed 問題——report 不完整不得被當成「沒有新問題」。
+
+    db_champion_ids（終輪 R1）：非 None 時＝**權威身分集合**（default 模式從 DB 現算傳入，
+      report 自報值不可自證）；此時 report.coverage.expected_champion_ids 必須與它 exact-set 相等。
+      None 時（--gate-only 無 DB）退為驗 report 內 manifest 的唯一性與自洽 exact-set。
     """
     faults = []
 
-    # --- report 級 fail closed（覆核 §4：不完整不擋 gate 是 false green）---
+    # --- R3：頂層 schema fail closed（缺塊一律 FAIL，不 silently 當空）---
+    for block in ("diffs", "drivers", "coverage"):
+        if block not in report:
+            faults.append(f"report 缺頂層區塊 `{block}` → fail closed")
     drivers = report.get("drivers")
-    if drivers is None:
-        faults.append("report 缺 drivers 區塊 → fail closed")
-        drivers = []
+    drivers = drivers if isinstance(drivers, list) else []
+    diffs = report.get("diffs")
+    diffs = diffs if isinstance(diffs, list) else []
+    cov = report.get("coverage") if isinstance(report.get("coverage"), dict) else {}
+
+    # --- 覆核 §4：車手 error / infobox 缺失 ---
     for dr in drivers:
         if dr.get("error"):
             faults.append(f"車手抓取/解析失敗：{dr.get('driver_id')}（{dr.get('error')}）")
         elif not dr.get("infobox_found"):
             faults.append(f"infobox 缺失：{dr.get('driver_id')}")
-    cov = report.get("coverage") or {}
-    expected = cov.get("expected_champion_count")
-    ok_drivers = [dr for dr in drivers if dr.get("infobox_found") and not dr.get("error")]
-    if expected is None:
-        faults.append("report.coverage.expected_champion_count 缺失 → 無法驗涵蓋數，fail closed")
-    elif len(ok_drivers) < expected:
-        faults.append(f"對照涵蓋不足：成功對照 {len(ok_drivers)} < 預期冠軍數 {expected}")
 
-    # --- 同 key 恰好一條裁決（覆核 §4 S1 ①）---
+    # --- R1：coverage 驗「身分集合」不只驗列數（exact-set + 唯一 + rows==unique==expected）---
+    expected_count = cov.get("expected_champion_count")
+    manifest_ids = cov.get("expected_champion_ids")
+    extra_ids = cov.get("extra_driver_ids") or []
+    ok_driver_ids = [dr.get("driver_id") for dr in drivers
+                     if dr.get("infobox_found") and not dr.get("error")]
+    if manifest_ids is None or expected_count is None:
+        faults.append("report.coverage 缺 expected_champion_ids / expected_champion_count → fail closed")
+    else:
+        # default 模式：report 自報 manifest 必須與 DB 現算集合 exact-set 相等（不可自證）
+        if db_champion_ids is not None and set(manifest_ids) != set(db_champion_ids):
+            faults.append("coverage.expected_champion_ids 與 DB 現算冠軍集合不符（身分 manifest 被竄改/漏人/多人）")
+        # 允許集合＝冠軍 manifest ∪ --driver 附加（default 時 extra 為空 → 純冠軍集合）
+        allowed = set(manifest_ids) | set(extra_ids)
+        rows = len(ok_driver_ids)
+        uniq = set(ok_driver_ids)
+        if rows != len(uniq):
+            dups = sorted({i for i in ok_driver_ids if ok_driver_ids.count(i) > 1})
+            faults.append(f"成功車手有重複列（rows={rows} != unique={len(uniq)}）：{dups}")
+        if uniq != allowed:
+            missing = sorted(allowed - uniq)
+            extra = sorted(uniq - allowed)
+            faults.append(f"成功車手身分集合 != 預期（缺 {missing}、多 {extra}）——身分 exact-set 失敗")
+        if len(uniq) != len(manifest_ids) + len(set(extra_ids)) or rows != len(uniq):
+            faults.append(f"rows/unique/expected 三者不一致（rows={rows}, unique={len(uniq)}, "
+                          f"expected={len(manifest_ids)}+extra{len(set(extra_ids))}）")
+
+    # --- R3 + 覆核 §4 S1①：verdict schema + 同 key 恰好一條（建 dict 前先驗）---
     verdicts_by_key = {}
-    for v in verdicts:
-        if "key" in v:
-            verdicts_by_key.setdefault(v["key"], []).append(v)
+    for i, v in enumerate(verdicts):
+        if "key" not in v or not str(v.get("key", "")).strip():
+            faults.append(f"裁決缺 key（第 {i} 條）→ fail closed（不 silently 忽略）")
+            continue
+        verdicts_by_key.setdefault(v["key"], []).append(v)
     for k, lst in verdicts_by_key.items():
         if len(lst) > 1:
             faults.append(f"同 key 多筆裁決（需恰好一條）：{k}（{len(lst)} 筆）")
 
-    diff_by_key = {d["key"]: d for d in report.get("diffs", [])}
+    diff_by_key = {d["key"]: d for d in diffs}
     unresolved = []
-    for d in report.get("diffs", []):
+    for d in diffs:
         ok, why = _diff_binding_valid(d)
         if not ok:
             unresolved.append({**d, "_gate_status": "invalid_diff", "_gate_detail": why})
@@ -838,6 +888,7 @@ def main():
     a = ap.parse_args()
 
     if a.gate_only:
+        # 無 DB：退為驗 report 內 manifest 的唯一性與自洽 exact-set（R1）
         rep = json.loads(pathlib.Path(a.out).read_text(encoding="utf-8"))
         passed, unresolved, stale, faults = gate_diffs(rep, load_verdicts(a.verdicts))
         _print_gate(passed, unresolved, stale, faults)
@@ -849,7 +900,9 @@ def main():
     _print_summary(rep)
     print(f"\n💾 報告：{a.out}")
 
-    passed, unresolved, stale, faults = gate_diffs(rep, load_verdicts(a.verdicts))
+    # default 模式：從 DB 現算權威冠軍集合傳入，強制 report manifest 與 DB exact-set 相等（R1）
+    passed, unresolved, stale, faults = gate_diffs(
+        rep, load_verdicts(a.verdicts), db_champion_ids=db_champion_ids(a.db))
     _print_gate(passed, unresolved, stale, faults)
     if a.report_only:
         return 0
