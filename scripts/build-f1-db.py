@@ -6,9 +6,12 @@
 
 三條硬紀律：
   1. **100% 離線**：只讀 data/f1/raw/，一個網路請求都不發。
-  2. **決定性重建**：連跑兩次，`sqlite3 db.sqlite .dump` 必須逐 byte 相同。
-     作法＝固定 CREATE 順序、固定 INSERT 排序、代理主鍵用自己的計數器依排序指派、
-     完全不寫時間戳（raw 的 _meta.fetched_at 一律丟棄，不進 db）。
+  2. **決定性重建（限同一 Python/SQLite/OS runtime）**：同環境連跑兩次，SQLite 檔本身
+     與 dump 皆逐 byte 相同。作法＝固定 CREATE 順序、固定 INSERT 排序、代理主鍵用自己的
+     計數器依排序指派、完全不寫時間戳（raw 的 _meta.fetched_at 一律丟棄，不進 db）。
+     ⚠️ 不宣稱跨 Python/SQLite/OS 版本的 byte 重現（Sol S2-1）；跨環境保證需另建版本矩陣。
+     驗證用 `Connection.iterdump()`，它是 `sqlite3 db.sqlite .dump` CLI 的 Python 等價物
+     （同一份邏輯 dump，文件與測試統一以此為準）。
   3. **兩個必寫進註解的坑**（計畫 §三／§十二）：
        坑 A：DNF 車手的 `position` **仍有值**（那是分類名次），`positionText` 才是 'R'。
              **勝場判定一律用 position_text='1'，絕不能用 position=1。**

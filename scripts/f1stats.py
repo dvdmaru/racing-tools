@@ -67,7 +67,7 @@ def driver_career(did):
 
     def rows_where(pred):
         # ⚠️ 一場可能有多筆 Results（1950s 共駕/中途換車）——必須逐筆掃，
-        # 只讀 [0] 會漏掉排在後面的勝場列（2026-07-22 維基對照輪抓到的潛伏 bug）
+        # 只讀 [0] 會漏掉排在後面的勝場列（2026-07-21 維基對照輪抓到的潛伏 bug）
         out = []
         for r in races:
             for res in (r.get("Results") or []):
@@ -94,7 +94,7 @@ def driver_career(did):
     wins = rows_where(lambda pt, _: pt == "1")
     podiums = rows_where(lambda pt, _: pt in ("1", "2", "3"))
     entries = distinct_races()
-    # ⚠️ 「先發場次 starts」已移除（2026-07-22）：grid=="0" 在 Ergast 是 pit lane 起跑
+    # ⚠️ 「先發場次 starts」已移除（2026-07-21）：grid=="0" 在 Ergast 是 pit lane 起跑
     # （＝有出賽），不是「未上場」。實測 Verstappen 2016 摩納哥（pit lane 起跑後撞車退賽）
     # 被舊公式錯扣一場。DNS/withdrawn 的判定還纏著 positionText 'W'/status 多種表示法，
     # 寫不出精確定義的欄位不進 lib——這裡曾放過一版錯的，M2 要做 starts 先過定義關。

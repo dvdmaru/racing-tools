@@ -2,17 +2,23 @@
 # -*- coding: utf-8 -*-
 """F1 實體層（L1 sqlite + 不變量）回歸測試。
 
-鎖四件事：
-  1. build-f1-db 決定性——連建兩次，.dump 必須逐 byte 相同。
+鎖的東西：
+  1. build-f1-db 決定性——**同一 Python/SQLite/OS runtime** 下連建兩次，SQLite 檔 bytes
+     與 dump 皆逐 byte 相同（不宣稱跨平台/跨版本；Sol S2-1）。`Connection.iterdump()`
+     是 `sqlite3 db.sqlite .dump` CLI 的 Python 等價物，文件與測試統一用它。
   2. oracle 對數——十個表的筆數／季數必須等於 API total（唯一真 oracle）。
   3. 兩個坑——DNF 的 position 有值但 position_text 非 '1'；points 是 REAL 存得下 .5。
-  4. 不變量機制本身——尤其是**反向測試**：失敗集合與宣告例外集合不匹配時
-     （少宣告一條、或多宣告一條）必須整體 fail，不是「有過就好」。
+  4. 不變量機制本身——反向測試（失敗集合≠宣告集合必須整體 fail）＋指紋綁定：
+     宣告範圍內的數值/成員被竄改（Sol S0-1 的 +1000）必須被指紋不符擋下。
+  5. Sol 查核桌兩個 false-green 反例做成 regression：
+     ① 1950 某列 points +1000 → 指紋不符 → FAIL；② 2026 R10 driver_id 改孤兒 → I11 → FAIL。
+  6. I5 真雙路徑（f1stats 發布 vs db SQL）與 I11 referential integrity 真的抓得到錯。
 
 跑法：python3 -m unittest discover -s tests
 """
 import importlib.util
 import pathlib
+import shutil
 import sqlite3
 import tempfile
 import unittest
@@ -43,7 +49,6 @@ def setUpModule():
 
 
 def tearDownModule():
-    import shutil
     shutil.rmtree(_SHARED_DIR, ignore_errors=True)
 
 
@@ -53,6 +58,20 @@ def _dump(db_path):
         return "\n".join(con.iterdump())
     finally:
         con.close()
+
+
+def _mutated_copy(mutate):
+    """複製共用 db 到 tmp、套用 mutate(cursor)、回傳新路徑（呼叫端自清）。"""
+    tmp = pathlib.Path(tempfile.mkdtemp())
+    dbp = tmp / "m.sqlite"
+    shutil.copy2(_SHARED_DB, dbp)
+    con = sqlite3.connect(str(dbp))
+    try:
+        mutate(con)
+        con.commit()
+    finally:
+        con.close()
+    return tmp, dbp
 
 
 class OracleCountTests(unittest.TestCase):
@@ -83,16 +102,20 @@ class OracleCountTests(unittest.TestCase):
 
 
 class DeterminismTests(unittest.TestCase):
-    def test_two_builds_are_byte_identical_dump(self):
+    """限縮宣稱：同 runtime 決定性（Sol S2-1）。不主張跨 Python/SQLite/OS byte 重現。"""
+
+    def test_two_builds_byte_identical_same_runtime(self):
         tmp = pathlib.Path(tempfile.mkdtemp())
         try:
             a, b = tmp / "a.sqlite", tmp / "b.sqlite"
             bdb.build(str(a))
             bdb.build(str(b))
-            self.assertEqual(_dump(a), _dump(b),
-                             "兩次建置的 .dump 不一致——L1 不可重現")
+            # ① SQLite 檔本身逐 byte 相同
+            self.assertEqual(a.read_bytes(), b.read_bytes(),
+                             "同 runtime 兩次建置的 SQLite 檔 bytes 不一致")
+            # ② dump（iterdump == sqlite3 .dump 的 Python 等價物）逐 byte 相同
+            self.assertEqual(_dump(a), _dump(b), "同 runtime 兩次建置的 dump 不一致")
         finally:
-            import shutil
             shutil.rmtree(tmp, ignore_errors=True)
 
 
@@ -125,7 +148,6 @@ class PitfallTests(unittest.TestCase):
             "SELECT count(*) FROM results WHERE points != cast(points AS INTEGER)"
         ).fetchone()[0]
         self.assertGreater(frac, 0, "應存在帶小數的 points（shared drive .5）")
-        # 型別確認：Ascari 1953 半分賽季，某列 points 帶 .5
         sample = self.con.execute(
             "SELECT points FROM results WHERE points=4.5 LIMIT 1").fetchone()
         self.assertIsNotNone(sample)
@@ -133,15 +155,21 @@ class PitfallTests(unittest.TestCase):
 
 
 class InvariantMechanismTests(unittest.TestCase):
-    """不變量檢查機制本身——重點在反向測試（失敗集合≠宣告集合必須 fail）。"""
+    """不變量檢查機制本身——反向測試（失敗集合≠宣告集合必須 fail）。"""
 
     def setUp(self):
         self.con = sqlite3.connect(str(_SHARED_DB))
         self.cur = self.con.cursor()
-        self.declared = inv.load_declared()   # 真實 known_exceptions.json
+        self.declared = inv.load_declared()   # 真實（已封印指紋的）known_exceptions.json
 
     def tearDown(self):
         self.con.close()
+
+    def test_declared_file_is_sealed(self):
+        """known_exceptions.json 必須已封印指紋（否則指紋防線失效）。"""
+        self.assertTrue(self.declared, "known_exceptions.json 沒有例外")
+        self.assertTrue(all(e.get("fingerprint") for e in self.declared),
+                        "有例外未封印 fingerprint——請跑 check-f1-invariants.py --seal")
 
     def test_real_failure_set_equals_declared_set(self):
         rep = inv.run(self.cur, self.declared)
@@ -149,11 +177,13 @@ class InvariantMechanismTests(unittest.TestCase):
                         f"未預期失敗={rep['unexpected_failures']} 過期宣告={rep['missing_declarations']}")
         self.assertEqual(rep["summary"]["unexpected_failures"], 0)
         self.assertEqual(rep["summary"]["missing_declarations"], 0)
+        self.assertEqual(rep["summary"]["fingerprint_mismatches"], 0)
+        self.assertEqual(rep["summary"]["unsealed_declarations"], 0)
         self.assertGreater(rep["summary"]["matched"], 0)
 
     def test_dropping_one_declaration_makes_it_fail(self):
         """反向①：少宣告一條 → 出現未宣告失敗 → 整體 fail。"""
-        fewer = self.declared[1:]              # 拿掉第一條
+        fewer = self.declared[1:]
         rep = inv.run(self.cur, fewer)
         self.assertFalse(rep["passed"])
         self.assertEqual(rep["summary"]["unexpected_failures"], 1)
@@ -162,7 +192,7 @@ class InvariantMechanismTests(unittest.TestCase):
         """反向②：宣告一條沒發生的例外 → 過期宣告 → 整體 fail。"""
         bogus = self.declared + [{
             "id": "EX-BOGUS", "invariant": "I2", "scope": {"season": 1999},
-            "reason": "不存在的失敗", "status": "pending_review"}]
+            "fingerprint": "0" * 64, "reason": "不存在的失敗", "status": "approved"}]
         rep = inv.run(self.cur, bogus)
         self.assertFalse(rep["passed"])
         self.assertEqual(rep["summary"]["missing_declarations"], 1)
@@ -175,55 +205,117 @@ class InvariantMechanismTests(unittest.TestCase):
         self.assertEqual(rep["summary"]["total_failures"], 39)
 
     def test_expected_per_invariant_failure_counts(self):
-        """鎖住失敗分布，防某個不變量被無聲改壞（例如 I4/I8 應恆為 0）。"""
+        """鎖住失敗分布，防某個不變量被無聲改壞（I1/I4/I5/I8/I11 應恆為 0）。"""
         rep = inv.run(self.cur, self.declared)
         c = rep["per_invariant_failure_counts"]
         self.assertEqual(c["I1"], 0)
-        self.assertEqual(c["I4"], 0)   # 雙路徑一致
-        self.assertEqual(c["I5"], 0)
-        self.assertEqual(c["I8"], 0)   # status.json 獨立 oracle 一致
-        self.assertEqual(c["I2"], 3)   # shared drives
-        self.assertEqual(c["I9"], 3)   # Indy 500 1958–60
+        self.assertEqual(c["I4"], 0)    # 雙查詢路徑一致
+        self.assertEqual(c["I5"], 0)    # f1stats vs db 雙路徑一致
+        self.assertEqual(c["I8"], 0)    # status.json 獨立查詢路徑一致
+        self.assertEqual(c["I11"], 0)   # 零孤兒外鍵
+        self.assertEqual(c["I2"], 3)    # shared drives
+        self.assertEqual(c["I6"], 27)   # dropped scores 1950–1990
+        self.assertEqual(c["I9"], 3)    # Indy 500 1958–60
+
+
+class SolReproRegressionTests(unittest.TestCase):
+    """Sol 查核桌兩個 false-green 反例——修正後必須 FAIL（防回歸）。"""
+
+    def test_i6_points_plus_1000_now_fails_on_fingerprint(self):
+        """S0-1 反例①：1950 某列 points +1000，舊版命中同 scope 全綠；現在指紋不符 FAIL。"""
+        def mut(con):
+            rid = con.execute("SELECT id FROM results WHERE season=1950 AND points>0 "
+                              "ORDER BY id LIMIT 1").fetchone()[0]
+            con.execute("UPDATE results SET points=points+1000 WHERE id=?", (rid,))
+        tmp, dbp = _mutated_copy(mut)
+        try:
+            con = sqlite3.connect(str(dbp))
+            rep = inv.run(con.cursor(), inv.load_declared())
+            con.close()
+            self.assertFalse(rep["passed"])
+            self.assertGreaterEqual(rep["summary"]["fingerprint_mismatches"], 1)
+            self.assertTrue(any(m["scope"] == {"season": 1950}
+                                for m in rep["fingerprint_mismatches"]))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_orphan_driver_now_fails_on_I11(self):
+        """S1-1 反例②：2026 R10 一列 driver_id 改成不存在實體，現在 I11 抓到 FAIL。"""
+        def mut(con):
+            rid = con.execute(
+                "SELECT id FROM results WHERE season=2026 AND round=10 AND points=0 "
+                "AND position_text NOT IN ('1','2','3') ORDER BY id DESC LIMIT 1").fetchone()[0]
+            con.execute("UPDATE results SET driver_id='__orphan_driver__' WHERE id=?", (rid,))
+        tmp, dbp = _mutated_copy(mut)
+        try:
+            con = sqlite3.connect(str(dbp))
+            rep = inv.run(con.cursor(), inv.load_declared())
+            con.close()
+            self.assertFalse(rep["passed"])
+            self.assertEqual(rep["per_invariant_failure_counts"]["I11"], 1)
+            self.assertTrue(any(v["invariant"] == "I11" and
+                                "__orphan_driver__" in v["detail"].get("orphan_values", [])
+                                for v in rep["unexpected_failures"]))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
 
 
 class InvariantDetectionTests(unittest.TestCase):
-    """把違規注入一顆合成 db，確認對應不變量真的抓得到（不是永遠回綠）。"""
-
-    def _mini(self):
-        con = sqlite3.connect(":memory:")
-        con.executescript(bdb.SCHEMA)
-        return con
+    """把違規注入 db，確認對應不變量真的抓得到（不是永遠回綠）。"""
 
     def test_I1_detects_duplicated_standings_position(self):
-        con = self._mini()
+        con = sqlite3.connect(":memory:")
+        con.executescript(bdb.SCHEMA)
         con.executemany(
             "INSERT INTO driver_standings VALUES (?,?,?,?,?,?,?)",
             [(2050, 1, "1", 10.0, 1, "a", ""),
              (2050, 1, "1", 10.0, 0, "b", "")])   # 兩個 position=1 → I1 應抓到
         rep = inv.run(con.cursor(), [])
-        keys = [v["invariant"] for v in rep["unexpected_failures"]]
-        self.assertIn("I1", keys)
+        self.assertIn("I1", [v["invariant"] for v in rep["unexpected_failures"]])
         con.close()
 
-    def test_I5_detects_aggregate_column_on_entity_table(self):
-        """若 drivers 表被塞進 career_wins 這種跨季聚合欄，I5 必須抓到。"""
+    def test_I5_dualpath_detects_missing_win_in_db(self):
+        """S1-1：I5 現在是真雙路徑——刪掉 db 裡 Schumacher 一勝，f1stats(讀生涯檔)仍是 91，
+        兩路徑不一致 → I5 抓到。舊版恆真式（同 SQL 比自己）抓不到。"""
+        def mut(con):
+            rid = con.execute("SELECT id FROM results WHERE driver_id='michael_schumacher' "
+                              "AND position_text='1' ORDER BY id LIMIT 1").fetchone()[0]
+            con.execute("UPDATE results SET position_text='2', position=2 WHERE id=?", (rid,))
+        tmp, dbp = _mutated_copy(mut)
+        try:
+            con = sqlite3.connect(str(dbp))
+            vs = inv.inv_I5(con.cursor())
+            con.close()
+            self.assertTrue(any(v["scope"].get("driver_id") == "michael_schumacher"
+                                for v in vs), "I5 雙路徑應抓到 db 少一勝")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_I5_schema_check_detects_aggregate_column(self):
+        """I5 結構面：drivers 表被塞進 career_wins 這種跨季聚合欄，必須抓到。"""
         con = sqlite3.connect(":memory:")
-        # 故意建一個帶違規欄的 drivers 表
         con.execute("CREATE TABLE drivers (driver_id TEXT PRIMARY KEY, career_wins INTEGER)")
-        con.execute("CREATE TABLE driver_standings (season INT, position INT, "
-                    "position_text TEXT, points REAL, wins INT, driver_id TEXT, constructor_ids TEXT)")
-        con.execute("CREATE TABLE seasons (year INT, url TEXT, status TEXT)")
         con.execute("CREATE TABLE constructors (constructor_id TEXT)")
         con.execute("CREATE TABLE circuits (circuit_id TEXT)")
-        con.execute("CREATE TABLE results (season INT, round INT, position_text TEXT, "
-                    "points REAL, driver_id TEXT, status TEXT)")
-        con.execute("CREATE TABLE sprint_results (season INT, round INT, driver_id TEXT, points REAL)")
-        con.execute("CREATE TABLE constructor_standings (season INT, wins INT, constructor_id TEXT, position INT)")
-        con.execute("CREATE TABLE races (season INT, round INT)")
-        con.execute("CREATE TABLE qualifying (season INT, round INT)")
-        vs = inv.inv_I5(con.cursor())
-        self.assertTrue(any(v["invariant"] == "I5" and "career_wins" in
-                            v["detail"].get("unexpected_aggregate_columns", [])
+        con.execute("CREATE TABLE seasons (year INT, url TEXT, status TEXT)")
+        vs = inv._i5_schema_check(con.cursor())
+        self.assertTrue(any("career_wins" in v["detail"].get("unexpected_aggregate_columns", [])
+                            for v in vs))
+        con.close()
+
+    def test_I11_detects_orphan_constructor(self):
+        """I11：孤兒 constructor_id 必須抓到。"""
+        con = sqlite3.connect(":memory:")
+        con.executescript(bdb.SCHEMA)
+        con.execute("INSERT INTO seasons VALUES (2050,'','completed')")
+        con.execute("INSERT INTO races VALUES (2050,1,'X','2050-01-01','circ','')")
+        con.execute("INSERT INTO circuits VALUES ('circ','C','L','Co',0.0,0.0,'')")
+        con.execute("INSERT INTO drivers VALUES ('d','','','G','F','','','')")
+        con.execute("INSERT INTO results VALUES "
+                    "(1,2050,1,'1',1,'1',10.0,'d','__ghost_constructor__',1,10,'Finished')")
+        vs = inv.inv_I11(con.cursor())
+        self.assertTrue(any(v["invariant"] == "I11" and
+                            "__ghost_constructor__" in v["detail"].get("orphan_values", [])
                             for v in vs))
         con.close()
 

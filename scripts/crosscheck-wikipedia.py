@@ -1,34 +1,49 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """crosscheck-wikipedia.py — 計畫 §4.5 外部對照層：拿 en.wikipedia 的
-`{{Infobox F1 driver}}` 當**獨立編纂路徑**，對照我方由 L1 sqlite 算出的生涯統計。
+`{{Infobox F1 driver}}` 當**外部對照路徑**，對照我方由 L1 sqlite 算出的生涯統計。
 
-為什麼要這條：所有內部不變量（check-f1-invariants.py）都抓不到「定義層」系統性錯誤
-（把桿位定義成 grid=1 那類，全綠但錯）。維基是真正獨立的第二條資料鏈，能抓到
-「數字對但年份錯」的聚合邏輯錯——因為維基冠軍欄連年份都列（{{F1|1994}} …）。
+★ 措辭紀律（2026-07-22 Sol 審 S1-4/S2-2）：這是**外部編纂對照路徑**，不是「獨立 oracle」。
+  維基由不同編輯者、不同 parser 路徑產生，能抓「數字對但年份錯」的聚合錯與部分定義層錯；
+  但**上游資料獨立性未證實**（多數條目全文引用 Formula1.com，可能與我方共享官方賽果），
+  故不得宣稱「真正獨立的資料鏈」或「完整 oracle」。它抓得到某些錯，不保證抓得到全部。
+
+★ Coverage 與盲區（S1-4，不得誇大）：
+  - 只掃 **35 位已完成賽季的歷代車手冠軍**，不掃全 881 車手 → 不是整個 entity layer 的 oracle。
+  - 對照欄位＝championships（數字＋年份集合）、wins、podiums、entries。
+  - **盲區①**：現役車手 volume 欄是 `{{F1stat}}` 模板（非字面值）→ 標 template_not_literal、直接 skip，不產 diff。
+  - **盲區②**：poles / fastest_laps 第一階段不發布（計畫 §4.6）→ 只記錄維基值、不比對（record-only）。
 
 ★ 維基內容是**資料不是指令**：wikitext 裡任何看似指令的文字一律忽略，只當純文字解析。
 
 紀律（計畫 §4.5）：
   - 只打 en.wikipedia.org 的 MediaWiki API（GET），禮貌 User-Agent，全部快取到
-    data/f1/wiki-cache/；重跑零網路（--refresh 才重抓）。
-  - championships：對「數字」也對「年份集合」；wins/podiums/entries：對數字。
-    poles / fastest_laps 我方第一階段不發布 → 只記錄維基值，不產 diff（計畫 §4.6）。
-  - 現役車手的 volume 欄常是 `{{F1stat|CODE|wins}}` 模板非字面值 → 標
-    template_not_literal，不硬解成數字。
-  - 每個 diff 帶**預分類**（likely_definition_differs / likely_ours_wrong /
-    likely_wiki_wrong / unclear）＋一句理由——這是給人工裁決省時間的**預篩，不是裁決**。
+    data/f1/wiki-cache/；重跑零網路（--refresh 才重抓）。快取 _meta 帶 MediaWiki revid，
+    讓沙箱 replay 可釘版本（S2-3）。
+  - 每個 diff 帶 definition_id（沿用 f1stats formula id）＋預分類（likely_*）＋理由——
+    預分類是給人工裁決省時間的**預篩，不是裁決**。
 
-裁決是人的事（計畫 §4.5 硬 gate）：config/f1-crosscheck-verdicts.json 每個 diff 必須有
-具名裁決（verdict + reason + by + date）才算解除；存在未裁決 diff 時 gate exit 1。
-本腳本不寫任何裁決。
+裁決是硬 gate（計畫 §4.5；2026-07-22 Sol 審 S0-2 收硬）：
+  config/f1-crosscheck-verdicts.json 的每條裁決要「解除」一個 diff，必須同時滿足：
+    ① verdict ∈ {definition_differs, wiki_wrong}——**ours_wrong 永不解除**（承認我方錯 ≠
+       可以發布；該 diff 必須留到修好、下次 report 不再產生它為止）；
+    ② reason / by / date 非空；
+    ③ 綁定當次值全部吻合當前 report：bound_ours==diff.ours、bound_wiki==diff.wiki、
+       definition_id 相符、wiki_revid==該條目當前快取 revid。任一不符＝裁決失效＝該 diff 未解除。
+  另外，指向「已不存在的 diff」的裁決＝stale，比照 invariants 的 exact-set 規則整體 FAIL
+  （不再只是警告）。→ passed 僅在「零未解 diff 且零 stale 裁決」時成立。
+  本腳本**永不寫入裁決**（裁決是人的事）；只讀取、驗證。
+
+gen-racing-drivers.py 接線（前置 gate；目前該檔尚未建，先在此定義契約）：
+  產出頁面前應呼叫 `crosscheck-wikipedia.py --gate-only`，exit 0 才可續；exit 1 一律中止。
+  與 invariants、golden 三 gate 並列，任一非零都不得產頁。
 
 用法：
-  python3 scripts/crosscheck-wikipedia.py                 # 抓/讀快取→對照→寫報告→跑 gate（未裁決 exit 1）
+  python3 scripts/crosscheck-wikipedia.py                 # 抓/讀快取→對照→寫報告→跑硬 gate（未解 diff 或 stale 裁決 exit 1）
   python3 scripts/crosscheck-wikipedia.py --driver senna  # 名單外附加指定車手
   python3 scripts/crosscheck-wikipedia.py --report-only    # 只產報告，永遠 exit 0（迭代用）
-  python3 scripts/crosscheck-wikipedia.py --gate-only      # 不抓網路，只對現有報告＋裁決檔跑 gate
-  python3 scripts/crosscheck-wikipedia.py --refresh        # 忽略快取重抓
+  python3 scripts/crosscheck-wikipedia.py --gate-only      # 不抓網路，只對現有報告＋裁決檔跑硬 gate
+  python3 scripts/crosscheck-wikipedia.py --refresh        # 忽略快取重抓（回填 revid；數值變動會如實列出）
 """
 import argparse
 import datetime as _dt
@@ -60,10 +75,41 @@ REPORT = ROOT / "data" / "f1" / "crosscheck-report.json"
 API = "https://en.wikipedia.org/w/api.php"
 UA = "racing-tools/1.0 (racing.twtools.cc; non-commercial encyclopedia crosscheck)"
 
-# 需要具名裁決才算解除的合法裁決值（比對 §4.5 三分類）
+# 合法裁決值（§4.5 三分類）
 VALID_VERDICTS = {"ours_wrong", "definition_differs", "wiki_wrong"}
+# 「可解除 diff」的裁決值——**不含 ours_wrong**：承認我方錯不等於可以發布，
+# 該 diff 必須留到資料修好、下次 report 不再產生它為止（Sol 審 S0-2 ①）。
+RESOLVING_VERDICTS = {"definition_differs", "wiki_wrong"}
 # 產 diff 的欄位；poles/fastest_laps 只記錄不比對（計畫 §4.6 第一階段不發布）
 RECORD_ONLY_FIELDS = ("poles", "fastest_laps")
+
+# definition_id 註冊表（S1-3）：沿用 f1stats.py 的 formula id，讓裁決綁定「用哪個定義算的」。
+# 每個對照欄位對應一個 definition_id；裁決 bound 的 definition_id 必須與 report 相符才生效。
+# ⚠️ entries 用 results_distinct_races（不重複、有賽果紀錄的場次），**不是**標準 GP entries——
+#    這是遷就資料能力的口徑，維基 races 欄對此欄永遠只會產可預期 diff（Sol 審 S1-3）。
+DEFINITION_REGISTRY = {
+    "count_seasons_driver_standing_eq_1": {
+        "formula": "count(seasons where driver_standings.position==1 and season completed)",
+        "coverage": "1950-2026", "unit": "季"},
+    "results_position_text_eq_1": {
+        "formula": "count(results where position_text=='1')",
+        "coverage": "1950-2026", "unit": "場"},
+    "results_position_text_in_123": {
+        "formula": "count(results where position_text in ('1','2','3'))",
+        "coverage": "1950-2026", "unit": "場"},
+    "results_distinct_races": {
+        "formula": "count(distinct season-round where a results row exists)",
+        "coverage": "1950-2026", "unit": "場",
+        "caveat": "不重複、有賽果紀錄的場次；非標準 GP entries（不含未過排位/未起跑）"},
+}
+# report 的每個 diff field → definition_id
+FIELD_DEFINITION_ID = {
+    "championships_count": "count_seasons_driver_standing_eq_1",
+    "championships_years": "count_seasons_driver_standing_eq_1",
+    "wins": "results_position_text_eq_1",
+    "podiums": "results_position_text_in_123",
+    "entries": "results_distinct_races",
+}
 
 # 模組級網路計數：用來證明「第二次跑零網路請求」
 NET_REQUESTS = 0
@@ -80,14 +126,16 @@ def _title_from_url(url):
 
 
 def fetch_wikitext_api(title):
-    """打 MediaWiki API 取條目最新版 wikitext。回 (wikitext, http_status, resolved_title)。只 GET。
+    """打 MediaWiki API 取條目最新版 wikitext。回 (wikitext, http_status, resolved_title, revid)。只 GET。
 
     帶 redirects=1：Ergast 的 URL 常指向重導頁（Nino_Farina→Giuseppe Farina、
     Alan_Jones_(Formula_1)→Alan Jones (racing driver)），API 直接解到目標頁內容。
+    rvprop 帶 ids：取回該版 revid（S2-3），讓快照 replay 可釘住 Wikipedia 版本、
+    裁決可綁定「當時看的是哪一版」。
     """
     global NET_REQUESTS
     q = urllib.parse.urlencode({
-        "action": "query", "prop": "revisions", "rvprop": "content",
+        "action": "query", "prop": "revisions", "rvprop": "content|ids",
         "rvslots": "main", "format": "json", "formatversion": "2",
         "redirects": "1", "titles": title})
     url = f"{API}?{q}"
@@ -102,8 +150,10 @@ def fetch_wikitext_api(title):
             page = data["query"]["pages"][0]
             if page.get("missing"):
                 raise RuntimeError(f"維基條目不存在：{title}")
-            wt = page["revisions"][0]["slots"]["main"]["content"]
-            return wt, status, page.get("title", title)
+            rev = page["revisions"][0]
+            wt = rev["slots"]["main"]["content"]
+            revid = rev.get("revid")
+            return wt, status, page.get("title", title), revid
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503, 504) and attempt < 4:
                 ra = e.headers.get("Retry-After")
@@ -123,23 +173,26 @@ def fetch_wikitext_api(title):
 
 
 def get_wikitext(driver_id, title, url, cache_dir=WIKI_CACHE, refresh=False, pause=0.2):
-    """取 wikitext；優先讀快取，快取命中零網路。回 (wikitext, from_cache)。"""
+    """取 wikitext；優先讀快取，快取命中零網路。回 (wikitext, from_cache, revid)。
+
+    revid 從快取 _meta.revid 讀（舊快取無此欄則回 None，提示需 --refresh 回填）。
+    """
     cache_dir = pathlib.Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
     cf = cache_dir / f"{driver_id}.json"
     if cf.exists() and not refresh:
         blob = json.loads(cf.read_text(encoding="utf-8"))
-        return blob["wikitext"], True
+        return blob["wikitext"], True, blob.get("_meta", {}).get("revid")
     if pause:
         time.sleep(pause)  # 禮貌節流
-    wt, status, resolved = fetch_wikitext_api(title)
+    wt, status, resolved, revid = fetch_wikitext_api(title)
     blob = {"_meta": {"driver_id": driver_id, "title": title,
                       "resolved_title": resolved, "url": url,
-                      "http_status": status,
+                      "http_status": status, "revid": revid,
                       "fetched_at": _dt.datetime.now(_dt.timezone.utc).isoformat()},
             "wikitext": wt}
     cf.write_text(json.dumps(blob, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return wt, False
+    return wt, False, revid
 
 
 # ---------------------------------------------------------------------------
@@ -385,11 +438,15 @@ def _classify_entries(ours, wiki_entries, wiki_starts, ctx):
             f"需確認我方 results_row_exists 對應哪一個")
 
 
-def compare_driver(did, name, our_years, our_cnt, ib):
-    """回 (fields_record, diffs)。fields_record 記錄每欄我方值/維基值/是否 diff。"""
+def compare_driver(did, name, our_years, our_cnt, ib, wiki_revid=None):
+    """回 (fields_record, diffs)。fields_record 記錄每欄我方值/維基值/是否 diff。
+
+    wiki_revid：該條目的當前 MediaWiki revid，寫進每個 diff 供裁決綁定版本（S2-3）。
+    """
     fields = {}
     diffs = []
-    ctx = {"first_season": our_cnt["first_season"], "last_season": our_cnt["last_season"]}
+    ctx = {"first_season": our_cnt["first_season"], "last_season": our_cnt["last_season"],
+           "wiki_revid": wiki_revid}
 
     # -- championships：數字 + 年份集合兩條 --
     champ = ib["championships"]
@@ -447,6 +504,12 @@ def compare_driver(did, name, our_years, our_cnt, ib):
                          "template_not_literal": w["template_not_literal"],
                          "note": "第一階段不發布，僅記錄維基值不比對"}
 
+    # 每個 diff 補綁定用欄位：definition_id（用哪個公式算的）＋ wiki_revid（看的是哪一版維基）。
+    # 這兩個是硬 gate 綁定的一部分——裁決若 bound 的 definition_id/wiki_revid 與此不符即失效。
+    for d in diffs:
+        d["definition_id"] = FIELD_DEFINITION_ID.get(d["field"])
+        d["wiki_revid"] = wiki_revid
+
     return fields, diffs
 
 
@@ -483,25 +546,25 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
                 continue
             name = f"{meta.get('givenName','')} {meta.get('familyName','')}".strip()
             title = _title_from_url(meta["url"])
-            wt, from_cache = get_wikitext(did, title, meta["url"], refresh=refresh)
+            wt, from_cache, revid = get_wikitext(did, title, meta["url"], refresh=refresh)
             n_cache += int(from_cache)
             n_net += int(not from_cache)
             if not quiet:
-                print(f"  {'📦 cache' if from_cache else '🌐 net  '} {did} ({title})", flush=True)
+                print(f"  {'📦 cache' if from_cache else '🌐 net  '} {did} ({title}) rev={revid}", flush=True)
             ib = parse_infobox(wt)
             if not ib.get("found"):
                 drivers_out.append({"driver_id": did, "name": name, "wikipedia_title": title,
                                     "wikipedia_url": meta["url"], "from_cache": from_cache,
-                                    "infobox_found": False,
+                                    "wiki_revid": revid, "infobox_found": False,
                                     "error": "未找到 {{Infobox F1 driver}}"})
                 continue
             our_years = our_championship_years(cur, did)
             our_cnt = our_counts(cur, did)
-            fields, diffs = compare_driver(did, name, our_years, our_cnt, ib)
+            fields, diffs = compare_driver(did, name, our_years, our_cnt, ib, wiki_revid=revid)
             drivers_out.append({
                 "driver_id": did, "name": name, "wikipedia_title": title,
                 "wikipedia_url": meta["url"], "from_cache": from_cache,
-                "infobox_found": True, "fields": fields})
+                "wiki_revid": revid, "infobox_found": True, "fields": fields})
             all_diffs.extend(diffs)
     finally:
         con.close()
@@ -516,7 +579,15 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
     return {
         "generated_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
         "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
-        "note": "維基是獨立編纂路徑（抓定義層錯），但維基自己也會錯；每個 diff 需人工具名裁決",
+        "note": ("維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；"
+                 "能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決"),
+        "coverage": {
+            "scope": "35 位已完成賽季的歷代車手冠軍（非全 881 車手，非整個 entity layer）",
+            "compared_fields": ["championships(count+years)", "wins", "podiums", "entries"],
+            "blind_spots": [
+                "現役車手 volume 欄為 {{F1stat}} 模板 → template_not_literal，skip 不比對",
+                "poles / fastest_laps 第一階段不發布 → record-only，只記錄不比對"]},
+        "definition_registry": DEFINITION_REGISTRY,
         "network": {"from_cache": n_cache, "from_network": n_net,
                     "total_api_requests_this_run": NET_REQUESTS},
         "summary": {
@@ -562,44 +633,96 @@ def load_verdicts(path=VERDICTS):
 
 
 def _verdict_valid(v):
-    """一條裁決要有效必須：verdict 合法 + reason/by/date 皆非空。"""
+    """一條裁決結構完整：verdict 合法 + reason/by/date 皆非空。（僅結構，不含綁定。）"""
     return (v.get("verdict") in VALID_VERDICTS
             and str(v.get("reason", "")).strip()
             and str(v.get("by", "")).strip()
             and str(v.get("date", "")).strip())
 
 
-def gate_diffs(report, verdicts):
-    """回 (passed, unresolved, stale)。
+def _verdict_resolves(v, diff):
+    """一條裁決能否「解除」某個 diff。回 (resolves: bool, why_not: str|None)。
 
-    passed  = 每個 diff 都有一條有效裁決（且沒有指向不存在 diff 的過期裁決）。
-    unresolved = 有 diff 但缺有效裁決（→ 待人工裁決）。
-    stale   = 裁決指向報告中不存在的 diff key（過期/拼錯，提醒清理，不單獨擋 gate）。
+    硬 gate 條件（Sol 審 S0-2）：結構完整 + verdict∈可解除集（ours_wrong 永不解除）
+    + 綁定當次值全部吻合（bound_ours / bound_wiki / definition_id / wiki_revid）。
+    任一不符＝不解除。這擋掉「改值後舊裁決仍放行」與「承認我方錯也放行」。
     """
-    valid_keys = {v["key"] for v in verdicts if _verdict_valid(v) and "key" in v}
-    diff_keys = {d["key"] for d in report.get("diffs", [])}
-    unresolved = [d for d in report.get("diffs", []) if d["key"] not in valid_keys]
-    stale = sorted(k for k in valid_keys if k not in diff_keys)
-    passed = not unresolved
+    if not _verdict_valid(v):
+        return False, "裁決結構不完整（verdict 非法或缺 reason/by/date）"
+    if v["verdict"] == "ours_wrong":
+        return False, "verdict=ours_wrong 永不解除——承認我方錯≠可發布，須修資料至 diff 消失"
+    if v["verdict"] not in RESOLVING_VERDICTS:
+        return False, f"verdict={v['verdict']} 不在可解除集"
+    if v.get("bound_ours") != diff.get("ours"):
+        return False, f"bound_ours({v.get('bound_ours')})≠當前({diff.get('ours')})——裁決綁的數值已變"
+    if v.get("bound_wiki") != diff.get("wiki"):
+        return False, f"bound_wiki({v.get('bound_wiki')})≠當前({diff.get('wiki')})——維基值已變"
+    if v.get("definition_id") != diff.get("definition_id"):
+        return False, f"definition_id({v.get('definition_id')})≠當前({diff.get('definition_id')})"
+    if v.get("wiki_revid") != diff.get("wiki_revid"):
+        return False, f"wiki_revid({v.get('wiki_revid')})≠當前({diff.get('wiki_revid')})——維基版本已變"
+    return True, None
+
+
+def gate_diffs(report, verdicts):
+    """回 (passed, unresolved, stale)。硬 gate（Sol 審 S0-2 收硬後）。
+
+    passed     = 零未解 diff **且** 零 stale 裁決（exact-set：每個 diff 恰好被一條綁定吻合的
+                 可解除裁決覆蓋，且沒有指向不存在 diff 的多餘裁決）。
+    unresolved = 有 diff 但沒有任何裁決能解除它；每筆帶 `_gate_status` 與 `_gate_detail`：
+                   no_verdict     — 沒有對應 key 的裁決
+                   ours_wrong_hold— 有 ours_wrong 裁決，但依規則不解除（須修資料）
+                   binding_drift  — 有裁決但綁定值/版本不符（改值攻擊會落這類）
+    stale      = 裁決 key 指向報告中不存在的 diff → 比照 invariants exact-set，**單獨即 FAIL**。
+    """
+    diff_by_key = {d["key"]: d for d in report.get("diffs", [])}
+    verdicts_by_key = {}
+    for v in verdicts:
+        if "key" in v:
+            verdicts_by_key.setdefault(v["key"], []).append(v)
+
+    unresolved = []
+    for d in report.get("diffs", []):
+        cand = verdicts_by_key.get(d["key"], [])
+        if any(_verdict_resolves(v, d)[0] for v in cand):
+            continue
+        # 未解除——判斷成因（挑最有訊息量的一條）
+        if not cand:
+            status, detail = "no_verdict", "無對應裁決"
+        else:
+            whys = [_verdict_resolves(v, d)[1] for v in cand]
+            if any(v.get("verdict") == "ours_wrong" for v in cand):
+                status = "ours_wrong_hold"
+            else:
+                status = "binding_drift"
+            detail = "；".join(w for w in whys if w)
+        ann = dict(d)
+        ann["_gate_status"] = status
+        ann["_gate_detail"] = detail
+        unresolved.append(ann)
+
+    stale = sorted(k for k in verdicts_by_key if k not in diff_by_key)
+    passed = not unresolved and not stale
     return passed, unresolved, stale
 
 
 def _print_gate(passed, unresolved, stale):
     print("\n" + "-" * 70)
-    print("裁決 gate（config/f1-crosscheck-verdicts.json）")
+    print("裁決硬 gate（config/f1-crosscheck-verdicts.json）")
     if stale:
-        print(f"⚠️  {len(stale)} 條裁決指向已不存在的 diff（過期，建議清理）：")
+        print(f"🔴 {len(stale)} 條裁決指向已不存在的 diff（stale）→ exact-set FAIL：")
         for k in stale:
             print(f"    {k}")
-    if passed:
-        print("✅ 所有 diff 都已具名裁決（verdict + reason + by + date）。")
-    else:
-        print(f"🔴 尚有 {len(unresolved)} 個 diff 未裁決 → gate FAIL（gen-racing-drivers 應 exit 1）：")
+    if unresolved:
+        print(f"🔴 {len(unresolved)} 個 diff 未解除 → gate FAIL（gen-racing-drivers --gate-only 應 exit 1）：")
         for d in unresolved:
-            print(f"    {d['key']}  [{d['classification']}]  我方={d['ours']} 維基={d['wiki']}")
-        print("    → 請在 config/f1-crosscheck-verdicts.json 為每條加："
-              '{"key":…,"verdict":"ours_wrong|definition_differs|wiki_wrong",'
-              '"reason":…,"by":…,"date":…}')
+            print(f"    {d['key']}  [{d.get('_gate_status')}]  我方={d['ours']} 維基={d['wiki']}"
+                  f"  ← {d.get('_gate_detail')}")
+        print("    → 每條需一條 verdict∈{definition_differs,wiki_wrong}＋reason/by/date"
+              "＋綁定 bound_ours/bound_wiki/definition_id/wiki_revid 全部吻合當前 report；"
+              "ours_wrong 不解除（須修資料到 diff 消失）。")
+    if passed:
+        print("✅ 所有 diff 都被綁定吻合的具名裁決解除，且無 stale 裁決。")
 
 
 # ---------------------------------------------------------------------------
