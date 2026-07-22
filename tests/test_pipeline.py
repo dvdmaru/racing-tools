@@ -173,9 +173,14 @@ class ApprovalGateIntegrationTests(unittest.TestCase):
             encoding="utf-8")
         self._write_approved([])
 
+        # ba 內部自己 import 了一份獨立的 racinglib 模組實例（ba.rc，非本檔頂層的 rc）——
+        # render_article() 的 shared_css_href() 與 build() 尾端的 write_sitemap_part()
+        # 都吃 ba.rc.PUB / ba.rc.ROOT，不吃本檔頂層 rc 或 ba.PUB，四個都要一起 patch，
+        # 否則 M0 之後這兩步會悄悄寫進真實專案目錄（assets/、data/sitemap-parts/）。
         for obj, name, value in (
                 (ba, "ROOT", self.tmp), (ba, "SRC", self.src), (ba, "PUB", self.pub),
-                (rc, "ROOT", self.tmp), (rc, "PUB", self.pub)):
+                (rc, "ROOT", self.tmp), (rc, "PUB", self.pub),
+                (ba.rc, "ROOT", self.tmp), (ba.rc, "PUB", self.pub)):
             old = getattr(obj, name)
             setattr(obj, name, value)
             self.addCleanup(setattr, obj, name, old)
@@ -216,8 +221,11 @@ class ApprovalGateIntegrationTests(unittest.TestCase):
 
         self.assertTrue((self.pub / "articles" / self.SLUG / "index.html").is_file())
         self.assertIn(f"✅ {self.SLUG}", log)
-        for rel in ("index.html", "articles/index.html", "feed.xml", "sitemap.xml"):
+        for rel in ("index.html", "articles/index.html", "feed.xml"):
             self.assertIn(self.SLUG, (self.pub / rel).read_text(encoding="utf-8"), rel)
+        # sitemap 已 manifest 化：build-articles.py 只寫自己的 part 檔（M0）
+        sitemap_part = self.tmp / "data" / "sitemap-parts" / "articles.txt"
+        self.assertIn(self.SLUG, sitemap_part.read_text(encoding="utf-8"))
 
     def test_one_character_edit_invalidates_approval_and_removes_output(self):
         approved_digest = self._approve_current_article()
@@ -230,8 +238,10 @@ class ApprovalGateIntegrationTests(unittest.TestCase):
         self.assertIn("approval invalidated (article_sha256 mismatch)", log)
         self.assertIn(f"approved: {approved_digest}", log)
         self.assertIn(f"actual:   {ba.article_sha256(self.article_path)}", log)
-        for rel in ("index.html", "articles/index.html", "feed.xml", "sitemap.xml"):
+        for rel in ("index.html", "articles/index.html", "feed.xml"):
             self.assertNotIn(self.SLUG, (self.pub / rel).read_text(encoding="utf-8"), rel)
+        sitemap_part = self.tmp / "data" / "sitemap-parts" / "articles.txt"
+        self.assertNotIn(self.SLUG, sitemap_part.read_text(encoding="utf-8"))
 
     def test_removing_previously_published_approval_deletes_output_directory(self):
         self._approve_current_article()

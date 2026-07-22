@@ -6,10 +6,11 @@
 sprint 週末加跑六、日＋workflow_dispatch 手動。非賽週跑了沒新資料 → 安靜跳過
 （fetch_racing.py exit 3 = 無變化 → 不重建、不部署、CI 綠燈結束）。
 
-跑序鐵則（sitemap 覆寫坑，同 baseball）：
+跑序鐵則（sitemap manifest 化，M0 後）：
   1. fetch_racing all：積分榜+賽曆+賽果快照（exit 3 = 無新資料 → 安靜跳過，除非 --force）
-  2. build-articles：文章+首頁 dashboard+整個覆寫 sitemap
-  3. 各 gen-*：standings / calendar / results，各自 re-merge sitemap path
+  2. build-articles：文章+首頁 dashboard+寫 sitemap part（articles）
+  3. 各 gen-*：standings / calendar / results，各自寫自己的 sitemap part
+  3b. build-sitemap：合併全部 part → public-racing/sitemap.xml
   4.（可選）wrangler deploy；成功後 IndexNow ping 本次變動頁
 
 部署需非互動憑證：CLOUDFLARE_API_TOKEN（本機從 ~/.config/cloudflare/ 檔案讀，永不印出；
@@ -129,10 +130,13 @@ def main():
     # 2. build-articles（文章+首頁+整個覆寫 sitemap）——必須在各 gen-* 之前
     run(script("build-articles.py"), "build-articles (home + sitemap)")
 
-    # 3. 各 generator re-merge 自己的 sitemap path
+    # 3. 各 generator 寫自己的 sitemap part
     run(script("gen-racing-standings.py", "--season", s), "gen standings")
     run(script("gen-racing-calendar.py", "--season", s), "gen calendar")
     run(script("gen-racing-results.py", "--season", s), "gen results")
+
+    # 3b. 合併全部 sitemap part → public-racing/sitemap.xml（三個 gen-* 之後、hard gate 之前）
+    run(script("build-sitemap.py"), "build sitemap")
 
     # 4.（可選）部署；pin wrangler 版本（CI 帶著 CLOUDFLARE_API_TOKEN，防供應鏈）。
     # hard gate：任何抓取/建置步驟失敗 → 禁止部署（build 步驟照跑收集診斷，但壞產物不上線）。
