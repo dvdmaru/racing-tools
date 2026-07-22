@@ -8,11 +8,11 @@
         "season": 1951
       },
       "status": "approved",
-      "reason": "1951 年 shared drive（共同駕駛）：French Grand Prix（第 4 站）由 Fangio/Fagioli 共駕 Alfa Romeo，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "reason": "1951 年 shared drive（共同駕駛）：French Grand Prix（第 4 站）由 Fangio/Fagioli 共駕 Alfa Romeo，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（處理照計畫 §十二：兩筆明細原樣保留、不得刪除漂白；shared 標記屬 facts／發布層、該層實作時才加註，results 原始表無此欄。）",
       "evidence": "data/f1/raw/results/1951-04.json 內兩列 positionText=='1'",
       "fingerprint": "e45ab475f2fa332a21606402c2c6c19a7f6600c74c3725f67f6ad9250d87ed17",
       "approved_by": "charlie",
-      "approved_date": "2026-07-21",
+      "approved_date": "2026-07-22",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {
@@ -22,11 +22,11 @@
         "season": 1956
       },
       "status": "approved",
-      "reason": "1956 年 shared drive（共同駕駛）：Argentine Grand Prix（第 1 站）由 Fangio/Musso 共駕 Ferrari，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "reason": "1956 年 shared drive（共同駕駛）：Argentine Grand Prix（第 1 站）由 Fangio/Musso 共駕 Ferrari，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（處理照計畫 §十二：兩筆明細原樣保留、不得刪除漂白；shared 標記屬 facts／發布層、該層實作時才加註，results 原始表無此欄。）",
       "evidence": "data/f1/raw/results/1956-01.json 內兩列 positionText=='1'",
       "fingerprint": "edcc978aa945bf98a1c25993d7839c807bd5ba4da6fae2ab8f19ab08fb221176",
       "approved_by": "charlie",
-      "approved_date": "2026-07-21",
+      "approved_date": "2026-07-22",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {
@@ -36,11 +36,11 @@
         "season": 1957
       },
       "status": "approved",
-      "reason": "1957 年 shared drive（共同駕駛）：British Grand Prix（第 5 站）由 Brooks/Moss 共駕 Vanwall，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "reason": "1957 年 shared drive（共同駕駛）：British Grand Prix（第 5 站）由 Brooks/Moss 共駕 Vanwall，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（處理照計畫 §十二：兩筆明細原樣保留、不得刪除漂白；shared 標記屬 facts／發布層、該層實作時才加註，results 原始表無此欄。）",
       "evidence": "data/f1/raw/results/1957-05.json 內兩列 positionText=='1'",
       "fingerprint": "f30b71ceec05304e859634508f81559f61f03cf16c5b2da2aa40449c33d5b76a",
       "approved_by": "charlie",
-      "approved_date": "2026-07-21",
+      "approved_date": "2026-07-22",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {
@@ -50,11 +50,11 @@
         "season": 1951
       },
       "status": "approved",
-      "reason": "1951 年 shared drive（共同駕駛）：French Grand Prix（第 4 站）由 Fangio/Fagioli 共駕 Alfa Romeo，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "reason": "1951 年 shared drive（共同駕駛）：French Grand Prix（第 4 站）由 Fangio/Fagioli 共駕 Alfa Romeo，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（處理照計畫 §十二：兩筆明細原樣保留、不得刪除漂白；shared 標記屬 facts／發布層、該層實作時才加註，results 原始表無此欄。）",
       "evidence": "data/f1/raw/results/1951-04.json 內兩列 positionText=='1'",
       "fingerprint": "b6ba85eb22e4ad3a2942a846946d50de303c627443b2f3374469ee7cb29fd754",
       "approved_by": "charlie",
-      "approved_date": "2026-07-21",
+      "approved_date": "2026-07-22",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {
@@ -64,11 +64,11 @@
         "season": 1956
       },
       "status": "approved",
-      "reason": "1956 年 shared drive（共同駕駛）：Argentine Grand Prix（第 1 站）由 Fangio/Musso 共駕 Ferrari，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "reason": "1956 年 shared drive（共同駕駛）：Argentine Grand Prix（第 1 站）由 Fangio/Musso 共駕 Ferrari，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（處理照計畫 §十二：兩筆明細原樣保留、不得刪除漂白；shared 標記屬 facts／發布層、該層實作時才加註，results 原始表無此欄。）",
       "evidence": "data/f1/raw/results/1956-01.json 內兩列 positionText=='1'",
       "fingerprint": "9a376697e8537ebd921873b4a506b165ede04514a9eac126d930ae5d86012447",
       "approved_by": "charlie",
-      "approved_date": "2026-07-21",
+      "approved_date": "2026-07-22",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {
@@ -78,11 +78,11 @@
         "season": 1957
       },
       "status": "approved",
-      "reason": "1957 年 shared drive（共同駕駛）：British Grand Prix（第 5 站）由 Brooks/Moss 共駕 Vanwall，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（計畫 §十二 明列：明細須保留兩筆並標 shared，不可刪除漂白。）",
+      "reason": "1957 年 shared drive（共同駕駛）：British Grand Prix（第 5 站）由 Brooks/Moss 共駕 Vanwall，兩位車手同列 position_text='1'，該場產生 2 個勝場列，使勝場數比場數多 1。（處理照計畫 §十二：兩筆明細原樣保留、不得刪除漂白；shared 標記屬 facts／發布層、該層實作時才加註，results 原始表無此欄。）",
       "evidence": "data/f1/raw/results/1957-05.json 內兩列 positionText=='1'",
       "fingerprint": "ae4611b8e93ddf5bcdba3ed54e31b77ee1a8ee88a15ecf52d307a51be9072cce",
       "approved_by": "charlie",
-      "approved_date": "2026-07-21",
+      "approved_date": "2026-07-22",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {

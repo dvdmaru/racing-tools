@@ -323,7 +323,7 @@ class GateTests(unittest.TestCase):
 
     # ---- 首輪 S0-2 三個 PoC（改值/ours_wrong/純 stale）----
 
-    def test_poc_altered_diff_value_invalidates_old_verdict(self):
+    def test_regression_altered_diff_value_invalidates_old_verdict(self):
         """diff 值改成荒謬值後，綁舊 fingerprint 的裁決失效 → binding_drift → FAIL。"""
         rep = self._report()
         verdicts = self._both_valid(rep)          # 先對「原始」diff 綁定
@@ -334,7 +334,7 @@ class GateTests(unittest.TestCase):
         drift = [d for d in unresolved if d["key"] == "fangio|entries"]
         self.assertEqual(drift[0]["_gate_status"], "binding_drift")
 
-    def test_poc_ours_wrong_never_resolves(self):
+    def test_regression_ours_wrong_never_resolves(self):
         rep = self._report()
         v = self._verdict_for(rep["diffs"][0], verdict="ours_wrong", reason="我方確實少算一場")
         passed, unresolved, *_ = cc.gate_diffs(rep, [v, self._verdict_for(rep["diffs"][1])])
@@ -342,7 +342,7 @@ class GateTests(unittest.TestCase):
         hold = [d for d in unresolved if d["key"] == "fangio|entries"]
         self.assertEqual(hold[0]["_gate_status"], "ours_wrong_hold")
 
-    def test_poc_pure_stale_verdict_fails(self):
+    def test_regression_pure_stale_verdict_fails(self):
         ghost = self._diff("ghost", 1, 2, 999)
         passed, unresolved, stale, faults = cc.gate_diffs(
             {"diffs": [], "drivers": [],
