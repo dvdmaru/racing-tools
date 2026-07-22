@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""check-f1-invariants.py — 對 L1 sqlite 斷言 I1–I11 並對照 known_exceptions（指紋綁定）。
+"""check-f1-invariants.py — 對 L1 sqlite 斷言 I1–I12 並對照 known_exceptions（指紋綁定）。
 
 ★ 核心規則（計畫 §4.4）：**不變量不是「必須全過」，是「失敗集合必須恰好等於
    data/f1/known_exceptions.json 宣告的例外集合」。多一個少一個都整體 FAIL。**
@@ -60,6 +60,11 @@
   I11 referential integrity：results/qualifying/sprint/standings/races 的
         driver_id/constructor_id/circuit_id/(season,round)/season 全部須存在於實體表
         守：孤兒外鍵（§S1-1 的 __orphan_driver__）。 不守：指向存在但錯誤的實體。
+  I12 賽季宇宙覆蓋（Terra 盲測缺口）：seasons.year 連續 1950..max ＋ 每季覆蓋
+        races/results/driver_standings（constructor_standings 只要求 >=1958）
+        守：整季消失（I1–I11 以「實際出現的賽季」為迭代宇宙的盲區——整季空了迴圈空轉全綠）、
+             seasons 錨點斷裂（缺年/重複/min!=1950）。 不守：上游 seasons.json 從源頭整批缺
+             （僅靠 1950 下限與連續性部分防禦；若整段連 seasons 也一併消失、下限仍在則抓不到）。
 
 I4/I8/I11 是**獨立查詢路徑**（不是獨立資料源，也不是完整 oracle）——沒有外部 oracle 時
 最接近交叉驗證的東西。定義層系統性錯誤（例：把桿位定義成 grid=1）這些都抓不到，那是
@@ -431,8 +436,57 @@ def inv_I11(cur):
     return out
 
 
+# --- I12：賽季宇宙覆蓋（Terra 盲測缺口——整季消失時 I1–I11 迭代宇宙空轉全綠） ---
+
+# 以 seasons 為宇宙必須逐季覆蓋的表；constructor_standings 只要求 >=1958（車隊冠軍
+# 1958 年才設立，1950–57 沒有是史實不是缺漏）。qualifying/sprint_results 不納入
+# （已知殘缺覆蓋：qualifying 1994 起才有——照 I5_UNCOVERED_FIELDS 的誠實精神不假裝）。
+I12_COVERAGE_TABLES = [
+    ("races", 1950),
+    ("results", 1950),
+    ("driver_standings", 1950),
+    ("constructor_standings", 1958),
+]
+
+
+def inv_I12(cur):
+    """賽季宇宙覆蓋（Terra 盲測缺口修補）。
+
+    I1–I11 全部以「被檢查表裡**實際出現**的賽季」當迭代宇宙（_seasons / _races_with_results /
+    races 表）——整季資料消失時迴圈直接空轉、檢查全綠。I12 反過來以 seasons 表為錨點宇宙：
+      ① 錨點連續性：seasons.year 集合必須恰好等於 range(1950, max+1) 的連續整數（現況
+         1950–2026 共 77 季）。缺年、重複、或 min != 1950 都產 violation。這條保護宇宙錨點本身。
+      ② 各表覆蓋：以 seasons 表為宇宙，每一季必須出現在 races / results / driver_standings；
+         constructor_standings 只要求 season >= 1958。
+    """
+    out = []
+    years = [r[0] for r in cur.execute("SELECT year FROM seasons ORDER BY year")]
+    got = set(years)
+    # ① 錨點連續性（seasons 錨點本身；空表＝宇宙塌陷也產 violation）
+    if not years:
+        out.append(_v("I12", {"kind": "anchor"},
+                      {"missing_years": [], "unexpected_years": [],
+                       "has_duplicates": False, "min": None, "max": None, "empty": True}))
+    else:
+        expected = set(range(1950, max(years) + 1))
+        if got != expected or len(years) != len(got) or min(years) != 1950:
+            out.append(_v("I12", {"kind": "anchor"},
+                          {"missing_years": sorted(expected - got),
+                           "unexpected_years": sorted(got - expected),
+                           "has_duplicates": len(years) != len(got),
+                           "min": min(years), "max": max(years), "empty": False}))
+    # ② 各表覆蓋（以 seasons 為宇宙，任何整季缺席都被抓）
+    for tbl, since in I12_COVERAGE_TABLES:
+        present = {r[0] for r in cur.execute(f"SELECT DISTINCT season FROM {tbl}")}
+        missing = sorted({y for y in got if y >= since} - present)
+        if missing:
+            out.append(_v("I12", {"table": tbl},
+                          {"missing_seasons": _set_hash(missing), "sample": missing[:50]}))
+    return out
+
+
 ALL_INVARIANTS = [inv_I1, inv_I2, inv_I3, inv_I4, inv_I5, inv_I6,
-                  inv_I7, inv_I8, inv_I9, inv_I10, inv_I11]
+                  inv_I7, inv_I8, inv_I9, inv_I10, inv_I11, inv_I12]
 
 
 # ---------------------------------------------------------------------------
@@ -630,7 +684,7 @@ def _print_human(rep):
     print("F1 不變量檢查（規則：失敗三元組集合＝宣告三元組集合，指紋綁定）")
     print("=" * 70)
     print("各不變量失敗數：")
-    for k in ("I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "I11"):
+    for k in ("I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "I11", "I12"):
         print(f"  {k:4s} {rep['per_invariant_failure_counts'].get(k, 0)}")
     print(f"\n總失敗 {s['total_failures']}　宣告例外 {s['declared_exceptions']}　匹配 {s['matched']}")
     print(f"未宣告失敗 {s['unexpected_failures']}　過期宣告 {s['missing_declarations']}　"
@@ -669,7 +723,7 @@ def _print_human(rep):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="I1–I11 不變量檢查（指紋綁定）vs known_exceptions")
+    ap = argparse.ArgumentParser(description="I1–I12 不變量檢查（指紋綁定）vs known_exceptions")
     ap.add_argument("--db", default=str(DEFAULT_DB))
     ap.add_argument("--exceptions", default=str(EXCEPTIONS))
     ap.add_argument("--json", help="另存結構化報告")
