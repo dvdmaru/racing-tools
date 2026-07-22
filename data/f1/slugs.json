@@ -1,0 +1,15 @@
+{
+  "_comment": "append-only：已發布 slug 永不改（URL 穩定性）；新增走 PR review",
+  "drivers": {
+    "michael_schumacher": "michael-schumacher",
+    "hamilton": "hamilton",
+    "senna": "senna",
+    "max_verstappen": "max-verstappen"
+  },
+  "constructors": {
+    "ferrari": "ferrari",
+    "mclaren": "mclaren",
+    "mercedes": "mercedes",
+    "red_bull": "red-bull"
+  }
+}

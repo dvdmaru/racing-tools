@@ -6,7 +6,8 @@
 （<details>），server-rendered——crawler 與 AI 引擎看得到全部表格。退賽（status != Finished
 且無 +laps）如實標原因；名次/積分照 API 官方分類。
 
-⚠️ 跑序：先 build-articles.py（覆寫 sitemap）再跑本腳本 re-merge。
+⚠️ 跑序：本腳本寫自己的 sitemap part（data/sitemap-parts/results.txt）；
+build-sitemap.py 需在三個 gen-* 都跑完後才合併出最終 sitemap.xml。
 用法：python3 scripts/gen-racing-results.py [--season 2026]
 """
 import argparse
@@ -143,7 +144,7 @@ def main():
                       "results", extra_css=RES_CSS),
         encoding="utf-8")
     print("✅ public-racing/results/index.html")
-    rc.sitemap_merge([canonical], "/results/")
+    rc.write_sitemap_part("results", [canonical])
 
 
 if __name__ == "__main__":

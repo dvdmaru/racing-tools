@@ -6,7 +6,8 @@
 已完賽站標冠軍、下一站高亮。歐洲賽事多在台灣深夜/清晨——這頁存在的理由。
 server-rendered、零 client fetch；sprint 站標記出自賽曆資料本身（有 Sprint session 即是）。
 
-⚠️ 跑序：先 build-articles.py（覆寫 sitemap）再跑本腳本 re-merge。
+⚠️ 跑序：本腳本寫自己的 sitemap part（data/sitemap-parts/calendar.txt）；
+build-sitemap.py 需在三個 gen-* 都跑完後才合併出最終 sitemap.xml。
 用法：python3 scripts/gen-racing-calendar.py [--season 2026]
 """
 import argparse
@@ -172,7 +173,7 @@ def main():
                       "calendar", extra_css=CAL_CSS),
         encoding="utf-8")
     print("✅ public-racing/calendar/index.html")
-    rc.sitemap_merge([canonical], "/calendar/")
+    rc.write_sitemap_part("calendar", [canonical])
 
 
 if __name__ == "__main__":

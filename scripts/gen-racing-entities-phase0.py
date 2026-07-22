@@ -59,8 +59,9 @@ FORMULA_ZH = {
 }
 
 # Phase 0 已建頁的實體（站內連結只指向存在的頁；沒建頁的實體顯示為不可點的灰 chip）
-HAS_PAGE = ({f"drivers/{d.replace('_', '-')}" for d in DRIVERS}
-            | {f"constructors/{c.replace('_', '-')}" for c in CONSTRUCTORS}
+# slug 走 M0 append-only 註冊表（data/f1/slugs.json）——這 8 個正是該表的 seed。
+HAS_PAGE = ({f"drivers/{rc.driver_slug(d)}" for d in DRIVERS}
+            | {f"constructors/{rc.constructor_slug(c)}" for c in CONSTRUCTORS}
             | {"seasons/2002"})
 
 
@@ -289,7 +290,7 @@ def gen_driver(did):
         if cid and cid not in [t[0] for t in teams]:
             teams.append((cid, c.get("name", cid)))
 
-    slug = did.replace("_", "-")
+    slug = rc.driver_slug(did)
     url = f"{BASE}/drivers/{slug}/"
 
     hero = f"""<div class="ent-hero">
@@ -348,7 +349,7 @@ def gen_constructor(cid):
     champ = fs.constructor_championships(cid)
     champ_years = [d["season"] for d in champ["detail"]]
     zh = ZH.get(cid)
-    slug = cid.replace("_", "-")
+    slug = rc.constructor_slug(cid)
     url = f"{BASE}/constructors/{slug}/"
     # 名稱從任一季榜取
     name = cid

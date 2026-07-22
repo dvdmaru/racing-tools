@@ -11,6 +11,7 @@
   （### 才吐 schema——沿用 foootball/baseball 慣例）。
 """
 import datetime
+import hashlib
 import html as html_lib
 import json
 import pathlib
@@ -450,35 +451,8 @@ def _load_zh(fname):
 
 DRIVER_ZH = _load_zh("driver-zh.json")
 TEAM_ZH = _load_zh("team-zh.json")
-
-RACE_ZH = {
-    "Australian Grand Prix": "澳洲站", "Chinese Grand Prix": "中國站",
-    "Japanese Grand Prix": "日本站", "Miami Grand Prix": "邁阿密站",
-    "Canadian Grand Prix": "加拿大站", "Monaco Grand Prix": "摩納哥站",
-    "Barcelona Grand Prix": "巴塞隆納站", "Austrian Grand Prix": "奧地利站",
-    "British Grand Prix": "英國站", "Belgian Grand Prix": "比利時站",
-    "Hungarian Grand Prix": "匈牙利站", "Dutch Grand Prix": "荷蘭站",
-    "Italian Grand Prix": "義大利站", "Spanish Grand Prix": "西班牙站（馬德里）",
-    "Azerbaijan Grand Prix": "亞塞拜然站", "Singapore Grand Prix": "新加坡站",
-    "United States Grand Prix": "美國站", "Mexico City Grand Prix": "墨西哥城站",
-    "Brazilian Grand Prix": "巴西站", "Las Vegas Grand Prix": "拉斯維加斯站",
-    "Qatar Grand Prix": "卡達站", "Abu Dhabi Grand Prix": "阿布達比站",
-    "Bahrain Grand Prix": "巴林站", "Saudi Arabian Grand Prix": "沙烏地站",
-}
-
-CIRCUIT_ZH = {
-    "albert_park": "亞伯特公園賽道（墨爾本）", "shanghai": "上海國際賽車場",
-    "suzuka": "鈴鹿賽道", "miami": "邁阿密國際賽道",
-    "villeneuve": "維倫紐夫賽道（蒙特婁）", "monaco": "摩納哥街道賽道",
-    "catalunya": "加泰隆尼亞賽道（巴塞隆納）", "red_bull_ring": "紅牛環（史匹爾柏格）",
-    "silverstone": "銀石賽道", "spa": "斯帕賽道（Spa-Francorchamps）",
-    "hungaroring": "匈牙利賽道（Hungaroring）", "zandvoort": "贊德沃特賽道",
-    "monza": "蒙札賽道", "madring": "馬德里賽道（Madring）",
-    "baku": "巴庫街道賽道", "marina_bay": "濱海灣街道賽道（新加坡）",
-    "americas": "美洲賽道（奧斯汀）", "rodriguez": "羅德里格斯兄弟賽道（墨西哥城）",
-    "interlagos": "英特拉哥斯賽道（聖保羅）", "vegas": "拉斯維加斯街道賽道",
-    "losail": "羅賽爾國際賽道", "yas_marina": "亞斯碼頭賽道（阿布達比）",
-}
+RACE_ZH = _load_zh("race-zh.json")
+CIRCUIT_ZH = _load_zh("circuit-zh.json")
 
 
 def race_zh(name: str) -> str:
@@ -487,6 +461,32 @@ def race_zh(name: str) -> str:
 
 def circuit_zh(cid: str, fallback: str = "") -> str:
     return CIRCUIT_ZH.get(cid, fallback or cid)
+
+
+# ---------- slug 註冊表（append-only；data/f1/slugs.json；URL 穩定性紅線） ----------
+
+def _load_slugs() -> dict:
+    p = ROOT / "data" / "f1" / "slugs.json"
+    if not p.exists():
+        return {"drivers": {}, "constructors": {}}
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
+_SLUGS = _load_slugs()
+
+
+def driver_slug(driver_id: str) -> str:
+    slugs = _SLUGS.get("drivers", {})
+    if driver_id not in slugs:
+        raise KeyError(f"slug 未註冊：{driver_id}（append-only 註冊表 data/f1/slugs.json）")
+    return slugs[driver_id]
+
+
+def constructor_slug(constructor_id: str) -> str:
+    slugs = _SLUGS.get("constructors", {})
+    if constructor_id not in slugs:
+        raise KeyError(f"slug 未註冊：{constructor_id}（append-only 註冊表 data/f1/slugs.json）")
+    return slugs[constructor_id]
 
 
 def driver_zh(driver: dict) -> str:
@@ -628,6 +628,40 @@ DATA_CSS = """
 .ses.race { border-color: var(--accent); background: var(--accent-soft); } .ses.race b { color: var(--accent); }
 """
 
+# 文章頁專屬 CSS（M0 前原本活在 build-articles.py；搬進共用層以便併入 SHARED_CSS_TEXT
+# 單一外部檔——選擇器稽核已證零衝突且無裸元素選擇器，見 M0 交接稽核）。
+# build-articles.py 仍 import 這個名字（rc.ARTICLE_CSS）以維持相容，未再自己定義。
+ARTICLE_CSS = """
+.art-cover { width:100%; border-radius: var(--radius); margin: 8px 0 26px; display:block; }
+.art-kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: 2.5px; color: var(--accent);
+  text-transform: uppercase; margin-bottom: 10px; }
+.art-h1 { font-family: var(--font-display); font-size: clamp(26px,4.6vw,40px); line-height: 1.22;
+  margin: 0 0 14px; font-style: italic; }
+.art-meta { color: var(--dim); font-size: 13px; margin-bottom: 26px; display:flex; gap:14px; flex-wrap:wrap; }
+.art-lede { font-size: 16.5px; color: var(--fg-soft); line-height: 1.85; border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 18px; margin: 0 0 30px; }
+.prose { font-size: 16px; line-height: 1.95; }
+.prose h2 { font-family: var(--font-display); font-size: 23px; margin: 44px 0 14px; line-height:1.35; font-style: italic; }
+.prose h3 { font-size: 17.5px; margin: 30px 0 10px; font-weight: 800; }
+.prose p { margin: 0 0 18px; }
+.prose strong { color: var(--fg); }
+.prose a { color: var(--accent); }
+.prose ul, .prose ol { margin: 0 0 18px 1.4em; }
+.prose li { margin-bottom: 6px; }
+.prose blockquote { border-left: 3px solid var(--line-2); color: var(--dim); padding-left: 16px; margin: 0 0 18px; }
+.prose hr { border: none; border-top: 1px solid var(--line); margin: 34px 0; }
+.prose table { width:100%; border-collapse: collapse; margin: 10px 0 22px; font-size: 14px; }
+.prose th, .prose td { padding: 8px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+.prose th { color: var(--dim); font-weight: 600; font-size: 12.5px; white-space: nowrap; }
+.prose .tbl-scroll, .prose-tblwrap { overflow-x: auto; }
+.art-nav { display:flex; gap:12px; margin-top: 44px; }
+.art-nav a { flex:1; border:1px solid var(--line); border-radius: 12px; padding: 12px 16px;
+  text-decoration:none; color: var(--fg-soft); font-size: 13.5px; background: var(--surface); }
+.art-nav a:hover { border-color: var(--accent-line); }
+.art-nav .lbl { display:block; color: var(--dim); font-size: 11px; font-family: var(--font-mono);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+"""
+
 # 深色重心（v2.2 定案 D）：sticky header／表頭／切換器壓 --ink 深色，accent 點狀用。
 # 必須排在所有元件 CSS 之後（覆寫 SITE_HEADER_CSS/DATA_CSS/THEME_SWITCH_CSS 的亮色版）。
 DARK_ANCHOR_CSS = """
@@ -642,6 +676,39 @@ DARK_ANCHOR_CSS = """
 .ts-label{color:rgba(255,255,255,.6)}
 .ts-dot{border-color:var(--ink)}
 """
+
+# ---------- M0 地基重構：單一外部 CSS 檔（選擇器稽核零衝突，見交接稽核附錄） ----------
+# 組裝順序＝原 <style> inline 順序；DARK_ANCHOR 必須最後（覆寫規則）。
+SHARED_CSS_TEXT = (SHARED_TOKENS_CSS + THEME_SWITCH_CSS + SITE_HEADER_CSS
+                   + DATA_CSS + ARTICLE_CSS + DARK_ANCHOR_CSS)
+
+# theme 預載 script：body 尾 THEME_SWITCH_JS 才真的 setTheme／掛切換器，這段只搶在
+# CSS 套用前把 data-theme 補上，防第一次繪製前的 FOUC（無 localStorage 值就不動，維持
+# HTML 內建的 default_theme）。
+THEME_PRELOAD_JS = (
+    "<script>try{var t=localStorage.getItem('rc-theme');"
+    "if(t)document.documentElement.dataset.theme=t}catch(e){}</script>")
+
+
+def shared_css_href() -> str:
+    """共用 CSS 落地到 public-racing/assets/rc-<hash>.css，回傳 /assets/ 開頭的 href。
+    檔名含內容 hash：同內容必同檔名，重跑天生 byte-stable，不需額外判斷內容是否相同。
+    寫新 hash 檔時順手清掉 assets/ 裡除了「最新這個」以外、依 mtime 排序次新的 1 個舊檔
+    之外的其餘更舊檔案——只留『新版＋前一版』兩份，防部署中途切版時舊頁引用的檔案 404。"""
+    assets_dir = PUB / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    content = SHARED_CSS_TEXT.encode("utf-8")
+    fname = f"rc-{hashlib.sha256(content).hexdigest()[:10]}.css"
+    fpath = assets_dir / fname
+    if not fpath.exists():
+        fpath.write_bytes(content)
+        others = sorted(
+            (p for p in assets_dir.glob("rc-*.css") if p.name != fname),
+            key=lambda p: p.stat().st_mtime, reverse=True)
+        for stale in others[1:]:
+            stale.unlink()
+            print(f"🗑  removed stale shared css: {stale.name}")
+    return f"/assets/{fname}"
 
 
 def tabgroup(group: str, tabs) -> str:
@@ -698,14 +765,9 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 {jsonld}
 {FONTS_HTML}
 {ga_snippet()}
-<style>
-{SHARED_TOKENS_CSS}
-{THEME_SWITCH_CSS}
-{SITE_HEADER_CSS}
-{DATA_CSS}
-{extra_css}
-{DARK_ANCHOR_CSS}
-</style>
+<link rel="stylesheet" href="{shared_css_href()}">
+{THEME_PRELOAD_JS}
+{f"<style>{extra_css}</style>" if extra_css else ""}
 </head>
 <body>
 {THEME_SWITCH_HTML}
@@ -719,16 +781,17 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 """
 
 
-# ---------- sitemap re-merge（build-articles 整個覆寫 → 各 generator 只換自己的 path） ----------
+# ---------- sitemap manifest（M0：各擁有者只寫自己的 part，build-sitemap.py 統一合併） ----------
+# 舊版 sitemap_merge 靠字串比對 read-modify-write 整個 sitemap.xml（跑序敏感、易踩踏）；
+# 改成各 owner 各寫 data/sitemap-parts/<owner>.txt（append-only 擁有），build-sitemap.py
+# 依固定順序讀取、去重、產出最終 sitemap.xml。parts 檔進 git＝某 owner 這次沒跑時的保留機制。
 
-def sitemap_merge(own_paths: list, drop_pattern: str):
-    """own_paths: 本 generator 擁有的完整 URL list；drop_pattern: 從既有 sitemap 剔除的子字串。"""
-    sm = PUB / "sitemap.xml"
-    keep = [u for u in re.findall(r"<loc>([^<]+)</loc>", sm.read_text(encoding="utf-8"))
-            if drop_pattern not in u] if sm.exists() else [f"{BASE}/"]
-    urls = list(dict.fromkeys(keep + own_paths))
-    body = "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls)
-    sm.write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
-                  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-                  f"{body}</urlset>\n", encoding="utf-8")
-    print(f"🗺️  sitemap.xml → {len(urls)} URLs（re-merge {drop_pattern}）")
+def write_sitemap_part(owner: str, urls: list):
+    """寫 data/sitemap-parts/<owner>.txt：一行一 URL，結尾換行；內容相同不重寫。"""
+    parts_dir = ROOT / "data" / "sitemap-parts"
+    parts_dir.mkdir(parents=True, exist_ok=True)
+    p = parts_dir / f"{owner}.txt"
+    content = "".join(f"{u}\n" for u in urls)
+    if not p.exists() or p.read_text(encoding="utf-8") != content:
+        p.write_text(content, encoding="utf-8")
+    print(f"🗺️  sitemap part '{owner}' → {len(urls)} URL(s)")

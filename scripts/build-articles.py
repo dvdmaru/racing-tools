@@ -9,7 +9,8 @@
 - 草稿 gate：config/draft-exclude.json 保留為輔助，列出的 slug 即使已核准也不進輸出
 - 首頁 dashboard 讀 data/ 快照 server-render（積分速覽/下一站/最新賽果），零 client fetch
 - llms.txt build-time 生成（手寫靜態檔＝staleness 炸彈）
-- ⚠️ sitemap 由本腳本整個覆寫 → 各 gen-* 之後 re-merge 自己的 path（跑序鐵則）
+- sitemap manifest 化（M0）：本腳本只寫 data/sitemap-parts/articles.txt，
+  三個 gen-* 之後由 build-sitemap.py 統一合併成 public-racing/sitemap.xml
 
 用法：python3 scripts/build-articles.py
 需要：pip install markdown
@@ -72,37 +73,9 @@ def article_sha256(path: pathlib.Path) -> str:
 
 
 # ---------- 文章頁 CSS ----------
-
-ARTICLE_CSS = """
-.art-cover { width:100%; border-radius: var(--radius); margin: 8px 0 26px; display:block; }
-.art-kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: 2.5px; color: var(--accent);
-  text-transform: uppercase; margin-bottom: 10px; }
-.art-h1 { font-family: var(--font-display); font-size: clamp(26px,4.6vw,40px); line-height: 1.22;
-  margin: 0 0 14px; font-style: italic; }
-.art-meta { color: var(--dim); font-size: 13px; margin-bottom: 26px; display:flex; gap:14px; flex-wrap:wrap; }
-.art-lede { font-size: 16.5px; color: var(--fg-soft); line-height: 1.85; border-left: 3px solid var(--accent);
-  padding: 4px 0 4px 18px; margin: 0 0 30px; }
-.prose { font-size: 16px; line-height: 1.95; }
-.prose h2 { font-family: var(--font-display); font-size: 23px; margin: 44px 0 14px; line-height:1.35; font-style: italic; }
-.prose h3 { font-size: 17.5px; margin: 30px 0 10px; font-weight: 800; }
-.prose p { margin: 0 0 18px; }
-.prose strong { color: var(--fg); }
-.prose a { color: var(--accent); }
-.prose ul, .prose ol { margin: 0 0 18px 1.4em; }
-.prose li { margin-bottom: 6px; }
-.prose blockquote { border-left: 3px solid var(--line-2); color: var(--dim); padding-left: 16px; margin: 0 0 18px; }
-.prose hr { border: none; border-top: 1px solid var(--line); margin: 34px 0; }
-.prose table { width:100%; border-collapse: collapse; margin: 10px 0 22px; font-size: 14px; }
-.prose th, .prose td { padding: 8px 8px; border-bottom: 1px solid var(--line); text-align: left; }
-.prose th { color: var(--dim); font-weight: 600; font-size: 12.5px; white-space: nowrap; }
-.prose .tbl-scroll, .prose-tblwrap { overflow-x: auto; }
-.art-nav { display:flex; gap:12px; margin-top: 44px; }
-.art-nav a { flex:1; border:1px solid var(--line); border-radius: 12px; padding: 12px 16px;
-  text-decoration:none; color: var(--fg-soft); font-size: 13.5px; background: var(--surface); }
-.art-nav a:hover { border-color: var(--accent-line); }
-.art-nav .lbl { display:block; color: var(--dim); font-size: 11px; font-family: var(--font-mono);
-  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
-"""
+# M0：內容已搬進 racinglib.ARTICLE_CSS（併入 SHARED_CSS_TEXT 單一外部檔）；這裡保留同名
+# 匯入以維持向後相容（其他程式若曾 import build_articles.ARTICLE_CSS 仍能取到同一份）。
+ARTICLE_CSS = rc.ARTICLE_CSS
 
 INDEX_CSS = """
 .rc-hero { padding: 6px 0 26px; }
@@ -257,13 +230,8 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
 {jsonld}
 {rc.FONTS_HTML}
 {rc.ga_snippet()}
-<style>
-{rc.SHARED_TOKENS_CSS}
-{rc.THEME_SWITCH_CSS}
-{rc.SITE_HEADER_CSS}
-{ARTICLE_CSS}
-{rc.DARK_ANCHOR_CSS}
-</style>
+<link rel="stylesheet" href="{rc.shared_css_href()}">
+{rc.THEME_PRELOAD_JS}
 </head>
 <body>
 {rc.THEME_SWITCH_HTML}
@@ -600,14 +568,11 @@ def build():
     (PUB / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
 
-    # base sitemap（整個覆寫；gen-* 之後 re-merge 自己的 path）
+    # sitemap manifest：本腳本只寫自己擁有的 part（首頁/文章 index/逐篇文章），
+    # build-sitemap.py 在三個 gen-* 之後統一合併成最終 public-racing/sitemap.xml。
     urls = [f"{BASE}/", f"{BASE}/articles/"] + [f"{BASE}/articles/{a['slug']}/" for a in articles]
-    body = "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls)
-    (PUB / "sitemap.xml").write_text(
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"{body}</urlset>\n", encoding="utf-8")
-    print(f"🏠 index + articles index + feed + llms.txt + sitemap ({len(articles)} articles) → {PUB}/")
+    rc.write_sitemap_part("articles", urls)
+    print(f"🏠 index + articles index + feed + llms.txt + sitemap part ({len(articles)} articles) → {PUB}/")
 
 
 if __name__ == "__main__":
