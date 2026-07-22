@@ -159,6 +159,113 @@ class NarrativeTests(unittest.TestCase):
         # 冠軍譯名走已核准來源（phase0）——不得只有原文
         self.assertIn("麥可・舒馬克", joined)
 
+    def test_narrative_v2_constructor_breakdown_sentence(self):
+        joined = "".join(g.season_narrative(2002))
+        # 車隊句含 Σ 拆解（禁手寫，數字皆通過 gate）
+        self.assertIn("144 分＋Rubens Barrichello 77 分", joined)
+        self.assertIn("221 分拿下", joined)
+        # 冠軍之爭補句：第二、第三名（名字照譯名紀律 fallback→原文）
+        self.assertIn("積分榜第二名為 Rubens Barrichello（77 分）", joined)
+        self.assertIn("第三名 Juan Pablo Montoya（50 分）", joined)
+
+
+class ChampionshipRaceTests(unittest.TestCase):
+    """冠軍之爭累計線：終點必等官方積分（自我 oracle 硬 gate）；對不上則整張不畫。"""
+
+    def test_cumulative_endpoints_equal_official_points(self):
+        leaders, ok = g.cumulative_leaders(2002)
+        self.assertTrue(ok)
+        self.assertEqual(len(leaders), 3)
+        expected = {"michael_schumacher": 144, "barrichello": 77, "montoya": 50}
+        for l in leaders:
+            self.assertEqual(l["final"], expected[l["driver_id"]],
+                             f"{l['driver_id']} 累計終點 {l['final']} != 官方 {expected[l['driver_id']]}")
+            self.assertEqual(l["final"], l["official"])  # 終點==官方最終積分
+
+    def test_chart_rendered_when_gate_passes(self):
+        chart = g._championship_race_chart(2002)
+        self.assertIn("<polyline", chart)
+        self.assertIn("champ-chart", chart)
+        self.assertIn("#d63a2f", chart)   # 冠軍紅粗線
+
+    def test_dropped_scores_gate_hides_whole_chart(self):
+        # 合成 dropped-scores：把榜首官方積分灌水，使逐站累計終點對不上 → 整張不畫、出誠實 note
+        orig = g._driver_standings
+        def fake(year):
+            ds = [dict(x) for x in orig(year)]
+            ds[0]["points"] = str(int(ds[0]["points"]) + 999)
+            return ds
+        g._driver_standings = fake
+        try:
+            leaders, ok = g.cumulative_leaders(2002)
+            self.assertFalse(ok)  # 硬 gate 觸發
+            chart = g._championship_race_chart(2002)
+            self.assertNotIn("<polyline", chart)  # 整張不畫
+            self.assertNotIn("<svg", chart)
+            self.assertIn("best-N", chart)         # 誠實 note
+            self.assertIn("不重建", chart)
+        finally:
+            g._driver_standings = orig
+
+
+class ConstructorBreakdownTests(unittest.TestCase):
+    """車隊拆解：Σ(各車手) == 官方車隊積分才顯示；對不上則不顯示拆解。"""
+
+    def test_all_2002_constructors_sum_matches(self):
+        b = g.constructor_breakdowns(2002)
+        # 2002 全 11 隊皆應對得上
+        for cid, info in b.items():
+            self.assertTrue(info["ok"], f"{cid} Σ={info['sum']} != 官方{info['official']}")
+        # 冠軍隊 Σ 明細
+        self.assertEqual(b["ferrari"]["sum"], 221)
+        parts = {p["driver_id"]: p["points"] for p in b["ferrari"]["parts"]}
+        self.assertEqual(parts["michael_schumacher"], 144)
+        self.assertEqual(parts["barrichello"], 77)
+        self.assertEqual(144 + 77, 221)  # 144+77=221 gate
+
+    def test_breakdown_shown_when_sum_matches(self):
+        b = g.constructor_breakdowns(2002)
+        html = g._std_constructor_table(g._constructor_standings(2002), b)
+        # 11 隊全 ok → 11 條拆解列
+        self.assertEqual(html.count('class="brk"'), 11)
+        self.assertIn("144", html)
+        self.assertIn("77", html)
+
+    def test_breakdown_hidden_on_sum_mismatch(self):
+        cs = g._constructor_standings(2002)
+        b_all = g.constructor_breakdowns(2002)
+        # 合成不等：把冠軍隊官方積分灌水，使 Σ 對不上 → 該隊不顯示拆解
+        orig = g._constructor_standings
+        def fake(year):
+            out = [dict(x) for x in orig(year)]
+            out[0] = {**out[0], "Constructor": out[0]["Constructor"],
+                      "points": str(int(out[0]["points"]) + 500)}
+            return out
+        g._constructor_standings = fake
+        try:
+            b_broken = g.constructor_breakdowns(2002)
+            self.assertFalse(b_broken["ferrari"]["ok"])
+            html_broken = g._std_constructor_table(cs, b_broken)
+            # 冠軍隊拆解被隱藏 → brk 列少一條（11 → 10）
+            self.assertEqual(g._std_constructor_table(cs, b_all).count('class="brk"'), 11)
+            self.assertEqual(html_broken.count('class="brk"'), 10)
+        finally:
+            g._constructor_standings = orig
+
+
+class RetirementFramingTests(unittest.TestCase):
+    """全季退賽圖鑑：節標題與副標明示統計全部車手（非僅冠軍）。"""
+
+    def test_section_title_and_scope_note(self):
+        cats = g.season_retirements(2002)
+        html = g._retirement_chart(cats, 2002)
+        self.assertIn("非僅冠軍", html)
+        self.assertIn("2002 年", html)
+        # N 位曾未完賽車手：從資料算，須為正整數且 <span> 呈現
+        n = len({d["driver_id"] for c in cats for d in c["detail"]})
+        self.assertGreater(n, 1)
+        self.assertIn(f"全部 {n} 位", html)
+
 
 class NoScriptNoFetchTests(unittest.TestCase):
     """零 client fetch／除白名單外零 script；外連只限白名單 host。"""
