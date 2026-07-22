@@ -60,6 +60,19 @@ class IndexInProgressTests(unittest.TestCase):
         self.assertIsNone(row["driver_champ"])
         self.assertIsNone(row["constructor_champ"])
 
+    def test_in_progress_rounds_cell_shows_ran_over_scheduled(self):
+        # T-01（查核桌）：進行中賽季「分站數」須呈現 已跑/全季，不得只給已跑站次
+        row = g.index_row(2026)
+        self.assertGreater(row["scheduled"], row["rounds"])  # 22 > 10
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        orig_rc, orig_g = rc.PUB, g.PUB
+        rc.PUB = g.PUB = tmp
+        self.addCleanup(lambda: (setattr(rc, "PUB", orig_rc), setattr(g, "PUB", orig_g)))
+        g.render_index()
+        html = (tmp / "seasons" / "index.html").read_text(encoding="utf-8")
+        self.assertIn(f'{row["rounds"]} / {row["scheduled"]}', html)
+
     def test_monkeypatched_incomplete_hides_champion(self):
         orig = fs._is_completed
         fs._is_completed = lambda y: False

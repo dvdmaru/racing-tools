@@ -140,7 +140,10 @@ def index_row(year):
     completed = fs._is_completed(year)
     ds = _driver_standings(year)
     cs = _constructor_standings(year)
+    # 進行中賽季：rounds 是「已完成站次」不是全季總站數（查核桌 T-01）——
+    # 另帶 scheduled 供索引頁顯示「10 / 22」，避免讀者把已跑站次誤讀為全季分站數。
     row = {"year": year, "rounds": _season_rounds(year),
+           "scheduled": len(_schedule(year)),
            "in_progress": not completed,
            "driver_champ": None, "constructor_champ": None}
     if completed:
@@ -269,14 +272,17 @@ def render_index():
         if row["in_progress"]:
             dchamp = '<span class="ip">進行中</span>'
             cchamp = '<span class="ip">進行中</span>'
+            # T-01：進行中賽季顯示「已跑 / 全季」，避免把已跑站次誤讀為全季分站數
+            rounds_cell = f'{row["rounds"]} / {row["scheduled"]}'
         else:
             dchamp = _index_champ_cell(row["driver_champ"])
             cchamp = _index_champ_cell(row["constructor_champ"])
+            rounds_cell = str(row["rounds"])
         rows_html.append(
             f'<tr><td class="l">{year_cell}</td>'
             f'<td class="l">{dchamp}</td>'
             f'<td class="l">{cchamp}</td>'
-            f'<td class="mono">{row["rounds"]}</td></tr>')
+            f'<td class="mono">{rounds_cell}</td></tr>')
     table = ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
              '<th class="l">賽季</th><th class="l">車手世界冠軍</th>'
              '<th class="l">車隊世界冠軍</th><th>分站數</th>'
@@ -289,7 +295,8 @@ def render_index():
              '中文名採台灣慣用譯名並附原文，查無定版譯名者誠實只列原文。</div>')
     note = ('<p class="note">目前僅 <b>2002</b> 賽季已建詳細頁（可點）；其餘賽季詳細頁陸續補上。'
             '冠軍認定一律取自資料源該季<b>最終官方積分榜</b>榜首，本站不自行計算。'
-            '分站數取自積分榜快照的最終站次（round）欄。</p>')
+            '分站數取自積分榜快照的最終站次（round）欄；'
+            '進行中賽季顯示「已跑站次 / 全季排定站數」。</p>')
     body = (f'<h1 class="pg-h1">歷屆賽季</h1>{intro}{table}{note}')
 
     # JSON-LD：org+website+CollectionPage+breadcrumb+ItemList（url 只填已存在的頁）
