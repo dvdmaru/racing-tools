@@ -583,5 +583,221 @@ class SitemapGatingTests(unittest.TestCase):
         self.assertIn(f"{rc.BASE}/seasons/2002/teams/mclaren/", urls)
 
 
+def _render_overview(tmp, year):
+    """把某季總覽渲染進 tmp 並回傳 html（統一 PUB 綁定與還原）。"""
+    orig_rc, orig_g = rc.PUB, g.PUB
+    rc.PUB = g.PUB = tmp
+    try:
+        g.render_season(year)
+        return (tmp / "seasons" / str(year) / "index.html").read_text(encoding="utf-8")
+    finally:
+        rc.PUB, g.PUB = orig_rc, orig_g
+
+
+def _narrative_region(html):
+    """只取 <div class="narrative">…</div> 區塊（敘事句），排除圖表誠實 note。"""
+    m = re.search(r'<div class="narrative">(.*?)</div>', html, re.S)
+    return m.group(1) if m else ""
+
+
+class HalfPointDisplayTests(unittest.TestCase):
+    """1950s 共駕與 1984 半分年代：積分帶 .5/.33 必原樣顯示，不得 int() 抹成整數。"""
+
+    def test_num_and_fmt_preserve_fractions(self):
+        self.assertEqual(g._num("72"), 72)
+        self.assertIsInstance(g._num("72"), int)
+        self.assertEqual(g._num("71.5"), 71.5)
+        self.assertEqual(g._fmt(8.5), "8.5")
+        self.assertEqual(g._fmt(72.0), "72")
+        self.assertEqual(g._fmt(1.33), "1.33")
+
+    def test_1984_half_point_gap(self):
+        # 1984：Lauda 72 − Prost 71.5 ＝ 0.5（歷史上最小分差冠軍）——不得被抹成 0 或 1
+        champ, second, gap = g.points_gap(1984)
+        self.assertEqual(champ, 72)
+        self.assertEqual(second, 71.5)
+        self.assertEqual(gap, 0.5)
+
+    def test_1984_gap_shown_in_overview(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        html = _render_overview(tmp, 1984)
+        self.assertIn("0.5", html)   # 分差 0.5 誠實呈現
+
+    def test_1953_fractional_champion_verbatim(self):
+        # 1953 冠軍 Ascari 34.5 分——顯示層須原樣（不四捨五入成 34 或 35）
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        html = _render_overview(tmp, 1953)
+        self.assertIn("34.5", html)
+
+    def test_1955_shared_drive_fraction_in_standings(self):
+        # 1955 Maglioli 1.33 分（三人共駕分帳）——積分榜原樣列出
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        html = _render_overview(tmp, 1955)
+        self.assertIn("1.33", html)
+
+
+class DroppedScoresGracefulTests(unittest.TestCase):
+    """dropped-scores/best-N 計分季：冠軍之爭圖 graceful 隱藏（不 crash、不畫錯圖），
+    敘事句不得出現「累計積分」相關句。挑實際 gate fail 的 1988 實測。"""
+
+    def test_1988_gate_fails(self):
+        leaders, ok = g.cumulative_leaders(1988)
+        self.assertFalse(ok, "1988 採 best-11 捨分，逐站累計應對不上官方積分")
+
+    def test_1988_chart_hidden_with_honest_note(self):
+        chart = g._championship_race_chart(1988)
+        self.assertNotIn("<polyline", chart)   # 整圖不畫
+        self.assertNotIn("<svg", chart)
+        self.assertIn("捨分規則", chart)         # 誠實註記
+        self.assertIn("不重建", chart)
+
+    def test_1988_narrative_has_no_cumulative_claim(self):
+        # gate fail 時敘事句不得宣稱「累計積分」（避免與被隱藏的圖自相矛盾）
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        html = _render_overview(tmp, 1988)
+        narr = _narrative_region(html)
+        self.assertTrue(narr)
+        self.assertNotIn("累計積分", narr)
+        self.assertNotIn("累計", narr)
+
+    def test_1988_does_not_crash_and_has_champion(self):
+        # graceful degrade：圖隱藏但頁面其餘（冠軍、積分榜、退賽）照常
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        html = _render_overview(tmp, 1988)
+        self.assertIn("賽季速寫", html)
+        self.assertIn("積分榜", html)
+
+
+class PreWCCConstructorTests(unittest.TestCase):
+    """車隊世界錦標賽 1958 才創立：<1958 總覽隱藏車隊榜 tab、不生車隊子頁、
+    subpage_paths 無車隊路徑（沿用 gate，確認真的 gate 住）。"""
+
+    def test_pre1958_no_constructor_subpage_entities(self):
+        dids, cids = g.season_subpage_entities(1955)
+        self.assertEqual(cids, [], "<1958 無官方車隊積分榜，不得生車隊子頁（Σ gate 無 oracle）")
+
+    def test_pre1958_subpage_paths_have_no_teams(self):
+        paths = g.subpage_paths(1955)
+        self.assertFalse(any("/teams/" in p for p in paths))
+
+    def test_pre1958_overview_hides_constructor_tab(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        html = _render_overview(tmp, 1955)
+        # 積分榜 tabgroup 只剩車手 tab（radio name="ss" 恰 1 個）
+        self.assertEqual(len(re.findall(r'name="ss"', html)), 1)
+        self.assertIn("1958", html)               # 誠實註記創立年
+        self.assertIn("車隊世界錦標賽", html)
+
+    def test_pre1958_no_team_subpage_generated(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        urls = []
+        orig_rc, orig_g = rc.PUB, g.PUB
+        rc.PUB = g.PUB = tmp
+        try:
+            g._render_one_season(1955, urls)
+        finally:
+            rc.PUB, g.PUB = orig_rc, orig_g
+        self.assertFalse((tmp / "seasons" / "1955" / "teams").exists())
+        self.assertTrue((tmp / "seasons" / "1955" / "index.html").is_file())
+
+
+class InProgressSeasonRenderTests(unittest.TestCase):
+    """2026 進行中賽季：render_season 不再拒產，改 in-progress 變體
+    （進行中 tag、已跑/排定、無冠軍定案語、每週自動更新；sprint 季圖 gate 過）。"""
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        self.html = _render_overview(self.tmp, 2026)
+
+    def test_no_crash_and_in_progress_tag(self):
+        self.assertIn("進行中", self.html)
+        self.assertIn("ip-tag", self.html)
+
+    def test_shows_ran_over_scheduled_not_champion(self):
+        self.assertIn("已跑 / 排定", self.html)
+        self.assertNotIn("奪下車手世界冠軍", self.html)   # 榜首≠冠軍
+        self.assertIn("每週自動更新", self.html)
+        self.assertIn("目前領先者積分", self.html)
+
+    def test_sprint_season_chart_gate_passes(self):
+        # sprint 季（含 sprint 分）累計圖終點對得上目前官方積分 → 圖畫得出來
+        leaders, ok = g.cumulative_leaders(2026)
+        self.assertTrue(ok, "2026 含 sprint 分，累計圖 gate 應通過")
+        self.assertIn("<polyline", self.html)
+
+    def test_in_progress_driver_subpage(self):
+        # 2026 seed 車手子頁同為進行時態、無「名列車手世界冠軍」定案語
+        g_pub, rc_pub = g.PUB, rc.PUB
+        g.PUB = rc.PUB = self.tmp
+        try:
+            g.render_driver_subpage(2026, "max_verstappen")
+        finally:
+            g.PUB, rc.PUB = g_pub, rc_pub
+        h = (self.tmp / "seasons" / "2026" / "drivers" / "max-verstappen"
+             / "index.html").read_text(encoding="utf-8")
+        self.assertIn("進行中", h)
+        self.assertIn("暫居", h)
+        self.assertNotIn("名列車手世界冠軍", h)
+
+
+class AllSeasonsSmokeTests(unittest.TestCase):
+    """--all 全展開：77 季 render smoke（不炸）、全站死連結掃描=0、thin-content guard。"""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = pathlib.Path(tempfile.mkdtemp())
+        orig_rc, orig_g = rc.PUB, g.PUB
+        rc.PUB = g.PUB = cls.tmp
+        try:
+            built = set(range(g.FIRST_YEAR, g.LAST_YEAR + 1))
+            cls.urls = [g.render_index(built)]
+            for year in range(g.LAST_YEAR, g.FIRST_YEAR - 1, -1):
+                g._render_one_season(year, cls.urls)   # 任一季炸這裡就會 raise
+        finally:
+            rc.PUB, g.PUB = orig_rc, orig_g
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp)
+
+    def test_all_77_overviews_generated(self):
+        for year in range(g.FIRST_YEAR, g.LAST_YEAR + 1):
+            self.assertTrue((self.tmp / "seasons" / str(year) / "index.html").is_file(),
+                            f"{year} 總覽未生成")
+        self.assertTrue((self.tmp / "seasons" / "index.html").is_file())
+
+    def test_index_links_all_77_seasons(self):
+        idx = (self.tmp / "seasons" / "index.html").read_text(encoding="utf-8")
+        linked = set(re.findall(r'href="/seasons/(\d{4})/"', idx))
+        self.assertEqual(len(linked), g.LAST_YEAR - g.FIRST_YEAR + 1)
+
+    def test_no_dead_links_across_whole_site(self):
+        dead = []
+        for f in self.tmp.glob("seasons/**/index.html"):
+            html = f.read_text(encoding="utf-8")
+            for href in re.findall(r'href="(/seasons/[^"]*)"', html):
+                if not (self.tmp / href.strip("/") / "index.html").is_file():
+                    dead.append((str(f), href))
+        self.assertEqual(dead, [], f"死連結：{dead[:10]}")
+
+    def test_every_page_has_narrative(self):
+        # thin-content guard：每個總覽頁與子頁都要有敘事段落，非只表格
+        thin = []
+        for f in self.tmp.glob("seasons/**/index.html"):
+            if f.parent.name == "seasons":
+                continue  # 索引頁本身是清單型，另計
+            if 'class="narrative"' not in f.read_text(encoding="utf-8"):
+                thin.append(str(f))
+        self.assertEqual(thin, [], f"缺敘事段落（thin content）：{thin[:10]}")
+
+
 if __name__ == "__main__":
     unittest.main()
