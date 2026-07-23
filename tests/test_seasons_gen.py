@@ -513,15 +513,10 @@ class Phase0SeasonOwnershipTests(unittest.TestCase):
         # 不得再有寫 seasons 頁的 write_page(["seasons", ...]) 呼叫
         self.assertNotIn('write_page(["seasons"', src)
 
-    def test_ms_entity_page_links_to_driver_subpage(self):
-        tmp = pathlib.Path(tempfile.mkdtemp())
-        self.addCleanup(shutil.rmtree, tmp)
-        orig = self.p0.PUB
-        self.p0.PUB = tmp
-        self.addCleanup(lambda: setattr(self.p0, "PUB", orig))
-        self.p0.gen_driver("michael_schumacher")
-        html = (tmp / "drivers" / "michael-schumacher" / "index.html").read_text(encoding="utf-8")
-        self.assertIn('href="/seasons/2002/drivers/michael-schumacher/"', html)
+    def test_phase0_no_longer_generates_driver_pages(self):
+        # M5：/drivers/** 移交 gen-racing-drivers.py；phase0 不應再有 gen_driver（歸屬權清理）
+        self.assertFalse(hasattr(self.p0, "gen_driver"),
+                         "phase0 不應再有 gen_driver（/drivers/** 歸 gen-racing-drivers 所有）")
 
     def test_ferrari_entity_page_links_to_team_subpage(self):
         tmp = pathlib.Path(tempfile.mkdtemp())

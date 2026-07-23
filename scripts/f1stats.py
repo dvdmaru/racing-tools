@@ -10,9 +10,11 @@
 """
 import json
 import pathlib
+import sqlite3
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "f1" / "raw"
+DB = ROOT / "data" / "f1" / "db.sqlite"
 
 
 def _load(p):
@@ -128,6 +130,93 @@ def driver_seasons(did):
     """該車手參賽過的所有賽季（用於生涯時間軸）。"""
     races = _load(RAW / "drivers" / f"{did}-results.json")["Races"]
     return sorted({int(r["season"]) for r in races})
+
+
+# ---------- 車手生涯（DB 路徑：L1 db.sqlite 的 results/driver_standings） ----------
+# 上面的 driver_career/championships/seasons 讀 per-driver 賽果檔（drivers/<id>-results.json），
+# 只有 4 位 seed 車手落地了這類檔。M5 要為 35 位歷代冠軍產頁，故新增這條 **DB 路徑**：讀
+# build-f1-db.py 落地的全庫 results/driver_standings 表，對全 35 人（乃至全 881 車手）都成立。
+# 兩條路徑讀的是不同 raw 檔（per-driver 檔 ↔ 全庫 results/*.json），彼此獨立；I5 dualpath
+# 已對 4 seed 證明兩者逐欄一致（見 check-f1-invariants.py），故 DB 路徑不是自證。
+# 產出的統計結構與 file 路徑完全相同（value==len(detail)、同 formula id、同 coverage），
+# 頁面元件（stat_card / career_timeline）無須分辨來源。
+
+def _fmt_points(v):
+    """積分顯示：整數去掉 .0，分數（.5/.33 shared-drive）原樣保留。"""
+    if v is None:
+        return ""
+    f = float(v)
+    return str(int(f)) if f == int(f) else str(round(f, 2)).rstrip("0").rstrip(".")
+
+
+def connect_db(db=None):
+    con = sqlite3.connect(str(db or DB))
+    con.row_factory = sqlite3.Row
+    return con
+
+
+def _race_detail(r):
+    """一列賽果 → 明細 dict（逐場型）。source 指向全庫 results 原始檔。"""
+    return {"season": r["season"], "round": r["round"],
+            "race": r["name"] or f"Round {r['round']}",
+            "pos": r["position_text"],
+            "source": f"data/f1/raw/results/{r['season']}-{r['round']:02d}.json"}
+
+
+def driver_career_db(did, con):
+    """生涯勝場/頒獎台/出賽（DB 路徑）。value==len(detail)，明細帶來源與 season/round。"""
+    rows = con.execute(
+        "SELECT r.season AS season, r.round AS round, r.position_text AS position_text, "
+        "       r.id AS id, ra.name AS name "
+        "FROM results r LEFT JOIN races ra ON ra.season=r.season AND ra.round=r.round "
+        "WHERE r.driver_id=? ORDER BY r.season, r.round, r.id", (did,)).fetchall()
+    wins = [_race_detail(r) for r in rows if r["position_text"] == "1"]
+    podiums = [_race_detail(r) for r in rows if r["position_text"] in ("1", "2", "3")]
+    seen, entries = set(), []
+    for r in rows:
+        key = (r["season"], r["round"])
+        if key in seen:
+            continue  # 同場多列（1950s 共駕）計一場出賽（Fangio 58 列/51 場的教訓）
+        seen.add(key)
+        entries.append(_race_detail(r))
+    return {
+        "driver_id": did,
+        "wins": _stat("derived", "results_position_text_eq_1", "1950-2026", wins),
+        "podiums": _stat("derived", "results_position_text_in_123", "1950-2026", podiums),
+        "entries": _stat("derived", "results_distinct_races", "1950-2026", entries),
+    }
+
+
+def driver_championships_db(did, con):
+    """冠軍＝逐季車手榜 position==1 且該季已完成（DB 路徑）。與賽果層獨立（standings 表）。"""
+    detail = []
+    for r in con.execute(
+            "SELECT ds.season AS season, ds.points AS points, ds.wins AS wins "
+            "FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
+            "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed' "
+            "ORDER BY ds.season", (did,)).fetchall():
+        detail.append({"season": r["season"], "points": _fmt_points(r["points"]),
+                       "wins_that_year": r["wins"],
+                       "source": f"data/f1/raw/standings/driver-{r['season']}.json#pos1"})
+    return _stat("derived", "count_seasons_driver_standing_eq_1", "1950-2026", detail)
+
+
+def driver_seasons_db(did, con):
+    """該車手參賽過的所有賽季（DB 路徑；用於生涯時間軸）。"""
+    return sorted(r[0] for r in con.execute(
+        "SELECT DISTINCT season FROM results WHERE driver_id=?", (did,)).fetchall())
+
+
+def driver_meta_db(did, con):
+    """車手身分欄（DB 路徑）：given/family name、國籍、生日、維基 URL。"""
+    r = con.execute(
+        "SELECT driver_id, given_name, family_name, nationality, dob, url "
+        "FROM drivers WHERE driver_id=?", (did,)).fetchone()
+    if r is None:
+        raise KeyError(f"db 無此車手：{did}")
+    return {"driverId": r["driver_id"], "givenName": r["given_name"] or "",
+            "familyName": r["family_name"] or "", "nationality": r["nationality"] or "",
+            "dateOfBirth": r["dob"] or "", "url": r["url"] or ""}
 
 
 # ---------- 車隊生涯（來源：standings/constructor-<year>.json 逐季） ----------
