@@ -11,6 +11,7 @@ import html as html_lib
 import importlib.util
 import json
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -76,6 +77,48 @@ def _load(p):
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+# ---------- 賽季子頁 deep-link（v3：選擇即 URL） ----------
+# 實體頁的時間軸連到「該實體在該賽季的視角子頁」（/seasons/<y>/drivers|teams/<slug>/），
+# 而非泛指賽季總覽。子頁的實際生成方 = gen-racing-seasons.py（owner=seasons）；此處只在
+# 「該季有總覽頁（seasons/<y> ∈ HAS_PAGE）且該實體該季有參賽」時，才把年格連向子頁——
+# 兩邊用同一條規則（總覽頁存在 ＋ 該季參賽），因此不會連到未生成的子頁（無死連結）。
+
+def _overview_years():
+    return sorted(int(m.group(1)) for p in HAS_PAGE
+                  for m in [re.fullmatch(r"seasons/(\d+)", p)] if m)
+
+
+def _driver_in_season(did, year):
+    p = RAW / "standings" / f"driver-{year}.json"
+    if not p.exists():
+        return False
+    return any(r.get("Driver", {}).get("driverId") == did
+               for r in _load(p).get("DriverStandings", []))
+
+
+def _constructor_in_season(cid, year):
+    p = RAW / "standings" / f"constructor-{year}.json"
+    if not p.exists():
+        return False
+    return any(r.get("Constructor", {}).get("constructorId") == cid
+               for r in _load(p).get("ConstructorStandings", []))
+
+
+def _season_href(kind, entity_id, slug):
+    """回一個 href(year) 函式：該季無總覽頁 → None（年格不可點）；
+    有總覽頁且該實體該季參賽 → 子頁；有總覽頁但沒參賽 → 泛指總覽頁。"""
+    years = set(_overview_years())
+    in_season = _driver_in_season if kind == "drivers" else _constructor_in_season
+
+    def href(y):
+        if y not in years:
+            return None
+        if in_season(entity_id, y):
+            return f"/seasons/{y}/{kind}/{slug}/"
+        return f"/seasons/{y}/"
+    return href
+
+
 def pair(zh, en):
     """中文＋原文並列（站規）。zh 缺就誠實只留原文，不假裝。"""
     if not zh:
@@ -134,9 +177,10 @@ def unavailable_card(label, why):
 </div>"""
 
 
-def career_timeline(seasons, champ_years):
+def career_timeline(seasons, champ_years, season_href=None):
     """參賽賽季時間軸：跑過的年填色，冠軍年加粗標記。零圖檔。
-    有賽季頁的年份成為連結（Phase 0 只有 2002 有頁）；其餘不可點。"""
+    season_href(year)→href/None 決定年格連往哪（v3：連該實體的賽季子頁）；未給則沿用舊行為
+    （有總覽頁的年份連泛指總覽頁）。回 None 的年格不可點。"""
     if not seasons:
         return ""
     lo, hi = seasons[0], seasons[-1]
@@ -153,37 +197,16 @@ def career_timeline(seasons, champ_years):
             cls += " off"
         label = f"{y}" if (y in champ or y == lo or y == hi) else ""
         inner = f"<span>{label}</span>"
-        if f"seasons/{y}" in HAS_PAGE:
-            cells.append(f'<a class="{cls} lk" href="/seasons/{y}/" '
+        if season_href is not None:
+            href = season_href(y)
+        else:
+            href = f"/seasons/{y}/" if f"seasons/{y}" in HAS_PAGE else None
+        if href:
+            cells.append(f'<a class="{cls} lk" href="{href}" '
                          f'title="{y} 賽季頁">{inner}</a>')
         else:
             cells.append(f'<div class="{cls}" title="{y}">{inner}</div>')
     return f'<div class="timeline">{"".join(cells)}</div>'
-
-
-def season_arc(driver_id, year_races):
-    """賽季弧線：x=round、y=積分榜名次（反轉，第 1 在上）。冠軍爭奪的拉鋸一眼看到。"""
-    pts = []
-    for rnd, pos in year_races:
-        pts.append((rnd, pos))
-    if len(pts) < 2:
-        return ""
-    W, H, pad = 640, 150, 22
-    maxr = max(p[0] for p in pts)
-    maxpos = max(max(p[1] for p in pts), 10)
-    xs = lambda r: pad + (r - 1) / (maxr - 1) * (W - 2 * pad)
-    ys = lambda p: pad + (p - 1) / (maxpos - 1) * (H - 2 * pad)
-    poly = " ".join(f"{xs(r):.1f},{ys(p):.1f}" for r, p in pts)
-    dots = "".join(f'<circle cx="{xs(r):.1f}" cy="{ys(p):.1f}" r="2.5"/>' for r, p in pts)
-    gridlines = "".join(
-        f'<line x1="{pad}" y1="{ys(g):.1f}" x2="{W-pad}" y2="{ys(g):.1f}" class="grid"/>'
-        f'<text x="{pad-6}" y="{ys(g)+3:.1f}" class="axis">P{g}</text>'
-        for g in (1, 5, 10) if g <= maxpos)
-    return f"""<svg viewBox="0 0 {W} {H}" class="arc" role="img" aria-label="賽季名次走勢">
-  {gridlines}
-  <polyline points="{poly}" class="arc-line"/>
-  {dots}
-</svg>"""
 
 
 # ---------- Person / Constructor JSON-LD ----------
@@ -313,7 +336,7 @@ def gen_driver(did):
         unavailable_card("生涯積分", "有兩種都對的定義（各季最終榜 vs 逐場加總），差異在 1950–90 → 待定義後補")
     )
 
-    tl = career_timeline(seasons, champ_years)
+    tl = career_timeline(seasons, champ_years, _season_href("drivers", did, slug))
     rel = "".join(internal_link(f'constructors/{cid.replace("_", "-")}',
                                 esc(ZH.get(cid) or name))
                   for cid, name in teams)
@@ -327,7 +350,7 @@ def gen_driver(did):
 
 <div class="sec-title">效力車隊</div>
 <div class="rel">{rel}</div>
-<p class="note">灰色車隊＝本階段尚未建頁，後續補上。時間軸中<b>可點的年份</b>會進入該賽季頁（本階段先做 2002）。</p>
+<p class="note">灰色車隊＝本階段尚未建頁，後續補上。時間軸中<b>可點的年份</b>會進入該車手<b>在該賽季</b>的成績頁（本階段先做 2002）。</p>
 
 <p class="note">本頁每個數字旁的「怎麼算的」可展開，逐筆列出來源賽季與賽站。
 統計一律由明細筆數產生，不獨立維護——這是為了防止「總計與明細各自維護」造成的錯。</p>
@@ -363,7 +386,8 @@ def gen_constructor(cid):
             break
 
     yrs = sorted(champ_years)
-    tl = career_timeline(list(range(yrs[0], yrs[-1] + 1)), champ_years) if yrs else ""
+    tl = (career_timeline(list(range(yrs[0], yrs[-1] + 1)), champ_years,
+                          _season_href("teams", cid, slug)) if yrs else "")
 
     hero = f"""<div class="ent-hero">
   <p class="ent-kicker">車隊檔案 · Constructor</p>
@@ -385,83 +409,9 @@ def gen_constructor(cid):
     print(f"  ✓ /constructors/{slug}/　{champ['value']} 座車隊冠軍")
 
 
-# ---------- 賽季頁（2002） ----------
-
-def gen_season(year):
-    sched = _load(RAW / f"season-{year}-schedule.json")["Races"]
-    ds = _load(RAW / "standings" / f"driver-{year}.json").get("DriverStandings", [])
-    cs = _load(RAW / "standings" / f"constructor-{year}.json").get("ConstructorStandings", [])
-    url = f"{BASE}/seasons/{year}/"
-
-    champ_d = ds[0] if ds else {}
-    champ_c = cs[0] if cs else {}
-    cd = champ_d.get("Driver", {})
-    cdname = f'{cd.get("givenName","")} {cd.get("familyName","")}'.strip()
-    cdzh = ZH.get(cd.get("driverId", ""))
-
-    def _dcell(r):
-        rid = r["Driver"]["driverId"]
-        nm = f'{r["Driver"].get("givenName", "")} {r["Driver"].get("familyName", "")}'.strip()
-        return internal_link(f'drivers/{rid.replace("_", "-")}', pair(ZH.get(rid), nm))
-
-    drows = "".join(
-        f'<tr><td class="mono">{r["position"]}</td>'
-        f'<td>{_dcell(r)}</td>'
-        f'<td>{esc(r.get("Constructors",[{}])[0].get("name",""))}</td>'
-        f'<td class="mono">{r["points"]}</td><td class="mono">{r.get("wins","0")}</td></tr>'
-        for r in ds[:10])
-    crows = "".join(
-        f'<tr><td class="mono">{r["position"]}</td>'
-        f'<td>{internal_link(f"constructors/{r['Constructor']['constructorId'].replace('_', '-')}", pair(ZH.get(r["Constructor"]["constructorId"]), r["Constructor"].get("name", "")))}</td>'
-        f'<td class="mono">{r["points"]}</td><td class="mono">{r.get("wins","0")}</td></tr>'
-        for r in cs)
-
-    # 冠軍那年的賽季弧線（從逐站賽果抓冠軍每站名次）
-    arc = ""
-    dpos = []
-    cdid = cd.get("driverId")
-    for r in sched:
-        rnd = int(r["round"])
-        rp = RAW / "results" / f"{year}-{rnd:02d}.json"
-        if rp.exists():
-            for res in _load(rp).get("Results", []):
-                if res.get("Driver", {}).get("driverId") == cdid:
-                    try:
-                        dpos.append((rnd, int(res["position"])))
-                    except (ValueError, KeyError):
-                        pass
-    if dpos:
-        arc = season_arc(cdid, dpos)
-
-    hero = f"""<div class="ent-hero">
-  <p class="ent-kicker">賽季 · Season</p>
-  <h1 class="ent-h1">{year} 賽季</h1>
-  <div class="ident">
-    <span>分站數 <span class="mono">{len(sched)}</span></span>
-    <span>車手冠軍 {internal_link(f'drivers/{cd.get("driverId","").replace("_","-")}', pair(cdzh, cdname))}（<span class="mono">{champ_d.get("points")}</span> 分）</span>
-    <span>車隊冠軍 {pair(ZH.get(champ_c.get("Constructor",{}).get("constructorId","")), champ_c.get("Constructor",{}).get("name",""))}</span>
-  </div>
-</div>"""
-
-    body = f"""{hero}
-<div class="sec-title">車手冠軍逐站名次</div>
-<p class="note">x 軸＝分站、y 軸＝完賽名次（第 1 在上）。{pair(cdzh, cdname)} 那條線壓在頂端的程度，就是那一季的統治力。</p>
-{arc}
-
-<div class="sec-title">車手積分榜（前十）</div>
-<table class="std-tbl"><thead><tr><th>名次</th><th>車手</th><th>車隊</th><th>積分</th><th>分站冠軍</th></tr></thead><tbody>{drows}</tbody></table>
-
-<div class="sec-title">車隊積分榜</div>
-<table class="std-tbl"><thead><tr><th>名次</th><th>車隊</th><th>積分</th><th>分站冠軍</th></tr></thead><tbody>{crows}</tbody></table>
-
-<p class="note">積分與名次直接取自資料源的該季最終積分榜，不經本站計算。
-紅色可點的車手／車隊已建生涯頁——「查 {year} → 點進冠軍 → 看他整個生涯」就是這條路徑；灰色為本階段尚未建頁的實體。</p>
-"""
-    ld = rc.graph_ld([rc.org_node(), rc.website_node(),
-                      rc.breadcrumb_node([("首頁", BASE + "/"), (f"{year} 賽季", url)])])
-    write_page(["seasons", str(year)], f"{year} 一級方程式賽季總覽",
-               f"{year} 賽季車手與車隊積分榜、冠軍逐站名次走勢。", ld, body)
-    print(f"  ✓ /seasons/{year}/　冠軍 {cdname}")
+# 賽季頁（/seasons/**）v3 起一律歸 gen-racing-seasons.py 所有（總覽頁＋車手/車隊子頁）；
+# phase0 只管實體頁（/drivers/、/constructors/）。原 gen_season() 已移除，避免兩支都寫
+# /seasons/<year>/index.html（後寫者贏）的歸屬權衝突。
 
 
 def main():
@@ -471,8 +421,6 @@ def main():
     print("車隊頁：")
     for c in CONSTRUCTORS:
         gen_constructor(c)
-    print("賽季頁：")
-    gen_season(2002)
 
 
 if __name__ == "__main__":
