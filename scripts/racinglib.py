@@ -336,9 +336,13 @@ def org_node(site: dict = None) -> dict:
 def website_node(site: dict = None) -> dict:
     site = site or SITE
     base = site["base"]
-    return {"@type": "WebSite", "@id": f"{base}/#website",
+    node = {"@type": "WebSite", "@id": f"{base}/#website",
             "name": site["website_name"], "url": f"{base}/",
             "inLanguage": "zh-Hant", "publisher": {"@id": f"{base}/#org"}}
+    # T-03：站名層零 F1 字樣，F1 指涉放描述層（description）。
+    if site.get("website_desc"):
+        node["description"] = site["website_desc"]
+    return node
 
 
 def breadcrumb_node(items: list) -> dict:
@@ -721,6 +725,8 @@ def tabgroup(group: str, tabs) -> str:
     rules = "".join(
         f'#{group}-{tid}:checked~.tablabels label[for="{group}-{tid}"]'
         '{color:var(--accent);border-bottom-color:var(--accent)}'
+        f'#{group}-{tid}:focus-visible~.tablabels label[for="{group}-{tid}"]'
+        '{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}'
         f'#{group}-{tid}:checked~.panel-{group}-{tid}{{display:block}}'
         for tid, _, _, _ in tabs)
     panels = "".join(
