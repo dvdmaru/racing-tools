@@ -1,0 +1,389 @@
+{
+  "_meta": {
+    "_doc": "M5 車手發布欄位凍結值（golden）。生成器每跑必逐欄比對此檔，任一 diff→exit 1（需人工重新核准才更新，比照 config/approved.json 的 default-deny 精神）。",
+    "approved_by": "Charlie（via PR merge gate）",
+    "date": "2026-07-23",
+    "generated_from": "scripts/f1stats.py DB 路徑（data/f1/db.sqlite 的 results / driver_standings）",
+    "crosscheck_report": "data/f1/crosscheck-report.json",
+    "crosscheck_verdicts": "config/f1-crosscheck-verdicts.json",
+    "field_formulas": {
+      "championships": "count_seasons_driver_standing_eq_1",
+      "championship_years": "count_seasons_driver_standing_eq_1",
+      "wins": "results_position_text_eq_1",
+      "podiums": "results_position_text_in_123",
+      "entries": "results_distinct_races"
+    },
+    "spot_checked": [
+      "fangio",
+      "ascari",
+      "farina",
+      "lauda",
+      "michael_schumacher"
+    ],
+    "spot_check_note": "5 位（含 Fangio/Ascari/Farina shared-drive 年代）逐欄對 data/f1/wiki-cache infobox 核對：wins/podiums/championships(count+years) 與維基字面值一致；entries 為口徑差（我方=起跑場次 results_distinct_races，維基 races 欄含未起跑報名），由 config/f1-crosscheck-verdicts.json 具名裁決解除。詳見 M5 交付回報。",
+    "excluded_fields": [
+      "poles",
+      "fastest_laps",
+      "career_points"
+    ],
+    "excluded_reason": "計畫 §4.6 紅線：桿位/最快圈/生涯積分定義或資料範圍未定，第一階段不發布。"
+  },
+  "drivers": {
+    "alonso": {
+      "championships": 2,
+      "championship_years": [
+        2005,
+        2006
+      ],
+      "wins": 32,
+      "podiums": 106,
+      "entries": 438
+    },
+    "ascari": {
+      "championships": 2,
+      "championship_years": [
+        1952,
+        1953
+      ],
+      "wins": 13,
+      "podiums": 17,
+      "entries": 32
+    },
+    "button": {
+      "championships": 1,
+      "championship_years": [
+        2009
+      ],
+      "wins": 15,
+      "podiums": 50,
+      "entries": 309
+    },
+    "clark": {
+      "championships": 2,
+      "championship_years": [
+        1963,
+        1965
+      ],
+      "wins": 25,
+      "podiums": 32,
+      "entries": 72
+    },
+    "damon_hill": {
+      "championships": 1,
+      "championship_years": [
+        1996
+      ],
+      "wins": 22,
+      "podiums": 42,
+      "entries": 116
+    },
+    "emerson_fittipaldi": {
+      "championships": 2,
+      "championship_years": [
+        1972,
+        1974
+      ],
+      "wins": 14,
+      "podiums": 35,
+      "entries": 146
+    },
+    "fangio": {
+      "championships": 5,
+      "championship_years": [
+        1951,
+        1954,
+        1955,
+        1956,
+        1957
+      ],
+      "wins": 24,
+      "podiums": 35,
+      "entries": 51
+    },
+    "farina": {
+      "championships": 1,
+      "championship_years": [
+        1950
+      ],
+      "wins": 5,
+      "podiums": 20,
+      "entries": 34
+    },
+    "hakkinen": {
+      "championships": 2,
+      "championship_years": [
+        1998,
+        1999
+      ],
+      "wins": 20,
+      "podiums": 51,
+      "entries": 163
+    },
+    "hamilton": {
+      "championships": 7,
+      "championship_years": [
+        2008,
+        2014,
+        2015,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "wins": 106,
+      "podiums": 207,
+      "entries": 390
+    },
+    "hawthorn": {
+      "championships": 1,
+      "championship_years": [
+        1958
+      ],
+      "wins": 3,
+      "podiums": 18,
+      "entries": 46
+    },
+    "hill": {
+      "championships": 2,
+      "championship_years": [
+        1962,
+        1968
+      ],
+      "wins": 14,
+      "podiums": 36,
+      "entries": 177
+    },
+    "hulme": {
+      "championships": 1,
+      "championship_years": [
+        1967
+      ],
+      "wins": 8,
+      "podiums": 33,
+      "entries": 112
+    },
+    "hunt": {
+      "championships": 1,
+      "championship_years": [
+        1976
+      ],
+      "wins": 10,
+      "podiums": 23,
+      "entries": 93
+    },
+    "jack_brabham": {
+      "championships": 3,
+      "championship_years": [
+        1959,
+        1960,
+        1966
+      ],
+      "wins": 14,
+      "podiums": 31,
+      "entries": 128
+    },
+    "jones": {
+      "championships": 1,
+      "championship_years": [
+        1980
+      ],
+      "wins": 12,
+      "podiums": 24,
+      "entries": 117
+    },
+    "keke_rosberg": {
+      "championships": 1,
+      "championship_years": [
+        1982
+      ],
+      "wins": 5,
+      "podiums": 17,
+      "entries": 114
+    },
+    "lauda": {
+      "championships": 3,
+      "championship_years": [
+        1975,
+        1977,
+        1984
+      ],
+      "wins": 25,
+      "podiums": 54,
+      "entries": 173
+    },
+    "mansell": {
+      "championships": 1,
+      "championship_years": [
+        1992
+      ],
+      "wins": 31,
+      "podiums": 59,
+      "entries": 190
+    },
+    "mario_andretti": {
+      "championships": 1,
+      "championship_years": [
+        1978
+      ],
+      "wins": 12,
+      "podiums": 19,
+      "entries": 128
+    },
+    "max_verstappen": {
+      "championships": 4,
+      "championship_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "wins": 71,
+      "podiums": 130,
+      "entries": 243
+    },
+    "michael_schumacher": {
+      "championships": 7,
+      "championship_years": [
+        1994,
+        1995,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ],
+      "wins": 91,
+      "podiums": 155,
+      "entries": 308
+    },
+    "norris": {
+      "championships": 1,
+      "championship_years": [
+        2025
+      ],
+      "wins": 11,
+      "podiums": 46,
+      "entries": 162
+    },
+    "phil_hill": {
+      "championships": 1,
+      "championship_years": [
+        1961
+      ],
+      "wins": 3,
+      "podiums": 16,
+      "entries": 51
+    },
+    "piquet": {
+      "championships": 3,
+      "championship_years": [
+        1981,
+        1983,
+        1987
+      ],
+      "wins": 23,
+      "podiums": 60,
+      "entries": 205
+    },
+    "prost": {
+      "championships": 4,
+      "championship_years": [
+        1985,
+        1986,
+        1989,
+        1993
+      ],
+      "wins": 51,
+      "podiums": 106,
+      "entries": 202
+    },
+    "raikkonen": {
+      "championships": 1,
+      "championship_years": [
+        2007
+      ],
+      "wins": 21,
+      "podiums": 103,
+      "entries": 352
+    },
+    "rindt": {
+      "championships": 1,
+      "championship_years": [
+        1970
+      ],
+      "wins": 6,
+      "podiums": 13,
+      "entries": 61
+    },
+    "rosberg": {
+      "championships": 1,
+      "championship_years": [
+        2016
+      ],
+      "wins": 23,
+      "podiums": 57,
+      "entries": 206
+    },
+    "scheckter": {
+      "championships": 1,
+      "championship_years": [
+        1979
+      ],
+      "wins": 10,
+      "podiums": 33,
+      "entries": 112
+    },
+    "senna": {
+      "championships": 3,
+      "championship_years": [
+        1988,
+        1990,
+        1991
+      ],
+      "wins": 41,
+      "podiums": 80,
+      "entries": 161
+    },
+    "stewart": {
+      "championships": 3,
+      "championship_years": [
+        1969,
+        1971,
+        1973
+      ],
+      "wins": 27,
+      "podiums": 43,
+      "entries": 100
+    },
+    "surtees": {
+      "championships": 1,
+      "championship_years": [
+        1964
+      ],
+      "wins": 6,
+      "podiums": 24,
+      "entries": 112
+    },
+    "vettel": {
+      "championships": 4,
+      "championship_years": [
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "wins": 53,
+      "podiums": 122,
+      "entries": 300
+    },
+    "villeneuve": {
+      "championships": 1,
+      "championship_years": [
+        1997
+      ],
+      "wins": 11,
+      "podiums": 23,
+      "entries": 165
+    }
+  }
+}

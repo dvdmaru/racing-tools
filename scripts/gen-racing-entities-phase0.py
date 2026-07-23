@@ -293,77 +293,11 @@ def write_page(path_parts, title, desc, jsonld, body):
     return canonical
 
 
-# ---------- 車手頁 ----------
-
-def gen_driver(did):
-    drv = _load(RAW / "drivers" / f"{did}.json")
-    career = fs.driver_career(did)
-    champ = fs.driver_championships(did)
-    seasons = fs.driver_seasons(did)
-    champ_years = [d["season"] for d in champ["detail"]]
-    zh = ZH.get(did)
-    name_full = f'{drv.get("givenName","")} {drv.get("familyName","")}'.strip()
-
-    # 生涯車隊（drove_for 邊）
-    races = _load(RAW / "drivers" / f"{did}-results.json")["Races"]
-    teams = []
-    for r in races:
-        c = (r.get("Results") or [{}])[0].get("Constructor", {})
-        cid = c.get("constructorId")
-        if cid and cid not in [t[0] for t in teams]:
-            teams.append((cid, c.get("name", cid)))
-
-    slug = rc.driver_slug(did)
-    url = f"{BASE}/drivers/{slug}/"
-
-    hero = f"""<div class="ent-hero">
-  <p class="ent-kicker">車手檔案 · Driver</p>
-  <h1 class="ent-h1">{pair(zh, name_full)}</h1>
-  <div class="ident">
-    <span>國籍 {esc(drv.get('nationality',''))}</span>
-    <span>生日 <span class="mono">{esc(drv.get('dateOfBirth',''))}</span></span>
-    <span>參賽賽季 <span class="mono">{seasons[0]}–{seasons[-1]}</span></span>
-  </div>
-</div>"""
-
-    cards = (
-        stat_card("世界冠軍", champ, unit=" 次") +
-        stat_card("分站冠軍", career["wins"], unit=" 勝") +
-        stat_card("頒獎台", career["podiums"], unit=" 次") +
-        stat_card("出賽", career["entries"], unit=" 站") +
-        unavailable_card("桿位", "資料源的 grid 是實際起跑位（含罰退）不是排位第一，2003 前排位資料不可靠 → 第一階段不發") +
-        unavailable_card("最快圈", "FastestLap 欄位 2004 起才有 → 本站算不出完整生涯值") +
-        unavailable_card("生涯積分", "有兩種都對的定義（各季最終榜 vs 逐場加總），差異在 1950–90 → 待定義後補")
-    )
-
-    tl = career_timeline(seasons, champ_years, _season_href("drivers", did, slug))
-    rel = "".join(internal_link(f'constructors/{cid.replace("_", "-")}',
-                                esc(ZH.get(cid) or name))
-                  for cid, name in teams)
-
-    body = f"""{hero}
-<div class="stat-grid">{cards}</div>
-
-<div class="sec-title">生涯時間軸</div>
-<p class="note">跑過的賽季填色，<b>世界冠軍年加深紅並加粗</b>。{len(champ_years)} 座冠軍：{esc('、'.join(map(str,champ_years))) or '—'}</p>
-{tl}
-
-<div class="sec-title">效力車隊</div>
-<div class="rel">{rel}</div>
-<p class="note">灰色車隊＝本階段尚未建頁，後續補上。時間軸中<b>可點的年份</b>會進入該車手<b>在該賽季</b>的成績頁（本階段先做 2002）。</p>
-
-<p class="note">本頁每個數字旁的「怎麼算的」可展開，逐筆列出來源賽季與賽站。
-統計一律由明細筆數產生，不獨立維護——這是為了防止「總計與明細各自維護」造成的錯。</p>
-"""
-    ld = rc.graph_ld([rc.org_node(), rc.website_node(),
-                      rc.breadcrumb_node([("首頁", BASE + "/"), ("車手", url)]),
-                      person_ld(drv, url, drv.get("url"))])
-    write_page(["drivers", slug], f"{zh or name_full}生涯數據",
-               f"{zh or name_full}的世界冠軍、分站冠軍、頒獎台與生涯時間軸，每個數字可回溯來源。",
-               ld, body)
-    print(f"  ✓ /drivers/{slug}/　{champ['value']}冠 {career['wins']['value']}勝 {career['podiums']['value']}台")
-    return {"slug": slug, "champ": champ["value"], "wins": career["wins"]["value"],
-            "podiums": career["podiums"]["value"], "zh": zh, "en": name_full}
+# 車手頁（/drivers/**）M5 起一律歸 gen-racing-drivers.py 所有（索引＋35 位歷代冠軍頁）；
+# phase0 只管車隊頁（/constructors/**）。原 gen_driver() 已移除，避免兩支都寫
+# /drivers/<slug>/index.html（後寫者贏）的歸屬權衝突（比照 M3 對 gen_season 的清理）。
+# DRIVERS / ZH 常數保留：gen-racing-seasons 用 p0.DRIVERS 決定 seed 子頁範圍、
+# gen-racing-drivers 用 p0.ZH 取 4 位 seed 的已核准全名譯名。
 
 
 # ---------- 車隊頁 ----------
@@ -415,9 +349,7 @@ def gen_constructor(cid):
 
 
 def main():
-    print("車手頁：")
-    for d in DRIVERS:
-        gen_driver(d)
+    # 車手頁已移交 gen-racing-drivers.py（M5）；phase0 只產車隊頁。
     print("車隊頁：")
     for c in CONSTRUCTORS:
         gen_constructor(c)
