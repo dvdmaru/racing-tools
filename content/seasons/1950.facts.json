@@ -1,0 +1,21 @@
+{
+  "_comment": "1950 賽季導言 facts pack。「史上首位世界冠軍／第一場比賽」的『史上第一』框架由 earliest_season（MIN(seasons.year)==1950）＋冠軍身分（champion_points 對到 Farina）共同支撐，屬可查證的機械對帳，不列為 external-history。「當年尚無車隊世界錦標賽」由 no_constructor_championship（1950 無 constructor_standings 列）驗證。",
+  "season": 1950,
+  "claims": [
+    {"kind": "season_exists", "text": "1950 賽季", "value": 1950, "verified": true,
+     "source": "sqlite: SELECT 1 FROM seasons WHERE year=1950"},
+    {"kind": "earliest_season", "text": "世界錦標賽的第一場比賽／史上首位世界冠軍（1950 為最早賽季）", "value": 1950, "verified": true,
+     "source": "sqlite: SELECT MIN(year) FROM seasons"},
+    {"kind": "season_rounds", "text": "全季 7 站", "value": 7, "verified": true,
+     "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1950"},
+    {"kind": "constructor_wins", "constructor": "alfa", "text": "Alfa Romeo 包辦其中 6 場", "value": 6, "verified": true,
+     "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1950 AND constructor_id='alfa' AND position_text='1'"},
+    {"kind": "champion_points", "driver": "farina", "text": "Nino Farina 以 30 分奪冠", "value": 30, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1950 AND position=1"},
+    {"kind": "runner_up_points", "driver": "fangio", "text": "隊友 Juan Fangio 27 分", "value": 27, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1950 AND position=2"},
+    {"kind": "no_constructor_championship", "text": "當年尚無車隊世界錦標賽", "value": 0, "verified": true,
+     "source": "sqlite: SELECT COUNT(*) FROM constructor_standings WHERE season=1950"}
+  ],
+  "external_history": []
+}

@@ -1,0 +1,20 @@
+{
+  "_comment": "2021 賽季導言 facts pack。中立紀律：最終站爭議只寫『賽會決策引發廣泛爭議並促成賽事總監制度改組』層級的事實句，不評對錯、爭議雙方皆不背書，該句列為 external-history、不進機械對帳。『兩人帶著相同積分進入最終站』由 tied_before_final（第 21 站後兩人累計積分皆 369.5）驗證，惟該 369.5 不出現在導言文字中。",
+  "season": 2021,
+  "claims": [
+    {"kind": "season_exists", "text": "2021 賽季", "value": 2021, "verified": true,
+     "source": "sqlite: SELECT 1 FROM seasons WHERE year=2021"},
+    {"kind": "season_rounds", "text": "第 22 站、也就是最後一站", "value": 22, "verified": true,
+     "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2021"},
+    {"kind": "champion_points", "driver": "max_verstappen", "text": "維斯塔潘以 395.5 分奪冠", "value": 395.5, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2021 AND position=1"},
+    {"kind": "runner_up_points", "driver": "hamilton", "text": "韓密爾頓 387.5 分", "value": 387.5, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2021 AND position=2"},
+    {"kind": "tied_before_final", "drivers": ["max_verstappen", "hamilton"], "text": "兩人帶著相同積分進入最終站（第 21 站後皆 369.5 分）", "value": 369.5, "verified": true,
+     "source": "cumulative 計算：逐站正賽＋衝刺賽積分累計至第 21 站，兩人皆 369.5（見 check-season-intros.py tied_before_final verifier）"}
+  ],
+  "external_history": [
+    "當站的賽會決策引發廣泛爭議，並促成後續賽事總監（Race Director）制度的改組——制度沿革歷史背景；中立呈現，不評對錯、爭議雙方皆不背書。",
+    "維斯塔潘拿下生涯首座世界冠軍——生涯里程碑歷史背景。"
+  ]
+}

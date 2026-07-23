@@ -1,0 +1,20 @@
+{
+  "_comment": "1988 賽季導言 facts pack。90:87 為官方最終積分榜值（driver_standings，已是捨分制計算後的結果），直接查得。「只計最佳成績的捨分制」與「冼拿首度奪冠」屬歷史背景敘述、無被對帳的阿拉伯數字，列為 external-history、不進機械對帳。",
+  "season": 1988,
+  "claims": [
+    {"kind": "season_exists", "text": "1988 賽季", "value": 1988, "verified": true,
+     "source": "sqlite: SELECT 1 FROM seasons WHERE year=1988"},
+    {"kind": "season_rounds", "text": "16 站", "value": 16, "verified": true,
+     "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1988"},
+    {"kind": "constructor_wins", "constructor": "mclaren", "text": "麥拉倫拿下 15 場勝利", "value": 15, "verified": true,
+     "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1988 AND constructor_id='mclaren' AND position_text='1'"},
+    {"kind": "champion_points", "driver": "senna", "text": "冼拿以 90 分奪冠", "value": 90, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1988 AND position=1"},
+    {"kind": "runner_up_points", "driver": "prost", "text": "Prost 87 分", "value": 87, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1988 AND position=2"}
+  ],
+  "external_history": [
+    "在當年只計最佳成績的捨分制下（best-11 dropped scores）——此為賽制歷史背景，非本季逐場加總；90:87 直接取自官方最終積分榜。",
+    "冼拿首度登上世界冠軍——生涯里程碑歷史背景。"
+  ]
+}
