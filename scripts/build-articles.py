@@ -383,7 +383,7 @@ def render_home(articles):
         {"@type": "ListItem", "position": i + 1, "url": f"{BASE}/articles/{a['slug']}/",
          "name": a["meta"].get("title", a["slug"])} for i, a in enumerate(articles)]}
     collection = {"@type": "CollectionPage", "@id": f"{BASE}/", "url": f"{BASE}/",
-                  "name": SITE["website_name"], "inLanguage": "zh-Hant",
+                  "name": f'{SITE["home_title"]}｜{SITE["title_suffix"]}', "inLanguage": "zh-Hant",
                   "isPartOf": {"@id": f"{BASE}/#website"}, "mainEntity": item_list}
     jsonld = rc.graph_ld([rc.org_node(), rc.website_node(), collection,
                           rc.breadcrumb_node([("首頁", f"{BASE}/")]),
@@ -403,7 +403,7 @@ def render_home(articles):
   {art_sec}
   {_faq_sec(HOME_FAQ)}"""
     # page_shell 會自動掛「 | 賽車數據誌」suffix → 這裡只給描述性前半，避免站名重複
-    return rc.page_shell(SITE["website_name"].split("｜")[1],
+    return rc.page_shell(SITE["home_title"],
                          desc, f"{BASE}/", jsonld, body, "home", extra_css=INDEX_CSS)
 
 
