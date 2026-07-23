@@ -1,25 +1,113 @@
 {
   "_comment": "jolpica constructor name／constructorId → 台灣慣用繁中譯名。Alpine/Racing Bulls 台灣無通行中譯、保留原文（行文可補「紅牛二隊」）。",
-  "Mercedes": "賓士",
-  "mercedes": "賓士",
-  "Ferrari": "法拉利",
-  "ferrari": "法拉利",
-  "McLaren": "麥拉倫",
-  "mclaren": "麥拉倫",
-  "Red Bull": "紅牛",
-  "red_bull": "紅牛",
-  "Alpine F1 Team": "Alpine",
-  "alpine": "Alpine",
-  "RB F1 Team": "Racing Bulls",
-  "rb": "Racing Bulls",
-  "Haas F1 Team": "哈斯",
-  "haas": "哈斯",
-  "Williams": "威廉斯",
-  "williams": "威廉斯",
-  "Audi": "奧迪",
-  "audi": "奧迪",
-  "Aston Martin": "奧斯頓馬丁",
-  "aston_martin": "奧斯頓馬丁",
-  "Cadillac F1 Team": "凱迪拉克",
-  "cadillac": "凱迪拉克"
+  "Mercedes": {
+    "zh": "賓士",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "mercedes": {
+    "zh": "賓士",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Ferrari": {
+    "zh": "法拉利",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "ferrari": {
+    "zh": "法拉利",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "McLaren": {
+    "zh": "麥拉倫",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "mclaren": {
+    "zh": "麥拉倫",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Red Bull": {
+    "zh": "紅牛",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "red_bull": {
+    "zh": "紅牛",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Alpine F1 Team": {
+    "zh": "Alpine",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "alpine": {
+    "zh": "Alpine",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "RB F1 Team": {
+    "zh": "Racing Bulls",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "rb": {
+    "zh": "Racing Bulls",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Haas F1 Team": {
+    "zh": "哈斯",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "haas": {
+    "zh": "哈斯",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Williams": {
+    "zh": "威廉斯",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "williams": {
+    "zh": "威廉斯",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Audi": {
+    "zh": "奧迪",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "audi": {
+    "zh": "奧迪",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Aston Martin": {
+    "zh": "奧斯頓馬丁",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "aston_martin": {
+    "zh": "奧斯頓馬丁",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Cadillac F1 Team": {
+    "zh": "凱迪拉克",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "cadillac": {
+    "zh": "凱迪拉克",
+    "src": "approved-live",
+    "status": "approved"
+  }
 }

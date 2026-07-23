@@ -446,11 +446,27 @@ def taipei_disp(date_str: str, time_str: str) -> str:
 # ---------- 中文名對照（車手/車隊：scripts/driver-zh.json、team-zh.json；站名/賽道內建） ----------
 
 def _load_zh(fname):
+    """譯名表讀取（M6 格式升級 + 相容層）。
+
+    支援兩種條目格式，一律收斂成 {id: zh_string}，且**只收 approved**：
+    - 新格式 dict：{"zh":"…","src":"…","status":"approved|pending"} → 只有 status=="approved"
+      才納入；pending 候選（fetch-zh-candidates 抓的、待 Charlie 裁決）對頁面完全不可見。
+    - 舊格式 flat string（過渡期／未升級檔）→ 視為 approved（線上已發布，append-only）。
+    `_` 開頭鍵為註解，略過。"""
     p = ROOT / "scripts" / fname
     if not p.exists():
         return {}
     raw = json.loads(p.read_text(encoding="utf-8"))
-    return {k: v for k, v in raw.items() if not k.startswith("_")}
+    out = {}
+    for k, v in raw.items():
+        if k.startswith("_"):
+            continue
+        if isinstance(v, str):
+            out[k] = v  # 相容層：舊 flat 字串＝已核准
+        elif isinstance(v, dict) and v.get("status") == "approved" and v.get("zh"):
+            out[k] = v["zh"]
+        # 其餘（pending / not_found / 缺 zh）→ 頁面不可見，不納入
+    return out
 
 
 DRIVER_ZH = _load_zh("driver-zh.json")

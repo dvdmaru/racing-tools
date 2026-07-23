@@ -1,27 +1,123 @@
 {
   "_comment": "F1 賽事名（Ergast raceName 原文）→ 台灣慣用繁中站名對照。M0 從 racinglib.py 硬編搬出，內容原樣未動；格式升級（{zh,src,status}）留給 M6。",
-  "Australian Grand Prix": "澳洲站",
-  "Chinese Grand Prix": "中國站",
-  "Japanese Grand Prix": "日本站",
-  "Miami Grand Prix": "邁阿密站",
-  "Canadian Grand Prix": "加拿大站",
-  "Monaco Grand Prix": "摩納哥站",
-  "Barcelona Grand Prix": "巴塞隆納站",
-  "Austrian Grand Prix": "奧地利站",
-  "British Grand Prix": "英國站",
-  "Belgian Grand Prix": "比利時站",
-  "Hungarian Grand Prix": "匈牙利站",
-  "Dutch Grand Prix": "荷蘭站",
-  "Italian Grand Prix": "義大利站",
-  "Spanish Grand Prix": "西班牙站（馬德里）",
-  "Azerbaijan Grand Prix": "亞塞拜然站",
-  "Singapore Grand Prix": "新加坡站",
-  "United States Grand Prix": "美國站",
-  "Mexico City Grand Prix": "墨西哥城站",
-  "Brazilian Grand Prix": "巴西站",
-  "Las Vegas Grand Prix": "拉斯維加斯站",
-  "Qatar Grand Prix": "卡達站",
-  "Abu Dhabi Grand Prix": "阿布達比站",
-  "Bahrain Grand Prix": "巴林站",
-  "Saudi Arabian Grand Prix": "沙烏地站"
+  "Australian Grand Prix": {
+    "zh": "澳洲站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Chinese Grand Prix": {
+    "zh": "中國站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Japanese Grand Prix": {
+    "zh": "日本站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Miami Grand Prix": {
+    "zh": "邁阿密站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Canadian Grand Prix": {
+    "zh": "加拿大站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Monaco Grand Prix": {
+    "zh": "摩納哥站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Barcelona Grand Prix": {
+    "zh": "巴塞隆納站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Austrian Grand Prix": {
+    "zh": "奧地利站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "British Grand Prix": {
+    "zh": "英國站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Belgian Grand Prix": {
+    "zh": "比利時站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Hungarian Grand Prix": {
+    "zh": "匈牙利站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Dutch Grand Prix": {
+    "zh": "荷蘭站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Italian Grand Prix": {
+    "zh": "義大利站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Spanish Grand Prix": {
+    "zh": "西班牙站（馬德里）",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Azerbaijan Grand Prix": {
+    "zh": "亞塞拜然站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Singapore Grand Prix": {
+    "zh": "新加坡站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "United States Grand Prix": {
+    "zh": "美國站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Mexico City Grand Prix": {
+    "zh": "墨西哥城站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Brazilian Grand Prix": {
+    "zh": "巴西站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Las Vegas Grand Prix": {
+    "zh": "拉斯維加斯站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Qatar Grand Prix": {
+    "zh": "卡達站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Abu Dhabi Grand Prix": {
+    "zh": "阿布達比站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Bahrain Grand Prix": {
+    "zh": "巴林站",
+    "src": "approved-live",
+    "status": "approved"
+  },
+  "Saudi Arabian Grand Prix": {
+    "zh": "沙烏地站",
+    "src": "approved-live",
+    "status": "approved"
+  }
 }

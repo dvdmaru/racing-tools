@@ -1,0 +1,15 @@
+{
+  "_comment": "M6 一致性 gate（scripts/check-zh.py）的『歷史遺留衝突』允許清單。清單內的條目＝格式升級前就已在線上發布的既存兩譯法；append-only 紀律下不可逕改任何 approved 值，故 gate 對清單內條目把規則①衝突降級為 warning 並列出，供 Charlie 裁決收斂方向。⚠️ 新衝突不得靠加進本清單來繞過——其餘一律照擋（exit 1）。收斂後應另立 migration 一次改雙方（含線上頁重生），再從本清單移除。",
+  "conflicts": [
+    {
+      "namespace": "driver",
+      "id": "hamilton",
+      "values": [
+        {"zh": "漢米爾頓", "src": "scripts/driver-zh.json（2026-07-19 台/港/陸慣例調查後定版的姓氏譯名）"},
+        {"zh": "路易斯・韓密爾頓", "src": "scripts/gen-racing-entities-phase0.py 的 ZH seed（全名，隨 phase0 於 2026-07-19 上線＝approved-live）"}
+      ],
+      "note": "姓氏用字兩譯：driver-zh 作『漢』米爾頓，phase0 seed 全名作路易斯・『韓』密爾頓。兩者皆已 approved-live（分別在積分榜/賽果窄表與 /drivers/hamilton/ hero），append-only 下都不可逕改。待 Charlie 裁決用字（漢 or 韓）後，另立 migration 一次改兩處並重生受影響頁。",
+      "pending_decision": true
+    }
+  ]
+}
