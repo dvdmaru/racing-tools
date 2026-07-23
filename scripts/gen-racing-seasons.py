@@ -304,6 +304,10 @@ STATUS_ZH = {
     "Fuel pressure": "燃油壓力", "Oil pressure": "機油壓力", "Wheel": "輪組",
     "Electronics": "電子系統", "Drivetrain": "動力傳動", "Ignition": "點火", "Injury": "傷勢",
     "Chassis": "底盤", "Steering": "轉向", "Injured": "傷勢",
+    # 近代賽果登記事由（2020s 資料源用語）：Retired＝退賽、Did not start＝未發車、
+    # Lapped＝落後圈數（此 gloss 僅用於「未列入完賽名次」的落圈退賽者，見 is_classified 註）。
+    "Retired": "退賽", "Did not start": "未發車", "Lapped": "落後圈數",
+    "Withdrew": "退出", "Did not qualify": "未通過排位", "Not classified": "未列名次",
 }
 
 
@@ -511,17 +515,28 @@ def round_winners(year):
     return out
 
 
-def _round_winners_table(year, paths):
+def _round_winners_table(year, paths, round_paths=None):
+    """各站冠軍表。round_paths（已生成分站頁集合）非空時，站次(R nn)與大獎賽名連往該站分站頁
+    （同 gate：只連已生成的頁，無死連結）；無分站頁的季維持純文字。"""
+    round_paths = round_paths or set()
     winners = round_winners(year)
     rows = []
     for w in winners:
+        rnd = w["round"]
         rp = rc.race_pair(w["race"])
+        rpath = f"seasons/{year}/rounds/{rnd}"
+        if rpath in round_paths:
+            round_cell = f'<a href="/{rpath}/" class="mono">R{rnd:02d}</a>'
+            race_cell = f'<a href="/{rpath}/">{rp}</a>'
+        else:
+            round_cell = f'R{rnd:02d}'
+            race_cell = rp
         drv_link = _drv_subpage_link(w["driver"], year, paths)
         c = w["constructor"]
         team_link = _team_subpage_link(c.get("constructorId", ""), c.get("name", ""), year, paths)
         rows.append(
-            f'<tr><td class="rk mono">R{w["round"]:02d}</td>'
-            f'<td class="l">{rp}</td>'
+            f'<tr><td class="rk mono">{round_cell}</td>'
+            f'<td class="l">{race_cell}</td>'
             f'<td class="l nm">{drv_link}</td>'
             f'<td class="l">{team_link}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
@@ -641,6 +656,127 @@ def team_retirements(year, cid):
                         "driver": _driver_full(drv), "status": status,
                         "source": f"data/f1/raw/results/{year}-{rnd:02d}.json"})
     return out
+
+
+# ---------- M4-B 分站頁資料層（/seasons/<year>/rounds/<n>/；只做 2002＋2026 已跑站） ----------
+
+def _round_results(year, rnd):
+    """回該站正賽 results 檔（dict）或 None（未跑／無檔）。"""
+    p = RAW / "results" / f"{year}-{rnd:02d}.json"
+    return _load_json(p) if p.exists() else None
+
+
+def season_round_numbers(year):
+    """該季<有正賽 results 檔>的站次（升冪）。分站頁只為這些站生成——資料驅動、非硬編：
+    2002＝1–17；2026＝目前已跑站（R1–R10，隨每週資料更新自動增加）。"""
+    return [rnd for rnd in range(1, _season_rounds(year) + 1)
+            if (RAW / "results" / f"{year}-{rnd:02d}.json").exists()]
+
+
+def round_page_paths(year):
+    """該季所有分站頁根相對路徑集合（不含前導斜線），供交叉連結 gate（無死連結）。"""
+    return {f"seasons/{year}/rounds/{rnd}" for rnd in season_round_numbers(year)}
+
+
+def is_classified(res):
+    """完賽（＝獲official 完賽名次）判定：positionText 為純數字。分站頁退賽名單以此判定。
+
+    ⚠️ 為何分站頁用 positionText 而非 is_finisher(status)：2026 資料源把 'Lapped' 同時套在
+    <獲完賽名次、落後圈數者>（P7–P16，positionText 為數字）與<真正退賽者>（如 Stroll，
+    positionText='R'、僅跑 43/58 圈）身上——status 兩者相同、不可靠。唯 positionText 誠實區分
+    「是否列入完賽名次」。這與『+N Lap 落圈完賽者算完賽』的 2002 慣例語意一致（落圈但完賽）。
+    （總覽頁 season_retirements 仍沿用 status-based is_finisher，兩頁框架不同、各自 SOURCED；
+     詳見交付回報的裁決點。）"""
+    return str(res.get("positionText") or res.get("position") or "").isdigit()
+
+
+def round_full_results(year, rnd):
+    """回該站全部參賽車手賽果（原始名次順序，含 R/D/W 等未完賽者），供完整名次表。"""
+    data = _round_results(year, rnd) or {}
+    return data.get("Results", [])
+
+
+def round_podium(year, rnd):
+    """回 [p1, p2, p3]（各為該名次的 result dict 或 None）；positionText 1/2/3。"""
+    pod = {}
+    for res in round_full_results(year, rnd):
+        pt = res.get("positionText") or res.get("position")
+        if pt in ("1", "2", "3") and pt not in pod:
+            pod[pt] = res
+    return [pod.get("1"), pod.get("2"), pod.get("3")]
+
+
+def round_retirements(year, rnd):
+    """回該站未完賽（未列入完賽名次＝positionText 非數字）車手明細，依原始名次順序。
+    誠實標「本站無退賽」由 render 端依 len==0 分支處理。"""
+    out = []
+    for res in round_full_results(year, rnd):
+        if is_classified(res):
+            continue
+        drv = res.get("Driver", {})
+        cons = res.get("Constructor", {})
+        out.append({
+            "driver_id": drv.get("driverId", ""), "driver": _driver_full(drv),
+            "driver_obj": drv, "constructor": cons,
+            "pos": res.get("positionText") or res.get("position", ""),
+            "status": res.get("status", ""),
+            "source": f"data/f1/raw/results/{year}-{rnd:02d}.json",
+        })
+    return out
+
+
+def round_sprint(year, rnd):
+    """回該站衝刺賽賽果（data/f1/raw/sprint/<year>-<rnd>.json 存在才有；2002 全季無 → 空）。"""
+    return _sprint_results(year, rnd)
+
+
+def round_narrative(year, rnd):
+    """回 list[str] 分站敘事句（模板＋資料，非 LLM）。每個數字都能在本頁明細表找到：
+    grid/圈數/積分＝冠軍列；參賽/未完賽數＝完整名次表列數與退賽名單筆數；最大宗 status＝退賽名單。"""
+    results = round_full_results(year, rnd)
+    data = _round_results(year, rnd) or {}
+    race_name = data.get("raceName", f"Round {rnd}")
+    winner = next((r for r in results
+                   if (r.get("positionText") or r.get("position")) == "1"), None)
+    lines = []
+    if winner:
+        wdrv = winner.get("Driver", {})
+        wname = name_plain(zh_driver(wdrv.get("driverId", "")), _driver_full(wdrv))
+        grid = str(winner.get("grid", "") or "")
+        laps = str(winner.get("laps", "") or "")
+        pts = winner.get("points", "0")
+        if grid == "0":
+            start = "自維修道（發車位 0）起跑"
+        elif grid.isdigit():
+            start = f"從第 {grid} 位發車"
+        else:
+            start = "起跑"
+        lap_txt = f"、完成 {laps} 圈" if laps else ""
+        lines.append(f"{year} {rc.race_zh(race_name)}由 {wname} {start}{lap_txt}奪下分站冠軍，"
+                     f"單場進帳 {pts} 分。")
+    pod = round_podium(year, rnd)
+    if pod[1] is not None and pod[2] is not None:
+        p2, p3 = pod[1].get("Driver", {}), pod[2].get("Driver", {})
+        p2n = name_plain(zh_driver(p2.get("driverId", "")), _driver_full(p2))
+        p3n = name_plain(zh_driver(p3.get("driverId", "")), _driver_full(p3))
+        lines.append(f"亞軍為 {p2n}、季軍為 {p3n}，三人同登頒獎台。")
+    n_entries = len(results)
+    rets = round_retirements(year, rnd)
+    n_dnf = len(rets)
+    n_class = n_entries - n_dnf
+    lines.append(f"本站共 {n_entries} 位車手參賽，其中 {n_class} 位獲完賽名次、"
+                 f"{n_dnf} 位未完賽（未列入完賽名次者）。")
+    if rets:
+        cnt = defaultdict(int)
+        for d in rets:
+            cnt[d["status"]] += 1
+        top_status, top_n = max(cnt.items(), key=lambda kv: (kv[1], kv[0]))
+        gloss = name_plain(STATUS_ZH.get(top_status), top_status)
+        lines.append(f"未完賽者中，賽果登記事由為「{gloss}」者 {top_n} 位為最多"
+                     "（status 為原文，本站不直譯退賽因果）。")
+    else:
+        lines.append("本站全員獲完賽名次，無退賽紀錄。")
+    return lines
 
 
 # ---------- 渲染：索引頁 /seasons/ ----------
@@ -930,7 +1066,7 @@ def _race_event_nodes(year, schedule, season_url):
     return nodes
 
 
-def render_season(year):
+def render_season(year, round_paths=None):
     ds = _driver_standings(year)
     cs = _constructor_standings(year)
     sched = _schedule(year)
@@ -1025,8 +1161,9 @@ def render_season(year):
                         '<p class="note">車隊世界錦標賽 <b>1958</b> 年才創立，'
                         f'{year} 賽季<b>無官方車隊積分榜</b>，本站據此不顯示車隊榜與車隊子頁（不憑逐車手加總捏造）。</p>')
 
-    # 各站冠軍列表（round／大獎賽／冠軍車手／車隊）
-    winners_table = _round_winners_table(year, paths)
+    # 各站冠軍列表（round／大獎賽／冠軍車手／車隊）；有分站頁的季，站次與大獎賽名連往分站頁
+    winners_table = _round_winners_table(year, paths, round_paths)
+    has_round_pages = bool(round_paths)
 
     # 全季退賽圖鑑
     cats = season_retirements(year)
@@ -1054,7 +1191,7 @@ def render_season(year):
 {cons_hidden_note}
 
 <div class="sec-title">各站冠軍</div>
-<p class="note">{winners_scope}的分站冠軍車手與車隊。<b>紅色可點</b>的名字已建該季子頁——點某位車手／車隊，就進入「以他為主角」的該季視角頁（逐站成績、車手貢獻拆解、退賽）。</p>
+<p class="note">{winners_scope}的分站冠軍車手與車隊。{'<b>站次與大獎賽名可點</b>進入該站分站頁（完整正賽名次、頒獎台、退賽）；' if has_round_pages else ''}<b>紅色可點</b>的名字已建該季子頁——點某位車手／車隊，就進入「以他為主角」的該季視角頁（逐站成績、車手貢獻拆解、退賽）。</p>
 {winners_table}
 
 <div class="sec-title">全季退賽圖鑑</div>
@@ -1100,7 +1237,8 @@ def _crumbs(year, leaf):
 
 # ---------- 渲染：/seasons/<year>/drivers/<slug>/（選了車手） ----------
 
-def render_driver_subpage(year, did):
+def render_driver_subpage(year, did, round_paths=None):
+    round_paths = round_paths or set()
     ds = _driver_standings(year)
     row = next((e for e in ds if e["Driver"].get("driverId") == did), None)
     if not row:
@@ -1144,8 +1282,11 @@ def render_driver_subpage(year, did):
     rrows = []
     for r in races:
         rp = rc.race_pair(r["race"])
+        rpath = f'seasons/{year}/rounds/{r["round"]}'
+        rnd_cell = (f'<a href="/{rpath}/">R{r["round"]:02d}</a>'
+                    if rpath in round_paths else f'R{r["round"]:02d}')
         rrows.append(
-            f'<tr><td class="rk mono">R{r["round"]:02d}</td>'
+            f'<tr><td class="rk mono">{rnd_cell}</td>'
             f'<td class="l">{rp}</td>'
             f'<td class="mono">{esc(str(r["grid"]))}</td>'
             f'<td class="mono">{esc(str(r["pos"]))}</td>'
@@ -1240,7 +1381,8 @@ def render_driver_subpage(year, did):
 
 # ---------- 渲染：/seasons/<year>/teams/<slug>/（選了車隊） ----------
 
-def render_team_subpage(year, cid):
+def render_team_subpage(year, cid, round_paths=None):
+    round_paths = round_paths or set()
     cs = _constructor_standings(year)
     row = next((r for r in cs if r["Constructor"].get("constructorId") == cid), None)
     if not row:
@@ -1288,8 +1430,11 @@ def render_team_subpage(year, cid):
     trows = []
     for r in rounds_pts:
         contrib = "、".join(f'{esc(d["driver"])} {_fmt(d["points"])}' for d in r["drivers"] if d["points"])
+        rpath = f'seasons/{year}/rounds/{r["round"]}'
+        rnd_cell = (f'<a href="/{rpath}/">R{r["round"]:02d}</a>'
+                    if rpath in round_paths else f'R{r["round"]:02d}')
         trows.append(
-            f'<tr><td class="rk mono">R{r["round"]:02d}</td>'
+            f'<tr><td class="rk mono">{rnd_cell}</td>'
             f'<td class="l">{rc.race_pair(r["race"])}</td>'
             f'<td class="std-pts">{_fmt(r["points"])}</td>'
             f'<td class="l brk-txt">{contrib or "—"}</td></tr>')
@@ -1384,6 +1529,219 @@ def render_team_subpage(year, cid):
     return canonical
 
 
+# ---------- 渲染：/seasons/<year>/rounds/<n>/（單場分站頁；M4-B，只做 2002＋2026 已跑站） ----------
+
+def _round_full_results_table(year, rnd, sub_paths):
+    """完整正賽名次表：全部參賽車手（positionText 原樣：R/D/W…）、車手、車隊、發車位、圈數、
+    status 原文、積分。車手／車隊名沿用 subpage_paths gate 連該季子頁（無子頁純文字）。"""
+    rows = []
+    for res in round_full_results(year, rnd):
+        drv = res.get("Driver", {})
+        cons = res.get("Constructor", {})
+        pos = res.get("positionText") or res.get("position", "")
+        lead = ' class="lead"' if pos == "1" else ""
+        dl = _drv_subpage_link(drv, year, sub_paths)
+        tl = _team_subpage_link(cons.get("constructorId", ""), cons.get("name", ""), year, sub_paths)
+        src = f"data/f1/raw/results/{year}-{rnd:02d}.json"
+        rows.append(
+            f'<tr{lead}><td class="rk">{esc(str(pos))}</td>'
+            f'<td class="l nm">{dl}</td>'
+            f'<td class="l">{tl}</td>'
+            f'<td class="mono">{esc(str(res.get("grid", "")))}</td>'
+            f'<td class="mono">{esc(str(res.get("laps", "")))}</td>'
+            f'<td class="l"><span class="rt-status" title="來源檔：{esc(src)}">{esc(res.get("status", ""))}</span></td>'
+            f'<td class="std-pts">{esc(str(res.get("points", "0")))}</td></tr>')
+    return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
+            '<th class="rk">名次</th><th class="l">車手</th><th class="l">車隊</th>'
+            '<th>發車位</th><th>圈數</th><th class="l">賽果登記</th><th>積分</th>'
+            f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
+
+
+def _podium_block(year, rnd):
+    pod = round_podium(year, rnd)
+    if not (pod[0] and pod[1] and pod[2]):
+        return '<p class="note">本站頒獎台資料不完整，改見下方完整名次表。</p>'
+    medals = [("1", "冠軍", "🥇"), ("2", "亞軍", "🥈"), ("3", "季軍", "🥉")]
+    cards = []
+    for (res, (pt, lbl, medal)) in zip(pod, medals):
+        drv = res.get("Driver", {})
+        cons = res.get("Constructor", {})
+        cards.append(
+            f'<div class="pod pod-{pt}"><div class="pod-rk">{medal} {lbl}</div>'
+            f'<div class="pod-nm">{driver_pair(drv)}</div>'
+            f'<div class="pod-tm">{team_pair(cons.get("constructorId", ""), cons.get("name", ""))}</div>'
+            f'<div class="pod-pt mono">{esc(str(res.get("points", "0")))} 分</div></div>')
+    return f'<div class="podium">{"".join(cards)}</div>'
+
+
+def _sprint_block(year, rnd):
+    """衝刺賽區塊（資料驅動）：sprint 檔存在才輸出。2002 全季無 → 回空字串（整段不出現）。"""
+    sprint = round_sprint(year, rnd)
+    if not sprint:
+        return ""
+    rows = []
+    src = f"data/f1/raw/sprint/{year}-{rnd:02d}.json"
+    for res in sprint:
+        drv = res.get("Driver", {})
+        cons = res.get("Constructor", {})
+        pos = res.get("positionText") or res.get("position", "")
+        lead = ' class="lead"' if pos == "1" else ""
+        rows.append(
+            f'<tr{lead}><td class="rk">{esc(str(pos))}</td>'
+            f'<td class="l nm">{driver_pair(drv)}</td>'
+            f'<td class="l">{team_pair(cons.get("constructorId", ""), cons.get("name", ""))}</td>'
+            f'<td class="mono">{esc(str(res.get("grid", "")))}</td>'
+            f'<td class="l"><span class="rt-status">{esc(res.get("status", ""))}</span></td>'
+            f'<td class="std-pts">{esc(str(res.get("points", "0")))}</td></tr>')
+    table = ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
+             '<th class="rk">名次</th><th class="l">車手</th><th class="l">車隊</th>'
+             '<th>發車位</th><th class="l">賽果登記</th><th>衝刺積分</th>'
+             f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
+    note = (f'<p class="note">本站設有<b>衝刺賽（Sprint）</b>，以下為衝刺賽完整名次與積分'
+            f'（來源：<span class="mono">{esc(src)}</span>），與上方正賽分開計分。</p>')
+    return f'<div class="sec-title">衝刺賽</div>{note}{table}'
+
+
+def _round_nav(year, rnd):
+    """上一站／下一站導覽：只連該季已生成的分站頁；邊界站單向、禁死連結。"""
+    rounds_all = season_round_numbers(year)
+    sched = {int(r["round"]): r for r in _schedule(year)}
+    idx = rounds_all.index(rnd)
+    prev_rnd = rounds_all[idx - 1] if idx > 0 else None
+    next_rnd = rounds_all[idx + 1] if idx < len(rounds_all) - 1 else None
+
+    def _cell(rn, arrow, side):
+        if rn is None:
+            return f'<span class="rn-x rn-{side}"></span>'
+        nm = rc.race_zh(sched.get(rn, {}).get("raceName", f"Round {rn}"))
+        return (f'<a class="rn-lk rn-{side}" href="/seasons/{year}/rounds/{rn}/">'
+                f'<span class="rn-dir">{arrow}</span>'
+                f'<span class="rn-r mono">R{rn:02d}</span> {esc(nm)}</a>')
+    return (f'<nav class="round-nav" aria-label="分站導覽">'
+            f'{_cell(prev_rnd, "← 上一站", "prev")}'
+            f'{_cell(next_rnd, "下一站 →", "next")}</nav>')
+
+
+def render_round(year, rnd, round_paths=None, sub_paths=None):
+    data = _round_results(year, rnd)
+    if not data:
+        raise SystemExit(f"❌ 缺 {year} R{rnd} 正賽 results（{year}-{rnd:02d}.json）")
+    if sub_paths is None:
+        sub_paths = subpage_paths(year)
+    results = data.get("Results", [])
+    sched = {int(r["round"]): r for r in _schedule(year)}
+    srow = sched.get(rnd, {})
+    circ = srow.get("Circuit", {}) or data.get("Circuit", {}) or {}
+    loc = circ.get("Location", {})
+    race_name = data.get("raceName") or srow.get("raceName", f"Round {rnd}")
+    date = data.get("date") or srow.get("date", "")
+    wiki = srow.get("url") or data.get("url", "")
+    in_progress = not fs._is_completed(year)
+
+    canonical = f"{BASE}/seasons/{year}/rounds/{rnd}/"
+    overview_url = f"{BASE}/seasons/{year}/"
+    race_disp = rc.race_pair(race_name)
+    circ_disp = rc.circuit_pair(circ.get("circuitId", ""), circ.get("circuitName", "")) if circ else ""
+
+    winner = next((r for r in results if (r.get("positionText") or r.get("position")) == "1"), None)
+    w_name_txt = ""
+    if winner:
+        wdrv = winner.get("Driver", {})
+        w_name_txt = name_plain(zh_driver(wdrv.get("driverId", "")), _driver_full(wdrv))
+
+    # Hero / 麵包屑
+    crumbs = (f'<nav class="crumbs" aria-label="breadcrumb">'
+              f'<a href="/">首頁</a><span>›</span>'
+              f'<a href="/seasons/">賽季</a><span>›</span>'
+              f'<a href="/seasons/{year}/">{year}</a><span>›</span>'
+              f'<span class="cur">R{rnd:02d}</span></nav>')
+    ident_bits = [f'<span>第 <span class="mono">{rnd}</span> 站</span>']
+    if circ_disp:
+        ident_bits.append(f'<span>賽道 {circ_disp}</span>')
+    if loc.get("country"):
+        locality = f'{loc.get("locality")}・' if loc.get("locality") else ""
+        ident_bits.append(f'<span>{esc(locality)}{esc(loc["country"])}</span>')
+    if date:
+        ident_bits.append(f'<span>日期 <span class="mono">{esc(date)}</span></span>')
+    ip_tag = '<span class="ip-tag">進行中</span>' if in_progress else ""
+    hero = f"""<div class="ent-hero">
+  <p class="ent-kicker">分站 · {year} Season · Round {rnd}</p>
+  <h1 class="ent-h1">{race_disp}<span class="sub-year">　{year}</span>{ip_tag}</h1>
+  <div class="ident">
+    <span>賽季 <a href="{overview_url}">{year} 總覽</a></span>
+    {"".join(ident_bits)}
+  </div>
+</div>"""
+
+    nav = _round_nav(year, rnd)
+    podium = _podium_block(year, rnd)
+    results_table = _round_full_results_table(year, rnd, sub_paths)
+    sprint_html = _sprint_block(year, rnd)
+    narr = "".join(f"<p>{esc(s)}</p>" for s in round_narrative(year, rnd))
+
+    # 退賽名單（is_classified 判定；誠實「本站無退賽」分支）
+    rets = round_retirements(year, rnd)
+    if rets:
+        ret_items = "".join(
+            f'<li title="來源檔：{esc(d["source"])}">'
+            f'{esc(d["driver"])}（{team_pair(d["constructor"].get("constructorId", ""), d["constructor"].get("name", ""))}）'
+            f' · <span class="rt-status">{esc(d["status"])}</span></li>'
+            for d in rets)
+        ret_html = (f'<p class="note">本站共 <b>{len(rets)}</b> 位車手未完賽（未列入完賽名次），'
+                    'status 為賽果登記事由原文，本站不直譯退賽因果。</p>'
+                    f'<ol class="detail-list">{ret_items}</ol>'
+                    '<p class="note">口徑說明：本名單以官方<b>是否列入完賽名次</b>（positionText）判定；'
+                    'status 登記為故障事由但仍獲完賽名次者（跑滿分類距離），列於上方名次表而不在此列。'
+                    '賽季總覽的「全季退賽圖鑑」以 status 事由計數，兩者口徑不同、各自可回溯。</p>')
+    else:
+        ret_html = '<p class="note">本站<b>無退賽</b>——全部參賽車手皆獲完賽名次。</p>'
+
+    body = f"""{crumbs}
+{hero}
+{nav}
+
+<div class="sec-title">頒獎台</div>
+{podium}
+
+<div class="sec-title">賽況速寫</div>
+<div class="narrative">{narr}</div>
+
+<div class="sec-title">正賽完整名次</div>
+<p class="note">{year} {race_disp}正賽全部參賽車手名次。名次欄為官方 positionText 原樣（<span class="rt-status">R</span>＝退賽、<span class="rt-status">D</span>＝取消資格、<span class="rt-status">W</span>＝未出賽等）；發車位、圈數、積分與 status 皆逐字取自官方賽果檔。有該季子頁的車手／車隊名<b>可點</b>進入其賽季視角頁。</p>
+{results_table}
+{sprint_html}
+
+<div class="sec-title">退賽名單</div>
+{ret_html}
+
+<p class="note">本頁為 {year} 賽季第 {rnd} 站的單場分站頁。所有數字直接取自官方正賽{('與衝刺賽 ' if sprint_html else '')}賽果檔，可回溯來源；回到 <a href="{overview_url}">{year} 賽季總覽</a>。</p>
+"""
+
+    # JSON-LD：BreadcrumbList ＋ 單一 SportsEvent（name/startDate/location Place＋geo/sameAs 維基）
+    events = _race_event_nodes(year, [srow] if srow else [], canonical)
+    for ev in events:
+        ev["@id"] = f"{canonical}#event"
+        ev["url"] = canonical
+        ev["isPartOf"] = {"@id": f"{BASE}/#website"}  # 掛在 graph 內真實 website 節點（非 dangling #page）
+    jsonld = rc.graph_ld(
+        [rc.org_node(), rc.website_node(),
+         rc.breadcrumb_node([("首頁", f"{BASE}/"), ("賽季", f"{BASE}/seasons/"),
+                             (f"{year} 賽季", overview_url), (f"R{rnd:02d}", canonical)])]
+        + events)
+    win_txt = f"{w_name_txt} 奪冠，" if w_name_txt else ""
+    desc = (f"{year} {rc.race_zh(race_name)}（第 {rnd} 站）正賽完整名次、頒獎台、"
+            f"{'衝刺賽、' if sprint_html else ''}退賽名單與賽況速寫，{win_txt}每個數字可回溯官方賽果。")
+    html = rc.page_shell(f"{year} {rc.race_zh(race_name)}｜第 {rnd} 站賽果",
+                         desc, canonical, jsonld, body,
+                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS)
+    out = PUB / "seasons" / str(year) / "rounds" / str(rnd)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "index.html").write_text(html, encoding="utf-8")
+    print(f"  ✓ /seasons/{year}/rounds/{rnd}/　{rc.race_zh(race_name)} · "
+          f"{len(results)} 車 · {len(rets)} 退賽{' · sprint' if sprint_html else ''}")
+    return canonical
+
+
 # ---------- 賽季頁專屬 CSS（走 page_shell 的 extra_css，不進 SHARED_CSS_TEXT） ----------
 # 與 phase0 ENTITY_CSS 併用；只新增索引/敘事/退賽橫條圖需要的樣式，零圖檔零 JS。
 SEASON_CSS = """
@@ -1424,19 +1782,41 @@ tr.brk td{padding-top:0;padding-bottom:9px;border-top:none}
 .crumbs span{color:var(--line-2)}
 .crumbs .cur{color:var(--fg-soft);font-weight:600}
 .ent-h1 .sub-year{font-size:.5em;color:var(--dim);font-weight:700;font-family:'Chakra Petch',monospace}
+.round-nav{display:flex;justify-content:space-between;gap:10px;margin:2px 0 18px}
+.rn-lk{flex:1;display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--fg);max-width:48%}
+.rn-lk:hover{border-color:var(--accent);color:var(--accent)}
+.rn-next{align-items:flex-end;text-align:right}
+.rn-dir{font-size:11px;color:var(--accent);font-family:'Chakra Petch',monospace;letter-spacing:.04em}
+.rn-r{color:var(--faint);font-size:11px;margin-right:4px}
+.rn-x{flex:1;max-width:48%}
+.podium{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0 4px}
+.pod{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;border-top:3px solid var(--line-2)}
+.pod-1{border-top-color:var(--accent);box-shadow:0 1px 3px var(--sheet-shadow)}
+.pod-rk{font-size:13px;font-weight:800;color:var(--fg-soft);font-family:'Chakra Petch',sans-serif}
+.pod-nm{font-size:16px;font-weight:750;margin:8px 0 2px;color:var(--fg)}
+.pod-tm{font-size:12.5px;color:var(--fg-soft)}
+.pod-pt{font-size:13px;color:var(--accent);font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums}
+@media(max-width:520px){.round-nav{flex-direction:column}.rn-lk,.rn-x{max-width:none}.rn-next{align-items:flex-start;text-align:left}}
 """
 
 
 # ---------- CLI ----------
 
-def _render_one_season(year, urls):
-    """單季總覽＋其 seed 子頁（有實體頁且該季有參賽者，防頁數爆炸）。"""
-    urls.append(render_season(year))
+def _render_one_season(year, urls, round_years=frozenset()):
+    """單季總覽＋其 seed 子頁（有實體頁且該季有參賽者，防頁數爆炸）。
+    year ∈ round_years：另生成該季分站頁（只做有正賽 results 的站），並把總覽／子頁的
+    站次交叉連往分站頁（同 gate）。"""
+    round_paths = round_page_paths(year) if year in round_years else None
+    urls.append(render_season(year, round_paths))
     dids, cids = season_subpage_entities(year)  # <1958：cids 為空→無車隊子頁（Σ gate 無 oracle）
     for did in dids:
-        urls.append(render_driver_subpage(year, did))
+        urls.append(render_driver_subpage(year, did, round_paths))
     for cid in cids:
-        urls.append(render_team_subpage(year, cid))
+        urls.append(render_team_subpage(year, cid, round_paths))
+    if year in round_years:
+        sub_paths = subpage_paths(year)
+        for rnd in season_round_numbers(year):
+            urls.append(render_round(year, rnd, round_paths, sub_paths))
 
 
 def main():
@@ -1445,23 +1825,27 @@ def main():
     ap.add_argument("--all", action="store_true",
                     help="展開全部 77 季（1950–2026）：索引＋各季總覽＋各季 seed 子頁")
     ap.add_argument("--index-only", action="store_true", help="只重建 /seasons/ 索引")
+    ap.add_argument("--rounds-for", type=int, nargs="+", metavar="YEAR", default=[],
+                    help="為指定季生成單場分站頁 /seasons/<year>/rounds/<n>/（只生成有正賽 results 的站）。"
+                         "pipeline 用法：--all --rounds-for 2002 2026")
     ap.add_argument("--publish", action="store_true",
                     help="公開時才加：寫 data/sitemap-parts/seasons.txt（預設不寫，頁面未公開前不進 sitemap）")
     ap.add_argument("--no-sitemap", action="store_true", help="顯式關閉 sitemap part（與預設同義，供 pipeline 明示）")
     args = ap.parse_args()
 
+    round_years = set(args.rounds_for or [])
     print("賽季頁：")
     if args.all:
-        # --all：索引連全部 77 季（built_years＝全域）；再逐季（新到舊）產總覽＋子頁
+        # --all：索引連全部 77 季（built_years＝全域）；再逐季（新到舊）產總覽＋子頁（＋分站頁）
         built = set(range(FIRST_YEAR, LAST_YEAR + 1))
         urls = [render_index(built)]
         if not args.index_only:
             for year in range(LAST_YEAR, FIRST_YEAR - 1, -1):
-                _render_one_season(year, urls)
+                _render_one_season(year, urls, round_years)
     else:
         urls = [render_index()]
         if not args.index_only:
-            _render_one_season(args.season, urls)
+            _render_one_season(args.season, urls, round_years)
 
     if args.publish and not args.no_sitemap:
         rc.write_sitemap_part("seasons", urls)
