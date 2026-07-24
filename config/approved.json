@@ -28,6 +28,33 @@
       "approved_by": "charlie",
       "approved_at": "2026-07-23T23:06:05+08:00",
       "note": "2002 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1950",
+      "article_sha256": "a3a90f17289dee4425167cdf7a7749cbe49c541189c9a568782bc71801487619",
+      "facts_sha256": "5eecb03e2d09bfd1c94d3da341e59521f6e7e596f041378fea29f85f6116399c",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-24T15:24:27+08:00",
+      "note": "1950 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1988",
+      "article_sha256": "dbaa9d608c075375aac929494d1a139f4e8b88af6e1c8cff93feb45a2627655b",
+      "facts_sha256": "e655ce888818d6a252a7cc0331c07962c20b03686f071ed06df32b2ecd13a973",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-24T15:24:27+08:00",
+      "note": "1988 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-2021",
+      "article_sha256": "e758b78b11cbab2e92e8be4f9fe872d16582a7747e42fa9949d9fb4e35b93abf",
+      "facts_sha256": "5666442d3e02378ce6232c8fdd4b23732f05e55926483422596592ed741a07e0",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-24T15:24:27+08:00",
+      "note": "2021 賽季人工導言核准"
     }
   ]
 }
