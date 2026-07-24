@@ -113,7 +113,7 @@ class DefaultDenyGateTests(unittest.TestCase):
         return (tmp / "seasons" / str(year) / "index.html").read_text(encoding="utf-8")
 
     def test_all_four_intros_are_charlie_approved(self):
-        # 2026-07-25 Charlie 明示「核准 1950／1988／2021」（2002 於 7/24 先核）——
+        # 2026-07-24 Charlie 明示「核准 1950／1988／2021」（2002 同日稍早先核）——
         # 四篇皆應在 config/approved.json 且 sha 與現行檔案吻合（防未來誤刪/漂移）。
         approved = g._load_approved()
         for y in (1950, 1988, 2002, 2021):
