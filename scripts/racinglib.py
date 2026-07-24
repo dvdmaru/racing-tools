@@ -27,6 +27,26 @@ SITE = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
 SEASON = int(SITE.get("season", 2026))
 BASE = SITE["base"]
 PUB = ROOT / "public-racing"
+
+
+# ---------- 百科線單一設定源 config/encyclopedia.json（M7） ----------
+# published 開關、round_years（生成分站頁的賽季，gen-racing-seasons/-drivers 共用）、
+# current_season（橋接當季新賽果的目標季）。缺檔時 fail-safe 預設（全暗＋既有賽季集合）。
+def _load_encyclopedia_config() -> dict:
+    p = ROOT / "config" / "encyclopedia.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):  # pragma: no cover - 缺檔 fail-safe
+        return {"published": False, "round_years": [2002, 2026], "current_season": SEASON}
+
+
+ENCYCLOPEDIA = _load_encyclopedia_config()
+# published 前一律全暗：任何非 True 值都視為未公開（default-deny）
+ENCYCLOPEDIA_PUBLISHED = ENCYCLOPEDIA.get("published", False) is True
+# 生成分站頁的賽季（唯一來源）——gen-racing-seasons.py / gen-racing-drivers.py 都讀這個
+ROUND_YEARS = frozenset(int(y) for y in ENCYCLOPEDIA.get("round_years", [2002, 2026]))
+# 橋接當季新賽果的目標季（refresh-f1-current.py 只碰此季）
+CURRENT_SEASON = int(ENCYCLOPEDIA.get("current_season", SEASON))
 TAIPEI = ZoneInfo("Asia/Taipei") if ZoneInfo else None
 
 

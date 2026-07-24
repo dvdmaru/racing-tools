@@ -26,7 +26,8 @@
       "fastest_laps",
       "career_points"
     ],
-    "excluded_reason": "計畫 §4.6 紅線：桿位/最快圈/生涯積分定義或資料範圍未定，第一階段不發布。"
+    "excluded_reason": "計畫 §4.6 紅線：桿位/最快圈/生涯積分定義或資料範圍未定，第一階段不發布。",
+    "as_of_policy": "每位車手的凍結統計綁定一個 as_of 時點；golden gate 比對的是「重算到 as_of 時點」的統計 vs 凍結值（非全量現值）。活躍車手 as_of={season:2026,round:10}（本快照邊界），新賽果進來不影響 gate（截斷只對明細 filter，不對總數減法）；已退役者 as_of=生涯終點，值永不變。頁面顯示仍是全量現值，as_of 只管迴歸。推進流程：換季或定期由 Charlie 重新核准後，手動推進活躍車手的 as_of.round（換季則改 season），並同步更新該車手四欄凍結值——比照本檔既有的 PR merge gate 核准精神（default-deny，機器不自動推進）。"
   },
   "drivers": {
     "alonso": {
@@ -37,7 +38,11 @@
       ],
       "wins": 32,
       "podiums": 106,
-      "entries": 438
+      "entries": 438,
+      "as_of": {
+        "season": 2026,
+        "round": 10
+      }
     },
     "ascari": {
       "championships": 2,
@@ -47,7 +52,11 @@
       ],
       "wins": 13,
       "podiums": 17,
-      "entries": 32
+      "entries": 32,
+      "as_of": {
+        "season": 1955,
+        "round": 2
+      }
     },
     "button": {
       "championships": 1,
@@ -56,7 +65,11 @@
       ],
       "wins": 15,
       "podiums": 50,
-      "entries": 309
+      "entries": 309,
+      "as_of": {
+        "season": 2017,
+        "round": 6
+      }
     },
     "clark": {
       "championships": 2,
@@ -66,7 +79,11 @@
       ],
       "wins": 25,
       "podiums": 32,
-      "entries": 72
+      "entries": 72,
+      "as_of": {
+        "season": 1968,
+        "round": 1
+      }
     },
     "damon_hill": {
       "championships": 1,
@@ -75,7 +92,11 @@
       ],
       "wins": 22,
       "podiums": 42,
-      "entries": 116
+      "entries": 116,
+      "as_of": {
+        "season": 1999,
+        "round": 16
+      }
     },
     "emerson_fittipaldi": {
       "championships": 2,
@@ -85,7 +106,11 @@
       ],
       "wins": 14,
       "podiums": 35,
-      "entries": 146
+      "entries": 146,
+      "as_of": {
+        "season": 1980,
+        "round": 14
+      }
     },
     "fangio": {
       "championships": 5,
@@ -98,7 +123,11 @@
       ],
       "wins": 24,
       "podiums": 35,
-      "entries": 51
+      "entries": 51,
+      "as_of": {
+        "season": 1958,
+        "round": 6
+      }
     },
     "farina": {
       "championships": 1,
@@ -107,7 +136,11 @@
       ],
       "wins": 5,
       "podiums": 20,
-      "entries": 34
+      "entries": 34,
+      "as_of": {
+        "season": 1955,
+        "round": 7
+      }
     },
     "hakkinen": {
       "championships": 2,
@@ -117,7 +150,11 @@
       ],
       "wins": 20,
       "podiums": 51,
-      "entries": 163
+      "entries": 163,
+      "as_of": {
+        "season": 2001,
+        "round": 17
+      }
     },
     "hamilton": {
       "championships": 7,
@@ -132,7 +169,11 @@
       ],
       "wins": 106,
       "podiums": 207,
-      "entries": 390
+      "entries": 390,
+      "as_of": {
+        "season": 2026,
+        "round": 10
+      }
     },
     "hawthorn": {
       "championships": 1,
@@ -141,7 +182,11 @@
       ],
       "wins": 3,
       "podiums": 18,
-      "entries": 46
+      "entries": 46,
+      "as_of": {
+        "season": 1958,
+        "round": 11
+      }
     },
     "hill": {
       "championships": 2,
@@ -151,7 +196,11 @@
       ],
       "wins": 14,
       "podiums": 36,
-      "entries": 177
+      "entries": 177,
+      "as_of": {
+        "season": 1975,
+        "round": 2
+      }
     },
     "hulme": {
       "championships": 1,
@@ -160,7 +209,11 @@
       ],
       "wins": 8,
       "podiums": 33,
-      "entries": 112
+      "entries": 112,
+      "as_of": {
+        "season": 1974,
+        "round": 15
+      }
     },
     "hunt": {
       "championships": 1,
@@ -169,7 +222,11 @@
       ],
       "wins": 10,
       "podiums": 23,
-      "entries": 93
+      "entries": 93,
+      "as_of": {
+        "season": 1979,
+        "round": 7
+      }
     },
     "jack_brabham": {
       "championships": 3,
@@ -180,7 +237,11 @@
       ],
       "wins": 14,
       "podiums": 31,
-      "entries": 128
+      "entries": 128,
+      "as_of": {
+        "season": 1970,
+        "round": 13
+      }
     },
     "jones": {
       "championships": 1,
@@ -189,7 +250,11 @@
       ],
       "wins": 12,
       "podiums": 24,
-      "entries": 117
+      "entries": 117,
+      "as_of": {
+        "season": 1986,
+        "round": 16
+      }
     },
     "keke_rosberg": {
       "championships": 1,
@@ -198,7 +263,11 @@
       ],
       "wins": 5,
       "podiums": 17,
-      "entries": 114
+      "entries": 114,
+      "as_of": {
+        "season": 1986,
+        "round": 16
+      }
     },
     "lauda": {
       "championships": 3,
@@ -209,7 +278,11 @@
       ],
       "wins": 25,
       "podiums": 54,
-      "entries": 173
+      "entries": 173,
+      "as_of": {
+        "season": 1985,
+        "round": 16
+      }
     },
     "mansell": {
       "championships": 1,
@@ -218,7 +291,11 @@
       ],
       "wins": 31,
       "podiums": 59,
-      "entries": 190
+      "entries": 190,
+      "as_of": {
+        "season": 1995,
+        "round": 4
+      }
     },
     "mario_andretti": {
       "championships": 1,
@@ -227,7 +304,11 @@
       ],
       "wins": 12,
       "podiums": 19,
-      "entries": 128
+      "entries": 128,
+      "as_of": {
+        "season": 1982,
+        "round": 16
+      }
     },
     "max_verstappen": {
       "championships": 4,
@@ -239,7 +320,11 @@
       ],
       "wins": 71,
       "podiums": 130,
-      "entries": 243
+      "entries": 243,
+      "as_of": {
+        "season": 2026,
+        "round": 10
+      }
     },
     "michael_schumacher": {
       "championships": 7,
@@ -254,7 +339,11 @@
       ],
       "wins": 91,
       "podiums": 155,
-      "entries": 308
+      "entries": 308,
+      "as_of": {
+        "season": 2012,
+        "round": 20
+      }
     },
     "norris": {
       "championships": 1,
@@ -263,7 +352,11 @@
       ],
       "wins": 11,
       "podiums": 46,
-      "entries": 162
+      "entries": 162,
+      "as_of": {
+        "season": 2026,
+        "round": 10
+      }
     },
     "phil_hill": {
       "championships": 1,
@@ -272,7 +365,11 @@
       ],
       "wins": 3,
       "podiums": 16,
-      "entries": 51
+      "entries": 51,
+      "as_of": {
+        "season": 1964,
+        "round": 10
+      }
     },
     "piquet": {
       "championships": 3,
@@ -283,7 +380,11 @@
       ],
       "wins": 23,
       "podiums": 60,
-      "entries": 205
+      "entries": 205,
+      "as_of": {
+        "season": 1991,
+        "round": 16
+      }
     },
     "prost": {
       "championships": 4,
@@ -295,7 +396,11 @@
       ],
       "wins": 51,
       "podiums": 106,
-      "entries": 202
+      "entries": 202,
+      "as_of": {
+        "season": 1993,
+        "round": 16
+      }
     },
     "raikkonen": {
       "championships": 1,
@@ -304,7 +409,11 @@
       ],
       "wins": 21,
       "podiums": 103,
-      "entries": 352
+      "entries": 352,
+      "as_of": {
+        "season": 2021,
+        "round": 22
+      }
     },
     "rindt": {
       "championships": 1,
@@ -313,7 +422,11 @@
       ],
       "wins": 6,
       "podiums": 13,
-      "entries": 61
+      "entries": 61,
+      "as_of": {
+        "season": 1970,
+        "round": 10
+      }
     },
     "rosberg": {
       "championships": 1,
@@ -322,7 +435,11 @@
       ],
       "wins": 23,
       "podiums": 57,
-      "entries": 206
+      "entries": 206,
+      "as_of": {
+        "season": 2016,
+        "round": 21
+      }
     },
     "scheckter": {
       "championships": 1,
@@ -331,7 +448,11 @@
       ],
       "wins": 10,
       "podiums": 33,
-      "entries": 112
+      "entries": 112,
+      "as_of": {
+        "season": 1980,
+        "round": 14
+      }
     },
     "senna": {
       "championships": 3,
@@ -342,7 +463,11 @@
       ],
       "wins": 41,
       "podiums": 80,
-      "entries": 161
+      "entries": 161,
+      "as_of": {
+        "season": 1994,
+        "round": 3
+      }
     },
     "stewart": {
       "championships": 3,
@@ -353,7 +478,11 @@
       ],
       "wins": 27,
       "podiums": 43,
-      "entries": 100
+      "entries": 100,
+      "as_of": {
+        "season": 1973,
+        "round": 15
+      }
     },
     "surtees": {
       "championships": 1,
@@ -362,7 +491,11 @@
       ],
       "wins": 6,
       "podiums": 24,
-      "entries": 112
+      "entries": 112,
+      "as_of": {
+        "season": 1972,
+        "round": 10
+      }
     },
     "vettel": {
       "championships": 4,
@@ -374,7 +507,11 @@
       ],
       "wins": 53,
       "podiums": 122,
-      "entries": 300
+      "entries": 300,
+      "as_of": {
+        "season": 2022,
+        "round": 22
+      }
     },
     "villeneuve": {
       "championships": 1,
@@ -383,7 +520,11 @@
       ],
       "wins": 11,
       "podiums": 23,
-      "entries": 165
+      "entries": 165,
+      "as_of": {
+        "season": 2006,
+        "round": 12
+      }
     }
   }
 }
