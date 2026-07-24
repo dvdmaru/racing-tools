@@ -112,12 +112,13 @@ class DefaultDenyGateTests(unittest.TestCase):
         g.render_season(year)
         return (tmp / "seasons" / str(year) / "index.html").read_text(encoding="utf-8")
 
-    def test_drafts_not_in_real_approved_json(self):
-        # 硬約束：仍為草稿的三篇不得出現在 config/approved.json（核准是 Charlie 的動作）。
+    def test_all_four_intros_are_charlie_approved(self):
+        # 2026-07-25 Charlie 明示「核准 1950／1988／2021」（2002 於 7/24 先核）——
+        # 四篇皆應在 config/approved.json 且 sha 與現行檔案吻合（防未來誤刪/漂移）。
         approved = g._load_approved()
-        for y in DRAFT_YEARS:
-            self.assertNotIn(g.INTRO_SLUG.format(year=y), approved,
-                             f"season-intro-{y} 不該被核准（核准是 Charlie 的動作）")
+        for y in (1950, 1988, 2002, 2021):
+            slug = g.INTRO_SLUG.format(year=y)
+            self.assertIn(slug, approved, f"{slug} 應已核准（Charlie 明示）")
 
     def test_2002_is_approved_in_real_config_and_renders(self):
         # 實測（非合成）：2002 已進真 config/approved.json，且以真配置渲染時導言確實出現在頁頂。
