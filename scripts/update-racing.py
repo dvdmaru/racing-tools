@@ -73,6 +73,51 @@ def _indexnow_changed_urls():
     return sorted(urls), new
 
 
+def _encyclopedia_published():
+    """讀 config/encyclopedia.json 的 published（單一開關）。缺檔／壞檔＝未公開（default-deny）。"""
+    import json
+    try:
+        cfg = json.loads((ROOT / "config" / "encyclopedia.json").read_text(encoding="utf-8"))
+        return cfg.get("published", False) is True
+    except (OSError, ValueError):
+        return False
+
+
+def encyclopedia_step(full=False):
+    """百科段（dormant wiring；M7）。跑序後追加，published gate 包住。
+
+    published:false → 整段跳過（不 refresh、不重生、不寫 sitemap part、不進 IndexNow），
+    只印一行訊息；週更三頁行為與改動前完全一致（byte-identical）。
+    published:true → refresh-current（增量抓當季 raw＋rebuild db＋invariants）→ 選擇性重生
+    （facts-hash：只重生受新資料影響的頁）→ 寫 seasons/drivers sitemap part。重生的頁落進
+    public-racing/，由既有 git-diff 機制自動納入部署後 IndexNow。
+
+    ★ 分層 fail：百科層任何失敗＝醒目告警但**不**進 FAILED、**不**擋週更三頁的 fail-fast 部署。
+      （週更頁失敗＝禁部署照舊；百科層失敗＝跳過百科並告警。）
+    """
+    if not _encyclopedia_published():
+        print("\n⏸  百科線未公開（config/encyclopedia.json published:false）→ 整段跳過（週更三頁不受影響）",
+              flush=True)
+        return
+
+    print("\n📚 百科段（published:true）：當季橋接 → 選擇性重生 → sitemap part", flush=True)
+    # 1. 當季新賽果增量橋接（自帶 rebuild db + invariants；exit 0=無新資料或成功、1=不變量擋線）
+    rc_ref = subprocess.run(script("refresh-f1-current.py"), cwd=str(ROOT)).returncode
+    if rc_ref != 0:
+        print(f"\n⚠️  🔴 百科層：當季橋接/不變量未過（exit={rc_ref}）→ 跳過百科重生，"
+              f"**週更三頁不受影響**", flush=True)
+        return
+    # 2. 選擇性重生（--full 透傳）＋寫 sitemap part（僅 published）。前置三 gate 由本步自跑。
+    argv = script("regen-encyclopedia.py", "--publish")
+    if full:
+        argv.append("--full")
+    rc_regen = subprocess.run(argv, cwd=str(ROOT)).returncode
+    if rc_regen != 0:
+        print("\n⚠️  🔴 百科層：選擇性重生前置 gate 未過 → 跳過百科，**週更三頁不受影響**", flush=True)
+        return
+    print("✅ 百科段完成（變更頁已進 public-racing，隨部署由 IndexNow 自動推送）", flush=True)
+
+
 def indexnow_after_deploy():
     """best-effort：任何失敗只警告、不擋 pipeline。帶瀏覽器樣 UA（runner 裸 UA 會被 CF 擋）。"""
     try:
@@ -116,6 +161,8 @@ def main():
     ap.add_argument("--season", type=int, default=season_default)
     ap.add_argument("--force", action="store_true", help="無視快照比對強制重建")
     ap.add_argument("--deploy", action="store_true", help="重建後 wrangler deploy")
+    ap.add_argument("--full", action="store_true",
+                    help="百科段全量重生（忽略 per-page 指紋；透傳 regen-encyclopedia.py --full）")
     args = ap.parse_args()
     s = str(args.season)
 
@@ -134,6 +181,11 @@ def main():
     run(script("gen-racing-standings.py", "--season", s), "gen standings")
     run(script("gen-racing-calendar.py", "--season", s), "gen calendar")
     run(script("gen-racing-results.py", "--season", s), "gen results")
+
+    # 3c. 百科段（dormant；published gate）——在 build-sitemap 之前，好讓 published 時的
+    # seasons/drivers sitemap part 一併被合併。published:false＝整段跳過，sitemap 與改動前一致。
+    # 百科層失敗自我隔離（不進 FAILED），絕不拖垮週更三頁的 fail-fast 部署。
+    encyclopedia_step(full=args.full)
 
     # 3b. 合併全部 sitemap part → public-racing/sitemap.xml（三個 gen-* 之後、hard gate 之前）
     run(script("build-sitemap.py"), "build sitemap")

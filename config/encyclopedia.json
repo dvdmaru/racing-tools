@@ -1,0 +1,8 @@
+{
+  "_doc": "百科線（/seasons/ · /drivers/ · /constructors/）單一開關與參數（M7）。published:false 時 update-racing.py 的百科段完全跳過（不生成、不寫 sitemap part、不進 IndexNow 清單）——公開日之前維持全暗，週更三頁行為零變化。翻 published:true 才把 dormant wiring 點活。",
+  "published": false,
+  "round_years": [2002, 2026],
+  "current_season": 2026,
+  "_round_years_doc": "生成單場分站頁 /seasons/<year>/rounds/<n>/ 的賽季（gen-racing-seasons.py 與 gen-racing-drivers.py 的單一來源；歷史季不生成分站頁以防頁數爆炸）。",
+  "_current_season_doc": "橋接當季新賽果的目標季（refresh-f1-current.py 只增量抓此季進 data/f1/raw/，1950–此季前一年一律凍結不碰）。"
+}

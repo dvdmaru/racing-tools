@@ -1882,15 +1882,25 @@ def main():
     ap.add_argument("--all", action="store_true",
                     help="展開全部 77 季（1950–2026）：索引＋各季總覽＋各季 seed 子頁")
     ap.add_argument("--index-only", action="store_true", help="只重建 /seasons/ 索引")
-    ap.add_argument("--rounds-for", type=int, nargs="+", metavar="YEAR", default=[],
+    ap.add_argument("--rounds-for", type=int, nargs="+", metavar="YEAR", default=None,
                     help="為指定季生成單場分站頁 /seasons/<year>/rounds/<n>/（只生成有正賽 results 的站）。"
-                         "pipeline 用法：--all --rounds-for 2002 2026")
+                         "省略＝用 config/encyclopedia.json 的 round_years（單一來源）；"
+                         "pipeline 無需再明列，改設定即可。")
     ap.add_argument("--publish", action="store_true",
                     help="公開時才加：寫 data/sitemap-parts/seasons.txt（預設不寫，頁面未公開前不進 sitemap）")
     ap.add_argument("--no-sitemap", action="store_true", help="顯式關閉 sitemap part（與預設同義，供 pipeline 明示）")
     args = ap.parse_args()
 
-    round_years = set(args.rounds_for or [])
+    # round_years 單一來源＝config/encyclopedia.json：
+    #   明列 --rounds-for → 以 CLI 為準（含空集覆寫，供測試/除錯）
+    #   --all（pipeline 模式）省略 → 用 config round_years（不再硬編 --rounds-for 2002 2026）
+    #   單季 debug 模式省略 → 空集（不自動產分站頁，保留既有預設行為）
+    if args.rounds_for is not None:
+        round_years = set(args.rounds_for)
+    elif args.all:
+        round_years = set(rc.ROUND_YEARS)
+    else:
+        round_years = set()
     print("賽季頁：")
     if args.all:
         # --all：索引連全部 77 季（built_years＝全域）；再逐季（新到舊）產總覽＋子頁（＋分站頁）

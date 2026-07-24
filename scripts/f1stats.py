@@ -163,13 +163,34 @@ def _race_detail(r):
             "source": f"data/f1/raw/results/{r['season']}-{r['round']:02d}.json"}
 
 
-def driver_career_db(did, con):
-    """生涯勝場/頒獎台/出賽（DB 路徑）。value==len(detail)，明細帶來源與 season/round。"""
-    rows = con.execute(
-        "SELECT r.season AS season, r.round AS round, r.position_text AS position_text, "
-        "       r.id AS id, ra.name AS name "
-        "FROM results r LEFT JOIN races ra ON ra.season=r.season AND ra.round=r.round "
-        "WHERE r.driver_id=? ORDER BY r.season, r.round, r.id", (did,)).fetchall()
+def _as_of_pair(as_of):
+    """as_of → (season, round) 或 None。接受 dict{'season','round'} 或 (season, round) tuple。"""
+    if as_of is None:
+        return None
+    if isinstance(as_of, dict):
+        return (int(as_of["season"]), int(as_of["round"]))
+    return (int(as_of[0]), int(as_of[1]))
+
+
+def driver_career_db(did, con, as_of=None):
+    """生涯勝場/頒獎台/出賽（DB 路徑）。value==len(detail)，明細帶來源與 season/round。
+
+    as_of=(season, round) 或 {'season','round'}：只計「截至該時點（含）」的賽果——golden
+    as_of 迴歸用。⚠️ 截斷只准對明細 filter（WHERE (season,round) <= as_of），
+    絕不對總數做減法（本 repo 鐵則：value 一律 len(detail)）。
+    """
+    ap = _as_of_pair(as_of)
+    sql = ("SELECT r.season AS season, r.round AS round, r.position_text AS position_text, "
+           "       r.id AS id, ra.name AS name "
+           "FROM results r LEFT JOIN races ra ON ra.season=r.season AND ra.round=r.round "
+           "WHERE r.driver_id=?")
+    params = [did]
+    if ap is not None:
+        # 明細 filter：截至 (as_of_season, as_of_round) 含當站；不做任何總計減法
+        sql += " AND (r.season < ? OR (r.season = ? AND r.round <= ?))"
+        params += [ap[0], ap[0], ap[1]]
+    sql += " ORDER BY r.season, r.round, r.id"
+    rows = con.execute(sql, params).fetchall()
     wins = [_race_detail(r) for r in rows if r["position_text"] == "1"]
     podiums = [_race_detail(r) for r in rows if r["position_text"] in ("1", "2", "3")]
     seen, entries = set(), []
@@ -187,14 +208,24 @@ def driver_career_db(did, con):
     }
 
 
-def driver_championships_db(did, con):
-    """冠軍＝逐季車手榜 position==1 且該季已完成（DB 路徑）。與賽果層獨立（standings 表）。"""
+def driver_championships_db(did, con, as_of=None):
+    """冠軍＝逐季車手榜 position==1 且該季已完成（DB 路徑）。與賽果層獨立（standings 表）。
+
+    as_of：只計「截至 as_of 賽季（含）」奪得的冠軍——golden as_of 迴歸用。截斷是對明細
+    的賽季 filter（ds.season <= as_of_season），非減法。進行中的 as_of 賽季本就因
+    status!='completed' 不列入，故活躍車手的凍結值不受新賽果影響。
+    """
+    ap = _as_of_pair(as_of)
+    sql = ("SELECT ds.season AS season, ds.points AS points, ds.wins AS wins "
+           "FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
+           "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed'")
+    params = [did]
+    if ap is not None:
+        sql += " AND ds.season <= ?"
+        params.append(ap[0])
+    sql += " ORDER BY ds.season"
     detail = []
-    for r in con.execute(
-            "SELECT ds.season AS season, ds.points AS points, ds.wins AS wins "
-            "FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
-            "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed' "
-            "ORDER BY ds.season", (did,)).fetchall():
+    for r in con.execute(sql, params).fetchall():
         detail.append({"season": r["season"], "points": _fmt_points(r["points"]),
                        "wins_that_year": r["wins"],
                        "source": f"data/f1/raw/standings/driver-{r['season']}.json#pos1"})
