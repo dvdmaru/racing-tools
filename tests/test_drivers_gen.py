@@ -295,31 +295,59 @@ class Section46RedlineTests(unittest.TestCase):
 # ---------- 譯名誠實 fallback ----------
 
 class TranslationFallbackTests(unittest.TestCase):
+    # M6（2026-07-23）回填後 35 位冠軍全數具 approved 譯名（含 ascari＝阿爾貝托・阿斯卡里），
+    # 誠實 fallback 路徑不再由任何冠軍頁觸發。改以一位無譯名的非冠軍車手（barrichello）驗證
+    # fallback 渲染——臨時注入 slug（不動 append-only 真表 data/f1/slugs.json）。
+    UNTR = "barrichello"
+
     @classmethod
     def setUpClass(cls):
         cls.tmp = pathlib.Path(tempfile.mkdtemp())
         cls.pages = _render_all(cls.tmp)
+        cls.con = fs.connect_db()
+        cls._slug_injected = cls.UNTR not in rc._SLUGS.get("drivers", {})
+        if cls._slug_injected:
+            rc._SLUGS.setdefault("drivers", {})[cls.UNTR] = cls.UNTR
+        cls.tmp2 = pathlib.Path(tempfile.mkdtemp())
+        orig = dr.PUB
+        dr.PUB = cls.tmp2
+        try:
+            s = dr.gen_driver(cls.UNTR, cls.con)
+            cls.untr_html = (cls.tmp2 / "drivers" / s["slug"] / "index.html").read_text(encoding="utf-8")
+        finally:
+            dr.PUB = orig
 
     @classmethod
     def tearDownClass(cls):
         shutil.rmtree(cls.tmp)
+        shutil.rmtree(cls.tmp2)
+        if cls._slug_injected:
+            rc._SLUGS["drivers"].pop(cls.UNTR, None)
+        cls.con.close()
 
     def test_untranslated_driver_is_original_only(self):
-        # ascari 無 approved 譯名 → 中文欄位整個不出現、只留原文 + 頁尾註明
-        self.assertIsNone(dr.resolve_zh("ascari"))
-        h = self.pages["ascari"]
-        self.assertIn('<span class="en-only">Alberto Ascari</span>', h)
+        # barrichello 無 approved 譯名 → 中文欄位整個不出現、只留原文 + 頁尾註明
+        self.assertIsNone(dr.resolve_zh(self.UNTR))
+        h = self.untr_html
+        self.assertIn('<span class="en-only">Rubens Barrichello</span>', h)
         self.assertIn("尚無定版繁中譯名", h)
 
     def test_seed_driver_has_approved_fullname(self):
+        # hamilton 2026-07-23 收斂為『漢』米爾頓（全站統一用字）
         h = self.pages["hamilton"]
-        self.assertIn("路易斯・韓密爾頓", h)
+        self.assertIn("路易斯・漢米爾頓", h)
+        self.assertNotIn("路易斯・韓密爾頓", h)
         self.assertNotIn("尚無定版繁中譯名", h)
 
     def test_no_self_translation_for_unknown(self):
         # fallback 不得憑空生一個中文名（title 用原文）
-        h = self.pages["ascari"]
-        self.assertIn("<title>Alberto Ascari生涯數據", h)
+        h = self.untr_html
+        self.assertIn("<title>Rubens Barrichello生涯數據", h)
+
+    def test_all_champions_have_approved_translation(self):
+        # M6 回填後：35 位冠軍全數具 approved 譯名（誠實 fallback 不再由任何冠軍頁觸發）。
+        missing = [c for c in dr.CHAMPION_IDS if dr.resolve_zh(c) is None]
+        self.assertEqual(missing, [], f"仍有冠軍無譯名：{missing}")
 
 
 # ---------- 零 client JS／外連白名單 ----------

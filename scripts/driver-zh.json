@@ -109,5 +109,150 @@
     "zh": "斯托爾",
     "src": "approved-live",
     "status": "approved"
+  },
+  "ascari": {
+    "zh": "阿爾貝托・阿斯卡里",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "button": {
+    "zh": "詹森・巴頓",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "clark": {
+    "zh": "吉姆・克拉克",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "damon_hill": {
+    "zh": "戴蒙・希爾",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "emerson_fittipaldi": {
+    "zh": "埃默森・菲蒂帕爾迪",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "fangio": {
+    "zh": "胡安・曼努爾・方吉歐",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "farina": {
+    "zh": "朱塞佩・法里納",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "hakkinen": {
+    "zh": "米卡・哈基寧",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "hawthorn": {
+    "zh": "麥克・霍索恩",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "hill": {
+    "zh": "葛拉罕・希爾",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "hulme": {
+    "zh": "丹尼・休姆",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "hunt": {
+    "zh": "詹姆士・亨特",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "jack_brabham": {
+    "zh": "傑克・布拉漢姆",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "jones": {
+    "zh": "亞倫・瓊斯",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "keke_rosberg": {
+    "zh": "凱基・羅斯堡",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "lauda": {
+    "zh": "尼基・勞達",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "mansell": {
+    "zh": "奈傑爾・曼塞爾",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "mario_andretti": {
+    "zh": "馬里奧・安德烈蒂",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "phil_hill": {
+    "zh": "菲爾・希爾",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "piquet": {
+    "zh": "尼爾森・皮凱",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "prost": {
+    "zh": "亞倫・普羅斯特",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "raikkonen": {
+    "zh": "奇米・雷克南",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "rindt": {
+    "zh": "約亨・林特",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "rosberg": {
+    "zh": "尼可・羅斯堡",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "scheckter": {
+    "zh": "朱迪・謝科特",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "stewart": {
+    "zh": "傑奇・史都華",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "surtees": {
+    "zh": "約翰・蘇爾特斯",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "vettel": {
+    "zh": "賽巴斯蒂安・維特爾",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "villeneuve": {
+    "zh": "雅克・維倫紐夫",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
   }
 }

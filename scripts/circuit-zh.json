@@ -109,5 +109,225 @@
     "zh": "亞斯碼頭賽道（阿布達比）",
     "src": "approved-live",
     "status": "approved"
+  },
+  "anderstorp": {
+    "zh": "安德斯托普賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "bahrain": {
+    "zh": "巴林國際賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "brands_hatch": {
+    "zh": "布蘭茲哈奇賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "buddh": {
+    "zh": "佛陀國際賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "donington": {
+    "zh": "多寧頓公園賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "estoril": {
+    "zh": "埃斯托里爾賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "fuji": {
+    "zh": "富士國際賽車場",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "hockenheimring": {
+    "zh": "霍肯海姆賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "imola": {
+    "zh": "恩佐與迪諾・法拉利賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "indianapolis": {
+    "zh": "印第安納波利斯賽車場",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "istanbul": {
+    "zh": "伊斯坦堡公園賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "jeddah": {
+    "zh": "吉達濱海賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "jerez": {
+    "zh": "赫雷斯賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "las_vegas": {
+    "zh": "拉斯維加斯大道賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "lemans": {
+    "zh": "利曼布加迪賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "long_beach": {
+    "zh": "長灘市街賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "magny_cours": {
+    "zh": "馬尼庫爾賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "mugello": {
+    "zh": "穆傑羅賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "nurburgring": {
+    "zh": "紐柏林賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "okayama": {
+    "zh": "岡山國際賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "portimao": {
+    "zh": "阿爾加維國際賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "ricard": {
+    "zh": "保羅・里卡爾賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "sebring": {
+    "zh": "賽百靈國際賽車場",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "sepang": {
+    "zh": "雪邦國際賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "sochi": {
+    "zh": "索契賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "valencia": {
+    "zh": "瓦倫西亞市街賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "yeongam": {
+    "zh": "韓國國際賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "zeltweg": {
+    "zh": "采爾特韋格機場賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "adelaide": {
+    "zh": "阿德雷德市街賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "detroit": {
+    "zh": "底特律市街賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "jacarepagua": {
+    "zh": "雅卡雷帕瓜賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "pescara": {
+    "zh": "佩斯卡拉賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "phoenix": {
+    "zh": "鳳凰城市街賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "watkins_glen": {
+    "zh": "沃特金斯峽谷賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "zolder": {
+    "zh": "佐爾德賽道",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "ain-diab": {
+    "zh": "艾因迪亞卜賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "aintree": {
+    "zh": "安特里賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "avus": {
+    "zh": "AVUS 賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "boavista": {
+    "zh": "博阿維斯塔賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "bremgarten": {
+    "zh": "伯倫加登賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "george": {
+    "zh": "喬治王子賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "kyalami": {
+    "zh": "卡亞拉米賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "pedralbes": {
+    "zh": "佩德拉爾韋斯賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "reims": {
+    "zh": "蘭斯-格村賽道",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
   }
 }

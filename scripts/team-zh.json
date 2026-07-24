@@ -109,5 +109,65 @@
     "zh": "凱迪拉克",
     "src": "approved-live",
     "status": "approved"
+  },
+  "benetton": {
+    "zh": "班尼頓車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "brabham-repco": {
+    "zh": "布拉漢姆－Repco車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "brawn": {
+    "zh": "布朗 GP 車隊",
+    "src": "charlie-2026-07-24",
+    "status": "approved"
+  },
+  "lotus-climax": {
+    "zh": "蓮花－Climax車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "lotus-ford": {
+    "zh": "蓮花－福特車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "matra-ford": {
+    "zh": "馬特拉－福特車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "team_lotus": {
+    "zh": "蓮花車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "tyrrell": {
+    "zh": "泰瑞爾車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "renault": {
+    "zh": "雷諾車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "vanwall": {
+    "zh": "范沃爾車隊",
+    "src": "charlie-2026-07-23",
+    "status": "approved"
+  },
+  "cooper-climax": {
+    "zh": "庫珀－Climax車隊",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
+  },
+  "brm": {
+    "zh": "BRM車隊",
+    "src": "zhwiki-fallback-policy-2026-07-24",
+    "status": "approved"
   }
 }

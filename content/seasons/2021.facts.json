@@ -8,7 +8,7 @@
      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2021"},
     {"kind": "champion_points", "driver": "max_verstappen", "text": "維斯塔潘以 395.5 分奪冠", "value": 395.5, "verified": true,
      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2021 AND position=1"},
-    {"kind": "runner_up_points", "driver": "hamilton", "text": "韓密爾頓 387.5 分", "value": 387.5, "verified": true,
+    {"kind": "runner_up_points", "driver": "hamilton", "text": "漢米爾頓 387.5 分", "value": 387.5, "verified": true,
      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2021 AND position=2"},
     {"kind": "tied_before_final", "drivers": ["max_verstappen", "hamilton"], "text": "兩人帶著相同積分進入最終站（第 21 站後皆 369.5 分）", "value": 369.5, "verified": true,
      "source": "cumulative 計算：逐站正賽＋衝刺賽積分累計至第 21 站，兩人皆 369.5（見 check-season-intros.py tied_before_final verifier）"}

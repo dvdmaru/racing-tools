@@ -246,13 +246,19 @@ class RaceCircuitZhMigrationTests(unittest.TestCase):
         "losail": "羅賽爾國際賽道", "yas_marina": "亞斯碼頭賽道（阿布達比）",
     }
 
-    def test_race_zh_count_and_content_frozen(self):
-        self.assertEqual(len(rc.RACE_ZH), 24)
-        self.assertEqual(rc.RACE_ZH, self.OLD_RACE_ZH)
+    # M6（2026-07-23）在 M0 的 24 站 / 22 賽道之上，append-only 回填了歷史站名 31 筆、
+    # 歷史賽道 35 筆（Charlie 核准）。原「frozen 全等」改為 append-only 斷言：M0 原始條目
+    # 逐鍵不變（append-only 紅線），總數＝M0 + M6 回填（防止既有值被動或多塞未授權條目）。
+    def test_race_zh_m0_originals_unchanged_and_m6_appended(self):
+        for k, v in self.OLD_RACE_ZH.items():
+            self.assertEqual(rc.RACE_ZH.get(k), v, f"M0 原始 race-zh 條目被更動：{k}")
+        self.assertEqual(len(rc.RACE_ZH), 24 + 31, "race-zh 應為 M0(24) + M6 回填(31)")
 
-    def test_circuit_zh_count_and_content_frozen(self):
-        self.assertEqual(len(rc.CIRCUIT_ZH), 22)
-        self.assertEqual(rc.CIRCUIT_ZH, self.OLD_CIRCUIT_ZH)
+    def test_circuit_zh_m0_originals_unchanged_and_m6_appended(self):
+        for k, v in self.OLD_CIRCUIT_ZH.items():
+            self.assertEqual(rc.CIRCUIT_ZH.get(k), v, f"M0 原始 circuit-zh 條目被更動：{k}")
+        self.assertEqual(len(rc.CIRCUIT_ZH), 22 + 35 + 9,
+                         "circuit-zh 應為 M0(22) + M6 回填(35) + 政策回填(9，Charlie 2026-07-24 陸譯繁化)")
 
     def test_race_zh_json_file_has_no_escaped_unicode(self):
         text = (ROOT / "scripts" / "race-zh.json").read_text(encoding="utf-8")

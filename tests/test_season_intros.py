@@ -23,6 +23,9 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "seasons"
 YEARS = [1950, 1988, 2002, 2021]
+# 2002 已於 2026-07-23 由 Charlie 核准（進 config/approved.json）；其餘三篇仍為草稿。
+APPROVED_YEARS = [2002]
+DRAFT_YEARS = [y for y in YEARS if y not in APPROVED_YEARS]
 
 
 def _load(name, fname):
@@ -96,7 +99,7 @@ class ReconciliationTests(unittest.TestCase):
 class DefaultDenyGateTests(unittest.TestCase):
     """核准 gate：未核准不渲染且 byte-identical；合成核准後渲染；sha 不符不渲染。"""
 
-    def _render_2002(self, approved_override=None):
+    def _render_year(self, year, approved_override=None):
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         orig_rc, orig_g = rc.PUB, g.PUB
@@ -106,28 +109,41 @@ class DefaultDenyGateTests(unittest.TestCase):
         if approved_override is not None:
             g._load_approved = lambda: approved_override
             self.addCleanup(lambda: setattr(g, "_load_approved", orig_load))
-        g.render_season(2002)
-        return (tmp / "seasons" / "2002" / "index.html").read_text(encoding="utf-8")
+        g.render_season(year)
+        return (tmp / "seasons" / str(year) / "index.html").read_text(encoding="utf-8")
 
     def test_drafts_not_in_real_approved_json(self):
-        # 硬約束：四篇草稿都不得出現在 config/approved.json
+        # 硬約束：仍為草稿的三篇不得出現在 config/approved.json（核准是 Charlie 的動作）。
         approved = g._load_approved()
-        for y in YEARS:
+        for y in DRAFT_YEARS:
             self.assertNotIn(g.INTRO_SLUG.format(year=y), approved,
                              f"season-intro-{y} 不該被核准（核准是 Charlie 的動作）")
 
+    def test_2002_is_approved_in_real_config_and_renders(self):
+        # 實測（非合成）：2002 已進真 config/approved.json，且以真配置渲染時導言確實出現在頁頂。
+        approved = g._load_approved()
+        self.assertIn(g.INTRO_SLUG.format(year=2002), approved,
+                      "2002 應已在真 approved.json（Charlie 2026-07-23 核准）")
+        html = self._render_year(2002)  # 走真 approved.json（不覆寫）
+        self.assertIn("編輯導言", html)
+        self.assertIn("144 分", html)
+        self.assertIn("麥可・舒馬克", html)
+        self.assertLess(html.index("ent-hero"), html.index("編輯導言"))
+        self.assertLess(html.index("編輯導言"), html.index("賽季速寫"))
+
     def test_unapproved_renders_no_intro(self):
-        html = self._render_2002()  # 走真 approved.json（未含草稿）
+        # 空核准清單（覆寫）→ 任何年份都不渲染導言，與 default-deny 一致。
+        html = self._render_year(2002, {})
         self.assertNotIn("編輯導言", html)
         self.assertNotIn("editorial-intro", html)
 
     def test_approved_intro_is_purely_additive(self):
         # byte-identical 證明（單頁版）：合成核准後的頁面 == 未核准頁面「插入導言區塊」，
         # 移除該區塊即完全還原未核准頁面（gate 是純附加、不動其他任何位元）。
-        unapproved = self._render_2002()
+        unapproved = self._render_year(2002, {})  # 顯式空核准，與真 config 脫鉤
         sha = _sha(CONTENT / "2002.md")
         approved = {"season-intro-2002": {"slug": "season-intro-2002", "article_sha256": sha}}
-        approved_html = self._render_2002(approved)
+        approved_html = self._render_year(2002, approved)
         block = g.approved_intro_html(2002, approved)
         self.assertTrue(block)
         self.assertEqual(approved_html.replace(block, ""), unapproved)
@@ -135,7 +151,7 @@ class DefaultDenyGateTests(unittest.TestCase):
     def test_synthetic_approval_renders_intro_at_top(self):
         sha = _sha(CONTENT / "2002.md")
         approved = {"season-intro-2002": {"slug": "season-intro-2002", "article_sha256": sha}}
-        html = self._render_2002(approved)
+        html = self._render_year(2002, approved)
         self.assertIn("編輯導言", html)
         self.assertIn("144 分", html)
         self.assertIn("麥可・舒馬克", html)
@@ -146,7 +162,7 @@ class DefaultDenyGateTests(unittest.TestCase):
     def test_hash_mismatch_does_not_render(self):
         approved = {"season-intro-2002": {"slug": "season-intro-2002",
                                           "article_sha256": "0" * 64}}
-        html = self._render_2002(approved)
+        html = self._render_year(2002, approved)
         self.assertNotIn("編輯導言", html)
 
     def test_missing_file_renders_empty(self):
@@ -171,12 +187,14 @@ class IntroStyleTests(unittest.TestCase):
             self.assertNotIn("—", self._text(y), f"{y} 不得使用 em dash")
 
     def test_only_approved_translations(self):
-        # 有 approved 譯名者用譯名；無者用原文。抽驗：舒馬克/冼拿/維斯塔潘/韓密爾頓/法拉利/麥拉倫 用譯名；
-        # 無譯名者（Fangio/Farina/Prost/Barrichello/Alfa Romeo）維持原文、不得出現自譯中文名。
+        # 有 approved 譯名者用譯名；無者用原文。抽驗：舒馬克/冼拿/維斯塔潘/漢米爾頓/法拉利/麥拉倫 用譯名；
+        # 無譯名者（Barrichello/Alfa Romeo）維持原文、不得出現自譯中文名。
+        # ⚠️ Fangio/Farina/Prost 於 2026-07-23 M6 已回填 approved 譯名，但既有導言草稿仍以原文書寫
+        #    （草稿是靜態 .md、不隨譯名表變動）；下方 banned 清單相應排除這三個新 approved 值。
         self.assertIn("麥可・舒馬克", self._text(2002))
         self.assertIn("艾爾頓・冼拿", self._text(1988))
         self.assertIn("麥克斯・維斯塔潘", self._text(2021))
-        self.assertIn("路易斯・韓密爾頓", self._text(2021))
+        self.assertIn("路易斯・漢米爾頓", self._text(2021))
         self.assertIn("法拉利", self._text(2002))
         self.assertIn("麥拉倫", self._text(1988))
         # 無 approved 譯名者以原文出現（誠實 fallback）
@@ -185,8 +203,10 @@ class IntroStyleTests(unittest.TestCase):
         self.assertIn("Juan Fangio", self._text(1950))
         self.assertIn("Alain Prost", self._text(1988))
         self.assertIn("Alfa Romeo", self._text(1950))
-        # 常見自譯陷阱：不得出現這些非 approved 中譯
-        for banned in ("普羅斯特", "普洛斯特", "法里納", "范吉歐", "愛快羅密歐", "巴里切羅"):
+        # 常見自譯陷阱：不得出現這些「非 approved」中譯。
+        # 註：prost 的 approved 值為『亞倫・保魯斯』（非普羅斯特）、fangio 為『方吉歐』（非范吉歐），
+        #     故普羅斯特/范吉歐 仍是禁列變體；farina『法里納』已成 approved 值故移出禁列。
+        for banned in ("普羅斯特", "普洛斯特", "范吉歐", "愛快羅密歐", "巴里切羅"):
             for y in YEARS:
                 self.assertNotIn(banned, self._text(y), f"{y} 出現非 approved 自譯：{banned}")
 

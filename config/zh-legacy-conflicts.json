@@ -9,7 +9,12 @@
         {"zh": "路易斯・韓密爾頓", "src": "scripts/gen-racing-entities-phase0.py 的 ZH seed（全名，隨 phase0 於 2026-07-19 上線＝approved-live）"}
       ],
       "note": "姓氏用字兩譯：driver-zh 作『漢』米爾頓，phase0 seed 全名作路易斯・『韓』密爾頓。兩者皆已 approved-live（分別在積分榜/賽果窄表與 /drivers/hamilton/ hero），append-only 下都不可逕改。待 Charlie 裁決用字（漢 or 韓）後，另立 migration 一次改兩處並重生受影響頁。",
-      "pending_decision": true
+      "pending_decision": false,
+      "resolved": "漢",
+      "resolved_value": "路易斯・漢米爾頓",
+      "by": "Charlie",
+      "date": "2026-07-23",
+      "resolution_note": "Charlie 2026-07-23 裁決全站統一用字『漢』（漢米爾頓）。M6 migration 同批把 phase0 seed（gen-racing-entities-phase0.py 與 check-zh.py PHASE0_ZH 鏡射）的『路易斯・韓密爾頓』改為『路易斯・漢米爾頓』，並同步 2021 賽季導言草稿。收斂後 phase0 與 driver-zh 姓氏一致（漢米爾頓），規則①已無衝突；本條目保留僅為審計軌跡，check-zh 對帶 resolved 欄的條目不再出 warning。"
     }
   ]
 }

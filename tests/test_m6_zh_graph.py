@@ -127,10 +127,26 @@ class CheckZhRuleTests(unittest.TestCase):
         self.assertTrue(any("規則①" in w for w in res["warnings"]))
 
     def test_rule2_same_name_two_entities_errors(self):
-        # 兩個不同 driver id 對到同一姓氏「舒馬克」→ 不可區分 → 碰撞
+        # 兩個不同 driver id 對到逐字相同的譯名「舒馬克」→ 不可區分 → 碰撞
         tabs = {**self.EMPTY, "driver": {"michael_s": "舒馬克", "ralf_s": "舒馬克"}}
         res = self._run(tabs)
         self.assertTrue(any("規則②" in e for e in res["errors"]))
+
+    def test_rule2_same_surname_distinct_fullname_not_flagged(self):
+        # 同姓不同人：Graham/Damon/Phil Hill 姓氏皆「希爾」但全名相異 → 規則②不得誤判碰撞。
+        # （回歸：舊版用姓氏正規化當鍵會把三位 Hill 判成同一實體碰撞；改用完整 zh 值後修正。）
+        tabs = {**self.EMPTY, "driver": {
+            "hill": "格拉漢姆・希爾", "damon_hill": "戴蒙・希爾", "phil_hill": "菲爾・希爾"}}
+        res = self._run(tabs)
+        self.assertFalse(any("規則②" in e for e in res["errors"]),
+                         f"同姓不同人不應觸發規則②：{res['errors']}")
+
+    def test_rule2_distinguishable_michael_ralf_schumacher_ok(self):
+        # docstring 原意：M./R. 舒馬克全名相異即可區分 → 不碰撞。
+        tabs = {**self.EMPTY, "driver": {
+            "michael_schumacher": "麥可・舒馬克", "ralf_schumacher": "拉爾夫・舒馬克"}}
+        res = self._run(tabs)
+        self.assertFalse(any("規則②" in e for e in res["errors"]))
 
     def test_rule2_team_name_id_alias_not_flagged(self):
         # 車隊顯示名 + id 兩鍵同 zh ＝同一實體別名 → 不算碰撞
@@ -156,18 +172,39 @@ class CheckZhRuleTests(unittest.TestCase):
         res = self._run(tabs, head=head)
         self.assertFalse(any("規則③" in e for e in res["errors"]))
 
+    def test_resolved_allowlist_entry_suppresses_warning(self):
+        # 已裁決收斂條目（allowlist 帶 resolved 欄）：即便仍存在衝突，既不 error 也不 warning。
+        tabs = {**self.EMPTY, "driver": {"a": "甲"}}
+        allow = {("driver", "a"): {"namespace": "driver", "id": "a", "resolved": "甲"}}
+        res = self._run(tabs, allow=allow, phase0={"driver": {"a": "乙・丙"}, "constructor": {}})
+        self.assertFalse(any("規則①" in e for e in res["errors"]))
+        self.assertFalse(any("規則①" in w for w in res["warnings"]),
+                         "resolved 條目不應再出 warning")
+
 
 class CheckZhLiveTests(unittest.TestCase):
-    """實跑（真實表 + phase0 + 允許清單 + git HEAD）：0 error，hamilton 為允許清單 warning。"""
-    def test_live_gate_passes_with_hamilton_legacy_warning(self):
+    """實跑（真實表 + phase0 + 允許清單 + git HEAD）：hamilton 2026-07-23 已裁決收斂為『漢米爾頓』，
+    phase0 seed 與 driver-zh 姓氏一致 → 0 error 且無 hamilton warning。"""
+    def test_live_gate_passes_no_error_no_hamilton_warning(self):
         res = cz.run_checks()
         self.assertEqual(res["errors"], [], f"實跑不應有 error：{res['errors']}")
-        self.assertTrue(any("hamilton" in w for w in res["warnings"]),
-                        "hamilton 漢/韓兩譯應以允許清單 warning 呈現")
+        self.assertFalse(any("hamilton" in w for w in res["warnings"]),
+                         f"hamilton 已收斂，不應再出 warning：{res['warnings']}")
+
+    def test_hamilton_single_translation_across_sources(self):
+        # 收斂後 phase0 seed 與 driver-zh 的 hamilton 姓氏用字一致（皆『漢米爾頓』）。
+        driver = cz.load_tables()["driver"]
+        self.assertEqual(driver.get("hamilton"), "漢米爾頓")
+        self.assertEqual(cz.family_norm(cz.PHASE0_ZH["driver"]["hamilton"]), "漢米爾頓")
 
     def test_allowlist_file_names_hamilton(self):
         allow = cz.load_allowlist()
         self.assertIn(("driver", "hamilton"), allow)
+
+    def test_hamilton_allowlist_entry_is_resolved(self):
+        allow = cz.load_allowlist()
+        self.assertTrue(cz._is_resolved(allow, "driver", "hamilton"),
+                        "hamilton 條目應標記為 resolved（審計軌跡保留）")
 
 
 # ---------- 3. 圖的邊：一致性 + 決定性 ----------

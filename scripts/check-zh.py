@@ -45,7 +45,7 @@ ALLOWLIST = ROOT / "config" / "zh-legacy-conflicts.json"
 PHASE0_ZH = {
     "driver": {
         "michael_schumacher": "麥可・舒馬克",
-        "hamilton": "路易斯・韓密爾頓",
+        "hamilton": "路易斯・漢米爾頓",
         "senna": "艾爾頓・冼拿",
         "max_verstappen": "麥克斯・維斯塔潘",
     },
@@ -121,6 +121,13 @@ def load_allowlist():
     return {(c["namespace"], c["id"]): c for c in doc.get("conflicts", [])}
 
 
+def _is_resolved(allowlist, ns, k):
+    """已裁決收斂條目（allowlist 內帶 resolved 欄）——衝突已由 Charlie 定案並在同一 migration
+    改齊雙方，清單條目僅留審計軌跡 → gate 對其既不 error 也不 warning。"""
+    c = allowlist.get((ns, k))
+    return bool(c and c.get("resolved"))
+
+
 # ---------- 正規化 ----------
 
 _MIDDOTS = "・·‧•"
@@ -141,7 +148,10 @@ def team_entity_key(key: str) -> str:
 
 
 def compare_key(ns: str, zh: str) -> str:
-    """規則①/②比較用鍵：車手取姓氏正規化，其餘用 zh 原值。"""
+    """規則①比較用鍵：車手取姓氏正規化（全名 seed 與姓氏表指同一人時不誤判衝突），其餘用 zh 原值。
+    ⚠️ 規則②不可用此鍵——同姓不同人（Graham/Damon/Phil Hill 皆姓氏『希爾』）會被姓氏正規化
+    誤判成碰撞。規則②改用完整 zh 值（見 rule2_collisions），符合 docstring『M./R. 舒馬克必須可
+    區分』的原意：全名不同即為不同實體，僅當兩實體的完整譯名逐字相同才算碰撞。"""
     return family_norm(zh) if ns == "driver" else zh
 
 
@@ -168,6 +178,8 @@ def rule1_conflicts(sources, allowlist):
     for (ns, k), vals in sorted(by_id.items()):
         keys = {compare_key(ns, zh) for zh, _ in vals}
         if len(keys) > 1:
+            if _is_resolved(allowlist, ns, k):
+                continue  # 已裁決收斂：不 error 也不 warning（清單條目僅留審計軌跡）
             detail = "；".join(f"{zh}（{label}）" for zh, label in vals)
             msg = f"[規則①] 同一原文 {ns}:{k} 有多個 approved 譯名 → {detail}"
             if (ns, k) in allowlist:
@@ -179,18 +191,22 @@ def rule1_conflicts(sources, allowlist):
 
 def rule2_collisions(sources, allowlist):
     """規則②：同 namespace 內，同一比較鍵(譯名) 對應 ≥2 個不同實體 → 碰撞。"""
-    by_name = collections.defaultdict(dict)  # (ns, cmpkey) -> {entity_key: (id, zh, label)}
+    by_name = collections.defaultdict(dict)  # (ns, zh) -> {entity_key: (id, zh, label)}
     for ns, k, zh, label in sources:
-        ck = compare_key(ns, zh)
+        # 規則②用完整 zh 值當鍵（不做姓氏正規化）：同姓不同人（多位『希爾』/『羅斯堡』）全名相異
+        # → 不同鍵 → 不算碰撞；僅當兩個不同實體的完整譯名逐字相同才觸發（真正不可區分）。
+        ck = zh
         ent = team_entity_key(k) if ns == "constructor" else k
         by_name[(ns, ck)].setdefault(ent, (k, zh, label))
     errors, warnings = [], []
     for (ns, ck), ents in sorted(by_name.items()):
         if len(ents) > 1:
+            ids = [v[0] for v in ents.values()]
+            if any(_is_resolved(allowlist, ns, i) for i in ids):
+                continue  # 已裁決收斂：不 error 也不 warning
             detail = "、".join(f"{k}={zh}" for (k, zh, _label) in ents.values())
             msg = f"[規則②] 譯名『{ck}』（{ns}）對應多個實體 → {detail}"
             # 允許清單以 (ns,id) 具名；規則②碰撞若涉及的任一 id 在清單 → 降 warning
-            ids = [v[0] for v in ents.values()]
             if any((ns, i) in allowlist for i in ids):
                 warnings.append(f"{msg} 〔歷史遺留·已在允許清單〕")
             else:
