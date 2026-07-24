@@ -37,7 +37,7 @@ CONSTRUCTORS = ["ferrari", "mclaren", "mercedes", "red_bull"]
 
 # Phase 0 譯名（歷史實體全無譯名，站規要中英對照 → 這批人工填，未填者誠實留原文）
 ZH = {
-    "michael_schumacher": "麥可・舒馬克", "hamilton": "路易斯・韓密爾頓",
+    "michael_schumacher": "麥可・舒馬克", "hamilton": "路易斯・漢米爾頓",
     "senna": "艾爾頓・冼拿", "max_verstappen": "麥克斯・維斯塔潘",
     "ferrari": "法拉利", "mclaren": "麥拉倫", "mercedes": "賓士", "red_bull": "紅牛",
 }

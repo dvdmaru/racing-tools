@@ -1,0 +1,23 @@
+{
+  "_comment": "2002 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字都必須落在本檔 verified claims 的值集合內。external-history 句屬常識性歷史背景、不進機械對帳。",
+  "season": 2002,
+  "claims": [
+    {"kind": "season_exists", "text": "2002 賽季", "value": 2002, "verified": true,
+     "source": "sqlite: SELECT 1 FROM seasons WHERE year=2002"},
+    {"kind": "season_rounds", "text": "全季 17 站", "value": 17, "verified": true,
+     "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2002"},
+    {"kind": "champion_wins", "driver": "michael_schumacher", "text": "舒馬克贏下 11 場分站冠軍", "value": 11, "verified": true,
+     "source": "sqlite: SELECT wins FROM driver_standings WHERE season=2002 AND position=1"},
+    {"kind": "driver_podiums", "driver": "michael_schumacher", "text": "每一站都站上頒獎台（17 戰全數登台）", "value": 17, "verified": true,
+     "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2002 AND driver_id='michael_schumacher' AND position_text IN ('1','2','3')"},
+    {"kind": "clinch_round", "driver": "michael_schumacher", "text": "第 11 站數學上鎖定衛冕", "value": 11, "verified": true,
+     "source": "clinch 計算：逐站累計積分，首個「領先＞剩餘站數×該季單場最高分」的站次（見 check-season-intros.py clinch verifier）"},
+    {"kind": "clinch_remaining", "driver": "michael_schumacher", "text": "還剩 6 站便鎖定衛冕", "value": 6, "verified": true,
+     "source": "clinch 計算：全季站數 17 − 封王站次 11 ＝ 6（同上 verifier）"},
+    {"kind": "champion_points", "driver": "michael_schumacher", "text": "以 144 分作收", "value": 144, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2002 AND position=1"},
+    {"kind": "runner_up_points", "driver": "barrichello", "text": "第二名隊友 Rubens Barrichello 77 分", "value": 77, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2002 AND position=2"}
+  ],
+  "external_history": []
+}

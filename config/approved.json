@@ -19,6 +19,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-07-20T15:40:00+08:00",
       "note": "建站長青文，補記既有核准"
+    },
+    {
+      "slug": "season-intro-2002",
+      "article_sha256": "e00f98f54e4827da1b6876beea633bbaed456ccd4e42f3d5b34d77f84fbc2999",
+      "facts_sha256": "90b72dbad144822ee416c7390972871680ce50d0194977ca7ef87a3adf3bb839",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-23T23:06:05+08:00",
+      "note": "2002 賽季人工導言核准"
     }
   ]
 }
