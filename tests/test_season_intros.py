@@ -5,8 +5,8 @@
 鎖住三件事：
 1. 機械對帳（check-season-intros.py）：四篇導言真跑全綠；竄改導言數字 / 竄改 verified claim
    值 → 對帳抓到（合成 tamper）。
-2. 核准 gate（default-deny）：四篇草稿未進 approved.json → 賽季頁不渲染導言、與現狀 byte-identical；
-   合成核准後才渲染；sha 不符不渲染。
+2. 核准 gate（default-deny）：未核准/sha 不符不渲染（合成驗證）；四篇皆已由 Charlie 核准
+   （2002＝7/23、其餘三篇＝7/24），現狀鎖防誤刪。
 3. 導言站規：120–200 字、只用 approved 譯名值、無 em dash。
 
 跑法：python3 -m unittest discover -s tests -v
@@ -23,9 +23,6 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "seasons"
 YEARS = [1950, 1988, 2002, 2021]
-# 2002 已於 2026-07-23 由 Charlie 核准（進 config/approved.json）；其餘三篇仍為草稿。
-APPROVED_YEARS = [2002]
-DRAFT_YEARS = [y for y in YEARS if y not in APPROVED_YEARS]
 
 
 def _load(name, fname):
