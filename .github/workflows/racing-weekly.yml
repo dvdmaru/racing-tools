@@ -53,6 +53,14 @@ jobs:
         with:
           node-version: '22'
 
+      # 百科層測試（test_drivers_gen / test_encyclopedia_m7 等）要讀 data/f1/db.sqlite，
+      # 而 L1 依設計不入版控（可由 committed 的 data/f1/raw/ 決定性重建）→ CI checkout 沒有它。
+      # 少了這步，unittest 會整批 `no such table: driver_standings` 而讓部署卡死
+      # （2026-07-25 排程 run 30132150509 實際踩到：M1+M2 併入後第一次排程就紅）。
+      # tests.yml 早有這步，本檔漏掉——兩處必須同步。
+      - name: Build f1 sqlite（百科層測試前置；tests.yml 同步）
+        run: python scripts/build-f1-db.py
+
       # 排程也擋線（比照 baseball-daily.yml／basketball-daily.yml）：管線邏輯——部署 hard gate、
       # 草稿產物清理、快照驗證、sprint-only round 處理——壞掉時不會在畫面上立刻看見，
       # 只會在某個賽末默默出錯。這步讓它在部署前就紅。
