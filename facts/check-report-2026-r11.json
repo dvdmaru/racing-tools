@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-07-27T04:57:21.128923+00:00",
+  "checked_at": "2026-07-27T08:49:02.405137+00:00",
   "season": 2026,
   "round": 11,
   "article": "articles/f1-2026-r11-hungary-report/index.md",
-  "article_sha256": "4aaf342f9d7d29e29be1db5dfbe47671034b5602018318089a46b6b753af911c",
+  "article_sha256": "35e5ea18bb7ae362ea78268491b1e5edfad6742337f4976bc1d5e95f3208a774",
   "facts": "facts/race-recap-2026-r11.json",
   "facts_sha256": "6a067c59572111f682ee3ee44818017f81f56ace0a5afb3f1071f5d810c59bd2",
   "prompt": "scripts/prompts/race-recap.md",

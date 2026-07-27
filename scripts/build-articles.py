@@ -172,7 +172,29 @@ def _date_disp(s):
         return str(s)
 
 
+def _stability(meta, slug):
+    """成績變動狀態。文章 frontmatter 用 season/round 宣告它報導哪一場（不從 slug 猜）。
+
+    ⚠️ parse_frontmatter 一律回字串（"2026"／"11"），而 reconcile-log 裡是整數。
+    不轉型就會比不相等 → 明明有複查紀錄卻顯示「尚未複查」＝**假的 fail-honest**，
+    比沒做還糟（它會讓讀者以為我們沒查）。轉型失敗就回 None，走真的 unknown 路徑。
+    """
+    import stability
+
+    def _int(v):
+        try:
+            return int(str(v).strip())
+        except (TypeError, ValueError):
+            return None
+
+    season, rnd = _int(meta.get("season")), _int(meta.get("round"))
+    return stability.status(slug, season, rnd), stability
+
+
 def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=None):
+    _st, _stmod = _stability(meta, slug)
+    status_html = _stmod.status_line_html(_st)
+    stability_html = _stmod.block_html(_st)
     url = f"{BASE}/articles/{slug}/"
     title = meta.get("title", slug)
     desc = meta.get("subtitle", excerpt)[:300]
@@ -193,7 +215,10 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
     art_node = {
         "@type": "Article", "@id": f"{url}#article",
         "headline": title, "description": desc,
-        "datePublished": meta.get("date", ""), "dateModified": meta.get("updated", meta.get("date", "")),
+        "datePublished": meta.get("date", ""),
+        # ⚠️ 原本是 meta.get("updated", date)——沒填 updated 就等於發布日，文章改過也照報原始時間。
+        #    AI 引擎是本站主要受眾之一，給錯時間戳＝實傷。改為以勘誤／偵測到的成績變動為準。
+        "dateModified": (_st.get("last_modified") or meta.get("updated") or meta.get("date", "")),
         "inLanguage": "zh-Hant", "mainEntityOfPage": url,
         "author": {"@type": "Organization", "name": SITE["org_name"]},
         "publisher": {"@id": f"{BASE}/#org"},
@@ -240,11 +265,13 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
   <div class="art-kicker">{_kicker(meta)}</div>
   <h1 class="art-h1">{html_lib.escape(title)}</h1>
   <div class="art-meta"><span>{_date_disp(meta.get('date',''))}</span><span>{SITE['org_name']}</span></div>
+  {status_html}
   {cover_html}
   {lede_html}
   <article class="prose">
 {body_html}
   </article>
+  {stability_html}
   {nav_html}
   </main>
 {rc.site_footer_html()}
