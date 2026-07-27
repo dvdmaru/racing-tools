@@ -678,6 +678,56 @@ ARTICLE_CSS = """
 .art-h1 { font-family: var(--font-display); font-size: clamp(26px,4.6vw,40px); line-height: 1.22;
   margin: 0 0 14px; font-style: italic; }
 .art-meta { color: var(--dim); font-size: 13px; margin-bottom: 26px; display:flex; gap:14px; flex-wrap:wrap; }
+
+/* ---- 成績變動追蹤（2026-07-27）----
+   標題下的狀態行「平常必須安靜」：無變動是絕大多數，若每篇都掛顯眼徽章，讀者三篇後就自動
+   忽略，等到真的有判罰那天它一樣被忽略。徽章的價值來自平常不出現。
+   一個視覺通道只承載一種語意（見 feedback_one_visual_channel_one_meaning）：
+   顏色在這裡專門表示「成績有沒有動過」，不兼做別的。 */
+.art-status { font-size: 12.5px; line-height: 1.7; margin: -14px 0 26px; color: var(--dim);
+  display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.art-status a { color: inherit; text-underline-offset: 3px; }
+.art-status.is-stable::before { content: "—"; color: var(--dim); }
+.art-status.is-errata::before { content: "—"; color: var(--dim); }
+/* 只有真的變動才升到 accent＋底色；unchecked 用 dnf 色提醒但不喧賓奪主 */
+.art-status.is-changed { color: var(--accent); font-weight: 700; font-size: 13.5px;
+  background: var(--accent-soft); border-left: 3px solid var(--accent);
+  padding: 10px 14px; border-radius: var(--radius-sm); margin: -6px 0 26px; }
+.art-status.is-changed::before { content: "⚠"; }
+.art-status.is-unchecked { color: var(--dnf); }
+.art-status.is-unchecked::before { content: "—"; }
+
+.rs-box { border:1px solid var(--line); border-radius: var(--radius); padding: 22px 24px;
+  margin: 34px 0 10px; background: var(--surface); }
+.rs-box h2 { font-size: 17px; margin: 0 0 6px; letter-spacing:.3px; font-style: normal;
+  font-family: var(--font-ui); }
+.rs-box h2::before { content:""; display:inline-block; width:9px; height:9px; border-radius:50%;
+  background: var(--accent); margin-right:9px; vertical-align: middle; }
+.rs-intro { font-size:13.5px; color: var(--fg-soft); line-height:1.75; margin:0 0 16px; }
+.rs-meta { display:grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap:10px 18px;
+  margin:0 0 18px; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.rs-meta dt { font-family: var(--font-mono); font-size:10.5px; letter-spacing:1.6px;
+  text-transform:uppercase; color: var(--dim); margin-bottom:3px; }
+.rs-meta dd { margin:0; font-size:13.5px; color: var(--fg); font-variant-numeric: tabular-nums; }
+.rs-sub { margin-bottom:16px; }
+.rs-sub h3 { font-family: var(--font-mono); font-size:11px; letter-spacing:1.6px; text-transform:uppercase;
+  color: var(--dim); margin:0 0 8px; font-weight:600; }
+.rs-list { list-style:none; margin:0; padding:0; }
+.rs-list li { display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; padding:8px 0;
+  border-bottom:1px dashed var(--line); font-size:13.5px; }
+.rs-list li:last-child { border-bottom:0; }
+.rs-when { font-family: var(--font-mono); font-weight:700; color: var(--fg); min-width:96px;
+  font-variant-numeric: tabular-nums; }
+.rs-at { font-family: var(--font-mono); font-size:12px; color: var(--dim); min-width:132px;
+  font-variant-numeric: tabular-nums; }
+.rs-ok { color: var(--dim); }
+.rs-chg { color: var(--accent); font-weight:700; }
+.rs-err li { display:block; }
+.rs-err .rs-at { display:block; margin-bottom:2px; }
+.rs-none { font-size:13.5px; color: var(--dnf); margin:0; }
+.rs-caveat { font-size:12.5px; color: var(--dim); line-height:1.75; margin:18px 0 0; padding-top:14px;
+  border-top:1px solid var(--line); }
+@media (max-width:640px) { .rs-when, .rs-at { min-width:0; } }
 .art-lede { font-size: 16.5px; color: var(--fg-soft); line-height: 1.85; border-left: 3px solid var(--accent);
   padding: 4px 0 4px 18px; margin: 0 0 30px; }
 .prose { font-size: 16px; line-height: 1.95; }
