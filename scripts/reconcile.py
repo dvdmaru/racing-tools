@@ -62,17 +62,35 @@ def reconcile(season, rnd, write_log=False):
             changes.append({"position": pos, "snapshot": a.get(pos), "live": b.get(pos)})
 
     # 積分榜獨立再比一次：判罰可能只改積分不改名次
+    # ⚠️ 車手榜與車隊榜都要比。原本只比車手榜，但戰報文型會直接引用車隊榜前五的分數
+    #    （「賓士從 358 分增至 379 分…」），車隊榜若因判罰變動而這裡不看，
+    #    等於判罰偵測器對自己要守的一半主張是盲的。
+    #    live 端本來就同時取回兩份（standings_after_round 回傳 driver＋constructor），
+    #    純粹是沒拿來用。2026-07-27 查核桌 Terra 於結案輪指出。
     ds_path = ROOT / "data" / str(season) / "driver-standings.json"
+    cs_path = ROOT / "data" / str(season) / "constructor-standings.json"
     st_changes = []
-    if ds_path.exists():
+    live_st = src.standings_after_round(season, rnd) if (ds_path.exists() or cs_path.exists()) else None
+
+    if ds_path.exists() and live_st:
         snap = json.loads(ds_path.read_text(encoding="utf-8"))
         lm = {r["Driver"]["driverId"]: float(r["points"])
               for r in (snap.get("standings") or {}).get("DriverStandings", [])}
-        live_st = src.standings_after_round(season, rnd)
         rm = {r["Driver"]["driverId"]: float(r["points"]) for r in live_st["driver"]}
         for k in sorted(set(lm) | set(rm)):
             if lm.get(k) != rm.get(k):
-                st_changes.append({"driver": k, "snapshot": lm.get(k), "live": rm.get(k)})
+                st_changes.append({"kind": "driver", "id": k,
+                                   "snapshot": lm.get(k), "live": rm.get(k)})
+
+    if cs_path.exists() and live_st:
+        csnap = json.loads(cs_path.read_text(encoding="utf-8"))
+        lc = {r["Constructor"]["constructorId"]: float(r["points"])
+              for r in (csnap.get("standings") or {}).get("ConstructorStandings", [])}
+        rc_ = {r["Constructor"]["constructorId"]: float(r["points"]) for r in live_st["constructor"]}
+        for k in sorted(set(lc) | set(rc_)):
+            if lc.get(k) != rc_.get(k):
+                st_changes.append({"kind": "constructor", "id": k,
+                                   "snapshot": lc.get(k), "live": rc_.get(k)})
 
     race = local.get("raceName", "")
     rec = {
@@ -90,7 +108,12 @@ def reconcile(season, rnd, write_log=False):
     try:
         start = rc.to_taipei(local.get("date", ""), local.get("time", ""))
         delta = datetime.datetime.now(datetime.timezone.utc) - start.astimezone(datetime.timezone.utc)
-        hrs = f"（賽後約 {delta.total_seconds()/3600:.1f} 小時）"
+        # ⚠️ 這裡的基準是「開賽時間」（schedule 的 date+time），不是衝線時間。
+        # 原本印「賽後約 N 小時」會被讀成距離終場，實際上多算了整場比賽的時間
+        # （R11 匈牙利：距開賽 13.6h，但距冠軍衝線只有 11.9h，差了 1.7h）。
+        # 判罰觀測窗要看的是終場之後過了多久，所以標籤必須誠實寫「開賽後」。
+        # 2026-07-27 查核桌 Terra 抓到（作者席引用時照抄了錯誤標籤）。
+        hrs = f"（開賽後約 {delta.total_seconds()/3600:.1f} 小時）"
     except Exception:
         pass
 
@@ -102,7 +125,8 @@ def reconcile(season, rnd, write_log=False):
         for c in changes[:10]:
             print(f"   P{c['position']}  快照={c['snapshot']}  →  現在={c['live']}")
         for c in st_changes[:10]:
-            print(f"   {c['driver']}  {c['snapshot']} → {c['live']}")
+            label = "車手" if c["kind"] == "driver" else "車隊"
+            print(f"   [{label}] {c['id']}  {c['snapshot']} → {c['live']}")
         print("   ⚠️ 已發布的稿子若引用了這些數字，現在是錯的。")
 
     if write_log:
