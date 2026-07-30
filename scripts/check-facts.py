@@ -15,14 +15,24 @@
 機械 gate 就失去獨立性；而每週一次的例行放行必然退化成橡皮圖章。
 誤殺的正解是改稿或把正當數值補進 facts pack，不是建立一套放行治理。）
 
-四支檢查，**全部擋 gate**：
+**設計原則四：文章的事實來源決定該用哪組 gate。** 站上有兩種文章。
+自有資料文（report/recap）驗得動的方式是重打 API 對帳；外部來源文（feature/guide/
+reference/wire）的事實不在 jolpica 裡，無從對帳，硬套只會全紅或全綠、兩者都無意義。
+（2026-07-30：發現建站兩篇長青文自 07-19 以來是零機械覆蓋上線的，因為當時只有戰報 gate。）
+
+自有資料文，四支全部擋 gate：
   verify-recap     重打 jolpica API，前十表逐格比對（五欄全部必填）
   verify-standings 用 round N/N-1 積分榜當獨立 oracle 驗 pack 的 before/after
   verify-body      全文數字必須對得到 facts pack（含個位數）
   no-causal        戰報禁因果與無源主張
 
+外部來源文：
+  verify-sources   來源段落＋查證日＋外部連結，全文禁無名歸因（擋 gate）
+  check-links      連結逐條打 HTTP（**報告，不擋 gate**——網路波動不該綁進 build）
+
 用法：
     python3 scripts/check-facts.py verify-all --round 11 --facts facts/... --article articles/<slug>/index.md
+    python3 scripts/check-facts.py verify-sources --article articles/<slug>/index.md
 """
 import argparse
 import datetime
@@ -375,6 +385,130 @@ def no_causal(article_path):
     return True
 
 
+# 無名歸因：LLM 產稿最典型的指紋，也是最省力的造假法——把沒有出處的判斷
+# 掛到一個不存在的權威身上。規範見 scripts/prompts/external-sourced.md 規則 2。
+VAGUE_ATTRIBUTION = [
+    r"專家(?:認為|指出|表示|普遍)", r"業界(?:人士|普遍)", r"分析(?:師|人士)(?:認為|指出)",
+    r"有(?:分析|報導|說法|人)(?:認為|指出|表示)", r"消息(?:人士|來源)(?:指出|透露|表示)",
+    r"據(?:了解|悉|傳)", r"(?:外界|一般|普遍)(?:認為|預期)", r"不少人認為",
+    r"研究(?:顯示|指出)(?!.*http)",   # 沒附連結的「研究顯示」
+    # 2026-07-30 補：初版 regex 對已上線的規則指南全綠，但那篇實際有兩處無名歸因
+    # （「甚至有一種說法是」「被普遍拿來與 2014 年相比」）。gate 太寬就是掩蓋器，
+    # 補 regex 而不是放過它——代價是那篇要改一行並重新核准，這由 Charlie 決定。
+    r"有(?:一種|一些|某種|某些)?(?:說法|看法|聲音)", r"普遍(?:認為|預期|視為|拿來)",
+]
+
+
+def verify_sources(article_path):
+    """外部來源文（feature/guide/reference/wire）的 gate。
+
+    這道檢查存在的理由：站上原有四道 gate **全部只服務自有資料文**——它們的做法是
+    「重打 jolpica API 對帳」，而外部來源文的事實根本不在 jolpica 裡，無從對帳。
+    2026-07-19 建站的兩篇長青文因此是零機械覆蓋上線的（當時 gate 還不存在）。
+
+    ⚠️ 不要改用 `no-causal` 來蓋這個缺口。`no-causal` 禁「導致」「安全車」的前提是
+    **資料源沒有這些欄位**；外部來源文有具名出處，前提不成立，套上去會全數命中，
+    而那是 gate 的正確行為不是誤殺。詳見 scripts/prompts/external-sourced.md。
+
+    守的是同一件事（禁無源主張），換成本文型驗得動的形式：
+      ① 必須有「資料來源」段落  ② 段落必須標查證日  ③ 段落必須有可點擊外部連結
+      ④ 全文禁無名歸因（regex，命中即擋，比照 no_causal 無豁免）
+    """
+    text = _load_article(article_path)
+    body = _body_of(text)
+    fails = []
+
+    m = re.search(r"^#{2,3}\s*(?:資料來源|來源與查證|參考來源)\s*$", body, re.M)
+    if not m:
+        fails.append("缺「## 資料來源」段落——外部來源文沒有出處段落等於無源主張")
+        tail = ""
+    else:
+        tail = body[m.end():]
+        if not re.search(r"查證日", tail):
+            fails.append("資料來源段落缺「查證日」——外部事實會過期，沒有日期就無法判斷新舊")
+        links = re.findall(r"\]\((https?://[^)]+)\)", tail)
+        if not links:
+            fails.append("資料來源段落沒有可點擊的外部連結（markdown 連結）")
+        else:
+            print(f"   來源段落外部連結 {len(links)} 條")
+
+    hits = []
+    for i, line in enumerate(body.splitlines(), 1):
+        for pat in VAGUE_ATTRIBUTION:
+            for mm in re.finditer(pat, line):
+                frag = line[max(0, mm.start() - 12):mm.end() + 12]
+                hits.append(f"L{i}: …{frag}…")
+    if hits:
+        fails.append(f"{len(hits)} 處無名歸因")
+        print(f"❌ {len(hits)} 處無名歸因（要嘛寫出是誰，要嘛承認是本站判斷）：",
+              file=sys.stderr)
+        for h in hits[:20]:
+            print(f"   · {h}", file=sys.stderr)
+
+    if fails:
+        print(f"⛔ verify-sources 未通過：{'；'.join(fails)}", file=sys.stderr)
+        print("   沒有豁免機制：命中一律改稿。規範見 scripts/prompts/external-sourced.md",
+              file=sys.stderr)
+        return False
+    print("✅ 來源段落完整、無無名歸因（機械通過 ≠ 出處真的存在，仍須人工 cross-check）")
+    return True
+
+
+def check_links(article_path, timeout=10):
+    """把文章裡的外部連結逐條打一次，回報 HTTP 狀態。
+
+    ⚠️ **這不是 gate，是報告。** 理由與維基對照同源：外部網站波動會讓 build 隨機失敗，
+    把網路狀態綁進 gate 只會訓練出「紅燈就重跑」的習慣，那比沒有檢查更糟。
+    非 200 需要人看一眼再判斷是連結真的死了、還是對方擋機器人。
+
+    ⚠️ **必須區分「連結壞了」與「這台機器查不了」。** 初版把兩者都印成「非 200」，
+    在 TLS 被攔截的環境下六條全綠的連結被報成六條壞連結——**假陰性比沒有檢查更糟**，
+    它會訓練出「這個檢查一向紅、忽略它」的習慣，等真的有死連結時就沒人看了。
+    所以環境性失敗（憑證、DNS、逾時）一律歸類為「無法檢查」，不計入壞連結；
+    全部都無法檢查時明確宣告本次檢查無效。（比照 stability.py 的 fail-honest。）
+    """
+    import ssl
+    import urllib.error
+    import urllib.request
+    body = _body_of(_load_article(article_path))
+    urls = sorted(set(re.findall(r"\]\((https?://[^)]+)\)", body)))
+    if not urls:
+        print("（文章沒有外部連結）")
+        return True
+    ok, bad, unknown = [], [], []
+    for u in urls:
+        req = urllib.request.Request(u, method="GET", headers={
+            "User-Agent": "Mozilla/5.0 (racing.twtools.cc link check)"})
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                code, kind = r.status, "http"
+        except urllib.error.HTTPError as e:
+            code, kind = e.code, "http"          # 對方有回答＝真的狀態碼
+        except (ssl.SSLError, urllib.error.URLError, TimeoutError, OSError) as e:
+            inner = getattr(e, "reason", e)
+            code, kind = type(inner).__name__, "env"   # 沒連上＝本機環境問題
+        if kind == "env":
+            unknown.append((code, u))
+            print(f"❓ 無法檢查（{code}）  {u}")
+        elif code == 200:
+            ok.append(u)
+            print(f"✅ 200  {u}")
+        else:
+            bad.append((code, u))
+            print(f"⚠️  {code}  {u}")
+
+    print()
+    if unknown and not ok and not bad:
+        print(f"⛔ 本次檢查無效：{len(urls)} 條連結全部無法連線（{unknown[0][0]}）。")
+        print("   這不代表連結有問題——代表這台機器連不出去（常見於 TLS 攔截或離線環境）。")
+        print("   請在能正常連外的環境重跑，或請人工開啟確認。")
+        return True
+    print(f"{len(urls)} 條連結：{len(ok)} 條 200、{len(bad)} 條異常、{len(unknown)} 條無法檢查")
+    if bad:
+        print("   異常需人工判斷：連結真的死了，還是對方擋機器人（403／429 常是後者）。")
+    return True
+
+
 def _sha(path):
     return hashlib.sha256(_resolve(path).read_bytes()).hexdigest()
 
@@ -427,7 +561,8 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     for name, need in (("verify-recap", "rf"), ("verify-standings", "rf"),
-                       ("verify-body", "fa"), ("no-causal", "a"), ("verify-all", "rfa")):
+                       ("verify-body", "fa"), ("no-causal", "a"), ("verify-all", "rfa"),
+                       ("verify-sources", "a"), ("check-links", "a")):
         p = sub.add_parser(name)
         if "r" in need:
             p.add_argument("--round", type=int, required=True)
@@ -437,7 +572,11 @@ def main():
         p.add_argument("--article", required=True)
 
     args = ap.parse_args()
-    if args.cmd == "verify-recap":
+    if args.cmd == "verify-sources":
+        ok = verify_sources(args.article)
+    elif args.cmd == "check-links":
+        ok = check_links(args.article)
+    elif args.cmd == "verify-recap":
         ok = verify_recap(args.season, args.round, args.article)
     elif args.cmd == "verify-standings":
         ok = verify_standings(args.facts, args.season, args.round)
