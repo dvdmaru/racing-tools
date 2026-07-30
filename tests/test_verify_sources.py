@@ -102,6 +102,35 @@ class TestSourceSection(unittest.TestCase):
     def test_complete_passes(self):
         self.assertTrue(self._run("## 資料來源\n[來源](https://example.com)　查證日 2026-07-30。\n"))
 
+    def _run_raw(self, full_text):
+        import tempfile
+        with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False,
+                                         encoding="utf-8") as f:
+            f.write(full_text)
+            path = f.name
+        return cf.verify_sources(path)
+
+    SRC = "\n## 資料來源\n[來源](https://example.com)　查證日 2026-07-30。\n"
+
+    def test_frontmatter_weasel_is_caught(self):
+        """subtitle／lede 的無名歸因必須被擋。
+
+        ⚠️ 這是 2026-07-30 發現的覆蓋缺口：原本掃描用 `_body_of()`，
+        會把 frontmatter 整塊剝掉，於是 title／subtitle／lede 從來沒被任何語意 gate 掃過——
+        而那三個欄位進 meta description、OG card、首頁摘錄與 RSS，比正文更多人看到。
+        """
+        for field in ("subtitle", "lede", "title"):
+            with self.subTest(field=field):
+                self.assertFalse(self._run_raw(
+                    f'---\nslug: t\n{field}: "專家認為這套系統早就該換掉了。"\n---\n'
+                    f"正文完全乾淨。{self.SRC}"))
+
+    def test_machine_frontmatter_fields_not_scanned(self):
+        """slug／date／type 是機器欄位，不該被語意 regex 掃到（避免誤殺）。"""
+        self.assertTrue(self._run_raw(
+            '---\nslug: has-people-said-something\ntype: "guide"\ndate: "2026-07-30"\n---\n'
+            f"正文乾淨。{self.SRC}"))
+
     def test_known_gap_unrelated_link_still_passes(self):
         """⚠️ 已知覆蓋缺口，刻意用測試記錄下來，不要誤以為 gate 擋得住這個。
 

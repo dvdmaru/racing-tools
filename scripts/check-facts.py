@@ -99,6 +99,26 @@ def _body_of(text):
     return re.sub(r"\A---.*?\n---\s*\n", "", text, flags=re.S)
 
 
+def _prose_of(text):
+    """語意類掃描（無名歸因、因果）的正確範圍＝frontmatter 的可讀欄位 ＋ 正文。
+
+    ⚠️ 2026-07-30 發現的覆蓋缺口：`_body_of()` 會把 frontmatter 整塊剝掉，
+    於是 **title／subtitle／lede 從來沒有被任何語意 gate 掃過**。
+    而那三個欄位是全站最多人看到的文字——它們進 meta description、OG card、
+    首頁摘錄與 RSS。實例：規則指南的無名歸因被 gate 抓到並修掉後，
+    才發現同一句 weasel 也被帶進首頁摘錄，而 gate 對那條路徑是全盲的。
+    （slug／date／type／season／round 是機器欄位，不參與語意掃描。）
+    """
+    m = re.match(r"\A---(.*?)\n---\s*\n", text, re.S)
+    prose = ""
+    if m:
+        for line in m.group(1).splitlines():
+            k, _, v = line.partition(":")
+            if k.strip() in ("title", "subtitle", "lede", "excerpt", "description"):
+                prose += v.strip().strip('"') + "\n"
+    return prose + _body_of(text)
+
+
 def _tables(text):
     """回 [[cells,...], ...] 的表格清單（每個表格是一組連續的 | 行，去分隔線）。"""
     tables, cur = [], []
@@ -382,7 +402,7 @@ def no_causal(article_path):
     """
     text = _load_article(article_path)
     hits = []
-    for i, line in enumerate(_body_of(text).splitlines(), 1):
+    for i, line in enumerate(_prose_of(text).splitlines(), 1):
         for pat in CAUSAL_PATTERNS:
             for m in re.finditer(pat, line):
                 frag = line[max(0, m.start() - 12):m.end() + 12]
@@ -460,7 +480,7 @@ def verify_sources(article_path):
             print(f"   來源段落外部連結 {len(links)} 條")
 
     hits = []
-    for i, line in enumerate(body.splitlines(), 1):
+    for i, line in enumerate(_prose_of(text).splitlines(), 1):
         for pat in VAGUE_ATTRIBUTION:
             for mm in re.finditer(pat, line):
                 frag = line[max(0, mm.start() - 12):mm.end() + 12]
