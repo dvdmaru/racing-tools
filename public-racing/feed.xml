@@ -6,6 +6,20 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 怎麼知道場上每一台車在哪裡：計時、定位與賽事控制的科技</title>
+    <link>https://racing.twtools.cc/articles/f1-tech-timing-positioning-race-control/</link>
+    <guid>https://racing.twtools.cc/articles/f1-tech-timing-positioning-race-control/</guid>
+    <pubDate>Thu, 30 Jul 2026 00:00:00 +0800</pubDate>
+    <description>F1 的成績算到千分之一秒，黃旗能只在一小段賽道生效，藍旗會在快車追到 1.2 秒時自動亮起。這些都不是靠人眼判斷，而是三套互相咬合的系統：埋在跑道下的計時線圈、車上的定位單元、賽道旁的燈號面板。本文從 FIA 規則與賽事總監指令的原文出發，說明它們各自負責什麼、彼此怎麼分工，以及哪些廣為流傳的數字其實查不到出處。</description>
+  </item>
+  <item>
+    <title>匈牙利站藍旗故障：FIA 紀錄裡 11 條藍旗，7 條早了 17 分鐘以上、2 條發給從沒被套圈的車</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-r11-hungary-blue-flag-failure/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-r11-hungary-blue-flag-failure/</guid>
+    <pubDate>Thu, 30 Jul 2026 00:00:00 +0800</pubDate>
+    <description>自動藍旗系統在比賽前段就開始發錯訊號，隨後被停用。本站用自有逐圈資料還原這場比賽的絕對時鐘後逐條回推：11 條藍旗裡有 7 條，比對象被確認套圈的時刻早了 17 到 42 分鐘；另有 2 條的對象在場上期間從未落後滿一圈。而貝爾曼被罰的那些藍旗，FIA 自己的紀錄裡一條都沒有。</description>
+  </item>
+  <item>
     <title>匈牙利站戰報：諾里斯第 1 位發車奪冠，全場領先易主 7 次</title>
     <link>https://racing.twtools.cc/articles/f1-2026-r11-hungary-report/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-r11-hungary-report/</guid>

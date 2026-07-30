@@ -64,6 +64,24 @@
    "approved_by": "charlie",
    "approved_at": "2026-07-27T12:05:00+08:00",
    "note": "內容線首篇戰報。查核桌 Terra 三輪 Content GO＋風格關後上線（v3）。2026-07-27 勘誤 v4：原「第 2 圈時排在第 19 位」把 facts pack 的 lap=2 與 from_pos=19 兩個不同時點黏成一句，實際為第 1 圈結束時 P19、第 2 圈結束時 P18；已改為依 /laps 原始逐圈名次陳述。Charlie 核准「戰報過」後之勘誤，不另求核准。　2026-07-30 勘誤 v5：①「賽因斯」→「塞恩斯」——driver-zh.json（approved-live）與譯名對照表全站都作塞恩斯，只有本篇不一致，而新上線的藍旗故障分析會連到本篇，讀者點過去就看到兩個名字；check-zh 只查譯名表不查文章正文，故全綠。②「停了 28.658 秒」→「維修道通行時間」——45 筆全部落在 21–29 秒，不可能是靜止時間（靜止約 2–3 秒），原措辭會讓讀者以為車在千斤頂上待了 28 秒。比照 v4 勘誤慣例：Charlie 核准後之勘誤不另求核准。"
+  },
+  {
+   "slug": "f1-2026-r11-hungary-blue-flag-failure",
+   "article_sha256": "e7e3aacd122997aa8e996b30a131667b60edda24378571eb232ffc4c17c51fcf",
+   "facts_sha256": null,
+   "check_report_sha256": null,
+   "approved_by": "charlie",
+   "approved_at": "2026-07-30T14:58:21+08:00",
+   "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。"
+  },
+  {
+   "slug": "f1-tech-timing-positioning-race-control",
+   "article_sha256": "7a758eaa7685f04488478d7eeb4048a57f389b9d5024343d61634494bbc9c85a",
+   "facts_sha256": null,
+   "check_report_sha256": null,
+   "approved_by": "charlie",
+   "approved_at": "2026-07-30T14:58:21+08:00",
+   "note": "外部來源文（guide，長青）。同上查核桌 R4 Content GO。非 facts 管線產出，走 verify-sources。Charlie 2026-07-30 裁決「發」。"
   }
  ]
 }
