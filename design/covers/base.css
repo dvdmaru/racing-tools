@@ -1,0 +1,50 @@
+/* racing.twtools.cc 封面共用骨架
+ *
+ * 抽出自 cover-rules.html／cover-glossary.html（2026-07-19 那兩張已上線的封面），
+ * 讓後續封面拿到同一組設計 token，不必靠肉眼比對避免風格漂移。
+ * 那兩張維持自帶 CSS 不動——它們的 PNG 已經上線，沒有理由重新產生。
+ *
+ * 站規（README 第 9 行）：封面一律自製數據視覺，不用車手肖像。
+ * 每張封面的 viz 區塊各自定義；顏色階只用來區分項目，不對應車隊塗裝。
+ */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 2400px; height: 1260px;          /* og:image 1200×630 的 2 倍 */
+  background: #f3e9e9; color: #241a1c;
+  font-family: 'Noto Sans TC', sans-serif;
+  overflow: hidden; position: relative;
+  background: radial-gradient(120% 80% at 20% -10%, #fbf3f3 0%, #f3e9e9 60%);
+}
+
+.grid {
+  position: absolute; inset: 0; opacity: .12;
+  background-image: linear-gradient(rgba(214, 58, 47, .30) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 58, 47, .30) 1px, transparent 1px);
+  background-size: 120px 120px;
+}
+
+.wrap { position: relative; padding: 110px 130px; height: 100%; display: flex; flex-direction: column; }
+
+.brand { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700; font-size: 44px; letter-spacing: 6px; color: #d63a2f; }
+.tag { font-family: 'Chakra Petch'; font-size: 26px; letter-spacing: 10px; color: #786a6e; margin-top: 10px; text-transform: uppercase; }
+
+h1 { font-weight: 900; font-size: 120px; line-height: 1.18; margin-top: 60px; letter-spacing: 2px; }
+h1 .y { font-family: 'Chakra Petch'; font-style: italic; color: #d63a2f; }
+
+.sub { font-size: 44px; color: #493c40; margin-top: 34px; letter-spacing: 2px; }
+
+/* 資料視覺區：一律靠底，讓標題與圖之間的留白自動吸收標題長度差異 */
+.viz { margin-top: auto; }
+.lbl { font-family: 'Chakra Petch'; font-size: 28px; color: #786a6e; letter-spacing: 4px; margin-bottom: 18px; }
+.legend { font-size: 26px; color: #786a6e; margin-top: 6px; letter-spacing: 2px; }
+
+.stats { display: flex; gap: 56px; }
+.stat { border-left: 6px solid #d63a2f; padding-left: 30px; }
+.stat b { display: block; font-family: 'Chakra Petch'; font-style: italic; font-size: 70px; color: #d63a2f; }
+.stat b i { font-size: 36px; }
+.stat span { font-size: 28px; color: #786a6e; letter-spacing: 2px; }
+
+.foot { position: absolute; bottom: 44px; right: 130px; font-size: 24px; color: #a6989c; letter-spacing: 2px; }

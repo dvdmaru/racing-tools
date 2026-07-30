@@ -1,0 +1,30 @@
+{
+  "_doc": "封面 HTML 與文章的綁定表。render-covers.py 與 check-covers.py 都讀這一份，所以「哪張封面屬於哪篇」只有一個答案。allow 是封面上出現、但文章正文沒有的數字字面（例：設計用的分段編號），每一項都必須寫理由——default-deny，沒列出來就會被 gate 擋。",
+  "covers": [
+    {
+      "slug": "f1-2026-rules-guide",
+      "html": "cover-rules.html",
+      "allow": {}
+    },
+    {
+      "slug": "f1-2026-names-glossary",
+      "html": "cover-glossary.html",
+      "allow": {}
+    },
+    {
+      "slug": "f1-2026-r11-hungary-report",
+      "html": "cover-r11-report.html",
+      "allow": {}
+    },
+    {
+      "slug": "f1-2026-r11-hungary-blue-flag-failure",
+      "html": "cover-r11-blue-flag.html",
+      "allow": {}
+    },
+    {
+      "slug": "f1-tech-timing-positioning-race-control",
+      "html": "cover-tech-timing.html",
+      "allow": {}
+    }
+  ]
+}

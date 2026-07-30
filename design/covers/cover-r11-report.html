@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 領跑權條帶：70 圈按領跑者切段，每段寬度用 flex-grow 直接等於圈數，
+ * 不手算百分比——寬度與圈數不可能對不上。段落順序與圈數見文章「領先權換了 7 次手」節。
+ * 色階只用來區分四位車手，不對應任何車隊塗裝（站規：不用官方素材）。 */
+.strip { display: flex; height: 132px; border-radius: 14px; overflow: hidden; }
+.seg { position: relative; display: flex; flex-direction: column; justify-content: center;
+  padding-left: 22px; font-family: 'Chakra Petch'; font-weight: 700; overflow: hidden; }
+.seg .lap { font-size: 22px; letter-spacing: 2px; opacity: .72; }
+.seg .who { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 30px; letter-spacing: 1px; white-space: nowrap; }
+.s-nor { background: #d63a2f; color: #fff; }
+.s-pia { background: #191114; color: rgba(255, 255, 255, .88); }
+.s-ant { background: #786a6e; color: #fff; }
+.s-ver { background: #c9b8bb; color: #241a1c; }
+.keys { display: flex; gap: 44px; margin-top: 18px; font-size: 27px; color: #493c40; letter-spacing: 1px; }
+.keys i { display: inline-block; width: 30px; height: 16px; border-radius: 4px; margin-right: 12px; vertical-align: 1px; }
+.stats { margin-top: 46px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 戰報</div>
+  <h1>匈牙利站戰報<br>領先易主 <span class="y">7</span> 次</h1>
+  <div class="sub">諾里斯第 1 位發車奪冠 ・ 4 位車手領跑過 ・ 冠軍只領跑 34 圈</div>
+  <div class="viz">
+    <div class="lbl">70 圈的領跑權（每段寬度＝領跑圈數）</div>
+    <div class="strip">
+      <div class="seg s-pia" style="flex:15"><span class="lap">LAP 1</span><span class="who">皮亞斯特里 15</span></div>
+      <div class="seg s-nor" style="flex:2"><span class="lap">16</span></div>
+      <div class="seg s-ant" style="flex:5"><span class="lap">18</span><span class="who">5</span></div>
+      <div class="seg s-pia" style="flex:10"><span class="lap">23</span><span class="who">10</span></div>
+      <div class="seg s-nor" style="flex:7"><span class="lap">33</span><span class="who">7</span></div>
+      <div class="seg s-ver" style="flex:1"><span class="lap">40</span></div>
+      <div class="seg s-ant" style="flex:5"><span class="lap">41</span><span class="who">5</span></div>
+      <div class="seg s-nor" style="flex:25"><span class="lap">46</span><span class="who">諾里斯 25</span></div>
+    </div>
+    <div class="keys">
+      <span><i style="background:#d63a2f"></i>諾里斯 34 圈</span>
+      <span><i style="background:#191114"></i>皮亞斯特里 25 圈</span>
+      <span><i style="background:#786a6e"></i>安東內利 10 圈</span>
+      <span><i style="background:#c9b8bb"></i>維斯塔潘 1 圈</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>34</b><span>冠軍領跑圈數／共 70 圈</span></div>
+      <div class="stat"><b>7</b><span>領先易主次數</span></div>
+      <div class="stat"><b>4</b><span>領跑過的車手</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 圈數依官方分類與逐圈資料</div>
+</div>
+</body>
+</html>

@@ -42,8 +42,34 @@ python3 scripts/gen-racing-calendar.py      # /calendar/ 台北時間賽曆
 python3 scripts/gen-racing-results.py       # /results/
 ```
 
-跑序鐵則：build-articles **先跑**（覆寫 sitemap），各 gen-* 之後 re-merge 自己的 path。
+sitemap 已改為 manifest 合併（M0）：每支生成器只寫自己的 `data/sitemap-parts/<owner>.txt`，
+最後由 `python3 scripts/build-sitemap.py` 合併成 `public-racing/sitemap.xml`。
+所以**跑序不再是鐵則**，但 `build-sitemap.py` 一定要在所有生成器之後跑一次——
+只跑 `build-articles.py` 不會更新 `sitemap.xml`。
+（舊版 README 寫的「build-articles 先跑並覆寫 sitemap」已不符現況，2026-07-30 更正。）
+
 需 Python `markdown`、Node/`npx wrangler`、headless Chrome（封面用）。
+
+## 封面
+
+站規：封面一律自製數據視覺，不用官方素材與車手肖像。每張封面畫的是**該篇自己的核心發現**
+（例：戰報畫 70 圈的領跑權條帶、藍旗稿畫 11 條旗與對象實際被套圈時刻的落差）。
+
+```
+design/covers/base.css        # 共用設計 token（版面、字級、accent #d63a2f）
+design/covers/cover-*.html    # 一篇一張，viz 各自定義
+design/covers/covers.json     # slug ↔ 封面 HTML 綁定 + 具名例外（default-deny）
+python3 scripts/render-covers.py          # 產缺的／比 HTML 舊的（--force 全部重產）
+python3 scripts/render-covers.py --check  # 只檢查 PNG 是否比 HTML 舊（僅本機有效，勿進 CI）
+python3 scripts/check-covers.py           # 封面可見數字必須都出現在該篇正文
+```
+
+`articles/<slug>/cover.png` 一存在，`build-articles.py` 就自動掛上 og:image、
+Twitter large card、內文頂圖與 `/articles/` 索引卡圖——不需要改任何設定。
+
+⚠️ **封面裡的數字繞過站上所有既有 gate**（`verify-*` 都掃 markdown，掃不到 PNG）。
+`check-covers.py` 就是補這個縫，並且已透過 `tests/test_check_covers.py` 進入部署前擋線。
+它只驗「數字字面出現過」，不驗語意——把「早 17 分鐘」寫成「晚 17 分鐘」它照樣會過。
 
 ## 草稿 gate
 
