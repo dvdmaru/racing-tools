@@ -13,12 +13,12 @@
   },
   {
    "slug": "f1-2026-rules-guide",
-   "article_sha256": "2aedbccc79223d950ff4afcc2446cbc504aa41cd31aae42ad8f1bb2f1db86d26",
+   "article_sha256": "7d23f22f0074c61834d9f612159887132d3bba5400ebdd933407c7b4fce1a999",
    "facts_sha256": null,
    "check_report_sha256": null,
    "approved_by": "charlie",
    "approved_at": "2026-07-20T15:40:00+08:00",
-   "note": "建站長青文，補記既有核准"
+   "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。"
   },
   {
    "slug": "season-intro-2002",
