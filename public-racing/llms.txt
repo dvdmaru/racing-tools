@@ -14,6 +14,8 @@
 
 ## 最新文章
 
+- [F1 怎麼知道場上每一台車在哪裡：計時、定位與賽事控制的科技](https://racing.twtools.cc/articles/f1-tech-timing-positioning-race-control/)（2026-07-30）
+- [匈牙利站藍旗故障：FIA 紀錄裡 11 條藍旗，7 條早了 17 分鐘以上、2 條發給從沒被套圈的車](https://racing.twtools.cc/articles/f1-2026-r11-hungary-blue-flag-failure/)（2026-07-30）
 - [匈牙利站戰報：諾里斯第 1 位發車奪冠，全場領先易主 7 次](https://racing.twtools.cc/articles/f1-2026-r11-hungary-report/)（2026-07-27）
 - [2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂](https://racing.twtools.cc/articles/f1-2026-rules-guide/)（2026-07-19）
 - [2026 F1 車手、車隊繁中譯名對照表：台灣慣用版（含港陸差異與術語表）](https://racing.twtools.cc/articles/f1-2026-names-glossary/)（2026-07-19）

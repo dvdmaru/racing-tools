@@ -13,12 +13,12 @@
   },
   {
    "slug": "f1-2026-rules-guide",
-   "article_sha256": "2aedbccc79223d950ff4afcc2446cbc504aa41cd31aae42ad8f1bb2f1db86d26",
+   "article_sha256": "7d23f22f0074c61834d9f612159887132d3bba5400ebdd933407c7b4fce1a999",
    "facts_sha256": null,
    "check_report_sha256": null,
    "approved_by": "charlie",
    "approved_at": "2026-07-20T15:40:00+08:00",
-   "note": "建站長青文，補記既有核准"
+   "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。"
   },
   {
    "slug": "season-intro-2002",
@@ -58,12 +58,30 @@
   },
   {
    "slug": "f1-2026-r11-hungary-report",
-   "article_sha256": "35e5ea18bb7ae362ea78268491b1e5edfad6742337f4976bc1d5e95f3208a774",
+   "article_sha256": "2e9cffcb7c13761c5f68e046d0f92602f10003290878ea058721629031dff2c8",
    "facts_sha256": "6a067c59572111f682ee3ee44818017f81f56ace0a5afb3f1071f5d810c59bd2",
    "check_report_sha256": "884c629e0a2ac7f6ea9dc1c1e5c011fb9635bdb12057d6a12595e9fd7bf1f2cc",
    "approved_by": "charlie",
    "approved_at": "2026-07-27T12:05:00+08:00",
-   "note": "內容線首篇戰報。查核桌 Terra 三輪 Content GO＋風格關後上線（v3）。2026-07-27 勘誤 v4：原「第 2 圈時排在第 19 位」把 facts pack 的 lap=2 與 from_pos=19 兩個不同時點黏成一句，實際為第 1 圈結束時 P19、第 2 圈結束時 P18；已改為依 /laps 原始逐圈名次陳述。Charlie 核准「戰報過」後之勘誤，不另求核准。"
+   "note": "內容線首篇戰報。查核桌 Terra 三輪 Content GO＋風格關後上線（v3）。2026-07-27 勘誤 v4：原「第 2 圈時排在第 19 位」把 facts pack 的 lap=2 與 from_pos=19 兩個不同時點黏成一句，實際為第 1 圈結束時 P19、第 2 圈結束時 P18；已改為依 /laps 原始逐圈名次陳述。Charlie 核准「戰報過」後之勘誤，不另求核准。　2026-07-30 勘誤 v5：①「賽因斯」→「塞恩斯」——driver-zh.json（approved-live）與譯名對照表全站都作塞恩斯，只有本篇不一致，而新上線的藍旗故障分析會連到本篇，讀者點過去就看到兩個名字；check-zh 只查譯名表不查文章正文，故全綠。②「停了 28.658 秒」→「維修道通行時間」——45 筆全部落在 21–29 秒，不可能是靜止時間（靜止約 2–3 秒），原措辭會讓讀者以為車在千斤頂上待了 28 秒。比照 v4 勘誤慣例：Charlie 核准後之勘誤不另求核准。"
+  },
+  {
+   "slug": "f1-2026-r11-hungary-blue-flag-failure",
+   "article_sha256": "3c51cff64443faf762e08ee8140989c70923a7de35392b9c439f58a4cf521d9c",
+   "facts_sha256": null,
+   "check_report_sha256": null,
+   "approved_by": "charlie",
+   "approved_at": "2026-07-30T14:58:21+08:00",
+   "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。　2026-07-30 上線前修訂（資安節）：Charlie 裁決保留該節後，作者席另開一席做檢索覆蓋率擴充（10 種語言＋資安專業媒體＋Reddit 兩板逐留言掃描＋FIA 全 63 份文件）。結果：來源層仍零反例（原主張成立），但**社群層確實有人提出干擾疑問**，原文完全未提＝不完整，讀者自行在 Reddit 撞到會誤以為本站選擇性忽略。已改寫為：具體寫出擴充後的檢索邊界；承認社群有此推測並附同串內的反證（當日 GPS 干擾監測資料不支持、當地讀者表示無異常）；明白區分「網友提問」與「來源主張」；補記三個易被誤引為反例的不同事件（2025-10 車手分級系統外洩、2024 FIA email 釣魚、2012 F1 網站 DDoS）。⚠️ 刻意不採用該席建議引用的一則 Reddit 技術反駁（稱藍旗靠計時線圈不靠 GPS）——它與本站另一篇引用的 FIA 技術規則 C8.11.1 相矛盾；用錯的反駁去駁沒證據的假說是雙重錯誤。亦不引用網友帳號與原文（可辨識個人，描述討論存在即足夠）。"
+  },
+  {
+   "slug": "f1-tech-timing-positioning-race-control",
+   "article_sha256": "7a758eaa7685f04488478d7eeb4048a57f389b9d5024343d61634494bbc9c85a",
+   "facts_sha256": null,
+   "check_report_sha256": null,
+   "approved_by": "charlie",
+   "approved_at": "2026-07-30T14:58:21+08:00",
+   "note": "外部來源文（guide，長青）。同上查核桌 R4 Content GO。非 facts 管線產出，走 verify-sources。Charlie 2026-07-30 裁決「發」。"
   }
  ]
 }

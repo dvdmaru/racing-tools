@@ -15,14 +15,24 @@
 機械 gate 就失去獨立性；而每週一次的例行放行必然退化成橡皮圖章。
 誤殺的正解是改稿或把正當數值補進 facts pack，不是建立一套放行治理。）
 
-四支檢查，**全部擋 gate**：
+**設計原則四：文章的事實來源決定該用哪組 gate。** 站上有兩種文章。
+自有資料文（report/recap）驗得動的方式是重打 API 對帳；外部來源文（feature/guide/
+reference/wire）的事實不在 jolpica 裡，無從對帳，硬套只會全紅或全綠、兩者都無意義。
+（2026-07-30：發現建站兩篇長青文自 07-19 以來是零機械覆蓋上線的，因為當時只有戰報 gate。）
+
+自有資料文，四支全部擋 gate：
   verify-recap     重打 jolpica API，前十表逐格比對（五欄全部必填）
   verify-standings 用 round N/N-1 積分榜當獨立 oracle 驗 pack 的 before/after
   verify-body      全文數字必須對得到 facts pack（含個位數）
   no-causal        戰報禁因果與無源主張
 
+外部來源文：
+  verify-sources   來源段落＋查證日＋外部連結，全文禁無名歸因（擋 gate）
+  check-links      連結逐條打 HTTP（**報告，不擋 gate**——網路波動不該綁進 build）
+
 用法：
     python3 scripts/check-facts.py verify-all --round 11 --facts facts/... --article articles/<slug>/index.md
+    python3 scripts/check-facts.py verify-sources --article articles/<slug>/index.md
 """
 import argparse
 import datetime
@@ -33,7 +43,20 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import racinglib as rc  # noqa: E402
+
+
+def _rc():
+    """racinglib 改成延後載入。
+
+    ⚠️ 2026-07-30 查核桌第十七戰抓到：module 層 `import racinglib` 讓本檔在
+    **任何拿不到 racinglib 的地方都無法執行**——審稿席把受審物凍進獨立目錄後
+    跑 verify-sources，第 46 行就 ModuleNotFoundError，四項檢查一項都沒跑到。
+    「不能在乾淨環境重現的 gate 不是 gate」，所以只有真的要打 API 的子命令
+    （verify-recap／verify-standings／verify-body）才載入它；
+    verify-sources 與 check-links 純文字檢查，不該被無關依賴綁住。
+    """
+    import racinglib
+    return racinglib
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # 表格欄位辨識：靠表頭關鍵字，不靠欄位順序（順序會改，語意不會）
@@ -74,6 +97,26 @@ def _slug_of(text, fallback=""):
 
 def _body_of(text):
     return re.sub(r"\A---.*?\n---\s*\n", "", text, flags=re.S)
+
+
+def _prose_of(text):
+    """語意類掃描（無名歸因、因果）的正確範圍＝frontmatter 的可讀欄位 ＋ 正文。
+
+    ⚠️ 2026-07-30 發現的覆蓋缺口：`_body_of()` 會把 frontmatter 整塊剝掉，
+    於是 **title／subtitle／lede 從來沒有被任何語意 gate 掃過**。
+    而那三個欄位是全站最多人看到的文字——它們進 meta description、OG card、
+    首頁摘錄與 RSS。實例：規則指南的無名歸因被 gate 抓到並修掉後，
+    才發現同一句 weasel 也被帶進首頁摘錄，而 gate 對那條路徑是全盲的。
+    （slug／date／type／season／round 是機器欄位，不參與語意掃描。）
+    """
+    m = re.match(r"\A---(.*?)\n---\s*\n", text, re.S)
+    prose = ""
+    if m:
+        for line in m.group(1).splitlines():
+            k, _, v = line.partition(":")
+            if k.strip() in ("title", "subtitle", "lede", "excerpt", "description"):
+                prose += v.strip().strip('"') + "\n"
+    return prose + _body_of(text)
 
 
 def _tables(text):
@@ -155,9 +198,9 @@ def verify_recap(season, rnd, article_path, expect=10):
             continue
         pts = float(e.get("points") or 0)
         truth[pos] = {
-            "zh": rc.driver_zh(d), "family": d.get("familyName", ""),
+            "zh": _rc().driver_zh(d), "family": d.get("familyName", ""),
             "code": d.get("code", ""),
-            "team_zh": rc.team_zh((e.get("Constructor") or {}).get("name", "")),
+            "team_zh": _rc().team_zh((e.get("Constructor") or {}).get("name", "")),
             "team_en": (e.get("Constructor") or {}).get("name", ""),
             "grid": str(e.get("grid") or ""),
             "points": str(int(pts)) if pts.is_integer() else str(pts),
@@ -359,7 +402,7 @@ def no_causal(article_path):
     """
     text = _load_article(article_path)
     hits = []
-    for i, line in enumerate(_body_of(text).splitlines(), 1):
+    for i, line in enumerate(_prose_of(text).splitlines(), 1):
         for pat in CAUSAL_PATTERNS:
             for m in re.finditer(pat, line):
                 frag = line[max(0, m.start() - 12):m.end() + 12]
@@ -372,6 +415,149 @@ def no_causal(article_path):
               file=sys.stderr)
         return False
     print("✅ 無未裁決的因果／無源主張")
+    return True
+
+
+# 無名歸因：LLM 產稿最典型的指紋，也是最省力的造假法——把沒有出處的判斷
+# 掛到一個不存在的權威身上。規範見 scripts/prompts/external-sourced.md 規則 2。
+VAGUE_ATTRIBUTION = [
+    r"專家(?:認為|指出|表示|普遍)", r"業界(?:人士|普遍)", r"分析(?:師|人士)(?:認為|指出)",
+    r"(?<![沒未無])有(?:分析|報導|說法|人)(?:認為|指出|表示)",
+    r"消息(?:人士|來源)(?:稱|指出|透露|表示)",   # 「據消息人士稱」：R2 指出漏接 稱
+    r"據(?:了解|悉|傳)", r"(?:外界|一般|普遍)(?:認為|預期)", r"不少人認為",
+    r"研究(?:顯示|指出)(?!.*http)",   # 沒附連結的「研究顯示」
+    # 2026-07-30 補：初版 regex 對已上線的規則指南全綠，但那篇實際有兩處無名歸因
+    # （「甚至有一種說法是」「被普遍拿來與 2014 年相比」）。gate 太寬就是掩蓋器，
+    # 補 regex 而不是放過它——代價是那篇要改一行並重新核准，這由 Charlie 決定。
+    r"有(?:一種|一些|某種|某些)?(?:說法|看法|聲音)", r"普遍(?:認為|預期|視為|拿來)",
+    # 2026-07-30 第二輪補：藍旗故障稿的對抗性審稿指出，這篇是**靠 regex 漏接通過的**——
+    # 「有媒體明白寫了」「有報導是」「有二手轉述稱」「另有轉播評論提到」「會有人問」
+    # 全部繞過上面的規則（因為它們要求動詞緊接在後）。這些位置的媒體其實全都能點名，
+    # 所以出路是點名而不是放寬 gate。⚠️ 修 regex 讓自己的稿子變紅是正確順序。
+    r"有(?:媒體|報導|轉述|評論|球評|外電)",
+    # ⚠️ 否定前綴必須排除：小標「還沒有人說明的事」意思與無名歸因正好相反，
+    #    初版命中了它。誤殺不改就會訓練出「這條 regex 不準、忽略它」的習慣。
+    r"(?<![沒未無])有人(?:問|說|提到|認為|指出)",
+    r"另有(?:轉播|媒體|報導|評論)",
+    # 2026-07-30 查核桌第十七戰：審稿席實際編譯本清單測試，回報下列八型 MISS。
+    # 逐條補上（它們全是「看起來有出處、實際無法追查」的句型）。
+    r"(?:傳聞|傳言)(?:稱|指出|表示)", r"知情人士(?:稱|指出|表示|透露)",
+    r"(?:多家)?(?:媒體|報導)(?:稱|指出|表示)", r"據報(?![告表])", r"市場(?:認為|預期|傳)",
+]
+
+
+def verify_sources(article_path):
+    """外部來源文（feature/guide/reference/wire）的 gate。
+
+    這道檢查存在的理由：站上原有四道 gate **全部只服務自有資料文**——它們的做法是
+    「重打 jolpica API 對帳」，而外部來源文的事實根本不在 jolpica 裡，無從對帳。
+    2026-07-19 建站的兩篇長青文因此是零機械覆蓋上線的（當時 gate 還不存在）。
+
+    ⚠️ 不要改用 `no-causal` 來蓋這個缺口。`no-causal` 禁「導致」「安全車」的前提是
+    **資料源沒有這些欄位**；外部來源文有具名出處，前提不成立，套上去會全數命中，
+    而那是 gate 的正確行為不是誤殺。詳見 scripts/prompts/external-sourced.md。
+
+    守的是同一件事（禁無源主張），換成本文型驗得動的形式：
+      ① 必須有「資料來源」段落  ② 段落必須標查證日  ③ 段落必須有可點擊外部連結
+      ④ 全文禁無名歸因（regex，命中即擋，比照 no_causal 無豁免）
+    """
+    text = _load_article(article_path)
+    body = _body_of(text)
+    fails = []
+
+    m = re.search(r"^#{2,3}\s*(?:資料來源|來源與查證|參考來源)\s*$", body, re.M)
+    if not m:
+        fails.append("缺「## 資料來源」段落——外部來源文沒有出處段落等於無源主張")
+        tail = ""
+    else:
+        tail = body[m.end():]
+        if not re.search(r"查證日", tail):
+            fails.append("資料來源段落缺「查證日」——外部事實會過期，沒有日期就無法判斷新舊")
+        links = re.findall(r"\]\((https?://[^)]+)\)", tail)
+        if not links:
+            fails.append("資料來源段落沒有可點擊的外部連結（markdown 連結）")
+        else:
+            print(f"   來源段落外部連結 {len(links)} 條")
+
+    hits = []
+    for i, line in enumerate(_prose_of(text).splitlines(), 1):
+        for pat in VAGUE_ATTRIBUTION:
+            for mm in re.finditer(pat, line):
+                frag = line[max(0, mm.start() - 12):mm.end() + 12]
+                hits.append(f"L{i}: …{frag}…")
+    if hits:
+        fails.append(f"{len(hits)} 處無名歸因")
+        print(f"❌ {len(hits)} 處無名歸因（要嘛寫出是誰，要嘛承認是本站判斷）：",
+              file=sys.stderr)
+        for h in hits[:20]:
+            print(f"   · {h}", file=sys.stderr)
+
+    if fails:
+        print(f"⛔ verify-sources 未通過：{'；'.join(fails)}", file=sys.stderr)
+        print("   沒有豁免機制：命中一律改稿。規範見 scripts/prompts/external-sourced.md",
+              file=sys.stderr)
+        return False
+    # ⚠️ 宣稱必須小於實際覆蓋面。第十七戰審稿席指出：本檢查只看「來源段落格式」與
+    # 「少數無名歸因句型」，一篇通篇無源因果、文末掛一個不相關 URL 的稿子照樣會過。
+    # 宣稱寫大＝下一個人以為驗過了（同設計原則二的教訓）。
+    print("✅ 來源段落格式合規、無名歸因掃描未命中")
+    print("   ⚠️ 本檢查**不驗**每個主張是否真有出處、連結是否相關、出處分級是否正確。"
+          "它只是 lint，取代不了人工 cross-check。")
+    return True
+
+
+def check_links(article_path, timeout=10):
+    """把文章裡的外部連結逐條打一次，回報 HTTP 狀態。
+
+    ⚠️ **這不是 gate，是報告。** 理由與維基對照同源：外部網站波動會讓 build 隨機失敗，
+    把網路狀態綁進 gate 只會訓練出「紅燈就重跑」的習慣，那比沒有檢查更糟。
+    非 200 需要人看一眼再判斷是連結真的死了、還是對方擋機器人。
+
+    ⚠️ **必須區分「連結壞了」與「這台機器查不了」。** 初版把兩者都印成「非 200」，
+    在 TLS 被攔截的環境下六條全綠的連結被報成六條壞連結——**假陰性比沒有檢查更糟**，
+    它會訓練出「這個檢查一向紅、忽略它」的習慣，等真的有死連結時就沒人看了。
+    所以環境性失敗（憑證、DNS、逾時）一律歸類為「無法檢查」，不計入壞連結；
+    全部都無法檢查時明確宣告本次檢查無效。（比照 stability.py 的 fail-honest。）
+    """
+    import ssl
+    import urllib.error
+    import urllib.request
+    body = _body_of(_load_article(article_path))
+    urls = sorted(set(re.findall(r"\]\((https?://[^)]+)\)", body)))
+    if not urls:
+        print("（文章沒有外部連結）")
+        return True
+    ok, bad, unknown = [], [], []
+    for u in urls:
+        req = urllib.request.Request(u, method="GET", headers={
+            "User-Agent": "Mozilla/5.0 (racing.twtools.cc link check)"})
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                code, kind = r.status, "http"
+        except urllib.error.HTTPError as e:
+            code, kind = e.code, "http"          # 對方有回答＝真的狀態碼
+        except (ssl.SSLError, urllib.error.URLError, TimeoutError, OSError) as e:
+            inner = getattr(e, "reason", e)
+            code, kind = type(inner).__name__, "env"   # 沒連上＝本機環境問題
+        if kind == "env":
+            unknown.append((code, u))
+            print(f"❓ 無法檢查（{code}）  {u}")
+        elif code == 200:
+            ok.append(u)
+            print(f"✅ 200  {u}")
+        else:
+            bad.append((code, u))
+            print(f"⚠️  {code}  {u}")
+
+    print()
+    if unknown and not ok and not bad:
+        print(f"⛔ 本次檢查無效：{len(urls)} 條連結全部無法連線（{unknown[0][0]}）。")
+        print("   這不代表連結有問題——代表這台機器連不出去（常見於 TLS 攔截或離線環境）。")
+        print("   請在能正常連外的環境重跑，或請人工開啟確認。")
+        return True
+    print(f"{len(urls)} 條連結：{len(ok)} 條 200、{len(bad)} 條異常、{len(unknown)} 條無法檢查")
+    if bad:
+        print("   異常需人工判斷：連結真的死了，還是對方擋機器人（403／429 常是後者）。")
     return True
 
 
@@ -427,17 +613,26 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     for name, need in (("verify-recap", "rf"), ("verify-standings", "rf"),
-                       ("verify-body", "fa"), ("no-causal", "a"), ("verify-all", "rfa")):
+                       ("verify-body", "fa"), ("no-causal", "a"), ("verify-all", "rfa"),
+                       ("verify-sources", "a"), ("check-links", "a")):
         p = sub.add_parser(name)
         if "r" in need:
             p.add_argument("--round", type=int, required=True)
-            p.add_argument("--season", type=int, default=rc.SEASON)
+            p.add_argument("--season", type=int, default=None)
         if "f" in need:
             p.add_argument("--facts", required=True)
         p.add_argument("--article", required=True)
 
     args = ap.parse_args()
-    if args.cmd == "verify-recap":
+    # default=None 是為了讓 verify-sources／check-links 不必載入 racinglib（第十七戰）；
+    # 真的需要賽季的子命令在這裡才解析，維持原本的預設值行為。
+    if getattr(args, "season", None) is None and hasattr(args, "season"):
+        args.season = _rc().SEASON
+    if args.cmd == "verify-sources":
+        ok = verify_sources(args.article)
+    elif args.cmd == "check-links":
+        ok = check_links(args.article)
+    elif args.cmd == "verify-recap":
         ok = verify_recap(args.season, args.round, args.article)
     elif args.cmd == "verify-standings":
         ok = verify_standings(args.facts, args.season, args.round)
