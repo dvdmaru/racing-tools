@@ -43,7 +43,20 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import racinglib as rc  # noqa: E402
+
+
+def _rc():
+    """racinglib 改成延後載入。
+
+    ⚠️ 2026-07-30 查核桌第十七戰抓到：module 層 `import racinglib` 讓本檔在
+    **任何拿不到 racinglib 的地方都無法執行**——審稿席把受審物凍進獨立目錄後
+    跑 verify-sources，第 46 行就 ModuleNotFoundError，四項檢查一項都沒跑到。
+    「不能在乾淨環境重現的 gate 不是 gate」，所以只有真的要打 API 的子命令
+    （verify-recap／verify-standings／verify-body）才載入它；
+    verify-sources 與 check-links 純文字檢查，不該被無關依賴綁住。
+    """
+    import racinglib
+    return racinglib
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # 表格欄位辨識：靠表頭關鍵字，不靠欄位順序（順序會改，語意不會）
@@ -165,9 +178,9 @@ def verify_recap(season, rnd, article_path, expect=10):
             continue
         pts = float(e.get("points") or 0)
         truth[pos] = {
-            "zh": rc.driver_zh(d), "family": d.get("familyName", ""),
+            "zh": _rc().driver_zh(d), "family": d.get("familyName", ""),
             "code": d.get("code", ""),
-            "team_zh": rc.team_zh((e.get("Constructor") or {}).get("name", "")),
+            "team_zh": _rc().team_zh((e.get("Constructor") or {}).get("name", "")),
             "team_en": (e.get("Constructor") or {}).get("name", ""),
             "grid": str(e.get("grid") or ""),
             "points": str(int(pts)) if pts.is_integer() else str(pts),
@@ -389,7 +402,8 @@ def no_causal(article_path):
 # 掛到一個不存在的權威身上。規範見 scripts/prompts/external-sourced.md 規則 2。
 VAGUE_ATTRIBUTION = [
     r"專家(?:認為|指出|表示|普遍)", r"業界(?:人士|普遍)", r"分析(?:師|人士)(?:認為|指出)",
-    r"有(?:分析|報導|說法|人)(?:認為|指出|表示)", r"消息(?:人士|來源)(?:指出|透露|表示)",
+    r"(?<![沒未無])有(?:分析|報導|說法|人)(?:認為|指出|表示)",
+    r"消息(?:人士|來源)(?:稱|指出|透露|表示)",   # 「據消息人士稱」：R2 指出漏接 稱
     r"據(?:了解|悉|傳)", r"(?:外界|一般|普遍)(?:認為|預期)", r"不少人認為",
     r"研究(?:顯示|指出)(?!.*http)",   # 沒附連結的「研究顯示」
     # 2026-07-30 補：初版 regex 對已上線的規則指南全綠，但那篇實際有兩處無名歸因
@@ -405,6 +419,10 @@ VAGUE_ATTRIBUTION = [
     #    初版命中了它。誤殺不改就會訓練出「這條 regex 不準、忽略它」的習慣。
     r"(?<![沒未無])有人(?:問|說|提到|認為|指出)",
     r"另有(?:轉播|媒體|報導|評論)",
+    # 2026-07-30 查核桌第十七戰：審稿席實際編譯本清單測試，回報下列八型 MISS。
+    # 逐條補上（它們全是「看起來有出處、實際無法追查」的句型）。
+    r"(?:傳聞|傳言)(?:稱|指出|表示)", r"知情人士(?:稱|指出|表示|透露)",
+    r"(?:多家)?(?:媒體|報導)(?:稱|指出|表示)", r"據報(?![告表])", r"市場(?:認為|預期|傳)",
 ]
 
 
@@ -459,7 +477,12 @@ def verify_sources(article_path):
         print("   沒有豁免機制：命中一律改稿。規範見 scripts/prompts/external-sourced.md",
               file=sys.stderr)
         return False
-    print("✅ 來源段落完整、無無名歸因（機械通過 ≠ 出處真的存在，仍須人工 cross-check）")
+    # ⚠️ 宣稱必須小於實際覆蓋面。第十七戰審稿席指出：本檢查只看「來源段落格式」與
+    # 「少數無名歸因句型」，一篇通篇無源因果、文末掛一個不相關 URL 的稿子照樣會過。
+    # 宣稱寫大＝下一個人以為驗過了（同設計原則二的教訓）。
+    print("✅ 來源段落格式合規、無名歸因掃描未命中")
+    print("   ⚠️ 本檢查**不驗**每個主張是否真有出處、連結是否相關、出處分級是否正確。"
+          "它只是 lint，取代不了人工 cross-check。")
     return True
 
 
@@ -575,12 +598,16 @@ def main():
         p = sub.add_parser(name)
         if "r" in need:
             p.add_argument("--round", type=int, required=True)
-            p.add_argument("--season", type=int, default=rc.SEASON)
+            p.add_argument("--season", type=int, default=None)
         if "f" in need:
             p.add_argument("--facts", required=True)
         p.add_argument("--article", required=True)
 
     args = ap.parse_args()
+    # default=None 是為了讓 verify-sources／check-links 不必載入 racinglib（第十七戰）；
+    # 真的需要賽季的子命令在這裡才解析，維持原本的預設值行為。
+    if getattr(args, "season", None) is None and hasattr(args, "season"):
+        args.season = _rc().SEASON
     if args.cmd == "verify-sources":
         ok = verify_sources(args.article)
     elif args.cmd == "check-links":
