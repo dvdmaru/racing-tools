@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 藍旗時間軸
+ *
+ * 上排 11 點＝賽事控制紀錄裡的 11 條藍旗訊息時刻。
+ * 下排 6 點＝這些旗號的對象「首次可確認被套圈」的時刻（15:49:15 服務兩條旗，故 11 條對 6 個時刻）。
+ * 每條斜線把一條旗連到它對象真正被套圈的時刻；線越斜＝提前越多。
+ * 兩條垂直線收在 × 上＝該對象在場上期間從未落後滿一圈（博塔斯第 13 圈退賽、羅素完賽同圈）。
+ * 兩條近乎垂直的細線＝培瑞茲那兩條（早 24 秒與晚 30 秒），本站不判定為異常。
+ *
+ * 座標由時間直接換算，不手排：x = (t − 15:03:16) ÷ (16:43:12 − 15:03:16) × 2140。
+ * 起跑 15:03:16 為本站用 45 筆進站牆上時鐘反推（發散 1 秒以內），推導見文章。
+ */
+h1 { font-size: 96px; margin-top: 42px; }
+.sub { font-size: 40px; margin-top: 26px; }
+.chartbox { position: relative; }
+/* 列標題放在 HTML 層而不是 SVG 內：放在 SVG 內時上緣會壓到副標、下緣會與「起跑」時刻疊字
+ * （第一次 render 目視發現）。SVG 只留座標相關的東西。 */
+.rowtop { font-family: 'Chakra Petch'; font-size: 27px; letter-spacing: 3px; color: #786a6e;
+  margin-top: 26px; margin-bottom: 10px; }
+.rowbot { font-family: 'Chakra Petch'; font-size: 27px; letter-spacing: 3px; color: #786a6e;
+  margin-top: 10px; }
+.tl { width: 100%; height: 300px; display: block; overflow: visible; }
+.axis { stroke: #cbbabd; stroke-width: 3; }
+.c-far { stroke: #d63a2f; stroke-width: 3.5; opacity: .85; }
+.c-near { stroke: #191114; stroke-width: 3; opacity: .55; }
+.c-never { stroke: #a6989c; stroke-width: 3; stroke-dasharray: 10 9; }
+.x-mark { fill: #786a6e; font-family: 'Chakra Petch'; font-size: 40px; font-weight: 700; text-anchor: middle; }
+.d-flag { fill: #d63a2f; }
+.d-lap { fill: #191114; }
+.pen { stroke: #d63a2f; stroke-width: 3; stroke-dasharray: 12 10; opacity: .8; }
+.penlbl { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 28px; fill: #d63a2f; }
+.ends { display: flex; justify-content: space-between; font-family: 'Chakra Petch'; font-size: 26px;
+  color: #a6989c; letter-spacing: 2px; margin-top: 4px; }
+.stats { margin-top: 26px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 深度分析</div>
+  <h1><span class="y">11</span> 條藍旗，<span class="y">7</span> 條<br>早了 17 分鐘以上</h1>
+  <div class="sub">另有 2 條的對象從沒被套圈 ・ 而貝爾曼被罰的那些，FIA 紀錄裡一條都沒有</div>
+  <div class="viz chartbox">
+    <div class="rowtop">藍旗發出（11 條，時刻相近者重疊）</div>
+    <svg class="tl" viewBox="0 0 2140 300" preserveAspectRatio="none">
+      <line class="axis" x1="0" y1="30" x2="2140" y2="30"/>
+      <line class="axis" x1="0" y1="262" x2="2140" y2="262"/>
+
+      <line class="c-far" x1="253.8" y1="30" x2="984.7" y2="262"/>
+      <line class="c-far" x1="255.2" y1="30" x2="1136.0" y2="262"/>
+      <line class="c-never" x1="257.7" y1="30" x2="257.7" y2="236"/><text class="x-mark" x="257.7" y="264">×</text>
+      <line class="c-far" x1="318.0" y1="30" x2="1105.7" y2="262"/>
+      <line class="c-far" x1="345.8" y1="30" x2="984.7" y2="262"/>
+      <line class="c-never" x1="346.6" y1="30" x2="346.6" y2="236"/><text class="x-mark" x="346.6" y="264">×</text>
+      <line class="c-far" x1="347.6" y1="30" x2="710.2" y2="262"/>
+      <line class="c-far" x1="348.7" y1="30" x2="1075.4" y2="262"/>
+      <line class="c-far" x1="691.3" y1="30" x2="1592.2" y2="262"/>
+      <line class="c-near" x1="701.7" y1="30" x2="710.2" y2="262"/>
+      <line class="c-near" x1="720.9" y1="30" x2="710.2" y2="262"/>
+
+      <circle class="d-flag" cx="253.8" cy="30" r="9"/>
+      <circle class="d-flag" cx="255.2" cy="30" r="9"/>
+      <circle class="d-flag" cx="257.7" cy="30" r="9"/>
+      <circle class="d-flag" cx="318.0" cy="30" r="9"/>
+      <circle class="d-flag" cx="345.8" cy="30" r="9"/>
+      <circle class="d-flag" cx="346.6" cy="30" r="9"/>
+      <circle class="d-flag" cx="347.6" cy="30" r="9"/>
+      <circle class="d-flag" cx="348.7" cy="30" r="9"/>
+      <circle class="d-flag" cx="691.3" cy="30" r="9"/>
+      <circle class="d-flag" cx="701.7" cy="30" r="9"/>
+      <circle class="d-flag" cx="720.9" cy="30" r="9"/>
+
+      <circle class="d-lap" cx="710.2" cy="262" r="9"/>
+      <circle class="d-lap" cx="984.7" cy="262" r="9"/>
+      <circle class="d-lap" cx="1075.4" cy="262" r="9"/>
+      <circle class="d-lap" cx="1105.7" cy="262" r="9"/>
+      <circle class="d-lap" cx="1136.0" cy="262" r="9"/>
+      <circle class="d-lap" cx="1592.2" cy="262" r="9"/>
+
+      <line class="pen" x1="1244.2" y1="6" x2="1244.2" y2="288"/>
+      <text class="penlbl" x="1264" y="128">16:01:22　貝爾曼因藍旗被罰</text>
+      <text class="penlbl" x="1264" y="170" style="fill:#786a6e;font-weight:400;font-size:26px">最後一條藍旗訊息是 15:36:56</text>
+    </svg>
+    <div class="rowbot">對象首次可確認被套圈</div>
+    <div class="ends"><span>起跑 15:03:16</span><span>格旗 16:43</span></div>
+    <div class="stats">
+      <div class="stat"><b>7</b><span>早 17 至 42 分鐘</span></div>
+      <div class="stat"><b>2</b><span>對象從未落後滿一圈</span></div>
+      <div class="stat"><b>81</b><span>賽事控制紀錄總訊息數</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 時刻取自 FIA 賽事控制紀錄，圈數為本站逐圈資料推算</div>
+</div>
+</body>
+</html>

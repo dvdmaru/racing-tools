@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 兩種「分段」的對比＝這篇的中心區分。
+ * 上：計時分段（timing sector）＝轉播上的第一、二、三分段，一條賽道 3 個，這是規則裡的定值。
+ * 下：安全分區（marshalling sector）＝燈號面板切出來的旗號生效範圍，二十幾個。
+ *
+ * ⚠️ 下排刻意畫成示意且右端淡出：本文核對的文件裡沒有任何一條賽道的面板總數，
+ * 畫出可數的格數就等於宣稱一個查不到出處的數字。長度也刻意不等分——真實分區不等長。
+ */
+/* 第一次 render 目視發現底部 stats 的說明文字掉出畫布、且壓到 footer，
+ * 以下數值是為了把整頁壓回 1260px 內收緊的，不是隨意調的。 */
+h1 { font-size: 96px; margin-top: 48px; }
+.sub { font-size: 40px; margin-top: 24px; }
+.pair { display: flex; flex-direction: column; gap: 34px; }
+.row .lbl { margin-bottom: 14px; }
+.row .lbl b { color: #241a1c; font-family: 'Noto Sans TC'; font-weight: 700; font-size: 30px; letter-spacing: 1px; }
+.track { height: 90px; border-radius: 12px; overflow: hidden; display: flex; }
+.t3 div { flex: 1; background: #191114; color: rgba(255, 255, 255, .9);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Chakra Petch'; font-weight: 700; font-size: 34px; letter-spacing: 4px;
+  border-right: 6px solid #f3e9e9; }
+.t3 div:last-child { border-right: 0; }
+.tm { background: #d63a2f;
+  background-image: repeating-linear-gradient(90deg, #d63a2f 0 62px, #f3e9e9 62px 68px,
+    #d63a2f 68px 148px, #f3e9e9 148px 154px, #d63a2f 154px 200px, #f3e9e9 200px 206px);
+  -webkit-mask-image: linear-gradient(90deg, #000 0 78%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0 78%, transparent 100%); }
+.note { font-size: 24px; color: #786a6e; margin-top: 10px; letter-spacing: 1px; }
+.stats { margin-top: 26px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 長青指南</div>
+  <h1>F1 怎麼知道<br>每一台車<span class="y">在哪裡</span></h1>
+  <div class="sub">計時線圈 ・ 車上定位單元 ・ 賽道旁燈號面板：三套系統各管什麼</div>
+  <div class="viz pair">
+    <div class="row">
+      <div class="lbl"><b>計時分段</b>　TIMING SECTOR ・ 一條賽道 3 個</div>
+      <div class="track t3"><div>SECTOR 1</div><div>SECTOR 2</div><div>SECTOR 3</div></div>
+    </div>
+    <div class="row">
+      <div class="lbl"><b>安全分區</b>　MARSHALLING SECTOR ・ 二十幾個</div>
+      <div class="track tm"></div>
+      <div class="note">下排為示意，不代表實際分區數與長度：本文核對的官方文件裡沒有任何一條賽道的面板總數。</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>3</b><span>成績公布的小數位數</span></div>
+      <div class="stat"><b>27</b><span>文件可見的最大面板編號</span></div>
+      <div class="stat"><b>200<i>m</i></b><span>差距欄位更新的 loop 間距（約）</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 依 FIA 規則、計時系統規範與賽事總監指令原文</div>
+</div>
+</body>
+</html>
