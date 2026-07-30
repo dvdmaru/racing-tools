@@ -67,12 +67,12 @@
   },
   {
    "slug": "f1-2026-r11-hungary-blue-flag-failure",
-   "article_sha256": "e7e3aacd122997aa8e996b30a131667b60edda24378571eb232ffc4c17c51fcf",
+   "article_sha256": "3c51cff64443faf762e08ee8140989c70923a7de35392b9c439f58a4cf521d9c",
    "facts_sha256": null,
    "check_report_sha256": null,
    "approved_by": "charlie",
    "approved_at": "2026-07-30T14:58:21+08:00",
-   "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。"
+   "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。　2026-07-30 上線前修訂（資安節）：Charlie 裁決保留該節後，作者席另開一席做檢索覆蓋率擴充（10 種語言＋資安專業媒體＋Reddit 兩板逐留言掃描＋FIA 全 63 份文件）。結果：來源層仍零反例（原主張成立），但**社群層確實有人提出干擾疑問**，原文完全未提＝不完整，讀者自行在 Reddit 撞到會誤以為本站選擇性忽略。已改寫為：具體寫出擴充後的檢索邊界；承認社群有此推測並附同串內的反證（當日 GPS 干擾監測資料不支持、當地讀者表示無異常）；明白區分「網友提問」與「來源主張」；補記三個易被誤引為反例的不同事件（2025-10 車手分級系統外洩、2024 FIA email 釣魚、2012 F1 網站 DDoS）。⚠️ 刻意不採用該席建議引用的一則 Reddit 技術反駁（稱藍旗靠計時線圈不靠 GPS）——它與本站另一篇引用的 FIA 技術規則 C8.11.1 相矛盾；用錯的反駁去駁沒證據的假說是雙重錯誤。亦不引用網友帳號與原文（可辨識個人，描述討論存在即足夠）。"
   },
   {
    "slug": "f1-tech-timing-positioning-race-control",
