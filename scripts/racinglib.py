@@ -274,12 +274,20 @@ DISCLAIMER_HTML = (
 )
 
 # twtools 生態系姊妹站互連（名稱取自各站現行 title；渲染時排除本站自己；自家內鏈不加 nofollow）
+#
+# ⚠️ 這不是裝飾，是本站目前唯一可靠的被發現路徑。2026-07-31 GSC 實查：本站
+# index_inspect 回 `URL is unknown to Google`、三個月只被檢索 1 次（同網域其他主機
+# 158～1,736 次），真因是全網域沒有任何頁面連到它；而備援路徑 sitemap 卡在 twtools.cc
+# 全家族的 GSC pending（8 份全部 isPending、從未被讀取，判定為 Google 端佇列問題）。
+# 所以**這份清單只增不減，且必須掛在每一頁的 footer**（單一頁面的連結發現效果有限）。
 SISTER_SITES = [
     ("TWTools — 打工牛馬的線上工具箱", "https://twtools.cc/"),
     ("aire — AI Tool Atlas·AI 工具圖鑑", "https://aire.twtools.cc/"),
     ("樹洞21號 — 匿名 AI 心事平台", "https://tree.twtools.cc/"),
     ("@foootball — 2026 世界盃賽程", "https://foootball.twtools.cc/"),
     ("@baseball — 中職 CPBL＋MLB 深度戰報", "https://baseball.twtools.cc/"),
+    ("籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據", "https://basketball.twtools.cc/"),
+    ("Shhhh — 專業短網址管理平台", "https://shhhh.cc/"),
     ("dvdmaru — 把事實和敘事分開來看", "https://dvdmaru.com/"),
 ]
 

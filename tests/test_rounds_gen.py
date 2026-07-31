@@ -24,6 +24,7 @@ import re
 import shutil
 import tempfile
 import unittest
+from urllib.parse import urlsplit
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -295,12 +296,11 @@ class JsonLdTests(unittest.TestCase):
         # sameAs 放維基（誠實 fallback）；外連 host 僅白名單
         self.assertIn("en.wikipedia.org", self.html)
         hosts = set(re.findall(r"https?://([a-zA-Z0-9.-]+)", self.html))
+        # 姊妹站那段從 rc.SISTER_SITES 推導，不手抄（清單本身由 test_site_identity 把關）。
         allowed = {
             "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
-            "schema.org", "en.wikipedia.org",
-            "racing.twtools.cc", "twtools.cc", "aire.twtools.cc", "tree.twtools.cc",
-            "foootball.twtools.cc", "baseball.twtools.cc", "dvdmaru.com",
-        }
+            "schema.org", "en.wikipedia.org", "racing.twtools.cc",
+        } | {urlsplit(u).netloc for _, u in rc.SISTER_SITES}
         self.assertFalse(hosts - allowed, f"白名單外 host：{hosts - allowed}")
 
 

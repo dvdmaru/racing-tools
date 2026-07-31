@@ -19,6 +19,7 @@ import re
 import shutil
 import tempfile
 import unittest
+from urllib.parse import urlsplit
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -35,12 +36,13 @@ rc = g.rc
 fs = g.fs
 
 # 外連白名單：JSON-LD 的維基 sameAs／schema.org context ＋ page_shell 既有資產（字型/GA/姊妹站/本站）
+# 姊妹站那段**從 rc.SISTER_SITES 推導、不再手抄**：原本三個測試檔各抄一份同樣的 host 清單，
+# 加一站要改四個地方，漏掉哪個就是紅燈而不是保護。清單本身另有 test_site_identity 把關。
+SISTER_HOSTS = {urlsplit(u).netloc for _, u in rc.SISTER_SITES}
 ALLOWED_HOSTS = {
     "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
-    "schema.org", "en.wikipedia.org",
-    "racing.twtools.cc", "twtools.cc", "aire.twtools.cc", "tree.twtools.cc",
-    "foootball.twtools.cc", "baseball.twtools.cc", "dvdmaru.com",
-}
+    "schema.org", "en.wikipedia.org", "racing.twtools.cc",
+} | SISTER_HOSTS
 
 
 class IndexInProgressTests(unittest.TestCase):

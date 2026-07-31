@@ -26,6 +26,7 @@ import sqlite3
 import sys
 import tempfile
 import unittest
+from urllib.parse import urlsplit
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -43,12 +44,11 @@ fs = dr.fs
 p0 = dr.p0
 gs = dr.gs
 
+# 姊妹站那段從 rc.SISTER_SITES 推導，不手抄（原本三個測試檔各一份，加一站要改四處）。
 ALLOWED_HOSTS = {
     "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
-    "schema.org", "en.wikipedia.org",
-    "racing.twtools.cc", "twtools.cc", "aire.twtools.cc", "tree.twtools.cc",
-    "foootball.twtools.cc", "baseball.twtools.cc", "dvdmaru.com",
-}
+    "schema.org", "en.wikipedia.org", "racing.twtools.cc",
+} | {urlsplit(u).netloc for _, u in rc.SISTER_SITES}
 FORBIDDEN_LABELS = ("桿位", "最快圈", "生涯積分")
 ALLOWED_STAT_LABELS = ("世界冠軍", "分站冠軍", "頒獎台", "參賽場次")
 
