@@ -39,7 +39,8 @@ ALLOWED_HOSTS = {
     "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
     "schema.org", "en.wikipedia.org",
     "racing.twtools.cc", "twtools.cc", "aire.twtools.cc", "tree.twtools.cc",
-    "foootball.twtools.cc", "baseball.twtools.cc", "dvdmaru.com",
+    "foootball.twtools.cc", "baseball.twtools.cc", "basketball.twtools.cc",
+    "shhhh.cc", "dvdmaru.com",
 }
 
 

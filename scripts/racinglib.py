@@ -280,6 +280,8 @@ SISTER_SITES = [
     ("樹洞21號 — 匿名 AI 心事平台", "https://tree.twtools.cc/"),
     ("@foootball — 2026 世界盃賽程", "https://foootball.twtools.cc/"),
     ("@baseball — 中職 CPBL＋MLB 深度戰報", "https://baseball.twtools.cc/"),
+    ("籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據", "https://basketball.twtools.cc/"),
+    ("Shhhh — 專業短網址管理平台", "https://shhhh.cc/"),
     ("dvdmaru — 把事實和敘事分開來看", "https://dvdmaru.com/"),
 ]
 
