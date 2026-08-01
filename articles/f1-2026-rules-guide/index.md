@@ -66,9 +66,9 @@ DRS 用了 15 年（2011-2025），2026 年正式退役。接棒的超車輔助�
 
 動力單元方面，凱迪拉克 2026 年起使用法拉利的客戶引擎與變速箱（2024 年 12 月官宣），GM 自研動力單元的目標時程是 2029 年。開季至今凱迪拉克尚未拿下積分，對一支從零開始的新車隊來說，這在多數車迷的預期之內。
 
-## 賽曆與制度：22 站、6 場衝刺賽、積分不變
+## 賽曆與制度：23 站、6 場衝刺賽、積分不變
 
-2026 年賽曆原公布 24 站，巴林站與沙烏地站在 2026 年 3 月因中東地區軍事衝突升高、基於安全考量取消且不遞補，賽季縮為 22 站：3 月 8 日澳洲墨爾本揭幕，12 月 6 日阿布達比收官。西班牙今年有兩站：巴塞隆納 6 月一站，馬德里新建的 Madring 市街賽道 9 月 13 日首辦，掛正式名稱「西班牙大獎賽」。完整賽程與台北時間對照，見本站的[台北時間賽曆](/calendar/)。
+2026 年賽曆原公布 24 站。巴林站與沙烏地站在 2026 年 3 月因中東地區軍事衝突升高，被宣布不在原定的 4 月舉行；其後巴林站確定移師馬來西亞的雪邦國際賽道（Sepang International Circuit），10 月 2 日至 4 日補辦並沿用「巴林大獎賽」的名稱，沙烏地站則未再排入賽曆，全季因此定為 23 站：3 月 8 日澳洲墨爾本揭幕，12 月 6 日阿布達比收官。西班牙今年有兩站：巴塞隆納 6 月一站，馬德里新建的 Madring 市街賽道 9 月 13 日首辦，掛正式名稱「西班牙大獎賽」。完整賽程與台北時間對照，見本站的[台北時間賽曆](/calendar/)；一場比賽為什麼會掛著別國的名字舉行，見[大獎賽的名字，不是地名](/articles/f1-2026-bahrain-gp-in-malaysia/)。
 
 衝刺賽 2026 年共 6 場：中國、邁阿密、加拿大（首辦）、英國（回歸）、荷蘭（首辦）、新加坡（首辦），前 4 場已跑完。積分制度沒有改變：正賽前 10 名依 25-18-15-12-10-8-6-4-2-1 計分，衝刺賽前 8 名依 8 到 1 計分；最快單圈加分早在 2025 年就取消了。比較細的變化是排位賽：因為場上有 22 台車，Q1、Q2 各淘汰 6 台。
 
@@ -82,7 +82,7 @@ DRS 用了 15 年（2011-2025），2026 年正式退役。接棒的超車輔助�
 
 **第三，能量管理成了新的抱怨來源，FIA 也已出手修正。**車手需要在高速彎前收油回充（lift-and-coast），維斯塔潘（Max Verstappen）等多位車手公開表達不滿，車速差擴大也帶來安全疑慮。FIA 在 4 月底與各方拍板季中修正，自邁阿密站起實施：每圈回充上限由 8 MJ 降為 7 MJ、superclip 峰值功率上調至 350 kW、適用更低能量上限的場次由 8 站增為 12 站。修正緩解了最極端的收油情況，但車手的抱怨沒有完全消失，後續再調的空間仍然存在。
 
-改規的目標是「更近身的比賽」與「吸引新車廠」，後者已經兌現（奧迪、凱迪拉克進場，本田留下），前者的數據方向正確、觀感仍有爭議。2026 年剩下的 13 站，就是這套新公式繼續交卷的過程。
+改規的目標是「更近身的比賽」與「吸引新車廠」，後者已經兌現（奧迪、凱迪拉克進場，本田留下），前者的數據方向正確、觀感仍有爭議。賽季剩下的每一站，都是這套新公式繼續交卷的過程。
 
 ## 常見問題
 
@@ -98,9 +98,9 @@ Overtake Mode 需要在偵測點距前車 1 秒內才能取得，下一圈生效
 
 單圈普遍比 2025 年慢。下壓力減少約 30%、機械抓地力下降，加上車手需要收油回充能量，圈速自然變慢；但這是規則設計的取捨——換來的是更小更靈活的車身、大幅減阻的直線模式，以及更容易跟車纏鬥的比賽。
 
-### 為什麼 2026 年只有 22 站？
+### 為什麼 2026 年是 23 站？
 
-原公布的賽曆有 24 站，巴林站與沙烏地站（原定 4 月）在 2026 年 3 月因中東地區軍事衝突升高、基於安全考量宣布取消，且不安排遞補場次，賽季因此縮為 22 站。
+原公布的賽曆有 24 站。巴林站與沙烏地站（原定 4 月）在 2026 年 3 月因中東地區軍事衝突升高，被宣布不在原定日期舉行。其後巴林站以移師馬來西亞雪邦國際賽道的方式回到賽曆，10 月 2 日至 4 日舉行，名稱仍為巴林大獎賽；沙烏地站沒有再被排入。全季因此是 23 站。
 
 ### 凱迪拉克用的是誰的引擎？
 
@@ -112,8 +112,8 @@ Overtake Mode 需要在偵測點距前車 1 秒內才能取得，下一圈生效
 
 規格與制度事實對照下列官方與權威來源查證（查證日 2026-07-19）：
 
-- Formula1.com：[2026 規則入門指南](https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-2026-regulations.6j0tS0hrHG2T01tpmK6XYz)、[2026 動力單元規則解說](https://www.formula1.com/en/latest/article/explained-2026-power-unit-regulations-fia.68izKQ2tn1voQPWvgLVMXN)、[2026 新術語解說](https://www.formula1.com/en/latest/article/explained-the-new-key-terms-for-formula-1s-new-for-2026-rules.3T5BU6TC9quGcIpGzoWkY0)、[2026 空力規則解說](https://www.formula1.com/en/latest/article/explained-2026-aerodynamic-regulations-fia-x-mode-z-mode-.26c1CtOzCmN3GfLMywrgb2)、[巴林與沙烏地站取消公告](https://www.formula1.com/en/latest/article/bahrain-and-saudi-arabian-grands-prix-will-not-take-place-in-april.1hnqllVG85RSt8pbFc5Ivx)、[2026 衝刺賽賽曆公告](https://www.formula1.com/en/latest/article/formula-1-and-fia-announce-2026-sprint-calendar.3PyLPAazrBNe8kQIS3wOfY)、[Cadillac 車隊介紹](https://www.formula1.com/en/latest/article/explained-everything-you-need-to-know-about-cadillacs-2026-entry-into.7h3SiUnYcbpjoRUJ9VsL2H)
+- Formula1.com：[2026 規則入門指南](https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-2026-regulations.6j0tS0hrHG2T01tpmK6XYz)、[2026 動力單元規則解說](https://www.formula1.com/en/latest/article/explained-2026-power-unit-regulations-fia.68izKQ2tn1voQPWvgLVMXN)、[2026 新術語解說](https://www.formula1.com/en/latest/article/explained-the-new-key-terms-for-formula-1s-new-for-2026-rules.3T5BU6TC9quGcIpGzoWkY0)、[2026 空力規則解說](https://www.formula1.com/en/latest/article/explained-2026-aerodynamic-regulations-fia-x-mode-z-mode-.26c1CtOzCmN3GfLMywrgb2)、[巴林與沙烏地站不在 4 月舉行公告](https://www.formula1.com/en/latest/article/bahrain-and-saudi-arabian-grands-prix-will-not-take-place-in-april.1hnqllVG85RSt8pbFc5Ivx)、[巴林站移師馬來西亞公告](https://www.formula1.com/en/latest/article/formula-1-and-fia-confirm-malaysia-will-join-2026-calendar-as-host-venue-for-bahrain-grand-prix.6lL7vjFEM2VVynRHvg1TCf)、[2026 衝刺賽賽曆公告](https://www.formula1.com/en/latest/article/formula-1-and-fia-announce-2026-sprint-calendar.3PyLPAazrBNe8kQIS3wOfY)、[Cadillac 車隊介紹](https://www.formula1.com/en/latest/article/explained-everything-you-need-to-know-about-cadillacs-2026-entry-into.7h3SiUnYcbpjoRUJ9VsL2H)
 - FIA：[2026 動力單元技術規則](https://www.fia.com/file/186874/download)、[2026 規則季中修正公告](https://www.fia.com/news/refinements-2026-fia-formula-1-regulations-agreed-all-stakeholders)
-- 媒體：[Motorsport.com（2026 術語定名）](https://www.motorsport.com/f1/news/f1-and-fia-unveil-new-renders-and-terminology-for-2026/10785237/)、[The Race（各隊引擎供應）](https://www.the-race.com/formula-1/2026-f1-team-engines/)、[The Race（賓士優勢分析）](https://www.the-race.com/formula-1/what-explains-mercedes-big-early-2026-f1-advantage/)、[ESPN（超車數據）](https://www.espn.com/racing/f1/story/_/id/48428690/the-good-bad-ugly-f1-new-2026-regulations)、[Sky Sports（22 站賽曆確認）](https://www.skysports.com/f1/news/12433/13519453/f1-confirms-cancellation-of-bahrain-and-saudi-arabian-grands-prix-due-to-war-in-middle-east-as-2026-calendar-reduced-to-22-races)
+- 媒體：[Motorsport.com（2026 術語定名）](https://www.motorsport.com/f1/news/f1-and-fia-unveil-new-renders-and-terminology-for-2026/10785237/)、[The Race（各隊引擎供應）](https://www.the-race.com/formula-1/2026-f1-team-engines/)、[The Race（賓士優勢分析）](https://www.the-race.com/formula-1/what-explains-mercedes-big-early-2026-f1-advantage/)、[ESPN（超車數據）](https://www.espn.com/racing/f1/story/_/id/48428690/the-good-bad-ugly-f1-new-2026-regulations)、[Sky Sports（2026 年 3 月縮減賽曆報導）](https://www.skysports.com/f1/news/12433/13519453/f1-confirms-cancellation-of-bahrain-and-saudi-arabian-grands-prix-due-to-war-in-middle-east-as-2026-calendar-reduced-to-22-races)
 
 戰績數據：本站 [各站賽果](/results/) 與 [積分榜](/standings/)（jolpica-f1 API，截至第 9 站英國站賽後）。本站為非官方資訊站，規則細節以 FIA 正式文件為準。
