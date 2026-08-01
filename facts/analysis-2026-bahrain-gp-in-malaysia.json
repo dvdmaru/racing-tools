@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "kind": "analysis-external-sourced",
+  "slug": "f1-2026-bahrain-gp-in-malaysia",
+  "built_at": "2026-08-01",
+  "revision": 2,
+  "_revision_note": "v1 的骨架搭在『外電說史上第一次、本站查了發現不是』上——標題與一整個 H2 都是在糾正別人。Charlie 2026-08-01 退回：那是逮到把柄就撐成一篇的寫法，讀完只記得糾正了誰，不會記得雪邦是什麼。v2 改成解釋性長青文：賽事名稱與舉辦地脫鉤有三種不同機制，逐一講清楚、每種都給原因，2026 這一站是第三種。糾正外電的內容降到最低（最多一句中性陳述，不開專節、不進標題）。",
+
+  "thesis": "F1 賽事的名稱與它實際辦在哪裡，本來就是兩條線。歷史上讓兩者脫鉤的機制有三種：①同一國辦兩場時，第二場得換個名字 ②本國禁止賽車時，賽事出境舉辦 ③這一次是第三種——整份合約跨國移動。",
+
+  "_structure_hint": "①命名規則 ②本國禁賽 ③合約移動 → 再回到雪邦這條賽道本身（離開九年、為什麼走、怎麼回來）。三種機制各自有原因，這是本文可反覆讀的核心；不要寫成先例清單。",
+
+  "mechanism_1_naming_rule": {
+    "grade": "媒體與公開資料（一手條文未尋獲）",
+    "rule": "同一個國家同一年辦兩場以上比賽時，只有一場能用該國國名，其餘必須另外命名。",
+    "⚠️_source_caveat": "這條慣例在多份公開資料中被記載為 F1／FIA 的規定，但**本站未能找到對應的一手規則條文**。因此正文只陳述可觀察到的結果（同一國的第二場一律改名，且改名方式高度一致），不宣稱其法源，也不寫『FIA 規定』這種掛機構的斷言。這一點要在正文裡對讀者說清楚。",
+    "cases": [
+      {"race": "聖馬利諾大獎賽 San Marino Grand Prix", "runnings": 26, "seasons": "1981–2006",
+       "venue": "伊莫拉 Autodromo Enzo e Dino Ferrari（義大利）",
+       "why": "義大利大獎賽的傳統家在蒙札（Monza）。1980 年義大利站曾移到伊莫拉舉行，1981 年回到蒙札；伊莫拉要留在賽曆上就需要另一個名字，於是借了鄰近的聖馬利諾共和國。",
+       "sources": ["https://en.wikipedia.org/wiki/1981_San_Marino_Grand_Prix"]},
+      {"race": "盧森堡大獎賽 Luxembourg Grand Prix", "runnings": 2, "seasons": "1997、1998",
+       "venue": "紐柏林 Nürburgring（德國）",
+       "why": "德國大獎賽當時在霍根海姆（Hockenheimring），紐柏林需要另一個名字。紐柏林距德國與盧森堡邊界約 80 公里，因而借用盧森堡。紐柏林 1995、1996 年用的是『歐洲大獎賽』之名，1997 年該名稱改給了西班牙的赫雷斯（Jerez）。",
+       "sources": ["https://en.wikipedia.org/wiki/1997_Luxembourg_Grand_Prix", "https://en.wikipedia.org/wiki/Luxembourg_Grand_Prix"]},
+      {"race": "歐洲大獎賽 European Grand Prix", "runnings": 23, "seasons": "1983–2016",
+       "venue": "英國 Brands Hatch 2、德國 Nürburgring 12、英國 Donington Park 1、西班牙 Jerez 2、西班牙 Valencia 5、亞塞拜然 Baku City Circuit 1（4 國 6 條賽道）",
+       "why": "以洲命名而非國名，正好可以在任何國家使用。它是這套命名機制裡最通用的那張牌。",
+       "grade": "本站自有資料（屆數與賽道分布可複查）"},
+      {"race": "2020 賽季（同一機制最集中的一年）", "grade": "本站自有資料",
+       "detail": "疫情下賽曆重編，多國一年辦兩場以上，命名方式一目了然：義大利 3 場——義大利大獎賽（蒙札）、托斯卡尼大獎賽（穆傑羅 Mugello）、艾米利亞羅馬涅大獎賽（伊莫拉）；奧地利 2 場——奧地利大獎賽與施蒂利亞大獎賽，同一條紅牛環（Red Bull Ring）；英國 2 場——英國大獎賽與 70 週年紀念大獎賽，同一條銀石（Silverstone）；巴林 2 場——巴林大獎賽與薩克希爾大獎賽（Sakhir Grand Prix），同一座賽道的不同配置。",
+       "why": "同一條賽道連辦兩場也照樣要換名字，可見這套命名慣例對應的是『場次』而不是『地點』。"}
+    ]
+  },
+
+  "mechanism_2_racing_banned_at_home": {
+    "grade": "媒體與公開資料",
+    "case": {
+      "race": "瑞士大獎賽 Swiss Grand Prix", "runnings": 6,
+      "in_country": "1950–1954 共 5 屆，伯恩的布雷姆加藤賽道（Circuit Bremgarten）",
+      "abroad": "1982 年 1 屆，法國第戎-普雷努瓦賽道（Dijon-Prenois）",
+      "why": "1955 年法國利曼（Le Mans）賽事事故造成大量觀眾傷亡後，瑞士國會禁止在境內舉行賽道賽車。瑞士大獎賽因此無法在本國舉行；1982 年那一屆由瑞士汽車俱樂部與法國第戎賽道方合作促成，賽道位置靠近瑞士邊界。該禁令長期有效，直到 2018 年 Formula E 在蘇黎世舉行街道賽才出現變化。",
+      "sources": ["https://en.wikipedia.org/wiki/1982_Swiss_Grand_Prix", "https://en.wikipedia.org/wiki/Swiss_Grand_Prix"],
+      "_writer_note": "這是三種機制裡最戲劇性的一個，也是與 2026 巴林情況表面最像、實質最不同的一個：瑞士是『本國辦不了』，巴林是『本國這一年辦不成』。差別要點出來。利曼事故的傷亡數字各來源不一，正文寫『造成大量觀眾傷亡』即可，不要寫精確人數。"
+    }
+  },
+
+  "mechanism_3_contract_moves": {
+    "grade": "官方說明＋媒體報導",
+    "items": [
+      {"claim": "2026 巴林大獎賽移師馬來西亞雪邦國際賽道，2026 年 10 月 2 至 4 日，排在亞塞拜然大獎賽與新加坡大獎賽之間",
+       "source": "formula1.com 官方公告", "url": "https://www.formula1.com/en/latest/article/formula-1-and-fia-confirm-malaysia-will-join-2026-calendar-as-host-venue-for-bahrain-grand-prix.6lL7vjFEM2VVynRHvg1TCf"},
+      {"claim": "官方全稱 Formula 1 Gulf Air Bahrain Grand Prix in Malaysia", "source": "同上"},
+      {"claim": "官方對此安排的唯一表述：allows Formula 1 to preserve a Grand Prix that would otherwise not have happened", "source": "同上"},
+      {"claim": "仍待最終協議與 WMSC（World Motor Sport Council）正式批准", "source": "同上", "_writer_note": "⚠️ 必須寫進正文。"},
+      {"claim": "公告具名發言者（職稱不得縮短）", "value": ["Stefano Domenicali, President and CEO of Formula 1", "Mohammed Ben Sulayem, President of the FIA", "His Royal Highness Prince Salman bin Hamad Al Khalifa（巴林皇儲兼首相）", "Dato' Seri Anwar Ibrahim, Prime Minister of Malaysia"], "source": "同上"},
+      {"claim": "巴林方取得這一站的全部收益，馬來西亞只負擔在地籌辦成本",
+       "source": "Free Malaysia Today", "url": "https://www.freemalaysiatoday.com/category/nation/2026/07/28/bahrain-to-receive-all-proceeds-from-f1-race-in-sepang",
+       "_writer_note": "⚠️ 用『這一站』不要用『本站』——全站語彙裡本站＝這個網站。v1 就是在這裡出過歧義。"},
+      {"claim": "巴林方負擔主辦費，媒體估 7,000 萬至 8,000 萬美元之間",
+       "source": "soyacincau", "url": "https://soyacincau.com/2026/07/28/formula-1-is-officially-back-in-malaysia-but-heres-the-real-deal/",
+       "_writer_note": "寫成『媒體估』的區間，不換算新台幣、不取整成單一數字。"},
+      {"claim": "冠名贊助商 Gulf Air（巴林國家航空）不變，並規劃賽前開通巴林—吉隆坡直航",
+       "source": "The Star", "url": "https://www.thestar.com.my/news/nation/2026/07/27/gulf-air-set-to-connect-bahrain-malaysia-ahead-of-f1-grand-prix-at-sic",
+       "_writer_note": "直航是規劃中，不是既成事實。"}
+    ],
+    "what_is_different": "前兩種機制動的是名字（借一個名字留住席次）或場地（本國不能辦所以出境）。這一次動的是整份合約：付主辦費的、取得收益的、掛冠名的仍是巴林，出場地與在地人力的是馬來西亞。巴林並非不能辦比賽，是這一年辦不成。",
+    "defensible_first": "就本站資料庫涵蓋、1950 年以來的世界錦標賽賽事而言，正式名稱同時寫出兩個地名的，這是第一次。",
+    "_writer_note": "⚠️ defensible_first 只准寫成一句中性陳述，**不要開專節、不要進標題、不要拿它跟外電對比**。外電多寫『F1 首次把大獎賽與地理位置分開』，本文不引用也不反駁；文章前面三種機制講完，讀者自然看得出名實分離早有先例。這是 Charlie 2026-08-01 的明確指示：不要當那種逮到把柄就無限放大的博主。"
+  },
+
+  "sepang_return": {
+    "own_data": {"claim": "雪邦國際賽道主辦馬來西亞大獎賽 19 屆", "seasons": "1999–2017", "grade": "本站自有資料"},
+    "own_data_2": {"claim": "2026 賽曆第 16 站；前一站亞塞拜然 9/26，後一站新加坡 10/11；全季 23 站（原公布 24 站）", "grade": "本站自有資料"},
+    "why_it_left": {
+      "grade": "媒體報導",
+      "detail": "馬來西亞站在 2017 年後退出賽曆。公開報導提到的原因包括主辦費用上升與觀眾人數下滑：馬來西亞每年為此支出約 3 億令吉但難以回收；雪邦可容納約 12 萬人，2016 年該站進場約 4.5 萬人。區域觀眾的關注亦轉向鄰近的新加坡夜間街道賽。原合約本可到 2018 年，實際在 2017 年提前結束。",
+      "sources": ["https://africa.espn.com/f1/story/_/id/17874259/malaysia-drop-formula-1-race", "https://www.malaymail.com/news/malaysia/2016/11/21/no-more-f1-in-malaysia-after-2018-minister-confirms/1255079"],
+      "_writer_note": "⚠️ 3 億令吉與 4.5 萬／12 萬都是媒體數字，要標明是媒體報導而非官方公布。這一節只寫『雪邦為什麼離開、怎麼回來』，**賽道本身的技術特徵（彎角、氣候、2026 新規影響）留給 9 月的賽前前瞻專文**，本文不展開。"
+    }
+  },
+
+  "march_postponement": {
+    "positions": [
+      {"says": "取消（cancellation），賽曆縮為 22 站", "source": "Sky Sports", "url": "https://www.skysports.com/f1/news/12433/13519453/f1-confirms-cancellation-of-bahrain-and-saudi-arabian-grands-prix-due-to-war-in-middle-east-as-2026-calendar-reduced-to-22-races"},
+      {"says": "延期（postponement）", "source": "英文維基百科 2026 Bahrain and Saudi Arabian Grands Prix", "url": "https://en.wikipedia.org/wiki/2026_Bahrain_and_Saudi_Arabian_Grands_Prix"},
+      {"says": "官方標題用字為 will not take place in April（不會在 4 月舉行），取消與延期兩詞皆未使用", "source": "formula1.com", "url": "https://www.formula1.com/en/latest/article/bahrain-and-saudi-arabian-grands-prix-will-not-take-place-in-april.1hnqllVG85RSt8pbFc5Ivx"}
+    ],
+    "ruling": "不裁決，兩邊都寫，正文採用官方中性用字。沙烏地站未再排入賽曆。這一節在 v2 要**壓短**，它是背景不是主線。"
+  },
+
+  "must_not_claim": [
+    "不得把『外電寫錯』當成文章的骨架、標題或任何一節的主題（Charlie 2026-08-01 明確指示）。",
+    "不得寫『FIA 規定同一國只能有一場同名比賽』——本站未尋獲一手條文，只能陳述可觀察到的結果。",
+    "不得寫沙烏地站『取消』或『延期』的任一定論。",
+    "不得推測巴林付錢把比賽辦到別國的動機——無一手來源。",
+    "不得寫合約條款細節（年限、違約金、分潤）——未公布。",
+    "不得把媒體估的金額寫成確定數字或換算成偽精確的新台幣。",
+    "不得寫利曼事故的精確傷亡人數（各來源不一）。",
+    "不得展開雪邦的賽道技術特徵——留給 9 月賽前前瞻。",
+    "不得使用無名歸因（專家認為／業界人士指出／外界普遍認為）。"
+  ],
+
+  "required_sections": [
+    "查證範圍聲明（自有資料可複查 vs 外部來源不可複查）",
+    "資料來源區塊（一手／官方／媒體／本站自有資料分級，含查證日 2026-08-01）"
+  ]
+}
