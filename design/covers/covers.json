@@ -25,6 +25,11 @@
       "slug": "f1-tech-timing-positioning-race-control",
       "html": "cover-tech-timing.html",
       "allow": {}
+    },
+    {
+      "slug": "f1-2026-bahrain-gp-in-malaysia",
+      "html": "cover-bahrain-in-malaysia.html",
+      "allow": {}
     }
   ]
 }

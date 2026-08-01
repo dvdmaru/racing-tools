@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 本篇的中心論點＝「賽事名稱指涉的國家」與「賽道實際所在國」是兩件事。
+ * 所以封面就畫成一本對照帳：左欄賽事名稱、右欄實際辦在哪，中間一條斷開的連線。
+ *
+ * 資料全部出自本站賽事資料庫（1950–2026、1,172 場），與正文同一組數字：
+ *   聖馬利諾 26 屆 → 義大利 ／ 盧森堡 2 屆 → 德國 ／ 瑞士 1982 那 1 屆 → 法國
+ * 最後一列是 2026 巴林站，用 accent 標出來——它是這篇的由來，不是先例。
+ *
+ * ⚠️ IP 紅線：零官方素材、無隊徽車徽塗裝，賽車紅用站定色 #d63a2f（不是 F1 官方 #e10600）。
+ * ⚠️ check-covers gate：封面上的每個數字都必須在正文出現。這裡用到的
+ *    1,172 / 56 / 29 / 26 / 2 / 1982 / 2026 全部在正文有對應，故 allow 留空。
+ */
+/* ⚠️ 第一次 render 目視發現底部 stats 的數字被裁掉、說明文字整排掉出畫布。
+ * render-covers.py 明說沒有自動 gate，只能目視——cover-tech-timing.html 也踩過同一個坑。
+ * 以下尺寸是為了把整頁壓回 1260px 內收緊的，不是隨意調的：改動任何一項都要重新目視。 */
+.wrap { padding: 70px 130px; }
+h1 { font-size: 88px; margin-top: 28px; }
+.sub { font-size: 34px; margin-top: 20px; }
+
+.ledger { display: flex; flex-direction: column; gap: 12px; margin-bottom: 34px; }
+.lrow { display: grid; grid-template-columns: 620px 1fr 400px; align-items: center;
+  padding: 12px 24px; border-radius: 12px; background: rgba(255, 255, 255, .55); }
+.lrow .nm { font-weight: 700; font-size: 32px; }
+.lrow .nm i { display: block; font-family: 'Chakra Petch'; font-style: normal;
+  font-size: 21px; color: #786a6e; letter-spacing: 2px; margin-top: 3px; }
+.lrow .vn { text-align: right; font-weight: 700; font-size: 32px; color: #493c40; }
+.lrow .vn i { display: block; font-family: 'Chakra Petch'; font-style: italic;
+  font-size: 21px; color: #a6989c; letter-spacing: 2px; margin-top: 3px; }
+
+/* 中間那條線刻意斷開＝名稱與地點對不上。虛線不是裝飾，是這篇的整個論點。 */
+.gap { position: relative; height: 6px; margin: 0 34px; }
+.gap::before { content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(90deg, #c9b9bc 0 22px, transparent 22px 40px); }
+.gap::after { content: '≠'; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%); background: #f6efef; padding: 0 20px;
+  font-family: 'Chakra Petch'; font-weight: 700; font-size: 34px; color: #a6989c; }
+
+.lrow.now { background: rgba(214, 58, 47, .10); box-shadow: inset 0 0 0 3px rgba(214, 58, 47, .38); }
+.lrow.now .nm, .lrow.now .vn { color: #241a1c; }
+.lrow.now .gap::before { background-image: repeating-linear-gradient(90deg, #d63a2f 0 22px, transparent 22px 40px); }
+.lrow.now .gap::after { content: '≠'; background: #f8ecea; color: #d63a2f; }
+
+.stats { margin-top: 0; }
+.stats .stat b { font-size: 58px; }
+.stats .stat span { font-size: 24px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 深度專題</div>
+  <h1>大獎賽的名字<br>不是<span class="y">地名</span></h1>
+  <div class="sub">名稱指涉的國家，與賽道實際所在國，本來就是兩件事</div>
+  <div class="viz">
+    <div class="lbl">名稱 ／ 實際舉辦國　·　本站賽事資料庫 1950–2026</div>
+    <div class="ledger">
+      <div class="lrow">
+        <div class="nm">聖馬利諾大獎賽<i>SAN MARINO · 26 屆</i></div>
+        <div class="gap"></div>
+        <div class="vn">義大利<i>IMOLA</i></div>
+      </div>
+      <div class="lrow">
+        <div class="nm">盧森堡大獎賽<i>LUXEMBOURG · 2 屆</i></div>
+        <div class="gap"></div>
+        <div class="vn">德國<i>NÜRBURGRING</i></div>
+      </div>
+      <div class="lrow">
+        <div class="nm">瑞士大獎賽<i>SWISS · 1982</i></div>
+        <div class="gap"></div>
+        <div class="vn">法國<i>DIJON-PRENOIS</i></div>
+      </div>
+      <div class="lrow now">
+        <div class="nm">巴林大獎賽<i>BAHRAIN · 2026</i></div>
+        <div class="gap"></div>
+        <div class="vn">馬來西亞<i>SEPANG</i></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>1,172</b><span>本站核對的世界錦標賽場次</span></div>
+      <div class="stat"><b>56</b><span>不同的賽事名稱</span></div>
+      <div class="stat"><b>29</b><span>名稱國別與舉辦國不符</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 數據出自本站賽事資料庫</div>
+</div>
+</body>
+</html>

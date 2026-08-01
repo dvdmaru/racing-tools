@@ -1,0 +1,55 @@
+{
+ "schema_version": 1,
+ "checked_at": "2026-08-01T01:34:33.555055+00:00",
+ "kind": "analysis-external-sourced",
+ "slug": "f1-2026-bahrain-gp-in-malaysia",
+ "article": "articles/f1-2026-bahrain-gp-in-malaysia/index.md",
+ "article_sha256": "0fe622ab5f87b100e5ddf5a794db9bc96f167968548e62b0f33d0c0e31f57a80",
+ "facts": "facts/analysis-2026-bahrain-gp-in-malaysia.json",
+ "facts_sha256": "ed8aa8a5746c7e14fae89e5c952579fbfc956122cb26fac0bafcfab4a29fc717",
+ "prompt": "scripts/prompts/external-sourced.md",
+ "prompt_sha256": "b81b89a66521a898193efe8334699ea2f0b281cf5038abe6220de11365e1f645",
+ "cover": "articles/f1-2026-bahrain-gp-in-malaysia/cover.png",
+ "cover_sha256": "8570380b14f0bf14211e523561f3da82c5b5c6ed6fb8a7c294553b2dfc334077",
+ "checks": [
+  {
+   "name": "verify-sources",
+   "passed": true,
+   "note": "來源段落格式合規、無名歸因掃描未命中"
+  },
+  {
+   "name": "check-links",
+   "passed": true,
+   "note": "⚠️ check-facts 的 check-links 在本機因 TLS 攔截回報『本次檢查無效』（誠實失敗，非綠燈）。改以 curl 逐條驗：7 條中 6 條 200；Malay Mail 回 403＝擋機器人非死連結，已改掛原始出處 soyacincau（200）。"
+  },
+  {
+   "name": "check-covers",
+   "passed": true,
+   "note": "封面可見數字 8 種全部見於正文，allow 留空"
+  },
+  {
+   "name": "numeric-reconcile",
+   "passed": true,
+   "note": "13/13。文中每個數字重新從 jolpica 全史資料與本機賽曆快照重算，非目視比對。"
+  },
+  {
+   "name": "wording-lint",
+   "passed": true,
+   "note": "簡體/港式/無名歸因/AI 腔/半形標點/粗體條列/emoji 全部零命中。check-tw-wording hook 不掃 .claude/worktrees，故自行掃描。"
+  },
+  {
+   "name": "draft-gate",
+   "passed": true,
+   "note": "build-articles 實測輸出 skip draft，未進 public-racing。"
+  }
+ ],
+ "reconcile_fixes": [
+  "☠️『巴林方拿走本站的全部收益』→『這一站的全部收益』。根因是我寫 facts pack 時用「本站」指這一場比賽，主寫照抄；但全站語彙裡本站＝這個網站，本文自己就用了二十幾次。",
+  "標題語態『我們查了』→『本站查了』，與全文一致。",
+  "間隔號 U+00B7 → U+30FB。站上 29 筆譯名都用 U+30FB，主寫 grep articles/ 只命中 glossary 那個唯一例外。",
+  "『（Bahrain……in Malaysia）』中文刪節號夾在英文名稱中間，改為直述。",
+  "出處 Malay Mail（403 擋機器人）改掛原始出處 soyacincau（200）。"
+ ],
+ "human_review": "⛔ 尚未進行。Charlie cross-check 是管線第 ④ 步、紅線，未通過前不得發布。",
+ "waivers": "none"
+}
