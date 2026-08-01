@@ -190,6 +190,13 @@ def main():
     # 3b. 合併全部 sitemap part → public-racing/sitemap.xml（三個 gen-* 之後、hard gate 之前）
     run(script("build-sitemap.py"), "build sitemap")
 
+    # 3c. 跨頁事實一致性：同一個事實在全站只能有一個值。
+    # 必須排在所有 gen-* 與 build-articles 之後——它驗的是**產物**，不是原始碼。
+    # `--deploy`：已核准文章（sha256 凍結）的過期降為警告不擋部署。理由見該腳本 docstring——
+    # 清晨自動跑時擋下部署不會讓錯的內容變對（線上仍是舊那份），只會連帶讓賽果與積分榜停更。
+    # 產物本身不一致仍然算失敗，會進 FAILED 擋住部署。
+    run(script("check-site-facts.py", "--deploy"), "check site facts")
+
     # 4.（可選）部署；pin wrangler 版本（CI 帶著 CLOUDFLARE_API_TOKEN，防供應鏈）。
     # hard gate：任何抓取/建置步驟失敗 → 禁止部署（build 步驟照跑收集診斷，但壞產物不上線）。
     if FAILED:
