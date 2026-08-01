@@ -1,55 +1,59 @@
 {
  "schema_version": 1,
- "checked_at": "2026-08-01T01:34:33.555055+00:00",
+ "revision": 2,
+ "checked_at": "2026-08-01T02:09:07.706967+00:00",
  "kind": "analysis-external-sourced",
  "slug": "f1-2026-bahrain-gp-in-malaysia",
  "article": "articles/f1-2026-bahrain-gp-in-malaysia/index.md",
- "article_sha256": "0fe622ab5f87b100e5ddf5a794db9bc96f167968548e62b0f33d0c0e31f57a80",
+ "article_sha256": "71664587f0723f7f6850e7ff6e08cddcf220531857331abab1ec369229ec1d88",
  "facts": "facts/analysis-2026-bahrain-gp-in-malaysia.json",
- "facts_sha256": "ed8aa8a5746c7e14fae89e5c952579fbfc956122cb26fac0bafcfab4a29fc717",
+ "facts_sha256": "08160dc6e5cad784ac090151ec5322eaed623450cb90efc3644e573ed2f7584f",
  "prompt": "scripts/prompts/external-sourced.md",
  "prompt_sha256": "b81b89a66521a898193efe8334699ea2f0b281cf5038abe6220de11365e1f645",
  "cover": "articles/f1-2026-bahrain-gp-in-malaysia/cover.png",
- "cover_sha256": "8570380b14f0bf14211e523561f3da82c5b5c6ed6fb8a7c294553b2dfc334077",
+ "cover_sha256": "80ce067087266ea9af9522ef5d713e530e9b7e97729d2c842a5b94ca63664a1e",
+ "_revision_note": "v1 的骨架搭在『糾正外電』上，Charlie 2026-08-01 退回（見記憶 W19 / feedback_dont_frame_article_as_debunking）。v2 改成解釋性長青文：名實脫鉤的三種機制。全文『外電』出現 0 次。",
  "checks": [
+  {
+   "name": "numeric-reconcile",
+   "passed": true,
+   "note": "12/12。含新查證的義大利站 1980 在伊莫拉／1981 回蒙札、歐洲站 1995-96 紐柏林→1997 赫雷斯、2020 各國場次，全部從 jolpica 全史資料重算。"
+  },
   {
    "name": "verify-sources",
    "passed": true,
-   "note": "來源段落格式合規、無名歸因掃描未命中"
-  },
-  {
-   "name": "check-links",
-   "passed": true,
-   "note": "⚠️ check-facts 的 check-links 在本機因 TLS 攔截回報『本次檢查無效』（誠實失敗，非綠燈）。改以 curl 逐條驗：7 條中 6 條 200；Malay Mail 回 403＝擋機器人非死連結，已改掛原始出處 soyacincau（200）。"
+   "note": "來源段落格式合規、無名歸因零命中；外部連結 16 條"
   },
   {
    "name": "check-covers",
    "passed": true,
-   "note": "封面可見數字 8 種全部見於正文，allow 留空"
-  },
-  {
-   "name": "numeric-reconcile",
-   "passed": true,
-   "note": "13/13。文中每個數字重新從 jolpica 全史資料與本機賽曆快照重算，非目視比對。"
+   "note": "可見數字 7 種全部見於正文。⚠️ 封面初版三格是 1,172／56／29＝糾正稿框架的數字，v2 正文不再出現，gate 會擋 → 已改為 26／28／19。改文章骨架時封面數字必須一起重選。"
   },
   {
    "name": "wording-lint",
    "passed": true,
-   "note": "簡體/港式/無名歸因/AI 腔/半形標點/粗體條列/emoji 全部零命中。check-tw-wording hook 不掃 .claude/worktrees，故自行掃描。"
+   "note": "簡體/港式/無名歸因/AI 腔/半形標點/粗體條列/emoji/U+00B7 間隔號 全部零命中"
+  },
+  {
+   "name": "link-check",
+   "passed": true,
+   "note": "check-facts 的 check-links 在本機因 TLS 攔截回報『本次檢查無效』（誠實失敗非綠燈）；改以 curl 逐條驗，16 條全部 200"
   },
   {
    "name": "draft-gate",
    "passed": true,
-   "note": "build-articles 實測輸出 skip draft，未進 public-racing。"
+   "note": "build-articles 實測 skip draft，未進 public-racing"
   }
  ],
- "reconcile_fixes": [
-  "☠️『巴林方拿走本站的全部收益』→『這一站的全部收益』。根因是我寫 facts pack 時用「本站」指這一場比賽，主寫照抄；但全站語彙裡本站＝這個網站，本文自己就用了二十幾次。",
-  "標題語態『我們查了』→『本站查了』，與全文一致。",
-  "間隔號 U+00B7 → U+30FB。站上 29 筆譯名都用 U+30FB，主寫 grep articles/ 只命中 glossary 那個唯一例外。",
-  "『（Bahrain……in Malaysia）』中文刪節號夾在英文名稱中間，改為直述。",
-  "出處 Malay Mail（403 擋機器人）改掛原始出處 soyacincau（200）。"
+ "reconcile_fixes_v2": [
+  "☠️ 事實錯誤：『瑞士大獎賽一停就是二十七年』。世界錦標賽層級的瑞士站是 1954→1982＝28 年；更關鍵的是 1975 年在同一條第戎賽道辦過一屆**非錦標賽**的瑞士大獎賽（瑞士汽車俱樂部主辦，目的是推動解禁，Clay Regazzoni 奪冠），所以『停了 27 年』在兩個意義上都不成立。已改寫，並把 1975 那屆寫進正文當作『本站資料庫只涵蓋世界錦標賽』的具體範例——弱點反而變成說明資料邊界的好材料。",
+  "主寫自評最弱的一節（瑞士禁賽令只靠維基）已補第二、三個獨立來源；用字採『禁止賽道賽車』而非『禁止所有賽車』（登山賽與拉力賽未受同等限制）。",
+  "薩克希爾站『同一座賽道不同配置』原為無源主張，已補 formula1.com 官方文章並具體寫出是外圈（Outer Circuit）。",
+  "Clay Regazzoni 無核准譯名 → 依站規誠實 fallback 只留原文，不硬翻。"
  ],
- "human_review": "⛔ 尚未進行。Charlie cross-check 是管線第 ④ 步、紅線，未通過前不得發布。",
+ "open_items": [
+  "「同一國第二場需改名」的慣例查無一手條文，正文已明白告訴讀者本站沒找到、只陳述可觀察到的結果。"
+ ],
+ "human_review": "⛔ 尚未進行。Charlie cross-check 是管線第 ④ 步、紅線。",
  "waivers": "none"
 }
