@@ -1,23 +1,23 @@
 {
  "schema_version": 1,
- "revision": 2,
- "checked_at": "2026-08-01T02:09:07.706967+00:00",
+ "revision": 3,
+ "checked_at": "2026-08-01T02:33:19.412324+00:00",
  "kind": "analysis-external-sourced",
  "slug": "f1-2026-bahrain-gp-in-malaysia",
  "article": "articles/f1-2026-bahrain-gp-in-malaysia/index.md",
- "article_sha256": "71664587f0723f7f6850e7ff6e08cddcf220531857331abab1ec369229ec1d88",
+ "article_sha256": "0aa387a33376835092ea9006973d7b0ebd5feb860436f32192af9c4d62d0b5bf",
  "facts": "facts/analysis-2026-bahrain-gp-in-malaysia.json",
  "facts_sha256": "08160dc6e5cad784ac090151ec5322eaed623450cb90efc3644e573ed2f7584f",
  "prompt": "scripts/prompts/external-sourced.md",
  "prompt_sha256": "b81b89a66521a898193efe8334699ea2f0b281cf5038abe6220de11365e1f645",
  "cover": "articles/f1-2026-bahrain-gp-in-malaysia/cover.png",
  "cover_sha256": "80ce067087266ea9af9522ef5d713e530e9b7e97729d2c842a5b94ca63664a1e",
- "_revision_note": "v1 的骨架搭在『糾正外電』上，Charlie 2026-08-01 退回（見記憶 W19 / feedback_dont_frame_article_as_debunking）。v2 改成解釋性長青文：名實脫鉤的三種機制。全文『外電』出現 0 次。",
+ "_revision_note": "v1 骨架搭在『糾正外電』上被退回（記憶 W19）。v2 改成解釋性長青文。v3＝風格改稿：Charlie『文章 ok，基本還是風格。你跟足球越來越像，盡量參考小 Lin 說跟張泉靈。避免「三月那次的處置」——那次是那次？』（記憶 W20）。**v3 為零事實改動的純風格改稿**：只動標題、句長、語氣、刪自我程序說明。",
  "checks": [
   {
    "name": "numeric-reconcile",
    "passed": true,
-   "note": "12/12。含新查證的義大利站 1980 在伊莫拉／1981 回蒙札、歐洲站 1995-96 紐柏林→1997 赫雷斯、2020 各國場次，全部從 jolpica 全史資料重算。"
+   "note": "15/15。風格改稿後重跑，逐項對 jolpica 全史資料與賽曆快照重算，確認事實零漂移；另驗媒體數字與出處定性詞（媒體估／媒體轉述／官方公告）全數保留、WMSC 但書仍在。"
   },
   {
    "name": "verify-sources",
@@ -54,6 +54,39 @@
  "open_items": [
   "「同一國第二場需改名」的慣例查無一手條文，正文已明白告訴讀者本站沒找到、只陳述可觀察到的結果。"
  ],
- "human_review": "⛔ 尚未進行。Charlie cross-check 是管線第 ④ 步、紅線。",
- "waivers": "none"
+ "human_review": "⛔ Charlie 已就 v2 的內容說「文章 ok」，但 v3 動過文字、sha256 已變。需就 v3 再確認一次才記入 approved.json。",
+ "waivers": "none",
+ "style_pass_v3": {
+  "headings_before": [
+   "查證範圍聲明",
+   "機制一：同一國辦兩場，第二場得換名字",
+   "機制二：本國禁止賽車，賽事出境",
+   "機制三：整份合約跨國移動——2026 巴林大獎賽",
+   "雪邦重返賽曆",
+   "三月那次的處置，用字沒有定論"
+  ],
+  "headings_after": [
+   "（查證範圍併入開場兩句，不再獨立成節）",
+   "聖馬利諾大獎賽，從來沒在聖馬利諾辦過",
+   "瑞士辦不了自己的大獎賽，只好辦到法國去",
+   "這一次，搬走的是整份合約",
+   "雪邦離開 9 年，這次用的是別人的名字",
+   "回頭看 2026 年 3 月：那到底算取消還是延期"
+  ],
+  "editorial_policy_removed": [
+   "「這是媒體估值，不是官方公布的確定數字，本文照原樣寫成區間，不換算成新台幣，也不取整成單一數字，那樣做只會製造一個看起來精確、實際上查無出處的假數字。」→「這是媒體估的區間，不是官方數字。」",
+   "「這一條是媒體轉述，F1 與巴林官方都沒有公開證實合約條款，本文只能標出處，無法獨立核實」→「合約條款 F1 與巴林都沒公開過，這是媒體轉述的說法。」",
+   "刪除：有個但書必須寫在前面／本文採用官方那句中性表述／本站不替它們裁決／本文只講回歸的來龍去脈／本文照順序講完這三種／本站不替它多加解讀"
+  ],
+  "referents_fixed": [
+   "三月那次的處置→回頭看 2026 年 3 月（日期進標題）",
+   "前面講的這個安排→移師馬來西亞的安排",
+   "前者／後者→直接寫出瑞士與巴林的差別",
+   "同一座賽道的不同配置，後者→多辦的薩克希爾大獎賽"
+  ],
+  "my_own_fixes_after_agent": [
+   "「一借就是二十六年」→「26 年」、「離開九年」→「9 年」（站規：時長一律阿拉伯數字）",
+   "來源區塊殘留「三種機制」→「三種方式」，與改寫後的正文用語一致"
+  ]
+ }
 }
