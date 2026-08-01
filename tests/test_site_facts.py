@@ -16,6 +16,7 @@ grep「22 站」掃不到。check-site-facts.py 就是為了這一類而存在�
 import importlib.util
 import json
 import pathlib
+import re
 import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -132,6 +133,38 @@ class CompletedRoundCounting(unittest.TestCase):
         self.assertEqual(
             t["season_races_remaining"],
             len(sched) - len(list(res.glob("round-[0-9][0-9].json"))))
+
+
+class QuoteZonesAreNarrow(unittest.TestCase):
+    """引用區：勘誤區塊的職責就是引用原本錯的寫法，那些數字出現在頁面上是正確的。
+
+    由來（2026-08-01）：修好規則指南後 gate 反而紅了，因為勘誤區塊寫著
+    「原文寫…縮為 22 站」「文末『剩下的 13 站』」。
+    ⚠️ 正確修法是**整段當引用區排除**，不是用 allow 逐條豁免——
+    每次勘誤都要新增一條的話，例外清單遲早變成掩蓋器。
+    """
+
+    ERRATA = ('<ul class="rs-list rs-err">'
+              '<li>原文寫「賽季縮為 22 站」，實際為 23 站。</li></ul>')
+
+    def _strip(self, raw):
+        cfg = CFG
+        out = raw
+        for qz in cfg.get("quote_zones", []):
+            out = re.sub(qz["pattern"], " ", out, flags=re.S)
+        return out
+
+    def test_errata_block_is_stripped(self):
+        self.assertFalse(check(self._strip(self.ERRATA)))
+
+    def test_same_wrong_number_outside_errata_is_still_caught(self):
+        """反向：引用區之外的同一句話必須照抓，否則排除範圍寫太寬。"""
+        page = self.ERRATA + "<p>2026 賽季因此縮為 22 站。</p>"
+        self.assertTrue(check(self._strip(page)), "引用區排除得太寬，把正文也蓋掉了")
+
+    def test_quote_zones_all_carry_a_reason(self):
+        for qz in CFG.get("quote_zones", []):
+            self.assertTrue(qz.get("reason", "").strip(), f"quote_zone 少了理由：{qz['pattern']}")
 
 
 class ApprovedArticlesAreStillApproved(unittest.TestCase):

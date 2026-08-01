@@ -160,6 +160,10 @@ def main():
 
     for path in sorted(set(targets)):
         raw = path.read_text(encoding="utf-8", errors="replace")
+        # 引用區：本頁勘誤這類「職責就是引用原本錯的寫法」的區塊，整段移除再檢查。
+        # ⚠️ 不要改用 allow 逐條豁免——每次勘誤都要新增一條，例外清單會變成掩蓋器。
+        for qz in cfg.get("quote_zones", []):
+            raw = re.sub(qz["pattern"], " ", raw, flags=re.S)
         text = strip_html(raw) if path.suffix in (".html", ".htm") else raw
         rel = path.relative_to(ROOT).as_posix()
         frozen = rel.startswith("articles/") and path.parent.name in approved
