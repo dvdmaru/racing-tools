@@ -608,13 +608,136 @@ def verify_all(season, rnd, facts_path, article_path, report_path=None):
     return True
 
 
+
+# ---------- facts pack 自己的 gate（2026-08-01 新增） ----------
+#
+# 為什麼需要：本站所有 gate 原本都跑在**稿子**上，沒有任何一道跑在 **facts pack** 上。
+# 而 2026-08-01 那篇雪邦專題連退兩輪，兩次的根因都在 facts pack：
+#   ① thesis 被寫成「指出外電錯在哪」→ 寫手照做，整篇變成糾正稿（記憶 W19）
+#   ② facts pack 只管事實不管聲音 → 連出兩版同樣的報告腔（記憶 W20）
+# 骨架與聲音是在派工那一刻決定的，改稿階段都是在補。所以 gate 要往上游移。
+
+_THESIS_RED_FLAGS = [
+    ("錯", "thesis 以『某方寫錯』為主軸 → 文章骨架會變成糾正稿"),
+    ("史上第一", "最高級表述進 thesis → 整篇會繞著它打轉，且多半查得到反例"),
+    ("首次", "同上"),
+    ("破天荒", "同上"),
+    ("並非如此", "以否定他人為主軸"),
+]
+
+_VOICE_REQUIRED = ("headline_style", "forbidden_meta", "referent_policy")
+
+# 「本站」在站內語彙裡永遠指這個網站。facts pack 曾用它指「這一場比賽」，
+# 寫手照抄成「巴林方拿走本站的全部收益」——同一篇文章裡「本站」出現二十幾次。
+_RESERVED_WORD_TRAPS = [
+    (r"本站(?:的)?(?:全部)?(?:收益|收入|主辦費|門票)", "「本站」在站內語彙＝這個網站；指單場比賽請用「這一站」"),
+    (r"本站(?:這場|這一場)", "同上"),
+]
+
+
+def lint_pack(path):
+    """facts pack 的 gate。跑在派寫手**之前**。"""
+    p = pathlib.Path(path)
+    pack = json.loads(p.read_text(encoding="utf-8"))
+    errors, warns = [], []
+
+    thesis = pack.get("thesis", "")
+    if not thesis.strip():
+        errors.append("缺 thesis：沒有主軸，寫手只能自己發明一個")
+    for token, why in _THESIS_RED_FLAGS:
+        if token in thesis:
+            warns.append(f"thesis 命中「{token}」——{why}。"
+                         "判準：把「別人說錯」整段刪掉後，文章還站得住嗎？站不住就重寫 thesis。")
+
+    voice = pack.get("voice")
+    if not isinstance(voice, dict):
+        errors.append("缺 voice：只給事實不給聲音，寫手會回到預設的報告腔")
+    else:
+        for k in _VOICE_REQUIRED:
+            if not str(voice.get(k, "")).strip():
+                errors.append(f"voice 缺 {k}")
+        fm = str(voice.get("forbidden_meta", ""))
+        if fm and ("→" not in fm and "->" not in fm):
+            errors.append("voice.forbidden_meta 要給 before→after 對照；"
+                          "只寫「口語一點」這種形容詞，寫手做不到（實測連兩版同腔調）")
+
+    if not pack.get("must_not_claim"):
+        errors.append("缺 must_not_claim：沒有明寫的禁區，寫手會把推測寫成事實")
+
+    blob = json.dumps(pack, ensure_ascii=False)
+    for pat, why in _RESERVED_WORD_TRAPS:
+        if re.search(pat, blob):
+            errors.append(f"保留詞誤用：{why}")
+
+    for key in ("own_data_precedents", "sepang_return", "own_data"):
+        node = pack.get(key)
+        if isinstance(node, dict) and not (node.get("scope") or node.get("universe")
+                                           or node.get("method")):
+            warns.append(f"{key} 沒有 scope/universe：自有資料的涵蓋範圍只有在被咬到時才顯形"
+                         "（2026-08-01 實例：資料庫只涵蓋世界錦標賽，1975 那屆非錦標賽的瑞士站查不到）")
+
+    print(f"🔎 facts pack lint：{p}")
+    for w in warns:
+        print(f"  ⚠️  {w}")
+    for e in errors:
+        print(f"  ❌ {e}")
+    if errors:
+        print(f"\n⛔ {len(errors)} 項未通過 → 不要派寫手，先修 facts pack")
+        return False
+    print("✅ facts pack 結構完整"
+          + ("（有警告，請自行判斷）" if warns else ""))
+    print("⚠️ 本檢查只驗**結構**：thesis 有沒有偏、voice 有沒有給、禁區有沒有寫。"
+          "它驗不了事實對不對，那是 verify-* 與人工 cross-check 的事。")
+    return True
+
+
+def verify_numbers(facts_path, article_path):
+    """稿子裡出現、但 facts pack 裡沒有的數字 → 列出來。
+
+    由來：「瑞士大獎賽一停就是二十七年」是寫手自己做減法算出來的
+    （錦標賽層級實為 1954→1982＝28 年，且 1975 年還辦過一屆非錦標賽的）。
+    facts pack 若已給成品值，這個錯不可能發生。
+    **規則：凡要出現在正文的數字，facts pack 一律給成品值；寫手只准引用不准計算。**
+    """
+    blob = json.dumps(json.loads(pathlib.Path(facts_path).read_text(encoding="utf-8")),
+                      ensure_ascii=False)
+    known = set(re.findall(r"[0-9][0-9,]*", blob))
+    known |= {n.replace(",", "") for n in known}
+
+    body = pathlib.Path(article_path).read_text(encoding="utf-8")
+    body = re.sub(r"\[[^\]]*\]\([^)]*\)", " ", body)      # 連結
+    body = re.sub(r"^---.*?^---", " ", body, flags=re.S | re.M)  # frontmatter
+
+    unknown = []
+    for m in re.finditer(r"(?<![0-9A-Za-z.,])([0-9][0-9,]*)(?![0-9])", body):
+        tok = m.group(1)
+        if tok in known or tok.replace(",", "") in known:
+            continue
+        ctx = re.sub(r"\s+", " ", body[max(0, m.start() - 30):m.end() + 30]).strip()
+        unknown.append((tok, ctx))
+
+    print(f"🔢 稿內數字 vs facts pack：{article_path}")
+    if not unknown:
+        print("✅ 稿子裡每個數字都能在 facts pack 找到來源")
+        return True
+    print(f"⚠️  {len(unknown)} 個數字不在 facts pack 裡——逐一確認是排版數字，還是寫手自己算的：")
+    for tok, ctx in unknown:
+        print(f"   · {tok}　…{ctx}…")
+    print("   → 若是推算值，正確做法是把成品值補進 facts pack，而不是相信稿子算對了。")
+    return True
+
 def main():
     ap = argparse.ArgumentParser(description="發布前機械對帳（三項全部擋 gate）")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
+    # lint-pack 只吃 --facts（跑在派寫手之前，那時還沒有稿子）
+    lp = sub.add_parser("lint-pack")
+    lp.add_argument("--facts", required=True)
+
     for name, need in (("verify-recap", "rf"), ("verify-standings", "rf"),
                        ("verify-body", "fa"), ("no-causal", "a"), ("verify-all", "rfa"),
-                       ("verify-sources", "a"), ("check-links", "a")):
+                       ("verify-sources", "a"), ("check-links", "a"),
+                       ("verify-numbers", "fa")):
         p = sub.add_parser(name)
         if "r" in need:
             p.add_argument("--round", type=int, required=True)
@@ -628,7 +751,11 @@ def main():
     # 真的需要賽季的子命令在這裡才解析，維持原本的預設值行為。
     if getattr(args, "season", None) is None and hasattr(args, "season"):
         args.season = _rc().SEASON
-    if args.cmd == "verify-sources":
+    if args.cmd == "lint-pack":
+        ok = lint_pack(args.facts)
+    elif args.cmd == "verify-numbers":
+        ok = verify_numbers(args.facts, args.article)
+    elif args.cmd == "verify-sources":
         ok = verify_sources(args.article)
     elif args.cmd == "check-links":
         ok = check_links(args.article)
