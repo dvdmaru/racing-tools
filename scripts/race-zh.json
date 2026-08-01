@@ -117,9 +117,9 @@
   },
   "Bahrain Grand Prix in Malaysia": {
     "zh": "巴林站（馬來西亞雪邦）",
-    "src": "proposed-2026-08-01",
-    "status": "pending",
-    "note": "2026 R16 新增賽事名稱：巴林站移師雪邦，API 正式名稱為 Bahrain Grand Prix in Malaysia。status=pending＝賽曆頁在核准前顯示原文（誠實 fallback），不會擅自掛上譯名。待 Charlie 裁決：①「巴林站（馬來西亞雪邦）」②「巴林站（雪邦）」③ 沿用「巴林站」不標地點。"
+    "src": "charlie-2026-08-01",
+    "status": "approved",
+    "note": "2026 R16：巴林站移師雪邦，API 正式名稱為 Bahrain Grand Prix in Malaysia。Charlie 2026-08-01 於三個選項中裁決選①（標出馬來西亞與雪邦兩者）——名稱同時寫出兩個地名正是這一站的特殊之處，譯名照實反映。append-only：本條一旦上線即為 SEO 關鍵字，不再收回。"
   },
   "Saudi Arabian Grand Prix": {
     "zh": "沙烏地站",
