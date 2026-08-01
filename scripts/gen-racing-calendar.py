@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """gen-racing-calendar.py — /calendar/ 台北時間賽曆頁（台灣讀者剛需，內容 6 件套之 ③）。
 
-22 站全季賽曆：每站正賽/排位/衝刺賽的台北時間（UTC+8 換算自 jolpica 的 UTC session 時刻），
+全季賽曆：每站正賽/排位/衝刺賽的台北時間（UTC+8 換算自 jolpica 的 UTC session 時刻），
 已完賽站標冠軍、下一站高亮。歐洲賽事多在台灣深夜/清晨——這頁存在的理由。
 server-rendered、零 client fetch；sprint 站標記出自賽曆資料本身（有 Sprint session 即是）。
 
@@ -76,11 +76,17 @@ def build_cards(races, results_by_round, today):
         race_dt = rc.taipei_disp(race["date"], race.get("time"))
         cid = race["Circuit"]["circuitId"]
         loc = race["Circuit"]["Location"]
+        # ⚠️ 沒有核准譯名時 race_zh() 回原文（誠實 fallback），此時**不能再補一次原文**，
+        # 否則同一列會印兩次英文名。2026 R16「Bahrain Grand Prix in Malaysia」是第一個
+        # 觸發此路徑的賽事名稱（新增賽事名稱進 race-zh.json 前必然經過 pending 階段）。
+        # 這裡的守衛與 racinglib.race_pair 同一條規則，只是賽曆頁用自己的 .en 樣式。
+        name_en = html_lib.escape(race["raceName"])
+        name_zh = html_lib.escape(rc.race_zh(race["raceName"]))
+        name_html = name_zh if name_zh == name_en else f'{name_zh}<span class="en">{name_en}</span>'
         cards.append(
             f'<div class="cal-card{cls}">'
             f'<div class="cal-rnd">Rd<b>{rnd}</b></div>'
-            f'<div><div class="cal-name">{rc.race_zh(race["raceName"])}'
-            f'<span class="en">{html_lib.escape(race["raceName"])}</span>{badge}</div>'
+            f'<div><div class="cal-name">{name_html}{badge}</div>'
             f'<div class="cal-circuit">{rc.circuit_pair(cid, race["Circuit"]["circuitName"])} · '
             f'{html_lib.escape(loc.get("locality",""))}, {html_lib.escape(loc.get("country",""))}</div></div>'
             f'<div class="cal-race"><span class="d">正賽（台北時間）</span><b>{race_dt}</b></div>'
@@ -93,8 +99,14 @@ def page_faq(season, n_races, n_sprints):
     # 賽季敘事（取消站、特例站）綁定年份——換季（改 site.json 的 season）後自動退場，
     # 新賽季有類似特例時在這裡按年份補。
     if season == 2026:
-        count_a = (f"{n_races} 站。賽季原公布 24 站，巴林站與沙烏地站於 2026 年 3 月因中東情勢取消且不遞補，"
-                   f"縮為 {n_races} 站；3 月澳洲墨爾本揭幕、12 月阿布達比收官。其中 {n_sprints} 站為衝刺賽（sprint）週末。")
+        # ⚠️ 這段敘述**不要再寫死站數的加減**。原文是「原公布 24 站…取消且不遞補，縮為 22 站」，
+        # 而 n_races 是從賽曆資料動態算的：2026-07-27 巴林站確定移師雪邦後 API 變 23 站，
+        # 這句就會自己長成「23 站。原公布 24 站…縮為 23 站」＝當著讀者的面算錯數。
+        # 規則：可變的量一律交給 n_races/n_sprints，寫死的部分只描述**發生過的事件**。
+        count_a = (f"{n_races} 站。賽季原公布 24 站，巴林站與沙烏地站於 2026 年 3 月因中東情勢"
+                   f"宣布不在原定的 4 月舉行；其後巴林站確定移師馬來西亞雪邦國際賽道，"
+                   f"於 10 月 2 至 4 日補辦並沿用「巴林大獎賽」名稱，沙烏地站未再排入賽曆。"
+                   f"3 月澳洲墨爾本揭幕、12 月阿布達比收官，其中 {n_sprints} 站為衝刺賽（sprint）週末。")
     else:
         count_a = f"{n_races} 站，其中 {n_sprints} 站為衝刺賽（sprint）週末。詳細場次以官方公布賽曆為準。"
     faqs = [
@@ -104,6 +116,17 @@ def page_faq(season, n_races, n_sprints):
          "歐洲賽站正賽多在台北時間週日晚間 8 到 10 點，美洲賽站多在週一凌晨。"),
     ]
     if season == 2026:
+        # ⚠️ 外電普遍寫「F1 首次把大獎賽與地理位置分開」——**本站不採用這句**。
+        # 用本站賽事資料（1950 年起 1,172 場、56 種賽事名稱）實查，名稱國別與舉辦國不符的
+        # 先例至少 29 場：聖馬利諾站 26 屆全在義大利、盧森堡站 2 屆全在德國、1982 瑞士站在法國。
+        # 可支撐的「第一次」只有更窄的那個：名稱同時寫出兩個地名。降強度後才寫。
+        faqs.append(("為什麼比賽在馬來西亞舉行，卻叫「巴林大獎賽」？",
+                     "因為移動的是舉辦地點，不是這場大獎賽的權利歸屬。巴林方負擔主辦費用並保有賽事收益、"
+                     "冠名贊助商未更動，官方全稱為 Formula 1 Gulf Air Bahrain Grand Prix in Malaysia；"
+                     "雪邦國際賽道是承辦場地，馬來西亞負擔在地籌辦成本，這一站仍計為巴林站。"
+                     "名稱與舉辦地不符在 F1 並非首例——聖馬利諾大獎賽 26 屆全在義大利伊莫拉舉行、"
+                     "盧森堡大獎賽 2 屆都在德國紐柏林、1982 年瑞士大獎賽辦在法國第戎；"
+                     "但就 1950 年以來的世界錦標賽賽事而言，把兩個地名同時寫進正式名稱的，這是第一次。"))
         faqs.append(("為什麼 2026 年西班牙有兩站？",
                      "巴塞隆納加泰隆尼亞賽道續辦一站（6 月），馬德里新建的 Madring 市街賽道 9 月首辦，"
                      "後者掛正式名稱「西班牙大獎賽」。兩站都在西班牙，是 2026 賽曆的特例。"))

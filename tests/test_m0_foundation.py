@@ -252,7 +252,13 @@ class RaceCircuitZhMigrationTests(unittest.TestCase):
     def test_race_zh_m0_originals_unchanged_and_m6_appended(self):
         for k, v in self.OLD_RACE_ZH.items():
             self.assertEqual(rc.RACE_ZH.get(k), v, f"M0 原始 race-zh 條目被更動：{k}")
-        self.assertEqual(len(rc.RACE_ZH), 24 + 31, "race-zh 應為 M0(24) + M6 回填(31)")
+        # +1＝「Bahrain Grand Prix in Malaysia」＝巴林站（馬來西亞雪邦）。2026 R16 巴林站
+        # 移師雪邦，jolpica 新增此賽事名稱；Charlie 2026-08-01 具名核准（三個選項中選①）。
+        # ⚠️ 這條計數 gate 在該譯名由 pending 轉 approved 的那一刻才響——pending 期間
+        # 對 RACE_ZH 不可見、不計數。**新增授權譯名時要一併加數字並在此註明是誰核准的**，
+        # 這個數字就是「未授權條目不得混入」的唯一憑據，改它等於補記一次核准。
+        self.assertEqual(len(rc.RACE_ZH), 24 + 31 + 1,
+                         "race-zh 應為 M0(24) + M6 回填(31) + 2026 R16 雪邦(1，charlie 2026-08-01)")
 
     def test_circuit_zh_m0_originals_unchanged_and_m6_appended(self):
         for k, v in self.OLD_CIRCUIT_ZH.items():

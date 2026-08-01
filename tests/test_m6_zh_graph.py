@@ -75,16 +75,49 @@ class ZhFormatCompatTests(unittest.TestCase):
 
 
 class ZhTablesAreUpgradedTests(unittest.TestCase):
-    """四張表已升級成 dict 格式，且既有條目全為 approved（append-only 保存）。"""
-    def test_all_four_tables_dict_format_approved(self):
+    """四張表已升級成 dict 格式；已發布譯名不得降級（append-only 保存）。
+
+    ⚠️ 原本這裡斷言「**所有**條目都是 approved」，那條寫過頭了：`_load_zh` 與
+    `fetch-zh-candidates` 的整個設計就是讓新候選以 status=pending 落地、等 Charlie 裁決，
+    上面的 loader 測試也明文驗 pending 對頁面不可見。兩者互斥——2026-08-01 新增
+    「Bahrain Grand Prix in Malaysia」（巴林站移師雪邦）時就撞紅了：正確地走 pending，
+    卻被這條測試判違規。**真正該守的是「approved 不得變回 pending」**，不是「不准有 pending」。
+    """
+
+    ALLOWED_STATUS = {"approved", "pending", "not_found"}
+
+    def test_all_four_tables_dict_format(self):
         for fn in ("driver-zh.json", "team-zh.json", "race-zh.json", "circuit-zh.json"):
             raw = json.loads((ROOT / "scripts" / fn).read_text(encoding="utf-8"))
             entries = {k: v for k, v in raw.items() if not k.startswith("_")}
             self.assertTrue(entries, f"{fn} 應有條目")
             for k, v in entries.items():
                 self.assertIsInstance(v, dict, f"{fn}:{k} 應為 dict")
-                self.assertEqual(v.get("status"), "approved", f"{fn}:{k} 既有條目應 approved")
-                self.assertTrue(v.get("zh"), f"{fn}:{k} 應有 zh")
+                self.assertIn(v.get("status"), self.ALLOWED_STATUS, f"{fn}:{k} status 不明")
+                if v.get("status") != "not_found":
+                    self.assertTrue(v.get("zh"), f"{fn}:{k} 應有 zh")
+
+    def test_published_names_stay_approved(self):
+        """append-only 紅線：線上看得到的譯名＝SEO 關鍵字，只能新增不能收回。
+
+        判準取 src=approved-live（建站即上線那批）——它們無論如何都不該變成 pending。
+        """
+        demoted = []
+        for fn in ("driver-zh.json", "team-zh.json", "race-zh.json", "circuit-zh.json"):
+            raw = json.loads((ROOT / "scripts" / fn).read_text(encoding="utf-8"))
+            for k, v in raw.items():
+                if k.startswith("_") or not isinstance(v, dict):
+                    continue
+                if v.get("src") == "approved-live" and v.get("status") != "approved":
+                    demoted.append(f"{fn}:{k}")
+        self.assertEqual(demoted, [], f"已發布譯名被降級：{demoted}")
+
+    def test_demotion_check_can_actually_fail(self):
+        """反向：上面那條要真的抓得到降級，不是永遠成立的空斷言。"""
+        fake = {"x": {"zh": "甲", "src": "approved-live", "status": "pending"}}
+        demoted = [k for k, v in fake.items()
+                   if v.get("src") == "approved-live" and v.get("status") != "approved"]
+        self.assertEqual(demoted, ["x"])
 
     def test_reader_still_returns_expected_current_season_names(self):
         # 相容層對頁面透明：現行譯名讀出不變（byte-identical 頁面的根據）
