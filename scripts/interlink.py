@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""interlink.py — 文章 ↔ 實體頁雙向互鏈的**單一規則層**。
+"""interlink.py — 文章 ↔ 實體頁雙向互鏈的**單一規則層**（車手頁 ＋ 分站頁）。
 
-兩個方向共用同一份「字串 → 車手」判定表，避免兩邊各長一套規則後慢慢對不上：
+兩個方向共用同一份判定表，避免兩邊各長一套規則後慢慢對不上：
 
   正向：文章 HTML 裡的車手名 → `/drivers/<slug>/`
-        （build-articles.py 在 markdown→HTML **之後**呼叫 linkify()）
-  反向：車手頁的「相關報導」＝唯讀掃描 articles/<slug>/index.md 得到的提及映射
-        （gen-racing-drivers.py 呼叫 driver_articles()）
+        文章 HTML 裡的賽站名 → `/seasons/<year>/rounds/<n>/`
+        （build-articles.py 在 markdown→HTML **之後**呼叫 linkify() / linkify_rounds()）
+  反向：車手頁／分站頁的「相關報導」＝唯讀掃描 articles/<slug>/index.md 得到的提及映射
+        （gen-racing-drivers.py 呼叫 driver_articles()；
+          gen-racing-seasons.py 呼叫 round_related_articles_html()）
 
 ☠️ 紅線：已發布文章被 config/approved.json 以 sha256 凍結，改 articles/<slug>/index.md
 一個 byte 整篇就會被 build gate 下架。所以正向互鏈**只動渲染後的 HTML**；本模組對
@@ -26,6 +28,20 @@ articles/ 與 config/approved.json 一律唯讀，永不寫入。
 3. 一個字串在 35 人裡對應**多人就整個丟掉**（真實案例：「希爾」對到 damon_hill /
    hill / phil_hill 三人、「羅斯堡」對到 keke_rosberg / rosberg 兩人 → 兩者都不連）。
 4. 同一個位置有多個候選時取**最長匹配**（「路易斯・漢米爾頓」勝過「漢米爾頓」）。
+
+── 分站頁那一半的匹配紀律（同樣寧漏勿錯連）───────────────────────
+5. 只連**實際存在的分站頁**：年份限 config/encyclopedia.json 的 round_years（2002／2026），
+   站次限 gen-racing-seasons.season_round_numbers()（＝有正賽 results 檔者，也就是生成器
+   真的會建頁的那批，同一個函式、不另抄一份判定）。未完賽的場次沒有頁 → 不連。
+6. 匹配字串只有一種：該場 raceName 的**已核准**中文站名（scripts/race-zh.json，approved-only，
+   由 racinglib._load_zh 過濾）。不自譯、不截短（「西班牙站（馬德里）」不會退化成「西班牙站」）。
+7. ☠️ **年份消歧**：「匈牙利站」在 2002（R13）與 2026（R11）各有一頁，光看字串永遠決定不了
+   該連哪一年。判定唯一依據＝文章 frontmatter **明示**的 `season` 欄，且該年須是 round_year；
+   沒有 season 欄 → 整篇不做分站互鏈。刻意**不用發布日期推年份**——實測既有六篇裡，
+   f1-tech-timing-positioning-race-control（2026-07-30 發）文中的「摩納哥站」指的是 2022 那場、
+   f1-2026-bahrain-gp-in-malaysia 的「義大利站」「馬來西亞大獎賽」是 1980–2000 年代的歷史脈絡；
+   用發布年推就會把讀者送到錯的那一站。漏連比錯連便宜。
+8. 「第 N 站」這類數字型指涉不連（可能是賽曆位置敘述而非指涉該場），只連具名站名。
 
 ── 快取 ────────────────────────────────────────────────────────
 判定表與提及映射都吃檔案，程序內快取一次。測試改了 ARTICLES/APPROVED 等模組層路徑後
@@ -71,6 +87,26 @@ _TAG_NAME = re.compile(r"</?\s*([A-Za-z][A-Za-z0-9]*)")
 _ASCII_WORD = re.compile(r"[A-Za-z]")
 
 _CACHE = {}
+
+# 分站頁的「哪些站有頁／各站叫什麼」由 gen-racing-seasons 擁有（它就是建那些頁的人）。
+# 本模組**不另抄一份判定**，只借它兩個純讀函式；gs 載入時會 bind_seasons() 把自己交進來，
+# 沒 bind（例如 build-articles 只載 interlink）就 lazy load 一份——兩者都是唯讀資料讀取，
+# 不寫檔、不碰 db.sqlite，重複載入無副作用。刻意用 lazy／注入而非 module-level import：
+# gs 需要 il 的相關報導區塊、il 需要 gs 的站次表，module-level 互 import 會變循環。
+_GS = None
+
+
+def bind_seasons(mod):
+    """由 gen-racing-seasons.py 呼叫，把分站頁資料源（season_round_numbers／_schedule）交給本模組。"""
+    global _GS
+    _GS = mod
+
+
+def _gs():
+    global _GS
+    if _GS is None:
+        _GS = _load("gen_racing_seasons", "gen-racing-seasons.py")
+    return _GS
 
 
 def clear_caches():
@@ -158,12 +194,59 @@ def _compile(index):
     return re.compile("|".join(re.escape(s) for s in ordered))
 
 
-def _pattern(index):
-    if index is not link_index():          # 測試注入的自訂表：不進快取
+def _pattern(index, cache_key=None):
+    """cache_key=None（測試注入的自訂表）→ 不進快取，每次重編。"""
+    if cache_key is None:
         return _compile(index)
-    if "pattern" not in _CACHE:
-        _CACHE["pattern"] = _compile(index)
-    return _CACHE["pattern"]
+    if cache_key not in _CACHE:
+        _CACHE[cache_key] = _compile(index)
+    return _CACHE[cache_key]
+
+
+# ---------- 分站頁判定表（賽站名 → 該季某一站） ----------
+
+def round_link_index(year):
+    """{已核准中文站名: (year, round)}——只含該季**已建分站頁**的場次。
+
+    year 不在 round_years（或為 None）→ 空表（整篇不做分站互鏈）。
+    同一個中文站名在該季對到多站 → 整個丟掉（比照車手的歧義規則；現況兩季皆無此情形，
+    但一季辦兩場同名比賽在 F1 史上發生過，留著這條才不會哪天默默錯連）。
+    """
+    if year is None or year not in rc.ROUND_YEARS:
+        return {}
+    key = ("round_index", year)
+    if key not in _CACHE:
+        gsm = _gs()
+        built = set(gsm.season_round_numbers(year))   # ＝生成器真的會建頁的站次，同一個判定
+        owners = {}
+        for row in gsm._schedule(year):
+            try:
+                rnd = int(row.get("round"))
+            except (TypeError, ValueError):
+                continue
+            if rnd not in built:
+                continue                              # 未完賽／無 results ＝沒有頁 → 不連
+            zh = rc.RACE_ZH.get(row.get("raceName", ""))   # approved-only（_load_zh 已過濾）
+            if zh and len(zh) >= 2:
+                owners.setdefault(zh, set()).add(rnd)
+        _CACHE[key] = {zh: (year, next(iter(rnds)))
+                       for zh, rnds in owners.items() if len(rnds) == 1}
+    return _CACHE[key]
+
+
+def article_round_season(meta):
+    """文章的賽季脈絡（年份消歧的唯一依據）。回 int 或 None。
+
+    只認 frontmatter 明示的 `season` 欄且該年有分站頁；查不到就 None＝不做分站互鏈。
+    （為何不用發布日期推年份：見模組 docstring §7 的兩個真實反例。）
+    """
+    if not isinstance(meta, dict):
+        return None
+    try:
+        year = int(str(meta.get("season", "")).strip())
+    except (TypeError, ValueError):
+        return None
+    return year if year in rc.ROUND_YEARS else None
 
 
 # ---------- 正向：文章 HTML → 車手頁連結 ----------
@@ -179,29 +262,32 @@ def _boundary_ok(text, start, end, token):
     return True
 
 
-def linkify(body_html, index=None):
-    """在渲染後的文章 HTML 上加車手頁連結。回 (html, linked)。
+def _linkify(body_html, index, href_of, key_of, cache_key=None):
+    """保護區感知的行內連結替換——正向互鏈的**唯一**實作（車手與分站共用）。
 
-    linked＝依出現順序的 [(driver_id, slug, matched_text)]。
-    每位車手每篇**只連第一次出現**（連結灑滿版會稀釋每一條的權重，也難讀）。
+    index＝{匹配字串: 目標值}；href_of(目標值)→URL；key_of(目標值)→去重鍵
+    （每個鍵每篇只連第一次出現）。回 (html, [(目標值, 匹配字串), …]，依出現順序)。
+
+    ⚠️ 兩種互鏈共用這支的理由：保護區（標題／既有 <a>／表格／code／JSON-LD）與「只連第一次」
+    是同一組規則，各寫一份遲早只修到其中一份——分站互鏈要擋的正是「匈牙利站」出現在標題裡。
     連結不自帶 class：`.prose a` 已是站內既有的行內連結樣式。
     """
-    index = link_index() if index is None else index
     if not index or not body_html:
         return body_html, []
 
-    pat = _pattern(index)
-    linked = []
+    pat = _pattern(index, cache_key)
+    hits = []
     used = set()
 
     def repl(m):
         token = m.group(0)
-        did, slug = index[token]
-        if did in used or not _boundary_ok(m.string, m.start(), m.end(), token):
+        target = index[token]
+        key = key_of(target)
+        if key in used or not _boundary_ok(m.string, m.start(), m.end(), token):
             return token
-        used.add(did)
-        linked.append((did, slug, token))
-        return f'<a href="/drivers/{slug}/">{token}</a>'
+        used.add(key)
+        hits.append((target, token))
+        return f'<a href="{href_of(target)}">{token}</a>'
 
     out = []
     depth = 0
@@ -216,7 +302,37 @@ def linkify(body_html, index=None):
             out.append(part)
             continue
         out.append(part if depth or not part.strip() else pat.sub(repl, part))
-    return "".join(out), linked
+    return "".join(out), hits
+
+
+def linkify(body_html, index=None):
+    """在渲染後的文章 HTML 上加車手頁連結。回 (html, linked)。
+
+    linked＝依出現順序的 [(driver_id, slug, matched_text)]。
+    每位車手每篇**只連第一次出現**（連結灑滿版會稀釋每一條的權重，也難讀）。
+    """
+    index = link_index() if index is None else index
+    key = "pattern" if index is link_index() else None   # 測試注入的自訂表不進快取
+    out, hits = _linkify(body_html, index,
+                         href_of=lambda t: f"/drivers/{t[1]}/",
+                         key_of=lambda t: t[0], cache_key=key)
+    return out, [(t[0], t[1], tok) for t, tok in hits]
+
+
+def linkify_rounds(body_html, season, index=None):
+    """在渲染後的文章 HTML 上加分站頁連結。回 (html, linked)。
+
+    season＝該文的賽季脈絡（article_round_season 決定）；None → 原封不動回傳（寧漏勿錯連）。
+    linked＝依出現順序的 [(year, round, matched_text)]；每篇每場次只連第一次出現。
+    呼叫順序在 linkify() **之後**：先加的車手連結是 <a>（保護區），不會被巢狀包一層。
+    """
+    default = index is None
+    index = round_link_index(season) if default else index
+    key = ("round_pattern", season) if default and index else None
+    out, hits = _linkify(body_html, index,
+                         href_of=lambda t: f"/seasons/{t[0]}/rounds/{t[1]}/",
+                         key_of=lambda t: t, cache_key=key)
+    return out, [(t[0], t[1], tok) for t, tok in hits]
 
 
 # ---------- 反向：車手頁「相關報導」 ----------
@@ -259,7 +375,8 @@ def published_articles(articles_root=None, approved_path=None, draft_exclude_pat
         if approved[slug].get("article_sha256", "") != hashlib.sha256(raw).hexdigest():
             continue
         out.append({"slug": slug, "title": meta.get("title", slug),
-                    "date": str(meta.get("date", "")), "text": raw.decode("utf-8")})
+                    "date": str(meta.get("date", "")), "season": meta.get("season"),
+                    "text": raw.decode("utf-8")})
     out.sort(key=lambda a: (a["date"], a["slug"]), reverse=True)
     return out
 
@@ -307,13 +424,12 @@ def driver_articles_slice(did):
     return [(a["slug"], a["title"], a["date"]) for a in driver_articles(did)]
 
 
-def related_articles_html(did, esc=html_lib.escape):
-    """車手頁「相關報導」區塊。無任何文章提及 → 回空字串（區塊整個不出現）。
+def _related_block(arts, esc):
+    """「相關報導」區塊的**唯一**渲染路徑（車手頁與分站頁共用）。空 list → 空字串。
 
     沿用既有 class：小標 `.sec-title`（2026-08-03 定的 h2 慣例）、清單用「效力車隊」
     同一組 `.rel` chip——不自創視覺、零新 CSS。
     """
-    arts = driver_articles(did)
     if not arts:
         return ""
     chips = "".join(
@@ -323,3 +439,55 @@ def related_articles_html(did, esc=html_lib.escape):
         for a in arts)
     return (f'\n\n<h2 class="sec-title">相關報導</h2>\n'
             f'<div class="rel">{chips}</div>')
+
+
+def related_articles_html(did, esc=html_lib.escape):
+    """車手頁「相關報導」區塊。無任何文章提及 → 回空字串（區塊整個不出現，不放占位）。"""
+    return _related_block(driver_articles(did), esc)
+
+
+# ---------- 反向：分站頁「相關報導」 ----------
+
+def round_mentions(articles_root=None, approved_path=None, draft_exclude_path=None):
+    """{(year, round): [{slug,title,date}, …]}（新→舊）——哪些已發布文章提到哪一站。
+
+    提及＝文章 frontmatter 明示 season（且該年有分站頁）＋ index.md 原文（含 frontmatter 的
+    標題／導言）出現該季某場次的已核准中文站名。年份消歧與正向走**同一張** round_link_index，
+    所以「文章連去哪一站」與「哪一站列這篇」永遠是同一個答案，不會各自漂。
+    """
+    key = ("round_mentions", str(articles_root or ARTICLES), str(approved_path or APPROVED),
+           str(draft_exclude_path or DRAFT_EXCLUDE))
+    if key in _CACHE:
+        return _CACHE[key]
+    out = {}
+    for art in published_articles(articles_root, approved_path, draft_exclude_path):
+        season = article_round_season(art)
+        if season is None:
+            continue                       # 無法確定年份 → 不掛到任何一站
+        text = art["text"]
+        hit = {target for token, target in round_link_index(season).items() if token in text}
+        for target in sorted(hit):
+            out.setdefault(target, []).append(
+                {"slug": art["slug"], "title": art["title"], "date": art["date"]})
+    _CACHE[key] = out
+    return out
+
+
+def round_articles(year, rnd):
+    """單一分站的相關報導（新→舊）。沒有就是空 list——區塊整個不出現。"""
+    return round_mentions().get((int(year), int(rnd)), [])
+
+
+def round_articles_slice(year, rnd):
+    """分站頁指紋要吃的 mention 切片（決定性 tuple 序列）。
+
+    ⚠️ 同 driver_articles_slice 的理由：分站頁的「相關報導」讀 articles/，但 regen 的指紋
+    只切 db.sqlite——新發一篇提到某站的文章時該站指紋不變 → 頁面不重生 → 相關報導永遠停在
+    舊狀態。把這塊納入分站頁指紋才會跟著動（且只動那一頁，賽季總覽與索引不受影響）。
+    """
+    return [(a["slug"], a["title"], a["date"]) for a in round_articles(year, rnd)]
+
+
+def round_related_articles_html(year, rnd, esc=html_lib.escape):
+    """分站頁「相關報導」區塊。無任何文章提及 → 回空字串（區塊整個不出現，不放占位）。"""
+    return _related_block(round_articles(year, rnd), esc)
