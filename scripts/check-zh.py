@@ -16,7 +16,7 @@
 
 附帶掃描（report-only，不 exit 1，供 Charlie 知悉）：
   - approved 值含簡體字（常見簡繁差異字抽查）。
-  - approved 值含港式用詞 watchlist（如「冼拿」＝ Senna 港譯，phase0 已核准不動）。
+  - approved 值含港式用詞 watchlist（「冼拿」曾為 phase0 核准值，2026-08-04 已裁決改『塞納』）。
 
 用法：
   python3 scripts/check-zh.py            # 實跑；有 error → exit 1
@@ -46,7 +46,7 @@ PHASE0_ZH = {
     "driver": {
         "michael_schumacher": "麥可・舒馬克",
         "hamilton": "路易斯・漢米爾頓",
-        "senna": "艾爾頓・冼拿",
+        "senna": "艾爾頓・塞納",
         "max_verstappen": "麥克斯・維斯塔潘",
     },
     "constructor": {
@@ -65,9 +65,9 @@ SIMPLIFIED_CHARS = set(
     "汉铁银钟锋镇钱针赛资费贵产两个称荣龙凤"   # 漢鐵銀鐘鋒鎮錢針賽資費貴產兩個稱榮龍鳳
 )
 
-# 港式用詞 watchlist（人工確認清單；命中只列報告不擋。冼拿＝Senna 港譯，phase0 已核准不動）。
+# 港式用詞 watchlist（人工確認清單；命中只列報告不擋。冼拿已於 2026-08-04 收斂為『塞納』）。
 HK_TERM_WATCHLIST = {
-    "冼拿": "Senna 的港式譯名（phase0 已核准不動；台灣多作『冼拿/塞納』，列此供 Charlie 知悉）",
+    "冼拿": "Senna 的港式譯名（2026-08-04 Charlie 裁決改『塞納』並完成 migration——此後任何命中＝回歸錯誤，非歷史遺留）",
     "舒麻加": "Schumacher 的港式譯名",
     "麥拿倫": "McLaren 的港式譯名（台灣作『麥拉倫』）",
 }
