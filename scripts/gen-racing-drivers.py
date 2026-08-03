@@ -44,6 +44,7 @@ rc = _load("racinglib", "racinglib.py")
 fs = _load("f1stats", "f1stats.py")
 p0 = _load("gen_racing_entities_phase0", "gen-racing-entities-phase0.py")
 gs = _load("gen_racing_seasons", "gen-racing-seasons.py")
+il = _load("interlink", "interlink.py")
 
 BASE = rc.BASE
 PUB = ROOT / "public-racing"
@@ -64,17 +65,9 @@ CHAMPION_IDS = json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]["expec
 
 # 已核准的全名譯名：4 位 seed（phase0 已上線＝PR merge 核准過）。其餘走 driver-zh.json 的已核准
 # 姓氏譯名（2026-07-19 定版）；兩者皆無 → 誠實 fallback（中文欄位整個不出現，只留原文，頁尾註明）。
-SEED_ZH = {k: v for k, v in p0.ZH.items() if k in ("michael_schumacher", "hamilton",
-                                                    "senna", "max_verstappen")}
-
-
-def resolve_zh(did):
-    """approved-only 譯名解析：seed 全名 → driver-zh 姓氏 → None（誠實 fallback）。不自譯。"""
-    if did in SEED_ZH:
-        return SEED_ZH[did]
-    if did in rc.DRIVER_ZH:
-        return rc.DRIVER_ZH[did]
-    return None
+# ⚠️ 實作搬到 interlink.py：文章互鏈要用**同一份**譯名判定，兩邊各留一份遲早會漂。
+SEED_ZH = il.seed_zh()
+resolve_zh = il.resolve_zh
 
 
 # ---------- 前置三 gate ----------
@@ -369,7 +362,7 @@ def gen_driver(did, con):
 每個數字旁的「怎麼算的」可展開，逐筆列出來源賽季與賽站並連回對應頁。統計一律由明細筆數產生、不獨立維護。<br>
 <b>桿位、最快圈、生涯積分暫不發布</b>：定義或資料範圍尚未定案（例如資料源的起跑位含罰退、最快圈欄位早年缺漏、生涯積分有兩種都成立的口徑），
 寧缺勿濫，待定義確定後補上。{"" if zh else "　"}</p>
-{zh_note}"""
+{zh_note}{il.related_articles_html(did, esc=esc)}"""
 
     ld = rc.graph_ld([rc.org_node(), rc.website_node(),
                       rc.breadcrumb_node([("首頁", BASE + "/"), ("車手", BASE + "/drivers/"),

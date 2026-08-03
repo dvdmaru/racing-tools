@@ -43,8 +43,8 @@ def _load(name, fname):
 
 
 dr = _load("gen_racing_drivers", "gen-racing-drivers.py")
-# 共用 dr 的模組圖（單一 gs/fs/rc/p0 實例；PUB 重導在測試裡才一致）
-gs, fs, rc, p0 = dr.gs, dr.fs, dr.rc, dr.p0
+# 共用 dr 的模組圖（單一 gs/fs/rc/p0/il 實例；PUB 重導在測試裡才一致）
+gs, fs, rc, p0, il = dr.gs, dr.fs, dr.rc, dr.p0, dr.il
 BASE = rc.BASE
 CHAMPION_IDS = dr.CHAMPION_IDS
 # 車隊頁名單的單一來源＝phase0 的 CONSTRUCTORS（該檔就是 /constructors/** 的擁有者），不另硬編。
@@ -138,9 +138,18 @@ def _constructor_slice(con, cid):
 
 
 def compute_fingerprints(con):
-    """回全站頁群指紋：{'seasons':{y:h}, 'drivers':{did:h}, 'constructors':{cid:h}, 'indices':{…}}。"""
+    """回全站頁群指紋：{'seasons':{y:h}, 'drivers':{did:h}, 'constructors':{cid:h}, 'indices':{…}}。
+
+    ⚠️ 車手頁指紋＝**db 切片 ＋ 文章 mention 切片**兩塊。原本只切 db.sqlite，但車手頁的
+    「相關報導」讀的是 articles/：新發一篇提到某車手的文章時 db 一個 byte 都沒動 → 指紋不變
+    → 該頁不重生 → 相關報導區永遠停在舊狀態。這正是本站記憶裡「自動內容旁的靜默 staleness」，
+    所以把 mention 映射一起切進去（比照 _constructor_slice 只切「頁面真的會渲染的東西」）。
+    """
     fp_years = {str(y): _h(_year_slice(con, y)) for y in range(FIRST_YEAR, LAST_YEAR + 1)}
-    fp_drivers = {did: _h(_driver_slice(con, did)) for did in CHAMPION_IDS}
+    fp_drivers_db = {did: _h(_driver_slice(con, did)) for did in CHAMPION_IDS}
+    fp_drivers = {did: _h({"db": fp_drivers_db[did],
+                           "articles": il.driver_articles_slice(did)})
+                  for did in CHAMPION_IDS}
     fp_cons = {cid: _h(_constructor_slice(con, cid)) for cid in CONSTRUCTOR_IDS}
     return {
         "seasons": fp_years,
@@ -149,7 +158,9 @@ def compute_fingerprints(con):
         # 索引＝其成員指紋的合成；任一成員變 → 索引指紋變 → 索引重生
         "indices": {
             "seasons": _h(sorted(fp_years.items())),
-            "drivers": _h(sorted(fp_drivers.items())),
+            # /drivers/ 索引不渲染相關報導 → 用 **db-only** 的成員指紋合成，
+            # 免得發一篇文章就把索引白刷一次（內容一字不變的重寫正是指紋機制要避免的）
+            "drivers": _h(sorted(fp_drivers_db.items())),
             "constructors": _h(sorted(fp_cons.items())),
         },
     }
