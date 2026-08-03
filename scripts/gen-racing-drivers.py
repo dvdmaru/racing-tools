@@ -355,16 +355,16 @@ def gen_driver(did, con):
     body = f"""{hero}
 <div class="stat-grid">{cards}</div>
 
-<div class="sec-title">生涯時間軸</div>
+<h2 class="sec-title">生涯時間軸</h2>
 <p class="note">跑過的賽季填色，<b>世界冠軍年加深紅並加粗</b>。{s["championships"]} 座冠軍：{esc('、'.join(map(str, s["champ_years"]))) or '—'}<br>
 可點的年份會進入該賽季頁（{"該車手的賽季成績子頁" if did in gs.p0.DRIVERS else "該季總覽"}）。</p>
 {tl}
 
-<div class="sec-title">效力車隊</div>
+<h2 class="sec-title">效力車隊</h2>
 <div class="rel">{rel or '<span class="rel-off">—</span>'}</div>
 <p class="note">灰色車隊＝本階段尚未建頁，後續補上。</p>
 
-<div class="sec-title">方法說明</div>
+<h2 class="sec-title">方法說明</h2>
 <p class="note">本頁只發布四個定義明確、可回溯到官方原始資料的欄位：世界冠軍、分站冠軍、頒獎台、參賽場次。
 每個數字旁的「怎麼算的」可展開，逐筆列出來源賽季與賽站並連回對應頁。統計一律由明細筆數產生、不獨立維護。<br>
 <b>桿位、最快圈、生涯積分暫不發布</b>：定義或資料範圍尚未定案（例如資料源的起跑位含罰退、最快圈欄位早年缺漏、生涯積分有兩種都成立的口徑），
