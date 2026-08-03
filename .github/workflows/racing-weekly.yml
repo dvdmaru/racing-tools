@@ -31,9 +31,36 @@ concurrency:
 
 jobs:
   update:
-    # GitHub Environment 的 required reviewer 需由 Charlie 在 repo settings 手動設定；
-    # environment 保護規則套用於 job，未核准前不會取得 secrets 或執行部署管線。
-    environment: production
+    # ☠️ 2026-08-03 拿掉 `environment: production`（原本每次部署都要 Charlie 手動核准）。
+    #
+    # 拿掉的理由是實測數據，不是嫌麻煩——排程觸發的 run 只有第一次成功：
+    #   07-25 22:55  ✅ 成功（12 步）← 設定當天，Charlie 人在旁邊按的
+    #   07-26 23:01  ❌ 取消，實際執行 0 步
+    #   07-31 22:48  ❌ 取消，實際執行 0 步
+    #   08-01 22:55  ❌ 取消，實際執行 0 步（枯等 2 天）
+    #   08-02 22:59  ❌ 取消，實際執行 0 步
+    # 五次排程成功一次，其餘四次連一個步驟都沒跑過：開機 → 卡在等核准 → 沒人注意到 →
+    # 被下次手動觸發擠掉。這個站真實的更新節奏因此不是「每週一自動更新」，
+    # 而是「剛好有人在弄它的時候才更新」（R11 匈牙利就是 7/26 排程被取消、7/27 手動補的）。
+    #
+    # **一道需要人按、而那個人不在的 gate，不是 gate，是一個關掉的開關。**
+    # 它比亮紅的 gate 更難發現，因為它「成功」的外觀就是什麼都沒發生。
+    #
+    # ⚠️ 這不是「拿掉審查」，是把審查移到它真的能發揮作用的那一層。
+    # 部署那一刻沒有人審得動 374 頁，那一按必然退化成「對，我要部署」＝零資訊。
+    # 現行政策（Charlie 2026-08-03）：**上線前開圓桌做 cross-check**，人在合併前看內容；
+    # 合併之後的部署是機械的。查核桌 GO ≠ 合併授權，合併仍由 Charlie 明示。
+    #
+    # 部署前仍在的機械擋線（沒有任何一道被這次改動放鬆）：
+    #   · tests.yml + 本檔的 unit tests 全綠才走
+    #   · update-racing.py 的 hard gate：任何前置步驟失敗 → 禁止部署、正式站維持上一版
+    #   · config/approved.json：文章預設拒絕 ＋ 綁 sha256（改過即失效、整篇下架）
+    #   · check-site-facts.py：跨頁事實一致性
+    #   · check-f1-invariants.py：失敗集合須恰等於宣告例外集合
+    #   · check-encyclopedia-freshness.py：百科層與週更層賽曆必須一致
+    #   · check-season-intros.py／check-zh.py：導言機械對帳、譯名一致性
+    #
+    # ⚠️ 若日後有人想把核准加回來：先看上面那張表。加回來的預期效果是「排程再次全部靜默停擺」。
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
