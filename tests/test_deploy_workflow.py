@@ -32,9 +32,14 @@ WORKFLOW = ROOT / ".github" / "workflows" / "racing-weekly.yml"
 UPDATER = ROOT / "scripts" / "update-racing.py"
 
 # 部署前必須跑到的機械擋線（update-racing.py 的跑序裡要看得到這些腳本）
+# ☠️ check-encyclopedia-freshness 一開始不在這份清單——它出生時只存在於測試和
+# workflow 註解的 gate 清單裡，管線根本沒呼叫它（2026-08-03 抓到）。
+# 我們在修「文件宣稱 ≠ 實際接線」的同一天生產了一個同型 bug：
+# 散文式清單會腐爛，這份 tuple ＋下面的呼叫點掃描才是登記制。
 REQUIRED_GATES = (
-    "check-site-facts.py",        # 跨頁事實一致性
-    "build-sitemap.py",           # sitemap 合併（漏收即整區缺席）
+    "check-site-facts.py",               # 跨頁事實一致性
+    "build-sitemap.py",                  # sitemap 合併（漏收即整區缺席）
+    "check-encyclopedia-freshness.py",   # 百科 db vs 週更層賽曆對帳
 )
 
 
@@ -91,6 +96,22 @@ class MechanicalGatesStillWired(unittest.TestCase):
         """任何前置步驟失敗 → 禁止部署。這是拿掉人工核准後最後的硬擋線。"""
         self.assertRegex(self.src, r"if FAILED:[\s\S]{0,400}?禁止部署",
                          "hard gate（前置失敗即禁止部署）不見了")
+
+    def test_freshness_gate_runs_between_refresh_and_regen(self):
+        """新鮮度 gate 的位置本身就是斷言：refresh 之後（驗它的產出）、regen 之前（擋在
+        頁面生成前——過期的 db 一旦生成頁面，錯的站數就上線了）。
+
+        反向意義：只驗「有被呼叫」的話，把它挪到 regen 之後也綠，但那時 gate 已經
+        擋不住任何東西——它驗完，錯的頁面已經寫出去了。
+        """
+        refresh = re.search(r'script\("refresh-f1-current\.py"\)', self.src)
+        fresh = re.search(r'script\("check-encyclopedia-freshness\.py"\)', self.src)
+        regen = re.search(r'script\("regen-encyclopedia\.py"', self.src)
+        for m, name in ((refresh, "refresh"), (fresh, "freshness"), (regen, "regen")):
+            self.assertIsNotNone(m, f"找不到 {name} 的呼叫點")
+        self.assertLess(refresh.start(), fresh.start(), "freshness 必須在 refresh 之後")
+        self.assertLess(fresh.start(), regen.start(),
+                        "freshness 必須在 regen 之前——驗在頁面生成之後＝零攔截力")
 
     def test_workflow_runs_unit_tests_before_deploy(self):
         """同上：比對 `run:` 實際步驟，不是註解裡提到的檔名。"""
