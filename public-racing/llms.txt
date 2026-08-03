@@ -8,12 +8,13 @@
 
 - [首頁數據儀表板](https://racing.twtools.cc/)：積分速覽、下一站台北時間、最新賽果。
 - [積分榜](https://racing.twtools.cc/standings/)：車手與車隊年度積分，台灣慣用譯名＋原文對照。
-- [賽曆 · 台北時間](https://racing.twtools.cc/calendar/)：全季 22 站正賽/排位/衝刺賽時刻換算台北時間（UTC+8）。
+- [賽曆 · 台北時間](https://racing.twtools.cc/calendar/)：全季各站正賽/排位/衝刺賽時刻換算台北時間（UTC+8）。
 - [各站賽果](https://racing.twtools.cc/results/)：已完賽站完整官方分類（含衝刺賽）。
 - [文章總覽](https://racing.twtools.cc/articles/)：規則解析與對照表長文，逐項標註來源。
 
 ## 最新文章
 
+- [大獎賽的名字，不是地名：F1 名實脫鉤的三種方式](https://racing.twtools.cc/articles/f1-2026-bahrain-gp-in-malaysia/)（2026-08-01）
 - [F1 怎麼知道場上每一台車在哪裡：計時、定位與賽事控制的科技](https://racing.twtools.cc/articles/f1-tech-timing-positioning-race-control/)（2026-07-30）
 - [匈牙利站藍旗故障：FIA 紀錄裡 11 條藍旗，7 條早了 17 分鐘以上、2 條發給從沒被套圈的車](https://racing.twtools.cc/articles/f1-2026-r11-hungary-blue-flag-failure/)（2026-07-30）
 - [匈牙利站戰報：諾里斯第 1 位發車奪冠，全場領先易主 7 次](https://racing.twtools.cc/articles/f1-2026-r11-hungary-report/)（2026-07-27）
