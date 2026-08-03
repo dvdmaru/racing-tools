@@ -1,96 +1,96 @@
 {
- "_comment": "default-deny 發布核准清單。只有 article_sha256 完全命中的文章才會進輸出。facts_sha256 與 check_report_sha256 保留產稿及對帳證據；核准者不得與產稿者相同。",
- "_migration_note": "下面兩篇是 2026-07-19 建站時就已上線的長青文，早於本 gate 與 facts 管線存在。Charlie 當時以合併 PR 的方式核准過它們，此處是把既有核准補記成清單條目，不是新的核准。它們不是 facts 管線產出，故 facts_sha256 與 check_report_sha256 為 null。⚠️ 清單為空時 build 會把已上線文章一併下架（default-deny 的正確行為），所以導入 gate 時務必同步補記既有內容。",
- "approved": [
-  {
-   "slug": "f1-2026-names-glossary",
-   "article_sha256": "b124991754a930e0b63672cce4c9730b936a7cfcd43cd5a3811bae2c4d3a52ee",
-   "facts_sha256": null,
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-20T15:40:00+08:00",
-   "note": "建站長青文，補記既有核准"
-  },
-  {
-   "slug": "f1-2026-rules-guide",
-   "article_sha256": "2c6298357828d5c7398ff754ab38f94b57ebaf33f218cfda4ada595acfad6783",
-   "facts_sha256": null,
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-08-01T11:26:52+08:00",
-   "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。　2026-08-01 勘誤重新核准（Charlie：「勘誤 OK」）：賽曆段落與 FAQ 由 22 站更新為 23 站——巴林站移師馬來西亞雪邦、10 月 2 至 4 日舉行並沿用原名稱，沙烏地站未再排入。另修三處：①官方公告標題用字是「不會在 4 月舉行」，原文的「取消」是本站轉述時的加強，已改回官方用字 ②文末「賽季剩下的 13 站」由舊總數推算而來（22 減已跑 9 站），改為不帶推算數字的寫法——**這一句用 grep「22 站」掃不到，是新增 check-site-facts.py 的直接由來** ③出處標籤「Sky Sports（22 站賽曆確認）」改為描述該報導當時的內容。規則與技術規格部分未更動；勘誤已記入 data/errata.json，會出現在頁面的本頁勘誤區塊。　sha256 7d23f22f… → 2c629835…"
-  },
-  {
-   "slug": "season-intro-2002",
-   "article_sha256": "e00f98f54e4827da1b6876beea633bbaed456ccd4e42f3d5b34d77f84fbc2999",
-   "facts_sha256": "90b72dbad144822ee416c7390972871680ce50d0194977ca7ef87a3adf3bb839",
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-23T23:06:05+08:00",
-   "note": "2002 賽季人工導言核准"
-  },
-  {
-   "slug": "season-intro-1950",
-   "article_sha256": "a3a90f17289dee4425167cdf7a7749cbe49c541189c9a568782bc71801487619",
-   "facts_sha256": "5eecb03e2d09bfd1c94d3da341e59521f6e7e596f041378fea29f85f6116399c",
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-24T15:24:27+08:00",
-   "note": "1950 賽季人工導言核准"
-  },
-  {
-   "slug": "season-intro-1988",
-   "article_sha256": "dbaa9d608c075375aac929494d1a139f4e8b88af6e1c8cff93feb45a2627655b",
-   "facts_sha256": "e655ce888818d6a252a7cc0331c07962c20b03686f071ed06df32b2ecd13a973",
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-24T15:24:27+08:00",
-   "note": "1988 賽季人工導言核准"
-  },
-  {
-   "slug": "season-intro-2021",
-   "article_sha256": "e758b78b11cbab2e92e8be4f9fe872d16582a7747e42fa9949d9fb4e35b93abf",
-   "facts_sha256": "5666442d3e02378ce6232c8fdd4b23732f05e55926483422596592ed741a07e0",
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-24T15:24:27+08:00",
-   "note": "2021 賽季人工導言核准"
-  },
-  {
-   "slug": "f1-2026-r11-hungary-report",
-   "article_sha256": "2e9cffcb7c13761c5f68e046d0f92602f10003290878ea058721629031dff2c8",
-   "facts_sha256": "6a067c59572111f682ee3ee44818017f81f56ace0a5afb3f1071f5d810c59bd2",
-   "check_report_sha256": "884c629e0a2ac7f6ea9dc1c1e5c011fb9635bdb12057d6a12595e9fd7bf1f2cc",
-   "approved_by": "charlie",
-   "approved_at": "2026-07-27T12:05:00+08:00",
-   "note": "內容線首篇戰報。查核桌 Terra 三輪 Content GO＋風格關後上線（v3）。2026-07-27 勘誤 v4：原「第 2 圈時排在第 19 位」把 facts pack 的 lap=2 與 from_pos=19 兩個不同時點黏成一句，實際為第 1 圈結束時 P19、第 2 圈結束時 P18；已改為依 /laps 原始逐圈名次陳述。Charlie 核准「戰報過」後之勘誤，不另求核准。　2026-07-30 勘誤 v5：①「賽因斯」→「塞恩斯」——driver-zh.json（approved-live）與譯名對照表全站都作塞恩斯，只有本篇不一致，而新上線的藍旗故障分析會連到本篇，讀者點過去就看到兩個名字；check-zh 只查譯名表不查文章正文，故全綠。②「停了 28.658 秒」→「維修道通行時間」——45 筆全部落在 21–29 秒，不可能是靜止時間（靜止約 2–3 秒），原措辭會讓讀者以為車在千斤頂上待了 28 秒。比照 v4 勘誤慣例：Charlie 核准後之勘誤不另求核准。"
-  },
-  {
-   "slug": "f1-2026-r11-hungary-blue-flag-failure",
-   "article_sha256": "3c51cff64443faf762e08ee8140989c70923a7de35392b9c439f58a4cf521d9c",
-   "facts_sha256": null,
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-30T14:58:21+08:00",
-   "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。　2026-07-30 上線前修訂（資安節）：Charlie 裁決保留該節後，作者席另開一席做檢索覆蓋率擴充（10 種語言＋資安專業媒體＋Reddit 兩板逐留言掃描＋FIA 全 63 份文件）。結果：來源層仍零反例（原主張成立），但**社群層確實有人提出干擾疑問**，原文完全未提＝不完整，讀者自行在 Reddit 撞到會誤以為本站選擇性忽略。已改寫為：具體寫出擴充後的檢索邊界；承認社群有此推測並附同串內的反證（當日 GPS 干擾監測資料不支持、當地讀者表示無異常）；明白區分「網友提問」與「來源主張」；補記三個易被誤引為反例的不同事件（2025-10 車手分級系統外洩、2024 FIA email 釣魚、2012 F1 網站 DDoS）。⚠️ 刻意不採用該席建議引用的一則 Reddit 技術反駁（稱藍旗靠計時線圈不靠 GPS）——它與本站另一篇引用的 FIA 技術規則 C8.11.1 相矛盾；用錯的反駁去駁沒證據的假說是雙重錯誤。亦不引用網友帳號與原文（可辨識個人，描述討論存在即足夠）。"
-  },
-  {
-   "slug": "f1-tech-timing-positioning-race-control",
-   "article_sha256": "7a758eaa7685f04488478d7eeb4048a57f389b9d5024343d61634494bbc9c85a",
-   "facts_sha256": null,
-   "check_report_sha256": null,
-   "approved_by": "charlie",
-   "approved_at": "2026-07-30T14:58:21+08:00",
-   "note": "外部來源文（guide，長青）。同上查核桌 R4 Content GO。非 facts 管線產出，走 verify-sources。Charlie 2026-07-30 裁決「發」。"
-  },
-  {
-   "slug": "f1-2026-bahrain-gp-in-malaysia",
-   "article_sha256": "0aa387a33376835092ea9006973d7b0ebd5feb860436f32192af9c4d62d0b5bf",
-   "facts_sha256": "6405628fef4cfb0c420ddea97e9b21980c7b3fa7fd7fc1819ae3d25ddd22f2f2",
-   "check_report_sha256": "88843b6a8b4119645ff966ccccb70ecc38aabb04b64a0dd88f36947dca9392e7",
-   "approved_by": "charlie",
-   "approved_at": "2026-08-01T10:40:40+08:00",
-   "note": "深度專題「大獎賽的名字，不是地名：F1 名實脫鉤的三種方式」。管線走完五步：facts pack → Sonnet 主寫 → 機械對帳 → Charlie cross-check → 發布。連退兩輪：v1 骨架搭在『糾正外電』上（記憶 W19），v2 改為解釋性長青文；v3 為零事實改動的風格改稿（記憶 W20：小 Lin 說／張泉靈文風、gate 語言不進正文、標題去標籤化、指代具體化）。Charlie 對 v2 說『文章 ok』後 v3 又動過文字，**已就 v3 定稿再次確認**（『定稿 OK』），本條綁的是 v3 的位元。對帳 15/15 事實零漂移；連結 16 條 curl 逐條驗 200。　2026-08-01 證據補正：facts pack 補上 voice 規格、自有資料 scope、以及對帳時才查到的 1975 年非錦標賽瑞士站（verify-numbers 抓到稿內 1975 懸空無出處）。**article_sha256 未變＝文章一個字沒動、核准仍然有效**，這裡只更新證據指紋。"
-  }
- ]
+  "_comment": "default-deny 發布核准清單。只有 article_sha256 完全命中的文章才會進輸出。facts_sha256 與 check_report_sha256 保留產稿及對帳證據；核准者不得與產稿者相同。",
+  "_migration_note": "下面兩篇是 2026-07-19 建站時就已上線的長青文，早於本 gate 與 facts 管線存在。Charlie 當時以合併 PR 的方式核准過它們，此處是把既有核准補記成清單條目，不是新的核准。它們不是 facts 管線產出，故 facts_sha256 與 check_report_sha256 為 null。⚠️ 清單為空時 build 會把已上線文章一併下架（default-deny 的正確行為），所以導入 gate 時務必同步補記既有內容。",
+  "approved": [
+    {
+      "slug": "f1-2026-names-glossary",
+      "article_sha256": "b124991754a930e0b63672cce4c9730b936a7cfcd43cd5a3811bae2c4d3a52ee",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-20T15:40:00+08:00",
+      "note": "建站長青文，補記既有核准"
+    },
+    {
+      "slug": "f1-2026-rules-guide",
+      "article_sha256": "2c6298357828d5c7398ff754ab38f94b57ebaf33f218cfda4ada595acfad6783",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-01T11:26:52+08:00",
+      "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。　2026-08-01 勘誤重新核准（Charlie：「勘誤 OK」）：賽曆段落與 FAQ 由 22 站更新為 23 站——巴林站移師馬來西亞雪邦、10 月 2 至 4 日舉行並沿用原名稱，沙烏地站未再排入。另修三處：①官方公告標題用字是「不會在 4 月舉行」，原文的「取消」是本站轉述時的加強，已改回官方用字 ②文末「賽季剩下的 13 站」由舊總數推算而來（22 減已跑 9 站），改為不帶推算數字的寫法——**這一句用 grep「22 站」掃不到，是新增 check-site-facts.py 的直接由來** ③出處標籤「Sky Sports（22 站賽曆確認）」改為描述該報導當時的內容。規則與技術規格部分未更動；勘誤已記入 data/errata.json，會出現在頁面的本頁勘誤區塊。　sha256 7d23f22f… → 2c629835…"
+    },
+    {
+      "slug": "season-intro-2002",
+      "article_sha256": "e00f98f54e4827da1b6876beea633bbaed456ccd4e42f3d5b34d77f84fbc2999",
+      "facts_sha256": "90b72dbad144822ee416c7390972871680ce50d0194977ca7ef87a3adf3bb839",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-23T23:06:05+08:00",
+      "note": "2002 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1950",
+      "article_sha256": "a3a90f17289dee4425167cdf7a7749cbe49c541189c9a568782bc71801487619",
+      "facts_sha256": "5eecb03e2d09bfd1c94d3da341e59521f6e7e596f041378fea29f85f6116399c",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-24T15:24:27+08:00",
+      "note": "1950 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1988",
+      "article_sha256": "e352afaeba659b3520179be36d4275d8b05243527e8bdff7415b177cdcb7ed8b",
+      "facts_sha256": "46860a59c4b07370f424e064a9ebfc6069fc8627fe684b910f06a2e9dd231921",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-24T15:24:27+08:00",
+      "note": "1988 賽季人工導言核准；2026-08-04 依 Charlie 裁決 senna 譯名冼拿→塞納重綁（純譯名替換，事實零變動，見 zh-legacy-conflicts）"
+    },
+    {
+      "slug": "season-intro-2021",
+      "article_sha256": "e758b78b11cbab2e92e8be4f9fe872d16582a7747e42fa9949d9fb4e35b93abf",
+      "facts_sha256": "5666442d3e02378ce6232c8fdd4b23732f05e55926483422596592ed741a07e0",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-24T15:24:27+08:00",
+      "note": "2021 賽季人工導言核准"
+    },
+    {
+      "slug": "f1-2026-r11-hungary-report",
+      "article_sha256": "2e9cffcb7c13761c5f68e046d0f92602f10003290878ea058721629031dff2c8",
+      "facts_sha256": "6a067c59572111f682ee3ee44818017f81f56ace0a5afb3f1071f5d810c59bd2",
+      "check_report_sha256": "884c629e0a2ac7f6ea9dc1c1e5c011fb9635bdb12057d6a12595e9fd7bf1f2cc",
+      "approved_by": "charlie",
+      "approved_at": "2026-07-27T12:05:00+08:00",
+      "note": "內容線首篇戰報。查核桌 Terra 三輪 Content GO＋風格關後上線（v3）。2026-07-27 勘誤 v4：原「第 2 圈時排在第 19 位」把 facts pack 的 lap=2 與 from_pos=19 兩個不同時點黏成一句，實際為第 1 圈結束時 P19、第 2 圈結束時 P18；已改為依 /laps 原始逐圈名次陳述。Charlie 核准「戰報過」後之勘誤，不另求核准。　2026-07-30 勘誤 v5：①「賽因斯」→「塞恩斯」——driver-zh.json（approved-live）與譯名對照表全站都作塞恩斯，只有本篇不一致，而新上線的藍旗故障分析會連到本篇，讀者點過去就看到兩個名字；check-zh 只查譯名表不查文章正文，故全綠。②「停了 28.658 秒」→「維修道通行時間」——45 筆全部落在 21–29 秒，不可能是靜止時間（靜止約 2–3 秒），原措辭會讓讀者以為車在千斤頂上待了 28 秒。比照 v4 勘誤慣例：Charlie 核准後之勘誤不另求核准。"
+    },
+    {
+      "slug": "f1-2026-r11-hungary-blue-flag-failure",
+      "article_sha256": "3c51cff64443faf762e08ee8140989c70923a7de35392b9c439f58a4cf521d9c",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-30T14:58:21+08:00",
+      "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。　2026-07-30 上線前修訂（資安節）：Charlie 裁決保留該節後，作者席另開一席做檢索覆蓋率擴充（10 種語言＋資安專業媒體＋Reddit 兩板逐留言掃描＋FIA 全 63 份文件）。結果：來源層仍零反例（原主張成立），但**社群層確實有人提出干擾疑問**，原文完全未提＝不完整，讀者自行在 Reddit 撞到會誤以為本站選擇性忽略。已改寫為：具體寫出擴充後的檢索邊界；承認社群有此推測並附同串內的反證（當日 GPS 干擾監測資料不支持、當地讀者表示無異常）；明白區分「網友提問」與「來源主張」；補記三個易被誤引為反例的不同事件（2025-10 車手分級系統外洩、2024 FIA email 釣魚、2012 F1 網站 DDoS）。⚠️ 刻意不採用該席建議引用的一則 Reddit 技術反駁（稱藍旗靠計時線圈不靠 GPS）——它與本站另一篇引用的 FIA 技術規則 C8.11.1 相矛盾；用錯的反駁去駁沒證據的假說是雙重錯誤。亦不引用網友帳號與原文（可辨識個人，描述討論存在即足夠）。"
+    },
+    {
+      "slug": "f1-tech-timing-positioning-race-control",
+      "article_sha256": "7a758eaa7685f04488478d7eeb4048a57f389b9d5024343d61634494bbc9c85a",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-07-30T14:58:21+08:00",
+      "note": "外部來源文（guide，長青）。同上查核桌 R4 Content GO。非 facts 管線產出，走 verify-sources。Charlie 2026-07-30 裁決「發」。"
+    },
+    {
+      "slug": "f1-2026-bahrain-gp-in-malaysia",
+      "article_sha256": "0aa387a33376835092ea9006973d7b0ebd5feb860436f32192af9c4d62d0b5bf",
+      "facts_sha256": "6405628fef4cfb0c420ddea97e9b21980c7b3fa7fd7fc1819ae3d25ddd22f2f2",
+      "check_report_sha256": "88843b6a8b4119645ff966ccccb70ecc38aabb04b64a0dd88f36947dca9392e7",
+      "approved_by": "charlie",
+      "approved_at": "2026-08-01T10:40:40+08:00",
+      "note": "深度專題「大獎賽的名字，不是地名：F1 名實脫鉤的三種方式」。管線走完五步：facts pack → Sonnet 主寫 → 機械對帳 → Charlie cross-check → 發布。連退兩輪：v1 骨架搭在『糾正外電』上（記憶 W19），v2 改為解釋性長青文；v3 為零事實改動的風格改稿（記憶 W20：小 Lin 說／張泉靈文風、gate 語言不進正文、標題去標籤化、指代具體化）。Charlie 對 v2 說『文章 ok』後 v3 又動過文字，**已就 v3 定稿再次確認**（『定稿 OK』），本條綁的是 v3 的位元。對帳 15/15 事實零漂移；連結 16 條 curl 逐條驗 200。　2026-08-01 證據補正：facts pack 補上 voice 規格、自有資料 scope、以及對帳時才查到的 1975 年非錦標賽瑞士站（verify-numbers 抓到稿內 1975 懸空無出處）。**article_sha256 未變＝文章一個字沒動、核准仍然有效**，這裡只更新證據指紋。"
+    }
+  ]
 }

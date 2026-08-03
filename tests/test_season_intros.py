@@ -185,12 +185,12 @@ class IntroStyleTests(unittest.TestCase):
             self.assertNotIn("—", self._text(y), f"{y} 不得使用 em dash")
 
     def test_only_approved_translations(self):
-        # 有 approved 譯名者用譯名；無者用原文。抽驗：舒馬克/冼拿/維斯塔潘/漢米爾頓/法拉利/麥拉倫 用譯名；
+        # 有 approved 譯名者用譯名；無者用原文。抽驗：舒馬克/塞納/維斯塔潘/漢米爾頓/法拉利/麥拉倫 用譯名；
         # 無譯名者（Barrichello/Alfa Romeo）維持原文、不得出現自譯中文名。
         # ⚠️ Fangio/Farina/Prost 於 2026-07-23 M6 已回填 approved 譯名，但既有導言草稿仍以原文書寫
         #    （草稿是靜態 .md、不隨譯名表變動）；下方 banned 清單相應排除這三個新 approved 值。
         self.assertIn("麥可・舒馬克", self._text(2002))
-        self.assertIn("艾爾頓・冼拿", self._text(1988))
+        self.assertIn("艾爾頓・塞納", self._text(1988))
         self.assertIn("麥克斯・維斯塔潘", self._text(2021))
         self.assertIn("路易斯・漢米爾頓", self._text(2021))
         self.assertIn("法拉利", self._text(2002))
