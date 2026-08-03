@@ -44,7 +44,10 @@ rc = _load("racinglib", "racinglib.py")
 fs = _load("f1stats", "f1stats.py")
 p0 = _load("gen_racing_entities_phase0", "gen-racing-entities-phase0.py")
 gs = _load("gen_racing_seasons", "gen-racing-seasons.py")
-il = _load("interlink", "interlink.py")
+# ⚠️ 借 gs 那一份 interlink（gs 載入時已 bind_seasons 進去），不另 _load 一份：
+# 分站頁的相關報導由 gs 渲染、車手頁的由本檔渲染，兩邊必須是**同一個** il 實例，
+# 否則測試 patch il.ARTICLES 只會生效一半，線上也會出現一邊更新一邊沒更新的漂移。
+il = gs.il
 
 BASE = rc.BASE
 PUB = ROOT / "public-racing"

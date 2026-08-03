@@ -47,6 +47,7 @@ import json
 import math
 import pathlib
 import re
+import types
 from collections import defaultdict
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -63,6 +64,9 @@ rc = _load("racinglib", "racinglib.py")
 fs = _load("f1stats", "f1stats.py")
 # Phase 0 當視覺元件庫用：import 只載模組（main 在 __main__ 下不執行），不寫任何檔、不改 phase0
 p0 = _load("gen_racing_entities_phase0", "gen-racing-entities-phase0.py")
+# 分站頁的「相關報導」＝文章互鏈的反向端；規則層在 interlink.py（與正向共用同一張判定表）。
+# 本檔載入尾端會 il.bind_seasons() 把站次表交回去（避免 il 再 lazy load 一份 gs 造成模組圖分岔）。
+il = _load("interlink", "interlink.py")
 
 RAW = ROOT / "data" / "f1" / "raw"
 PUB = rc.PUB
@@ -678,6 +682,13 @@ def season_round_numbers(year):
 def round_page_paths(year):
     """該季所有分站頁根相對路徑集合（不含前導斜線），供交叉連結 gate（無死連結）。"""
     return {f"seasons/{year}/rounds/{rnd}" for rnd in season_round_numbers(year)}
+
+
+# 把「哪些站有頁／各站叫什麼」交給 interlink 當分站互鏈的唯一判定來源。
+# 明確只交這兩支純讀函式（而非整個模組），讓這條相依關係的介面面積看得見；
+# 也讓 il 不必自己 lazy load 一份 gs——同一份模組圖，兩邊的站次表不會漂。
+il.bind_seasons(types.SimpleNamespace(season_round_numbers=season_round_numbers,
+                                      _schedule=_schedule))
 
 
 def is_classified(res):
@@ -1769,7 +1780,7 @@ def render_round(year, rnd, round_paths=None, sub_paths=None):
 {sprint_html}
 
 <h2 class="sec-title">退賽名單</h2>
-{ret_html}
+{ret_html}{il.round_related_articles_html(year, rnd, esc=esc)}
 
 <p class="note">本頁為 {year} 賽季第 {rnd} 站的單場分站頁。所有數字直接取自官方正賽{('與衝刺賽 ' if sprint_html else '')}賽果檔，可回溯來源；回到 <a href="{overview_url}">{year} 賽季總覽</a>。</p>
 """

@@ -137,15 +137,33 @@ def _constructor_slice(con, cid):
     }
 
 
-def compute_fingerprints(con):
-    """回全站頁群指紋：{'seasons':{y:h}, 'drivers':{did:h}, 'constructors':{cid:h}, 'indices':{…}}。
+def round_keys(round_years):
+    """有分站頁的 (year, round) 全集（升冪）。站次表＝gs.season_round_numbers，不另抄判定。"""
+    return [(y, r) for y in sorted(round_years) for r in gs.season_round_numbers(y)]
 
-    ⚠️ 車手頁指紋＝**db 切片 ＋ 文章 mention 切片**兩塊。原本只切 db.sqlite，但車手頁的
-    「相關報導」讀的是 articles/：新發一篇提到某車手的文章時 db 一個 byte 都沒動 → 指紋不變
-    → 該頁不重生 → 相關報導區永遠停在舊狀態。這正是本站記憶裡「自動內容旁的靜默 staleness」，
-    所以把 mention 映射一起切進去（比照 _constructor_slice 只切「頁面真的會渲染的東西」）。
+
+def compute_fingerprints(con, round_years=None):
+    """回全站頁群指紋：{'seasons', 'rounds', 'drivers', 'constructors', 'indices'}。
+
+    ⚠️ 車手頁／分站頁指紋＝**db 切片 ＋ 文章 mention 切片**兩塊。原本只切 db.sqlite，但這兩種
+    頁的「相關報導」讀的是 articles/：新發一篇提到某車手／某站的文章時 db 一個 byte 都沒動 →
+    指紋不變 → 該頁不重生 → 相關報導區永遠停在舊狀態。這正是本站記憶裡「自動內容旁的靜默
+    staleness」，所以把 mention 映射一起切進去（比照 _constructor_slice 只切「頁面真的會渲染
+    的東西」）。
+
+    ⚠️ 分站頁指紋刻意**獨立於賽季總覽頁**：發一篇提到某站的文章只該重生那一頁，
+    該季總覽與 /seasons/ 索引一個 byte 都不該動（它們不渲染相關報導）。所以
+    indices.seasons 仍只由 db-only 的 fp_years 合成，分站的 articles 切片不進去。
     """
+    round_years = set(rc.ROUND_YEARS if round_years is None else round_years)
     fp_years = {str(y): _h(_year_slice(con, y)) for y in range(FIRST_YEAR, LAST_YEAR + 1)}
+    # 分站頁掛在該季 db 切片之上：賽季資料一變（新賽果）該季全部分站頁本來就會重生，
+    # 沿用同一個 hash 當底，行為與 M7 原本的「季變→_render_one_season 全季重生」一致。
+    # round 本身也切進 hash：否則同一季內沒有相關報導的站會算出同一個值，
+    # 指紋就不再「識別那一頁」（比對雖仍逐鍵、不會出錯，但一個認不出自己是誰的指紋遲早被誤用）
+    fp_rounds = {f"{y}/{r}": _h({"round": [y, r], "db": fp_years[str(y)],
+                                 "articles": il.round_articles_slice(y, r)})
+                 for y, r in round_keys(round_years)}
     fp_drivers_db = {did: _h(_driver_slice(con, did)) for did in CHAMPION_IDS}
     fp_drivers = {did: _h({"db": fp_drivers_db[did],
                            "articles": il.driver_articles_slice(did)})
@@ -153,13 +171,14 @@ def compute_fingerprints(con):
     fp_cons = {cid: _h(_constructor_slice(con, cid)) for cid in CONSTRUCTOR_IDS}
     return {
         "seasons": fp_years,
+        "rounds": fp_rounds,
         "drivers": fp_drivers,
         "constructors": fp_cons,
         # 索引＝其成員指紋的合成；任一成員變 → 索引指紋變 → 索引重生
         "indices": {
+            # /seasons/ 索引與各季總覽都不渲染相關報導 → **db-only**，
+            # 免得發一篇文章就把索引與總覽白刷一次（內容一字不變的重寫正是指紋機制要避免的）
             "seasons": _h(sorted(fp_years.items())),
-            # /drivers/ 索引不渲染相關報導 → 用 **db-only** 的成員指紋合成，
-            # 免得發一篇文章就把索引白刷一次（內容一字不變的重寫正是指紋機制要避免的）
             "drivers": _h(sorted(fp_drivers_db.items())),
             "constructors": _h(sorted(fp_cons.items())),
         },
@@ -216,14 +235,15 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
     （完整 URL 集，非只有這次變動的頁）。
     """
     round_years = set(rc.ROUND_YEARS if round_years is None else round_years)
-    cur = compute_fingerprints(con)
+    cur = compute_fingerprints(con, round_years)
     prev = load_fingerprints(fp_path)
     pv_years, pv_drivers, pv_idx = (prev.get("seasons", {}), prev.get("drivers", {}),
                                     prev.get("indices", {}))
-    pv_cons = prev.get("constructors", {})
+    pv_cons, pv_rounds = prev.get("constructors", {}), prev.get("rounds", {})
 
     changed_years = [y for y in range(LAST_YEAR, FIRST_YEAR - 1, -1)
                      if full or cur["seasons"][str(y)] != pv_years.get(str(y))]
+    changed_rounds = [k for k in cur["rounds"] if full or cur["rounds"][k] != pv_rounds.get(k)]
     changed_drivers = [d for d in CHAMPION_IDS
                        if full or cur["drivers"][d] != pv_drivers.get(d)]
     changed_constructors = [c for c in CONSTRUCTOR_IDS
@@ -242,6 +262,16 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
         yurls = []
         gs._render_one_season(y, yurls, round_years)
         changed_urls.extend(yurls)
+
+    # 分站：只補「該季 db 沒變、但相關報導變了」的那幾頁。
+    # 該季 db 變過的年已由 _render_one_season 整季（含全部分站頁）重生，這裡跳過不重複寫。
+    rendered_rounds = []
+    for key in changed_rounds:
+        y, r = (int(x) for x in key.split("/"))
+        if y in changed_years:
+            continue
+        changed_urls.append(gs.render_round(y, r, gs.round_page_paths(y), gs.subpage_paths(y)))
+        rendered_rounds.append(key)
 
     # 車手：索引 + 逐個變動車手
     if idx_drivers_changed:
@@ -266,6 +296,9 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
 
     return {
         "changed_years": changed_years,
+        "changed_rounds": changed_rounds,
+        # 實際被單獨重寫的分站頁（changed_rounds 扣掉「整季重生已含」的那些）
+        "rounds_rendered_standalone": rendered_rounds,
         "changed_drivers": changed_drivers,
         "changed_constructors": changed_constructors,
         "index_seasons": idx_seasons_changed,
@@ -299,6 +332,7 @@ def main():
         print("🔴 前置 gate 未過 → 零重生。", flush=True)
         return 1
     print(f"✅ 選擇性重生：變動賽季 {res['changed_years'] or '—'}；"
+          f"單獨重生分站 {res['rounds_rendered_standalone'] or '—'}；"
           f"變動車手 {res['changed_drivers'] or '—'}；"
           f"變動車隊 {res['changed_constructors'] or '—'}；"
           f"索引(季/手/隊) {res['index_seasons']}/{res['index_drivers']}/{res['index_constructors']}；"

@@ -585,12 +585,16 @@ def build():
         # approved.json 以 sha256 凍結，源檔動一個 byte 整篇就會被上面的 gate 下架。
         # 規則（有頁才連／歧義不連／標題與表格與既有連結不連／每人只連第一次）全在 interlink.py。
         body_html, links = il.linkify(body_html)
+        # 賽站名 → 分站頁互鏈（同一支保護區實作，順序在車手之後：車手連結已是 <a>＝保護區，
+        # 不會被巢狀包一層）。年份消歧＝frontmatter 明示的 season；沒有就整篇不連（寧漏勿錯連）。
+        body_html, round_links = il.linkify_rounds(body_html, il.article_round_season(meta))
         out_dir = PUB / "articles" / slug
         out_dir.mkdir(parents=True, exist_ok=True)
         for asset in d.iterdir():
             if asset.is_file() and asset.suffix != ".md":
                 shutil.copy2(asset, out_dir / asset.name)
         articles.append({"slug": slug, "meta": meta, "excerpt": excerpt, "links": links,
+                         "round_links": round_links,
                          "faq": faq, "body_html": body_html, "out_dir": out_dir})
 
     # 真下架：曾上線後改回草稿或整篇移除的文章，輸出目錄必須刪掉——
@@ -607,8 +611,11 @@ def build():
                                   prev_nav=prev_nav, next_nav=next_nav)
         (a["out_dir"] / "index.html").write_text(html_out, encoding="utf-8")
         lk = a["links"]
-        print(f"✅ {a['slug']}" + (f"　🔗 車手頁互鏈 {len(lk)} 條："
-                                   f"{'、'.join(s for _d, s, _t in lk)}" if lk else ""))
+        rlk = a["round_links"]
+        print(f"✅ {a['slug']}"
+              + (f"　🔗 車手頁互鏈 {len(lk)} 條：{'、'.join(s for _d, s, _t in lk)}" if lk else "")
+              + (f"　🏁 分站頁互鏈 {len(rlk)} 條："
+                 f"{'、'.join(f'{y}/R{r}' for y, r, _t in rlk)}" if rlk else ""))
 
     PUB.mkdir(parents=True, exist_ok=True)
     (PUB / "index.html").write_text(render_home(articles), encoding="utf-8")
