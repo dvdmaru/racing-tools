@@ -35,6 +35,12 @@
       "key": "results"
     },
     {
+      "label": "歷年",
+      "href": "/seasons/",
+      "key": "seasons",
+      "requires": "encyclopedia"
+    },
+    {
       "label": "文章",
       "href": "/articles/",
       "key": "articles"

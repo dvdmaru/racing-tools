@@ -302,9 +302,19 @@ def sister_sites_html(site: dict = None) -> str:
 
 
 def site_header_html(active: str, site: dict = None) -> str:
+    """導覽列。帶 `"requires": "encyclopedia"` 的項目只在百科公開時出現。
+
+    ☠️ 為什麼要這個 gate：百科線在 published:false 時整段不生成，導覽列若無條件列出
+    `/seasons/`，未公開期間全站每一頁都會掛一條 404 連結。反過來，**公開了卻沒有任何
+    入口也一樣是錯的**——這站 2026-07 就因為全網域零連入被 GSC 判「URL is unknown to
+    Google」，三個月只被檢索 1 次；374 頁百科頁若只靠 sitemap 與 IndexNow 曝光、
+    站內零連入，等於把同一個錯誤在自己站內再犯一次。
+    """
     site = site or SITE
     parts = []
     for n in site.get("nav", []):
+        if n.get("requires") == "encyclopedia" and not ENCYCLOPEDIA_PUBLISHED:
+            continue
         cls = ' class="active"' if n.get("key") == active else ""
         parts.append(f'<a href="{n["href"]}"{cls}>{n["label"]}</a>')
     links = "\n      ".join(parts)
