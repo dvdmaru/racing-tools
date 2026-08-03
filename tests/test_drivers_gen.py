@@ -176,9 +176,19 @@ class GoldenDisciplineTests(unittest.TestCase):
         cls.con.close()
 
     def test_value_equals_len_detail_and_matches_golden(self):
+        """☠️ 這條原本漏傳 `as_of`，是從 2026-07-23 核准 golden 起就潛伏的 bug。
+
+        golden 是 **as_of 凍結值**：活躍車手凍結在 {2026, R10}，設計上新賽果不該打破 gate
+        （生成器的 `gate_golden()` 有正確傳 as_of）。但這裡拿**全量現值**去比凍結值，
+        於是第一場新賽果（2026 R11 匈牙利）一進來就爆——alonso entries 439 撞 golden 438。
+
+        它整整潛伏了 11 天沒被發現，因為在那之前百科資料庫是凍結的、根本沒有新賽果。
+        **一個永遠沒有新輸入的測試，綠不代表它會動。**
+        """
         for did in dr.CHAMPION_IDS:
-            car = fs.driver_career_db(did, self.con)
-            champ = fs.driver_championships_db(did, self.con)
+            as_of = self.golden[did].get("as_of")
+            car = fs.driver_career_db(did, self.con, as_of=as_of)
+            champ = fs.driver_championships_db(did, self.con, as_of=as_of)
             for key, stat in (("wins", car["wins"]), ("podiums", car["podiums"]),
                               ("entries", car["entries"]), ("championships", champ)):
                 self.assertEqual(stat["value"], len(stat["detail"]),
