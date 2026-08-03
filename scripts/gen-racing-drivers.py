@@ -356,13 +356,13 @@ def gen_driver(did, con):
 <h2 class="sec-title">效力車隊</h2>
 <div class="rel">{rel or '<span class="rel-off">—</span>'}</div>
 <p class="note">灰色車隊＝本階段尚未建頁，後續補上。</p>
-
+{il.related_articles_html(did, esc=esc)}
 <h2 class="sec-title">方法說明</h2>
 <p class="note">本頁只發布四個定義明確、可回溯到官方原始資料的欄位：世界冠軍、分站冠軍、頒獎台、參賽場次。
 每個數字旁的「怎麼算的」可展開，逐筆列出來源賽季與賽站並連回對應頁。統計一律由明細筆數產生、不獨立維護。<br>
 <b>桿位、最快圈、生涯積分暫不發布</b>：定義或資料範圍尚未定案（例如資料源的起跑位含罰退、最快圈欄位早年缺漏、生涯積分有兩種都成立的口徑），
 寧缺勿濫，待定義確定後補上。{"" if zh else "　"}</p>
-{zh_note}{il.related_articles_html(did, esc=esc)}"""
+{zh_note}"""
 
     ld = rc.graph_ld([rc.org_node(), rc.website_node(),
                       rc.breadcrumb_node([("首頁", BASE + "/"), ("車手", BASE + "/drivers/"),
