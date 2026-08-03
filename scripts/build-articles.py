@@ -32,6 +32,10 @@ spec = importlib.util.spec_from_file_location("racinglib", ROOT / "scripts" / "r
 rc = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rc)
 
+ilspec = importlib.util.spec_from_file_location("interlink", ROOT / "scripts" / "interlink.py")
+il = importlib.util.module_from_spec(ilspec)
+ilspec.loader.exec_module(il)
+
 SRC = ROOT / "articles"
 PUB = rc.PUB
 BASE = rc.BASE
@@ -577,12 +581,16 @@ def build():
         # 表格包 scroll wrapper（寬表在手機不撐破版面）
         body_html = body_html.replace("<table>", '<div class="prose-tblwrap"><table>').replace(
             "</table>", "</table></div>")
+        # 車手名 → 實體頁互鏈。☠️ 只在**渲染後的 HTML** 上做：articles/<slug>/index.md 被
+        # approved.json 以 sha256 凍結，源檔動一個 byte 整篇就會被上面的 gate 下架。
+        # 規則（有頁才連／歧義不連／標題與表格與既有連結不連／每人只連第一次）全在 interlink.py。
+        body_html, links = il.linkify(body_html)
         out_dir = PUB / "articles" / slug
         out_dir.mkdir(parents=True, exist_ok=True)
         for asset in d.iterdir():
             if asset.is_file() and asset.suffix != ".md":
                 shutil.copy2(asset, out_dir / asset.name)
-        articles.append({"slug": slug, "meta": meta, "excerpt": excerpt,
+        articles.append({"slug": slug, "meta": meta, "excerpt": excerpt, "links": links,
                          "faq": faq, "body_html": body_html, "out_dir": out_dir})
 
     # 真下架：曾上線後改回草稿或整篇移除的文章，輸出目錄必須刪掉——
@@ -598,7 +606,9 @@ def build():
         html_out = render_article(a["meta"], a["body_html"], a["slug"], a["excerpt"], a["faq"],
                                   prev_nav=prev_nav, next_nav=next_nav)
         (a["out_dir"] / "index.html").write_text(html_out, encoding="utf-8")
-        print(f"✅ {a['slug']}")
+        lk = a["links"]
+        print(f"✅ {a['slug']}" + (f"　🔗 車手頁互鏈 {len(lk)} 條："
+                                   f"{'、'.join(s for _d, s, _t in lk)}" if lk else ""))
 
     PUB.mkdir(parents=True, exist_ok=True)
     (PUB / "index.html").write_text(render_home(articles), encoding="utf-8")
