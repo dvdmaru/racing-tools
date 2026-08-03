@@ -107,6 +107,18 @@ def encyclopedia_step(full=False):
         print(f"\n⚠️  🔴 百科層：當季橋接/不變量未過（exit={rc_ref}）→ 跳過百科重生，"
               f"**週更三頁不受影響**", flush=True)
         return
+    # 1b. 兩層賽曆對帳：百科 db vs 週更 data/<season>/。放在 refresh 之後、regen 之前——
+    # 這道 gate 抓的正是「refresh 回報成功但 db 其實沒跟上」（2026-08 雪邦事故的原型），
+    # 所以必須擋在重生前面：過期的 db 一旦生成頁面，錯的站數就上線了。
+    # 不一致＝百科層失敗 → 照本段教義自我隔離（跳過重生、醒目告警、週更三頁不受影響），
+    # 舊百科頁維持上一版——過期但自洽，比「新鮮但兩層互相矛盾」好。
+    # ☠️ 這支腳本 2026-08-03 前根本沒接進管線：它只存在於測試和 workflow 註解的
+    # gate 清單裡（散文宣稱≠實際接線）。同日抓到後補上這一步。
+    rc_fresh = subprocess.run(script("check-encyclopedia-freshness.py"), cwd=str(ROOT)).returncode
+    if rc_fresh != 0:
+        print("\n⚠️  🔴 百科層：百科 db 與週更層賽曆不一致 → 跳過百科重生，"
+              "**週更三頁不受影響**（舊百科頁維持上一版）", flush=True)
+        return
     # 2. 選擇性重生（--full 透傳）＋寫 sitemap part（僅 published）。前置三 gate 由本步自跑。
     argv = script("regen-encyclopedia.py", "--publish")
     if full:
