@@ -89,7 +89,7 @@ def encyclopedia_step(full=False):
     published:false → 整段跳過（不 refresh、不重生、不寫 sitemap part、不進 IndexNow），
     只印一行訊息；週更三頁行為與改動前完全一致（byte-identical）。
     published:true → refresh-current（增量抓當季 raw＋rebuild db＋invariants）→ 選擇性重生
-    （facts-hash：只重生受新資料影響的頁）→ 寫 seasons/drivers sitemap part。重生的頁落進
+    （facts-hash：只重生受新資料影響的頁）→ 寫 seasons/drivers/constructors sitemap part。重生的頁落進
     public-racing/，由既有 git-diff 機制自動納入部署後 IndexNow。
 
     ★ 分層 fail：百科層任何失敗＝醒目告警但**不**進 FAILED、**不**擋週更三頁的 fail-fast 部署。

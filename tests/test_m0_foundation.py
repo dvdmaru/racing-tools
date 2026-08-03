@@ -177,15 +177,38 @@ class BuildSitemapMergeTests(unittest.TestCase):
             bsm.main()
         self.assertEqual(ctx.exception.code, 1)
 
-    def test_url_set_equals_union_of_four_parts(self):
-        self._write_part("articles", ["https://x/", "https://x/articles/"])
-        self._write_part("standings", ["https://x/standings/"])
-        self._write_part("calendar", ["https://x/calendar/"])
-        self._write_part("results", ["https://x/results/"])
+    def test_url_set_equals_union_of_all_parts(self):
+        for owner in bsm.OWNERS:
+            self._write_part(owner, [f"https://x/{owner}/"])
         bsm.main()
-        expected = {"https://x/", "https://x/articles/", "https://x/standings/",
-                    "https://x/calendar/", "https://x/results/"}
-        self.assertEqual(set(self._sitemap_urls()), expected)
+        self.assertEqual(set(self._sitemap_urls()),
+                         {f"https://x/{o}/" for o in bsm.OWNERS})
+
+    def test_unlisted_part_is_still_collected(self):
+        """☠️ 2026-08-03 事故的回歸測試：part 檔存在但不在 OWNERS 名單裡。
+
+        當時 `regen-encyclopedia.py --publish` 已經寫出 seasons/drivers/constructors
+        三個 part 檔，OWNERS 卻只列了原本四個 → **374 頁百科頁一頁都沒進 sitemap，
+        而且建置全綠、零錯誤訊息**。名單漏列不該讓 URL 消失，所以照收＋告警。
+        """
+        self._write_part("articles", ["https://x/"])
+        self._write_part("brand-new-section", ["https://x/brand-new-section/"])
+        bsm.main()
+        self.assertIn("https://x/brand-new-section/", self._sitemap_urls())
+
+    def test_owners_covers_every_owner_any_generator_writes(self):
+        """名單必須蓋住所有生成器實際會寫的 owner——這條才是當時該叫而沒叫的那一層。
+
+        反向意義：任何人日後新增一個 `write_sitemap_part("xxx")` 卻忘了加進 OWNERS，
+        這裡就會紅。上一條測試保證「漏列不會掉頁」，這一條保證「漏列會被發現」。
+        """
+        written = set()
+        for p in (ROOT / "scripts").glob("*.py"):
+            written |= set(re.findall(r'write_sitemap_part\(\s*"([a-z0-9-]+)"',
+                                      p.read_text(encoding="utf-8")))
+        self.assertTrue(written, "前提壞了：掃不到任何 write_sitemap_part 呼叫")
+        self.assertEqual(written - set(bsm.OWNERS), set(),
+                         "有生成器寫了 part 卻沒列進 build-sitemap.py 的 OWNERS")
 
 
 class SitemapCallSiteTests(unittest.TestCase):
