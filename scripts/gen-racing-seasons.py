@@ -1115,7 +1115,7 @@ def approved_intro_html(year, approved=None):
         return ""  # 檔案被竄改或核准 sha 對不上 → 不渲染（現狀）
     prose = md.read_text(encoding="utf-8").strip()
     paras = "".join(f"<p>{esc(p.strip())}</p>" for p in prose.split("\n\n") if p.strip())
-    return (f'\n\n<div class="sec-title">編輯導言</div>'
+    return (f'\n\n<h2 class="sec-title">編輯導言</h2>'
             f'\n<div class="narrative editorial-intro">{paras}</div>')
 
 
@@ -1237,21 +1237,21 @@ def render_season(year, round_paths=None):
     body = f"""{hero}{intro_block}
 {stat_cards}
 
-<div class="sec-title">賽季速寫</div>
+<h2 class="sec-title">賽季速寫</h2>
 <div class="narrative">{narr}</div>
 
-<div class="sec-title">{race_title}</div>
+<h2 class="sec-title">{race_title}</h2>
 {champ_race}
 
-<div class="sec-title">積分榜</div>
+<h2 class="sec-title">積分榜</h2>
 {tabs}
 {cons_hidden_note}
 
-<div class="sec-title">各站冠軍</div>
+<h2 class="sec-title">各站冠軍</h2>
 <p class="note">{winners_scope}的分站冠軍車手與車隊。{'<b>站次與大獎賽名可點</b>進入該站分站頁（完整正賽名次、頒獎台、退賽）；' if has_round_pages else ''}<b>紅色可點</b>的名字已建該季子頁——點某位車手／車隊，就進入「以他為主角」的該季視角頁（逐站成績、車手貢獻拆解、退賽）。</p>
 {winners_table}
 
-<div class="sec-title">全季退賽圖鑑</div>
+<h2 class="sec-title">全季退賽圖鑑</h2>
 {chart}
 
 <p class="note">積分與名次直接取自資料源的該季<b>{board_txt}</b>，不經本站計算。
@@ -1400,14 +1400,14 @@ def render_driver_subpage(year, did, round_paths=None):
 </div>
 {stat_cards}
 
-<div class="sec-title">逐站成績</div>
+<h2 class="sec-title">逐站成績</h2>
 <p class="note">{name_txt} {year} 賽季<b>每一站</b>的發車位、完賽名次、積分與賽果登記事由（status 原文，不直譯因果）。積分與名次直接取自官方賽果檔。</p>
 {races_table}
 
-<div class="sec-title">賽季速寫</div>
+<h2 class="sec-title">賽季速寫</h2>
 <div class="narrative">{narr}</div>
 
-<div class="sec-title">退賽紀錄</div>
+<h2 class="sec-title">退賽紀錄</h2>
 {ret_html}
 
 <p class="note">本頁是「選了 {name_txt}」的 {year} 賽季視角。回到 <a href="{overview_url}">{year} 賽季總覽</a>（中性、含完整積分榜）或前往 <a href="{entity_url}">{esc(zh or en)} 生涯頁</a>。</p>
@@ -1548,16 +1548,16 @@ def render_team_subpage(year, cid, round_paths=None):
   </div>
 </div>
 
-<div class="sec-title">車手貢獻拆解</div>
+<h2 class="sec-title">車手貢獻拆解</h2>
 {breakdown_html}
 
-<div class="sec-title">車隊逐站積分</div>
+<h2 class="sec-title">車隊逐站積分</h2>
 {rounds_table}
 
-<div class="sec-title">賽季速寫</div>
+<h2 class="sec-title">賽季速寫</h2>
 <div class="narrative">{narr}</div>
 
-<div class="sec-title">退賽紀錄</div>
+<h2 class="sec-title">退賽紀錄</h2>
 {ret_html}
 
 <p class="note">本頁是「選了 {name_txt}」的 {year} 賽季視角。回到 <a href="{overview_url}">{year} 賽季總覽</a>（中性、含完整積分榜）或前往 <a href="{entity_url}">{esc(zh or name)} 車隊頁</a>。</p>
@@ -1656,7 +1656,7 @@ def _sprint_block(year, rnd):
              f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
     note = (f'<p class="note">本站設有<b>衝刺賽（Sprint）</b>，以下為衝刺賽完整名次與積分'
             f'（來源：<span class="mono">{esc(src)}</span>），與上方正賽分開計分。</p>')
-    return f'<div class="sec-title">衝刺賽</div>{note}{table}'
+    return f'<h2 class="sec-title">衝刺賽</h2>{note}{table}'
 
 
 def _round_nav(year, rnd):
@@ -1757,18 +1757,18 @@ def render_round(year, rnd, round_paths=None, sub_paths=None):
 {hero}
 {nav}
 
-<div class="sec-title">頒獎台</div>
+<h2 class="sec-title">頒獎台</h2>
 {podium}
 
-<div class="sec-title">賽況速寫</div>
+<h2 class="sec-title">賽況速寫</h2>
 <div class="narrative">{narr}</div>
 
-<div class="sec-title">正賽完整名次</div>
+<h2 class="sec-title">正賽完整名次</h2>
 <p class="note">{year} {race_disp}正賽全部參賽車手名次。名次欄為官方 positionText 原樣（<span class="rt-status">R</span>＝退賽、<span class="rt-status">D</span>＝取消資格、<span class="rt-status">W</span>＝未出賽等）；發車位、圈數、積分與 status 皆逐字取自官方賽果檔。有該季子頁的車手／車隊名<b>可點</b>進入其賽季視角頁。</p>
 {results_table}
 {sprint_html}
 
-<div class="sec-title">退賽名單</div>
+<h2 class="sec-title">退賽名單</h2>
 {ret_html}
 
 <p class="note">本頁為 {year} 賽季第 {rnd} 站的單場分站頁。所有數字直接取自官方正賽{('與衝刺賽 ' if sprint_html else '')}賽果檔，可回溯來源；回到 <a href="{overview_url}">{year} 賽季總覽</a>。</p>

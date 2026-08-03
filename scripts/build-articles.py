@@ -397,6 +397,20 @@ def render_home(articles):
              '<a class="tile" href="/results/"><span class="ic">🏁</span>'
              '<span><span class="tt">各站賽果</span><span class="ds">完整官方分類 · 含衝刺賽</span></span><span class="go">→</span></a>'
              '</div>')
+    # 百科（整理）線的首頁入口。⚠️ 必須跟 published 開關綁死：未公開時整段不輸出，
+    # 否則首頁會掛三條 404。反之公開後**一定要有站內入口**——只靠 sitemap 與 IndexNow
+    # 曝光而站內零連入，正是本站 2026-07 被 GSC 判「URL is unknown to Google」的成因。
+    if rc.ENCYCLOPEDIA_PUBLISHED:
+        tiles += ('<div class="rc-sec"><h2>歷年整理</h2><span class="ln"></span>'
+                  '<span class="tg">1950 至今</span></div>'
+                  '<div class="tiles">'
+                  '<a class="tile" href="/seasons/"><span class="ic">📅</span>'
+                  '<span><span class="tt">歷年賽季</span><span class="ds">每季積分榜 · 各站冠軍 · 退賽圖鑑</span></span><span class="go">→</span></a>'
+                  '<a class="tile" href="/drivers/"><span class="ic">👤</span>'
+                  '<span><span class="tt">車手</span><span class="ds">生涯冠軍 · 勝場 · 頒獎台</span></span><span class="go">→</span></a>'
+                  '<a class="tile" href="/constructors/"><span class="ic">🏎️</span>'
+                  '<span><span class="tt">車隊</span><span class="ds">車隊冠軍史</span></span><span class="go">→</span></a>'
+                  '</div>')
     art_sec = ""
     if articles:
         cards = "".join(_idx_card(a) for a in articles[:6])

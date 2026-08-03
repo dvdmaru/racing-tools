@@ -18,6 +18,7 @@
 """
 import copy
 import importlib.util
+import json
 import pathlib
 import shutil
 import sqlite3
@@ -76,13 +77,40 @@ def _mutated_copy(mutate):
 
 
 class OracleCountTests(unittest.TestCase):
-    """API total 是唯一真 oracle；每個表對上它才算 backfill 完整。"""
+    """API total 是唯一真 oracle；每個表對上它才算 backfill 完整。
 
-    ORACLE = {
-        "seasons": 77, "circuits": 78, "drivers": 881, "constructors": 214,
-        "races": 1171, "results": 26093, "qualifying": 11190,
-        "sprint_results": 568,
-    }
+    ☠️ 2026-08-03 修正：這裡原本把 oracle 寫死成 `races: 1171`／`results: 26093`。
+    那不是 oracle，是**某一天的快照**——每跑完一站就會紅一次，而且紅的是測試不是資料。
+    諷刺的是真正的權威值一直都在手邊：raw 的實體檔存著 API 自己回的 `total`
+    （`races.json` 現在寫著 1172），有現成的活數字卻抄一份死的進測試。
+
+    改成兩種來源，都獨立於 sqlite（否則就是自己比自己）：
+    - **實體表**（seasons/circuits/drivers/constructors/races）→ raw 實體檔的 `total` 欄，
+      那是 API 自己宣告的總數，最接近外部 oracle。
+    - **列表**（results/qualifying/sprint_results）→ 逐場 raw 檔裡的陣列長度加總。
+      逐場檔沒有 `total` 欄（它們是全域端點切出來的），但「raw JSON 有幾列」與
+      「sqlite 有幾列」仍是兩條路，照樣抓得到 backfill 漏行／重複。
+    """
+
+    ENTITY_TOTALS = {"seasons": "seasons", "circuits": "circuits", "drivers": "drivers",
+                     "constructors": "constructors", "races": "races"}
+    ROW_SOURCES = {"results": ("results", "Results"),
+                   "qualifying": ("qualifying", "QualifyingResults"),
+                   "sprint_results": ("sprint", "SprintResults")}
+
+    @classmethod
+    def oracle(cls):
+        raw = ROOT / "data" / "f1" / "raw"
+        out = {}
+        for tbl, stem in cls.ENTITY_TOTALS.items():
+            out[tbl] = json.loads((raw / "entities" / f"{stem}.json").read_text(
+                encoding="utf-8"))["total"]
+        for tbl, (subdir, key) in cls.ROW_SOURCES.items():
+            n = 0
+            for p in (raw / subdir).glob("*.json"):
+                n += len(json.loads(p.read_text(encoding="utf-8")).get(key, []))
+            out[tbl] = n
+        return out
 
     def setUp(self):
         self.con = sqlite3.connect(str(_SHARED_DB))
@@ -91,9 +119,19 @@ class OracleCountTests(unittest.TestCase):
         self.con.close()
 
     def test_table_counts_match_oracle(self):
-        for tbl, expected in self.ORACLE.items():
+        for tbl, expected in self.oracle().items():
             got = self.con.execute(f"SELECT count(*) FROM {tbl}").fetchone()[0]
             self.assertEqual(got, expected, f"{tbl}: {got} != oracle {expected}")
+
+    def test_oracle_is_derived_not_snapshotted(self):
+        """反向：oracle 必須真的從 raw 讀出非零值，而不是空 dict 讓上面那條恆真。
+
+        一個「什麼都沒比到」的比對迴圈會永遠綠——這是全綠 gate 最常見的壞法。
+        """
+        o = self.oracle()
+        self.assertEqual(set(o), set(self.ENTITY_TOTALS) | set(self.ROW_SOURCES))
+        for tbl, n in o.items():
+            self.assertGreater(n, 0, f"{tbl} 的 oracle 讀成 0，比對等於沒做")
 
     def test_standings_season_counts(self):
         d = self.con.execute("SELECT count(DISTINCT season) FROM driver_standings").fetchone()[0]
@@ -137,11 +175,41 @@ class PitfallTests(unittest.TestCase):
         self.assertGreater(n, 0, "應存在 position 有值但 position_text='R' 的退賽列")
 
     def test_win_defined_by_position_text_not_position(self):
-        """勝場一律以 position_text='1' 計；用 position=1 會混入 DNF 分類第一。"""
-        by_text = self.con.execute(
-            "SELECT count(*) FROM results WHERE position_text='1'").fetchone()[0]
-        # 1159 場正賽 + 3 個 shared drive 額外勝場列 = 1162
-        self.assertEqual(by_text, 1162)
+        """勝場一律以 position_text='1' 計；用 position=1 會混入 DNF 分類第一。
+
+        ☠️ 這裡原本寫死 `assertEqual(by_text, 1162)`。那個數字每跑完一站就 +1，
+        等於每週紅一次；而且它把「勝場定義對不對」這個真正的斷言，
+        偷換成了「筆數是不是某個特定值」。改成從資料自己推導：
+        每一場有賽果的比賽都恰有一位冠軍，多出來的部分必須全部由 shared drive 解釋。
+        """
+        by_text, by_pos = (self.con.execute(q).fetchone()[0] for q in (
+            "SELECT count(*) FROM results WHERE position_text='1'",
+            "SELECT count(*) FROM results WHERE position=1"))
+        raced = self.con.execute(
+            "SELECT count(*) FROM (SELECT DISTINCT season, round FROM results)").fetchone()[0]
+        # 每場恰有一位冠軍；shared drive 讓少數場次出現多列 position_text='1'
+        shared_extra = self.con.execute(
+            "SELECT coalesce(sum(n - 1), 0) FROM (SELECT count(*) AS n FROM results "
+            "WHERE position_text='1' GROUP BY season, round HAVING n > 1)").fetchone()[0]
+        self.assertEqual(by_text, raced + shared_extra,
+                         "position_text='1' 的筆數無法由「每場一位冠軍＋shared drive」解釋")
+        no_winner = self.con.execute(
+            "SELECT count(*) FROM (SELECT season, round FROM results GROUP BY season, round "
+            "HAVING sum(position_text='1') = 0)").fetchone()[0]
+        self.assertEqual(no_winner, 0, "有賽果卻沒有冠軍列的場次")
+        # 坑本身：`position` 這一欄無法區分「跑完的」與「退賽被分類的」——
+        # 9,000 多列 position_text='R' 的退賽紀錄照樣帶著 position 名次。
+        # ⚠️ 但要誠實：這批退賽名次**全部排在前三名之後**，所以在「冠軍」與「頒獎台」
+        # 這兩個切面上，今天用 position 或 position_text 算出來剛好一樣（實查 by_pos == by_text）。
+        # 一開始我在這裡寫了 assertNotEqual，是對資料的錯誤假設。
+        # 真正該釘的是**欄位語意**，不是某兩個數字剛好不等：只要有退賽列帶著名次，
+        # 「用 position 篩名次」就是不安全的寫法，即使目前這個資料集還沒讓它出事。
+        ranked = self.con.execute(
+            "SELECT count(*) FROM results WHERE position IS NOT NULL").fetchone()[0]
+        classified = self.con.execute(
+            "SELECT count(*) FROM results WHERE position_text GLOB '[0-9]*'").fetchone()[0]
+        self.assertGreater(ranked, classified,
+                           "沒有任何退賽列帶名次＝這個坑的前提消失了，要重新確認資料源語意")
 
     def test_points_are_real_and_store_fractions(self):
         """坑 B：1950 年代 shared drive 有 .5 分，INTEGER 會截斷。"""
@@ -218,7 +286,7 @@ class InvariantMechanismTests(unittest.TestCase):
         rep = inv.run(self.cur, d)
         self.assertFalse(rep["passed"])
         self.assertGreaterEqual(rep["summary"]["declaration_schema_faults"], 1)
-        self.assertEqual(rep["summary"]["declared_input"], 40)
+        self.assertEqual(rep["summary"]["declared_input"], len(self.declared) + 1)
 
     def test_duplicate_id_fails(self):
         """兩條宣告共用同一個 id（triple 不同）也必須 FAIL。"""
@@ -256,11 +324,17 @@ class InvariantMechanismTests(unittest.TestCase):
         self.assertEqual(rep["summary"]["missing_declarations"], 1)
 
     def test_empty_declarations_flags_all_failures_as_unexpected(self):
-        """完全不宣告 → 全部 39 條都是未宣告失敗。"""
+        """完全不宣告 → 全部失敗都是未宣告失敗。
+
+        ☠️ 原本寫死「全部 39 條」。例外清單本來就會隨賽制史與資料變動增減
+        （這次移除 EX-034 就從 39 變 38），寫死等於每次動清單都要來改測試——
+        而這條測的根本不是「有幾條」，是「一條都不宣告時全部算未宣告」。
+        用宣告清單的長度推導，斷言才對準它真正要守的東西。"""
         rep = inv.run(self.cur, [])
         self.assertFalse(rep["passed"])
         self.assertEqual(rep["summary"]["unexpected_failures"], rep["summary"]["total_failures"])
-        self.assertEqual(rep["summary"]["total_failures"], 39)
+        self.assertEqual(rep["summary"]["total_failures"], len(self.declared),
+                         "失敗數應恰等於宣告數（教義：失敗集合＝宣告集合）")
 
     def test_expected_per_invariant_failure_counts(self):
         """鎖住失敗分布，防某個不變量被無聲改壞（I1/I4/I5/I8/I11 應恆為 0）。"""

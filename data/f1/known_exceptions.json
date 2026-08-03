@@ -464,20 +464,6 @@
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
     },
     {
-      "id": "EX-034",
-      "invariant": "I7",
-      "scope": {
-        "season": 2026
-      },
-      "status": "approved",
-      "reason": "2026 賽季進行中：races.json 排定 22 站，實跑 10 站，第 11–22 站為未來場次尚無賽果。歷史資料凍結、當季週更另跑，故全域缺漏僅此一季。",
-      "evidence": "data/f1/raw/entities/races.json 有 2026 全季，data/f1/raw/results/2026-*.json 僅到第 10 站",
-      "fingerprint": "5c0046eddae9b17c6db5b816b72cd2673ae8473f7f8afd38a06a14f645bc3ba0",
-      "approved_by": "charlie",
-      "approved_date": "2026-07-21",
-      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
-    },
-    {
       "id": "EX-035",
       "invariant": "I9",
       "scope": {

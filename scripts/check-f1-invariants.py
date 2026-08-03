@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""check-f1-invariants.py — 對 L1 sqlite 斷言 I1–I12 並對照 known_exceptions（指紋綁定）。
+"""check-f1-invariants.py — 對 L1 sqlite 斷言 I1–I13 並對照 known_exceptions（指紋綁定）。
 
 ★ 核心規則（計畫 §4.4）：**不變量不是「必須全過」，是「失敗集合必須恰好等於
    data/f1/known_exceptions.json 宣告的例外集合」。多一個少一個都整體 FAIL。**
@@ -49,8 +49,13 @@
              未涵蓋的欄位（poles/fastest_laps/生涯積分/starts 皆未發布，不假裝比對）。
   I6  每季 逐車手 毛積分(results+sprint) == 官方 standings 積分；指紋鎖全體 mismatch 明細
         守：扣分制以外的任何積分竄改（含 §S0-1 的 +1000）。 不守：兩個源同步竄改。
-  I7  每個 scheduled round 都有 result；指紋鎖缺漏 round 集合
-        守：整場賽果缺漏。 不守：該場 result 的身分/內容錯。
+  I7  **凍結賽季**（最新賽季以前）每個 scheduled round 都有 result；指紋鎖缺漏 round 集合
+        守：歷史整場賽果缺漏（且不看日期，故 races.date 缺失/損壞也擋得住）。
+        不守：該場 result 的身分/內容錯；最新賽季（可能進行中）不在射程內——那是 I13 的事。
+  I13 **到期未出賽果**：每個「正賽日 UTC 日終 + RESULT_GRACE_HOURS 已過」且仍無賽果的
+        scheduled round；另有 undated 通道記「無賽果且日期無法解析＝到期與否無法判定」。
+        守：當季管線停止抓取、某場歷史賽果消失。 不守：該場 result 的身分/內容錯。
+        ⚠️ 未來場次沒有賽果**不是異常**，I13 不叫——這正是它取代「用例外宣告正常狀態」的理由。
   I8  results 依 status 分組計數 == entities/status.json（獨立查詢路徑，非獨立資料源）
         守：分頁漏行/重複造成的 status 級偏差。 不守：status 在列間互換、上游同錯。
   I9  每季 Σ(driver wins) == Σ(constructor wins)；指紋鎖未列名車廠的勝場列
@@ -79,6 +84,7 @@ I4/I8/I11 是**獨立查詢路徑**（不是獨立資料源，也不是完整 or
 exit code：0 = 失敗三元組集合恰好等於宣告三元組集合；1 = 不匹配（未宣告/過期/指紋不符）。
 """
 import argparse
+import datetime
 import hashlib
 import importlib.util
 import json
@@ -323,19 +329,113 @@ def inv_I6(cur):
     return out
 
 
-def inv_I7(cur):
-    out = []
-    scheduled, have = {}, {}
-    for s, r in cur.execute("SELECT season, round FROM races"):
-        scheduled.setdefault(s, set()).add(r)
+# --- I7 / I13：賽程完整性（2026-08-03 重構，見下方長註） ---
+#
+# 舊 I7 對**所有**排定 round 主張「必須有賽果」，於是進行中賽季必然失敗，只能靠一條
+# 具名例外（EX-034）遮住。但那條例外的判別明細綁著會動的數字（排定站數、已完賽站數），
+# 每跑完一站指紋就失效 → gate 紅 → refresh-f1-current 回 1 → update-racing 的百科層
+# 自我隔離 → **百科安靜凍結而週更三頁照常更新**，失敗只留在 Actions 日誌裡沒人看。
+# 那是本專案已登記的兩個病：「永遠亮紅的 gate ＝ 沒有 gate」＋「自動內容旁邊的手動靜態值」。
+#
+# 病根不是指紋沒更新，是**用一條會動的例外去描述一個正常狀態**：「賽季進行中、未來場次
+# 還沒有賽果」本來就不是異常。修法＝把混在一起的訊號拆成兩條各自恆真的斷言：
+#   I7  凍結賽季（最新賽季以前）：每個排定 round 都必須有賽果。不看日期 → races.date
+#       缺失/損壞時不會 fail-open。最新賽季不在射程內，故進行中賽季不再產生失敗。
+#   I13 到期未出賽果：任何賽季裡「正賽日已過 + 寬限」而仍無賽果的場次。進行中賽季恆真
+#       （未來場次不算數），只有「管線停止抓取」或「歷史賽果消失」才紅。
+# 兩條在凍結賽季上刻意重疊（比照 I2/I3/I4 的多路徑設計）：同一筆歷史缺漏會被兩條同時
+# 抓到，而 I13 單獨補上「當季管線斷掉」這個舊 I7 被例外遮掉的訊號。
+
+# jolpica 賽後才把賽果灌進 API，延遲幅度不穩定（實測 2026 R10 約 9 小時才齊、R11 約 1.3
+# 小時）。races.date 只有日期沒有時刻，正賽最晚可能在該日 UTC 深夜才結束，因此「排定日已過」
+# 本身不代表賽果就該到了。寬限訂 48 小時，自**正賽日 UTC 日終**起算：
+#   · 下限側：> 實測最壞值 9h 的 5 倍，容得下一次灌檔延遲 ＋ 一次週更排程落空；
+#   · 上限側：< F1 兩場之間的最小間隔（背靠背週末相隔 7 天），故不會把「下一場還沒跑」
+#     誤判成「這一場缺漏」，兩場的判定窗也不會互相覆蓋。
+# 這是本檔唯一的時間常數；其餘到期判定一律由 races.date 與本常數推得，不再有別的魔術數字。
+RESULT_GRACE_HOURS = 48
+
+
+def _now_utc():
+    return datetime.datetime.now(datetime.timezone.utc)
+
+
+def _due_at(race_date):
+    """正賽日 UTC 日終 + 寬限＝「賽果應該到齊」的時刻；日期無法解析回 None（不猜）。"""
+    try:
+        d = datetime.date.fromisoformat(race_date)
+    except (TypeError, ValueError):
+        return None
+    return (datetime.datetime.combine(d, datetime.time.min, datetime.timezone.utc)
+            + datetime.timedelta(days=1, hours=RESULT_GRACE_HOURS))
+
+
+def _latest_season(cur):
+    """最新賽季＝seasons 錨點的最大年份（該錨點本身由 I12 守連續性）。
+
+    刻意**不**用 seasons.status：那一欄由 build-f1-db 以「所有排定 round 都有賽果」推得，
+    拿它當 I7 的射程等於「對所有 round 都有賽果的賽季斷言所有 round 都有賽果」＝恆真式。
+    """
+    row = cur.execute("SELECT max(year) FROM seasons").fetchone()
+    if row and row[0] is not None:
+        return int(row[0])
+    row = cur.execute("SELECT max(season) FROM races").fetchone()
+    return int(row[0]) if row and row[0] is not None else None
+
+
+def _rounds_with_results(cur):
+    have = {}
     for s, r in cur.execute("SELECT DISTINCT season, round FROM results"):
         have.setdefault(s, set()).add(r)
+    return have
+
+
+def inv_I7(cur):
+    """凍結賽季（最新賽季以前）每個排定 round 都必須有賽果。"""
+    out = []
+    latest = _latest_season(cur)
+    scheduled = {}
+    for s, r in cur.execute("SELECT season, round FROM races"):
+        scheduled.setdefault(s, set()).add(r)
+    have = _rounds_with_results(cur)
     for s in sorted(scheduled):
+        if latest is not None and s >= latest:
+            continue          # 最新賽季可能進行中 → 交給 I13 以日期判定
         missing = sorted(scheduled[s] - have.get(s, set()))
         if missing:
             out.append(_v("I7", {"season": s},
                           {"missing_rounds": missing, "scheduled": len(scheduled[s]),
                            "with_results": len(have.get(s, set()))}))
+    return out
+
+
+def inv_I13(cur, now=None):
+    """到期未出賽果：正賽日 + 寬限已過而仍無賽果的場次（未來場次不算數）。
+
+    ⚠️ fp_detail **不放「現在時刻」**：放了就等於把時間寫進指紋，任何具名例外都會每跑一次
+       就失效——那正是 EX-034 被廢掉的原因。指紋只鎖「哪幾場到期沒賽果 + 寬限值」。
+    """
+    now = now or _now_utc()
+    have = _rounds_with_results(cur)
+    overdue, undated = {}, {}
+    for s, r, d in cur.execute("SELECT season, round, date FROM races"):
+        if r in have.get(s, set()):
+            continue
+        due = _due_at(d)
+        if due is None:
+            # fail-honest：無賽果又沒有可解析的日期 → 到期與否「無法確認」，明說不猜。
+            # （有賽果的場次即使日期壞掉也無所謂，不在此列，避免製造假紅。）
+            undated.setdefault(s, []).append(r)
+        elif due <= now:
+            overdue.setdefault(s, []).append(r)
+    out = []
+    for s in sorted(overdue):
+        out.append(_v("I13", {"season": s, "kind": "overdue"},
+                      {"overdue_rounds": sorted(overdue[s]),
+                       "grace_hours": RESULT_GRACE_HOURS}))
+    for s in sorted(undated):
+        out.append(_v("I13", {"season": s, "kind": "undated"},
+                      {"undated_rounds": sorted(undated[s])}))
     return out
 
 
@@ -486,7 +586,8 @@ def inv_I12(cur):
 
 
 ALL_INVARIANTS = [inv_I1, inv_I2, inv_I3, inv_I4, inv_I5, inv_I6,
-                  inv_I7, inv_I8, inv_I9, inv_I10, inv_I11, inv_I12]
+                  inv_I7, inv_I8, inv_I9, inv_I10, inv_I11, inv_I12, inv_I13]
+INVARIANT_IDS = tuple(fn.__name__.replace("inv_", "") for fn in ALL_INVARIANTS)
 
 
 # ---------------------------------------------------------------------------
@@ -684,7 +785,7 @@ def _print_human(rep):
     print("F1 不變量檢查（規則：失敗三元組集合＝宣告三元組集合，指紋綁定）")
     print("=" * 70)
     print("各不變量失敗數：")
-    for k in ("I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "I11", "I12"):
+    for k in INVARIANT_IDS:
         print(f"  {k:4s} {rep['per_invariant_failure_counts'].get(k, 0)}")
     print(f"\n總失敗 {s['total_failures']}　宣告例外 {s['declared_exceptions']}　匹配 {s['matched']}")
     print(f"未宣告失敗 {s['unexpected_failures']}　過期宣告 {s['missing_declarations']}　"
@@ -723,7 +824,7 @@ def _print_human(rep):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="I1–I12 不變量檢查（指紋綁定）vs known_exceptions")
+    ap = argparse.ArgumentParser(description="I1–I13 不變量檢查（指紋綁定）vs known_exceptions")
     ap.add_argument("--db", default=str(DEFAULT_DB))
     ap.add_argument("--exceptions", default=str(EXCEPTIONS))
     ap.add_argument("--json", help="另存結構化報告")

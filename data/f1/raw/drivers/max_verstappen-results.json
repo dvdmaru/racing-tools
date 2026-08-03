@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 243,
+  "total": 244,
   "Races": [
     {
       "season": "2015",
@@ -14403,11 +14403,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "11",
+      "url": "https://en.wikipedia.org/wiki/2026_Hungarian_Grand_Prix",
+      "raceName": "Hungarian Grand Prix",
+      "Circuit": {
+        "circuitId": "hungaroring",
+        "url": "https://en.wikipedia.org/wiki/Hungaroring",
+        "circuitName": "Hungaroring",
+        "Location": {
+          "lat": "47.5789",
+          "long": "19.2486",
+          "locality": "Budapest",
+          "country": "Hungary"
+        }
+      },
+      "date": "2026-07-26",
+      "time": "13:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "2",
+          "positionText": "2",
+          "points": "18",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": "4",
+          "laps": "70",
+          "status": "Finished",
+          "Time": {
+            "millis": "6011260",
+            "time": "+15.080"
+          },
+          "FastestLap": {
+            "rank": "8",
+            "lap": "66",
+            "Time": {
+              "time": "1:23.433"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-07-20T23:08:13.639072+00:00",
+    "fetched_at": "2026-08-03T08:04:42.283537+00:00",
     "backfill": true
   }
 }

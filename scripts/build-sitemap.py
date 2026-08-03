@@ -25,7 +25,8 @@ rc = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rc)
 
 # 固定 owner 序，對應現行 sitemap.xml 的頁面分組順序。
-OWNERS = ["articles", "standings", "calendar", "results"]
+# 後三個是百科線（regen-encyclopedia.py --publish 才寫；未公開時 part 檔不存在＝自然跳過）。
+OWNERS = ["articles", "standings", "calendar", "results", "seasons", "drivers", "constructors"]
 # 單一 sitemap.xml 的上限（sitemaps.org 慣例 50,000，抓保守值防邊界）；
 # 現在遠用不到（M0 全站僅 7 個 URL），寫上防未來 entity 頁全量展開後爆量。
 MAX_PER_SITEMAP = 45000
@@ -38,15 +39,42 @@ def _urlset_xml(urls) -> str:
             f"{body}</urlset>\n")
 
 
+def _read_part(p: pathlib.Path) -> list:
+    return [l.strip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
 def collect_urls(parts_dir: pathlib.Path) -> list:
-    urls = []
+    """依 OWNERS 序讀 part；**未列名的 part 一律照收並告警**，絕不靜默丟棄。
+
+    ☠️ 2026-08-03 事故：百科線接好之後，`regen-encyclopedia.py --publish` 確實寫出了
+    seasons/drivers/constructors 三個 part 檔，但本檔的 OWNERS 只列了原本四個 owner，
+    `collect_urls()` 照著名單讀 → **374 頁百科頁一頁都沒進 sitemap，而且全程零錯誤訊息**。
+    建置全綠、part 檔躺在磁碟上、sitemap 少了 98% 的頁面，沒有任何一層會叫。
+
+    所以這裡的預設方向是**收不是擋**：一個 part 檔存在，就代表某支生成器刻意宣告
+    「這些 URL 要進 sitemap」。名單沒列到是名單的問題，不是那些 URL 的問題。
+    未列名者附在已列名者之後（順序不確定但內容不漏），並印醒目告警要求補進 OWNERS。
+
+    ⚠️ 反過來說，這裡**不能**改成 default-deny（只收名單內的）——那正是本次事故的成因。
+    default-deny 該用在「例外清單」那種每筆都要具名理由的地方，不該用在辨識層。
+    """
+    urls, seen = [], set()
     for owner in OWNERS:
         p = parts_dir / f"{owner}.txt"
         if not p.exists():
             print(f"⚠️  sitemap part 缺席：{owner}（略過；沿用磁碟上既有內容——parts 進 git 即是保留機制）")
             continue
-        lines = [l.strip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
-        urls.extend(lines)
+        seen.add(p.name)
+        urls.extend(_read_part(p))
+
+    stray = sorted(p for p in parts_dir.glob("*.txt") if p.name not in seen
+                   and p.stem not in OWNERS)
+    for p in stray:
+        n = len(_read_part(p))
+        print(f"🔴 sitemap part「{p.stem}」不在 OWNERS 名單裡（{n} 個 URL）——已照收，"
+              f"但請把它加進 OWNERS 以固定排序。名單漏列曾讓整條百科線靜默缺席。")
+        urls.extend(_read_part(p))
+
     return list(dict.fromkeys(urls))  # 去重保序
 
 

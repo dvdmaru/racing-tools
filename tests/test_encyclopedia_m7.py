@@ -33,12 +33,15 @@ def _load(name, fname):
     return m
 
 
-rc = _load("racinglib", "racinglib.py")
-fs = _load("f1stats", "f1stats.py")
 re_mod = _load("regen_encyclopedia", "regen-encyclopedia.py")
 refresh_mod = _load("refresh_f1_current", "refresh-f1-current.py")
+# ⚠️ 一律借 regen 的模組圖，別自己再 _load 一份 racinglib/f1stats：各生成器內部各自 importlib
+# 載入，自己載的那份跟它們用的不是同一個物件，patch PUB 不會生效，assets/sitemap part 會寫進
+# 真的 repo 去（2026-08-03 實際踩過：跑測試在 public-racing/ 與 data/sitemap-parts/ 留下產物）。
+rc, fs = re_mod.rc, re_mod.fs
 dr = re_mod.dr
 gs = re_mod.gs
+p0 = re_mod.p0
 
 
 # ---------- 共用：temp db 注入合成賽果 ----------
@@ -196,12 +199,13 @@ class SelectiveRegenTests(unittest.TestCase):
         self.addCleanup(shutil.rmtree, self.tmp)
         self.fp = self.tmp / "fp.json"
         self.pub = self.tmp / "pub"
-        self._orig_pub = (gs.PUB, dr.PUB, rc.PUB)
-        gs.PUB = dr.PUB = rc.PUB = self.pub
+        # p0.PUB 也要接管：/constructors/** 由 phase0 生成，selective_regen 會呼叫它
+        self._orig_pub = (gs.PUB, dr.PUB, rc.PUB, p0.PUB)
+        gs.PUB = dr.PUB = rc.PUB = p0.PUB = self.pub
         self.dbA = _copy_db(self.tmp)
 
     def tearDown(self):
-        gs.PUB, dr.PUB, rc.PUB = self._orig_pub
+        gs.PUB, dr.PUB, rc.PUB, p0.PUB = self._orig_pub
 
     def _con(self, db):
         c = sqlite3.connect(str(db))
@@ -228,8 +232,10 @@ class SelectiveRegenTests(unittest.TestCase):
             con.close()
         self.assertEqual(res["changed_years"], [])
         self.assertEqual(res["changed_drivers"], [])
+        self.assertEqual(res["changed_constructors"], [])
         self.assertFalse(res["index_seasons"])
         self.assertFalse(res["index_drivers"])
+        self.assertFalse(res["index_constructors"])
         rewritten = [str(p.relative_to(self.pub)) for p, (m, _) in snap.items()
                      if p.stat().st_mtime_ns != m]
         self.assertEqual(rewritten, [], f"無資料變動不得重寫任何頁：{rewritten[:5]}")
@@ -285,18 +291,19 @@ class SelectiveRegenTests(unittest.TestCase):
             con.close()
         self.assertEqual(len(res["changed_years"]), gs.LAST_YEAR - gs.FIRST_YEAR + 1)
         self.assertEqual(len(res["changed_drivers"]), len(dr.CHAMPION_IDS))
+        self.assertEqual(len(res["changed_constructors"]), len(re_mod.CONSTRUCTOR_IDS))
 
     def test_publish_writes_sitemap_parts(self):
         parts = ROOT / "data" / "sitemap-parts"
-        sp, dp = parts / "seasons.txt", parts / "drivers.txt"
-        pre = (sp.read_bytes() if sp.exists() else None, dp.read_bytes() if dp.exists() else None)
-        self.addCleanup(self._restore, sp, dp, pre)
+        sp, dp, cp = parts / "seasons.txt", parts / "drivers.txt", parts / "constructors.txt"
+        pre = [p.read_bytes() if p.exists() else None for p in (sp, dp, cp)]
+        self.addCleanup(self._restore, (sp, dp, cp), pre)
         con = self._con(self.dbA)
         try:
             re_mod.selective_regen(con, full=True, fp_path=self.fp, publish=True)
         finally:
             con.close()
-        self.assertTrue(sp.exists() and dp.exists())
+        self.assertTrue(sp.exists() and dp.exists() and cp.exists())
         s_urls = sp.read_text(encoding="utf-8").splitlines()
         self.assertIn(f"{rc.BASE}/seasons/", s_urls)
         self.assertIn(f"{rc.BASE}/seasons/2002/rounds/1/", s_urls)
@@ -304,10 +311,15 @@ class SelectiveRegenTests(unittest.TestCase):
         self.assertIn(f"{rc.BASE}/drivers/", d_urls)
         self.assertEqual(len([u for u in d_urls if u != f"{rc.BASE}/drivers/"]),
                          len(dr.CHAMPION_IDS))
+        # 車隊：索引 URL 必須在（沒有它 /constructors/ 就是進不了 sitemap 的孤兒區）
+        c_urls = cp.read_text(encoding="utf-8").splitlines()
+        self.assertIn(f"{rc.BASE}/constructors/", c_urls)
+        self.assertEqual(len([u for u in c_urls if u != f"{rc.BASE}/constructors/"]),
+                         len(re_mod.CONSTRUCTOR_IDS))
 
     @staticmethod
-    def _restore(sp, dp, pre):
-        for p, b in ((sp, pre[0]), (dp, pre[1])):
+    def _restore(paths, pre):
+        for p, b in zip(paths, pre):
             if b is None:
                 p.unlink(missing_ok=True)
             else:
@@ -457,29 +469,56 @@ ur = _load("update_racing", "update-racing.py")
 
 
 class UpdateRacingDormantTests(unittest.TestCase):
-    def test_config_published_is_false_now(self):
-        self.assertFalse(ur._encyclopedia_published(),
-                         "M7 交付時百科必須維持全暗（published:false）")
+    """published gate 的雙向行為。
 
-    def test_published_false_step_is_noop(self):
-        # published:false → encyclopedia_step 不呼叫任何 subprocess、不寫 sitemap part
+    ☠️ 2026-08-03 改寫：這三條原本直接斷言「現在的設定必須是 published:false」，
+    那是 M7 交付當下的正確守門（確保 dormant wiring 沒有提前點亮），但**它把測試綁死在
+    一個遲早要改的設定值上**——公開日一到，測試就會紅，而紅的原因是「我們照計畫公開了」。
+    這種測試只能被刪掉，於是它守的東西也一起消失。
+
+    改成**兩個方向都測、而且不依賴當下的設定值**：把 flag patch 成 False 驗全暗、
+    patch 成 True 驗真的會動。這樣不管站上是公開還是未公開，gate 本身的行為都有人守。
+    """
+
+    def _run_step_with(self, published):
         calls = []
-        orig = ur.subprocess.run
+        orig_pub, orig_run = ur._encyclopedia_published, ur.subprocess.run
+        ur._encyclopedia_published = lambda: published
         ur.subprocess.run = lambda *a, **k: calls.append(a) or _Ret(0)
         try:
             ur.encyclopedia_step(full=False)
         finally:
-            ur.subprocess.run = orig
-        self.assertEqual(calls, [], "published:false 時百科段不得執行任何子步驟")
+            ur._encyclopedia_published, ur.subprocess.run = orig_pub, orig_run
+        return calls
+
+    def test_missing_or_broken_config_is_treated_as_unpublished(self):
+        """default-deny：設定檔讀不到／壞掉一律當未公開，絕不 fail-open 把百科點亮。"""
+        orig = ur.ROOT
+        ur.ROOT = pathlib.Path(tempfile.mkdtemp())   # 沒有 config/encyclopedia.json
+        try:
+            self.assertFalse(ur._encyclopedia_published())
+        finally:
+            shutil.rmtree(ur.ROOT, ignore_errors=True)
+            ur.ROOT = orig
+
+    def test_published_false_step_is_noop(self):
+        self.assertEqual(self._run_step_with(False), [],
+                         "published:false 時百科段不得執行任何子步驟")
+
+    def test_published_true_step_actually_runs(self):
+        """反向：全暗測試若沒有這條配對，實作可以永遠不動而三條測試全綠。"""
+        self.assertTrue(self._run_step_with(True),
+                        "published:true 時百科段必須真的執行子步驟")
 
     def test_published_false_writes_no_encyclopedia_sitemap_parts(self):
         parts = ROOT / "data" / "sitemap-parts"
         before = {p.name for p in parts.glob("*.txt")}
-        ur.encyclopedia_step(full=False)
+        # ⚠️ 一定要 patch 成 False 再跑：published:true 時直接呼叫會**真的觸發全量重生**
+        # （改寫前這條就是這樣，只因為 part 檔早已存在才沒被發現）。
+        self._run_step_with(False)
         after = {p.name for p in parts.glob("*.txt")}
-        # 不新增 seasons.txt / drivers.txt（byte-identical：sitemap 輸入不變）
-        self.assertNotIn("seasons.txt", after - before)
-        self.assertNotIn("drivers.txt", after - before)
+        for name in ("seasons.txt", "drivers.txt", "constructors.txt"):
+            self.assertNotIn(name, after - before)
 
     def test_encyclopedia_failure_does_not_touch_FAILED(self):
         # 分層 fail：published:true 但百科子步驟失敗 → 不進 FAILED、不擋週更三頁部署
