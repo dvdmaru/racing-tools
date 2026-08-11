@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 這篇的中心事實：規則只給長度與月份，起訖日各隊自己挑。
+ * 所以視覺要同時呈現「一段固定長度的積木」與「它在賽曆空白裡可以左右滑動」。
+ *
+ * 底軸＝2026 年匈牙利站到荷蘭站之間的 28 天空白（本站賽曆推導）。
+ * 上排實心塊＝賓士官網公布的 8 月 1 日到 15 日，本站取得的唯一一份官方日期。
+ * 下排虛線塊＝同樣長度、位置不同的示意，刻意不標任何車隊名與日期：
+ *   其餘 9 隊的申報日期 FIA 沒有公布，畫上去就等於宣稱一個查不到出處的東西。
+ */
+h1 { font-size: 100px; margin-top: 40px; }
+.sub { font-size: 40px; margin-top: 24px; }
+.viz { margin-bottom: 4px; }
+.axis { position: relative; height: 232px; margin-top: 16px; }
+.rail { position: absolute; left: 0; right: 0; top: 58px; height: 20px;
+  border-radius: 10px; background: #e4d5d5; }
+.blk { position: absolute; height: 66px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Sans TC'; font-weight: 700; font-size: 27px; letter-spacing: 1px; }
+.blk.real { top: 35px; background: #d63a2f; color: #fff; }
+.blk.ghost { top: 128px; border: 4px dashed #bda9a9; color: #8a7679;
+  background: rgba(255, 255, 255, .5); }
+.cap { position: absolute; top: 0; font-weight: 700; font-size: 28px; color: #241a1c; }
+.cap.r { text-align: right; }
+.tick { position: absolute; top: 52px; width: 4px; height: 32px; background: #241a1c; }
+.stats { margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 長青指南</div>
+  <h1>夏季停工的 14 天<br>每支車隊<span class="y">自己挑</span></h1>
+  <div class="sub">法源在 2026 年營運規則 F3.1，不在比賽規則裡</div>
+  <div class="viz">
+    <div class="lbl">2026 賽曆・匈牙利站至荷蘭站</div>
+    <div class="axis">
+      <div class="rail"></div>
+      <div class="tick" style="left:0"></div>
+      <div class="tick" style="right:0"></div>
+      <div class="cap" style="left:0">匈牙利大獎賽 7 月 26 日</div>
+      <div class="cap r" style="right:0">荷蘭大獎賽 8 月 23 日</div>
+      <div class="blk real" style="left:21.4%;width:50%">賓士公布的 8 月 1 日到 15 日</div>
+      <div class="blk ghost" style="left:46%;width:50%">長度相同</div>
+    </div>
+    <div class="legend">實心為賓士官網公布的日期；虛線僅表示長度相同而位置可移，其餘 9 支車隊的日期 FIA 沒公布。</div>
+    <div class="stats">
+      <div class="stat"><b>14</b><span>規定的連續日曆日</span></div>
+      <div class="stat"><b>28</b><span>匈牙利到荷蘭的間隔天數</span></div>
+      <div class="stat"><b>9</b><span>12 月 24 日起算的冬季停工</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 依 FIA 2026 年營運規則與比賽規則原文</div>
+</div>
+</body>
+</html>
