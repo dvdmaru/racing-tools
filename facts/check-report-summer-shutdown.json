@@ -1,17 +1,18 @@
 {
   "schema_version": 1,
   "kind": "external-sourced-check-report",
-  "checked_at": "2026-08-11T14:26:12Z",
-  "revision": 2,
+  "checked_at": "2026-08-11T14:47:08Z",
+  "revision": 3,
+  "_r1_note": "v3＝查核桌 R1 Content NO-GO 的修正輪（2 BLOCKER＋2 MAJOR＋2 MINOR），逐條照最小建議措辭改，只動被點名位置。R1 逐條對照見 r1_findings。⚠️ 本輪自身也產生兩個連帶問題，都由 gate 抓到並修掉，記在 r1_side_effects——修正輪會引進新錯誤，這是第二個實例（第一個是 v2 壓縮 subtitle 時寫進「FIA 不公布」）。",
   "_revision_note": "v1 被驗收退回：frontmatter 規格層違規（subtitle 156 字、lede 132 字，規格為 25-40／60-90，含空白計）。v2 只改 frontmatter 兩行與封面歸位，正文一字未動（正文與 FAQ 字數 3337／3978 皆與 v1 相同即為佐證）。",
   "slug": "f1-summer-shutdown-guide",
   "article": "articles/f1-summer-shutdown-guide/index.md",
-  "article_sha256": "3e32d196695ce4c5e2e9f2a02d652d523d2728ec465a033dc68df99a93d6e755",
+  "article_sha256": "34919c9026124547e8fa5d6b91c90d98e1f99dbbce60541f7f854930c41549d7",
   "cover_html": "design/covers/cover-summer-shutdown.html",
   "cover": "articles/f1-summer-shutdown-guide/cover.png",
-  "cover_sha256": "06e7b6f4357ccf12e800bd0f4fe49db5c754fa4e783d1071293cb20f65d8cb8a",
+  "cover_sha256": "e4e87381c1117b6f7e87f172fceecc6de16946d8d75f420906ed008f20dfc272",
   "facts": "facts/analysis-summer-shutdown.json",
-  "facts_sha256": "e1874741aca4a55fdc21665949fc2b7d2ef0646718d3507484ff7afa64088229",
+  "facts_sha256": "b25bbf6a069f0f2f8c9b0c42a77a4448c06fc385fedba9b98138cef5e5ac992c",
   "prompt": "scripts/prompts/external-sourced.md",
   "prompt_sha256": "ded5bee65345bb5a7faf2395f66f37d3768823755b78d5d93d7d18e1840e46b4",
 
@@ -53,7 +54,7 @@
       "name": "check-covers",
       "passed": true,
       "cmd": "python3 scripts/check-covers.py",
-      "result": "封面已歸位並登記，官方執行 8 筆全綠，含 f1-summer-shutdown-guide（cover-summer-shutdown.html）：可見數字 13 種（14／2026／3.1／7／26／8／23／1／15／9／28／12／24）全部見於正文，說法全部錨到文章，allow 與 allow_claims 皆為空。"
+      "result": "封面已歸位並登記，官方執行 8 筆全綠，含 f1-summer-shutdown-guide（cover-summer-shutdown.html）：可見數字 14 種（14／2026／3.1／7／26／8／23／1／15／10／9／28／12／24）全部見於正文，說法全部錨到文章，allow 與 allow_claims 皆為空。R1 修正後已重產 PNG 並重跑。"
     },
     {
       "name": "tests.test_check_covers",
@@ -75,7 +76,7 @@
     {
       "name": "word-count",
       "passed": true,
-      "result": "正文 3337 字、正文＋常見問題 3978 字（含標點、不計空白；不含資料來源區塊）。含資料來源區塊全文 5308 字。要求區間 2500-4000。"
+      "result": "正文 3330 字、正文＋常見問題 3983 字（含標點、不計空白；不含資料來源區塊）。含資料來源區塊全文 5313 字。要求區間 2500-4000。"
     }
   ],
   "passed": true,
@@ -189,6 +190,70 @@
     "任何一件因違反停工期而被處罰的公開案例：檢索範圍內查無。",
     "Section A 的 A3.5.1d 引用『Section F 的 F1（一般原則）與 F2（範圍、罰則與違規）』，但 Section F Issue 10 的 F1 標示為 VOID、F2 標題為環境標準。此不一致本站只在 facts pack 記錄，正文最終未寫入（篇幅取捨），未推測原因。",
     "停工期的申報內容（各隊實際報給 FIA 的文件）未公開，本站無從核對車隊是否確實遵守。"
+  ],
+
+  "r1_findings": [
+    {
+      "id": "BLOCKER①",
+      "issue": "「FIA 不公布」＝無探針的全稱否定，凍結證據只支撐「本站除賓士外未取得其他車隊日期」",
+      "sweep": "全文 grep（正文／frontmatter／FAQ／封面／facts pack）共 4 處正文與 frontmatter、2 處封面（legend＋HTML 註解）、1 處 covers.json 引述、2 處 facts pack（thesis、must_not_claim）＋1 處 voice 範例",
+      "fixed": [
+        "frontmatter subtitle：「夏季停工 14 天，起訖日各隊自己挑，FIA 不公布。」→「夏季停工 14 天，起訖日各隊自己挑；本站未取得 FIA 公開的各隊日期。」（37 字）",
+        "導言：「報給 FIA，而 FIA 不公布」→「報給 FIA，而本站未取得 FIA 公開的各隊停工日期」",
+        "2026 賽曆段：「FIA 沒公布，本站也沒取得」→「本站未取得」（併入 MAJOR①）",
+        "FAQ〈每支車隊的停工日期一樣嗎〉：「通知 FIA，FIA 不公布」→「通知 FIA，而本站未取得 FIA 公開的各隊停工日期」",
+        "封面 legend 與 HTML 註解：「FIA 沒公布」→「本站未取得」",
+        "facts pack thesis 與 must_not_claim 同步（上游修正，避免同一句再被寫回），並在 must_not_claim 加註此句為禁區",
+        "facts pack voice.forbidden_meta 的 ✅ 範例：「這是媒體的說法，FIA 沒公布。」→「這是媒體的說法，不是官方數字。」（範例本身會教出同一個錯）"
+      ],
+      "_provenance": "⚠️ 這句是 v2 壓縮 subtitle 時由本站引進的，v1 正文沒有。修正輪引進新錯誤的實例。"
+    },
+    {
+      "id": "BLOCKER②",
+      "before": "條文要求的只有兩件事——申報自己的停工日期、通知供應商。",
+      "after": "就行政通知而言，F3.1.1a 寫車隊「應該」把預定期間通知 FIA；F3.1.3 另要求通知供應商。本文核對的 F3 未見上述查核機制或專屬罰則。",
+      "why": "F3.1.1a 是 should 被升成「要求」；且 F3.1.2 五款禁令、F3.1.3 禁規避、F3.2 動力單元都被「只有兩件事」壓掉。照最小建議措辭原文採用。"
+    },
+    {
+      "id": "MAJOR①",
+      "before": ["其餘 9 支車隊的日期，FIA 沒公布，本站也沒取得。", "10 份各自不同、但長度相同的行事曆，剛好疊在同一段賽曆空白上。"],
+      "after": ["其餘 10 支車隊的日期，本站未取得。", "11 支車隊各自選定窗口，日期可以重疊，並落在同一段賽曆空白內。"],
+      "evidence": "data/2026/constructor-standings.json（data_through_round 11）ConstructorStandings 共 11 筆：Mercedes／Ferrari／McLaren／Red Bull／RB F1 Team／Alpine F1 Team／Haas F1 Team／Audi／Williams／Aston Martin／Cadillac F1 Team。11 − 1（賓士）= 10。成品值已補進 facts pack own_data.team_count。",
+      "note": "未寫「各自不同」——二手來源反而寫多數車隊同窗口，facts pack 已把這條列為禁止推論。封面 legend 的「其餘 9 支」同步改為 10 並重產 PNG。"
+    },
+    {
+      "id": "MAJOR②",
+      "before": "工廠停工沒有這種東西：一個當場執行、代價寫在條文裡，另一個要靠事後調查。",
+      "after": "B9.5.3 直接寫明維修道起跑；F3 沒有同款專屬罰則，違規時適用 Section A 的一般框架。",
+      "why": "「靠事後調查」的執行時點與程序無凍結證據支撐。照最小建議措辭原文採用。"
+    },
+    {
+      "id": "MINOR①",
+      "before": "第十款只在 12 月那段適用：為財務目的清點庫存，而且物品清點完要回到原位。那句「回到原位」很能說明這套規則的性質——它管的不是誰進了廠房，是東西有沒有被動過。",
+      "after": "第十款只在 12 月那段適用：這個例外允許為財務目的清點庫存，但要求物品清點後回到原位。",
+      "why": "原句把 F3.1.4j（冬季庫存清點例外）概括成整套規則的性質。保留「第十款只在 12 月那段適用：」是為了給「這個例外」一個具體先行詞——拿掉之後實測指涉不明。"
+    },
+    {
+      "id": "MINOR②",
+      "before": "電池不能放到沒電，但也不能藉著顧電池順便測東西。",
+      "after": "條文只允許在 FIA 同意與上述限制下進行充電、均衡。",
+      "why": "「不能放到沒電」條文沒寫。照最小建議措辭原文採用。"
+    }
+  ],
+
+  "r1_side_effects": [
+    {
+      "caught_by": "check-covers 主張層",
+      "what": "MAJOR① 刪掉正文「長度相同」一詞後，封面虛線塊標籤「長度相同」失去錨點，gate 報未錨定片段「相同」，unittest 同步轉紅（Ran 12, FAILED 1）。",
+      "fix": "封面標籤改為「14 天」（正文有此字面），重產 PNG，check-covers 8 筆全綠、unittest 12 tests OK。covers.json 的 _why 同步更新。",
+      "lesson": "先行詞被刪會連帶打斷封面錨點——正文與封面是同一條指涉鏈，改正文必須連封面一起掃。"
+    },
+    {
+      "caught_by": "字數自查",
+      "what": "六條最小建議措辭淨增 32 字，正文＋FAQ 由 3978 升到 4010，超出 2500-4000 規格。",
+      "fix": "移除 MAJOR② 補丁造成的逐字重複——前句「後果寫死在同一款裡——該隊兩位車手都必須從維修道起跑。」與新句「B9.5.3 直接寫明維修道起跑」完全同義，前句縮為「超過就是違規。」。屬被點名位置的相鄰句去重，未新增任何主張。最終 3983 字。",
+      "note": "此為本輪唯一一處動到「非被點名字面」的編輯，理由是該重複由本輪補丁本身造成，且『最小替換後必掃相鄰句』的紀律要求檢查它。若覆核輪認為仍逾權，可還原為前句原文並改由他處減字。"
+    }
   ],
 
   "frontmatter_revision": {
