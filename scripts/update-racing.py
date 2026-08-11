@@ -209,6 +209,12 @@ def main():
     # 產物本身不一致仍然算失敗，會進 FAILED 擋住部署。
     run(script("check-site-facts.py", "--deploy"), "check site facts")
 
+    # 3d. 封面對帳（數字＋主張）。2026-08-11 接進管線——在此之前 check-covers.py
+    # **沒有被任何流程呼叫**，只出現在 render-covers.py 輸出的「下一步」提示裡，
+    # 全靠人記得手動跑。要人按的 gate 等於關掉的 gate。
+    # 它讀封面 HTML 原始碼（不解析 PNG），所以不必等 render。
+    run(script("check-covers.py"), "check covers (數字＋主張)")
+
     # 4.（可選）部署；pin wrangler 版本（CI 帶著 CLOUDFLARE_API_TOKEN，防供應鏈）。
     # hard gate：任何抓取/建置步驟失敗 → 禁止部署（build 步驟照跑收集診斷，但壞產物不上線）。
     if FAILED:
