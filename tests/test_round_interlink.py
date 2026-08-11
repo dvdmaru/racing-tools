@@ -303,8 +303,16 @@ class RoundRelatedArticlesTests(unittest.TestCase):
                 self.assertIn(a["slug"], published, f"{target} 列到未發布的 {a['slug']}")
 
     def test_round_11_lists_both_hungary_articles_newest_first(self):
+        """⚠️ 不斷言「恰好只有這兩篇」——mention-based 設計下，任何提到匈牙利站的
+        新文章（例：上半季盤點）都會合法地加進來；快照式全等在第一個新輸入就會誤紅
+        （2026-08-11 實際發生）。這裡釘的是穩定性質：兩篇 R11 專文必在、相對序新→舊、
+        整個清單依日期遞減。"""
         arts = il.round_articles(2026, 11)
-        self.assertEqual([a["slug"] for a in arts], [HUNGARY_BLUE_FLAG, HUNGARY_REPORT])
+        slugs = [a["slug"] for a in arts]
+        self.assertIn(HUNGARY_BLUE_FLAG, slugs)
+        self.assertIn(HUNGARY_REPORT, slugs)
+        self.assertLess(slugs.index(HUNGARY_BLUE_FLAG), slugs.index(HUNGARY_REPORT),
+                        "藍旗專文（較新）應排在戰報（較舊）之前")
         self.assertEqual([a["date"] for a in arts],
                          sorted((a["date"] for a in arts), reverse=True))
 
