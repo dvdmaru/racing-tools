@@ -15,7 +15,6 @@
   "facts_sha256": "b25bbf6a069f0f2f8c9b0c42a77a4448c06fc385fedba9b98138cef5e5ac992c",
   "prompt": "scripts/prompts/external-sourced.md",
   "prompt_sha256": "ded5bee65345bb5a7faf2395f66f37d3768823755b78d5d93d7d18e1840e46b4",
-
   "checks": [
     {
       "name": "lint-pack",
@@ -80,7 +79,6 @@
     }
   ],
   "passed": true,
-
   "pdf_evidence_method": {
     "_why": "PDF 內嵌字型會把 fi／fl 存成單一連字字元，對抽出文字直接 grep 可能對存在的詞回 0 次。所有否定性斷言都在正規化與陽性探針通過後才寫進稿子。",
     "pipeline": "curl 下載 fia.com PDF → pdftotext -layout → unicodedata.normalize('NFKC') → 才做搜尋與計數；條文語意一律以人眼逐條閱讀為準",
@@ -96,27 +94,43 @@
       {
         "sentence": "「本站對 2026 年比賽規則 Issue 08 全文檢索，『shutdown』一次都沒出現，唯一一處『shut down』講的是車手棄車時要讓 ERS 關機。」",
         "probe": "同一份文件正規化後 Restricted Period 35 次、Safety Car 196 次、specified 20 次、first 93 次均命中，證明抽取正常",
-        "target_counts": {"shutdown": 0, "shut down": 1},
+        "target_counts": {
+          "shutdown": 0,
+          "shut down": 1
+        },
         "shut_down_hit_context": "B1.8.8 A driver who abandons an F1 Car must leave it in neutral or with the clutch disengaged, with the ERS shut down…"
       },
       {
         "sentence": "「它也不在財務規則裡。本站對 Section D Issue 07 全文檢索，『shutdown』零命中。」",
         "probe": "同一份文件 Cost Cap 238 次、FINANCIAL 452 次、Reporting 371 次、notification 5 次均命中",
-        "target_counts": {"shutdown": 0, "shut down": 0}
+        "target_counts": {
+          "shutdown": 0,
+          "shut down": 0
+        }
       },
       {
         "sentence": "「curfew 這個字在本站核對的五份文件裡一次都沒有出現。」",
         "probe": "五份文件各自的陽性探針全部命中（見上）",
-        "target_counts": {"curfew": 0}
+        "target_counts": {
+          "curfew": 0
+        }
       },
       {
         "sentence": "「本站把 F3 條文本體逐條讀過，也做了全文檢索：沒有稽核、查驗、監控、紀錄保存的規定，沒有專屬罰則，也沒有目的條款。」",
         "scope": "取 Section F Issue 10 內 ARTICLE F3 條文本體（10,872 字元，不含目錄）",
         "probe": "該段落內 shutdown 29 次、wind tunnel 4 次、FIA 8 次、consecutive 8 次、notify 4 次均命中",
         "target_counts": {
-          "audit": 0, "inspect": 0, "monitor": 0, "record": 0, "access control": 0,
-          "penalt": 0, "sanction": 0, "compliance": 0, "objective": 0,
-          "breach": 2, "purpose": 15
+          "audit": 0,
+          "inspect": 0,
+          "monitor": 0,
+          "record": 0,
+          "access control": 0,
+          "penalt": 0,
+          "sanction": 0,
+          "compliance": 0,
+          "objective": 0,
+          "breach": 2,
+          "purpose": 15
         },
         "note": "breach 的 2 次都是『will not be considered a breach of the above』的例外句型；purpose 的 15 次全部是例外清單裡的『the sole purpose of which』。兩者都不是查核或罰則條款。"
       },
@@ -126,7 +140,6 @@
       }
     ]
   },
-
   "source_grading": {
     "一手": [
       "2026 FIA F1 Regulations Section F Operational Issue 10（F3 停工期、F4 空力測試期）",
@@ -148,7 +161,6 @@
     ],
     "本站自有資料": "data/2026/schedule.json（jolpica-f1）：R11 匈牙利 2026-07-26、R12 荷蘭 2026-08-23，間隔 28 天為本站推導；涵蓋範圍 1950 年起的世界錦標賽"
   },
-
   "unresolved_conflicts": [
     {
       "topic": "各隊停工起訖日",
@@ -156,7 +168,7 @@
         "賓士車隊官網（2026-07-31）：該隊為 8 月 1 日至 15 日",
         "RacingNews365（2026-08-02）：多數車隊為 8 月 3 日至 17 日，並註明全場沒有統一起始日"
       ],
-      "ruling": "不裁決，兩邊都寫。FIA 不公布各隊申報日期，本站未取得賓士以外任何一隊的日期。"
+      "ruling": "不裁決，兩邊都寫；本站未取得賓士以外各隊的官方日期。"
     },
     {
       "topic": "申報停工期的義務強度與時點",
@@ -183,15 +195,13 @@
       "ruling": "兩者並列，不合成一句。"
     }
   ],
-
   "known_gaps": [
-    "賓士以外 9 支車隊的 2026 年停工起訖日：FIA 不公布，本站未取得。",
+    "賓士以外 10 支車隊的 2026 年停工起訖日：本站未取得。",
     "夏季停工的導入年份與立法沿革：未取得可靠一手或具名二手出處。",
     "任何一件因違反停工期而被處罰的公開案例：檢索範圍內查無。",
     "Section A 的 A3.5.1d 引用『Section F 的 F1（一般原則）與 F2（範圍、罰則與違規）』，但 Section F Issue 10 的 F1 標示為 VOID、F2 標題為環境標準。此不一致本站只在 facts pack 記錄，正文最終未寫入（篇幅取捨），未推測原因。",
     "停工期的申報內容（各隊實際報給 FIA 的文件）未公開，本站無從核對車隊是否確實遵守。"
   ],
-
   "r1_findings": [
     {
       "id": "BLOCKER①",
@@ -216,8 +226,14 @@
     },
     {
       "id": "MAJOR①",
-      "before": ["其餘 9 支車隊的日期，FIA 沒公布，本站也沒取得。", "10 份各自不同、但長度相同的行事曆，剛好疊在同一段賽曆空白上。"],
-      "after": ["其餘 10 支車隊的日期，本站未取得。", "11 支車隊各自選定窗口，日期可以重疊，並落在同一段賽曆空白內。"],
+      "before": [
+        "其餘 9 支車隊的日期，FIA 沒公布，本站也沒取得。",
+        "10 份各自不同、但長度相同的行事曆，剛好疊在同一段賽曆空白上。"
+      ],
+      "after": [
+        "其餘 10 支車隊的日期，本站未取得。",
+        "11 支車隊各自選定窗口，日期可以重疊，並落在同一段賽曆空白內。"
+      ],
       "evidence": "data/2026/constructor-standings.json（data_through_round 11）ConstructorStandings 共 11 筆：Mercedes／Ferrari／McLaren／Red Bull／RB F1 Team／Alpine F1 Team／Haas F1 Team／Audi／Williams／Aston Martin／Cadillac F1 Team。11 − 1（賓士）= 10。成品值已補進 facts pack own_data.team_count。",
       "note": "未寫「各自不同」——二手來源反而寫多數車隊同窗口，facts pack 已把這條列為禁止推論。封面 legend 的「其餘 9 支」同步改為 10 並重產 PNG。"
     },
@@ -240,7 +256,6 @@
       "why": "「不能放到沒電」條文沒寫。照最小建議措辭原文採用。"
     }
   ],
-
   "r1_side_effects": [
     {
       "caught_by": "check-covers 主張層",
@@ -255,20 +270,43 @@
       "note": "此為本輪唯一一處動到「非被點名字面」的編輯，理由是該重複由本輪補丁本身造成，且『最小替換後必掃相鄰句』的紀律要求檢查它。若覆核輪認為仍逾權，可還原為前句原文並改由他處減字。"
     }
   ],
-
   "frontmatter_revision": {
     "reason": "驗收退回：規格為 subtitle 25-40 字、lede 60-90 字（含空白計）。",
-    "subtitle_before": {"chars": 156, "text": "賓士公布自己 2026 年停工 8 月 1 日到 15 日，媒體寫多數車隊是 8 月 3 日到 17 日，兩邊都沒說謊——因為 FIA 從來沒有指定過起始日。本文從 FIA 2026 年規則的原文出發，說明夏季停工規定在哪一條、關掉的到底是什麼、例外有哪些、違規怎麼辦，以及它和賽道上那個「宵禁」為什麼是兩回事。"},
-    "subtitle_after": {"chars": 27, "text": "夏季停工 14 天，起訖日各隊自己挑，FIA 不公布。"},
-    "lede_before": {"chars": 132, "text": "每年 8 月，F1 工廠會安靜兩個星期。風洞停轉、CFD 主機閒置、設計部門關燈。這件事常被講成「全隊放暑假」，但規則的寫法比放假精準得多：它管的不是人在不在，是哪些活動不准發生；而且它 2026 年剛從《比賽規則》搬到《營運規則》，條號從 24 變成 F3.1。"},
-    "lede_after": {"chars": 66, "text": "每年 8 月，F1 工廠會安靜兩個星期。規則管的不是人在不在，是哪些活動不准發生——風洞停轉、CFD 主機閒置、設計與生產部門關燈。"},
-    "numbers_removed_from_frontmatter": ["2026", "1", "15", "3", "17", "24", "F3.1"],
+    "subtitle_before": {
+      "chars": 156,
+      "text": "賓士公布自己 2026 年停工 8 月 1 日到 15 日，媒體寫多數車隊是 8 月 3 日到 17 日，兩邊都沒說謊——因為 FIA 從來沒有指定過起始日。本文從 FIA 2026 年規則的原文出發，說明夏季停工規定在哪一條、關掉的到底是什麼、例外有哪些、違規怎麼辦，以及它和賽道上那個「宵禁」為什麼是兩回事。"
+    },
+    "lede_before": {
+      "chars": 132,
+      "text": "每年 8 月，F1 工廠會安靜兩個星期。風洞停轉、CFD 主機閒置、設計部門關燈。這件事常被講成「全隊放暑假」，但規則的寫法比放假精準得多：它管的不是人在不在，是哪些活動不准發生；而且它 2026 年剛從《比賽規則》搬到《營運規則》，條號從 24 變成 F3.1。"
+    },
+    "lede_after": {
+      "chars": 66,
+      "text": "每年 8 月，F1 工廠會安靜兩個星期。規則管的不是人在不在，是哪些活動不准發生——風洞停轉、CFD 主機閒置、設計與生產部門關燈。"
+    },
+    "numbers_removed_from_frontmatter": [
+      "2026",
+      "1",
+      "15",
+      "3",
+      "17",
+      "24",
+      "F3.1"
+    ],
     "numbers_introduced": [],
     "facts_pack_sync_needed": false,
     "_why_no_sync": "① verify-numbers 以 regex 剝掉 frontmatter 後才掃，frontmatter 的數字從來不在它的受檢範圍，移除只會讓受檢集合變小，不可能產生孤兒；② 留下的 14 與 8 早已同時存在於正文與 facts pack 的 numbers_for_body；③ facts pack 是來源超集，正文少用一個數字不需要回頭刪。實跑 verify-numbers 仍為 0 個懸空數字。",
-    "body_untouched": "正文與常見問題一字未動：改版前後字數同為 3337／3978。"
+    "body_untouched": "正文與常見問題一字未動：改版前後字數同為 3337／3978。",
+    "subtitle_after_v2_superseded_by_r1": {
+      "chars": 27,
+      "text": "夏季停工 14 天，起訖日各隊自己挑，FIA 不公布。"
+    },
+    "subtitle_current": {
+      "chars": 37,
+      "text": "夏季停工 14 天，起訖日各隊自己挑；本站未取得 FIA 公開的各隊日期。",
+      "since": "R1 BLOCKER① 修正（2026-08-11 查核桌）"
+    }
   },
-
   "handoff": [
     "封面已歸位：design/covers/cover-summer-shutdown.html（外部參照只有同目錄 href=\"base.css\"，無 file:// 或絕對路徑），並在 design/covers/covers.json 現有最新版上「只增不覆蓋」追加第 8 筆；既有 7 筆（含另一位 agent 剛加的 f1-2026-half-season-review）逐字未動。PNG 已改用官方 render-covers.py --slug f1-summer-shutdown-guide --force 從歸位後的 HTML 重產，字型已目視確認生效。",
     "⚠️ 供裁決、本站未處理：python3 scripts/render-covers.py --check 回報 f1-2026-rules-guide 的 cover.png 比 cover-rules.html 舊。那是另一位 agent 今日改動的檔案，不屬本次任務範圍，本站沒有碰、也沒有重產。本篇 slug 不在 stale 清單內。",
