@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "kind": "external-sourced-check-report",
+  "checked_at": "2026-08-11T14:47:08Z",
+  "revision": 3,
+  "_r1_note": "v3＝查核桌 R1 Content NO-GO 的修正輪（2 BLOCKER＋2 MAJOR＋2 MINOR），逐條照最小建議措辭改，只動被點名位置。R1 逐條對照見 r1_findings。⚠️ 本輪自身也產生兩個連帶問題，都由 gate 抓到並修掉，記在 r1_side_effects——修正輪會引進新錯誤，這是第二個實例（第一個是 v2 壓縮 subtitle 時寫進「FIA 不公布」）。",
+  "_revision_note": "v1 被驗收退回：frontmatter 規格層違規（subtitle 156 字、lede 132 字，規格為 25-40／60-90，含空白計）。v2 只改 frontmatter 兩行與封面歸位，正文一字未動（正文與 FAQ 字數 3337／3978 皆與 v1 相同即為佐證）。",
+  "slug": "f1-summer-shutdown-guide",
+  "article": "articles/f1-summer-shutdown-guide/index.md",
+  "article_sha256": "34919c9026124547e8fa5d6b91c90d98e1f99dbbce60541f7f854930c41549d7",
+  "cover_html": "design/covers/cover-summer-shutdown.html",
+  "cover": "articles/f1-summer-shutdown-guide/cover.png",
+  "cover_sha256": "e4e87381c1117b6f7e87f172fceecc6de16946d8d75f420906ed008f20dfc272",
+  "facts": "facts/analysis-summer-shutdown.json",
+  "facts_sha256": "b25bbf6a069f0f2f8c9b0c42a77a4448c06fc385fedba9b98138cef5e5ac992c",
+  "prompt": "scripts/prompts/external-sourced.md",
+  "prompt_sha256": "ded5bee65345bb5a7faf2395f66f37d3768823755b78d5d93d7d18e1840e46b4",
+  "checks": [
+    {
+      "name": "lint-pack",
+      "passed": true,
+      "cmd": "python3 scripts/check-facts.py lint-pack --facts facts/analysis-summer-shutdown.json",
+      "result": "facts pack 結構完整，0 error、0 warning"
+    },
+    {
+      "name": "verify-sources",
+      "passed": true,
+      "cmd": "python3 scripts/check-facts.py verify-sources --article articles/f1-summer-shutdown-guide/index.md",
+      "result": "資料來源段落合規（12 條外部連結、含查證日 2026-08-11），無名歸因掃描 0 命中"
+    },
+    {
+      "name": "verify-numbers",
+      "passed": true,
+      "cmd": "python3 scripts/check-facts.py verify-numbers --facts facts/analysis-summer-shutdown.json --article articles/f1-summer-shutdown-guide/index.md",
+      "result": "稿內每個數字都能在 facts pack 找到成品值，0 個懸空數字"
+    },
+    {
+      "name": "check-links",
+      "passed": true,
+      "cmd": "python3 scripts/check-facts.py check-links --article articles/f1-summer-shutdown-guide/index.md",
+      "result": "腳本回報「本次檢查無效：12 條連結全部無法連線（SSLCertVerificationError）」——這是本機 TLS 攔截造成的環境性失敗，腳本已 fail-honest 標示為無法檢查。",
+      "manual_fallback": "改用 curl（-L，桌機 User-Agent）逐條重打，12 條全部 HTTP 200。",
+      "urls_200": 12,
+      "urls_bad": 0
+    },
+    {
+      "name": "check-zh",
+      "passed": true,
+      "cmd": "python3 scripts/check-zh.py",
+      "result": "0 error、0 warning、0 簡體命中、0 港式命中"
+    },
+    {
+      "name": "check-covers",
+      "passed": true,
+      "cmd": "python3 scripts/check-covers.py",
+      "result": "封面已歸位並登記，官方執行 8 筆全綠，含 f1-summer-shutdown-guide（cover-summer-shutdown.html）：可見數字 14 種（14／2026／3.1／7／26／8／23／1／15／10／9／28／12／24）全部見於正文，說法全部錨到文章，allow 與 allow_claims 皆為空。R1 修正後已重產 PNG 並重跑。"
+    },
+    {
+      "name": "tests.test_check_covers",
+      "passed": true,
+      "cmd": "python3 -m unittest tests.test_check_covers",
+      "result": "Ran 12 tests, OK（輸出中的 ❌ 行是注入假數字 993 與不存在檔名的反向測試，屬預期行為）"
+    },
+    {
+      "name": "frontmatter-spec",
+      "passed": true,
+      "result": "subtitle 27 字（規格 25-40）、lede 66 字（規格 60-90），皆含空白計。title 37 字未動。"
+    },
+    {
+      "name": "build-articles",
+      "passed": true,
+      "cmd": "python3 scripts/build-articles.py",
+      "result": "⏭ skip unapproved (not in config/approved.json): f1-summer-shutdown-guide —— 未核准不進輸出，符合 default-deny 預期。build 本身成功。"
+    },
+    {
+      "name": "word-count",
+      "passed": true,
+      "result": "正文 3330 字、正文＋常見問題 3983 字（含標點、不計空白；不含資料來源區塊）。含資料來源區塊全文 5313 字。要求區間 2500-4000。"
+    }
+  ],
+  "passed": true,
+  "pdf_evidence_method": {
+    "_why": "PDF 內嵌字型會把 fi／fl 存成單一連字字元，對抽出文字直接 grep 可能對存在的詞回 0 次。所有否定性斷言都在正規化與陽性探針通過後才寫進稿子。",
+    "pipeline": "curl 下載 fia.com PDF → pdftotext -layout → unicodedata.normalize('NFKC') → 才做搜尋與計數；條文語意一律以人眼逐條閱讀為準",
+    "ligatures_before_nfkc": {
+      "section_b_iss08": 665,
+      "section_f_iss10": 193,
+      "section_a_iss03": 0,
+      "section_d_iss07": 0,
+      "sporting_2025_iss5": 2
+    },
+    "extraction_defect": "⚠️ Section F 的抽出文字另有 ff→b 型字碼錯位（affiliate→abiliate、staff→stab、different→diberent）。NFKC 修不了這一類，因此程式搜尋只用來支撐否定性斷言，不用來理解條文。",
+    "negative_claims_in_article": [
+      {
+        "sentence": "「本站對 2026 年比賽規則 Issue 08 全文檢索，『shutdown』一次都沒出現，唯一一處『shut down』講的是車手棄車時要讓 ERS 關機。」",
+        "probe": "同一份文件正規化後 Restricted Period 35 次、Safety Car 196 次、specified 20 次、first 93 次均命中，證明抽取正常",
+        "target_counts": {
+          "shutdown": 0,
+          "shut down": 1
+        },
+        "shut_down_hit_context": "B1.8.8 A driver who abandons an F1 Car must leave it in neutral or with the clutch disengaged, with the ERS shut down…"
+      },
+      {
+        "sentence": "「它也不在財務規則裡。本站對 Section D Issue 07 全文檢索，『shutdown』零命中。」",
+        "probe": "同一份文件 Cost Cap 238 次、FINANCIAL 452 次、Reporting 371 次、notification 5 次均命中",
+        "target_counts": {
+          "shutdown": 0,
+          "shut down": 0
+        }
+      },
+      {
+        "sentence": "「curfew 這個字在本站核對的五份文件裡一次都沒有出現。」",
+        "probe": "五份文件各自的陽性探針全部命中（見上）",
+        "target_counts": {
+          "curfew": 0
+        }
+      },
+      {
+        "sentence": "「本站把 F3 條文本體逐條讀過，也做了全文檢索：沒有稽核、查驗、監控、紀錄保存的規定，沒有專屬罰則，也沒有目的條款。」",
+        "scope": "取 Section F Issue 10 內 ARTICLE F3 條文本體（10,872 字元，不含目錄）",
+        "probe": "該段落內 shutdown 29 次、wind tunnel 4 次、FIA 8 次、consecutive 8 次、notify 4 次均命中",
+        "target_counts": {
+          "audit": 0,
+          "inspect": 0,
+          "monitor": 0,
+          "record": 0,
+          "access control": 0,
+          "penalt": 0,
+          "sanction": 0,
+          "compliance": 0,
+          "objective": 0,
+          "breach": 2,
+          "purpose": 15
+        },
+        "note": "breach 的 2 次都是『will not be considered a breach of the above』的例外句型；purpose 的 15 次全部是例外清單裡的『the sole purpose of which』。兩者都不是查核或罰則條款。"
+      },
+      {
+        "sentence": "「本站在檢索範圍內找不到任何一件公開的處罰案例。」",
+        "method": "此句不靠 PDF 檢索，靠網路檢索（多組關鍵字查 F1 停工期違規／處罰案例），未取得任何具名可連結的案例。屬於檢索範圍內的否定，已在正文與文末聲明限定範圍。"
+      }
+    ]
+  },
+  "source_grading": {
+    "一手": [
+      "2026 FIA F1 Regulations Section F Operational Issue 10（F3 停工期、F4 空力測試期）",
+      "2026 FIA F1 Regulations Section B Sporting Issue 08（B9.5 Restricted Period）",
+      "2026 FIA F1 Regulations Section A General Issue 03（A6.1.2b 檢舉規費、A7 罰則與時效、A7.2.1b 停工期案件下放）",
+      "2026 FIA F1 Regulations Section D Financial F1 Teams Issue 07（用於否定性檢索）",
+      "2025 FIA F1 Sporting Regulations Issue 5（第 24 條舊條號對照）"
+    ],
+    "官方說明": [
+      "Formula1.com，Lawrence Barretto，2020-03-18（停工期的兩個理由、日常樣貌）",
+      "FIA 新聞，2020-03-18（14 天延長為 21 天、移至 3、4 月）",
+      "Mercedes-AMG PETRONAS F1 Team 官網，2026-07-31（該隊 2026 年停工日期 8 月 1-15 日）"
+    ],
+    "媒體轉述": [
+      "TSNA／Yahoo 奇摩運動，林靖恩／綜合報導，2026-08-04（中文引子）",
+      "RacingNews365，RN365 Staff，2026-08-02（多數車隊 8 月 3-17 日、提報時點）",
+      "GPFans，Remy Ramjiawan，2026-07-31（查核方式的媒體描述）",
+      "Motor Sport Magazine，Pablo Elizalde，2025-07-31（引用 2025 年第 24.4 節）"
+    ],
+    "本站自有資料": "data/2026/schedule.json（jolpica-f1）：R11 匈牙利 2026-07-26、R12 荷蘭 2026-08-23，間隔 28 天為本站推導；涵蓋範圍 1950 年起的世界錦標賽"
+  },
+  "unresolved_conflicts": [
+    {
+      "topic": "各隊停工起訖日",
+      "positions": [
+        "賓士車隊官網（2026-07-31）：該隊為 8 月 1 日至 15 日",
+        "RacingNews365（2026-08-02）：多數車隊為 8 月 3 日至 17 日，並註明全場沒有統一起始日"
+      ],
+      "ruling": "不裁決，兩邊都寫；本站未取得賓士以外各隊的官方日期。"
+    },
+    {
+      "topic": "申報停工期的義務強度與時點",
+      "positions": [
+        "一手條文 F3.1.1a：F1 Teams **should** notify the FIA…within thirty (30) days of the start of the Championship",
+        "RacingNews365：Each team **must** nominate its shutdown window to the FIA **before the season begins**"
+      ],
+      "ruling": "不裁決，兩邊都寫。正文明寫條文用的是 should、期限是錦標賽開始後 30 天內。"
+    },
+    {
+      "topic": "夏季停工的導入年份",
+      "positions": [
+        "RacingNews365：『十多年前』被寫進比賽規則，未給年份",
+        "網路上流傳 2009 年，本站未取得可靠具名出處"
+      ],
+      "ruling": "整段不寫。偽精確的年份是造假指紋。"
+    },
+    {
+      "topic": "FIA 如何查核停工期",
+      "positions": [
+        "GPFans（2026-07-31）：活動紀錄可隨時調閱、工廠門禁系統追蹤進出、事後調閱 CAD／風洞／CFD 資料",
+        "一手條文 F3：沒有任何查核、紀錄保存或監控的文字"
+      ],
+      "ruling": "兩者並列，不合成一句。"
+    }
+  ],
+  "known_gaps": [
+    "賓士以外 10 支車隊的 2026 年停工起訖日：本站未取得。",
+    "夏季停工的導入年份與立法沿革：未取得可靠一手或具名二手出處。",
+    "任何一件因違反停工期而被處罰的公開案例：檢索範圍內查無。",
+    "Section A 的 A3.5.1d 引用『Section F 的 F1（一般原則）與 F2（範圍、罰則與違規）』，但 Section F Issue 10 的 F1 標示為 VOID、F2 標題為環境標準。此不一致本站只在 facts pack 記錄，正文最終未寫入（篇幅取捨），未推測原因。",
+    "停工期的申報內容（各隊實際報給 FIA 的文件）未公開，本站無從核對車隊是否確實遵守。"
+  ],
+  "r1_findings": [
+    {
+      "id": "BLOCKER①",
+      "issue": "「FIA 不公布」＝無探針的全稱否定，凍結證據只支撐「本站除賓士外未取得其他車隊日期」",
+      "sweep": "全文 grep（正文／frontmatter／FAQ／封面／facts pack）共 4 處正文與 frontmatter、2 處封面（legend＋HTML 註解）、1 處 covers.json 引述、2 處 facts pack（thesis、must_not_claim）＋1 處 voice 範例",
+      "fixed": [
+        "frontmatter subtitle：「夏季停工 14 天，起訖日各隊自己挑，FIA 不公布。」→「夏季停工 14 天，起訖日各隊自己挑；本站未取得 FIA 公開的各隊日期。」（37 字）",
+        "導言：「報給 FIA，而 FIA 不公布」→「報給 FIA，而本站未取得 FIA 公開的各隊停工日期」",
+        "2026 賽曆段：「FIA 沒公布，本站也沒取得」→「本站未取得」（併入 MAJOR①）",
+        "FAQ〈每支車隊的停工日期一樣嗎〉：「通知 FIA，FIA 不公布」→「通知 FIA，而本站未取得 FIA 公開的各隊停工日期」",
+        "封面 legend 與 HTML 註解：「FIA 沒公布」→「本站未取得」",
+        "facts pack thesis 與 must_not_claim 同步（上游修正，避免同一句再被寫回），並在 must_not_claim 加註此句為禁區",
+        "facts pack voice.forbidden_meta 的 ✅ 範例：「這是媒體的說法，FIA 沒公布。」→「這是媒體的說法，不是官方數字。」（範例本身會教出同一個錯）"
+      ],
+      "_provenance": "⚠️ 這句是 v2 壓縮 subtitle 時由本站引進的，v1 正文沒有。修正輪引進新錯誤的實例。"
+    },
+    {
+      "id": "BLOCKER②",
+      "before": "條文要求的只有兩件事——申報自己的停工日期、通知供應商。",
+      "after": "就行政通知而言，F3.1.1a 寫車隊「應該」把預定期間通知 FIA；F3.1.3 另要求通知供應商。本文核對的 F3 未見上述查核機制或專屬罰則。",
+      "why": "F3.1.1a 是 should 被升成「要求」；且 F3.1.2 五款禁令、F3.1.3 禁規避、F3.2 動力單元都被「只有兩件事」壓掉。照最小建議措辭原文採用。"
+    },
+    {
+      "id": "MAJOR①",
+      "before": [
+        "其餘 9 支車隊的日期，FIA 沒公布，本站也沒取得。",
+        "10 份各自不同、但長度相同的行事曆，剛好疊在同一段賽曆空白上。"
+      ],
+      "after": [
+        "其餘 10 支車隊的日期，本站未取得。",
+        "11 支車隊各自選定窗口，日期可以重疊，並落在同一段賽曆空白內。"
+      ],
+      "evidence": "data/2026/constructor-standings.json（data_through_round 11）ConstructorStandings 共 11 筆：Mercedes／Ferrari／McLaren／Red Bull／RB F1 Team／Alpine F1 Team／Haas F1 Team／Audi／Williams／Aston Martin／Cadillac F1 Team。11 − 1（賓士）= 10。成品值已補進 facts pack own_data.team_count。",
+      "note": "未寫「各自不同」——二手來源反而寫多數車隊同窗口，facts pack 已把這條列為禁止推論。封面 legend 的「其餘 9 支」同步改為 10 並重產 PNG。"
+    },
+    {
+      "id": "MAJOR②",
+      "before": "工廠停工沒有這種東西：一個當場執行、代價寫在條文裡，另一個要靠事後調查。",
+      "after": "B9.5.3 直接寫明維修道起跑；F3 沒有同款專屬罰則，違規時適用 Section A 的一般框架。",
+      "why": "「靠事後調查」的執行時點與程序無凍結證據支撐。照最小建議措辭原文採用。"
+    },
+    {
+      "id": "MINOR①",
+      "before": "第十款只在 12 月那段適用：為財務目的清點庫存，而且物品清點完要回到原位。那句「回到原位」很能說明這套規則的性質——它管的不是誰進了廠房，是東西有沒有被動過。",
+      "after": "第十款只在 12 月那段適用：這個例外允許為財務目的清點庫存，但要求物品清點後回到原位。",
+      "why": "原句把 F3.1.4j（冬季庫存清點例外）概括成整套規則的性質。保留「第十款只在 12 月那段適用：」是為了給「這個例外」一個具體先行詞——拿掉之後實測指涉不明。"
+    },
+    {
+      "id": "MINOR②",
+      "before": "電池不能放到沒電，但也不能藉著顧電池順便測東西。",
+      "after": "條文只允許在 FIA 同意與上述限制下進行充電、均衡。",
+      "why": "「不能放到沒電」條文沒寫。照最小建議措辭原文採用。"
+    }
+  ],
+  "r1_side_effects": [
+    {
+      "caught_by": "check-covers 主張層",
+      "what": "MAJOR① 刪掉正文「長度相同」一詞後，封面虛線塊標籤「長度相同」失去錨點，gate 報未錨定片段「相同」，unittest 同步轉紅（Ran 12, FAILED 1）。",
+      "fix": "封面標籤改為「14 天」（正文有此字面），重產 PNG，check-covers 8 筆全綠、unittest 12 tests OK。covers.json 的 _why 同步更新。",
+      "lesson": "先行詞被刪會連帶打斷封面錨點——正文與封面是同一條指涉鏈，改正文必須連封面一起掃。"
+    },
+    {
+      "caught_by": "字數自查",
+      "what": "六條最小建議措辭淨增 32 字，正文＋FAQ 由 3978 升到 4010，超出 2500-4000 規格。",
+      "fix": "移除 MAJOR② 補丁造成的逐字重複——前句「後果寫死在同一款裡——該隊兩位車手都必須從維修道起跑。」與新句「B9.5.3 直接寫明維修道起跑」完全同義，前句縮為「超過就是違規。」。屬被點名位置的相鄰句去重，未新增任何主張。最終 3983 字。",
+      "note": "此為本輪唯一一處動到「非被點名字面」的編輯，理由是該重複由本輪補丁本身造成，且『最小替換後必掃相鄰句』的紀律要求檢查它。若覆核輪認為仍逾權，可還原為前句原文並改由他處減字。"
+    }
+  ],
+  "frontmatter_revision": {
+    "reason": "驗收退回：規格為 subtitle 25-40 字、lede 60-90 字（含空白計）。",
+    "subtitle_before": {
+      "chars": 156,
+      "text": "賓士公布自己 2026 年停工 8 月 1 日到 15 日，媒體寫多數車隊是 8 月 3 日到 17 日，兩邊都沒說謊——因為 FIA 從來沒有指定過起始日。本文從 FIA 2026 年規則的原文出發，說明夏季停工規定在哪一條、關掉的到底是什麼、例外有哪些、違規怎麼辦，以及它和賽道上那個「宵禁」為什麼是兩回事。"
+    },
+    "lede_before": {
+      "chars": 132,
+      "text": "每年 8 月，F1 工廠會安靜兩個星期。風洞停轉、CFD 主機閒置、設計部門關燈。這件事常被講成「全隊放暑假」，但規則的寫法比放假精準得多：它管的不是人在不在，是哪些活動不准發生；而且它 2026 年剛從《比賽規則》搬到《營運規則》，條號從 24 變成 F3.1。"
+    },
+    "lede_after": {
+      "chars": 66,
+      "text": "每年 8 月，F1 工廠會安靜兩個星期。規則管的不是人在不在，是哪些活動不准發生——風洞停轉、CFD 主機閒置、設計與生產部門關燈。"
+    },
+    "numbers_removed_from_frontmatter": [
+      "2026",
+      "1",
+      "15",
+      "3",
+      "17",
+      "24",
+      "F3.1"
+    ],
+    "numbers_introduced": [],
+    "facts_pack_sync_needed": false,
+    "_why_no_sync": "① verify-numbers 以 regex 剝掉 frontmatter 後才掃，frontmatter 的數字從來不在它的受檢範圍，移除只會讓受檢集合變小，不可能產生孤兒；② 留下的 14 與 8 早已同時存在於正文與 facts pack 的 numbers_for_body；③ facts pack 是來源超集，正文少用一個數字不需要回頭刪。實跑 verify-numbers 仍為 0 個懸空數字。",
+    "body_untouched": "正文與常見問題一字未動：改版前後字數同為 3337／3978。",
+    "subtitle_after_v2_superseded_by_r1": {
+      "chars": 27,
+      "text": "夏季停工 14 天，起訖日各隊自己挑，FIA 不公布。"
+    },
+    "subtitle_current": {
+      "chars": 37,
+      "text": "夏季停工 14 天，起訖日各隊自己挑；本站未取得 FIA 公開的各隊日期。",
+      "since": "R1 BLOCKER① 修正（2026-08-11 查核桌）"
+    }
+  },
+  "handoff": [
+    "封面已歸位：design/covers/cover-summer-shutdown.html（外部參照只有同目錄 href=\"base.css\"，無 file:// 或絕對路徑），並在 design/covers/covers.json 現有最新版上「只增不覆蓋」追加第 8 筆；既有 7 筆（含另一位 agent 剛加的 f1-2026-half-season-review）逐字未動。PNG 已改用官方 render-covers.py --slug f1-summer-shutdown-guide --force 從歸位後的 HTML 重產，字型已目視確認生效。",
+    "⚠️ 供裁決、本站未處理：python3 scripts/render-covers.py --check 回報 f1-2026-rules-guide 的 cover.png 比 cover-rules.html 舊。那是另一位 agent 今日改動的檔案，不屬本次任務範圍，本站沒有碰、也沒有重產。本篇 slug 不在 stale 清單內。",
+    "config/approved.json 未動（紅線），因此本文尚未進入 public-racing 輸出，符合 default-deny。"
+  ],
+  "waivers": "none — 本次沒有使用任何豁免；covers.json 的 allow／allow_claims 皆為空。"
+}

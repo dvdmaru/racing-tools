@@ -103,11 +103,19 @@ class TestEndToEnd(unittest.TestCase):
                 self.assertFalse(cc.check_one({
                     "slug": "f1-2026-r11-hungary-report",
                     "html": "cover-fake-for-test.html", "allow": {}}))
-                # 而具名例外要能解除它——否則 allow 機制形同不存在
-                self.assertTrue(cc.check_one({
+                # PR #42 加了主張錨定層之後，只解除數字層還不夠——「993次」這個
+                # 說法文章沒說過，第二層必須繼續擋。這條斷言把雙層行為釘死：
+                # 少了它，「補 allow 就全綠」會靜默回歸成單層 gate。
+                self.assertFalse(cc.check_one({
                     "slug": "f1-2026-r11-hungary-report",
                     "html": "cover-fake-for-test.html",
                     "allow": {"993": "測試用具名例外"}}))
+                # 而兩層都具名例外要能解除它——否則 allow 機制形同不存在
+                self.assertTrue(cc.check_one({
+                    "slug": "f1-2026-r11-hungary-report",
+                    "html": "cover-fake-for-test.html",
+                    "allow": {"993": "測試用具名例外"},
+                    "allow_claims": {"993次": "測試用具名例外"}}))
             finally:
                 dst.unlink(missing_ok=True)
 

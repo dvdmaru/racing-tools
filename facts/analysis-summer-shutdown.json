@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "kind": "analysis-external-sourced",
+  "slug": "f1-summer-shutdown-guide",
+  "built_at": "2026-08-11",
+  "revision": 1,
+  "verified_on": "2026-08-11",
+  "thesis": "夏季停工不是全圍場一起放的兩週假。條文只規定「7 月和／或 8 月裡的 14 個連續日曆日」，起訖日由每支車隊自己挑、自己報給 FIA，而本站未取得 FIA 公開的各隊停工日期。這一條 2026 年還從《比賽規則》搬到了《營運規則》，條號從 24 變成 F3.1，內容幾乎一字未動。",
+  "_structure_hint": "從『每隊日期不一樣、而且查不到』這個具體的怪事切進去 → 法源與搬家 → 14 天怎麼算（含 13 天的觸發條件與 12 月那段） → 被關掉的到底是什麼（逐款） → 例外清單 → 動力單元製造商那條 → 停工期如何被寫進風洞配額的時間軸 → 條文沒寫查核、卻寫了檢舉要付多少錢 → 賽道『宵禁』是另一條規則 → 官方給的理由 → 2026 賽曆上的位置。不要寫成規則條列，每一節都要有一個讓人記得住的事實。",
+
+  "primary_sources": {
+    "_grade": "一手文件（FIA 官方 PDF，本站逐條核對）",
+    "section_f_operational": {
+      "title": "2026 FIA Formula 1 Regulations — Section F: Operational Regulations",
+      "issue": "Issue 10",
+      "published": "2026-08-05",
+      "wmsc_approval": "2026-08-03",
+      "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_f_operational_-_iss_10_-_2026-08-05.pdf",
+      "_note": "夏季停工的法源在這一份，不在 Section B（比賽規則）。本站對 Section B Issue 08 全文檢索，shutdown 一字未出現。"
+    },
+    "section_b_sporting": {
+      "title": "2026 FIA Formula 1 Regulations — Section B: Sporting Regulations",
+      "issue": "Issue 08",
+      "published": "2026-08-05",
+      "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf",
+      "_note": "賽道端的 Restricted Period（俗稱宵禁）在 B9.5。"
+    },
+    "section_a_general": {
+      "title": "2026 FIA Formula 1 Regulations — Section A: General Regulatory Provisions",
+      "issue": "Issue 03",
+      "published": "2026-06-25",
+      "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_a_general_provisions_-_iss_03_-_2026-06-25.pdf",
+      "_note": "調查、檢舉、罰則、時效都在這一份。"
+    },
+    "section_d_financial": {
+      "title": "2026 FIA Formula 1 Regulations — Section D: Financial Regulations (F1 Teams)",
+      "issue": "Issue 07",
+      "published": "2026-06-25",
+      "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_d_financial_-_f1_teams_-_iss_07_-_2026-06-25.pdf",
+      "_note": "本站對全文檢索 shutdown 零命中——停工期與成本上限是兩套分開的機制。這是可窮盡驗證的否定，受檢對象就是這一份 PDF。"
+    },
+    "sporting_2025": {
+      "title": "2025 FIA Formula 1 Sporting Regulations",
+      "issue": "Issue 5",
+      "published": "2025-04-30",
+      "url": "https://api.fia.com/system/files/documents/fia_2025_formula_1_sporting_regulations_-_issue_5_-_2025-04-30.pdf",
+      "_note": "舊條號對照用：2025 年是第 24 條 COMPETITOR FACTORY SHUTDOWN PERIODS，動力單元製造商在第 25 條以交叉引用處理。"
+    }
+  },
+
+  "verification_method": {
+    "_why": "PDF 內嵌字型會把 fi／fl 存成單一連字字元，直接 grep 抽出文字可能對存在的詞回 0 次。所有否定性斷言在正規化與陽性探針通過後才成立。",
+    "pipeline": "fia.com 下載 PDF → pdftotext -layout → unicodedata.normalize('NFKC', text) → 再做搜尋與計數",
+    "ligature_counts_before_nfkc": "Section B Issue 08：665 個；Section F Issue 10：193 個；Section A Issue 03 與 Section D Issue 07：0 個；2025 比賽規則 Issue 5：2 個",
+    "extraction_defect_note": "⚠️ Section F 的抽出文字另有 ff→b 型的字碼錯位（affiliate 抽成 abiliate、staff 抽成 stab、different 抽成 diberent）。NFKC 修不了這一類，所以本文所有條文語意都以人眼逐條閱讀為準，程式搜尋只用來支撐否定性斷言。",
+    "positive_probes": "每一份文件都先用必然存在的詞驗證抽取本身沒壞：Section B「Restricted Period」35 次、「Safety Car」196 次；Section F「shutdown」33 次、「wind tunnel」50 次；Section A「Sanctions」18 次；Section D「Cost Cap」238 次、「Reporting」371 次；2025 比賽規則「shutdown」27 次。",
+    "negative_claims": [
+      {
+        "claim": "夏季停工的條文不在 2026 年比賽規則（Section B）裡",
+        "evidence": "Section B Issue 08 正規化後 shutdown 命中 0 次；shut down 僅 1 次，出處是 B1.8.8 車手棄車時須讓 ERS 關機，與工廠停工無關。",
+        "probe": "同一份文件的 Restricted Period 35 次、Safety Car 196 次、first 93 次均命中"
+      },
+      {
+        "claim": "停工期不在財務規則（Section D）裡",
+        "evidence": "Section D Issue 07 正規化後 shutdown 與 shut down 皆 0 次",
+        "probe": "同一份文件的 Cost Cap 238 次、Reporting 371 次、notification 5 次均命中"
+      },
+      {
+        "claim": "curfew 一詞不是規則用語",
+        "evidence": "Section B Issue 08、Section F Issue 10、Section A Issue 03、Section D Issue 07 與 2025 比賽規則 Issue 5 正規化後 curfew 皆 0 次",
+        "probe": "同上，各文件皆有數十至數百次的陽性命中"
+      },
+      {
+        "claim": "F3 條文本身沒有查核方式、沒有專屬罰則、也沒有目的條款",
+        "evidence": "取 F3 條文本體（10,872 字元，不含目錄）正規化後：audit／inspect／monitor／record／access control／penalt／sanction／compliance／objective 全部 0 次；breach 只有 2 次，都是『will not be considered a breach』的例外句型；purpose 15 次，全部是例外清單裡的『the sole purpose of which』。",
+        "probe": "同一段落 shutdown 29 次、wind tunnel 4 次、FIA 8 次、consecutive 8 次、notify 4 次均命中"
+      }
+    ]
+  },
+
+  "clauses": {
+    "A7_2_1_shutdown_example": {
+      "claim": "停工期在規則裡還有另一個身分：它是裁判團把案件下放給非比賽期間裁判團的教科書例子",
+      "text": "A7.2.1b(B)：當決定必須在比賽結束後才能做出、且事情具時效性、不宜拖到下一場比賽才處理時，裁判團得把權限下放給 Out-of-Competition Stewards Panel；條文舉的例子就是『需要在停工期期間或兩屆錦標賽之間解決的事項』。",
+      "grade": "一手"
+    },
+    "cross_reference_mismatch": {
+      "claim": "兩份 2026 規則之間的交叉引用對不上",
+      "detail": "Section A Issue 03 的 A3.5.1d 要求新加入車隊遵守營運規則的『F1（一般原則）』與『F2（範圍、罰則與違規）』；但本站取得的 Section F Issue 10 裡，F1 標示為 VOID，F2 的標題是 ENVIRONMENTAL STANDARDS（環境標準）。",
+      "_writer_note": "⚠️ 只陳述兩份文件寫了什麼，不推測原因、不宣稱哪一份有問題。一句話帶過。",
+      "grade": "一手（兩份 PDF 對照）"
+    },
+    "F3_title": {
+      "claim": "2026 年夏季停工的條文標題是 ARTICLE F3: COMPETITORS’ SHUTDOWN PERIOD，分成 F3.1（車隊）與 F3.2（動力單元製造商）兩節",
+      "extra": "F3.1 標註的諮詢委員會是 TAC，治理層級是 F1 Commission / WMSC",
+      "grade": "一手"
+    },
+    "F3_1_1": {
+      "claim": "所有 F1 車隊必須遵守兩段停工期",
+      "a": "第一段：7 月和／或 8 月期間的 14 個連續日曆日。若這段期間內兩場連續的比賽只相隔 17 天，則必須改為遵守 13 個連續日曆日。兩種情形下，車隊都『應該』（should）在錦標賽開始後 30 天內把打算採用的停工期通知 FIA。",
+      "b": "第二段：自 12 月 24 日起算的 9 個連續日曆日。",
+      "_writer_note": "⚠️ 條文用的助動詞是 should 不是 must，這一點要照實寫，不要升格成『必須申報』。期限是『錦標賽開始後 30 天內』，不是『賽季開始前』。",
+      "grade": "一手"
+    },
+    "F3_1_2": {
+      "claim": "停工期間，車隊或其關係企業不得自行從事、也不得指示第三方供應商代為從事下列活動",
+      "items": [
+        "a. 操作或使用任何風洞（F3.1.4 特別允許者除外）",
+        "b. 操作或使用任何用於 CFD 模擬的運算資源（F3.1.4 特別允許者除外）",
+        "c. 生產或開發風洞零件、車輛零件、測試零件或工具",
+        "d. 車輛零件的次組裝或整車組裝",
+        "e. 任何從事設計、開發或生產的員工、顧問或外包人員的工作活動（不含為緊接停工期之後那場比賽而在賽道進行的工作）"
+      ],
+      "grade": "一手"
+    },
+    "F3_1_3": {
+      "claim": "車隊必須把自己停工期的日期通知供應商，且不得為規避上述禁令而簽訂任何協議或安排",
+      "grade": "一手"
+    },
+    "F3_1_4": {
+      "claim": "停工期間，下列活動不算違規（共十款 a 到 j）",
+      "items": [
+        "a. 經 FIA 同意，修復在停工期前一場比賽中嚴重受損的車",
+        "b. 可動或靜態展示車的組裝與維護，但不得涉及任何現役車零件的生產、組裝或維護",
+        "c. 風洞用於與 F1 無直接關係的專案、用於當時不在自己停工期內的車隊、或用於設施維護與改裝（排除比賽規則附錄 7 定義的受限風洞測試）",
+        "d. CFD 運算同理，另排除方法論開發與營運規則 F4 定義的受限 CFD 模擬",
+        "e. 唯一目的為支援與 F1 無關的專案，須經 FIA 事前書面核准",
+        "f. 唯一目的為廠房設施維護",
+        "g. 唯一目的為工廠 IT 網路與相關系統維護",
+        "h. 海運貨物的裝卸與備料，但車輛零件或組件除外",
+        "i. 唯一目的為員工福祉或娛樂",
+        "j. 只在 F3.1.1b 那段（12 月）適用：為財務目的清點庫存數量，且物品清點後須回到原位"
+      ],
+      "grade": "一手"
+    },
+    "F3_2": {
+      "claim": "動力單元製造商另有一整節 F3.2，兩段停工期的長度與時間窗與車隊相同",
+      "prohibited": "F3.2.5 禁止：設計／開發／生產人員的工作、操作或使用測試台架（停工期間不得累積佔用時數或運轉時數）、用於模擬的運算資源、動力單元零件與工具的生產或開發、動力單元零件次組裝或整組組裝",
+      "battery_exception": "F3.2.6h：含 ES 電芯的能量儲存裝置充電與均衡，經 FIA 同意可進行；充電電流上限 5A，均衡速率上限 0.1C；不得在任何已申報的測試台架上進行；最多兩名人員參與",
+      "local_law": "F3.2.3：若工廠所在國的法律或工會規定了不同的關廠週，這些工廠可用當地的法定關廠週替換兩週中的一週，第二段停工期則須不遲於 12 月 31 日開始；受此影響的製造商必須向 FIA 聲明相關員工不會被調去沒有停工的國家工作",
+      "new_entrant": "F3.2.8：新加入的動力單元製造商在 FIA 確認參賽後 12 個月內不適用本條",
+      "grade": "一手"
+    },
+    "F4_1_4": {
+      "claim": "空力測試期（Aerodynamic Testing Period, ATP）一年 6 個，其中第 4 期為期 10 週，且明文寫著『包含 F3.1.1 所述的夏季工廠停工期』",
+      "detail": "第 1 期自 1 月 1 日起至第 9 週結束；第 2、3、5 期各為期 8 週；第 6 期於 12 月 31 日結束。週一為一週之始，第 1 週是當年第一個有四天以上的週。FIA 在特殊情況下得自行裁量修改這些期間。",
+      "grade": "一手"
+    },
+    "A3_5_1": {
+      "claim": "新加入車隊在首次參賽的 Year N 之前，必須在 Year N-1 一整年遵守營運規則的 F1、F2、F3.1（停工期）與 F4（空力測試限制）",
+      "caveat": "同條也寫明：若確認時點晚於上述期間的起點，FIA 得與該隊另訂協議取代這些要求。本站沒有取得任何一支新加入車隊的個案協議文件。",
+      "grade": "一手"
+    },
+    "A6_1_2": {
+      "claim": "車隊或動力單元製造商可以具名檢舉對手違規，但要付錢",
+      "fees": "行政規費 10,000 歐元（不退還）＋保證金 40,000 歐元。保證金只有在 FIA 因此對被檢舉方提出違規指控、或最終未開啟調查的情況下才會退還。",
+      "form": "檢舉須出於善意且在知悉後儘速提出、指明對象與涉嫌條款、附足夠有效證據或強烈跡象，並由檢舉方的執行長或車隊經理連同該領域主管署名；檢舉方須對報告保密。",
+      "grade": "一手"
+    },
+    "A7_sanctions": {
+      "strict_liability": "A7.10.3：除另有規定外，遵守 FIA F1 規則的責任是無過失責任（strict liability）",
+      "general": "A7.12.1：除非 FIA F1 規則對某類違規另訂特定罰則，一律適用《國際運動規則》與 FIA 司法與紀律規則的一般罰則",
+      "additional": "A7.12.3 另列四款附加罰則：加強監管、扣發或取消 FIA 註冊與執照一段期間、取消進入比賽保留區的權利一段期間、停止其直接或間接參與任何 FIA 或 ASN 主辦賽事與 F1 活動一段期間",
+      "forum": "A7.2.1c：非比賽期間的裁判團（Out-of-Competition Stewards Panel）有權裁決被移送的運動、技術及／或營運規則違規；A7.2.2：國際仲裁法庭（International Tribunal）為一般紀律案件的一審機關（財務規則與反禁藥案件除外）",
+      "limitation": "A7.9.1：追訴時效 5 年",
+      "no_specific_penalty": "F3 全文沒有為停工違規訂定專屬罰則，因此適用的是上述一般框架。這是本站在受檢文件範圍內的核對結果。",
+      "grade": "一手"
+    },
+    "B9_5": {
+      "claim": "賽道端的限制叫 Restricted Period，規定在比賽規則 B9.5，與工廠停工是兩套不同的東西",
+      "who": "B9.5.1：每一場比賽中，B9.2.1 與 B9.3.1 定義的作業人員與見習人員不得進入賽道範圍",
+      "windows": [
+        "Restricted Period One：FP1 排定開始前 42 小時起，至 FP1 前 29 小時止",
+        "Restricted Period Two：FP1 排定開始前 18 小時起，至 FP1 前 4 小時止",
+        "Restricted Period Three（標準賽制）：FP3 排定開始前 14 小時起，至 FP3 前 3 小時止；若 FP2 結束到第三段開始之間的不受限時間超過 4 小時，超出部分要加到第三段的起點",
+        "Restricted Period Three（衝刺賽制）：以衝刺賽暖胎圈排定開始時間為基準，前 14 小時起至前 3 小時止；若衝刺排位結束到第三段開始之間的不受限時間超過 3 小時，超出部分加到起點"
+      ],
+      "grace": "B9.5.2：可在每段結束前 30 分鐘進入 Paddock 以疏解入口壅塞；第一、二段開始後可續留賽道範圍最多 1 小時，第三段開始後最多 30 分鐘，且僅限運動、用餐與社交。這些時段內不得從事操作性活動，包含在賽車或其零件上作業、以及工程師使用電腦。",
+      "exceptions": "B9.5.3：全季可用的例外次數為第一段 6 次、第二段 5 次、第三段 4 次，同一場比賽內不得連續使用",
+      "penalty": "B9.5.3 同款：違反本條時，該隊兩位車手都必須依 B5.3 從維修道起跑",
+      "exempt": "B9.5.4：車手，以及職務僅涉及接待、行銷、媒體、保全或往返賽場開卡車的人員不受此限；這些非作業人員在限制時段內可裝卸貨物（但不得打包或拆箱）、為其他賽事系列準備器材、布置車庫展示",
+      "supplier_failure": "B9.5.6：官方供應商未及時交付比賽準備所需服務時，賽事總監得在第一段開始前 12 小時內給予全體車隊例外，且不計入 B9.5.3 的次數",
+      "curfew_word": "本站對 Section B Issue 08 與 Section F Issue 10 全文檢索，curfew 這個字一次都沒有出現；規則用語是 Restricted Period。這一條可窮盡驗證，受檢對象就是這兩份 PDF。",
+      "grade": "一手"
+    },
+    "renumbering_2025_to_2026": {
+      "claim": "同一套規定在 2025 年是比賽規則第 24 條，2026 年變成營運規則 F3.1，條文文字幾乎逐字沿用",
+      "detail": "2025 年第 24 條的標題是 COMPETITOR FACTORY SHUTDOWN PERIODS，14 天／17 天觸發 13 天／30 天內通知 FIA／12 月 24 日起 9 天，五款禁止事項與九款例外的順序與用字都與 2026 年 F3.1 相同。差別在於 2025 年動力單元製造商是在第 25 條以交叉引用的方式一併規範，2026 年改成 F3.2 自成一節、把台架與模擬的禁止事項寫全。",
+      "_writer_note": "⚠️ 只寫『幾乎逐字沿用』與『動力單元那節被寫全了』這兩件事，不要宣稱兩版完全相同——本站比對的是這兩個版本，不是每一個 issue。",
+      "grade": "一手（兩份 PDF 對照）"
+    }
+  },
+
+  "official_explanations": {
+    "_grade": "官方說法（賽事推廣方與車隊自己的說明，不是規則條文）",
+    "formula1_com": {
+      "title": "Explained: What does an early F1 factory shutdown mean for the teams?",
+      "author": "Lawrence Barretto",
+      "date": "2020-03-18",
+      "url": "https://www.formula1.com/en/latest/article/explained-what-does-an-early-f1-factory-shutdown-mean-for-the-teams.1HTvuyGCCX5WRgDzCm1Xgp",
+      "claims": [
+        "停工期的設立有兩個理由：一是省成本，風洞這類設施運轉費用高昂，停工期間必須關掉；二是讓人員有時間陪家人、在賽季後段的硬仗前充電",
+        "被禁的是任何與賽車性能有關的工作，設計、研發、生產與組裝部門都要停下來",
+        "限制包含不看技術郵件、不在電話或訊息裡討論技術",
+        "行銷、財務與法務部門照常上班，因為它們不直接影響性能"
+      ],
+      "_writer_note": "⚠️ 這是 2020 年的文章，寫的是當年因疫情提前的那次停工，理由的說明則是通則。引用時要標年份。"
+    },
+    "fia_2020_change": {
+      "title": "F1 - Changes to Formula 1 summer shutdown period approved",
+      "date": "2020-03-18",
+      "url": "https://www.fia.com/news/f1-changes-formula-1-summer-shutdown-period-approved",
+      "claims": [
+        "因應 COVID-19 對賽事組織的全球衝擊，夏季停工期由 14 天延長為 21 天，並由 7、8 月移到 3、4 月",
+        "公告原文：All competitors must therefore observe a shutdown period of 21 consecutive days during the months of March and/or April",
+        "此變更由世界汽車運動理事會核准，F1 策略小組與 F1 委員會一致支持"
+      ],
+      "_writer_note": "這條的用途是證明『這段期間可以被移動與延長』，不是拿來講疫情。點到為止。"
+    },
+    "mercedes": {
+      "title": "F1 Summer Shutdown: Everything You Need to Know",
+      "publisher": "Mercedes-AMG PETRONAS F1 Team 官方網站",
+      "date": "2026-07-31",
+      "url": "https://www.mercedesamgf1.com/news/f1-summer-shutdown-everything-you-need-to-know",
+      "claims": [
+        "2026 年賓士車隊自己的停工期是 8 月 1 日至 15 日",
+        "車隊在 FIA 指定的期間內自選 14 天的窗口，但每一位參賽者都要遵守同一套規則",
+        "禁止事項列為風洞測試、CFD 模擬、設計新的性能零件、製造新零件、組裝或次組裝賽車、與性能相關的工程與開發工作",
+        "允許的包含廠房與基礎設施維護、IT 與網路維護、員工福祉活動",
+        "原文對這條規則目的的說法：nobody is allowed to keep developing their car while their rivals are taking a break"
+      ],
+      "_writer_note": "這是本站唯一取得的、由車隊自己公布的 2026 年停工起訖日。其他 9 支車隊的日期本站沒有。"
+    }
+  },
+
+  "media": {
+    "_grade": "媒體轉述（具名、可點擊）",
+    "tsna": {
+      "title": "F1》迎戰 2026 賽季後半段 F1 夏季停工期展開 賽車手們如何充電再出發？",
+      "byline": "林靖恩／綜合報導",
+      "publisher": "TSNA（Yahoo 奇摩運動轉載）",
+      "date": "2026-08-04",
+      "url": "https://tw.sports.yahoo.com/news/f1-%E8%BF%8E%E6%88%B0-2026-%E8%B3%BD%E5%AD%A3%E5%BE%8C%E5%8D%8A%E6%AE%B5-f1-071000936.html",
+      "claims": [
+        "在 8 月 21 日至 23 日的荷蘭大獎賽回歸之前，所有車隊將進入國際汽聯強制規定的兩週工廠停工期",
+        "此期間所有車隊一律禁止進行風洞測試、車輛研發或深夜模擬器運轉",
+        "目的是讓高強度運作一整年的圍場後勤人員與工程團隊獲得充分且必要的休息"
+      ],
+      "_writer_note": "這是中文圈的引子，用來對照『兩週』這個講法與條文的 14 天／13 天寫法。該報導沒有引用條號。"
+    },
+    "racingnews365": {
+      "title": "F1 is in shutdown — why and how does it work?",
+      "byline": "RN365 Staff",
+      "date": "2026-08-02",
+      "url": "https://racingnews365.com/f1-is-in-shutdown-why-and-how-does-it-work",
+      "claims": [
+        "多數車隊的兩週停工期是 8 月 3 日星期一到 8 月 17 日星期一",
+        "全場沒有統一的起始日，每支車隊必須在賽季開始前向 FIA 提報自己的停工窗口",
+        "受管制的工廠關閉本身為期 14 個連續日曆日",
+        "強制停工被寫進比賽規則是十多年前的事，現在熟悉的 14 天架構是後續修訂才確立的"
+      ],
+      "_writer_note": "⚠️ 兩處要與一手條文對照著寫：①『賽季開始前必須提報』與條文的『應該在錦標賽開始後 30 天內通知』不一致，兩邊都寫，不裁決 ②導入年份該報導只寫『十多年前』沒給年份，本站也沒查到可靠的年份出處，所以文章不寫導入年份。"
+    },
+    "gpfans": {
+      "title": "F1 enters the summer break shutdown and this is how the FIA enforce it",
+      "byline": "Remy Ramjiawan",
+      "date": "2026-07-31",
+      "url": "https://www.gpfans.com/en/f1-news/1088546/fia-f1-summer-break-shutdown-enforce-rules/",
+      "claims": [
+        "車隊必須記錄停工期間的活動，這些紀錄 FIA 可隨時調閱",
+        "工廠的門禁系統讓 FIA 得以追蹤誰進出廠區",
+        "FIA 事後可調閱 CAD 檔案、風洞資料、CFD 模擬等技術資料以查核有無偷跑",
+        "被抓到的車隊可能面臨罰款甚至運動罰則"
+      ],
+      "_writer_note": "⚠️ 這四條是媒體對查核方式的描述。本站核對的 F3 條文裡沒有任何一句寫到活動紀錄、門禁系統或事後調檔——條文只寫了申報停工日期與通知供應商。要把『媒體這樣說』與『條文沒這樣寫』並列，不要合成一句。"
+    },
+    "motorsport_magazine": {
+      "title": "F1's summer break: why racing shuts down for a month mid-season",
+      "byline": "Pablo Elizalde",
+      "date": "2025-07-31",
+      "url": "https://www.motorsportmagazine.com/articles/single-seaters/f1/f1s-summer-break-why-racing-shuts-down-for-a-month-mid-season/",
+      "claims": [
+        "該報導引用的是 2025 年比賽規則第 24.4 節",
+        "該報導對停工期目的的說法：確保員工能在高強度賽季中真正休息，同時確信沒有對手趁機取得優勢"
+      ],
+      "_writer_note": "用途只有一個：佐證 2025 年的條號確實在第 24 條這一族。"
+    }
+  },
+
+  "own_data": {
+    "grade": "本站自有資料（jolpica-f1 落地快照，data/2026/schedule.json）",
+    "scope": "本站賽事資料庫僅涵蓋世界錦標賽賽事（1950 年起）。2026 年賽曆為 23 站，本節數字取自本站 2026 賽曆快照。",
+    "r11": "第 11 站匈牙利大獎賽，2026 年 7 月 26 日，Hungaroring（布達佩斯）",
+    "r12": "第 12 站荷蘭大獎賽，2026 年 8 月 23 日，Circuit Park Zandvoort（贊德沃特）；該站為衝刺賽制，第一次自由練習 8 月 21 日、排位賽 8 月 22 日",
+    "gap_days": 28,
+    "gap_derivation": "2026-07-26 到 2026-08-23 相隔 28 天。⚠️ 成品值由 facts pack 給定，寫手不得自行做減法。這是本站推導，不是 FIA 或任何媒體公布的數字。",
+    "july_august_gaps": {
+      "value": "2026 年 7、8 月的連續比賽間隔：7 月 5 日英國站到 7 月 19 日比利時站 14 天、7 月 19 日到 7 月 26 日匈牙利站 7 天、7 月 26 日到 8 月 23 日荷蘭站 28 天",
+      "derivation": "由本站 2026 賽曆快照逐一相減得出，成品值已在此給定。",
+      "inference": "沒有任何一組間隔是 17 天，因此 F3.1.1a 的 13 天版本在 2026 年不會被觸發。⚠️ 這是本站推導，信賴度高（算術可複查），但條文的適用由 FIA 認定，本站不代為裁決。"
+    },
+    "season_rounds": 23,
+    "team_count": {
+      "value": 11,
+      "others_besides_mercedes": 10,
+      "grade": "本站自有資料",
+      "source": "data/2026/constructor-standings.json（jolpica-f1，data_through_round 11）：ConstructorStandings 共 11 筆——Mercedes、Ferrari、McLaren、Red Bull、RB F1 Team、Alpine F1 Team、Haas F1 Team、Audi、Williams、Aston Martin、Cadillac F1 Team。",
+      "derivation": "11 − 1（賓士）= 10。⚠️ 成品值由 facts pack 給定，寫手不得自行做減法。",
+      "_why_here": "2026-08-11 查核桌 R1 MAJOR①：稿子原寫「其餘 9 支車隊」與「10 份行事曆」，兩者都少算——2026 年有 11 支車隊（凱迪拉克為第 11 隊）。此欄補上成品值，讓同一個錯不可能再發生。",
+      "must_not_claim": "不得由此推論各隊窗口「各自不同」——二手來源反而寫多數車隊採同一窗口。只能寫「各自選定窗口，日期可以重疊」。"
+    }
+  },
+
+  "numbers_for_body": {
+    "_why": "凡要出現在正文的數字，一律在此給成品值；寫手只准引用，不准計算。",
+    "shutdown_days_summer": 14,
+    "shutdown_days_summer_short": 13,
+    "trigger_gap_days": 17,
+    "notify_window_days": 30,
+    "shutdown_days_winter": 9,
+    "winter_start_date": "12 月 24 日",
+    "winter_alt_deadline": "12 月 31 日",
+    "exception_items_count": 10,
+    "prohibited_items_count": 5,
+    "atp_count": 6,
+    "atp4_weeks": 10,
+    "atp1_end_week": 9,
+    "atp235_weeks": 8,
+    "es_charge_amp": "5A",
+    "es_balance_rate": "0.1C",
+    "es_max_personnel": 2,
+    "new_pu_grace_months": 12,
+    "complaint_fee_eur": "10,000",
+    "complaint_deposit_eur": "40,000",
+    "limitation_years": 5,
+    "additional_sanction_items": 4,
+    "rp1_start_hours": 42,
+    "rp1_end_hours": 29,
+    "rp2_start_hours": 18,
+    "rp2_end_hours": 4,
+    "rp3_start_hours": 14,
+    "rp3_end_hours": 3,
+    "rp3_carryover_standard_hours": 4,
+    "rp3_carryover_sprint_hours": 3,
+    "rp_early_entry_minutes": 30,
+    "rp_stay_hours": 1,
+    "rp3_stay_minutes": 30,
+    "rp_exceptions": "第一段 6 次、第二段 5 次、第三段 4 次",
+    "rp_supplier_failure_hours": 12,
+    "mercedes_window": "8 月 1 日至 15 日",
+    "media_window": "8 月 3 日至 17 日",
+    "covid_shutdown_days": 21,
+    "old_article_2025": 24,
+    "old_article_2025_pu": 25,
+    "motorsport_mag_cited_section": "24.4",
+    "appendix_rwtt": 7,
+    "issue_section_f": 10,
+    "issue_section_b": 8,
+    "issue_section_a": 3,
+    "issue_section_d": 7,
+    "issue_sporting_2025": 5,
+    "dutch_gp_weekend": "8 月 21 日至 23 日"
+  },
+
+  "must_not_claim": [
+    "不得寫夏季停工的『導入年份』——本站沒有查到可靠出處，RacingNews365 只寫『十多年前』。",
+    "不得寫任何一支車隊（賓士除外）2026 年的停工起訖日——本站未取得 FIA 公開的各隊停工日期。⚠️ 也不得寫成「FIA 不公布」：那是無探針的全稱否定，凍結證據只支撐「本站未取得」（2026-08-11 查核桌 R1 BLOCKER①）。",
+    "不得把 RacingNews365 的『多數車隊 8 月 3 日至 17 日』寫成官方或全體適用的日期。",
+    "不得把 GPFans 描述的查核方式（活動紀錄、門禁系統、事後調檔）寫成條文規定——本站核對的 F3 沒有這些文字。",
+    "不得把條文的 should（應該通知）升格成 must（必須申報），也不得把期限寫成『賽季開始前』。",
+    "不得宣稱曾有車隊因違反停工期被處罰——本站在檢索範圍內查不到任何一件公開案例，這件事要照實寫成查不到。",
+    "不得替停工期編造罰則額度（罰款金額、扣分、扣除風洞時數）——F3 沒有專屬罰則，只有 Section A 的一般框架。",
+    "不得寫『規則規定車隊必須全廠關門』——條文禁的是特定活動，行銷、財務、法務照常上班這件事的出處是 Formula1.com 而非條文。",
+    "不得把賽道端的 Restricted Period 與工廠停工混為一談，也不得說規則裡有 curfew 這個詞。",
+    "不得使用無名歸因（專家認為／業界人士指出／外界普遍認為／據了解）。",
+    "數字一律引用本 facts pack 的成品值，不得自行計算。"
+  ],
+
+  "required_sections": [
+    "查證範圍聲明：哪些是本站自有資料（賽曆日期、間隔天數，可複查）、哪些是外部來源（FIA 條文與媒體，不可複查）",
+    "資料來源區塊：一手文件／官方說明／媒體報導／本站自有資料四級分列，含查證日 2026-08-11"
+  ],
+
+  "voice": {
+    "_why": "只給事實不給聲音，寫手會回到預設的報告腔（記憶 W20）。",
+    "reference": "小 Lin 說＋張泉靈：從具體的怪事切進去不從分類切進去、短句、不在正文裡解釋自己的方法論。",
+    "headline_style": "每個 H2 標題自己就是一個事實，不是分類標籤。✅「賓士今年停工 8 月 1 日開始，其他隊不一定」 ❌「機制一：停工期的日期規定」。邏輯關係靠內文轉場句承接，不靠標題編號。",
+    "forbidden_meta": "正文不解釋本站紀律。標出處與可靠度＝保留，講完就走；解釋我們為此訂了什麼規矩＝刪掉。❌「這是媒體轉述而非官方公布的日期，本文照原樣列出兩種說法，不替讀者裁決哪一個對，因為那樣做會製造一個查無出處的定論」→ ✅「這是媒體的說法，不是官方數字。」另刪：有個但書必須寫在前面／本文採用條文的中性用字／本站不替它們裁決／為求嚴謹本文只引用。",
+    "referent_policy": "指代一律具體。發稿前 grep：那次／這件事／這個安排／前面講的／後者／這一條。條號要寫出來（F3.1.1a、B9.5.3），不要寫『前面那一條』。"
+  }
+}
