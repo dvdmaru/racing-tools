@@ -4,7 +4,7 @@
   "type": "feature",
   "season": 2026,
   "publish_date": "2026-08-11",
-  "thesis": "領先者後 5 站的得分只有前 5 站的一半不到，但他對第 2 名的差距反而從 43 分拉開到 50 分——掉下來的分數沒有被同一個人接住，而是散進 5 位不同的分站冠軍手裡。",
+  "thesis": "上半季有三個各自成立、但彼此不可代推的觀察：① 領先者前 5 站拿 131 分、後 5 站拿 63 分；② 後 5 站的分站冠軍分屬 5 人（前 5 站只有 2 人）；③ 第 11 站後他仍以 50 分領先積分榜第 2 名。三者之間本文不建立因果。要談差距變化，必須固定同一區間與同一追趕者，用 gap_facts.fixed_chaser_gaps 的成品值。",
   "voice": {
     "headline_style": "標題自己就是一個事實，不用分類標籤。例：「後 5 站冒出 5 個不同的冠軍」優於「分站冠軍分布」。",
     "forbidden_meta": "不要把查證紀律寫進正文。『這是本站由逐站明細加總推導出的數字，不是官方公布值，因此僅供參考』→『本站自己把 11 站的分數加起來，結果與官方積分榜逐列相同』；『值得注意的是，領先者的得分出現了顯著的下滑趨勢』→『他後 5 站只拿到 63 分』。",
@@ -18,7 +18,10 @@
     "不可預測下半季冠軍歸屬，也不可寫『依目前態勢必然如何』；可寫剩餘可得分數這種算得出來的事。",
     "外部媒體說『可能／看起來』時不可改寫成『確定／必然』；沃爾夫與羅素的說法是當事人說法，不是官方技術報告。",
     "中東賽程變數（卡達／阿布達比傳聞）不寫——單一來源臆測。",
-    "不可宣稱凱迪拉克是新軍或首個賽季：自有資料只有成績，沒有參賽沿革。"
+    "不可宣稱凱迪拉克是新軍或首個賽季：自有資料只有成績，沒有參賽沿革。",
+    "☠️ 不可把「得分窗口」與「積分榜差距」接成因果：得分窗口是 R1–R5 vs R7–R11（排除第 6 站），差距區間是第 5 站後→第 11 站後（必然含第 6 站），兩者口徑不同。",
+    "☠️ 不可跨追趕者接讀差距：gap_history 的差距對的是「當時的第 2 名」，而第 2 名換過 4 次人。「第 5 站後 43 分」對的是羅素、「第 11 站後 50 分」對的是漢米爾頓，不是同一組人。要寫差距變化一律引用 fixed_chaser_gaps（固定追趕者＋固定區間）。",
+    "不可寫「11 站、22 台車跑完」這類措辭：狀態合計含 Did not start 7 筆與 Retired 44 筆，不是每台車都跑完。要講區間就寫「11 站後」。"
   ],
   "own_data": {
     "source": "jolpica-f1（落地於 data/2026/）",
@@ -119,6 +122,12 @@
     "cars_per_round": [
       22
     ],
+    "grid1_distinct_drivers": 3,
+    "grid1_breakdown": {
+      "安東內利": 6,
+      "羅素": 4,
+      "諾里斯": 1
+    },
     "rounds_each_driver_entered_max": 11,
     "teams": 11,
     "drivers_classified": 22,
@@ -846,6 +855,39 @@
       }
     ],
     "second_place_change_count": 4,
+    "fixed_chaser_gaps": [
+      {
+        "leader_zh": "安東內利",
+        "chaser_zh": "漢米爾頓",
+        "leader_points_after_r5": 131,
+        "chaser_points_after_r5": 72,
+        "leader_points_after_r11": 219,
+        "chaser_points_after_r11": 169,
+        "gap_after_r5": 59,
+        "gap_after_r11": 50,
+        "change": -9,
+        "direction": "縮小",
+        "change_abs": 9,
+        "was_second_after_r5": false,
+        "was_second_after_r11": true
+      },
+      {
+        "leader_zh": "安東內利",
+        "chaser_zh": "羅素",
+        "leader_points_after_r5": 131,
+        "chaser_points_after_r5": 88,
+        "leader_points_after_r11": 219,
+        "chaser_points_after_r11": 160,
+        "gap_after_r5": 43,
+        "gap_after_r11": 59,
+        "change": 16,
+        "direction": "擴大",
+        "change_abs": 16,
+        "was_second_after_r5": true,
+        "was_second_after_r11": false
+      }
+    ],
+    "fixed_chaser_note": "⚠️ gap_history 的 gap 是對『當時的第 2 名』，而第 2 名中途換人。所以「第 5 站後 43 分」與「第 11 站後 50 分」不是同一組人的差距，不可接成一句因果。要講差距變化，必須固定同一個追趕者與同一段區間——fixed_chaser_gaps 就是這樣算的（區間固定為第 5 站後→第 11 站後）：對漢米爾頓 59→50（縮小 9），對羅素 43→59（擴大 16），方向相反。推導：leader_points − chaser_points，兩端各自由逐站明細累加得出。",
     "win_streaks": [
       {
         "driver_zh": "羅素",
@@ -1037,15 +1079,15 @@
         "delta": 0
       },
       {
-        "driver_zh": "奧康",
-        "driver_id": "ocon",
+        "driver_zh": "阿爾本",
+        "driver_id": "albon",
         "w1": 1,
         "w2": 0,
         "delta": -1
       },
       {
-        "driver_zh": "阿爾本",
-        "driver_id": "albon",
+        "driver_zh": "奧康",
+        "driver_id": "ocon",
         "w1": 1,
         "w2": 0,
         "delta": -1

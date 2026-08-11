@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
-  "revision": 2,
-  "_revision_note": "v1＝初稿全 gate 綠。v2＝派工端驗收退回一項規格層違規（subtitle／lede 超標）＋裁決通過封面歸位。**v2 的事實層零改動**：正文本文一字未改，只壓縮 frontmatter 的 subtitle 與 lede，並把封面 HTML 從 /tmp 歸位到 design/covers/ 且登記進 covers.json。⚠️ 修正輪本身是未審內容，新舊對照見 fix_round_v2。",
-  "checked_at": "2026-08-11T14:15:29.395841+00:00",
+  "revision": 3,
+  "_revision_note": "v1＝初稿全 gate 綠。v2＝frontmatter 規格修正＋封面歸位。v3＝查核桌 R1 判 Content NO-GO（1 BLOCKER＋1 MINOR）後的修正輪：BLOCKER 是**區間錯接＋因果升級**——把 R1–R5／R7–R11 的得分窗口與 R5 賽後→R11 賽後的差距接成因果，且跨了兩個不同的追趕者。已依審稿席最小措辭拆成三個互不代推的觀察，並補上固定追趕者的重算。⚠️ v3 動到正文骨架與 title／subtitle／lede，全部是未審內容，逐條新舊對照見 audit_round_r1。",
+  "checked_at": "2026-08-11T14:51:39.584290+00:00",
   "kind": "feature-mixed-source",
   "slug": "f1-2026-half-season-review",
   "season": 2026,
   "round": null,
   "_round_note": "跨站文章，不屬於任何單一分站，故 frontmatter 不寫 round（只寫 season 以開啟分站互鏈的年份消歧）。",
   "article": "articles/f1-2026-half-season-review/index.md",
-  "article_sha256": "2d69d4ae6ad87562571e5c3a542490c3601ef13a1bfa6309ef54702d1007920d",
-  "article_chars_excl_whitespace": 4399,
+  "article_sha256": "dc9ff041550620320c72f6014cc1a6fb7c5fbf67cda11050b758449cafbeace8",
+  "article_chars_excl_whitespace": 4489,
   "facts": "facts/halfseason-2026.json",
-  "facts_sha256": "c8afec10e404102d3bc7eaf35f03e2c3addf12a6bab6e436e364a79eea980f3a",
+  "facts_sha256": "dc9dfc10adb736a5bbcc8db5693382ef9b434cb41b49a92e5f410f134cf9704f",
   "cover": "articles/f1-2026-half-season-review/cover.png",
-  "cover_sha256": "e6c84dc0a2193b0d36120742b35d0f11e994ae89e88e2a97567bd28a55ee54b7",
+  "cover_sha256": "07fa838794d3ff83fd21181f89d3ce5feb1f6f198668f92e18c2053fd0dc539c",
   "cover_dimensions": "2400x1260",
   "cover_html": "design/covers/cover-half-season.html",
-  "cover_html_sha256": "d3bf641b3b7a6de4a8b6cd3fb0bfac196e4c754b4446e65ce9468786e52e640b",
+  "cover_html_sha256": "5ad933bfac4bab7e5c1f70848d0ba0466cd23f272190e268aee361b9c4faa31e",
   "cover_manifest": "design/covers/covers.json",
-  "cover_manifest_sha256": "25a7215749addf98ce38c0e94c3b0f0a5a5c8f3d710e00dcf7b8368eb1ece258",
+  "cover_manifest_sha256": "a95f793036eda9210de6f9dd766e3e9f2a7699abcec712eec84065ad107b261a",
   "prompt": "scripts/prompts/external-sourced.md",
   "prompt_sha256": "ded5bee65345bb5a7faf2395f66f37d3768823755b78d5d93d7d18e1840e46b4",
   "prompt_secondary": "scripts/prompts/race-recap.md",
@@ -131,6 +131,11 @@
       "how": "driver-standings.json 的 wins 欄位，前 6 名依序為 6／1／2／1／1／0。"
     },
     {
+      "claim": "固定追趕者的差距：對漢米爾頓 59→50（縮小 9）、對羅素 43→59（擴大 16）",
+      "how": "gap_facts.fixed_chaser_gaps。區間固定為第 5 站後→第 11 站後，兩端積分各自由逐站明細 sum() 累加後相減。",
+      "why_it_exists": "☠️ 這組數字是查核桌 R1 BLOCKER 的修正：原稿把「第 5 站後 43 分」（對羅素）與「第 11 站後 50 分」（對漢米爾頓）接成同一條差距在變化，跨了兩個追趕者。固定追趕者後方向相反，證明原句不成立。"
+    },
+    {
       "claim": "第 2 名的位置換了 4 次手、領先權換了 1 次",
       "how": "gap_facts.second_place_changes／leader_changes，由相鄰兩站的第 2 名（或第 1 名）是否同一人計數。",
       "caught_error": "☠️ 初稿寫「追的人自己先換了 3 次手」——那是寫手自己數表格數出來的，漏掉第 1、2 站的第 2 名是安東內利（第 3 站他升上第 1，第 2 名才變成羅素）。把成品值放進 facts pack 後才發現實際是 4 次。＝『寫手不做算術』這條規則在本篇實際攔下一個錯。"
@@ -149,6 +154,88 @@
       "how": "positionText 為數字且 position<=3 者計為前 3 名；未完賽取 status ∈ {Retired, Did not start}。⚠️ status 為 Lapped 者有完賽名次，未計入未完賽（race-recap.md 鐵則 3）。"
     }
   ],
+  "audit_round_r1": {
+    "verdict_received": "Content NO-GO：1 BLOCKER＋1 MINOR。",
+    "blocker": {
+      "id": "interval-splice-and-causal-upgrade",
+      "finding": "得分窗口是 R1–R5 vs R7–R11（刻意排除第 6 站），但 43→50 的差距區間是第 5 站賽後→第 11 站賽後（必然含第 6 站），且第 2 名由羅素換成漢米爾頓。兩個口徑接成因果＝區間錯接＋因果升級。",
+      "independently_reverified": true,
+      "reverification": "以本站逐站明細重算，完全證實審稿席的算法：固定漢米爾頓，安東內利對他的差距是第 5 站後 131−72＝59、第 11 站後 219−169＝50，**縮小 9 分**（不是我原稿寫的擴大）。另補算固定羅素：第 5 站後 131−88＝43、第 11 站後 219−160＝59，**擴大 16 分**。兩個追趕者方向相反——這正說明原稿那句因果不成立。",
+      "changes": [
+        {
+          "where": "title（frontmatter＋H1）",
+          "before": "2026 上半季盤點：領先者後 5 站少拿 68 分，領先差距反而多了 7 分",
+          "after": "2026 上半季盤點：領先者後 5 站少拿 68 分，分站冠軍從 2 人變成 5 人",
+          "why": "審稿席給的兩條路（保留並列須明寫第 2 名換人／改寫）中選擇改寫。新標題的兩個統計都建立在同一組窗口（R1–R5 vs R7–R11），口徑一致，不再有跨區間並列。「差距反而多了 7 分」整句移除。"
+        },
+        {
+          "where": "subtitle",
+          "before": "前 5 站只有 2 個冠軍，後 5 站冒出 5 個，沒有人單獨接走這些分數。",
+          "after": "分站冠軍前 5 站 2 人、後 5 站 5 人，領先者仍領先 50 分。",
+          "why": "刪除「沒有人單獨接走這些分數」（審稿席點名刪除）；改成兩個並列事實，不作因果。"
+        },
+        {
+          "where": "lede",
+          "before": "安東內利前 5 站拿 131 分、後 5 站拿 63 分，接近腰斬；領先差距卻從 43 分拉開到 50 分。本文用本站落地的 11 站賽果逐站重算。",
+          "after": "安東內利前 5 站拿 131 分、後 5 站拿 63 分；後 5 站冠軍分屬 5 人。第 11 站後他仍以 50 分領先。本文用本站落地的 11 站賽果逐站重算這半季。",
+          "why": "「領先差距卻從 43 分拉開到 50 分」是同一個跨追趕者並列，整句移除，換成審稿席給的三個互不代推觀察。"
+        },
+        {
+          "where": "正文導言（第 2–3 段）",
+          "before": "照常理，領先者掉了這麼多分，積分榜應該會被追近。實際結果是相反的：第 1 名與第 2 名的差距，從第 5 站結束時的 43 分，變成第 11 站結束時的 50 分。／原因不在他掉了多少分，而在那些分數被誰接走。",
+          "after": "後 5 站的分站冠軍分屬 5 個人。第 11 站結束後，他仍以 50 分領先積分榜第 2 名。／積分榜第 2 名中途換過人，所以「差距是變大還是變小」沒有單一答案。",
+          "why": "刪除「原因不在……而在……」（審稿席點名刪除）與整段跨口徑推論。"
+        },
+        {
+          "where": "新增一節「固定同一個追趕者，方向就不一樣了」",
+          "added": "明寫表中差距比的是「當時的第 2 名」、第 2 名換過 4 次人，並用固定區間＋固定追趕者的小表給出 漢米爾頓 59→50（縮小 9）、羅素 43→59（擴大 16）。",
+          "why": "審稿席：若要寫差距變化，必須固定同一區間與同一追趕者，且新數字須先進 facts pack 帶推導。已照辦（見 new_facts_added）。"
+        }
+      ],
+      "upstream_fix": "☠️ 骨架是在派工那一刻決定的：初版 facts pack 的 thesis 本身就寫成「得分腰斬但差距反而拉開——分數沒有被同一個人接住」，寫手照著寫就會產生這個 BLOCKER。所以修在上游：thesis 已改寫成三個互不代推的觀察，並在 must_not_claim 新增 3 條禁區（禁跨口徑接因果、禁跨追趕者讀差距、禁「跑完」措辭）。",
+      "new_facts_added": [
+        "gap_facts.fixed_chaser_gaps：固定追趕者（漢米爾頓／羅素）× 固定區間（第 5 站後→第 11 站後）的成品值，含 leader/chaser 兩端積分、gap、change、direction，以及該追趕者當時是否為第 2 名。推導：leader_points − chaser_points，兩端各自由逐站明細 sum() 累加。",
+        "gap_facts.fixed_chaser_note：寫明 43 與 50 對的是不同的人、不可接讀。",
+        "season_shape.grid1_distinct_drivers＝3 與 grid1_breakdown（由 grid1 計數 len() 產生）。"
+      ]
+    },
+    "minor": {
+      "id": "not-everyone-finished",
+      "finding": "「11 站、22 台車跑完」與狀態合計矛盾：Did not start 7 筆、Retired 44 筆。",
+      "before": "墊底兩隊的半季成績可以一句話講完：奧斯頓馬丁（Aston Martin）1 分，凱迪拉克（Cadillac F1 Team）0 分。11 站、22 台車跑完，這兩支隊伍加起來只有 1 分入袋。",
+      "after": "11 站後，奧斯頓馬丁（Aston Martin）與凱迪拉克（Cadillac F1 Team）合計只有 1 分入袋——奧斯頓馬丁 1 分，凱迪拉克 0 分。",
+      "note": "採用審稿席給的措辭「11 站後……合計只有 1 分入袋」；順手併掉原本重複敘述同兩隊的前半句（原句講一次、後句又講一次）。「22 台車」字樣全文移除。"
+    },
+    "cover_sync": {
+      "why": "封面副標原本就印著同一組跨追趕者並列（「領先差距從 43 分變成 50 分」），屬審稿席點名的同族說法，必須同步。",
+      "sub_before": "領先差距從 43 分變成 50 分，高點 66 分在第 6 站",
+      "sub_after": "安東內利前 5 站拿 131 分，後 5 站拿 63 分",
+      "chart_label_before": "每一站結束後的領先差距",
+      "chart_label_after": "每一站結束後，第 1 名領先第 2 名的分數（第 2 名中途換人）",
+      "why_label": "折線本身是合法的逐站序列，但不揭露「第 2 名中途換人」就會被讀成同一組人的差距，與 BLOCKER 同一個失效模式。改成在圖說裡當場講明。",
+      "result": "官方 check-covers 重跑通過，可見數字 20 種全部見於正文、說法全部錨到文章，allow／allow_claims 仍為空（零例外）。PNG 已由官方 render 路徑重產並肉眼確認。"
+    },
+    "length_retrim": {
+      "why": "新增一節後正文一度到 4,657 字，超出 3,000–4,500 規格。",
+      "trims": [
+        "導言：刪「下面用整張表攤開，再固定同一個追趕者重算一次。」（與下一節標題重複）",
+        "冠軍節：刪後 5 站 5 位冠軍的逐一點名（同一資訊已在上方表格逐列列出）",
+        "差距節：刪「從第 6 站到第 11 站，這個數字走了 41、40、25、45、50」（數列已在表格）",
+        "新節：刪重述小表的一句，只留「兩個方向相反，端看固定的是誰。」",
+        "窗口節：刪「上升幅度最大的是哈賈爾，14 分變 42 分。」與貝爾曼的分數重述（皆在表格）"
+      ],
+      "principle": "只刪與表格重複的敘述，不刪任何有出處的事實、不刪任何限制聲明或口徑揭露。",
+      "final_chars": 4489,
+      "note": "⚠️ 這 5 處刪修同樣是本輪未審內容。"
+    },
+    "referent_chain_scan": {
+      "why": "修正輪紀律：最小替換後必掃相鄰句與指示代名詞的指涉鏈（先行詞被刪＝上一桌抓過的失效模式）。",
+      "method": "/tmp/f1hs/refscan.py 掃 3 類：① 已判定刪除的措辭殘留 ② 全文指示代名詞逐一列出前後文 ③ 43 與 50 是否又被寫回同一句。",
+      "result_deleted_wording": "零殘留（原「散開」一詞的另一處用法「發車第 1 位的分布沒有跟著散開」其先行詞正是被刪的那句，已改寫成不依賴先行詞的「發車第 1 位只出現過 3 個人」）。",
+      "result_pronouns": "8 處指示代名詞逐一確認先行詞仍在（多為緊接其後的列舉或同句名詞）；無孤兒指涉。",
+      "result_43_50": "唯一同時出現 43 與 50 的句子，正是新增的揭露句「……不是同一組人之間的差距，不能接成一句話讀」——是刻意的否定用法。"
+    }
+  },
   "fix_round_v2": {
     "trigger": "派工端驗收：frontmatter 規格 subtitle 25–40 字、lede 60–90 字，實測超標。",
     "counting_method_note": "派工端的計數為**含空白**（subtitle 51／lede 102）；本站正文字數慣例為不含空白。修正後兩種計法都落在規格內，避免下一輪又因計法不同而反覆。",
