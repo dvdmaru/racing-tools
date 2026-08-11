@@ -1,35 +1,55 @@
 {
-  "_doc": "封面 HTML 與文章的綁定表。render-covers.py 與 check-covers.py 都讀這一份，所以「哪張封面屬於哪篇」只有一個答案。allow 是封面上出現、但文章正文沒有的數字字面（例：設計用的分段編號），每一項都必須寫理由——default-deny，沒列出來就會被 gate 擋。",
+  "_doc": "封面 HTML 與文章的綁定表。render-covers.py 與 check-covers.py 都讀這一份，所以「哪張封面屬於哪篇」只有一個答案。allow 是封面上出現、但文章正文沒有的數字字面（例：設計用的分段編號）；allow_claims 是封面上出現、但文章沒有這樣說過的『說法』片段。兩者都是 default-deny：沒列出來就會被 gate 擋，每一項都必須寫理由。⚠️ 能改封面就別登記——登記是給改不掉的壓縮標籤用的，不是給『懶得改』用的，否則清單會單向膨脹成掩蓋器。",
   "covers": [
     {
       "slug": "f1-2026-rules-guide",
       "html": "cover-rules.html",
-      "allow": {}
+      "allow": {},
+      "allow_claims": {}
     },
     {
       "slug": "f1-2026-names-glossary",
       "html": "cover-glossary.html",
-      "allow": {}
+      "allow": {},
+      "allow_claims": {}
     },
     {
       "slug": "f1-2026-r11-hungary-report",
       "html": "cover-r11-report.html",
-      "allow": {}
+      "allow": {},
+      "allow_claims": {
+        "次數": "統計欄位名（「領先易主次數」）。文章以「領先易主 7 次」敘述同一件事，承重數字 7 已對帳。"
+      }
     },
     {
       "slug": "f1-2026-r11-hungary-blue-flag-failure",
       "html": "cover-r11-blue-flag.html",
-      "allow": {}
+      "allow": {},
+      "allow_claims": {
+        "刻相近者重疊": "圖表判讀說明（「藍旗發出（11 條，時刻相近者重疊）」），在描述視覺編碼不是賽事主張。"
+      }
     },
     {
       "slug": "f1-tech-timing-positioning-race-control",
       "html": "cover-tech-timing.html",
-      "allow": {}
+      "allow": {},
+      "allow_claims": {
+        "排為示意": "圖表免責說明（「下排為示意，不代表實際分區數與長度」）。同段落的實質主張（官方文件無面板總數）已錨到文章。",
+        "數與長度": "同上，屬同一句圖表免責說明。",
+        "間距": "統計欄位名（「差距欄位更新的 loop 間距（約）」）。文章以 loop 之間的距離敘述，承重數字 200 已對帳。"
+      }
     },
     {
       "slug": "f1-2026-bahrain-gp-in-malaysia",
       "html": "cover-bahrain-in-malaysia.html",
-      "allow": {}
+      "allow": {},
+      "allow_claims": {
+        "指涉": "副標壓縮寫法（「名稱指涉的國家，與賽道實際所在國，本來就是兩件事」）＝本文中心論點的濃縮，文章以完整句展開同一論點。",
+        "所在國": "同上，副標壓縮寫法。",
+        "本來就是兩": "同上，副標壓縮寫法。",
+        "站全": "統計欄位名（「聖馬利諾站全在義大利辦的屆數」）的壓縮切片，承重數字 26 已對帳。",
+        "站兩度": "統計欄位名（「瑞士站兩度舉行相隔的年數」）的壓縮切片，承重數字 28 已對帳。"
+      }
     }
   ]
 }
