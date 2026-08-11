@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 差距折線：每一站結束後「第 1 名 − 第 2 名」的積分差。
+ * 資料來源＝facts/halfseason-2026.json 的 gap_history[*].gap，11 個值依序為
+ * 7, 4, 9, 20, 43, 66, 41, 40, 25, 45, 50（第 1 站到第 11 站）。
+ * 座標由這 11 個值線性換算，不是手調的：
+ *   x = 40 + (2140 − 40 − 40) × i ÷ 10
+ *   y = 80 + (320 − 80 − 28) × (1 − gap ÷ 66)
+ * 要改資料就照這兩條式子重算 points，別手動微調座標——線的高低與數字必須對得上。
+ * 標數字的四個點是第 5、6、9、11 站。
+ * 顏色只用來區分「有標數字的站」與其餘各站，不對應任何車隊塗裝（站規：不用官方素材）。 */
+.chart { width: 100%; height: 320px; display: block; }
+.chart .pt { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700;
+  font-size: 44px; fill: #d63a2f; }
+/* 橫軸站次：等距對齊折線的 11 個節點，左右內縮量＝折線的 PAD_L／PAD_R。 */
+.legend.axis { display: flex; justify-content: space-between; padding: 0 32px; margin-top: 2px;
+  font-family: 'Chakra Petch'; font-size: 30px; color: #786a6e; letter-spacing: 0; }
+.stats { margin-top: 40px; }
+h1 { font-size: 108px; margin-top: 44px; }
+.sub { margin-top: 28px; margin-bottom: 6px; }
+.lbl { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 盤點</div>
+  <h1>2026 上半季盤點<br>後 <span class="y">5</span> 站冒出 <span class="y">5</span> 個不同的冠軍</h1>
+  <div class="sub">領先差距從 43 分變成 50 分，高點 66 分在第 6 站</div>
+  <div class="viz">
+    <div class="lbl">每一站結束後的領先差距</div>
+    <svg class="chart" viewBox="0 0 2140 320" preserveAspectRatio="none">
+      <polygon points="40,292 40.0,269.5 246.0,279.2 452.0,263.1 658.0,227.8 864.0,153.9 1070.0,80.0 1276.0,160.3 1482.0,163.5 1688.0,211.7 1894.0,147.5 2100.0,131.4 2100.0,292" fill="rgba(214,58,47,.13)"/>
+      <polyline points="40.0,269.5 246.0,279.2 452.0,263.1 658.0,227.8 864.0,153.9 1070.0,80.0 1276.0,160.3 1482.0,163.5 1688.0,211.7 1894.0,147.5 2100.0,131.4" fill="none" stroke="#d63a2f" stroke-width="7"
+        stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="40.0" cy="269.5" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="246.0" cy="279.2" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="452.0" cy="263.1" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="658.0" cy="227.8" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="864.0" cy="153.9" r="11" fill="#d63a2f" stroke="#f7efef" stroke-width="4"/><circle cx="1070.0" cy="80.0" r="11" fill="#d63a2f" stroke="#f7efef" stroke-width="4"/><circle cx="1276.0" cy="160.3" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="1482.0" cy="163.5" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="1688.0" cy="211.7" r="11" fill="#d63a2f" stroke="#f7efef" stroke-width="4"/><circle cx="1894.0" cy="147.5" r="7" fill="#c9b8bb" stroke="#f7efef" stroke-width="4"/><circle cx="2100.0" cy="131.4" r="11" fill="#d63a2f" stroke="#f7efef" stroke-width="4"/>
+      <text x="864.0" y="127.9" text-anchor="middle" class="pt">43</text><text x="1070.0" y="54.0" text-anchor="middle" class="pt">66</text><text x="1688.0" y="185.7" text-anchor="middle" class="pt">25</text><text x="2100.0" y="105.4" text-anchor="middle" class="pt">50</text>
+    </svg>
+    <div class="legend axis"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span></div>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>後 5 站的分站冠軍</span></div>
+      <div class="stat"><b>12</b><span>還剩 12 站沒跑</span></div>
+      <div class="stat"><b>28</b><span>夏休 28 天</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 數字取自本站落地賽果</div>
+</div>
+</body>
+</html>

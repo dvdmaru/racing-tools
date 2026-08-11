@@ -2,6 +2,12 @@
   "_doc": "封面 HTML 與文章的綁定表。render-covers.py 與 check-covers.py 都讀這一份，所以「哪張封面屬於哪篇」只有一個答案。allow 是封面上出現、但文章正文沒有的數字字面（例：設計用的分段編號）；allow_claims 是封面上出現、但文章沒有這樣說過的『說法』片段。兩者都是 default-deny：沒列出來就會被 gate 擋，每一項都必須寫理由。⚠️ 能改封面就別登記——登記是給改不掉的壓縮標籤用的，不是給『懶得改』用的，否則清單會單向膨脹成掩蓋器。",
   "covers": [
     {
+      "slug": "f1-2026-half-season-review",
+      "html": "cover-half-season.html",
+      "allow": {},
+      "allow_claims": {}
+    },
+    {
       "slug": "f1-2026-rules-guide",
       "html": "cover-rules.html",
       "allow": {},
