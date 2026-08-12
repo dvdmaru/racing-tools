@@ -47,6 +47,7 @@ import json
 import math
 import pathlib
 import re
+import sqlite3
 import types
 from collections import defaultdict
 
@@ -69,6 +70,8 @@ p0 = _load("gen_racing_entities_phase0", "gen-racing-entities-phase0.py")
 il = _load("interlink", "interlink.py")
 
 RAW = ROOT / "data" / "f1" / "raw"
+DB = ROOT / "data" / "f1" / "db.sqlite"
+RETIREMENT_CATEGORIES = ROOT / "data" / "f1" / "retirement-categories.json"
 PUB = rc.PUB
 BASE = rc.BASE
 esc = html_lib.escape
@@ -808,6 +811,195 @@ def _index_has_page(year, built_years):
     return f"seasons/{year}" in p0.HAS_PAGE
 
 
+def _retirement_display_tenths(counts, total):
+    """把類別占比換成 0.1 個百分點，最大餘數法分配尾差，總和恰為 100.0％。"""
+    if total <= 0:
+        raise ValueError("退賽總數必須大於 0")
+    bases = [(count * 1000) // total for count in counts]
+    remainders = [(count * 1000) % total for count in counts]
+    missing = 1000 - sum(bases)
+    order = sorted(range(len(counts)), key=lambda i: (-remainders[i], i))
+    for i in order[:missing]:
+        bases[i] += 1
+    return bases
+
+
+def _one_decimal_ratio(numerator, denominator):
+    """百分比四捨五入到小數一位（整數運算的 half-up，避免 float／banker's rounding）。"""
+    if denominator <= 0:
+        raise ValueError("百分比的分母必須大於 0")
+    # numerator / denominator * 100，再換成十分之一百分點。
+    return (numerator * 2000 + denominator) // (2 * denominator)
+
+
+def retirement_era_data(db_path=DB, categories_path=RETIREMENT_CATEGORIES):
+    """以 position_text='R' 聚合 1950s–2020s 退賽類別，未知 status 一律拒絕。
+
+    回傳 8 個年代列；每列含出賽人次、退賽數、退賽率與依 JSON 順序排列的類別。
+    顯示百分比採 0.1 個百分點最大餘數法，因此每年代恰為 100.0％。
+    """
+    config = json.loads(pathlib.Path(categories_path).read_text(encoding="utf-8"))
+    if config.get("retirement_definition") != "position_text = 'R'":
+        raise ValueError("retirement_definition 必須明定為 position_text = 'R'")
+    categories = config.get("categories")
+    if not isinstance(categories, list) or not categories:
+        raise ValueError("retirement-categories.json 必須包含非空 categories")
+
+    ids, labels, status_to_category = set(), set(), {}
+    normalized = []
+    for category in categories:
+        cid = category.get("id")
+        label = category.get("label")
+        statuses = category.get("statuses")
+        if not isinstance(cid, str) or not cid or cid in ids:
+            raise ValueError(f"退賽類別 id 缺漏或重複：{cid!r}")
+        if not isinstance(label, str) or not label or label in labels:
+            raise ValueError(f"退賽類別 label 缺漏或重複：{label!r}")
+        if not isinstance(statuses, list) or not statuses:
+            raise ValueError(f"退賽類別 {cid} 必須逐條列出 statuses")
+        ids.add(cid)
+        labels.add(label)
+        clean_statuses = []
+        for status in statuses:
+            if not isinstance(status, str) or not status:
+                raise ValueError(f"退賽類別 {cid} 有空白或非字串 status")
+            if status in status_to_category:
+                raise ValueError(
+                    f"退賽 status 重複映射：{status} 同時出現在 "
+                    f"{status_to_category[status]} 與 {cid}")
+            status_to_category[status] = cid
+            clean_statuses.append(status)
+        normalized.append({"id": cid, "label": label, "statuses": clean_statuses})
+    if "engine" not in ids:
+        raise ValueError("退賽分類必須包含 id=engine，供規則化敘事使用")
+
+    db_path = pathlib.Path(db_path)
+    con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    try:
+        rows = con.execute(
+            "SELECT season, position_text, status, laps FROM results "
+            "WHERE season BETWEEN ? AND ? ORDER BY season, id",
+            (FIRST_YEAR, 2029),
+        ).fetchall()
+        as_of_year, as_of_round = con.execute(
+            "SELECT season, MAX(round) FROM results "
+            "WHERE season = (SELECT MAX(season) FROM results)"
+        ).fetchone()
+    finally:
+        con.close()
+
+    retirement_statuses = {status for _, pos, status, _ in rows if pos == "R"}
+    unmapped = sorted(retirement_statuses - set(status_to_category))
+    if unmapped:
+        raise ValueError("未映射的退賽 status（fail-closed）：" + "、".join(unmapped))
+
+    output = []
+    for decade in range(1950, 2030, 10):
+        # W 通常＝未出賽，但歷史資料有 W 且 laps>0 的已上場案例；有完成圈數即納入分母。
+        # D（失格）可能已實際出賽，仍留在分母但不算退賽。
+        decade_rows = [row for row in rows
+                       if decade <= row[0] <= decade + 9 and (row[1] != "W" or row[3] > 0)]
+        retired = [row for row in decade_rows if row[1] == "R"]
+        counts = defaultdict(int)
+        for _, _, status, _ in retired:
+            counts[status_to_category[status]] += 1
+        ordered_counts = [counts[c["id"]] for c in normalized]
+        tenths = _retirement_display_tenths(ordered_counts, len(retired))
+        rate_tenths = _one_decimal_ratio(len(retired), len(decade_rows))
+        cats = []
+        for category, count, pct_tenths in zip(normalized, ordered_counts, tenths):
+            cats.append({
+                **category,
+                "count": count,
+                "percent_tenths": pct_tenths,
+                "percent": f"{pct_tenths / 10:.1f}",
+            })
+        output.append({
+            "decade": decade,
+            "starts": len(decade_rows),
+            "retirements": len(retired),
+            "retirement_rate_tenths": rate_tenths,
+            "retirement_rate": f"{rate_tenths / 10:.1f}",
+            "categories": cats,
+            "as_of_year": as_of_year,
+            "as_of_round": as_of_round,
+        })
+    return output
+
+
+def _retirement_eras_html():
+    eras = retirement_era_data()
+    categories = eras[0]["categories"]
+    legend = "".join(
+        f'<li><span class="re-key re-c{i + 1}"></span>{esc(category["label"])}</li>'
+        for i, category in enumerate(categories)
+    )
+    rows = []
+    for era in eras:
+        decade = era["decade"]
+        if decade == 2020:
+            decade_label = f'2020 年代（截至 {era["as_of_year"]} R{era["as_of_round"]}）'
+        else:
+            decade_label = f"{decade} 年代"
+        segments = []
+        accessible_parts = []
+        breakdown = []
+        for i, category in enumerate(era["categories"]):
+            label = category["label"]
+            accessible_parts.append(f'{label} {category["percent"]}％')
+            breakdown.append(
+                f'<li><span class="re-key re-c{i + 1}"></span><b>{esc(label)}</b>'
+                f'<span>{category["count"]} 次／{category["percent"]}％</span></li>')
+            segments.append(
+                f'<span class="re-seg re-c{i + 1}" data-category="{esc(category["id"])}" '
+                f'data-count="{category["count"]}" data-percent="{category["percent"]}" '
+                f'style="--share:{category["percent"]}%" '
+                f'title="{esc(label)}：{category["count"]} 次（{category["percent"]}％）" '
+                f'aria-label="{esc(label)} {category["percent"]}％"></span>')
+        engine = next(c for c in era["categories"] if c["id"] == "engine")
+        story = (
+            f'{decade} 年代每 100 次出賽有 {era["retirement_rate"]} 次退賽，'
+            f'其中引擎與動力占 {engine["percent"]}％。')
+        rows.append(
+            f'<article class="re-era" data-decade="{decade}" data-starts="{era["starts"]}" '
+            f'data-retirements="{era["retirements"]}" '
+            f'data-retirement-rate="{era["retirement_rate"]}">'
+            f'<div class="re-era-head"><h3>{esc(decade_label)}</h3>'
+            f'<p>退賽率 <b>{era["retirement_rate"]}％</b>'
+            f'<span>{era["retirements"]:,}／{era["starts"]:,} 人次</span></p></div>'
+            f'<div class="re-bar" role="img" '
+            f'aria-label="{esc(decade_label)}退賽原因類別占比：{esc("；".join(accessible_parts))}">'
+            f'{"".join(segments)}</div><p class="re-story">{esc(story)}</p>'
+            f'<details class="re-breakdown"><summary>查看各類占比</summary>'
+            f'<ul>{"".join(breakdown)}</ul></details></article>')
+
+    mapping = "".join(
+        f'<dt><span class="re-key re-c{i + 1}"></span>{esc(category["label"])}</dt>'
+        f'<dd>{esc("、".join(category["statuses"]))}</dd>'
+        for i, category in enumerate(categories)
+    )
+    as_of = eras[-1]
+    details = f"""<details class="how re-how">
+  <summary>怎麼算的</summary>
+  <div class="how-body">
+    <p>資料範圍是 1950 年至 {as_of["as_of_year"]} 年第 {as_of["as_of_round"]} 站的正賽賽果；每位實際出賽車手每站算一次出賽人次，衝刺賽不納入。完賽名次標記 W 且 0 圈者視為未正式起跑、不進分母；W 但已有完成圈數者仍算出賽。</p>
+    <p><b>退賽口徑：</b>完賽名次標記為「R」才算退賽。失格（D）、退出（W）、F 與 E 都不算退賽；完賽名次是數字時，status 的 Lapped／+N Laps 代表遭套圈而完賽，也不算退賽。分類只讀 status 原文，不自行翻譯原因。</p>
+    <p><b>兩個分母：</b>退賽率＝退賽數 ÷ 出賽人次；堆疊條占比＝各類退賽數 ÷ 該年代退賽數。現有資料無法可靠區分「起跑後第一圈內、尚未完成一圈」與「未正式起跑」，因此 0 圈 W 採資料源標記視為未出賽；這是本口徑的已知邊界。</p>
+    <p><b>顯示精度：</b>各類占比顯示到 0.1 個百分點，再以最大餘數法分配四捨五入尾差，因此每個年代的顯示值合計恰為 100.0％。</p>
+    <p><b>類別明細：</b>「其他」不是隱形收納桶；所有出現過的 status 都在下方逐條具名。未來出現未映射 status 時，頁面生成會直接失敗。</p>
+    <dl class="re-map">{mapping}</dl>
+  </div>
+</details>"""
+    return f"""<section class="retirement-eras" id="retirement-eras">
+  <div class="re-heading"><p class="ent-kicker">可靠性演進 · 1950s–2020s</p>
+    <h2 class="sec-title">退賽原因，如何隨年代改變？</h2>
+    <p>每條橫帶都是該年代全部退賽案例；色段越長，代表該類原因在當代退賽中所占比例越高。顏色只標示原因類別，不代表任何車隊。</p></div>
+  <ul class="re-legend">{legend}</ul>
+  <div class="re-grid">{"".join(rows)}</div>
+  {details}
+</section>"""
+
+
 def render_index(built_years=None):
     rows_html = []
     urls = []
@@ -849,7 +1041,8 @@ def render_index(built_years=None):
             '分站數取自積分榜快照的最終站次（round）欄；'
             '進行中賽季顯示「已跑站次 / 全季排定站數」。'
             '車隊世界錦標賽 <b>1958</b> 年才設立，此前賽季車隊冠軍欄以「—」誠實留空。</p>')
-    body = (f'<h1 class="pg-h1">歷屆賽季</h1>{intro}{table}{note}')
+    retirement_eras = _retirement_eras_html()
+    body = (f'<h1 class="pg-h1">歷屆賽季</h1>{intro}{table}{note}{retirement_eras}')
 
     # JSON-LD：org+website+CollectionPage+breadcrumb+ItemList（url 只填已存在的頁）
     items = []
@@ -869,7 +1062,7 @@ def render_index(built_years=None):
     desc = (f"一級方程式 {FIRST_YEAR}–{LAST_YEAR} 歷屆賽季車手與車隊世界冠軍、分站數索引，"
             "台灣慣用繁中譯名＋原文對照。")
     html = rc.page_shell("歷屆一級方程式賽季總覽", desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS)
+                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS + RETIREMENT_ERAS_CSS)
     out = PUB / "seasons"
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
@@ -1865,6 +2058,53 @@ tr.brk td{padding-top:0;padding-bottom:9px;border-top:none}
 .pod-tm{font-size:12.5px;color:var(--fg-soft)}
 .pod-pt{font-size:13px;color:var(--accent);font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums}
 @media(max-width:520px){.round-nav{flex-direction:column}.rn-lk,.rn-x{max-width:none}.rn-next{align-items:flex-start;text-align:left}}
+"""
+
+
+# 只注入 /seasons/ 索引頁；其餘 77 季頁即使日後重生也不因未使用樣式產生 byte diff。
+RETIREMENT_ERAS_CSS = """
+.retirement-eras{margin:64px 0 10px;padding-top:30px;border-top:1px solid var(--line-2)}
+.re-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);column-gap:36px;align-items:end;margin-bottom:20px}
+.re-heading .ent-kicker{grid-column:1/-1;margin:0 0 7px}
+.re-heading h2{font-size:clamp(25px,4vw,38px);line-height:1.12;letter-spacing:-.025em;margin:0;color:var(--fg)}
+.re-heading>p:last-child{margin:0;color:var(--fg-soft);font-size:13.5px;line-height:1.75}
+.re-legend{display:flex;flex-wrap:wrap;gap:7px 14px;list-style:none;margin:0 0 18px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:9px}
+.re-legend li{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--fg-soft);white-space:nowrap}
+.re-key{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--seg);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ink) 10%,transparent);flex:none}
+.re-c1{--seg:color-mix(in srgb,var(--accent) 90%,var(--ink))}
+.re-c2{--seg:color-mix(in srgb,var(--accent) 78%,var(--ink))}
+.re-c3{--seg:color-mix(in srgb,var(--accent) 68%,var(--fg-soft))}
+.re-c4{--seg:color-mix(in srgb,var(--accent) 76%,var(--surface-3))}
+.re-c5{--seg:color-mix(in srgb,var(--accent) 58%,var(--surface-3))}
+.re-c6{--seg:color-mix(in srgb,var(--accent) 46%,var(--ink))}
+.re-c7{--seg:color-mix(in srgb,var(--accent) 40%,var(--surface-2))}
+.re-c8{--seg:color-mix(in srgb,var(--accent) 24%,var(--fg-soft))}
+.re-c9{--seg:color-mix(in srgb,var(--accent) 13%,var(--faint))}
+.re-grid{display:grid;gap:9px}
+.re-era{padding:13px 15px 12px;background:var(--surface);border:1px solid var(--line);border-radius:9px}
+.re-era-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px}
+.re-era-head h3{margin:0;font-family:'Chakra Petch',var(--font-mono);font-size:14px;letter-spacing:.025em;color:var(--fg)}
+.re-era-head p{display:flex;align-items:baseline;gap:8px;margin:0;font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.re-era-head b{font-family:'Chakra Petch',var(--font-mono);font-size:14px;color:var(--accent)}
+.re-era-head span{color:var(--faint)}
+.re-bar{display:flex;width:100%;height:27px;overflow:hidden;border-radius:5px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line)}
+.re-seg{display:block;width:var(--share);height:100%;min-width:0;background:var(--seg);box-shadow:inset -1px 0 color-mix(in srgb,var(--surface) 55%,transparent)}
+.re-story{margin:7px 0 0;color:var(--fg-soft);font-size:12.5px;line-height:1.6}
+.re-breakdown{margin-top:5px}.re-breakdown summary{cursor:pointer;color:var(--accent);font-size:11.5px}
+.re-breakdown ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px 12px;list-style:none;margin:9px 0 2px;padding:0}
+.re-breakdown li{display:flex;align-items:center;gap:6px;color:var(--fg-soft);font-size:11.5px;min-width:0}
+.re-breakdown li b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.re-breakdown li span:last-child{margin-left:auto;color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.re-how{margin-top:20px;padding:13px 15px;background:color-mix(in srgb,var(--surface) 72%,transparent);border:1px solid var(--line);border-radius:9px}
+.re-how summary{font-size:13px;font-weight:700}
+.re-how .how-body>p{margin:8px 0;color:var(--fg-soft);line-height:1.7}
+.re-map{display:grid;grid-template-columns:minmax(150px,.32fr) minmax(0,1fr);margin:16px 0 0;border-top:1px solid var(--line)}
+.re-map dt,.re-map dd{margin:0;padding:9px 7px;border-bottom:1px solid var(--line)}
+.re-map dt{display:flex;align-items:flex-start;gap:7px;color:var(--fg);font-weight:700}
+.re-map dd{color:var(--dim);line-height:1.7;overflow-wrap:anywhere}
+@media(max-width:700px){
+  .re-heading{grid-template-columns:1fr;gap:10px}.re-era-head{align-items:flex-start;flex-direction:column;gap:2px}
+  .re-bar{height:24px}.re-breakdown ul{grid-template-columns:1fr}.re-map{grid-template-columns:1fr}.re-map dt{border-bottom:0;padding-bottom:2px}.re-map dd{padding-top:2px}
+}
 """
 
 
