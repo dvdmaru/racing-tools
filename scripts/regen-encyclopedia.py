@@ -17,7 +17,7 @@ data/f1/page-fingerprints.json。跑時重算現況指紋 vs 上次：
   - 車隊 cid：該隊 constructor_standings 的參賽季＋冠軍季（含當年積分/勝場）＋隊名切片 →
     p0.gen_constructor(cid)。頁面歸屬權照 M3 v3：/constructors/** 歸 phase0，本檔只負責
     「什麼時候呼叫它」與「URL 進不進 sitemap」，不把車隊頁搬到別的生成器。
-  - /seasons/ 索引：全年指紋的合成 → 任一年變則重生。/drivers/ 索引：35 人指紋的合成。
+  - /seasons/ 索引：全年指紋的合成 → 任一年變則重生。/drivers/ 索引：雙 roster 聯集 53 人指紋的合成。
     /constructors/ 索引：4 隊指紋的合成。
 
 呼叫端（update-racing.py 的百科段）在 published 且有新資料時：先跑 dr 的前置三 gate
@@ -47,6 +47,8 @@ dr = _load("gen_racing_drivers", "gen-racing-drivers.py")
 gs, fs, rc, p0, il = dr.gs, dr.fs, dr.rc, dr.p0, dr.il
 BASE = rc.BASE
 CHAMPION_IDS = dr.CHAMPION_IDS
+ACTIVE_IDS = dr.ACTIVE_IDS
+DRIVER_IDS = dr.DRIVER_IDS
 # 車隊頁名單的單一來源＝phase0 的 CONSTRUCTORS（該檔就是 /constructors/** 的擁有者），不另硬編。
 CONSTRUCTOR_IDS = p0.CONSTRUCTORS
 FIRST_YEAR, LAST_YEAR = gs.FIRST_YEAR, gs.LAST_YEAR
@@ -164,10 +166,10 @@ def compute_fingerprints(con, round_years=None):
     fp_rounds = {f"{y}/{r}": _h({"round": [y, r], "db": fp_years[str(y)],
                                  "articles": il.round_articles_slice(y, r)})
                  for y, r in round_keys(round_years)}
-    fp_drivers_db = {did: _h(_driver_slice(con, did)) for did in CHAMPION_IDS}
+    fp_drivers_db = {did: _h(_driver_slice(con, did)) for did in DRIVER_IDS}
     fp_drivers = {did: _h({"db": fp_drivers_db[did],
                            "articles": il.driver_articles_slice(did)})
-                  for did in CHAMPION_IDS}
+                  for did in DRIVER_IDS}
     fp_cons = {cid: _h(_constructor_slice(con, cid)) for cid in CONSTRUCTOR_IDS}
     return {
         "seasons": fp_years,
@@ -216,7 +218,7 @@ def enumerate_season_urls(round_years):
 
 
 def enumerate_driver_urls():
-    return [f"{BASE}/drivers/"] + [f"{BASE}/drivers/{rc.driver_slug(d)}/" for d in CHAMPION_IDS]
+    return [f"{BASE}/drivers/"] + [f"{BASE}/drivers/{rc.driver_slug(d)}/" for d in DRIVER_IDS]
 
 
 def enumerate_constructor_urls():
@@ -244,7 +246,7 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
     changed_years = [y for y in range(LAST_YEAR, FIRST_YEAR - 1, -1)
                      if full or cur["seasons"][str(y)] != pv_years.get(str(y))]
     changed_rounds = [k for k in cur["rounds"] if full or cur["rounds"][k] != pv_rounds.get(k)]
-    changed_drivers = [d for d in CHAMPION_IDS
+    changed_drivers = [d for d in DRIVER_IDS
                        if full or cur["drivers"][d] != pv_drivers.get(d)]
     changed_constructors = [c for c in CONSTRUCTOR_IDS
                             if full or cur["constructors"][c] != pv_cons.get(c)]

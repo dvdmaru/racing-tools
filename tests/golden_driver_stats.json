@@ -27,7 +27,7 @@
       "career_points"
     ],
     "excluded_reason": "計畫 §4.6 紅線：桿位/最快圈/生涯積分定義或資料範圍未定，第一階段不發布。",
-    "as_of_policy": "每位車手的凍結統計綁定一個 as_of 時點；golden gate 比對的是「重算到 as_of 時點」的統計 vs 凍結值（非全量現值）。活躍車手 as_of={season:2026,round:10}（本快照邊界），新賽果進來不影響 gate（截斷只對明細 filter，不對總數減法）；已退役者 as_of=生涯終點，值永不變。頁面顯示仍是全量現值，as_of 只管迴歸。推進流程：換季或定期由 Charlie 重新核准後，手動推進活躍車手的 as_of.round（換季則改 season），並同步更新該車手四欄凍結值——比照本檔既有的 PR merge gate 核准精神（default-deny，機器不自動推進）。"
+    "as_of_policy": "每位車手的凍結統計綁定一個 as_of 時點；golden gate 比對的是『重算到 as_of 時點』的統計 vs 凍結值（非全量現值）。2026 現役 22 人一律 as_of={season:2026,round:11}；新賽果進來不影響 gate（截斷只對明細 filter，不對總數減法）。新加入的 18 人與由 R10 推進至 R11 的 4 位既有冠軍均為 approved_by=PENDING-charlie，在 Charlie 核准前 golden gate 必須 FAIL。"
   },
   "drivers": {
     "alonso": {
@@ -38,11 +38,12 @@
       ],
       "wins": 32,
       "podiums": 106,
-      "entries": 438,
+      "entries": 439,
       "as_of": {
         "season": 2026,
-        "round": 10
-      }
+        "round": 11
+      },
+      "approved_by": "PENDING-charlie"
     },
     "ascari": {
       "championships": 2,
@@ -169,11 +170,12 @@
       ],
       "wins": 106,
       "podiums": 207,
-      "entries": 390,
+      "entries": 391,
       "as_of": {
         "season": 2026,
-        "round": 10
-      }
+        "round": 11
+      },
+      "approved_by": "PENDING-charlie"
     },
     "hawthorn": {
       "championships": 1,
@@ -319,12 +321,13 @@
         2024
       ],
       "wins": 71,
-      "podiums": 130,
-      "entries": 243,
+      "podiums": 131,
+      "entries": 244,
       "as_of": {
         "season": 2026,
-        "round": 10
-      }
+        "round": 11
+      },
+      "approved_by": "PENDING-charlie"
     },
     "michael_schumacher": {
       "championships": 7,
@@ -350,13 +353,14 @@
       "championship_years": [
         2025
       ],
-      "wins": 11,
-      "podiums": 46,
-      "entries": 162,
+      "wins": 12,
+      "podiums": 47,
+      "entries": 163,
       "as_of": {
         "season": 2026,
-        "round": 10
-      }
+        "round": 11
+      },
+      "approved_by": "PENDING-charlie"
     },
     "phil_hill": {
       "championships": 1,
@@ -525,6 +529,168 @@
         "season": 2006,
         "round": 12
       }
+    },
+    "albon": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 2,
+      "entries": 140,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "antonelli": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 6,
+      "podiums": 12,
+      "entries": 35,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "arvid_lindblad": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 11,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "bearman": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 38,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "bortoleto": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 35,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "bottas": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 10,
+      "podiums": 67,
+      "entries": 258,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "colapinto": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 38,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "gasly": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 1,
+      "podiums": 6,
+      "entries": 189,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "hadjar": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 1,
+      "entries": 35,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "hulkenberg": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 1,
+      "entries": 265,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "lawson": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 46,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "leclerc": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 9,
+      "podiums": 54,
+      "entries": 184,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "ocon": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 1,
+      "podiums": 4,
+      "entries": 191,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "perez": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 6,
+      "podiums": 39,
+      "entries": 294,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "piastri": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 9,
+      "podiums": 28,
+      "entries": 81,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "russell": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 7,
+      "podiums": 29,
+      "entries": 163,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "sainz": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 4,
+      "podiums": 29,
+      "entries": 243,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
+    },
+    "stroll": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 3,
+      "entries": 202,
+      "as_of": {"season": 2026, "round": 11},
+      "approved_by": "PENDING-charlie"
     }
   }
 }

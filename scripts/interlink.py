@@ -16,7 +16,7 @@
 articles/ 與 config/approved.json 一律唯讀，永不寫入。
 
 ── 匹配紀律（寧漏勿錯連）─────────────────────────────────────────
-1. 只認**已建頁**的 35 位車手（名單＝crosscheck-report 的 expected_champion_ids，
+1. 只認**已建頁**的 53 位車手（名單＝crosscheck-report 的 expected_driver_ids，
    與 gen-racing-drivers.py 同源；slug 走 data/f1/slugs.json 註冊表）。
 2. 匹配字串只有三種來源，全部是「已核准」的既有資料，本模組不自譯、不做模糊姓氏推斷：
    ① 已核准繁中譯名（phase0 seed 全名 ＋ scripts/driver-zh.json 的 status=="approved"）
@@ -25,7 +25,7 @@ articles/ 與 config/approved.json 一律唯讀，永不寫入。
    ⚠️ **刻意不收單獨的英文姓氏**：Button / Hunt / Farina / Jones 同時是普通英文單字，
       本站又有技術類文章，收了就是等著誤連。站規是「中文為主、首次出現附原名」，
       中文名一定先出現，②已經接住了絕大多數；漏連比錯連便宜。
-3. 一個字串在 35 人裡對應**多人就整個丟掉**（真實案例：「希爾」對到 damon_hill /
+3. 一個字串在 53 人聯集裡對應**多人就整個丟掉**（真實案例：「希爾」對到 damon_hill /
    hill / phil_hill 三人、「羅斯堡」對到 keke_rosberg / rosberg 兩人 → 兩者都不連）。
 4. 同一個位置有多個候選時取**最長匹配**（「路易斯・漢米爾頓」勝過「漢米爾頓」）。
 
@@ -117,11 +117,19 @@ def clear_caches():
 # ---------- 名單與譯名（與 gen-racing-drivers.py 同源，不另硬編） ----------
 
 def champion_ids():
-    """35 位有實體頁的車手 id（canonical 來源＝crosscheck-report 的 coverage）。"""
+    """35 位歷代冠軍 id（canonical 來源＝crosscheck-report 的 coverage）。"""
     if "champion_ids" not in _CACHE:
         _CACHE["champion_ids"] = tuple(
             json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]["expected_champion_ids"])
     return _CACHE["champion_ids"]
+
+
+def driver_ids():
+    """所有有實體頁的車手：歷代冠軍 ∪ 2026 現役。"""
+    if "driver_ids" not in _CACHE:
+        cov = json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]
+        _CACHE["driver_ids"] = tuple(cov["expected_driver_ids"])
+    return _CACHE["driver_ids"]
 
 
 def seed_zh():
@@ -167,10 +175,10 @@ def candidate_strings(did):
 
 
 def link_index():
-    """{匹配字串: (driver_id, slug)}——只留在 35 人裡**唯一**對應的字串。"""
+    """{匹配字串: (driver_id, slug)}——只留在 53 人聯集裡**唯一**對應的字串。"""
     if "link_index" not in _CACHE:
         owners = {}
-        for did in champion_ids():
+        for did in driver_ids():
             for s in candidate_strings(did):
                 owners.setdefault(s, set()).add(did)
         _CACHE["link_index"] = {
@@ -182,7 +190,7 @@ def link_index():
 def ambiguous_strings():
     """對應到多人、因此**永不連**的字串（負向控制與稽核用）。"""
     owners = {}
-    for did in champion_ids():
+    for did in driver_ids():
         for s in candidate_strings(did):
             owners.setdefault(s, set()).add(did)
     return {s: sorted(dids) for s, dids in owners.items() if len(dids) > 1}

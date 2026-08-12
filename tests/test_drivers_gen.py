@@ -5,7 +5,7 @@
 鎖住驗收條件與紅線：
 - 前置三 gate（invariants／verdicts／golden）各自的 exit-1 行為：合成壞 invariant／抽走一條
   verdict／篡改 golden 一值 → gate False（且 main 走 gate 失敗時零產出）。
-- 35 頁全生成 + 索引完整（含 ItemList 35）。
+- 35 冠軍＋2026 現役 22 人的聯集 53 頁全生成，雙分區索引完整。
 - §4.6 紅線：桿位／最快圈／生涯積分不得以「數據形式」出現在任何頁（只允許 na 佔位卡）。
 - golden value == len(detail)（衍生數字紀律）。
 - 譯名誠實 fallback（無譯名者原文-only + 頁尾註明；seed 有全名譯名）。
@@ -54,7 +54,7 @@ ALLOWED_STAT_LABELS = ("世界冠軍", "分站冠軍", "頒獎台", "參賽場�
 
 
 def _render_all(tmp, con=None):
-    """把索引 + 35 車手頁渲染進 tmp，回傳 {slug: html}。"""
+    """把索引 + champion ∪ active 的 53 車手頁渲染進 tmp，回傳 {slug: html}。"""
     own = con is None
     con = con or fs.connect_db()
     orig = dr.PUB
@@ -62,7 +62,7 @@ def _render_all(tmp, con=None):
     try:
         dr.render_index(con)
         out = {}
-        for did in dr.CHAMPION_IDS:
+        for did in dr.DRIVER_IDS:
             s = dr.gen_driver(did, con)
             out[s["slug"]] = (tmp / "drivers" / s["slug"] / "index.html").read_text(encoding="utf-8")
         return out
@@ -74,20 +74,41 @@ def _render_all(tmp, con=None):
 
 # ---------- gate exit-1 行為 ----------
 
+def _approved_copy(src, tmp, key):
+    data = json.loads(src.read_text(encoding="utf-8"))
+    for row in data[key].values() if isinstance(data[key], dict) else data[key]:
+        if str(row.get("approved_by", row.get("by", ""))).startswith("PENDING"):
+            if "approved_by" in row:
+                row["approved_by"] = "charlie-test"
+            else:
+                row["by"] = "charlie-test"
+    out = tmp / src.name
+    out.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
 class GatePassTests(unittest.TestCase):
-    """現況三 gate 全綠（回歸：任何一 gate 退化會在這裡先炸）。"""
+    """基礎不變量綠；兩個人工核准 gate 在草稿狀態預期紅。"""
 
     def test_invariants_gate_passes(self):
         self.assertTrue(dr.gate_invariants())
 
-    def test_verdicts_gate_passes(self):
-        self.assertTrue(dr.gate_verdicts())
+    def test_verdicts_gate_rejects_pending(self):
+        self.assertFalse(dr.gate_verdicts())
 
-    def test_golden_gate_passes(self):
-        self.assertTrue(dr.gate_golden())
+    def test_golden_gate_rejects_pending(self):
+        self.assertFalse(dr.gate_golden())
 
-    def test_run_gates_all_green(self):
-        self.assertTrue(dr.run_gates())
+    def test_run_gates_stops_before_generation(self):
+        self.assertFalse(dr.run_gates())
+
+    def test_both_pending_gates_pass_after_synthetic_approval(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        verdicts = _approved_copy(dr.VERDICTS, tmp, "verdicts")
+        golden = _approved_copy(dr.GOLDEN, tmp, "drivers")
+        self.assertTrue(dr.gate_verdicts(verdicts=verdicts))
+        self.assertTrue(dr.gate_golden(golden_path=golden))
 
 
 class InvariantGateFailTests(unittest.TestCase):
@@ -131,6 +152,9 @@ class VerdictGateFailTests(unittest.TestCase):
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         data = json.loads(dr.VERDICTS.read_text(encoding="utf-8"))
+        for v in data["verdicts"]:
+            if str(v.get("by", "")).startswith("PENDING"):
+                v["by"] = "charlie-test"
         data["verdicts"] = data["verdicts"][1:]  # 抽掉第一條
         bad = tmp / "verdicts.json"
         bad.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
@@ -145,6 +169,9 @@ class GoldenGateFailTests(unittest.TestCase):
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         data = json.loads(dr.GOLDEN.read_text(encoding="utf-8"))
+        for row in data["drivers"].values():
+            if str(row.get("approved_by", "")).startswith("PENDING"):
+                row["approved_by"] = "charlie-test"
         data["drivers"]["fangio"]["wins"] += 1  # 竄改一值
         bad = tmp / "golden.json"
         bad.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
@@ -159,6 +186,18 @@ class GoldenGateFailTests(unittest.TestCase):
         bad = tmp / "golden.json"
         bad.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
         self.assertFalse(dr.gate_golden(golden_path=bad))
+
+    def test_active_champion_stale_as_of_fails_gate(self):
+        """現役冠軍即使具名核准，仍不得沿用落後 roster 的自洽凍結值。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        approved = _approved_copy(dr.GOLDEN, tmp, "drivers")
+        data = json.loads(approved.read_text(encoding="utf-8"))
+        data["drivers"]["alonso"]["entries"] = 438
+        data["drivers"]["alonso"]["as_of"] = {"season": 2026, "round": 10}
+        approved.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        self.assertFalse(dr.gate_golden(golden_path=approved),
+                         "現役冠軍 as_of 落後現役 roster 時點時，gate 必須拒絕")
 
 
 # ---------- golden 紀律 ----------
@@ -178,14 +217,14 @@ class GoldenDisciplineTests(unittest.TestCase):
     def test_value_equals_len_detail_and_matches_golden(self):
         """☠️ 這條原本漏傳 `as_of`，是從 2026-07-23 核准 golden 起就潛伏的 bug。
 
-        golden 是 **as_of 凍結值**：活躍車手凍結在 {2026, R10}，設計上新賽果不該打破 gate
+        golden 是 **as_of 凍結值**：活躍車手凍結在 {2026, R11}，設計上新賽果不該打破 gate
         （生成器的 `gate_golden()` 有正確傳 as_of）。但這裡拿**全量現值**去比凍結值，
         於是第一場新賽果（2026 R11 匈牙利）一進來就爆——alonso entries 439 撞 golden 438。
 
         它整整潛伏了 11 天沒被發現，因為在那之前百科資料庫是凍結的、根本沒有新賽果。
         **一個永遠沒有新輸入的測試，綠不代表它會動。**
         """
-        for did in dr.CHAMPION_IDS:
+        for did in dr.DRIVER_IDS:
             as_of = self.golden[did].get("as_of")
             car = fs.driver_career_db(did, self.con, as_of=as_of)
             champ = fs.driver_championships_db(did, self.con, as_of=as_of)
@@ -198,9 +237,9 @@ class GoldenDisciplineTests(unittest.TestCase):
             self.assertEqual([d["season"] for d in champ["detail"]],
                              self.golden[did]["championship_years"])
 
-    def test_golden_covers_exactly_35(self):
-        self.assertEqual(set(self.golden), set(dr.CHAMPION_IDS))
-        self.assertEqual(len(self.golden), 35)
+    def test_golden_covers_exact_union(self):
+        self.assertEqual(set(self.golden), set(dr.DRIVER_IDS))
+        self.assertEqual(len(self.golden), 53)
 
 
 # ---------- 產出完整性 ----------
@@ -216,9 +255,9 @@ class GenerationTests(unittest.TestCase):
     def tearDownClass(cls):
         shutil.rmtree(cls.tmp)
 
-    def test_all_35_driver_pages_generated(self):
-        self.assertEqual(len(self.pages), 35)
-        for did in dr.CHAMPION_IDS:
+    def test_all_53_driver_pages_generated(self):
+        self.assertEqual(len(self.pages), 53)
+        for did in dr.DRIVER_IDS:
             slug = rc.driver_slug(did)
             self.assertTrue((self.tmp / "drivers" / slug / "index.html").is_file(),
                             f"{did} 車手頁未生成")
@@ -233,7 +272,12 @@ class GenerationTests(unittest.TestCase):
         self.assertTrue(m)
         self.assertEqual(int(m.group(1)), 35)
         # ListItem = ItemList 的 35 + BreadcrumbList 的 2（首頁／車手）
-        self.assertEqual(self.index.count('"@type":"ListItem"'), 37)
+        self.assertEqual(self.index.count('"@type":"ListItem"'), 59)
+
+    def test_active_section_lists_all_22(self):
+        self.assertIn("2026 現役陣容", self.index)
+        for did in dr.ACTIVE_IDS:
+            self.assertIn(f'href="/drivers/{rc.driver_slug(did)}/"', self.index)
 
     def test_publish_fields_present_and_numeric(self):
         # 抽 fangio：四發布欄位皆為數字 stat-v
@@ -393,6 +437,23 @@ class NoScriptNoFetchTests(unittest.TestCase):
 # ---------- 決定性 ----------
 
 class DeterminismTests(unittest.TestCase):
+    def test_existing_champion_pages_remain_byte_identical(self):
+        """擴編只增加新車手與索引分區；已公開 35 位冠軍頁內容不得被重構帶動。"""
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        con = fs.connect_db()
+        old_pub = dr.PUB
+        dr.PUB = tmp
+        try:
+            for did in dr.CHAMPION_IDS:
+                row = dr.gen_driver(did, con)
+                rel = pathlib.Path("drivers") / row["slug"] / "index.html"
+                self.assertEqual((tmp / rel).read_bytes(), (old_pub / rel).read_bytes(),
+                                 f"擴編意外改動既有冠軍頁：{did}")
+        finally:
+            dr.PUB = old_pub
+            con.close()
+
     def test_two_runs_byte_identical(self):
         a = pathlib.Path(tempfile.mkdtemp())
         b = pathlib.Path(tempfile.mkdtemp())
@@ -455,7 +516,7 @@ class NoDeadLinkTests(unittest.TestCase):
             con = fs.connect_db()
             try:
                 dr.render_index(con)
-                for did in dr.CHAMPION_IDS:
+                for did in dr.DRIVER_IDS:
                     dr.gen_driver(did, con)
             finally:
                 con.close()
