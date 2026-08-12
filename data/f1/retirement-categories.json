@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "retirement_definition": "position_text = 'R'",
+  "categories": [
+    {
+      "id": "engine",
+      "label": "引擎與動力",
+      "statuses": [
+        "Crankshaft",
+        "Distributor",
+        "Engine",
+        "Engine fire",
+        "Engine misfire",
+        "Exhaust",
+        "Ignition",
+        "Injection",
+        "Magneto",
+        "Power Unit",
+        "Power loss",
+        "Spark plugs",
+        "Supercharger",
+        "Throttle",
+        "Turbo"
+      ]
+    },
+    {
+      "id": "drivetrain",
+      "label": "傳動與變速箱",
+      "statuses": [
+        "Axle",
+        "Clutch",
+        "CV joint",
+        "Differential",
+        "Driveshaft",
+        "Drivetrain",
+        "Gearbox",
+        "Halfshaft",
+        "Launch control",
+        "Stalled",
+        "Transmission"
+      ]
+    },
+    {
+      "id": "chassis",
+      "label": "懸吊、底盤與操控",
+      "statuses": [
+        "Brake duct",
+        "Brakes",
+        "Chassis",
+        "Handling",
+        "Steering",
+        "Suspension",
+        "Track rod",
+        "Undertray"
+      ]
+    },
+    {
+      "id": "incident",
+      "label": "事故與碰撞",
+      "statuses": [
+        "Accident",
+        "Collision",
+        "Collision damage",
+        "Damage",
+        "Debris",
+        "Fatal accident",
+        "Spun off"
+      ]
+    },
+    {
+      "id": "tyre-wheel",
+      "label": "輪胎與輪圈",
+      "statuses": [
+        "Puncture",
+        "Tyre",
+        "Wheel",
+        "Wheel bearing",
+        "Wheel nut",
+        "Wheel rim"
+      ]
+    },
+    {
+      "id": "electrical-hydraulic",
+      "label": "電氣與油壓",
+      "statuses": [
+        "Alternator",
+        "Battery",
+        "Electrical",
+        "Electronics",
+        "ERS",
+        "Hydraulics",
+        "Pneumatics"
+      ]
+    },
+    {
+      "id": "fluids-cooling",
+      "label": "燃油、潤滑與冷卻",
+      "statuses": [
+        "Cooling system",
+        "Fuel",
+        "Fuel leak",
+        "Fuel pipe",
+        "Fuel pressure",
+        "Fuel pump",
+        "Fuel rig",
+        "Fuel system",
+        "Oil leak",
+        "Oil line",
+        "Oil pipe",
+        "Oil pressure",
+        "Oil pump",
+        "Out of fuel",
+        "Overheating",
+        "Radiator",
+        "Refuelling",
+        "Water leak",
+        "Water pipe",
+        "Water pressure",
+        "Water pump"
+      ]
+    },
+    {
+      "id": "other-mechanical",
+      "label": "其他機械",
+      "statuses": [
+        "Broken wing",
+        "Driver Seat",
+        "Fire",
+        "Front wing",
+        "Heat shield fire",
+        "Mechanical",
+        "Rear wing",
+        "Safety belt",
+        "Seat",
+        "Technical",
+        "Vibrations"
+      ]
+    },
+    {
+      "id": "other",
+      "label": "其他",
+      "statuses": [
+        "+1 Lap",
+        "+10 Laps",
+        "+11 Laps",
+        "+12 Laps",
+        "+14 Laps",
+        "+17 Laps",
+        "+2 Laps",
+        "+26 Laps",
+        "+3 Laps",
+        "+4 Laps",
+        "+42 Laps",
+        "+6 Laps",
+        "+7 Laps",
+        "+8 Laps",
+        "+9 Laps",
+        "Driver unwell",
+        "Eye injury",
+        "Illness",
+        "Injured",
+        "Injury",
+        "Lapped",
+        "Not classified",
+        "Physical",
+        "Retired"
+      ]
+    }
+  ]
+}

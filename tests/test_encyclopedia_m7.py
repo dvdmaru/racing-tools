@@ -454,8 +454,12 @@ class RefreshCurrentTests(unittest.TestCase):
         # 有新賽果但不變量未過 → main exit 1（不進入頁面重生）
         orig_refresh = refresh_mod.refresh
         orig_verify = refresh_mod._rebuild_and_verify
+        orig_sync = refresh_mod.sync_whole_db_files
         refresh_mod.refresh = lambda *a, **k: ([11], False)
         refresh_mod._rebuild_and_verify = lambda db: False
+        # sync_whole_db_files 用真 Fetcher 打網路——不 mock 會讓本測試逃逸到真實 DNS
+        # （離線環境直接 ERROR，線上環境則白打一輪外部請求）。
+        refresh_mod.sync_whole_db_files = lambda *a, **k: ([], [])
         old_argv = sys.argv
         sys.argv = ["refresh-f1-current.py"]
         try:
@@ -463,6 +467,7 @@ class RefreshCurrentTests(unittest.TestCase):
         finally:
             refresh_mod.refresh = orig_refresh
             refresh_mod._rebuild_and_verify = orig_verify
+            refresh_mod.sync_whole_db_files = orig_sync
             sys.argv = old_argv
 
     def test_main_no_new_data_exit_0(self):
