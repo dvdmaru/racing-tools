@@ -88,19 +88,39 @@ def _approved_copy(src, tmp, key):
 
 
 class GatePassTests(unittest.TestCase):
-    """基礎不變量綠；兩個人工核准 gate 在草稿狀態預期紅。"""
+    """基礎不變量綠；2026-08-13 Charlie 全批核准後，真實 repo 的三 gate 均應綠。
+    PENDING 拒絕行為由合成 fixture 測試守（本 class 下方與 test_crosscheck），不綁 repo 暫態。"""
 
     def test_invariants_gate_passes(self):
         self.assertTrue(dr.gate_invariants())
 
-    def test_verdicts_gate_rejects_pending(self):
-        self.assertFalse(dr.gate_verdicts())
+    def test_verdicts_gate_green_in_approved_steady_state(self):
+        self.assertTrue(dr.gate_verdicts())
 
-    def test_golden_gate_rejects_pending(self):
-        self.assertFalse(dr.gate_golden())
+    def test_golden_gate_green_in_approved_steady_state(self):
+        self.assertTrue(dr.gate_golden())
 
-    def test_run_gates_stops_before_generation(self):
-        self.assertFalse(dr.run_gates())
+    def test_run_gates_all_green_in_approved_steady_state(self):
+        self.assertTrue(dr.run_gates())
+
+    def test_golden_gate_rejects_synthetic_pending(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        data = json.loads(dr.GOLDEN.read_text(encoding="utf-8"))
+        first = next(iter(data["drivers"]))
+        data["drivers"][first]["approved_by"] = "PENDING-charlie"
+        bad = tmp / "golden-pending.json"
+        bad.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        self.assertFalse(dr.gate_golden(golden_path=bad))
+
+    def test_verdicts_gate_rejects_synthetic_pending(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        data = json.loads(dr.VERDICTS.read_text(encoding="utf-8"))
+        data["verdicts"][0]["by"] = "PENDING-charlie"
+        bad = tmp / "verdicts-pending.json"
+        bad.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        self.assertFalse(dr.gate_verdicts(verdicts=bad))
 
     def test_both_pending_gates_pass_after_synthetic_approval(self):
         tmp = pathlib.Path(tempfile.mkdtemp())

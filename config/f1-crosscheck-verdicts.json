@@ -288,50 +288,54 @@
     {
       "key": "albon|entries",
       "verdict": "definition_differs",
-      "reason": "建議裁決：本站 entries 是不重複且存在賽果列的場次；維基 races=141、starts=138，我方 140 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
-      "by": "PENDING-charlie",
-      "date": "2026-08-12",
+      "reason": "本站 entries 是不重複且存在賽果列的場次；維基 races=141、starts=138，我方 140 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
+      "by": "charlie",
+      "date": "2026-08-13",
       "definition_id": "results_distinct_races",
       "bound_ours": 140,
       "bound_wiki": 141,
       "wiki_revid": 1366385158,
-      "bound_fingerprint": "418c4aaa13dc10a9445de59381e075f04dcf488034f253546ed0983f10e3691a"
+      "bound_fingerprint": "418c4aaa13dc10a9445de59381e075f04dcf488034f253546ed0983f10e3691a",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     {
       "key": "perez|entries",
       "verdict": "definition_differs",
-      "reason": "建議裁決：本站 entries 是不重複且存在賽果列的場次；維基 races=296、starts=292，我方 294 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
-      "by": "PENDING-charlie",
-      "date": "2026-08-12",
+      "reason": "本站 entries 是不重複且存在賽果列的場次；維基 races=296、starts=292，我方 294 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
+      "by": "charlie",
+      "date": "2026-08-13",
       "definition_id": "results_distinct_races",
       "bound_ours": 294,
       "bound_wiki": 296,
       "wiki_revid": 1366168850,
-      "bound_fingerprint": "cf2be6516f610eefcf03377982bae8ba7184cfa5198f260e261aad806084b008"
+      "bound_fingerprint": "cf2be6516f610eefcf03377982bae8ba7184cfa5198f260e261aad806084b008",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     {
       "key": "sainz|entries",
       "verdict": "definition_differs",
-      "reason": "建議裁決：本站 entries 是不重複且存在賽果列的場次；維基 races=244、starts=240，我方 243 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
-      "by": "PENDING-charlie",
-      "date": "2026-08-12",
+      "reason": "本站 entries 是不重複且存在賽果列的場次；維基 races=244、starts=240，我方 243 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
+      "by": "charlie",
+      "date": "2026-08-13",
       "definition_id": "results_distinct_races",
       "bound_ours": 243,
       "bound_wiki": 244,
       "wiki_revid": 1367449025,
-      "bound_fingerprint": "4fc638b37aaff112012f47056e6351a0761c3613db3e1e4043076095f8832526"
+      "bound_fingerprint": "4fc638b37aaff112012f47056e6351a0761c3613db3e1e4043076095f8832526",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     {
       "key": "stroll|entries",
       "verdict": "definition_differs",
-      "reason": "建議裁決：本站 entries 是不重複且存在賽果列的場次；維基 races=204、starts=200，我方 202 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
-      "by": "PENDING-charlie",
-      "date": "2026-08-12",
+      "reason": "本站 entries 是不重複且存在賽果列的場次；維基 races=204、starts=200，我方 202 落在兩者間，反映 results-row 與報名／起跑口徑不同。",
+      "by": "charlie",
+      "date": "2026-08-13",
       "definition_id": "results_distinct_races",
       "bound_ours": 202,
       "bound_wiki": 204,
       "wiki_revid": 1367825060,
-      "bound_fingerprint": "08eb6386adaad7049190e44a43b0e3e6d3b0a1d29b182fa5589a59a8bc75ef97"
+      "bound_fingerprint": "08eb6386adaad7049190e44a43b0e3e6d3b0a1d29b182fa5589a59a8bc75ef97",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     }
   ]
 }

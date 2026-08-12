@@ -94,3 +94,14 @@
 - 其餘 68 個逐欄對照一致，不建立 verdict。
 - 既有現役冠軍的 R10→R11 golden 推進共 4 筆，均建議核准；目前仍為 `approved_by=PENDING-charlie`。
 - `ours_wrong`：0；`wiki_wrong`：0。
+
+## 裁決紀錄（已結）
+
+**2026-08-13 Charlie 全批核准**（原話：「核准擴編裁決包」）。
+
+- 前置查核：Fable 全量機械重驗四腿通過——①SQL 獨立直算 vs golden（現役 22 人 × 4 欄＋冠軍
+  年份集合，22/22 全量）②golden vs 本包「我方值」轉錄 ③本包「維基值」vs 快照獨立解析
+  （自寫 parser＋F1stat 模板 28 車手碼，含 4 筆口徑差異列的 starts 括號值）④快照真實性
+  抽驗 2 份（antonelli／stroll 按 revid 對 live Wikipedia sha256 相符）。
+- 套用：22 筆 golden `approved_by` → `charlie`（2026-08-13）；4 筆 verdicts `by` → `charlie`；
+  「建議裁決：」前綴移除。值零變動（翻核准只動核准欄位）。

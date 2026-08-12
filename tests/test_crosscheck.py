@@ -736,11 +736,12 @@ class RealVerdictsTests(unittest.TestCase):
             for field in ("definition_id", "bound_ours", "bound_wiki", "wiki_revid", "bound_fingerprint"):
                 self.assertIsNotNone(v.get(field), f"{v['key']} 缺綁定欄 {field}")
 
-    def test_real_report_gate_fails_only_pending(self):
-        """擴編草稿的真實 gate 必須只因 PENDING fail closed。
+    def test_real_report_gate_green_in_approved_steady_state(self):
+        """真實 gate 在核准後穩態必須全綠（2026-08-13 Charlie 全批核准擴編裁決包）。
 
-        report 是本 PR 決定入版控的提交物（釘 revid 的外部原始快照，比照 raw 層）；
-        因此**不再 skip**——report 不存在＝提交物不完整＝視為失敗（覆核最低條件 5）。
+        report 是入版控的提交物（釘 revid 的外部原始快照，比照 raw 層）；
+        因此**不 skip**——report 不存在＝提交物不完整＝視為失敗（覆核最低條件 5）。
+        PENDING 拒絕行為由合成測試 test_pending_verdict_never_resolves 守，不綁 repo 暫態。
         """
         import json
         self.assertTrue(cc.REPORT.exists(),
@@ -750,11 +751,10 @@ class RealVerdictsTests(unittest.TestCase):
         active = cc.db_active_driver_ids() if cc.DEFAULT_DB.exists() else None
         passed, unresolved, stale, faults = cc.gate_diffs(
             rep, cc.load_verdicts(), db_champion_ids=db, db_active_ids=active)
-        self.assertFalse(passed)
+        self.assertTrue(passed)
+        self.assertEqual(unresolved, [])
         self.assertEqual(stale, [])
         self.assertEqual(faults, [])
-        self.assertEqual({d["_gate_status"] for d in unresolved}, {"pending_approval"})
-        self.assertEqual(len(unresolved), 4)
 
     def test_real_report_identity_manifest_matches_db(self):
         """report 的 expected_champion_ids 必須與 DB 現算冠軍集合逐一相符（身分 manifest 完整）。"""
@@ -790,12 +790,14 @@ class GateOnlyCliTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(self.SCRIPT), *args],
                               capture_output=True, text=True)
 
-    def test_gate_only_fails_with_pending_verdicts(self):
+    def test_gate_only_green_in_approved_steady_state(self):
+        # 2026-08-13 Charlie 全批核准後，真實 repo 的 --gate-only 應 exit 0。
+        # PENDING → exit 1 的行為由 gate_diffs 合成測試守（test_pending_verdict_never_resolves）。
         if not (cc.REPORT.exists() and cc.DEFAULT_DB.exists()):
             self.skipTest("report 或 db 不存在")
         r = self._run("--gate-only")
-        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
-        self.assertIn("pending_approval", r.stdout)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertNotIn("pending_approval", r.stdout)
 
     def test_gate_only_missing_db_fails_closed(self):
         """--gate-only 指向不存在的 db → exit 1（不退回 report 自證）。"""

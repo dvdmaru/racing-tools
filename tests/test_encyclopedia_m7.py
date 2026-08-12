@@ -144,8 +144,18 @@ class GoldenAsOfTests(unittest.TestCase):
             self.assertEqual(self.golden[did]["as_of"], {"season": 2026, "round": 11},
                              f"{did} 為現役車手，as_of 應凍結在 2026/11")
 
-    def test_golden_gate_rejects_pending_now(self):
-        self.assertFalse(dr.gate_golden())
+    def test_golden_gate_green_in_approved_steady_state(self):
+        # 2026-08-13 Charlie 全批核准擴編裁決包後，真實 repo 狀態的 gate 應為綠。
+        self.assertTrue(dr.gate_golden())
+
+    def test_golden_gate_rejects_synthetic_pending(self):
+        # PENDING 拒絕行為用合成 fixture 守（不綁 repo 暫態）：任一條 PENDING → gate 紅。
+        data = json.loads(self.approved_golden.read_text(encoding="utf-8"))
+        first = next(iter(data["drivers"]))
+        data["drivers"][first]["approved_by"] = "PENDING-charlie"
+        bad = self.tmp / "golden-pending.json"
+        bad.write_text(json.dumps(data), encoding="utf-8")
+        self.assertFalse(dr.gate_golden(golden_path=bad))
 
     def test_golden_gate_green_after_synthetic_approval(self):
         self.assertTrue(dr.gate_golden(golden_path=self.approved_golden))
