@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-21T12:38:10.259461+00:00",
+  "generated_at": "2026-08-12T15:29:15.394583+00:00",
   "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
   "note": "維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決",
   "coverage": {
-    "scope": "35 位已完成賽季的歷代車手冠軍（非全 881 車手，非整個 entity layer）",
+    "scope": "35 位歷代車手冠軍 ∪ 2026 現役 22 人（聯集 53 人；非全 881 車手）",
     "expected_champion_count": 35,
     "expected_champion_ids": [
       "alonso",
@@ -42,6 +42,87 @@
       "vettel",
       "villeneuve"
     ],
+    "expected_active_count": 22,
+    "expected_active_driver_ids": [
+      "albon",
+      "alonso",
+      "antonelli",
+      "arvid_lindblad",
+      "bearman",
+      "bortoleto",
+      "bottas",
+      "colapinto",
+      "gasly",
+      "hadjar",
+      "hamilton",
+      "hulkenberg",
+      "lawson",
+      "leclerc",
+      "max_verstappen",
+      "norris",
+      "ocon",
+      "perez",
+      "piastri",
+      "russell",
+      "sainz",
+      "stroll"
+    ],
+    "expected_driver_count": 53,
+    "expected_driver_ids": [
+      "albon",
+      "alonso",
+      "antonelli",
+      "arvid_lindblad",
+      "ascari",
+      "bearman",
+      "bortoleto",
+      "bottas",
+      "button",
+      "clark",
+      "colapinto",
+      "damon_hill",
+      "emerson_fittipaldi",
+      "fangio",
+      "farina",
+      "gasly",
+      "hadjar",
+      "hakkinen",
+      "hamilton",
+      "hawthorn",
+      "hill",
+      "hulkenberg",
+      "hulme",
+      "hunt",
+      "jack_brabham",
+      "jones",
+      "keke_rosberg",
+      "lauda",
+      "lawson",
+      "leclerc",
+      "mansell",
+      "mario_andretti",
+      "max_verstappen",
+      "michael_schumacher",
+      "norris",
+      "ocon",
+      "perez",
+      "phil_hill",
+      "piastri",
+      "piquet",
+      "prost",
+      "raikkonen",
+      "rindt",
+      "rosberg",
+      "russell",
+      "sainz",
+      "scheckter",
+      "senna",
+      "stewart",
+      "stroll",
+      "surtees",
+      "vettel",
+      "villeneuve"
+    ],
     "extra_driver_ids": [],
     "compared_fields": [
       "championships(count+years)",
@@ -49,8 +130,10 @@
       "podiums",
       "entries"
     ],
+    "f1stat_template_revid": 1366147922,
+    "f1stat_coverage_reductions": [],
     "blind_spots": [
-      "現役車手 volume 欄為 {{F1stat}} 模板 → template_not_literal，skip 不比對",
+      "無法由釘版 Template:F1stat 解析的具名欄位列於 f1stat_coverage_reductions",
       "poles / fastest_laps 第一階段不發布 → record-only，只記錄不比對"
     ]
   },
@@ -79,25 +162,41 @@
   },
   "network": {
     "from_cache": 35,
-    "from_network": 0,
-    "total_api_requests_this_run": 0
+    "from_network": 18,
+    "f1stat_from_cache": false,
+    "total_api_requests_this_run": 20
   },
   "summary": {
-    "drivers_checked": 35,
-    "diffs_total": 20,
+    "drivers_checked": 53,
+    "diffs_total": 24,
     "diffs_by_field": {
-      "entries": 20
+      "entries": 24
     },
     "diffs_by_classification": {
-      "likely_definition_differs": 20
+      "likely_definition_differs": 24
     },
-    "template_not_literal_field_count": 20,
+    "template_not_literal_field_count": 0,
+    "f1stat_resolved_field_count": 110,
+    "f1stat_coverage_reduction_count": 0,
     "record_only_fields": [
       "poles",
       "fastest_laps"
     ]
   },
   "diffs": [
+    {
+      "driver_id": "albon",
+      "driver_name": "Alexander Albon",
+      "field": "entries",
+      "ours": 140,
+      "wiki": 141,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=140 vs 維基 races=141（138 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "albon|entries",
+      "wiki_starts": 138,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1366385158
+    },
     {
       "driver_id": "ascari",
       "driver_name": "Alberto Ascari",
@@ -268,6 +367,19 @@
       "wiki_revid": 1363344734
     },
     {
+      "driver_id": "perez",
+      "driver_name": "Sergio Pérez",
+      "field": "entries",
+      "ours": 294,
+      "wiki": 296,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=294 vs 維基 races=296（292 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "perez|entries",
+      "wiki_starts": 292,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1366168850
+    },
+    {
       "driver_id": "phil_hill",
       "driver_name": "Phil Hill",
       "field": "entries",
@@ -320,6 +432,19 @@
       "wiki_revid": 1361826731
     },
     {
+      "driver_id": "sainz",
+      "driver_name": "Carlos Sainz",
+      "field": "entries",
+      "ours": 243,
+      "wiki": 244,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=243 vs 維基 races=244（240 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "sainz|entries",
+      "wiki_starts": 240,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1367449025
+    },
+    {
       "driver_id": "scheckter",
       "driver_name": "Jody Scheckter",
       "field": "entries",
@@ -346,6 +471,19 @@
       "wiki_revid": 1364590193
     },
     {
+      "driver_id": "stroll",
+      "driver_name": "Lance Stroll",
+      "field": "entries",
+      "ours": 202,
+      "wiki": 204,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries=202 vs 維基 races=204（200 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "key": "stroll|entries",
+      "wiki_starts": 200,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1367825060
+    },
+    {
       "driver_id": "surtees",
       "driver_name": "John Surtees",
       "field": "entries",
@@ -360,6 +498,76 @@
     }
   ],
   "drivers": [
+    {
+      "driver_id": "albon",
+      "name": "Alexander Albon",
+      "wikipedia_title": "Alexander_Albon",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Alexander_Albon",
+      "from_cache": false,
+      "wiki_revid": 1366385158,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|ALB|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 2,
+          "wiki": 2,
+          "wiki_raw": "{{F1stat|ALB|podiums}}",
+          "wiki_expanded": "2",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 140,
+          "wiki_entries": 141,
+          "wiki_starts": 138,
+          "wiki_raw": "{{F1stat|ALB|entries}} ({{F1stat|ALB|starts}} starts)",
+          "wiki_expanded": "141 (138 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|ALB|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|ALB|fastestlaps}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
     {
       "driver_id": "alonso",
       "name": "Fernando Alonso",
@@ -381,39 +589,197 @@
             2006
           ],
           "wiki_raw": "2 ({{F1|2005}}, {{F1|2006}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 32,
-          "wiki": null,
+          "wiki": 32,
           "wiki_raw": "{{F1stat|ALO|wins}}",
-          "template_not_literal": true
+          "wiki_expanded": "32",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 106,
-          "wiki": null,
+          "wiki": 106,
           "wiki_raw": "{{F1stat|ALO|podiums}}",
-          "template_not_literal": true
+          "wiki_expanded": "106",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 438,
-          "wiki_entries": null,
-          "wiki_starts": null,
+          "ours": 439,
+          "wiki_entries": 439,
+          "wiki_starts": 436,
           "wiki_raw": "{{F1stat|ALO|entries}} ({{F1stat|ALO|starts}} starts)",
-          "template_not_literal": true
+          "wiki_expanded": "439 (436 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": null,
+          "wiki": 22,
           "wiki_raw": "{{F1stat|ALO|poles}}",
-          "template_not_literal": true,
+          "wiki_expanded": "22",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": null,
+          "wiki": 26,
           "wiki_raw": "{{F1stat|ALO|fastestlaps}}",
-          "template_not_literal": true,
+          "wiki_expanded": "26",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "antonelli",
+      "name": "Andrea Kimi Antonelli",
+      "wikipedia_title": "Andrea_Kimi_Antonelli",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli",
+      "from_cache": false,
+      "wiki_revid": 1366739699,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 6,
+          "wiki": 6,
+          "wiki_raw": "{{F1stat|ANT|wins}}",
+          "wiki_expanded": "6",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 12,
+          "wiki": 12,
+          "wiki_raw": "{{F1stat|ANT|podiums}}",
+          "wiki_expanded": "12",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 35,
+          "wiki_entries": 35,
+          "wiki_starts": 35,
+          "wiki_raw": "{{F1stat|ANT|entries}} ({{F1stat|ANT|starts}} starts)",
+          "wiki_expanded": "35 (35 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "{{F1stat|ANT|poles}}",
+          "wiki_expanded": "6",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 9,
+          "wiki_raw": "{{F1stat|ANT|fastestlaps}}",
+          "wiki_expanded": "9",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "arvid_lindblad",
+      "name": "Arvid Lindblad",
+      "wikipedia_title": "Arvid_Lindblad",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Arvid_Lindblad",
+      "from_cache": false,
+      "wiki_revid": 1368970468,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LIN|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LIN|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 11,
+          "wiki_entries": 11,
+          "wiki_starts": 10,
+          "wiki_raw": "{{F1stat|LIN|entries}} ({{F1stat|LIN|starts}} starts)",
+          "wiki_expanded": "11 (10 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LIN|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LIN|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -439,39 +805,267 @@
             1953
           ],
           "wiki_raw": "2 ([[1952 Formula One season|1952]], [[1953 Formula One season|1953]])",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 13,
           "wiki": 13,
           "wiki_raw": "13",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 17,
           "wiki": 17,
           "wiki_raw": "17",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 32,
           "wiki_entries": 34,
           "wiki_starts": 32,
           "wiki_raw": "34 (32 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 14,
           "wiki_raw": "14",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 12,
           "wiki_raw": "12",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "bearman",
+      "name": "Oliver Bearman",
+      "wikipedia_title": "Oliver_Bearman",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Oliver_Bearman",
+      "from_cache": false,
+      "wiki_revid": 1369017280,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BEA|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BEA|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 38,
+          "wiki_entries": 38,
+          "wiki_starts": 38,
+          "wiki_raw": "{{F1stat|BEA|entries}} ({{F1stat|BEA|starts}} starts)",
+          "wiki_expanded": "38 (38 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BEA|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BEA|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "bortoleto",
+      "name": "Gabriel Bortoleto",
+      "wikipedia_title": "Gabriel_Bortoleto",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gabriel_Bortoleto",
+      "from_cache": false,
+      "wiki_revid": 1368657222,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BOR|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BOR|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 35,
+          "wiki_entries": 35,
+          "wiki_starts": 34,
+          "wiki_raw": "{{F1stat|BOR|entries}} ({{F1stat|BOR|starts}} starts)",
+          "wiki_expanded": "35 (34 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BOR|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|BOR|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "bottas",
+      "name": "Valtteri Bottas",
+      "wikipedia_title": "Valtteri_Bottas",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Valtteri_Bottas",
+      "from_cache": false,
+      "wiki_revid": 1366515151,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 10,
+          "wiki": 10,
+          "wiki_raw": "{{F1stat|BOT|wins}}",
+          "wiki_expanded": "10",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 67,
+          "wiki": 67,
+          "wiki_raw": "{{F1stat|BOT|podiums}}",
+          "wiki_expanded": "67",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 258,
+          "wiki_entries": 258,
+          "wiki_starts": 257,
+          "wiki_raw": "{{F1stat|BOT|entries}} ({{F1stat|BOT|starts}} starts)",
+          "wiki_expanded": "258 (257 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 20,
+          "wiki_raw": "{{F1stat|BOT|poles}}",
+          "wiki_expanded": "20",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 19,
+          "wiki_raw": "{{F1stat|BOT|fastestlaps}}",
+          "wiki_expanded": "19",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -495,39 +1089,57 @@
             2009
           ],
           "wiki_raw": "1 ({{F1|2009}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 15,
           "wiki": 15,
           "wiki_raw": "15",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 50,
           "wiki": 50,
           "wiki_raw": "50",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 309,
           "wiki_entries": 309,
           "wiki_starts": 306,
           "wiki_raw": "309 (306 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 8,
           "wiki_raw": "8",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 8,
           "wiki_raw": "8",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -553,39 +1165,127 @@
             1965
           ],
           "wiki_raw": "2 ({{F1|1963}}, {{F1|1965}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 25,
           "wiki": 25,
           "wiki_raw": "25",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 32,
           "wiki": 32,
           "wiki_raw": "32",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 72,
           "wiki_entries": 73,
           "wiki_starts": 72,
           "wiki_raw": "73 (72 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 33,
           "wiki_raw": "33",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 28,
           "wiki_raw": "28",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "colapinto",
+      "name": "Franco Colapinto",
+      "wikipedia_title": "Franco_Colapinto",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Franco_Colapinto",
+      "from_cache": false,
+      "wiki_revid": 1366162623,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{f1stat|COL|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{f1stat|COL|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 38,
+          "wiki_entries": 38,
+          "wiki_starts": 37,
+          "wiki_raw": "{{f1stat|COL|entries}} ({{f1stat|COL|starts}} starts)",
+          "wiki_expanded": "38 (37 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{f1stat|COL|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{f1stat|COL|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -609,39 +1309,57 @@
             1996
           ],
           "wiki_raw": "1 ({{F1|1996}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 22,
           "wiki": 22,
           "wiki_raw": "22",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 42,
           "wiki": 42,
           "wiki_raw": "42",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 116,
           "wiki_entries": 122,
           "wiki_starts": 115,
           "wiki_raw": "122 (115 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 20,
           "wiki_raw": "20",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 19,
           "wiki_raw": "19",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -667,39 +1385,57 @@
             1974
           ],
           "wiki_raw": "2 ({{F1|1972}}, {{F1|1974}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 14,
           "wiki": 14,
           "wiki_raw": "14",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 35,
           "wiki": 35,
           "wiki_raw": "35",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 146,
           "wiki_entries": 149,
           "wiki_starts": 144,
           "wiki_raw": "149 (144 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 6,
           "wiki_raw": "6",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 6,
           "wiki_raw": "6",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -731,39 +1467,57 @@
             1957
           ],
           "wiki_raw": "5 ({{F1|1951}}, {{F1|1954}}, {{F1|1955}}, {{F1|1956}}, {{F1|1957}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 24,
           "wiki": 24,
           "wiki_raw": "24",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 35,
           "wiki": 35,
           "wiki_raw": "35",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 51,
           "wiki_entries": 52,
           "wiki_starts": 51,
           "wiki_raw": "52 (51 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 29,
           "wiki_raw": "29",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 23,
           "wiki_raw": "23",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -787,39 +1541,197 @@
             1950
           ],
           "wiki_raw": "1 ({{F1|1950}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 5,
           "wiki": 5,
           "wiki_raw": "5",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 20,
           "wiki": 20,
           "wiki_raw": "20{{efn|Including both second ''and'' third place at the [[1955 Argentine Grand Prix]].}}",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 34,
           "wiki_entries": 35,
           "wiki_starts": 33,
           "wiki_raw": "35 (33 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 5,
           "wiki_raw": "5",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 5,
           "wiki_raw": "5",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "gasly",
+      "name": "Pierre Gasly",
+      "wikipedia_title": "Pierre_Gasly",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Pierre_Gasly",
+      "from_cache": false,
+      "wiki_revid": 1366162761,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 1,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|GAS|wins}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 6,
+          "wiki": 6,
+          "wiki_raw": "{{F1stat|GAS|podiums}}",
+          "wiki_expanded": "6",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 189,
+          "wiki_entries": 189,
+          "wiki_starts": 188,
+          "wiki_raw": "{{F1stat|GAS|entries}} ({{F1stat|GAS|starts}} starts)",
+          "wiki_expanded": "189 (188 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|GAS|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 3,
+          "wiki_raw": "{{F1stat|GAS|fastestlaps}}",
+          "wiki_expanded": "3",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hadjar",
+      "name": "Isack Hadjar",
+      "wikipedia_title": "Isack_Hadjar",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Isack_Hadjar",
+      "from_cache": false,
+      "wiki_revid": 1368658196,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HAD|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 1,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|HAD|podiums}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 35,
+          "wiki_entries": 35,
+          "wiki_starts": 34,
+          "wiki_raw": "{{F1stat|HAD|entries}} ({{F1stat|HAD|starts}} starts)",
+          "wiki_expanded": "35 (34 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HAD|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HAD|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -845,39 +1757,57 @@
             1999
           ],
           "wiki_raw": "2 ({{F1|1998}}, {{F1|1999}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 20,
           "wiki": 20,
           "wiki_raw": "20",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 51,
           "wiki": 51,
           "wiki_raw": "51",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 163,
           "wiki_entries": 165,
           "wiki_starts": 161,
           "wiki_raw": "165 (161 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 26,
           "wiki_raw": "26",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 25,
           "wiki_raw": "25",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -913,39 +1843,57 @@
             2020
           ],
           "wiki_raw": "7 ({{F1|2008}}, {{F1|2014}}, {{F1|2015}}, {{F1|2017}}, {{F1|2018}}, {{F1|2019}}, {{F1|2020}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 106,
-          "wiki": null,
+          "wiki": 106,
           "wiki_raw": "{{F1stat|HAM|wins}}",
-          "template_not_literal": true
+          "wiki_expanded": "106",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 207,
-          "wiki": null,
+          "wiki": 207,
           "wiki_raw": "{{F1stat|HAM|podiums}}",
-          "template_not_literal": true
+          "wiki_expanded": "207",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 390,
-          "wiki_entries": null,
-          "wiki_starts": null,
+          "ours": 391,
+          "wiki_entries": 391,
+          "wiki_starts": 391,
           "wiki_raw": "{{F1stat|HAM|entries}} ({{F1stat|HAM|starts}} starts)",
-          "template_not_literal": true
+          "wiki_expanded": "391 (391 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": null,
+          "wiki": 104,
           "wiki_raw": "{{F1stat|HAM|poles}}",
-          "template_not_literal": true,
+          "wiki_expanded": "104",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": null,
+          "wiki": 69,
           "wiki_raw": "{{F1stat|HAM|fastestlaps}}",
-          "template_not_literal": true,
+          "wiki_expanded": "69",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -969,39 +1917,57 @@
             1958
           ],
           "wiki_raw": "1 ([[1958 Formula One season|1958]])",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 3,
           "wiki": 3,
           "wiki_raw": "3",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 18,
           "wiki": 18,
           "wiki_raw": "18",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 46,
           "wiki_entries": 47,
           "wiki_starts": 45,
           "wiki_raw": "47 (45 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 4,
           "wiki_raw": "4",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 6,
           "wiki_raw": "6",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1027,39 +1993,127 @@
             1968
           ],
           "wiki_raw": "2 ({{F1|1962}}, {{F1|1968}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 14,
           "wiki": 14,
           "wiki_raw": "14",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 36,
           "wiki": 36,
           "wiki_raw": "36",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 177,
           "wiki_entries": 179,
           "wiki_starts": 176,
           "wiki_raw": "179 (176 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 13,
           "wiki_raw": "13",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 10,
           "wiki_raw": "10",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "hulkenberg",
+      "name": "Nico Hülkenberg",
+      "wikipedia_title": "Nico_Hülkenberg",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg",
+      "from_cache": false,
+      "wiki_revid": 1368545933,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{f1stat|HUL|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 1,
+          "wiki": 1,
+          "wiki_raw": "{{f1stat|HUL|podiums}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 265,
+          "wiki_entries": 265,
+          "wiki_starts": 260,
+          "wiki_raw": "{{F1stat|HUL|entries}} ({{F1stat|HUL|starts}} starts)",
+          "wiki_expanded": "265 (260 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|HUL|poles}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 2,
+          "wiki_raw": "{{F1stat|HUL|fastestlaps}}",
+          "wiki_expanded": "2",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1083,39 +2137,57 @@
             1967
           ],
           "wiki_raw": "1 ({{F1|1967}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 8,
           "wiki": 8,
           "wiki_raw": "8",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 33,
           "wiki": 33,
           "wiki_raw": "33",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 112,
           "wiki_entries": 112,
           "wiki_starts": null,
           "wiki_raw": "112",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 1,
           "wiki_raw": "1",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 9,
           "wiki_raw": "9",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1139,39 +2211,57 @@
             1976
           ],
           "wiki_raw": "1 ({{F1|1976}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 10,
           "wiki": 10,
           "wiki_raw": "10",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 23,
           "wiki": 23,
           "wiki_raw": "23",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 93,
           "wiki_entries": 93,
           "wiki_starts": 92,
           "wiki_raw": "93 (92 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 14,
           "wiki_raw": "14",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 8,
           "wiki_raw": "8",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1199,39 +2289,57 @@
             1966
           ],
           "wiki_raw": "3 ({{F1|1959}}, {{F1|1960}}, {{F1|1966}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 14,
           "wiki": 14,
           "wiki_raw": "14",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 31,
           "wiki": 31,
           "wiki_raw": "31",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 128,
           "wiki_entries": 128,
           "wiki_starts": 126,
           "wiki_raw": "128 (126 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 13,
           "wiki_raw": "13",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 12,
           "wiki_raw": "12",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1255,39 +2363,57 @@
             1980
           ],
           "wiki_raw": "1 ({{F1|1980}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 12,
           "wiki": 12,
           "wiki_raw": "12",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 24,
           "wiki": 24,
           "wiki_raw": "24",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 117,
           "wiki_entries": 117,
           "wiki_starts": 116,
           "wiki_raw": "117 (116 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 6,
           "wiki_raw": "6",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 13,
           "wiki_raw": "13",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1311,39 +2437,57 @@
             1982
           ],
           "wiki_raw": "1 ({{F1|1982}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 5,
           "wiki": 5,
           "wiki_raw": "5",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 17,
           "wiki": 17,
           "wiki_raw": "17",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 114,
           "wiki_entries": 128,
           "wiki_starts": 114,
           "wiki_raw": "128 (114 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 5,
           "wiki_raw": "5",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 3,
           "wiki_raw": "3",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1371,39 +2515,197 @@
             1984
           ],
           "wiki_raw": "3 ({{F1|1975}}, {{F1|1977}}, {{F1|1984}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 25,
           "wiki": 25,
           "wiki_raw": "25",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 54,
           "wiki": 54,
           "wiki_raw": "54",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 173,
           "wiki_entries": 177,
           "wiki_starts": 171,
           "wiki_raw": "177 (171 starts) <!-- StatsF1 lists 180 participations for Lauda, out of which AUT-76, NED-76, and CAN-77 are actually non-appearances -->",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 24,
           "wiki_raw": "24",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 24,
           "wiki_raw": "24",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "lawson",
+      "name": "Liam Lawson",
+      "wikipedia_title": "Liam_Lawson",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Liam_Lawson",
+      "from_cache": false,
+      "wiki_revid": 1366159742,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LAW|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LAW|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 46,
+          "wiki_entries": 46,
+          "wiki_starts": 46,
+          "wiki_raw": "{{F1stat|LAW|entries}} ({{F1stat|LAW|starts}} starts)",
+          "wiki_expanded": "46 (46 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LAW|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|LAW|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "leclerc",
+      "name": "Charles Leclerc",
+      "wikipedia_title": "Charles_Leclerc",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Charles_Leclerc",
+      "from_cache": false,
+      "wiki_revid": 1368521155,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 9,
+          "wiki": 9,
+          "wiki_raw": "{{F1stat|LEC|wins}}",
+          "wiki_expanded": "9",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 54,
+          "wiki": 54,
+          "wiki_raw": "{{F1stat|LEC|podiums}}",
+          "wiki_expanded": "54",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 184,
+          "wiki_entries": 184,
+          "wiki_starts": 182,
+          "wiki_raw": "{{F1stat|LEC|entries}} ({{F1stat|LEC|starts}} starts)",
+          "wiki_expanded": "184 (182 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 27,
+          "wiki_raw": "{{F1stat|LEC|poles}}",
+          "wiki_expanded": "27",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 12,
+          "wiki_raw": "{{F1stat|LEC|fastestlaps}}",
+          "wiki_expanded": "12",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1427,39 +2729,57 @@
             1992
           ],
           "wiki_raw": "1 ({{F1|1992}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 31,
           "wiki": 31,
           "wiki_raw": "31",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 59,
           "wiki": 59,
           "wiki_raw": "59",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 190,
           "wiki_entries": 191,
           "wiki_starts": 187,
           "wiki_raw": "191 (187 starts) <!-- StatsF1 lists 193 participations, out of which SMR-81 and ESP-89 are actually non-appearances -->",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 32,
           "wiki_raw": "32",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 30,
           "wiki_raw": "30",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1483,39 +2803,57 @@
             1978
           ],
           "wiki_raw": "1 ({{F1|1978}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 12,
           "wiki": 12,
           "wiki_raw": "12",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 19,
           "wiki": 19,
           "wiki_raw": "19",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 128,
           "wiki_entries": 131,
           "wiki_starts": 128,
           "wiki_raw": "131 (128 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 18,
           "wiki_raw": "18",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 10,
           "wiki_raw": "10",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1545,39 +2883,57 @@
             2024
           ],
           "wiki_raw": "4 ({{F1|2021}}, {{F1|2022}}, {{F1|2023}}, {{F1|2024}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 71,
-          "wiki": null,
+          "wiki": 71,
           "wiki_raw": "{{F1stat|VER|wins}}",
-          "template_not_literal": true
+          "wiki_expanded": "71",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 130,
-          "wiki": null,
+          "ours": 131,
+          "wiki": 131,
           "wiki_raw": "{{F1stat|VER|podiums}}",
-          "template_not_literal": true
+          "wiki_expanded": "131",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 243,
-          "wiki_entries": null,
-          "wiki_starts": null,
+          "ours": 244,
+          "wiki_entries": 244,
+          "wiki_starts": 244,
           "wiki_raw": "{{F1stat|VER|entries}} ({{F1stat|VER|starts}} starts)",
-          "template_not_literal": true
+          "wiki_expanded": "244 (244 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": null,
+          "wiki": 48,
           "wiki_raw": "{{F1stat|VER|poles}}",
-          "template_not_literal": true,
+          "wiki_expanded": "48",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": null,
+          "wiki": 37,
           "wiki_raw": "{{F1stat|VER|fastestlaps}}",
-          "template_not_literal": true,
+          "wiki_expanded": "37",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1613,39 +2969,57 @@
             2004
           ],
           "wiki_raw": "7 ({{F1|1994}}, {{F1|1995}}, {{F1|2000}}, {{F1 |2001}}, {{F1|2002}}, {{F1|2003}}, {{F1|2004}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 91,
           "wiki": 91,
           "wiki_raw": "91",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 155,
           "wiki": 155,
           "wiki_raw": "155",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 308,
           "wiki_entries": 308,
           "wiki_starts": 306,
           "wiki_raw": "308 (306 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 68,
           "wiki_raw": "68",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 77,
           "wiki_raw": "77",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1669,39 +3043,197 @@
             2025
           ],
           "wiki_raw": "1 ({{F1|2025}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
-          "ours": 11,
-          "wiki": null,
+          "ours": 12,
+          "wiki": 12,
           "wiki_raw": "{{F1stat|NOR|wins}}",
-          "template_not_literal": true
+          "wiki_expanded": "12",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 46,
-          "wiki": null,
+          "ours": 47,
+          "wiki": 47,
           "wiki_raw": "{{F1stat|NOR|podiums}}",
-          "template_not_literal": true
+          "wiki_expanded": "47",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 162,
-          "wiki_entries": null,
-          "wiki_starts": null,
+          "ours": 163,
+          "wiki_entries": 163,
+          "wiki_starts": 162,
           "wiki_raw": "{{F1stat|NOR|entries}} ({{F1stat|NOR|starts}} starts)",
-          "template_not_literal": true
+          "wiki_expanded": "163 (162 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": null,
+          "wiki": 17,
           "wiki_raw": "{{F1stat|NOR|poles}}",
-          "template_not_literal": true,
+          "wiki_expanded": "17",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": null,
+          "wiki": 20,
           "wiki_raw": "{{F1stat|NOR|fastestlaps}}",
-          "template_not_literal": true,
+          "wiki_expanded": "20",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "ocon",
+      "name": "Esteban Ocon",
+      "wikipedia_title": "Esteban_Ocon",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Esteban_Ocon",
+      "from_cache": false,
+      "wiki_revid": 1366128482,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 1,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|OCO|wins}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 4,
+          "wiki": 4,
+          "wiki_raw": "{{F1stat|OCO|podiums}}",
+          "wiki_expanded": "4",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 191,
+          "wiki_entries": 191,
+          "wiki_starts": 191,
+          "wiki_raw": "{{F1stat|OCO|entries}} ({{F1stat|OCO|starts}} starts)",
+          "wiki_expanded": "191 (191 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|OCO|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|OCO|fastestlaps}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "perez",
+      "name": "Sergio Pérez",
+      "wikipedia_title": "Sergio_Pérez",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez",
+      "from_cache": false,
+      "wiki_revid": 1366168850,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 6,
+          "wiki": 6,
+          "wiki_raw": "{{F1stat|PER|wins}}",
+          "wiki_expanded": "6",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 39,
+          "wiki": 39,
+          "wiki_raw": "{{F1stat|PER|podiums}}",
+          "wiki_expanded": "39",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 294,
+          "wiki_entries": 296,
+          "wiki_starts": 292,
+          "wiki_raw": "{{F1stat|PER|entries}} ({{F1stat|PER|starts}} starts)",
+          "wiki_expanded": "296 (292 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 3,
+          "wiki_raw": "{{F1stat|PER|poles}}",
+          "wiki_expanded": "3",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 12,
+          "wiki_raw": "{{F1stat|PER|fastestlaps}}",
+          "wiki_expanded": "12",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1725,39 +3257,127 @@
             1961
           ],
           "wiki_raw": "1 ([[1961 Formula One season|1961]])",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 3,
           "wiki": 3,
           "wiki_raw": "3",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 16,
           "wiki": 16,
           "wiki_raw": "16",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 51,
           "wiki_entries": 52,
           "wiki_starts": 49,
           "wiki_raw": "52 (49 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 6,
           "wiki_raw": "6",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 6,
           "wiki_raw": "6",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "piastri",
+      "name": "Oscar Piastri",
+      "wikipedia_title": "Oscar_Piastri",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Oscar_Piastri",
+      "from_cache": false,
+      "wiki_revid": 1368093563,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 9,
+          "wiki": 9,
+          "wiki_raw": "{{F1stat|PIA|wins}}",
+          "wiki_expanded": "9",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 28,
+          "wiki": 28,
+          "wiki_raw": "{{F1stat|PIA|podiums}}",
+          "wiki_expanded": "28",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 81,
+          "wiki_entries": 81,
+          "wiki_starts": 79,
+          "wiki_raw": "{{F1stat|PIA|entries}} ({{F1stat|PIA|starts}} starts)",
+          "wiki_expanded": "81 (79 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "{{F1stat|PIA|poles}}",
+          "wiki_expanded": "6",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 9,
+          "wiki_raw": "{{F1stat|PIA|fastestlaps}}",
+          "wiki_expanded": "9",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1785,39 +3405,57 @@
             1987
           ],
           "wiki_raw": "3 ({{F1|1981}}, {{F1|1983}}, {{F1|1987}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 23,
           "wiki": 23,
           "wiki_raw": "23",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 60,
           "wiki": 60,
           "wiki_raw": "60",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 205,
           "wiki_entries": 207,
           "wiki_starts": 204,
           "wiki_raw": "207 (204 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 24,
           "wiki_raw": "24",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 23,
           "wiki_raw": "23",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1847,39 +3485,57 @@
             1993
           ],
           "wiki_raw": "4 ({{F1|1985}}, {{F1|1986}}, {{F1|1989}}, {{F1|1993}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 51,
           "wiki": 51,
           "wiki_raw": "51",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 106,
           "wiki": 106,
           "wiki_raw": "106",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 202,
           "wiki_entries": 202,
           "wiki_starts": 199,
           "wiki_raw": "202 (199 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 33,
           "wiki_raw": "33",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 41,
           "wiki_raw": "41",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1903,39 +3559,57 @@
             2007
           ],
           "wiki_raw": "1 ({{F1|2007}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 21,
           "wiki": 21,
           "wiki_raw": "21",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 103,
           "wiki": 103,
           "wiki_raw": "103",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 352,
           "wiki_entries": 353,
           "wiki_starts": 349,
           "wiki_raw": "353 (349 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 18,
           "wiki_raw": "18",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 46,
           "wiki_raw": "46",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -1959,39 +3633,57 @@
             1970
           ],
           "wiki_raw": "1 ({{F1|1970}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 6,
           "wiki": 6,
           "wiki_raw": "6",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 13,
           "wiki": 13,
           "wiki_raw": "13",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 61,
           "wiki_entries": 62,
           "wiki_starts": 60,
           "wiki_raw": "62 (60 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 10,
           "wiki_raw": "10",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 3,
           "wiki_raw": "3",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2015,39 +3707,197 @@
             2016
           ],
           "wiki_raw": "1 ({{F1|2016}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 23,
           "wiki": 23,
           "wiki_raw": "23",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 57,
           "wiki": 57,
           "wiki_raw": "57",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 206,
           "wiki_entries": 206,
           "wiki_starts": 206,
           "wiki_raw": "206 (206 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 30,
           "wiki_raw": "30",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 20,
           "wiki_raw": "20",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "russell",
+      "name": "George Russell",
+      "wikipedia_title": "George_Russell_(racing_driver)",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/George_Russell_(racing_driver)",
+      "from_cache": false,
+      "wiki_revid": 1368534149,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 7,
+          "wiki": 7,
+          "wiki_raw": "{{F1stat|RUS|wins}}",
+          "wiki_expanded": "7",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 29,
+          "wiki": 29,
+          "wiki_raw": "{{F1stat|RUS|podiums}}",
+          "wiki_expanded": "29",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 163,
+          "wiki_entries": 163,
+          "wiki_starts": 163,
+          "wiki_raw": "{{F1stat|RUS|entries}} ({{F1stat|RUS|starts}} starts)",
+          "wiki_expanded": "163 (163 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 11,
+          "wiki_raw": "{{F1stat|RUS|poles}}",
+          "wiki_expanded": "11",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 11,
+          "wiki_raw": "{{F1stat|RUS|fastestlaps}}",
+          "wiki_expanded": "11",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "sainz",
+      "name": "Carlos Sainz",
+      "wikipedia_title": "Carlos_Sainz_Jr.",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Carlos_Sainz_Jr.",
+      "from_cache": false,
+      "wiki_revid": 1367449025,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 4,
+          "wiki": 4,
+          "wiki_raw": "{{F1stat|SAI|wins}}",
+          "wiki_expanded": "4",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 29,
+          "wiki": 29,
+          "wiki_raw": "{{F1stat|SAI|podiums}}",
+          "wiki_expanded": "29",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 243,
+          "wiki_entries": 244,
+          "wiki_starts": 240,
+          "wiki_raw": "{{F1stat|SAI|entries}} ({{F1stat|SAI|starts}} starts)",
+          "wiki_expanded": "244 (240 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 6,
+          "wiki_raw": "{{F1stat|SAI|poles}}",
+          "wiki_expanded": "6",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 4,
+          "wiki_raw": "{{F1stat|SAI|fastestlaps}}",
+          "wiki_expanded": "4",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2071,39 +3921,57 @@
             1979
           ],
           "wiki_raw": "1 ({{F1|1979}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 10,
           "wiki": 10,
           "wiki_raw": "10",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 33,
           "wiki": 33,
           "wiki_raw": "33",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 112,
           "wiki_entries": 113,
           "wiki_starts": 112,
           "wiki_raw": "113 (112 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 3,
           "wiki_raw": "3",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 5,
           "wiki_raw": "5",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2131,39 +3999,57 @@
             1991
           ],
           "wiki_raw": "3 ({{F1|1988}}, {{F1|1990}}, {{F1|1991}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 41,
           "wiki": 41,
           "wiki_raw": "41",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 80,
           "wiki": 80,
           "wiki_raw": "80",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 161,
           "wiki_entries": 162,
           "wiki_starts": 161,
           "wiki_raw": "162 (161 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 65,
           "wiki_raw": "65",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 19,
           "wiki_raw": "19",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2191,39 +4077,127 @@
             1973
           ],
           "wiki_raw": "3 ({{F1|1969}}, {{F1|1971}}, {{F1|1973}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 27,
           "wiki": 27,
           "wiki_raw": "27",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 43,
           "wiki": 43,
           "wiki_raw": "43",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 100,
           "wiki_entries": 100,
           "wiki_starts": 99,
           "wiki_raw": "100 (99 starts) <!-- StatsF1 lists 101 participations, out of which BEL-72 was actually a non-appearance -->",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 17,
           "wiki_raw": "17",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 15,
           "wiki_raw": "15",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "stroll",
+      "name": "Lance Stroll",
+      "wikipedia_title": "Lance_Stroll",
+      "wikipedia_url": "http://en.wikipedia.org/wiki/Lance_Stroll",
+      "from_cache": false,
+      "wiki_revid": 1367825060,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|STR|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 3,
+          "wiki": 3,
+          "wiki_raw": "{{F1stat|STR|podiums}}",
+          "wiki_expanded": "3",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 202,
+          "wiki_entries": 204,
+          "wiki_starts": 200,
+          "wiki_raw": "{{F1stat|STR|entries}} ({{F1stat|STR|starts}} starts)",
+          "wiki_expanded": "204 (200 starts)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 1,
+          "wiki_raw": "{{F1stat|STR|poles}}",
+          "wiki_expanded": "1",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|STR|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2247,39 +4221,57 @@
             1964
           ],
           "wiki_raw": "1 ({{F1|1964}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 6,
           "wiki": 6,
           "wiki_raw": "6",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 24,
           "wiki": 24,
           "wiki_raw": "24",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 112,
           "wiki_entries": 113,
           "wiki_starts": 111,
           "wiki_raw": "113 (111 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 8,
           "wiki_raw": "8",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 10,
           "wiki_raw": "10",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2309,39 +4301,57 @@
             2013
           ],
           "wiki_raw": "4 ({{F1|2010}}, {{F1|2011}}, {{F1|2012}}, {{F1|2013}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 53,
           "wiki": 53,
           "wiki_raw": "53",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 122,
           "wiki": 122,
           "wiki_raw": "122",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 300,
           "wiki_entries": 300,
           "wiki_starts": 299,
           "wiki_raw": "300 (299 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 57,
           "wiki_raw": "57",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 38,
           "wiki_raw": "38",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }
@@ -2365,39 +4375,57 @@
             1997
           ],
           "wiki_raw": "1 ({{F1|1997}})",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "wins": {
           "ours": 11,
           "wiki": 11,
           "wiki_raw": "11",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "podiums": {
           "ours": 23,
           "wiki": 23,
           "wiki_raw": "23",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "entries": {
           "ours": 165,
           "wiki_entries": 165,
           "wiki_starts": 163,
           "wiki_raw": "165 (163 starts)",
-          "template_not_literal": false
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
           "wiki": 13,
           "wiki_raw": "13",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         },
         "fastest_laps": {
           "ours": null,
           "wiki": 9,
           "wiki_raw": "9",
+          "wiki_expanded": null,
           "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": [],
           "note": "第一階段不發布，僅記錄維基值不比對"
         }
       }

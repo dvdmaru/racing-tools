@@ -64,9 +64,9 @@ class LinkIndexRuleTests(unittest.TestCase):
         self.addCleanup(il.clear_caches)
         self.index = il.link_index()
 
-    def test_every_target_is_a_champion_with_a_page(self):
-        champs = set(il.champion_ids())
-        bad = {s: d for s, (d, _slug) in self.index.items() if d not in champs}
+    def test_every_target_has_a_driver_page(self):
+        drivers = set(il.driver_ids())
+        bad = {s: d for s, (d, _slug) in self.index.items() if d not in drivers}
         self.assertEqual(bad, {}, f"連到沒有實體頁的車手：{bad}")
 
     def test_every_target_slug_matches_registry(self):
@@ -74,10 +74,9 @@ class LinkIndexRuleTests(unittest.TestCase):
                if slug != rc.driver_slug(d)]
         self.assertEqual(bad, [], f"slug 與 data/f1/slugs.json 註冊表不符：{bad}")
 
-    def test_driver_without_entity_page_is_never_linkable(self):
-        """有 approved 譯名但沒建頁的現役車手（皮亞斯特里／勒克萊爾）不得出現在判定表。"""
+    def test_active_drivers_with_pages_are_linkable(self):
         for zh in ("皮亞斯特里", "勒克萊爾", "安東內利", "羅素"):
-            self.assertNotIn(zh, self.index, f"{zh} 沒有實體頁，不該可連")
+            self.assertIn(zh, self.index, f"{zh} 已有實體頁，應可連")
 
     def test_ambiguous_short_names_are_dropped(self):
         """真實歧義：「希爾」對到三個人、「羅斯堡」對到兩個人 → 兩者都不連。"""
@@ -88,7 +87,7 @@ class LinkIndexRuleTests(unittest.TestCase):
             self.assertNotIn(s, self.index, f"歧義字串 {s} 不得進判定表")
 
     def test_unique_short_name_is_linkable(self):
-        """「舒馬克」在有頁的 35 人裡唯一 → 可連（規格點名的例子）。"""
+        """「舒馬克」在有頁的 53 人聯集裡唯一 → 可連（規格點名的例子）。"""
         self.assertIn("舒馬克", self.index)
         self.assertEqual(self.index["舒馬克"][0], "michael_schumacher")
 
@@ -206,7 +205,7 @@ class LinkifyTests(unittest.TestCase):
         self.assertNotIn("<a ", out)
 
     def test_driver_without_page_is_not_linked(self):
-        out, links = il.linkify("<p>皮亞斯特里領跑 25 圈，勒克萊爾退後兩位。</p>")
+        out, links = il.linkify("<p>Kevin Magnussen 領跑 25 圈。</p>")
         self.assertEqual(links, [])
 
     def test_english_requires_word_boundary(self):
@@ -304,13 +303,13 @@ class RelatedArticlesTests(unittest.TestCase):
 
     def test_section_absent_when_no_article_mentions_driver(self):
         """誠實 fallback：沒人提到就整個區塊不出現，不放「暫無」占位。"""
-        silent = [d for d in il.champion_ids() if not il.driver_articles(d)]
+        silent = [d for d in il.driver_ids() if not il.driver_articles(d)]
         self.assertTrue(silent, "前提：要有沒被提及的車手")
         for did in silent:
             self.assertEqual(il.related_articles_html(did), "")
 
     def test_section_uses_existing_classes_and_h2(self):
-        loud = [d for d in il.champion_ids() if il.driver_articles(d)]
+        loud = [d for d in il.driver_ids() if il.driver_articles(d)]
         self.assertTrue(loud, "前提：要有被提及的車手")
         html = il.related_articles_html(loud[0])
         self.assertIn('<h2 class="sec-title">相關報導</h2>', html)
@@ -319,7 +318,7 @@ class RelatedArticlesTests(unittest.TestCase):
         self.assertEqual(set(re.findall(r'class="([^"]+)"', html)), {"sec-title", "rel"})
 
     def test_section_is_newest_first_and_escaped(self):
-        for did in il.champion_ids():
+        for did in il.driver_ids():
             arts = il.driver_articles(did)
             self.assertEqual([a["date"] for a in arts],
                              sorted((a["date"] for a in arts), reverse=True))
@@ -354,7 +353,7 @@ class DriverPageRenderTests(unittest.TestCase):
         dr.PUB = pub
         try:
             out = {}
-            for did in dr.CHAMPION_IDS:
+            for did in dr.DRIVER_IDS:
                 s = dr.gen_driver(did, cls.con)
                 out[did] = (pub / "drivers" / s["slug"] / "index.html").read_text(encoding="utf-8")
             return out
@@ -368,9 +367,9 @@ class DriverPageRenderTests(unittest.TestCase):
         il.clear_caches()
 
     def test_mentioned_drivers_have_the_section(self):
-        mentioned = {d for d in dr.CHAMPION_IDS if il.article_mentions().get(d)}
+        mentioned = {d for d in dr.DRIVER_IDS if il.article_mentions().get(d)}
         self.assertTrue(mentioned, "前提：至少要有一位車手被文章提到")
-        for did in dr.CHAMPION_IDS:
+        for did in dr.DRIVER_IDS:
             has = "相關報導" in self.with_arts[did]
             self.assertEqual(has, did in mentioned, f"{did} 的相關報導區出現與否不對")
 
@@ -381,7 +380,7 @@ class DriverPageRenderTests(unittest.TestCase):
 
     def test_strip_tags_delta_is_exactly_the_new_section(self):
         """車手頁的純文字只多出「相關報導」區塊本身，其餘一字不差。"""
-        for did in dr.CHAMPION_IDS:
+        for did in dr.DRIVER_IDS:
             base = strip_tags(self.without_arts[did])
             new = strip_tags(self.with_arts[did])
             block = strip_tags(il.related_articles_html(did))
@@ -408,7 +407,7 @@ class DriverPageRenderTests(unittest.TestCase):
         pub = ROOT / "public-racing" / "articles"
         if not pub.exists():
             self.skipTest("public-racing 不在（乾淨 checkout）")
-        slugs = {rc.driver_slug(d) for d in dr.CHAMPION_IDS}
+        slugs = {rc.driver_slug(d) for d in dr.DRIVER_IDS}
         dead, total = [], 0
         for f in sorted(pub.glob("*/index.html")):
             for href in re.findall(r'href="/drivers/([^"/]+)/"', f.read_text(encoding="utf-8")):
@@ -498,7 +497,7 @@ class MentionFingerprintTests(unittest.TestCase):
 
         self.assertNotEqual(before["drivers"]["fangio"], after["drivers"]["fangio"],
                             "新增提及方吉歐的文章後，他的頁面指紋必須變")
-        changed = [d for d in re_mod.CHAMPION_IDS
+        changed = [d for d in re_mod.DRIVER_IDS
                    if before["drivers"][d] != after["drivers"][d]]
         self.assertEqual(changed, ["fangio"], f"只該有 fangio 變，實際：{changed}")
 

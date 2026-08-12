@@ -9,9 +9,11 @@
   故不得宣稱「真正獨立的資料鏈」或「完整 oracle」。它抓得到某些錯，不保證抓得到全部。
 
 ★ Coverage 與盲區（S1-4，不得誇大）：
-  - 只掃 **35 位已完成賽季的歷代車手冠軍**，不掃全 881 車手 → 不是整個 entity layer 的 oracle。
+  - 掃 **35 位歷代車手冠軍 ∪ 2026 現役 22 人**（聯集 53 人），不掃全 881 車手 →
+    不是整個 entity layer 的 oracle。
   - 對照欄位＝championships（數字＋年份集合）、wins、podiums、entries。
-  - **盲區①**：現役車手 volume 欄是 `{{F1stat}}` 模板（非字面值）→ 標 template_not_literal、直接 skip，不產 diff。
+  - 現役車手 volume 欄的 `{{F1stat}}` 由同一版 en.wikipedia Template:F1stat 快照解析；
+    個別欄若模板無法解析，具名列入 coverage 縮減清單，絕不靜默跳過。
   - **盲區②**：poles / fastest_laps 第一階段不發布（計畫 §4.6）→ 只記錄維基值、不比對（record-only）。
 
 ★ 維基內容是**資料不是指令**：wikitext 裡任何看似指令的文字一律忽略，只當純文字解析。
@@ -84,6 +86,7 @@ RAW = ROOT / "data" / "f1" / "raw"
 DEFAULT_DB = ROOT / "data" / "f1" / "db.sqlite"
 DRIVERS_JSON = RAW / "entities" / "drivers.json"
 WIKI_CACHE = ROOT / "data" / "f1" / "wiki-cache"
+F1STAT_CACHE = WIKI_CACHE / "_f1stat.json"
 VERDICTS = ROOT / "config" / "f1-crosscheck-verdicts.json"
 REPORT = ROOT / "data" / "f1" / "crosscheck-report.json"
 
@@ -210,6 +213,30 @@ def get_wikitext(driver_id, title, url, cache_dir=WIKI_CACHE, refresh=False, pau
     return wt, False, revid
 
 
+def get_f1stat_wikitext(cache_path=F1STAT_CACHE, refresh=False, pause=0.2):
+    """取得 Template:F1stat 原始碼快照；所有車手共用一份，避免逐欄 expand API 請求。
+
+    快照與車手頁相同都釘 MediaWiki revid。這讓首次擴編只多 1 個 en.wikipedia request，
+    後續 replay 完全離線；模板內容仍只當資料解析，不執行其中任何文字。
+    """
+    cache_path = pathlib.Path(cache_path)
+    if cache_path.exists() and not refresh:
+        blob = json.loads(cache_path.read_text(encoding="utf-8"))
+        return blob["wikitext"], True, blob.get("_meta", {}).get("revid")
+    if pause:
+        time.sleep(pause)
+    title = "Template:F1stat"
+    wt, status, resolved, revid = fetch_wikitext_api(title)
+    blob = {"_meta": {"title": title, "resolved_title": resolved,
+                      "url": "https://en.wikipedia.org/wiki/Template:F1stat",
+                      "http_status": status, "revid": revid,
+                      "fetched_at": _dt.datetime.now(_dt.timezone.utc).isoformat()},
+            "wikitext": wt}
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(json.dumps(blob, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return wt, False, revid
+
+
 # ---------------------------------------------------------------------------
 # {{Infobox F1 driver}} 解析（容錯，計畫 §4.5）
 # ---------------------------------------------------------------------------
@@ -303,6 +330,52 @@ def is_f1stat_template(v):
     return bool(re.search(r"\{\{\s*F1stat\b", v, re.IGNORECASE))
 
 
+def parse_f1stat_registry(wikitext):
+    """解析 Template:F1stat 的兩層 #switch，回 {(driver_code, field): literal}。
+
+    統計仍以我方明細 list 計算；這份 registry 只用來取得維基對照值。只接受單行字面值，
+    任何巢狀模板或非數字值均不收，讓 coverage 能明確報出未解析欄位。
+    """
+    out = {}
+    current = None
+    for line in wikitext.splitlines():
+        outer = re.match(r"^\s*\|\s*([A-Z0-9]{3})\s*=\s*\{\{.*?#switch", line)
+        if outer:
+            current = outer.group(1).upper()
+            continue
+        if current and re.match(r"^\s*\}\}\s*$", line):
+            current = None
+            continue
+        if current:
+            field = re.match(r"^\s*\|\s*([a-zA-Z_ ]+)\s*=\s*(-?\d[\d,.]*)\s*$", line)
+            if field:
+                key = re.sub(r"[\s_]", "", field.group(1).lower())
+                out[(current, key)] = field.group(2).replace(",", "")
+    return out
+
+
+def expand_f1stat_templates(value, registry):
+    """以釘版 Template:F1stat registry 展開欄位值；回 (expanded, resolved, unresolved)。"""
+    resolved = 0
+    unresolved = []
+
+    def repl(match):
+        nonlocal resolved
+        code = match.group(1).upper()
+        field = re.sub(r"[\s_]", "", match.group(2).lower())
+        val = registry.get((code, field))
+        if val is None:
+            unresolved.append(f"{code}|{field}")
+            return match.group(0)
+        resolved += 1
+        return val
+
+    expanded = re.sub(
+        r"\{\{\s*F1stat\s*\|\s*([A-Za-z0-9]{3})\s*\|\s*([^{}|]+?)\s*\}\}",
+        repl, value, flags=re.IGNORECASE)
+    return expanded, resolved, unresolved
+
+
 def parse_int_field(value):
     """解析 wins/podiums/poles/fastest_laps 這種數值欄。
 
@@ -364,19 +437,31 @@ def parse_championships_field(value):
     return {"template_not_literal": tnl, "count": count, "years": sorted(years), "raw": raw}
 
 
-def parse_infobox(wikitext):
+def parse_infobox(wikitext, f1stat_registry=None):
     """整合：回 {"found":bool, 各欄解析結果}。found=False 代表沒有 F1 driver infobox。"""
     box = find_infobox(wikitext)
     if box is None:
         return {"found": False}
     p = parse_params(box)
+    registry = f1stat_registry or {}
+
+    def parsed(key, parser):
+        raw = p.get(key, "")
+        expanded, resolved, unresolved = expand_f1stat_templates(raw, registry)
+        result = parser(expanded)
+        result["raw"] = raw
+        result["expanded_raw"] = expanded if resolved else None
+        result["f1stat_resolved_count"] = resolved
+        result["f1stat_unresolved"] = unresolved
+        return result
+
     out = {"found": True}
-    out["championships"] = parse_championships_field(p.get("championships", ""))
-    out["wins"] = parse_int_field(p.get("wins", ""))
-    out["podiums"] = parse_int_field(p.get("podiums", ""))
-    out["entries"] = parse_races_field(p.get("races", ""))
-    out["poles"] = parse_int_field(p.get("poles", ""))
-    out["fastest_laps"] = parse_int_field(p.get("fastest laps", ""))
+    out["championships"] = parsed("championships", parse_championships_field)
+    out["wins"] = parsed("wins", parse_int_field)
+    out["podiums"] = parsed("podiums", parse_int_field)
+    out["entries"] = parsed("races", parse_races_field)
+    out["poles"] = parsed("poles", parse_int_field)
+    out["fastest_laps"] = parsed("fastest laps", parse_int_field)
     return out
 
 
@@ -392,11 +477,31 @@ def champion_ids(cur):
         "WHERE ds.position=1 AND s.status='completed' ORDER BY ds.driver_id")]
 
 
+def active_driver_ids(cur, season=2026):
+    """當季現役 roster：brief 指定以 results 的 distinct driver_id 實查為準。"""
+    return [r[0] for r in cur.execute(
+        "SELECT DISTINCT driver_id FROM results WHERE season=? ORDER BY driver_id", (season,))]
+
+
+def roster_ids(cur, season=2026):
+    """頁面 roster＝歷代冠軍 ∪ 指定賽季現役，排序後雙向唯一。"""
+    return sorted(set(champion_ids(cur)) | set(active_driver_ids(cur, season)))
+
+
 def db_champion_ids(db_path=DEFAULT_DB):
     """從 DB 現算歷代冠軍身分集合（排序）。gate 用它當權威 manifest，report 自報值不可自證（R1）。"""
     con = sqlite3.connect(str(db_path))
     try:
         return sorted(champion_ids(con.cursor()))
+    finally:
+        con.close()
+
+
+def db_active_driver_ids(db_path=DEFAULT_DB, season=2026):
+    """從 DB 現算現役 roster；gate 用它防 report 自報清單自證。"""
+    con = sqlite3.connect(str(db_path))
+    try:
+        return sorted(active_driver_ids(con.cursor(), season))
     finally:
         con.close()
 
@@ -478,7 +583,10 @@ def compare_driver(did, name, our_years, our_cnt, ib, wiki_revid=None):
     fields["championships"] = {
         "ours_count": ours_n, "ours_years": our_years,
         "wiki_count": champ["count"], "wiki_years": champ["years"],
-        "wiki_raw": champ["raw"], "template_not_literal": champ["template_not_literal"]}
+        "wiki_raw": champ["raw"], "wiki_expanded": champ.get("expanded_raw"),
+        "template_not_literal": champ["template_not_literal"],
+        "f1stat_resolved_count": champ.get("f1stat_resolved_count", 0),
+        "f1stat_unresolved": champ.get("f1stat_unresolved", [])}
     if champ["count"] is not None and champ["count"] != ours_n:
         cls, reason = ("unclear",
                        f"冠軍數不符：我方 {ours_n} vs 維基 {champ['count']}；"
@@ -503,9 +611,12 @@ def compare_driver(did, name, our_years, our_cnt, ib, wiki_revid=None):
         w = ib[field]
         ours_v = our_cnt[field]
         fields[field] = {"ours": ours_v, "wiki": w["value"], "wiki_raw": w["raw"],
-                         "template_not_literal": w["template_not_literal"]}
+                         "wiki_expanded": w.get("expanded_raw"),
+                         "template_not_literal": w["template_not_literal"],
+                         "f1stat_resolved_count": w.get("f1stat_resolved_count", 0),
+                         "f1stat_unresolved": w.get("f1stat_unresolved", [])}
         if w["template_not_literal"]:
-            continue  # 現役 {{F1stat}} 模板，不硬解、不產 diff
+            continue  # 已在 coverage 縮減清單具名；無字面值不偽造 diff
         if w["value"] is not None and w["value"] != ours_v:
             cls, reason = _classify_volume(field, ours_v, w["value"], ctx)
             diffs.append(_diff(did, name, field, ours_v, w["value"], cls, reason))
@@ -515,7 +626,10 @@ def compare_driver(did, name, our_years, our_cnt, ib, wiki_revid=None):
     ours_e = our_cnt["entries"]
     fields["entries"] = {"ours": ours_e, "wiki_entries": e["entries"],
                          "wiki_starts": e["starts"], "wiki_raw": e["raw"],
-                         "template_not_literal": e["template_not_literal"]}
+                         "wiki_expanded": e.get("expanded_raw"),
+                         "template_not_literal": e["template_not_literal"],
+                         "f1stat_resolved_count": e.get("f1stat_resolved_count", 0),
+                         "f1stat_unresolved": e.get("f1stat_unresolved", [])}
     if not e["template_not_literal"] and e["entries"] is not None and e["entries"] != ours_e:
         cls, reason = _classify_entries(ours_e, e["entries"], e["starts"], ctx)
         diffs.append(_diff(did, name, "entries", ours_e, e["entries"], cls, reason,
@@ -525,7 +639,10 @@ def compare_driver(did, name, our_years, our_cnt, ib, wiki_revid=None):
     for field in RECORD_ONLY_FIELDS:
         w = ib[field]
         fields[field] = {"ours": None, "wiki": w["value"], "wiki_raw": w["raw"],
+                         "wiki_expanded": w.get("expanded_raw"),
                          "template_not_literal": w["template_not_literal"],
+                         "f1stat_resolved_count": w.get("f1stat_resolved_count", 0),
+                         "f1stat_unresolved": w.get("f1stat_unresolved", []),
                          "note": "第一階段不發布，僅記錄維基值不比對"}
 
     # 每個 diff 補綁定用欄位：definition_id（用哪個公式算的）＋ wiki_revid（看的是哪一版維基）。
@@ -554,9 +671,11 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
     con = sqlite3.connect(str(db_path))
     cur = con.cursor()
     try:
-        champs = sorted(champion_ids(cur))       # DB 的 SELECT DISTINCT 結果，排序後＝身分 manifest
-        expected_champion_count = len(champs)    # gate 用來驗涵蓋數是否足額（fail closed）
-        ids = list(champs)
+        champs = sorted(champion_ids(cur))
+        active = sorted(active_driver_ids(cur, 2026))
+        roster = sorted(set(champs) | set(active))
+        expected_champion_count = len(champs)
+        ids = list(roster)
         extra_ids = []
         for d in (extra_drivers or []):
             if d not in ids:
@@ -564,6 +683,9 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
                 extra_ids.append(d)
         drivers_meta = {r["driverId"]: r for r in
                         json.loads(DRIVERS_JSON.read_text(encoding="utf-8"))["Drivers"]}
+
+        f1stat_wt, f1stat_from_cache, f1stat_revid = get_f1stat_wikitext(refresh=refresh)
+        f1stat_registry = parse_f1stat_registry(f1stat_wt)
 
         drivers_out, all_diffs = [], []
         n_cache = n_net = 0
@@ -579,7 +701,7 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
             n_net += int(not from_cache)
             if not quiet:
                 print(f"  {'📦 cache' if from_cache else '🌐 net  '} {did} ({title}) rev={revid}", flush=True)
-            ib = parse_infobox(wt)
+            ib = parse_infobox(wt, f1stat_registry=f1stat_registry)
             if not ib.get("found"):
                 drivers_out.append({"driver_id": did, "name": name, "wikipedia_title": title,
                                     "wikipedia_url": meta["url"], "from_cache": from_cache,
@@ -603,6 +725,14 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
         by_cls[d["classification"]] = by_cls.get(d["classification"], 0) + 1
     tnl = sum(1 for dr in drivers_out if dr.get("infobox_found")
               for f in dr["fields"].values() if isinstance(f, dict) and f.get("template_not_literal"))
+    resolved = sum(1 for dr in drivers_out if dr.get("infobox_found")
+                   for f in dr["fields"].values()
+                   if isinstance(f, dict) and f.get("f1stat_resolved_count"))
+    unresolved_templates = sorted({
+        f"{dr['driver_id']}.{field}:{template}"
+        for dr in drivers_out if dr.get("infobox_found")
+        for field, info in dr["fields"].items() if isinstance(info, dict)
+        for template in info.get("f1stat_unresolved", [])})
 
     return {
         "generated_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
@@ -610,18 +740,25 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
         "note": ("維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；"
                  "能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決"),
         "coverage": {
-            "scope": "35 位已完成賽季的歷代車手冠軍（非全 881 車手，非整個 entity layer）",
+            "scope": "35 位歷代車手冠軍 ∪ 2026 現役 22 人（聯集 53 人；非全 881 車手）",
             "expected_champion_count": expected_champion_count,
             # 身分 manifest（R1）：DB SELECT DISTINCT 冠軍 id 排序後。gate 用它做 exact-set
             # 身分比對，不只比列數——藏一個重複列偽裝成足額會被抓（35 列 34 人 → FAIL）。
             "expected_champion_ids": champs,
+            "expected_active_count": len(active),
+            "expected_active_driver_ids": active,
+            "expected_driver_count": len(roster),
+            "expected_driver_ids": roster,
             "extra_driver_ids": sorted(extra_ids),   # --driver 附加的非冠軍（default 為空）
             "compared_fields": ["championships(count+years)", "wins", "podiums", "entries"],
+            "f1stat_template_revid": f1stat_revid,
+            "f1stat_coverage_reductions": unresolved_templates,
             "blind_spots": [
-                "現役車手 volume 欄為 {{F1stat}} 模板 → template_not_literal，skip 不比對",
+                "無法由釘版 Template:F1stat 解析的具名欄位列於 f1stat_coverage_reductions",
                 "poles / fastest_laps 第一階段不發布 → record-only，只記錄不比對"]},
         "definition_registry": DEFINITION_REGISTRY,
         "network": {"from_cache": n_cache, "from_network": n_net,
+                    "f1stat_from_cache": f1stat_from_cache,
                     "total_api_requests_this_run": NET_REQUESTS},
         "summary": {
             "drivers_checked": len(drivers_out),
@@ -629,6 +766,8 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
             "diffs_by_field": by_field,
             "diffs_by_classification": by_cls,
             "template_not_literal_field_count": tnl,
+            "f1stat_resolved_field_count": resolved,
+            "f1stat_coverage_reduction_count": len(unresolved_templates),
             "record_only_fields": list(RECORD_ONLY_FIELDS)},
         "diffs": all_diffs,
         "drivers": drivers_out,
@@ -647,6 +786,8 @@ def _print_summary(rep):
     print(f"  依欄位　　 {s['diffs_by_field']}")
     print(f"  依預分類　 {s['diffs_by_classification']}")
     print(f"  template_not_literal 欄位數（現役車手）{s['template_not_literal_field_count']}")
+    print(f"  F1stat 已解析欄位數 {s.get('f1stat_resolved_field_count', 0)}　"
+          f"具名 coverage 縮減 {s.get('f1stat_coverage_reduction_count', 0)}")
     print(f"  只記錄不比對欄位 {s['record_only_fields']}（第一階段不發布）")
     if rep["diffs"]:
         print("\n最值得先看的 diff（前 12）：")
@@ -671,6 +812,11 @@ def _verdict_valid(v):
             and str(v.get("reason", "")).strip()
             and str(v.get("by", "")).strip()
             and str(v.get("date", "")).strip())
+
+
+def _approval_pending(v):
+    """PENDING 是明確的未核准狀態；非空字串不得被結構檢查誤當成人工具名。"""
+    return str(v.get("by", "")).strip().upper().startswith("PENDING")
 
 
 def _registry_sha(definition_id):
@@ -732,6 +878,8 @@ def _verdict_resolves(v, diff):
     """
     if not _verdict_valid(v):
         return False, "裁決結構不完整（verdict 非法或缺 reason/by/date）"
+    if _approval_pending(v):
+        return False, "by=PENDING-charlie：尚未經 Charlie 核准"
     if v["verdict"] == "ours_wrong":
         return False, "verdict=ours_wrong 永不解除——承認我方錯≠可發布，須修資料至 diff 消失"
     if v["verdict"] not in RESOLVING_VERDICTS:
@@ -756,7 +904,7 @@ def _verdict_resolves(v, diff):
     return True, None
 
 
-def gate_diffs(report, verdicts, db_champion_ids=None):
+def gate_diffs(report, verdicts, db_champion_ids=None, db_active_ids=None):
     """回 (passed, unresolved, stale, faults)。硬 gate（Sol 審 S0-2 + 覆核 §4 + 終輪 R1/R3）。
 
     passed     = 零未解 diff、零 stale 裁決、零 report fault。
@@ -765,7 +913,7 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
     stale      = 裁決 key 指向報告中不存在的 diff → exact-set，單獨即 FAIL。
     faults     = report 級 fail-closed 問題——report 不完整不得被當成「沒有新問題」。
 
-    db_champion_ids（R1 / 第五輪 fix1）：**權威身分集合**（build-f1-db 現算）。
+    db_champion_ids / db_active_ids：**權威身分集合**（build-f1-db 現算）。
       CLI 的 default 與 **--gate-only 都必須傳入**（gen-racing-drivers 管線裡 build-f1-db 先跑，
       db 必在；db 缺席由 main 判 FAIL closed）；此時 report.coverage.expected_champion_ids 必須
       與它 exact-set 相等，report 自報值不可自證。僅單元測試允許傳 None（純 schema 測試）。
@@ -813,6 +961,10 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
     # --- R1：coverage 驗「身分集合」不只驗列數 ---
     expected_count = cov.get("expected_champion_count")
     manifest_ids = cov.get("expected_champion_ids")
+    expected_active_count = cov.get("expected_active_count")
+    active_manifest_ids = cov.get("expected_active_driver_ids")
+    expected_driver_count = cov.get("expected_driver_count")
+    driver_manifest_ids = cov.get("expected_driver_ids")
     extra_ids = cov.get("extra_driver_ids") or []
     ok_driver_ids = [dr.get("driver_id") for dr in drivers
                      if isinstance(dr, dict) and dr.get("infobox_found") and not dr.get("error")]
@@ -834,10 +986,42 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
             miss = sorted(set(db_champion_ids) - set(manifest_ids))
             ext = sorted(set(manifest_ids) - set(db_champion_ids))
             faults.append(f"coverage.expected_champion_ids 與 DB 現算冠軍集合不符（DB 缺 {miss}、多 {ext}）")
-        # 允許集合＝冠軍 manifest ∪ --driver 附加（default 時 extra 為空 → 純冠軍集合）
-        allowed = set(manifest_ids) | set(extra_ids)
-        rows = len(ok_driver_ids)
-        uniq = set(ok_driver_ids)
+
+        # 新增 roster 斷言與既有冠軍斷言並列，舊斷言不刪、不放寬。
+        if not isinstance(active_manifest_ids, list) or expected_active_count is None:
+            faults.append("report.coverage 缺 expected_active_driver_ids / expected_active_count → fail closed")
+            active_manifest_ids = []
+        else:
+            if len(active_manifest_ids) != len(set(active_manifest_ids)):
+                faults.append("expected_active_driver_ids 內有重複 id → fail closed")
+            if expected_active_count != len(set(active_manifest_ids)):
+                faults.append(f"expected_active_count({expected_active_count}) != "
+                              f"len(unique expected_active_driver_ids)({len(set(active_manifest_ids))}) → fail closed")
+            if db_active_ids is not None and set(active_manifest_ids) != set(db_active_ids):
+                miss = sorted(set(db_active_ids) - set(active_manifest_ids))
+                ext = sorted(set(active_manifest_ids) - set(db_active_ids))
+                faults.append(f"coverage.expected_active_driver_ids 與 DB 現算 2026 現役集合不符"
+                              f"（DB 缺 {miss}、多 {ext}）")
+
+        expected_union = set(manifest_ids) | set(active_manifest_ids)
+        if not isinstance(driver_manifest_ids, list) or expected_driver_count is None:
+            faults.append("report.coverage 缺 expected_driver_ids / expected_driver_count → fail closed")
+            driver_manifest_ids = []
+        else:
+            if len(driver_manifest_ids) != len(set(driver_manifest_ids)):
+                faults.append("expected_driver_ids 內有重複 id → fail closed")
+            if expected_driver_count != len(set(driver_manifest_ids)):
+                faults.append(f"expected_driver_count({expected_driver_count}) != "
+                              f"len(unique expected_driver_ids)({len(set(driver_manifest_ids))}) → fail closed")
+            if set(driver_manifest_ids) != expected_union:
+                miss = sorted(expected_union - set(driver_manifest_ids))
+                ext = sorted(set(driver_manifest_ids) - expected_union)
+                faults.append(f"expected_driver_ids != champion ∪ active（缺 {miss}、多 {ext}）")
+
+        # 允許集合＝聯集 manifest ∪ --driver 附加。
+        allowed = set(driver_manifest_ids) | set(extra_ids)
+        rows = len([i for i in ok_driver_ids if i])
+        uniq = {i for i in ok_driver_ids if i}
         if rows != len(uniq):
             dups = sorted({i for i in ok_driver_ids if ok_driver_ids.count(i) > 1})
             faults.append(f"成功車手有重複列（rows={rows} != unique={len(uniq)}）：{dups}")
@@ -897,7 +1081,10 @@ def gate_diffs(report, verdicts, db_champion_ids=None):
             status, detail = "no_verdict", "無對應裁決"
         else:
             detail = _verdict_resolves(cand[0], d)[1]
-            status = "ours_wrong_hold" if cand[0].get("verdict") == "ours_wrong" else "binding_drift"
+            if _approval_pending(cand[0]):
+                status = "pending_approval"
+            else:
+                status = "ours_wrong_hold" if cand[0].get("verdict") == "ours_wrong" else "binding_drift"
         unresolved.append({**d, "_gate_status": status, "_gate_detail": detail})
 
     stale = sorted(k for k in verdicts_by_key if k not in diff_by_key)
@@ -953,7 +1140,9 @@ def main():
             return 1
         rep = json.loads(pathlib.Path(a.out).read_text(encoding="utf-8"))
         passed, unresolved, stale, faults = gate_diffs(
-            rep, load_verdicts(a.verdicts), db_champion_ids=db_champion_ids(a.db))
+            rep, load_verdicts(a.verdicts),
+            db_champion_ids=db_champion_ids(a.db),
+            db_active_ids=db_active_driver_ids(a.db))
         _print_gate(passed, unresolved, stale, faults)
         return 0 if passed else 1
 
@@ -965,7 +1154,9 @@ def main():
 
     # default 模式：從 DB 現算權威冠軍集合傳入，強制 report manifest 與 DB exact-set 相等（R1）
     passed, unresolved, stale, faults = gate_diffs(
-        rep, load_verdicts(a.verdicts), db_champion_ids=db_champion_ids(a.db))
+        rep, load_verdicts(a.verdicts),
+        db_champion_ids=db_champion_ids(a.db),
+        db_active_ids=db_active_driver_ids(a.db))
     _print_gate(passed, unresolved, stale, faults)
     if a.report_only:
         return 0

@@ -141,6 +141,21 @@ class VolumeFieldParseTests(unittest.TestCase):
         self.assertTrue(r["template_not_literal"])
         self.assertIsNone(r["entries"])
 
+    def test_f1stat_registry_resolves_volume_and_entries(self):
+        source = """ | NOR = {{safesubst:#switch: {{{2|}}}
+ | entries = 163
+ | starts = 162
+ | wins = 12
+ | podiums = 47
+}}
+"""
+        reg = cc.parse_f1stat_registry(source)
+        expanded, resolved, unresolved = cc.expand_f1stat_templates(
+            "{{F1stat|NOR|entries}} ({{F1stat|NOR|starts}} starts)", reg)
+        self.assertEqual(expanded, "163 (162 starts)")
+        self.assertEqual(resolved, 2)
+        self.assertEqual(unresolved, [])
+
 
 class ParseInfoboxTests(unittest.TestCase):
     def test_full_infobox_all_fields(self):
@@ -271,6 +286,10 @@ class GateTests(unittest.TestCase):
         return {"diffs": diffs, "drivers": drivers,
                 "coverage": {"expected_champion_count": len(champions),
                              "expected_champion_ids": sorted(champions),
+                             "expected_active_count": len(champions),
+                             "expected_active_driver_ids": sorted(champions),
+                             "expected_driver_count": len(champions),
+                             "expected_driver_ids": sorted(champions),
                              "extra_driver_ids": []}}
 
     def _verdict_for(self, diff, verdict="definition_differs", reason="口徑差",
@@ -320,6 +339,14 @@ class GateTests(unittest.TestCase):
             passed, unresolved, *_ = cc.gate_diffs(rep, [v, self._verdict_for(rep["diffs"][1])])
             self.assertFalse(passed, f"缺 {missing} 應仍未解除")
             self.assertIn("fangio|entries", [d["key"] for d in unresolved])
+
+    def test_pending_verdict_never_resolves(self):
+        rep = self._report()
+        verdicts = self._both_valid(rep)
+        verdicts[0]["by"] = "PENDING-charlie"
+        passed, unresolved, *_ = cc.gate_diffs(rep, verdicts)
+        self.assertFalse(passed)
+        self.assertEqual(unresolved[0]["_gate_status"], "pending_approval")
 
     # ---- 首輪 S0-2 三個 PoC（改值/ours_wrong/純 stale）----
 
@@ -418,6 +445,33 @@ class GateTests(unittest.TestCase):
         rep = self._report(diffs=[], champions=["a", "b", "c"])
         self.assertTrue(cc.gate_diffs(rep, [])[0])                       # --gate-only
         self.assertTrue(cc.gate_diffs(rep, [], db_champion_ids=["a", "b", "c"])[0])  # default
+
+    def test_union_manifest_missing_active_driver_fails(self):
+        rep = self._report(diffs=[], champions=["a", "b"])
+        rep["coverage"].update({
+            "expected_active_count": 2,
+            "expected_active_driver_ids": ["b", "c"],
+            "expected_driver_count": 2,
+            "expected_driver_ids": ["a", "b"],
+        })
+        passed, _, _, faults = cc.gate_diffs(
+            rep, [], db_champion_ids=["a", "b"], db_active_ids=["b", "c"])
+        self.assertFalse(passed)
+        self.assertTrue(any("champion ∪ active" in f and "'c'" in f for f in faults))
+
+    def test_union_manifest_extra_driver_fails(self):
+        rep = self._report(diffs=[], champions=["a", "b"])
+        rep["coverage"].update({
+            "expected_active_count": 1,
+            "expected_active_driver_ids": ["b"],
+            "expected_driver_count": 3,
+            "expected_driver_ids": ["a", "b", "z"],
+        })
+        rep["drivers"].append({"driver_id": "z", "infobox_found": True})
+        passed, _, _, faults = cc.gate_diffs(
+            rep, [], db_champion_ids=["a", "b"], db_active_ids=["b"])
+        self.assertFalse(passed)
+        self.assertTrue(any("champion ∪ active" in f and "'z'" in f for f in faults))
 
     # ---- 終輪 R3：schema fail closed ----
 
@@ -682,19 +736,25 @@ class RealVerdictsTests(unittest.TestCase):
             for field in ("definition_id", "bound_ours", "bound_wiki", "wiki_revid", "bound_fingerprint"):
                 self.assertIsNotNone(v.get(field), f"{v['key']} 缺綁定欄 {field}")
 
-    def test_real_report_gate_passes(self):
-        """真實 report + 真實裁決必須通過硬 gate（含 DB 權威身分比對，R1）。
+    def test_real_report_gate_green_in_approved_steady_state(self):
+        """真實 gate 在核准後穩態必須全綠（2026-08-13 Charlie 全批核准擴編裁決包）。
 
-        report 是本 PR 決定入版控的提交物（釘 revid 的外部原始快照，比照 raw 層）；
-        因此**不再 skip**——report 不存在＝提交物不完整＝視為失敗（覆核最低條件 5）。
+        report 是入版控的提交物（釘 revid 的外部原始快照，比照 raw 層）；
+        因此**不 skip**——report 不存在＝提交物不完整＝視為失敗（覆核最低條件 5）。
+        PENDING 拒絕行為由合成測試 test_pending_verdict_never_resolves 守，不綁 repo 暫態。
         """
         import json
         self.assertTrue(cc.REPORT.exists(),
                         "crosscheck-report.json 必須存在並入版控（跑 crosscheck-wikipedia.py 產生）")
         rep = json.loads(cc.REPORT.read_text(encoding="utf-8"))
         db = cc.db_champion_ids() if cc.DEFAULT_DB.exists() else None
-        passed, unresolved, stale, faults = cc.gate_diffs(rep, cc.load_verdicts(), db_champion_ids=db)
-        self.assertTrue(passed, f"未解={[d['key'] for d in unresolved]} stale={stale} faults={faults}")
+        active = cc.db_active_driver_ids() if cc.DEFAULT_DB.exists() else None
+        passed, unresolved, stale, faults = cc.gate_diffs(
+            rep, cc.load_verdicts(), db_champion_ids=db, db_active_ids=active)
+        self.assertTrue(passed)
+        self.assertEqual(unresolved, [])
+        self.assertEqual(stale, [])
+        self.assertEqual(faults, [])
 
     def test_real_report_identity_manifest_matches_db(self):
         """report 的 expected_champion_ids 必須與 DB 現算冠軍集合逐一相符（身分 manifest 完整）。"""
@@ -704,6 +764,20 @@ class RealVerdictsTests(unittest.TestCase):
         rep = json.loads(cc.REPORT.read_text(encoding="utf-8"))
         self.assertEqual(set(rep["coverage"]["expected_champion_ids"]),
                          set(cc.db_champion_ids()))
+
+    def test_real_report_active_and_union_manifests_match_db(self):
+        """2026 現役與雙 roster 聯集的身分 manifest 必須同時 exact-set 相符。"""
+        import json
+        if not cc.DEFAULT_DB.exists():
+            self.skipTest("db.sqlite 不存在")
+        rep = json.loads(cc.REPORT.read_text(encoding="utf-8"))
+        coverage = rep["coverage"]
+        champions = set(cc.db_champion_ids())
+        active = set(cc.db_active_driver_ids())
+        self.assertEqual(set(coverage["expected_active_driver_ids"]), active)
+        self.assertEqual(set(coverage["expected_driver_ids"]), champions | active)
+        self.assertEqual(coverage["expected_active_count"], len(active))
+        self.assertEqual(coverage["expected_driver_count"], len(champions | active))
 
 
 class GateOnlyCliTests(unittest.TestCase):
@@ -716,11 +790,14 @@ class GateOnlyCliTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(self.SCRIPT), *args],
                               capture_output=True, text=True)
 
-    def test_gate_only_passes_with_real_db(self):
+    def test_gate_only_green_in_approved_steady_state(self):
+        # 2026-08-13 Charlie 全批核准後，真實 repo 的 --gate-only 應 exit 0。
+        # PENDING → exit 1 的行為由 gate_diffs 合成測試守（test_pending_verdict_never_resolves）。
         if not (cc.REPORT.exists() and cc.DEFAULT_DB.exists()):
             self.skipTest("report 或 db 不存在")
         r = self._run("--gate-only")
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertNotIn("pending_approval", r.stdout)
 
     def test_gate_only_missing_db_fails_closed(self):
         """--gate-only 指向不存在的 db → exit 1（不退回 report 自證）。"""

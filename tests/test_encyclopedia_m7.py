@@ -119,53 +119,69 @@ class RoundYearsSingleSourceTests(unittest.TestCase):
 class GoldenAsOfTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.golden = json.loads(dr.GOLDEN.read_text(encoding="utf-8"))["drivers"]
+        data = json.loads(dr.GOLDEN.read_text(encoding="utf-8"))
+        cls.golden = data["drivers"]
+        for row in cls.golden.values():
+            if str(row.get("approved_by", "")).startswith("PENDING"):
+                row["approved_by"] = "charlie-test"
+        cls.tmp = pathlib.Path(tempfile.mkdtemp())
+        cls.approved_golden = cls.tmp / "golden.json"
+        cls.approved_golden.write_text(json.dumps(data), encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp)
 
     def test_every_champion_has_as_of(self):
-        for did in dr.CHAMPION_IDS:
+        for did in dr.DRIVER_IDS:
             self.assertIn("as_of", self.golden[did], f"{did} 缺 as_of")
             ao = self.golden[did]["as_of"]
             self.assertIn("season", ao)
             self.assertIn("round", ao)
 
     def test_active_drivers_as_of_frozen_at_snapshot(self):
-        # 活躍車手（2026 有參賽）as_of 綁在快照邊界 {2026,10}
-        con = fs.connect_db()
-        try:
-            for did in dr.CHAMPION_IDS:
-                last = con.execute(
-                    "SELECT max(season) FROM results WHERE driver_id=?", (did,)).fetchone()[0]
-                if last == 2026:
-                    self.assertEqual(self.golden[did]["as_of"], {"season": 2026, "round": 10},
-                                     f"{did} 為活躍車手，as_of 應凍結在 2026/10")
-        finally:
-            con.close()
+        for did in dr.ACTIVE_IDS:
+            self.assertEqual(self.golden[did]["as_of"], {"season": 2026, "round": 11},
+                             f"{did} 為現役車手，as_of 應凍結在 2026/11")
 
-    def test_golden_gate_green_now(self):
+    def test_golden_gate_green_in_approved_steady_state(self):
+        # 2026-08-13 Charlie 全批核准擴編裁決包後，真實 repo 狀態的 gate 應為綠。
         self.assertTrue(dr.gate_golden())
 
+    def test_golden_gate_rejects_synthetic_pending(self):
+        # PENDING 拒絕行為用合成 fixture 守（不綁 repo 暫態）：任一條 PENDING → gate 紅。
+        data = json.loads(self.approved_golden.read_text(encoding="utf-8"))
+        first = next(iter(data["drivers"]))
+        data["drivers"][first]["approved_by"] = "PENDING-charlie"
+        bad = self.tmp / "golden-pending.json"
+        bad.write_text(json.dumps(data), encoding="utf-8")
+        self.assertFalse(dr.gate_golden(golden_path=bad))
+
+    def test_golden_gate_green_after_synthetic_approval(self):
+        self.assertTrue(dr.gate_golden(golden_path=self.approved_golden))
+
     def test_new_result_does_not_break_gate(self):
-        # 合成塞活躍車手 as_of 之後的新賽果（2026 R11）→ 全量現值變、as_of 截斷值不變 → gate 仍綠
+        # 合成塞活躍車手 as_of 之後的新賽果（2026 R12）→ 全量現值變、as_of 截斷值不變 → gate 仍綠
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         db = _copy_db(tmp)
-        _inject_result(db, "hamilton", 2026, 11, position_text="1")
+        _inject_result(db, "hamilton", 2026, 12, position_text="1")
         con = sqlite3.connect(str(db))
         con.row_factory = sqlite3.Row
         try:
             # 全量現值：勝場 +1
             full = fs.driver_career_db("hamilton", con)
             self.assertEqual(full["wins"]["value"], self.golden["hamilton"]["wins"] + 1)
-            # as_of 截斷（2026/10）：不含 R11 → 與 golden 一致 → gate 綠
-            trunc = fs.driver_career_db("hamilton", con, as_of={"season": 2026, "round": 10})
+            # as_of 截斷（2026/11）：不含 R12 → 與 golden 一致 → gate 綠
+            trunc = fs.driver_career_db("hamilton", con, as_of={"season": 2026, "round": 11})
             self.assertEqual(trunc["wins"]["value"], self.golden["hamilton"]["wins"])
-            self.assertTrue(dr.gate_golden(con=con),
+            self.assertTrue(dr.gate_golden(con=con, golden_path=self.approved_golden),
                             "新賽果（as_of 之後）不得使 golden gate 變紅")
         finally:
             con.close()
 
     def test_tampering_within_as_of_window_reddens_gate(self):
-        # 篡改 as_of<= 的歷史（塞一場 2005 勝場給 hamilton，2005<=2026/10）→ 截斷值變 → gate 紅
+        # 篡改 as_of<= 的歷史（塞一場 2005 勝場給 hamilton，2005<=2026/11）→ 截斷值變 → gate 紅
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         db = _copy_db(tmp)
@@ -173,7 +189,7 @@ class GoldenAsOfTests(unittest.TestCase):
         con = sqlite3.connect(str(db))
         con.row_factory = sqlite3.Row
         try:
-            self.assertFalse(dr.gate_golden(con=con),
+            self.assertFalse(dr.gate_golden(con=con, golden_path=self.approved_golden),
                              "as_of 窗口內的歷史被篡改應使 gate 變紅")
         finally:
             con.close()
@@ -290,7 +306,7 @@ class SelectiveRegenTests(unittest.TestCase):
         finally:
             con.close()
         self.assertEqual(len(res["changed_years"]), gs.LAST_YEAR - gs.FIRST_YEAR + 1)
-        self.assertEqual(len(res["changed_drivers"]), len(dr.CHAMPION_IDS))
+        self.assertEqual(len(res["changed_drivers"]), len(dr.DRIVER_IDS))
         self.assertEqual(len(res["changed_constructors"]), len(re_mod.CONSTRUCTOR_IDS))
 
     def test_publish_writes_sitemap_parts(self):
@@ -310,7 +326,7 @@ class SelectiveRegenTests(unittest.TestCase):
         d_urls = dp.read_text(encoding="utf-8").splitlines()
         self.assertIn(f"{rc.BASE}/drivers/", d_urls)
         self.assertEqual(len([u for u in d_urls if u != f"{rc.BASE}/drivers/"]),
-                         len(dr.CHAMPION_IDS))
+                         len(dr.DRIVER_IDS))
         # 車隊：索引 URL 必須在（沒有它 /constructors/ 就是進不了 sitemap 的孤兒區）
         c_urls = cp.read_text(encoding="utf-8").splitlines()
         self.assertIn(f"{rc.BASE}/constructors/", c_urls)

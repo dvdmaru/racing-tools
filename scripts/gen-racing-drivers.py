@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""gen-racing-drivers.py — 百科線 M5：/drivers/（35 人索引）＋ /drivers/<slug>/（35 位歷代車手冠軍頁）。
+"""gen-racing-drivers.py — /drivers/ 雙 roster 索引＋車手實體頁。
 
 頁面歸屬權：/drivers/** 全歸本生成器（phase0 的車手頁生成已移除，比照 M3 對 season 頁的清理）；
 phase0 只留 /constructors/**。視覺元件（stat 卡、生涯時間軸、中英對照 hero、「怎麼算的」展開、
@@ -10,14 +10,14 @@ ENTITY_CSS）沿用 phase0 元件庫——importlib 載入共用，不重寫。�
   ① check-f1-invariants.py 通過（失敗三元組集合＝宣告例外集合）
   ② crosscheck-wikipedia.py --gate-only（每個 diff 有 fingerprint 吻合的具名裁決）
   ③ golden 全綠（tests/golden_driver_stats.json 逐欄凍結值；M7 起改「as_of 迴歸」——
-    比對重算到每位車手 as_of 時點的統計 vs 凍結值，活躍車手 as_of={2026,10}，新賽果不動 gate。
+    比對重算到每位車手 as_of 時點的統計 vs 凍結值，活躍車手 as_of={2026,11}，新賽果不動 gate。
     換季/定期由 Charlie 重核准後手動推進 as_of＋更新凍結值，流程見 golden _meta.as_of_policy）
 
 ★ 發布欄位（只此、不可多，計畫 §4）：世界冠軍（含年份）、分站冠軍、頒獎台、參賽場次。
   §4.6 紅線：桿位／最快圈／生涯積分**不發**——標「後續補」。
 
 用法：
-  python3 scripts/gen-racing-drivers.py            # 產 /drivers/ 索引＋35 人頁（不寫 sitemap）
+  python3 scripts/gen-racing-drivers.py            # 產 /drivers/ 雙 roster 索引＋聯集 53 人頁（不寫 sitemap）
   python3 scripts/gen-racing-drivers.py --publish  # 公開時才加：寫 data/sitemap-parts/drivers.txt
   python3 scripts/gen-racing-drivers.py --no-sitemap
 """
@@ -63,8 +63,11 @@ VERDICTS = ROOT / "config" / "f1-crosscheck-verdicts.json"
 GOLDEN = ROOT / "tests" / "golden_driver_stats.json"
 DB = ROOT / "data" / "f1" / "db.sqlite"
 
-# 35 人名單的 canonical 來源＝crosscheck-report 的 coverage.expected_champion_ids（非硬編）。
-CHAMPION_IDS = json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]["expected_champion_ids"]
+# 兩個 roster 的 canonical 來源＝crosscheck report；report 本身由 DB 現算並受雙向 exact-set gate。
+_COVERAGE = json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]
+CHAMPION_IDS = _COVERAGE["expected_champion_ids"]
+ACTIVE_IDS = _COVERAGE["expected_active_driver_ids"]
+DRIVER_IDS = _COVERAGE["expected_driver_ids"]
 
 # 已核准的全名譯名：4 位 seed（phase0 已上線＝PR merge 核准過）。其餘走 driver-zh.json 的已核准
 # 姓氏譯名（2026-07-19 定版）；兩者皆無 → 誠實 fallback（中文欄位整個不出現，只留原文，頁尾註明）。
@@ -114,11 +117,23 @@ def gate_golden(golden_path=None, con=None):
     con = con or fs.connect_db()
     try:
         diffs = []
-        gset, cset = set(golden), set(CHAMPION_IDS)
-        if gset != cset:
-            print(f"🔴 golden 名單與 35 人冠軍名單不符：多 {sorted(gset - cset)}　缺 {sorted(cset - gset)}")
+        gset, rset = set(golden), set(DRIVER_IDS)
+        if gset != rset:
+            print(f"🔴 golden 名單與 champion ∪ 2026 active 聯集不符："
+                  f"多 {sorted(gset - rset)}　缺 {sorted(rset - gset)}")
             return False
-        for did in CHAMPION_IDS:
+        bad_as_of = [did for did in ACTIVE_IDS
+                     if golden[did].get("as_of") != {"season": 2026, "round": 11}]
+        if bad_as_of:
+            print(f"🔴 現役 roster as_of 必須全為 {{2026, 11}}：{bad_as_of}")
+            return False
+        pending = [did for did in DRIVER_IDS
+                   if str(golden[did].get("approved_by", "")).upper().startswith("PENDING")]
+        if pending:
+            print(f"🔴 golden gate FAIL：{len(pending)} 筆 approved_by=PENDING-charlie，尚未核准：")
+            print(f"    {pending}")
+            return False
+        for did in DRIVER_IDS:
             want = golden[did]
             got = _computed_row(did, con, as_of=want.get("as_of"))
             for f in ("championships", "championship_years", "wins", "podiums", "entries"):
@@ -379,59 +394,86 @@ def gen_driver(did, con):
 
 # ---------- 索引頁 ----------
 
-def _index_rows(con):
-    rows = [driver_summary(did, con) for did in CHAMPION_IDS]
+def _index_rows(con, ids):
+    rows = [driver_summary(did, con) for did in ids]
     # 決定性排序：冠軍多→勝場多→頒獎台多→出賽多→driverId（穩定 tiebreak）
     rows.sort(key=lambda s: (-s["championships"], -s["wins"], -s["podiums"],
                              -s["entries"], s["did"]))
     return rows
 
 
-def render_index(con):
-    rows = _index_rows(con)
+def _active_index_rows(con):
+    """現役區以 2026 最新積分榜名次排列；查無名次時穩定落到末尾。"""
+    positions = {r["driver_id"]: r["position"] for r in con.execute(
+        "SELECT driver_id, position FROM driver_standings WHERE season=2026")}
+    rows = [driver_summary(did, con) for did in ACTIVE_IDS]
+    rows.sort(key=lambda s: (positions.get(s["did"], 9999), s["did"]))
+    return rows
+
+
+def _index_table(rows, champion_badge=False):
     trs = []
     for i, s in enumerate(rows, 1):
         label = p0.pair(s["zh"], s["name_full"])
+        badge = ' <span class="chip">世界冠軍</span>' if champion_badge and s["did"] in CHAMPION_IDS else ""
         trs.append(f"""<tr>
   <td class="mono rk">{i}</td>
-  <td><a href="/drivers/{s['slug']}/">{label}</a></td>
+  <td><a href="/drivers/{s['slug']}/">{label}</a>{badge}</td>
   <td>{esc(s['meta'].get('nationality', ''))}</td>
   <td class="mono">{s['championships']}</td>
   <td class="mono">{s['wins']}</td>
   <td class="mono">{s['podiums']}</td>
   <td class="mono">{s['entries']}</td>
 </tr>""")
-    table = f"""<table class="std-tbl">
+    return f"""<table class="std-tbl">
 <thead><tr><th>#</th><th>車手</th><th>國籍</th><th>世界冠軍</th><th>分站冠軍</th><th>頒獎台</th><th>參賽場次</th></tr></thead>
-<tbody>{"".join(trs)}</tbody>
+<tbody>{''.join(trs)}</tbody>
 </table>"""
+
+
+def render_index(con):
+    champions = _index_rows(con, CHAMPION_IDS)
+    active = _active_index_rows(con)
+    champion_table = _index_table(champions)
+    active_table = _index_table(active, champion_badge=True)
 
     body = f"""<div class="ent-hero">
   <p class="ent-kicker">車手名錄 · Drivers</p>
-  <h1 class="ent-h1">歷代世界冠軍<span class="zh-en">　World Champions</span></h1>
-  <p class="ident"><span>共 <span class="mono">{len(rows)}</span> 位曾奪下車手世界冠軍的車手。每個數字皆可回溯官方原始資料。</span></p>
+  <h1 class="ent-h1">車手名錄<span class="zh-en">　Driver Directory</span></h1>
+  <p class="ident"><span>歷代世界冠軍與 2026 現役陣容。每個數字皆可回溯官方原始資料。</span></p>
 </div>
-{table}
-<p class="note">名單＝歷代車手世界冠軍（{FIRST_YEAR}–{LAST_YEAR}）。點車手名進入其生涯頁；每頁只發布定義明確、可回溯來源的欄位，
+<h2 class="sec-title">歷代世界冠軍</h2>
+<p class="note">共 <span class="mono">{len(champions)}</span> 位。</p>
+{champion_table}
+<h2 class="sec-title">2026 現役陣容</h2>
+<p class="note">共 <span class="mono">{len(active)}</span> 位，依 2026 最新積分榜排序；兼具世界冠軍身分者加註徽章。</p>
+{active_table}
+<p class="note">名單＝歷代車手世界冠軍（{FIRST_YEAR}–{LAST_YEAR}）∪ 2026 現役陣容。點車手名進入其生涯頁；每頁只發布定義明確、可回溯來源的欄位，
 桿位／最快圈／生涯積分暫不發布（定義待定）。譯名採已核准來源，無定版譯名者暫以原文呈現，不自譯。</p>"""
 
-    items = [{"@type": "ListItem", "position": i,
+    champion_items = [{"@type": "ListItem", "position": i,
               "url": f"{BASE}/drivers/{s['slug']}/",
               "name": s["zh"] or s["name_full"]}
-             for i, s in enumerate(rows, 1)]
+             for i, s in enumerate(champions, 1)]
+    active_items = [{"@type": "ListItem", "position": i,
+                     "url": f"{BASE}/drivers/{s['slug']}/",
+                     "name": s["zh"] or s["name_full"]}
+                    for i, s in enumerate(active, 1)]
     ld = rc.graph_ld([rc.org_node(), rc.website_node(),
                       rc.breadcrumb_node([("首頁", BASE + "/"), ("車手", BASE + "/drivers/")]),
                       {"@type": "ItemList", "name": "歷代車手世界冠軍",
-                       "numberOfItems": len(items), "itemListElement": items}])
-    return write_page(["drivers"], "歷代車手世界冠軍名錄",
-                      f"一級方程式 {FIRST_YEAR}–{LAST_YEAR} 歷代車手世界冠軍名錄：世界冠軍、分站冠軍、頒獎台、參賽場次，每個數字可回溯官方來源。",
+                       "numberOfItems": len(champion_items), "itemListElement": champion_items},
+                      {"@type": "ItemList", "name": "2026 現役陣容",
+                       "numberOfItems": len(active_items), "itemListElement": active_items}])
+    return write_page(["drivers"], "車手名錄：歷代世界冠軍與 2026 現役陣容",
+                      f"一級方程式 {FIRST_YEAR}–{LAST_YEAR} 歷代世界冠軍與 2026 現役車手名錄：世界冠軍、分站冠軍、頒獎台、參賽場次，每個數字可回溯官方來源。",
                       ld, body)
 
 
 # ---------- CLI ----------
 
 def main():
-    ap = argparse.ArgumentParser(description="產出 /drivers/ 索引與 35 位車手頁（M5；前置三 gate）。")
+    ap = argparse.ArgumentParser(description="產出 /drivers/ 雙 roster 索引與 53 位車手頁（前置三 gate）。")
     ap.add_argument("--publish", action="store_true",
                     help="公開時才加：寫 data/sitemap-parts/drivers.txt（預設不寫）")
     ap.add_argument("--no-sitemap", action="store_true", help="顯式關閉 sitemap part（與預設同義）")
@@ -446,7 +488,7 @@ def main():
     try:
         print("車手頁：")
         urls = [render_index(con)]
-        for did in CHAMPION_IDS:
+        for did in DRIVER_IDS:
             s = gen_driver(did, con)
             urls.append(f"{BASE}/drivers/{s['slug']}/")
             print(f"  ✓ /drivers/{s['slug']}/　{s['championships']}冠 {s['wins']}勝 "
