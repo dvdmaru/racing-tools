@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""interlink.py — 文章 ↔ 實體頁雙向互鏈的**單一規則層**（車手頁 ＋ 分站頁）。
+"""interlink.py — 文章 ↔ 實體頁雙向互鏈的**單一規則層**（車手／分站／車隊頁）。
 
 兩個方向共用同一份判定表，避免兩邊各長一套規則後慢慢對不上：
 
   正向：文章 HTML 裡的車手名 → `/drivers/<slug>/`
         文章 HTML 裡的賽站名 → `/seasons/<year>/rounds/<n>/`
-        （build-articles.py 在 markdown→HTML **之後**呼叫 linkify() / linkify_rounds()）
-  反向：車手頁／分站頁的「相關報導」＝唯讀掃描 articles/<slug>/index.md 得到的提及映射
+        文章 HTML 裡的車隊名 → `/constructors/<slug>/`
+        （build-articles.py 在 markdown→HTML **之後**依序呼叫三種 linkify）
+  反向：三種實體頁的「相關報導」＝唯讀掃描 articles/<slug>/index.md 得到的提及映射
         （gen-racing-drivers.py 呼叫 driver_articles()；
           gen-racing-seasons.py 呼叫 round_related_articles_html()）
 
@@ -70,7 +71,9 @@ rc = _load("racinglib", "racinglib.py")
 # 資料來源（全部是 committed 檔；**不碰 db.sqlite**——它不進 git，build-articles.py
 # 在乾淨 checkout／CI 上也要跑得起來）
 REPORT = ROOT / "data" / "f1" / "crosscheck-report.json"
+CONSTRUCTOR_REPORT = ROOT / "data" / "f1" / "constructor-crosscheck-report.json"
 DRIVER_ENTITIES = ROOT / "data" / "f1" / "raw" / "entities" / "drivers.json"
+TEAM_ZH = ROOT / "scripts" / "team-zh.json"
 ARTICLES = ROOT / "articles"
 APPROVED = ROOT / "config" / "approved.json"
 DRAFT_EXCLUDE = ROOT / "config" / "draft-exclude.json"
@@ -85,8 +88,21 @@ PROTECTED_TAGS = frozenset({
 _TAG_SPLIT = re.compile(r"(<[^>]*>)")
 _TAG_NAME = re.compile(r"</?\s*([A-Za-z][A-Za-z0-9]*)")
 _ASCII_WORD = re.compile(r"[A-Za-z]")
+# 可跨越但不改變可見文字連續性的 inline 標籤；只用於 blocker／前綴判斷，不重寫解析器。
+_INLINE_CONTEXT_TAGS = frozenset({
+    "b", "em", "i", "mark", "small", "span", "strong", "sub", "sup", "s", "u",
+})
 
 _CACHE = {}
+
+# 更長的非車隊指涉字串映射到不連哨兵，靠最長匹配先吃掉整段，避免內層短 token 誤連。
+TEAM_BLOCKERS = {
+    "紅牛環": "賽道／賽站簡稱，不是紅牛車隊指涉。",
+    "紅牛二隊": "Racing Bulls 的口語別名，不得錯連到 red_bull。",
+    "Red Bull Ring": "賽道官方名，不是 Red Bull 車隊指涉。",
+}
+TEAM_BLOCKER = (None, None)
+TEAM_BLOCKED_PREFIXES = frozenset({"－"})
 
 # 分站頁的「哪些站有頁／各站叫什麼」由 gen-racing-seasons 擁有（它就是建那些頁的人）。
 # 本模組**不另抄一份判定**，只借它兩個純讀函式；gs 載入時會 bind_seasons() 把自己交進來，
@@ -174,17 +190,89 @@ def candidate_strings(did):
     return {s for s in out if len(s) >= 2}
 
 
-def link_index():
-    """{匹配字串: (driver_id, slug)}——只留在 53 人聯集裡**唯一**對應的字串。"""
-    if "link_index" not in _CACHE:
+def _driver_unique_index():
+    """車手命名空間內唯一的 token；尚未套跨命名空間排除。"""
+    if "driver_unique_index" not in _CACHE:
         owners = {}
         for did in driver_ids():
             for s in candidate_strings(did):
                 owners.setdefault(s, set()).add(did)
-        _CACHE["link_index"] = {
+        _CACHE["driver_unique_index"] = {
             s: (next(iter(dids)), rc.driver_slug(next(iter(dids))))
             for s, dids in owners.items() if len(dids) == 1}
+    return _CACHE["driver_unique_index"]
+
+
+def constructor_ids():
+    """所有有實體頁的車隊；canonical 來源＝constructor crosscheck report。"""
+    if "constructor_ids" not in _CACHE:
+        cov = json.loads(CONSTRUCTOR_REPORT.read_text(encoding="utf-8"))["coverage"]
+        _CACHE["constructor_ids"] = tuple(cov["expected_constructor_ids"])
+    return _CACHE["constructor_ids"]
+
+
+def official_constructor_names():
+    """{constructor_id: Ergast 官方名}（crosscheck report 的逐隊資料）。"""
+    if "constructor_names" not in _CACHE:
+        rows = json.loads(CONSTRUCTOR_REPORT.read_text(encoding="utf-8"))["constructors"]
+        _CACHE["constructor_names"] = {r["constructor_id"]: r["name"] for r in rows}
+    return _CACHE["constructor_names"]
+
+
+def approved_team_zh():
+    """team-zh.json status==approved 的既有譯名；不自譯。"""
+    if "approved_team_zh" not in _CACHE:
+        raw = json.loads(TEAM_ZH.read_text(encoding="utf-8"))
+        _CACHE["approved_team_zh"] = {
+            key: row["zh"] for key, row in raw.items()
+            if isinstance(row, dict) and row.get("status") == "approved" and row.get("zh")}
+    return _CACHE["approved_team_zh"]
+
+
+def team_candidate_strings(cid):
+    """單一 roster 車隊的 approved zh＋Ergast 官方名；不收自行截短的 token。"""
+    name = official_constructor_names().get(cid, "")
+    zh = approved_team_zh()
+    return {s for s in (name, zh.get(cid), zh.get(name)) if s and len(s) >= 2}
+
+
+def _team_unique_index():
+    """車隊命名空間內唯一的 token；尚未套 blocker 與跨命名空間排除。"""
+    if "team_unique_index" not in _CACHE:
+        owners = {}
+        for cid in constructor_ids():
+            for token in team_candidate_strings(cid):
+                owners.setdefault(token, set()).add(cid)
+        _CACHE["team_unique_index"] = {
+            token: (next(iter(cids)), rc.constructor_slug(next(iter(cids))))
+            for token, cids in owners.items() if len(cids) == 1}
+    return _CACHE["team_unique_index"]
+
+
+def cross_namespace_collisions():
+    """車手／車隊兩張唯一 token 表的交集；交集在兩邊都必須丟棄。"""
+    return frozenset(_driver_unique_index()) & frozenset(_team_unique_index())
+
+
+def link_index():
+    """{匹配字串: (driver_id, slug)}；唯一且不與車隊 token 相撞。"""
+    if "link_index" not in _CACHE:
+        collisions = cross_namespace_collisions()
+        _CACHE["link_index"] = {
+            token: target for token, target in _driver_unique_index().items()
+            if token not in collisions}
     return _CACHE["link_index"]
+
+
+def team_link_index():
+    """{匹配字串: (constructor_id, slug)|TEAM_BLOCKER}；正反向共用。"""
+    if "team_link_index" not in _CACHE:
+        collisions = cross_namespace_collisions()
+        linked = {token: target for token, target in _team_unique_index().items()
+                  if token not in collisions}
+        linked.update({token: TEAM_BLOCKER for token in TEAM_BLOCKERS})
+        _CACHE["team_link_index"] = linked
+    return _CACHE["team_link_index"]
 
 
 def ambiguous_strings():
@@ -270,7 +358,30 @@ def _boundary_ok(text, start, end, token):
     return True
 
 
-def _linkify(body_html, index, href_of, key_of, cache_key=None):
+def _visible_neighbor(parts, pos, step, limit):
+    """取文字片段跨 inline tag 的相鄰可見文字；遇 block／保護標籤即停止。"""
+    chunks = []
+    i = pos + step
+    size = 0
+    while 0 <= i < len(parts) and size < limit:
+        part = parts[i]
+        if part.startswith("<") and part.endswith(">"):
+            match = _TAG_NAME.match(part)
+            if not match or match.group(1).lower() not in _INLINE_CONTEXT_TAGS:
+                break
+        elif part:
+            chunks.append(part)
+            size += len(part)
+        i += step
+    if step < 0:
+        chunks.reverse()
+    value = "".join(chunks)
+    return value[-limit:] if step < 0 else value[:limit]
+
+
+def _linkify(body_html, index, href_of, key_of, cache_key=None,
+             allow_table_first_td=False, blocker_target=None, blocker_tokens=frozenset(),
+             blocked_prefixes=frozenset()):
     """保護區感知的行內連結替換——正向互鏈的**唯一**實作（車手與分站共用）。
 
     index＝{匹配字串: 目標值}；href_of(目標值)→URL；key_of(目標值)→去重鍵
@@ -286,10 +397,29 @@ def _linkify(body_html, index, href_of, key_of, cache_key=None):
     pat = _pattern(index, cache_key)
     hits = []
     used = set()
+    visible_before = ""
+    visible_after = ""
 
     def repl(m):
         token = m.group(0)
         target = index[token]
+        if target == blocker_target:
+            return token
+        context = visible_before + m.string + visible_after
+        cstart = len(visible_before) + m.start()
+        cend = len(visible_before) + m.end()
+        if cstart > 0 and context[cstart - 1] in blocked_prefixes:
+            return token
+        # 較長 blocker 可能被 <strong>/<em>/<span> 切成多個文字片段；依可見文字判斷
+        # 是否有 blocker 覆蓋目前短 token，避免內層車隊名被錯連。
+        for blocked in blocker_tokens:
+            begin = max(0, cstart - len(blocked) + 1)
+            stop = min(len(context), cend + len(blocked) - 1)
+            at = context.find(blocked, begin, stop)
+            while at >= 0:
+                if at <= cstart and at + len(blocked) >= cend:
+                    return token
+                at = context.find(blocked, at + 1, stop)
         key = key_of(target)
         if key in used or not _boundary_ok(m.string, m.start(), m.end(), token):
             return token
@@ -297,19 +427,70 @@ def _linkify(body_html, index, href_of, key_of, cache_key=None):
         hits.append((target, token))
         return f'<a href="{href_of(target)}">{token}</a>'
 
+    # 預設路徑刻意保留原本迴圈，確保車手／分站在新增 opt-in 參數後 byte 級不變。
+    parts = _TAG_SPLIT.split(body_html)
+    context_limit = max([1] + [len(token) for token in blocker_tokens])
+
+    if not allow_table_first_td:
+        out = []
+        depth = 0
+        for pos, part in enumerate(parts):
+            if part.startswith("<") and part.endswith(">"):
+                name = _TAG_NAME.match(part)
+                if name and name.group(1).lower() in PROTECTED_TAGS:
+                    if part.startswith("</"):
+                        depth = max(0, depth - 1)
+                    elif not part.rstrip(">").rstrip().endswith("/"):
+                        depth += 1
+                out.append(part)
+                continue
+            visible_before = _visible_neighbor(parts, pos, -1, context_limit)
+            visible_after = _visible_neighbor(parts, pos, 1, context_limit)
+            out.append(part if depth or not part.strip() else pat.sub(repl, part))
+        return "".join(out), hits
+
+    # 車隊專用 opt-in：table 本身不再計入 protected depth；只放行每列第一個 td。
     out = []
     depth = 0
-    for part in _TAG_SPLIT.split(body_html):
+    table_stack = []
+    for pos, part in enumerate(parts):
         if part.startswith("<") and part.endswith(">"):
-            name = _TAG_NAME.match(part)
-            if name and name.group(1).lower() in PROTECTED_TAGS:
-                if part.startswith("</"):
+            match = _TAG_NAME.match(part)
+            name = match.group(1).lower() if match else ""
+            closing = part.startswith("</")
+            self_closing = part.rstrip(">").rstrip().endswith("/")
+            if name == "table":
+                if closing:
+                    if table_stack:
+                        table_stack.pop()
+                elif not self_closing:
+                    table_stack.append({"td_count": 0, "in_first_td": False})
+                out.append(part)
+                continue
+            if table_stack:
+                state = table_stack[-1]
+                if name == "tr":
+                    state["td_count"] = 0
+                    state["in_first_td"] = False
+                elif name == "td":
+                    if closing:
+                        state["in_first_td"] = False
+                    elif not self_closing:
+                        state["td_count"] += 1
+                        state["in_first_td"] = state["td_count"] == 1
+                elif name == "th":
+                    state["in_first_td"] = False
+            if name in PROTECTED_TAGS:
+                if closing:
                     depth = max(0, depth - 1)
-                elif not part.rstrip(">").rstrip().endswith("/"):
+                elif not self_closing:
                     depth += 1
             out.append(part)
             continue
-        out.append(part if depth or not part.strip() else pat.sub(repl, part))
+        table_allowed = not table_stack or table_stack[-1]["in_first_td"]
+        visible_before = _visible_neighbor(parts, pos, -1, context_limit)
+        visible_after = _visible_neighbor(parts, pos, 1, context_limit)
+        out.append(part if depth or not table_allowed or not part.strip() else pat.sub(repl, part))
     return "".join(out), hits
 
 
@@ -340,6 +521,25 @@ def linkify_rounds(body_html, season, index=None):
     out, hits = _linkify(body_html, index,
                          href_of=lambda t: f"/seasons/{t[0]}/rounds/{t[1]}/",
                          key_of=lambda t: t, cache_key=key)
+    return out, [(t[0], t[1], tok) for t, tok in hits]
+
+
+def linkify_teams(body_html, index=None):
+    """在渲染後文章 HTML 加車隊頁連結；每隊每篇只連第一個可連位置。
+
+    呼叫順序在 linkify／linkify_rounds 之後；既有連結已成為保護區。只有本函式開啟
+    table 首格例外，且「－」後方的複合車隊 token 與 TEAM_BLOCKERS 一律不連。
+    """
+    default = index is None
+    index = team_link_index() if default else index
+    key = "team_pattern" if default and index else None
+    out, hits = _linkify(
+        body_html, index,
+        href_of=lambda t: f"/constructors/{t[1]}/",
+        key_of=lambda t: t[0], cache_key=key,
+        allow_table_first_td=True, blocker_target=TEAM_BLOCKER,
+        blocker_tokens=frozenset(TEAM_BLOCKERS),
+        blocked_prefixes=TEAM_BLOCKED_PREFIXES)
     return out, [(t[0], t[1], tok) for t, tok in hits]
 
 
@@ -452,6 +652,61 @@ def _related_block(arts, esc):
 def related_articles_html(did, esc=html_lib.escape):
     """車手頁「相關報導」區塊。無任何文章提及 → 回空字串（區塊整個不出現，不放占位）。"""
     return _related_block(driver_articles(did), esc)
+
+
+# ---------- 反向：車隊頁「相關報導」 ----------
+
+def team_mentions(articles_root=None, approved_path=None, draft_exclude_path=None):
+    """{constructor_id: [{slug,title,date}, …]}（新→舊）——已發布文章的車隊提及。
+
+    正反向共用 team_link_index：blocker 會以最長匹配吃掉整段，「－」前綴也同樣排除；
+    原始 markdown 的表格文字仍在掃描範圍內。
+    """
+    key = ("team_mentions", str(articles_root or ARTICLES), str(approved_path or APPROVED),
+           str(draft_exclude_path or DRAFT_EXCLUDE))
+    if key in _CACHE:
+        return _CACHE[key]
+    index = team_link_index()
+    pat = _pattern(index, "team_pattern")
+    out = {}
+    for art in published_articles(articles_root, approved_path, draft_exclude_path):
+        hit = set()
+        # 原始 Markdown 是 mention 來源；移除不具可見文字的 inline 格式符號，讓
+        # `紅牛**環**`／`麥拉倫－**賓士**` 與正向渲染 HTML 的判定一致。
+        text = re.sub(r"[*_~`]", "", art["text"])
+        for match in pat.finditer(text):
+            token = match.group(0)
+            target = index[token]
+            if target == TEAM_BLOCKER:
+                continue
+            if match.start() > 0 and text[match.start() - 1] in TEAM_BLOCKED_PREFIXES:
+                continue
+            if not _boundary_ok(text, match.start(), match.end(), token):
+                continue
+            hit.add(target[0])
+        for cid in hit:
+            out.setdefault(cid, []).append(
+                {"slug": art["slug"], "title": art["title"], "date": art["date"]})
+    _CACHE[key] = out
+    return out
+
+
+def team_articles(cid):
+    """單一車隊的相關報導（新→舊）。沒有就是空 list。"""
+    return team_mentions().get(cid, [])
+
+
+def team_articles_slice(cid):
+    """車隊頁指紋要吃的 mention 切片（決定性 tuple 序列）。
+
+    車隊頁的「相關報導」讀 articles/；若指紋只切 db.sqlite，新文章上線後頁面會靜默 stale。
+    """
+    return [(a["slug"], a["title"], a["date"]) for a in team_articles(cid)]
+
+
+def team_related_articles_html(cid, esc=html_lib.escape):
+    """車隊頁「相關報導」區塊；沿用 _related_block 與既有 CSS。"""
+    return _related_block(team_articles(cid), esc)
 
 
 # ---------- 反向：分站頁「相關報導」 ----------

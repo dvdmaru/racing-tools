@@ -588,13 +588,16 @@ def build():
         # 賽站名 → 分站頁互鏈（同一支保護區實作，順序在車手之後：車手連結已是 <a>＝保護區，
         # 不會被巢狀包一層）。年份消歧＝frontmatter 明示的 season；沒有就整篇不連（寧漏勿錯連）。
         body_html, round_links = il.linkify_rounds(body_html, il.article_round_season(meta))
+        # 車隊名 → 車隊頁互鏈。順序在車手／分站之後，兩者新增的 <a> 都是保護區；只有車隊
+        # opt-in 放行每列表格第一個 td，文章 markdown 與 approved.json 仍完全唯讀。
+        body_html, team_links = il.linkify_teams(body_html)
         out_dir = PUB / "articles" / slug
         out_dir.mkdir(parents=True, exist_ok=True)
         for asset in d.iterdir():
             if asset.is_file() and asset.suffix != ".md":
                 shutil.copy2(asset, out_dir / asset.name)
         articles.append({"slug": slug, "meta": meta, "excerpt": excerpt, "links": links,
-                         "round_links": round_links,
+                         "round_links": round_links, "team_links": team_links,
                          "faq": faq, "body_html": body_html, "out_dir": out_dir})
 
     # 真下架：曾上線後改回草稿或整篇移除的文章，輸出目錄必須刪掉——

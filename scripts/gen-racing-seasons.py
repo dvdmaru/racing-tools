@@ -5,7 +5,7 @@
 server-rendered、零 client fetch（除 page_shell 既有 theme init inline script 外零 JS）；
 tabs 一律走 racinglib 的 CSS-only tabgroup。實體專屬視覺（stat 卡、賽季弧線、退賽橫條圖、
 「怎麼算的」展開、pair 中英對照）沿用 Phase 0 原型（gen-racing-entities-phase0.py），
-直接 import 重用，不複製、不改動 phase0（它還要跑出互連的另一端 /drivers/、/constructors/）。
+直接 import 重用，不複製；/drivers/** 與 /constructors/** 已移交各自專用生成器。
 
 ★ 衍生數字紀律（承 f1stats 圓桌教訓）：每個統計 value == len(detail)，或直接取自官方
   standings（SOURCED）。只做加減可驗的衍生（分差、退賽數）——不做「封王站/clinch」類複雜衍生。
@@ -72,11 +72,14 @@ il = _load("interlink", "interlink.py")
 RAW = ROOT / "data" / "f1" / "raw"
 DB = ROOT / "data" / "f1" / "db.sqlite"
 RETIREMENT_CATEGORIES = ROOT / "data" / "f1" / "retirement-categories.json"
+CONSTRUCTOR_REPORT = ROOT / "data" / "f1" / "constructor-crosscheck-report.json"
 PUB = rc.PUB
 BASE = rc.BASE
 esc = html_lib.escape
 
 FIRST_YEAR, LAST_YEAR = 1950, rc.SEASON  # 1950–2026
+# 車隊賽季子頁 roster 的唯一來源；不再讀 phase0.CONSTRUCTORS。
+CONSTRUCTOR_IDS = json.loads(CONSTRUCTOR_REPORT.read_text(encoding="utf-8"))["coverage"]["expected_constructor_ids"]
 
 # ---------- 譯名解析（誠實 fallback；phase0 8 實體 overlay 在 racinglib 表之上） ----------
 _P0_DRIVER_ZH = {k: v for k, v in p0.ZH.items()
@@ -451,17 +454,16 @@ def season_narrative(year):
 
 # ---------- v3 子頁：選了車手／車隊（/seasons/<year>/drivers|teams/<slug>/） ----------
 # 「選擇即 URL」：總覽頁＝沒選任何實體；點榜內某車手＝選了他＝進他的賽季子頁。
-# 子頁生成範圍（防頁數爆炸）：只為「有實體頁的對象」（phase0 HAS_PAGE／DRIVERS／CONSTRUCTORS）
-# 中「該季有參賽」者生成。slug 一律走 racinglib slugs.json（查不到就 fail，不自創）。
+# 子頁生成範圍（防頁數爆炸）：車手沿用 phase0 seed；車隊改讀 canonical constructor report，
+# 只為有實體頁且該季參賽者生成。slug 一律走 slugs.json（查不到就 fail，不自創）。
 
 
 def season_subpage_entities(year):
-    """回 (driver_ids, constructor_ids)：seed 實體（phase0 有頁）且該季有參賽者，
-    依 phase0 名單順序。資料驅動——不硬編 2002 名單。"""
+    """回 (driver_ids, constructor_ids)：有實體頁且該季參賽者；車隊名單由 canonical report 決定。"""
     ds_ids = {e["Driver"].get("driverId") for e in _driver_standings(year)}
     cs_ids = {r["Constructor"].get("constructorId") for r in _constructor_standings(year)}
     dids = [d for d in p0.DRIVERS if d in ds_ids]
-    cids = [c for c in p0.CONSTRUCTORS if c in cs_ids]
+    cids = [c for c in CONSTRUCTOR_IDS if c in cs_ids]
     return dids, cids
 
 
@@ -1351,8 +1353,10 @@ def render_season(year, round_paths=None):
         cc = cs[0]["Constructor"]
         cons_link = _team_subpage_link(cc.get("constructorId", ""), cc.get("name", ""), year, _hero_paths)
         if "<a " not in cons_link:
-            cons_link = p0.internal_link(f'constructors/{cc.get("constructorId", "").replace("_", "-")}',
-                                         team_pair(cc.get("constructorId", ""), cc.get("name", "")))
+            cid = cc.get("constructorId", "")
+            label = team_pair(cid, cc.get("name", ""))
+            cons_link = (f'<a href="/constructors/{rc.constructor_slug(cid)}/">{label}</a>'
+                         if cid in CONSTRUCTOR_IDS else f'<span class="rel-off">{label}</span>')
 
     # Hero（in_progress：進行中 tag＋已跑/排定＋「目前領先」非「冠軍」；<1958：無車隊冠軍格）
     if in_progress:

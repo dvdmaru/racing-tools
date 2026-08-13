@@ -215,13 +215,13 @@ class SelectiveRegenTests(unittest.TestCase):
         self.addCleanup(shutil.rmtree, self.tmp)
         self.fp = self.tmp / "fp.json"
         self.pub = self.tmp / "pub"
-        # p0.PUB 也要接管：/constructors/** 由 phase0 生成，selective_regen 會呼叫它
-        self._orig_pub = (gs.PUB, dr.PUB, rc.PUB, p0.PUB)
-        gs.PUB = dr.PUB = rc.PUB = p0.PUB = self.pub
+        # cg.PUB 也要接管：/constructors/** 由專用生成器生成。
+        self._orig_pub = (gs.PUB, dr.PUB, rc.PUB, p0.PUB, re_mod.cg.PUB)
+        gs.PUB = dr.PUB = rc.PUB = p0.PUB = re_mod.cg.PUB = self.pub
         self.dbA = _copy_db(self.tmp)
 
     def tearDown(self):
-        gs.PUB, dr.PUB, rc.PUB, p0.PUB = self._orig_pub
+        gs.PUB, dr.PUB, rc.PUB, p0.PUB, re_mod.cg.PUB = self._orig_pub
 
     def _con(self, db):
         c = sqlite3.connect(str(db))
@@ -266,18 +266,22 @@ class SelectiveRegenTests(unittest.TestCase):
             res = re_mod.selective_regen(con, full=False, fp_path=self.fp)
         finally:
             con.close()
-        # 變更集合精確：當季 2026 + 資料有變的車手 hamilton + 兩索引
+        # 變更集合精確：當季 2026、車手 hamilton、其車隊 Mercedes 與三個索引。
         self.assertEqual(res["changed_years"], [2026])
         self.assertEqual(res["changed_drivers"], ["hamilton"])
         self.assertTrue(res["index_seasons"])
         self.assertTrue(res["index_drivers"])
+        self.assertEqual(res["changed_constructors"], ["mercedes"])
+        self.assertTrue(res["index_constructors"])
 
         rewritten = {str(p.relative_to(self.pub)) for p, (m, _) in snap.items()
                      if p.stat().st_mtime_ns != m}
         # 每個被重寫的頁只能屬於預期集合
         def _expected(rel):
             return (rel.startswith("seasons/2026/") or rel == "seasons/index.html"
-                    or rel == "drivers/index.html" or rel == "drivers/hamilton/index.html")
+                    or rel == "drivers/index.html" or rel == "drivers/hamilton/index.html"
+                    or rel == "constructors/index.html"
+                    or rel == "constructors/mercedes/index.html")
         stray = [r for r in rewritten if not _expected(r)]
         self.assertEqual(stray, [], f"重寫了預期集合外的頁：{stray[:10]}")
         # 1950–2025 歷史賽季頁 byte-identical 零重寫
@@ -297,6 +301,8 @@ class SelectiveRegenTests(unittest.TestCase):
         self.assertIn("seasons/2026/index.html", rewritten)
         self.assertIn("drivers/hamilton/index.html", rewritten)
         self.assertIn("drivers/index.html", rewritten)
+        self.assertIn("constructors/mercedes/index.html", rewritten)
+        self.assertIn("constructors/index.html", rewritten)
 
     def test_full_flag_ignores_fingerprints(self):
         self._full_build()

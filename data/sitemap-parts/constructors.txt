@@ -1,5 +1,12 @@
 https://racing.twtools.cc/constructors/
+https://racing.twtools.cc/constructors/alpine/
+https://racing.twtools.cc/constructors/aston-martin/
+https://racing.twtools.cc/constructors/audi/
+https://racing.twtools.cc/constructors/cadillac/
 https://racing.twtools.cc/constructors/ferrari/
+https://racing.twtools.cc/constructors/haas/
 https://racing.twtools.cc/constructors/mclaren/
 https://racing.twtools.cc/constructors/mercedes/
+https://racing.twtools.cc/constructors/rb/
 https://racing.twtools.cc/constructors/red-bull/
+https://racing.twtools.cc/constructors/williams/

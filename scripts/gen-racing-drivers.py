@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """gen-racing-drivers.py — /drivers/ 雙 roster 索引＋車手實體頁。
 
-頁面歸屬權：/drivers/** 全歸本生成器（phase0 的車手頁生成已移除，比照 M3 對 season 頁的清理）；
-phase0 只留 /constructors/**。視覺元件（stat 卡、生涯時間軸、中英對照 hero、「怎麼算的」展開、
+頁面歸屬權：/drivers/** 全歸本生成器；phase0 只保留 legacy seed 與視覺元件。
+視覺元件（stat 卡、生涯時間軸、中英對照 hero、「怎麼算的」展開、
 ENTITY_CSS）沿用 phase0 元件庫——importlib 載入共用，不重寫。統計一律走 f1stats 的 **DB 路徑**
 （data/f1/db.sqlite 的 results / driver_standings），value==len(detail)。
 
@@ -62,12 +62,16 @@ REPORT = ROOT / "data" / "f1" / "crosscheck-report.json"
 VERDICTS = ROOT / "config" / "f1-crosscheck-verdicts.json"
 GOLDEN = ROOT / "tests" / "golden_driver_stats.json"
 DB = ROOT / "data" / "f1" / "db.sqlite"
+CONSTRUCTOR_REPORT = ROOT / "data" / "f1" / "constructor-crosscheck-report.json"
 
 # 兩個 roster 的 canonical 來源＝crosscheck report；report 本身由 DB 現算並受雙向 exact-set gate。
 _COVERAGE = json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]
 CHAMPION_IDS = _COVERAGE["expected_champion_ids"]
 ACTIVE_IDS = _COVERAGE["expected_active_driver_ids"]
 DRIVER_IDS = _COVERAGE["expected_driver_ids"]
+# 有車隊實體頁的唯一名單來源；不得退回 p0.CONSTRUCTORS／p0.HAS_PAGE。
+CONSTRUCTOR_IDS = frozenset(
+    json.loads(CONSTRUCTOR_REPORT.read_text(encoding="utf-8"))["coverage"]["expected_constructor_ids"])
 
 # 已核准的全名譯名：4 位 seed（phase0 已上線＝PR merge 核准過）。其餘走 driver-zh.json 的已核准
 # 姓氏譯名（2026-07-19 定版）；兩者皆無 → 誠實 fallback（中文欄位整個不出現，只留原文，頁尾註明）。
@@ -356,9 +360,17 @@ def gen_driver(did, con):
     tl = p0.career_timeline(seasons, s["champ_years"], _season_href(did, slug))
 
     teams = driver_constructors(did, con)
-    rel = "".join(p0.internal_link(f'constructors/{cid.replace("_", "-")}',
-                                    esc(p0.ZH.get(cid) or rc.team_zh(name)))
-                  for cid, name in teams)
+    rel_parts = []
+    for cid, name in teams:
+        if cid in CONSTRUCTOR_IDS:
+            label = esc(rc.TEAM_ZH.get(cid) or rc.TEAM_ZH.get(name) or name)
+            rel_parts.append(f'<a href="/constructors/{rc.constructor_slug(cid)}/">{label}</a>')
+        else:
+            # 本棒只改 2026 roster 的 chip。歷史隊沿用資料庫名稱，避免順帶套用
+            # 後來新增的譯名而造成無關頁面 churn。
+            label = esc(rc.TEAM_ZH.get(name) or name)
+            rel_parts.append(f'<span class="rel-off">{label}</span>')
+    rel = "".join(rel_parts)
 
     zh_note = ("" if zh else
                '<p class="note">此車手目前尚無定版繁中譯名，本頁暫以原文呈現（不自譯）；譯名補完見後續里程碑。</p>')

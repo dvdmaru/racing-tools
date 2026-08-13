@@ -56,9 +56,16 @@
     "stroll": "stroll"
   },
   "constructors": {
+    "alpine": "alpine",
+    "aston_martin": "aston-martin",
+    "audi": "audi",
+    "cadillac": "cadillac",
     "ferrari": "ferrari",
+    "haas": "haas",
     "mclaren": "mclaren",
     "mercedes": "mercedes",
-    "red_bull": "red-bull"
+    "rb": "rb",
+    "red_bull": "red-bull",
+    "williams": "williams"
   }
 }

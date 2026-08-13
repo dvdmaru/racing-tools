@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""gen-racing-entities-phase0.py — Phase 0 實體頁探針（4 車手 + 4 車隊 + 2002 賽季頁）。
+"""gen-racing-entities-phase0.py — Phase 0 視覺元件與 legacy seed 常數。
 
 目的：讓 Charlie 先看到一個實體頁長什麼樣，再決定要不要投入 M0 地基與全量展開。
 用 racinglib 的站台外殼（暗底/賽車紅/header/footer/非官方 disclaimer），
@@ -31,9 +31,8 @@ PUB = ROOT / "public-racing"
 BASE = rc.BASE
 esc = html_lib.escape
 
-# Phase 0 名單
+# Phase 0 legacy seed；/drivers/** 與 /constructors/** 已分別移交專用生成器。
 DRIVERS = ["michael_schumacher", "hamilton", "senna", "max_verstappen"]
-CONSTRUCTORS = ["ferrari", "mclaren", "mercedes", "red_bull"]
 
 # Phase 0 譯名（歷史實體全無譯名，站規要中英對照 → 這批人工填，未填者誠實留原文）
 ZH = {
@@ -57,13 +56,17 @@ FORMULA_ZH = {
         "生涯每一場正賽的官方賽果中，最終名次為前三的場次數",
     "results_distinct_races":
         "官方賽果中有此車手紀錄的不重複場次數（同場共同駕駛計一場；資料源未收錄未通過排位的報名）",
+    "constructor_results_position_text_eq_1_distinct_races":
+        "官方正賽賽果中，此車隊最終名次為第 1 的不重複分站數（共同駕駛同一台勝車計一場）",
+    "constructor_results_position_text_in_123_distinct_cars":
+        "官方正賽賽果中，此車隊最終名次為前三的完賽車次（同場兩台車上台計 2 次）",
+    "constructor_results_distinct_races":
+        "官方正賽賽果中有此車隊紀錄的不重複場次數",
 }
 
 # Phase 0 已建頁的實體（站內連結只指向存在的頁；沒建頁的實體顯示為不可點的灰 chip）
 # slug 走 M0 append-only 註冊表（data/f1/slugs.json）——這 8 個正是該表的 seed。
-HAS_PAGE = ({f"drivers/{rc.driver_slug(d)}" for d in DRIVERS}
-            | {f"constructors/{rc.constructor_slug(c)}" for c in CONSTRUCTORS}
-            | {"seasons/2002"})
+HAS_PAGE = {f"drivers/{rc.driver_slug(d)}" for d in DRIVERS} | {"seasons/2002"}
 
 
 def internal_link(path, label_html):
@@ -303,144 +306,6 @@ def write_page(path_parts, title, desc, jsonld, body):
     return canonical
 
 
-# 車手頁（/drivers/**）M5 起一律歸 gen-racing-drivers.py 所有（索引＋35 位歷代冠軍頁）；
-# phase0 只管車隊頁（/constructors/**）。原 gen_driver() 已移除，避免兩支都寫
-# /drivers/<slug>/index.html（後寫者贏）的歸屬權衝突（比照 M3 對 gen_season 的清理）。
-# DRIVERS / ZH 常數保留：gen-racing-seasons 用 p0.DRIVERS 決定 seed 子頁範圍、
-# gen-racing-drivers 用 p0.ZH 取 4 位 seed 的已核准全名譯名。
-
-
-# ---------- 車隊頁 ----------
-
-def constructor_meta(cid):
-    """從任一季的官方車隊積分榜取名稱與國籍（資料源對車隊只給這兩個欄位）。查無 → 回 id 原文。"""
-    for p in sorted((RAW / "standings").glob("constructor-*.json")):
-        for row in _load(p).get("ConstructorStandings", []):
-            c = row.get("Constructor", {})
-            if c.get("constructorId") == cid:
-                return {"name": c.get("name", cid), "nationality": c.get("nationality", "")}
-    return {"name": cid, "nationality": ""}
-
-
-def constructor_summary(cid):
-    """索引頁／車隊頁共用的摘要（發布欄位只有車隊世界冠軍；其餘 unavailable_card 誠實標未發布）。"""
-    champ = fs.constructor_championships(cid)
-    meta = constructor_meta(cid)
-    return {"cid": cid, "slug": rc.constructor_slug(cid), "zh": ZH.get(cid),
-            "name": meta["name"], "nationality": meta["nationality"],
-            "champ": champ, "champ_years": [d["season"] for d in champ["detail"]],
-            "championships": champ["value"]}
-
-
-def gen_constructor(cid):
-    s = constructor_summary(cid)
-    champ, champ_years = s["champ"], s["champ_years"]
-    zh, name, slug = s["zh"], s["name"], s["slug"]
-    url = f"{BASE}/constructors/{slug}/"
-
-    yrs = sorted(champ_years)
-    tl = (career_timeline(list(range(yrs[0], yrs[-1] + 1)), champ_years,
-                          _season_href("teams", cid, slug)) if yrs else "")
-
-    hero = f"""<div class="ent-hero">
-  <p class="ent-kicker">車隊檔案 · Constructor</p>
-  <h1 class="ent-h1">{pair(zh, name)}</h1>
-</div>"""
-    body = f"""{hero}
-<div class="stat-grid">{stat_card("車隊世界冠軍", champ, unit=" 次")}
-  {unavailable_card("分站冠軍", "第一階段先做冠軍數，車隊分站勝場待逐場聚合後補")}
-  {unavailable_card("成立年份 / 引擎供應", "資料源只給名稱與國籍，這些要另找來源（維基/官方）")}</div>
-<h2 class="sec-title">奪冠賽季</h2>
-<p class="note">{len(champ_years)} 座車隊冠軍：{esc('、'.join(map(str,champ_years))) or '—'}</p>
-{tl}
-"""
-    ld = rc.graph_ld([rc.org_node(), rc.website_node(),
-                      rc.breadcrumb_node([("首頁", BASE + "/"),
-                                          ("車隊", BASE + "/constructors/"), (zh or name, url)]),
-                      {"@type": "SportsTeam", "name": zh or name, "alternateName": name, "url": url}])
-    write_page(["constructors", slug], f"{zh or name}車隊冠軍史",
-               f"{zh or name}的車隊世界冠軍與奪冠賽季。", ld, body)
-    print(f"  ✓ /constructors/{slug}/　{champ['value']} 座車隊冠軍")
-    return s
-
-
-# ---------- /constructors/ 索引（車隊區的入口；比照 /drivers/ 索引的結構與樣式） ----------
-# 沒有這頁時 /constructors/ 是「有內頁、沒入口」的孤兒區：只能靠車手頁的效力車隊 chip 進去，
-# 自己也進不了 sitemap。結構、CSS class（ent-hero / std-tbl / note）與 JSON-LD 形狀一律沿用
-# /drivers/ 索引，不另開一套。
-
-def _index_rows():
-    rows = [constructor_summary(cid) for cid in CONSTRUCTORS]
-    # 決定性排序：冠軍多 → constructorId（穩定 tiebreak）
-    rows.sort(key=lambda s: (-s["championships"], s["cid"]))
-    return rows
-
-
-def render_index():
-    rows = _index_rows()
-    trs = []
-    for i, s in enumerate(rows, 1):
-        years = "、".join(str(y) for y in s["champ_years"]) or "—"
-        trs.append(f"""<tr>
-  <td class="mono rk">{i}</td>
-  <td><a href="/constructors/{s['slug']}/">{pair(s['zh'], s['name'])}</a></td>
-  <td>{esc(s['nationality'])}</td>
-  <td class="mono">{s['championships']}</td>
-  <td class="mono">{esc(years)}</td>
-</tr>""")
-    table = f"""<table class="std-tbl">
-<thead><tr><th>#</th><th>車隊</th><th>國籍</th><th>車隊世界冠軍</th><th>奪冠賽季</th></tr></thead>
-<tbody>{"".join(trs)}</tbody>
-</table>"""
-
-    body = f"""<div class="ent-hero">
-  <p class="ent-kicker">車隊名錄 · Constructors</p>
-  <h1 class="ent-h1">車隊檔案<span class="zh-en">　Constructors</span></h1>
-  <p class="ident"><span>目前整理了 <span class="mono">{len(rows)}</span> 支車隊的檔案。每個數字皆可回溯官方原始資料。</span></p>
-</div>
-{table}
-<p class="note">這份清單是<b>本站目前整理過的車隊</b>，不是完整的車隊列表——先做奪冠次數最多的這幾支，其餘之後分批補上。
-點車隊名進入該隊檔案頁，冠軍數旁的「怎麼算的」可展開，逐季列出來源賽季與當年積分、勝場。
-車隊分站冠軍、成立年份與引擎供應<b>暫不發布</b>：資料源對車隊只提供名稱與國籍，這些欄位得另找來源，寧缺勿濫。
-譯名採已核准來源，無定版譯名者暫以原文呈現，不自譯。</p>"""
-
-    items = [{"@type": "ListItem", "position": i,
-              "url": f"{BASE}/constructors/{s['slug']}/",
-              "name": s["zh"] or s["name"]}
-             for i, s in enumerate(rows, 1)]
-    ld = rc.graph_ld([rc.org_node(), rc.website_node(),
-                      rc.breadcrumb_node([("首頁", BASE + "/"), ("車隊", BASE + "/constructors/")]),
-                      {"@type": "ItemList", "name": "本站整理的車隊檔案",
-                       "numberOfItems": len(items), "itemListElement": items}])
-    return write_page(["constructors"], "車隊檔案索引",
-                      f"本站目前整理的 {len(rows)} 支一級方程式車隊檔案：車隊世界冠軍與奪冠賽季，"
-                      "每個數字可回溯官方來源；其餘車隊之後分批補上。",
-                      ld, body)
-
-
-# 賽季頁（/seasons/**）v3 起一律歸 gen-racing-seasons.py 所有（總覽頁＋車手/車隊子頁）；
-# phase0 只管實體頁（/drivers/、/constructors/）。原 gen_season() 已移除，避免兩支都寫
-# /seasons/<year>/index.html（後寫者贏）的歸屬權衝突。
-
-
-def main(publish=False):
-    # 車手頁已移交 gen-racing-drivers.py（M5）；phase0 只產車隊頁＋車隊索引。
-    print("車隊頁：")
-    urls = [render_index()]
-    print("  ✓ /constructors/")
-    for c in CONSTRUCTORS:
-        gen_constructor(c)
-        urls.append(f"{BASE}/constructors/{rc.constructor_slug(c)}/")
-    if publish:
-        rc.write_sitemap_part("constructors", urls)
-    return urls
-
-
-if __name__ == "__main__":
-    import argparse
-    ap = argparse.ArgumentParser(description="產出 /constructors/ 索引與 4 個車隊頁（Phase 0 探針）。")
-    # 與 gen-racing-seasons / -drivers 同慣例：預設不寫 sitemap part（頁面未公開前不進 sitemap）。
-    # 週更管線走 regen-encyclopedia.py --publish，不直接跑本檔。
-    ap.add_argument("--publish", action="store_true",
-                    help="公開時才加：寫 data/sitemap-parts/constructors.txt（預設不寫）")
-    main(publish=ap.parse_args().publish)
+# /drivers/** 自 M5 起歸 gen-racing-drivers.py；/constructors/** 自本批起歸
+# gen-racing-constructors.py。phase0 僅保留 ZH／DRIVERS legacy seed 與共用視覺元件，
+# 不再有任何頁面 owner 職責，避免同一路徑後寫者覆蓋前寫者。

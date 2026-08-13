@@ -36,6 +36,7 @@ def _load(name, fname):
 
 dr = _load("gen_racing_drivers", "gen-racing-drivers.py")
 rc, fs, gs, p0 = dr.rc, dr.fs, dr.gs, dr.p0
+cg = _load("gen_racing_constructors_for_heading_tests", "gen-racing-constructors.py")
 
 TAG_RE = re.compile(r"<(h[1-6])\b[^>]*>(.*?)</\1>", re.S)
 
@@ -61,8 +62,8 @@ class _Rendered(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = pathlib.Path(tempfile.mkdtemp())
-        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB)
-        rc.PUB = gs.PUB = p0.PUB = dr.PUB = cls.tmp
+        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB, cg.PUB)
+        rc.PUB = gs.PUB = p0.PUB = dr.PUB = cg.PUB = cls.tmp
         try:
             gs.render_index(set(range(gs.FIRST_YEAR, gs.LAST_YEAR + 1)))
             urls = []
@@ -73,11 +74,13 @@ class _Rendered(unittest.TestCase):
             try:
                 dr.render_index(con)
                 dr.gen_driver("michael_schumacher", con)
+                cg.render_index(con)
+                for cid in cg.CONSTRUCTOR_IDS:
+                    cg.gen_constructor(cid, con)
             finally:
                 con.close()
-            p0.main()
         finally:
-            rc.PUB, gs.PUB, p0.PUB, dr.PUB = orig
+            rc.PUB, gs.PUB, p0.PUB, dr.PUB, cg.PUB = orig
         cls.pages = {str(p.relative_to(cls.tmp)): p.read_text(encoding="utf-8")
                      for p in cls.tmp.rglob("index.html")}
 
@@ -121,7 +124,7 @@ class HeadingHierarchyTests(_Rendered):
             "seasons/2002/teams/ferrari/index.html": {"車手貢獻拆解", "車隊逐站積分", "賽季速寫", "退賽紀錄"},
             "seasons/2002/rounds/1/index.html": {"頒獎台", "賽況速寫", "正賽完整名次", "退賽名單"},
             "drivers/michael-schumacher/index.html": {"生涯時間軸", "效力車隊", "方法說明"},
-            "constructors/ferrari/index.html": {"奪冠賽季"},
+            "constructors/ferrari/index.html": {"參賽時間軸"},
         }
         for rel, want in expect.items():
             self.assertIn(rel, self.pages, f"樣本頁沒渲染出來：{rel}")
