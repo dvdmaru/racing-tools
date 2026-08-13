@@ -1,0 +1,43 @@
+{
+ "_comment": "1958 賽季導言 facts pack。1958 是國際汽聯首度設立世界車隊冠軍的賽季（Vanwall 奪首座頭銜），driver_standings 顯示 Hawthorn 以 42:41 一分之差擊敗 Moss 奪得車手冠軍，卻全季僅 1 勝（Moss 反倒拿下較多分站勝利，但未列為 verified claim——本 pack 未替 Moss 的勝場數建立 kind，故導言正文不得為該數字掛阿拉伯數字，只能寫『較多』）。Hawthorn 奪冠後隨即退役、Musso 與 Collins 於該季賽事中喪生，皆屬歷史背景敘述，不含被對帳的阿拉伯數字。",
+ "season": 1958,
+ "claims": [
+  {
+   "kind": "season_exists",
+   "text": "1958 賽季",
+   "value": 1958,
+   "verified": true,
+   "source": "sqlite: SELECT 1 FROM seasons WHERE year=1958"
+  },
+  {
+   "kind": "champion_wins",
+   "driver": "hawthorn",
+   "text": "霍索恩全季只贏下 1 場正賽",
+   "value": 1,
+   "verified": true,
+   "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1958 AND position=1"
+  },
+  {
+   "kind": "champion_points",
+   "driver": "hawthorn",
+   "text": "以 42 分險勝",
+   "value": 42,
+   "verified": true,
+   "source": "sqlite: SELECT points FROM driver_standings WHERE season=1958 AND position=1"
+  },
+  {
+   "kind": "runner_up_points",
+   "driver": "moss",
+   "text": "Stirling Moss 的 41 分",
+   "value": 41,
+   "verified": true,
+   "source": "sqlite: SELECT points FROM driver_standings WHERE season=1958 AND position=2"
+  }
+ ],
+ "external_history": [
+  "范沃爾車隊在這一季拿下史上首座世界車隊冠軍，國際汽聯自此季起設立車隊冠軍制度。",
+  "霍索恩奪冠後隨即退役。",
+  "Moss 該季勝場數較多，仍屈居第二（正文刻意不掛勝場數字）。",
+  "Luigi Musso 與 Peter Collins 在這一季的賽事中喪生（事實層背景，不渲染）。"
+ ]
+}

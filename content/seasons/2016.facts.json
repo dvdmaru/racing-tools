@@ -1,0 +1,13 @@
+{
+  "_comment": "2016 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字都必須落在本檔 verified claims 的值集合內。external-history 句屬常識性歷史背景、不進機械對帳。",
+  "season": 2016,
+  "claims": [
+    {"kind": "season_exists", "text": "2016 賽季", "value": 2016, "verified": true,
+     "source": "sqlite: SELECT 1 FROM seasons WHERE year=2016"},
+    {"kind": "champion_points", "driver": "rosberg", "text": "羅斯堡以 385 分收下冠軍", "value": 385, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2016 AND position=1"},
+    {"kind": "runner_up_points", "driver": "hamilton", "text": "第二名隊友漢米爾頓 380 分", "value": 380, "verified": true,
+     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2016 AND position=2"}
+  ],
+  "external_history": ["羅斯堡封王數日後便宣布退役，結束了自己的一級方程式生涯"]
+}
