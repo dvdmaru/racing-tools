@@ -25,8 +25,10 @@ def _load_lib(name, fname):
 
 rc = _load_lib("racinglib", "racinglib.py")
 fs = _load_lib("f1stats", "f1stats.py")
+so = _load_lib("standings_overrides_phase0", "standings_overrides.py")
 
 RAW = ROOT / "data" / "f1" / "raw"
+STANDINGS_OVERRIDES = ROOT / "data" / "f1" / "standings-overrides.json"
 PUB = ROOT / "public-racing"
 BASE = rc.BASE
 esc = html_lib.escape
@@ -67,6 +69,7 @@ FORMULA_ZH = {
 # Phase 0 已建頁的實體（站內連結只指向存在的頁；沒建頁的實體顯示為不可點的灰 chip）
 # slug 走 M0 append-only 註冊表（data/f1/slugs.json）——這 8 個正是該表的 seed。
 HAS_PAGE = {f"drivers/{rc.driver_slug(d)}" for d in DRIVERS} | {"seasons/2002"}
+_ADJUDICATED_OVERRIDES = so.load_override_rows(STANDINGS_OVERRIDES)
 
 
 def internal_link(path, label_html):
@@ -92,19 +95,17 @@ def _overview_years():
 
 
 def _driver_in_season(did, year):
-    p = RAW / "standings" / f"driver-{year}.json"
-    if not p.exists():
-        return False
     return any(r.get("Driver", {}).get("driverId") == did
-               for r in _load(p).get("DriverStandings", []))
+               for r in so.load_adjudicated_standings(
+                   "driver_standings", year, raw_dir=RAW,
+                   overrides=_ADJUDICATED_OVERRIDES))
 
 
 def _constructor_in_season(cid, year):
-    p = RAW / "standings" / f"constructor-{year}.json"
-    if not p.exists():
-        return False
     return any(r.get("Constructor", {}).get("constructorId") == cid
-               for r in _load(p).get("ConstructorStandings", []))
+               for r in so.load_adjudicated_standings(
+                   "constructor_standings", year, raw_dir=RAW,
+                   overrides=_ADJUDICATED_OVERRIDES))
 
 
 def _season_href(kind, entity_id, slug):

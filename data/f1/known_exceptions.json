@@ -162,12 +162,12 @@
         "season": 1955
       },
       "status": "approved",
-      "reason": "1955 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fangio 毛 41.0 / 官方 40.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
+      "reason": "1955 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：fangio 毛 41.0 / 官方 40.0。另 2026-08-13 standings 覆寫裁決後，farina／trintignant 兩列出現 ⅓ 分數精度差（raw results 存 2 位小數 1.33，覆寫採官方精確分數 x.333…，差 -0.0033）＝精度差非資料錯。此機制 1950–1990 適用、1991 起廢除。",
       "evidence": "data/f1/raw/standings/driver-1955.json 官方積分 vs data/f1/raw/results/1955-*.json 逐場積分加總",
-      "fingerprint": "5da7211dd076f20389674620d2ab9b0462bfde7982b856715825f09af6b0c824",
+      "fingerprint": "af2701a929c7f741713182a04864bc67295bcb40ad1cbc0123a9f1e6f3ac1459",
       "approved_by": "charlie",
       "approved_date": "2026-07-21",
-      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）；2026-08-13 成員集依覆寫裁決更新重封（Charlie「照建議裁決」之機械後果）"
     },
     {
       "id": "EX-013",
@@ -319,34 +319,6 @@
       "reason": "1966 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：jack_brabham 毛 45.0 / 官方 42.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
       "evidence": "data/f1/raw/standings/driver-1966.json 官方積分 vs data/f1/raw/results/1966-*.json 逐場積分加總",
       "fingerprint": "c5d17ae6a681896faaf8d1bc94c5b7a252c4a7f4884ea126002a3fcf270b73d4",
-      "approved_by": "charlie",
-      "approved_date": "2026-07-21",
-      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
-    },
-    {
-      "id": "EX-024",
-      "invariant": "I6",
-      "scope": {
-        "season": 1976
-      },
-      "status": "approved",
-      "reason": "1976 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：hunt 毛 69.0 / 官方 66.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
-      "evidence": "data/f1/raw/standings/driver-1976.json 官方積分 vs data/f1/raw/results/1976-*.json 逐場積分加總",
-      "fingerprint": "3ec2e2bf9e64f91dcc1c0fbc1dc4c181d7f77076e2aca0f1ef3c44baf796023a",
-      "approved_by": "charlie",
-      "approved_date": "2026-07-21",
-      "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
-    },
-    {
-      "id": "EX-025",
-      "invariant": "I6",
-      "scope": {
-        "season": 1977
-      },
-      "status": "approved",
-      "reason": "1977 年採 dropped scores（best-N 記分制，只計最佳數場）：車手毛積分（逐場加總）高於官方冠軍積分。例：lauda 毛 72.0 / 官方 70.0。此機制 1950–1990 適用、1991 起廢除；本站不重建各年扣分規則（計畫 §4.6：寫不出精確定義的欄位不上線），故此差異為預期。",
-      "evidence": "data/f1/raw/standings/driver-1977.json 官方積分 vs data/f1/raw/results/1977-*.json 逐場積分加總",
-      "fingerprint": "d44ff2cfe10bbd5266e60c14332d9c929ed9d49b649aeecc50d46158449038ce",
       "approved_by": "charlie",
       "approved_date": "2026-07-21",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
@@ -534,6 +506,20 @@
       "approved_by": "charlie",
       "approved_date": "2026-07-21",
       "approval_note": "裁決包批次核准（A-D 群，Fable 預審史實錨點後 Charlie 具名核准）"
+    },
+    {
+      "id": "EX-040",
+      "invariant": "I6",
+      "scope": {
+        "season": 1967
+      },
+      "status": "approved",
+      "reason": "1967 年採 dropped scores（前 6 站 best-5＋後 5 站 best-4）。jolpica 原始 standings 未套捨分（jack_brabham 存毛分 48），2026-08-13 覆寫裁決修正為官方 46 後，閉合測試出現合法捨分差 2 分（後半段 [6,9,6,2,6] best-4=27 vs 毛 29，conductor 獨立重算驗證）。",
+      "evidence": "data/f1/standings-overrides.json（1967 jack_brabham 48→46，維基 revid 綁定）vs data/f1/raw/results/1967-*.json 逐場加總＋data/f1/scoring-rules.json 1967 規則",
+      "fingerprint": "a7b5c0975cb382117c2b696d753cd00e90d7c40d2498599f7e231276c42d0bcd",
+      "approved_by": "charlie",
+      "approved_date": "2026-08-13",
+      "approval_note": "2026-08-13 standings 覆寫裁決（照建議裁決）之機械後果，conductor 重算驗證後代錄"
     }
   ]
 }

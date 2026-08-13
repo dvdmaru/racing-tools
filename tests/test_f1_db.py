@@ -346,7 +346,8 @@ class InvariantMechanismTests(unittest.TestCase):
         self.assertEqual(c["I8"], 0)    # status.json 獨立查詢路徑一致
         self.assertEqual(c["I11"], 0)   # 零孤兒外鍵
         self.assertEqual(c["I2"], 3)    # shared drives
-        self.assertEqual(c["I6"], 27)   # dropped scores 1950–1990
+        # 2026-08-13 Charlie 裁決：EX-024/EX-025 修正後過期移除，新增 1967 的 EX-040，淨值 26。
+        self.assertEqual(c["I6"], 26)   # legitimate dropped-score seasons after ruling
         self.assertEqual(c["I9"], 3)    # Indy 500 1958–60
 
 
