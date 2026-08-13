@@ -1,0 +1,12 @@
+{
+  "_comment": "1976 賽季導言 facts pack。⚠️查核桌覆核發現 driver_standings 表（上游 jolpica）的 1976 冠亞軍積分值有誤：表內為 hunt 66／lauda 64，但逐站 results 加總與官方史實均為 hunt 69／lauda 68（差 1 分，非 2 分）。check-season-intros.py 的 champion_points／runner_up_points oracle 直接讀同一張錯表，無法用來驗證正確值，故本篇正文**不引用任何一方的冠軍積分數字**（含差距），champion_points／runner_up_points 兩條 claim 已移除，不留 verified:false 的錯誤數字。此註記供後續資料修正批次（修正 driver_standings 1976 列或改上游 jolpica ingest）引用：正確值 hunt=69、lauda=68。勞達紐柏林重傷缺賽與日本站主動退賽為敘事性事實句、不帶阿拉伯數字（缺賽場數不寫，因無 verified claim 撐得住），故不進機械對帳。1976 R16 日本站分站冠軍實為 mario_andretti，hunt 該站 position_text='3'（sqlite: SELECT position_text FROM results WHERE season=1976 AND round=16 AND driver_id='hunt' → '3'）；正文寫『跑到第三名，積分已足以封王』，『第三』用中文數字不掛阿拉伯數字 claim，避免誤讀成亨特贏下日本站分站冠軍。",
+  "season": 1976,
+  "claims": [
+    {"kind": "season_exists", "text": "1976 賽季", "value": 1976, "verified": true,
+     "source": "sqlite: SELECT 1 FROM seasons WHERE year=1976"}
+  ],
+  "external_history": [
+    "勞達受傷的紐柏林北賽道其後因安全疑慮從一級方程式賽曆除名。",
+    "日本站決賽當日暴雨連連，起跑一度延後，多位車手曾對安全疑慮表達顧慮。"
+  ]
+}
