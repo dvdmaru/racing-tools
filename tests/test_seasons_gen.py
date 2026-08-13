@@ -190,6 +190,16 @@ class ChampionshipRaceTests(unittest.TestCase):
         self.assertIn("champ-chart", chart)
         self.assertIn("#d63a2f", chart)   # 冠軍紅粗線
 
+    def test_1976_adjudicated_endpoints_restore_chart_without_mutating_l0(self):
+        raw = g._load_json(g.RAW / "standings" / "driver-1976.json")["DriverStandings"]
+        self.assertEqual([r["points"] for r in raw[:3]], ["66", "64", "48"])
+        adjudicated = g._driver_standings(1976)
+        self.assertEqual([r["points"] for r in adjudicated[:3]], ["69", "68", "49"])
+        leaders, ok = g.cumulative_leaders(1976)
+        self.assertTrue(ok)
+        self.assertEqual([l["final"] for l in leaders], [69.0, 68.0, 49.0])
+        self.assertIn("<polyline", g._championship_race_chart(1976))
+
     def test_dropped_scores_gate_hides_whole_chart(self):
         # 合成 dropped-scores：把榜首官方積分灌水，使逐站累計終點對不上 → 整張不畫、出誠實 note
         orig = g._driver_standings
@@ -731,6 +741,9 @@ class InProgressSeasonRenderTests(unittest.TestCase):
 
     def test_sprint_season_chart_gate_passes(self):
         # sprint 季（含 sprint 分）累計圖終點對得上目前官方積分 → 圖畫得出來
+        raw = g._load_json(g.RAW / "standings" / "driver-2026.json")["DriverStandings"]
+        self.assertEqual(g._driver_standings(2026), raw,
+                         "無 2026 裁決時，共用 loader 必須保持週更 standings byte-equivalent 結構")
         leaders, ok = g.cumulative_leaders(2026)
         self.assertTrue(ok, "2026 含 sprint 分，累計圖 gate 應通過")
         self.assertIn("<polyline", self.html)

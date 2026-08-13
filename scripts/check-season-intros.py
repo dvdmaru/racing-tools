@@ -12,6 +12,9 @@
       sqlite 查詢對 data/f1/db.sqlite **重算一次**，值對不上 → 記一筆錯。腳本不背書 pack 的
       claim value，一律以資料庫重查為準。
 
+已知限制：第 (1) 層只做「值集合成員」檢查，無法把正文中的同值 token 綁到特定語意位置；
+這是刻意文件化的限制，不應把全綠解讀為語意已核實。內容仍須走對抗式人工查核。
+
   external_history 句（常識性歷史背景，如「捨分制」「制度改組」）不進機械對帳；設計上這些句子
   不得攜帶被對帳的阿拉伯數字（若攜帶會在 (1) 被抓為裸奔，逼你改寫或補 verified claim）。
 
@@ -114,17 +117,31 @@ def verify_claim(con, claim):
         ok, actual = eq(got)
         return ok, actual, "MAX(races.round)"
     if kind == "champion_points":
-        got = _q1(con, "SELECT points FROM driver_standings WHERE season=? AND position=1", (yr,))
+        row = con.execute("SELECT points, driver_id FROM driver_standings "
+                          "WHERE season=? AND position=1", (yr,)).fetchone()
+        got = row[0] if row else None
         ok, actual = eq(got)
-        return ok, actual, "driver_standings P1 points"
+        driver_ok = not claim.get("driver") or (row and row[1] == claim["driver"])
+        return ok and driver_ok, {"value": actual, "driver": row[1] if row else None}, "driver_standings P1 points+driver"
     if kind == "runner_up_points":
-        got = _q1(con, "SELECT points FROM driver_standings WHERE season=? AND position=2", (yr,))
+        row = con.execute("SELECT points, driver_id FROM driver_standings "
+                          "WHERE season=? AND position=2", (yr,)).fetchone()
+        got = row[0] if row else None
         ok, actual = eq(got)
-        return ok, actual, "driver_standings P2 points"
+        driver_ok = not claim.get("driver") or (row and row[1] == claim["driver"])
+        return ok and driver_ok, {"value": actual, "driver": row[1] if row else None}, "driver_standings P2 points+driver"
     if kind == "champion_wins":
-        got = _q1(con, "SELECT wins FROM driver_standings WHERE season=? AND position=1", (yr,))
+        row = con.execute("SELECT wins, driver_id FROM driver_standings "
+                          "WHERE season=? AND position=1", (yr,)).fetchone()
+        got = row[0] if row else None
         ok, actual = eq(got)
-        return ok, actual, "driver_standings P1 wins"
+        driver_ok = not claim.get("driver") or (row and row[1] == claim["driver"])
+        return ok and driver_ok, {"value": actual, "driver": row[1] if row else None}, "driver_standings P1 wins+driver"
+    if kind == "driver_position":
+        got = _q1(con, "SELECT position FROM driver_standings WHERE season=? AND driver_id=?",
+                  (yr, claim["driver"]))
+        ok, actual = eq(got)
+        return ok, actual, f"driver_standings position {claim['driver']}"
     if kind == "driver_podiums":
         did = claim["driver"]
         got = _q1(con, "SELECT COUNT(*) FROM results WHERE season=? AND driver_id=? "

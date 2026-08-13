@@ -63,6 +63,7 @@ def _load(name, fname):
 
 rc = _load("racinglib", "racinglib.py")
 fs = _load("f1stats", "f1stats.py")
+so = _load("standings_overrides_generator", "standings_overrides.py")
 # Phase 0 當視覺元件庫用：import 只載模組（main 在 __main__ 下不執行），不寫任何檔、不改 phase0
 p0 = _load("gen_racing_entities_phase0", "gen-racing-entities-phase0.py")
 # 分站頁的「相關報導」＝文章互鏈的反向端；規則層在 interlink.py（與正向共用同一張判定表）。
@@ -70,6 +71,7 @@ p0 = _load("gen_racing_entities_phase0", "gen-racing-entities-phase0.py")
 il = _load("interlink", "interlink.py")
 
 RAW = ROOT / "data" / "f1" / "raw"
+STANDINGS_OVERRIDES = ROOT / "data" / "f1" / "standings-overrides.json"
 DB = ROOT / "data" / "f1" / "db.sqlite"
 RETIREMENT_CATEGORIES = ROOT / "data" / "f1" / "retirement-categories.json"
 CONSTRUCTOR_REPORT = ROOT / "data" / "f1" / "constructor-crosscheck-report.json"
@@ -80,6 +82,7 @@ esc = html_lib.escape
 FIRST_YEAR, LAST_YEAR = 1950, rc.SEASON  # 1950–2026
 # 車隊賽季子頁 roster 的唯一來源；不再讀 phase0.CONSTRUCTORS。
 CONSTRUCTOR_IDS = json.loads(CONSTRUCTOR_REPORT.read_text(encoding="utf-8"))["coverage"]["expected_constructor_ids"]
+_ADJUDICATED_OVERRIDES = so.load_override_rows(STANDINGS_OVERRIDES)
 
 # ---------- 譯名解析（誠實 fallback；phase0 8 實體 overlay 在 racinglib 表之上） ----------
 _P0_DRIVER_ZH = {k: v for k, v in p0.ZH.items()
@@ -122,14 +125,18 @@ def _load_json(p):
     return p0._load(p)
 
 
+def _standings_document(table, year):
+    """L0 唯讀載入後，在記憶體套用 Charlie 裁決；與 build-f1-db 共用同一 apply 核心。"""
+    return so.load_adjudicated_standings_document(
+        table, year, raw_dir=RAW, overrides=_ADJUDICATED_OVERRIDES)
+
+
 def _driver_standings(year):
-    p = RAW / "standings" / f"driver-{year}.json"
-    return _load_json(p).get("DriverStandings", []) if p.exists() else []
+    return _standings_document("driver_standings", year).get("DriverStandings", [])
 
 
 def _constructor_standings(year):
-    p = RAW / "standings" / f"constructor-{year}.json"
-    return _load_json(p).get("ConstructorStandings", []) if p.exists() else []
+    return _standings_document("constructor_standings", year).get("ConstructorStandings", [])
 
 
 def _schedule(year):
@@ -139,11 +146,9 @@ def _schedule(year):
 
 def _season_rounds(year):
     """分站數 = standings 檔的 round 欄（該季最終站次，SOURCED）；抓不到退回 schedule 長度。"""
-    p = RAW / "standings" / f"driver-{year}.json"
-    if p.exists():
-        r = _load_json(p).get("round")
-        if r:
-            return int(r)
+    r = _standings_document("driver_standings", year).get("round")
+    if r:
+        return int(r)
     return len(_schedule(year))
 
 
@@ -1211,8 +1216,8 @@ def _gap_details(year, champ_pts, second_pts, gap, champ_name, second_name, in_p
   <summary>怎麼算的</summary>
   <div class="how-body">
     <ol class="detail-list">
-      <li title="來源檔：data/f1/raw/standings/driver-{year}.json#pos1">{lead_lbl} {esc(champ_name)}：<b>{_fmt(champ_pts)}</b> 分（{board}榜首）</li>
-      <li title="來源檔：data/f1/raw/standings/driver-{year}.json#pos2">第二名 {esc(second_name)}：<b>{_fmt(second_pts)}</b> 分（同榜第 2 名）</li>
+      <li title="來源：L1 standings（L0 raw＋Charlie 裁決覆寫）#pos1">{lead_lbl} {esc(champ_name)}：<b>{_fmt(champ_pts)}</b> 分（{board}榜首）</li>
+      <li title="來源：L1 standings（L0 raw＋Charlie 裁決覆寫）#pos2">第二名 {esc(second_name)}：<b>{_fmt(second_pts)}</b> 分（同榜第 2 名）</li>
     </ol>
     <p class="prov">分差 ＝ {_fmt(champ_pts)} − {_fmt(second_pts)} ＝ <b>{_fmt(gap)}</b>。兩個數字皆直接取自{board}，本站只做減法。</p>
   </div>

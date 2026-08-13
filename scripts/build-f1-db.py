@@ -24,6 +24,7 @@
 """
 import argparse
 import glob
+import importlib.util
 import json
 import os
 import pathlib
@@ -33,6 +34,18 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "f1" / "raw"
 DEFAULT_DB = ROOT / "data" / "f1" / "db.sqlite"
+OVERRIDES = ROOT / "data" / "f1" / "standings-overrides.json"
+
+
+def _load_override_lib():
+    spec = importlib.util.spec_from_file_location(
+        "standings_overrides_shared", ROOT / "scripts" / "standings_overrides.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+standings_overrides = _load_override_lib()
 
 
 # ---------------------------------------------------------------------------
@@ -325,6 +338,17 @@ def _fill_constructor_standings(cur):
     cur.executemany("INSERT INTO constructor_standings VALUES (?,?,?,?,?,?)", rows)
 
 
+def apply_standings_overrides(cur, overrides, raw_dir=RAW, raw_lookup=None):
+    """相容入口；實作與 JSON generator 共用 standings_overrides.py。"""
+    return standings_overrides.apply_standings_overrides(
+        cur, overrides, raw_dir=raw_dir, raw_lookup=raw_lookup)
+
+
+def _apply_standings_overrides(cur, path=OVERRIDES):
+    rows = standings_overrides.load_override_rows(path)
+    return apply_standings_overrides(cur, rows)
+
+
 def build(db_path):
     db_path = pathlib.Path(db_path)
     if db_path.exists():
@@ -344,6 +368,7 @@ def build(db_path):
         n_spr = _fill_race_table(cur, "sprint", "SprintResults", "sprint_results", False)
         _fill_driver_standings(cur)
         _fill_constructor_standings(cur)
+        _apply_standings_overrides(cur)
         con.commit()
         counts = {t: cur.execute(f"SELECT count(*) FROM {t}").fetchone()[0] for t in (
             "seasons", "circuits", "drivers", "constructors", "races",

@@ -31,6 +31,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 FINGERPRINTS = ROOT / "data" / "f1" / "page-fingerprints.json"
+CONSTRUCTOR_ROSTER = ROOT / "data" / "f1" / "constructor-crosscheck-report.json"
 
 
 def _load(name, fname):
@@ -64,6 +65,36 @@ def _h(obj):
     ).hexdigest()
 
 
+def _file_sha(path):
+    p = pathlib.Path(path)
+    return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
+
+
+def _season_intro_slice(year):
+    """季頁導言輸入：原始檔 sha＋目前是否通過 approved.json 綁定。"""
+    path = gs._intro_path(year)
+    actual = _file_sha(path)
+    entry = gs._load_approved().get(gs.INTRO_SLUG.format(year=year), {}) if actual else {}
+    return {"sha256": actual, "approved": bool(actual and entry.get("article_sha256") == actual)}
+
+
+def _season_override_slice(year):
+    """季頁 renderer 的非 DB 輸入：該季具名裁決。
+
+    R1 曾先用修正後 DB 算 fingerprint、但季頁仍繞回 raw，導致「指紋新、HTML 舊」。
+    只在實際有 Charlie 裁決的年份加入此 slice：受影響歷史季會失效重生，無裁決的
+    當季（2026）與其他凍結頁不白刷。
+    """
+    fields = ("table", "season", "entity_id", "field", "raw_value", "value", "by")
+    rows = [{key: item[key] for key in fields}
+            for item in gs._ADJUDICATED_OVERRIDES
+            if item.get("by") == "charlie" and int(item.get("season", -1)) == year]
+    if not rows:
+        return []
+    return {"renderer": "preserve-raw-json-type-v1",
+            "rows": sorted(rows, key=lambda row: (row["table"], row["entity_id"], row["field"]))}
+
+
 def _year_slice(con, year):
     """賽季 year 的頁面所讀的 db 切片（決定性 tuple 序列）。
 
@@ -91,6 +122,10 @@ def _year_slice(con, year):
         slc[tbl] = [tuple(r) for r in rows]
     st = con.execute("SELECT status FROM seasons WHERE year=?", (year,)).fetchone()
     slc["status"] = st[0] if st else None
+    slc["season_intro"] = _season_intro_slice(year)
+    overrides = _season_override_slice(year)
+    if overrides:
+        slc["standings_overrides"] = overrides
     return slc
 
 
@@ -112,7 +147,9 @@ def _driver_slice(con, did):
     return {"results": [tuple(r) for r in results],
             "standings": [tuple(r) for r in standings],
             "status": [tuple(r) for r in status],
-            "meta": tuple(meta) if meta else None}
+            "meta": tuple(meta) if meta else None,
+            # 車手頁 constructor chips 的可連名單來自這份 roster；其內容變更必須使頁面 stale。
+            "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER)}
 
 
 def _constructor_slice(con, cid):

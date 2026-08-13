@@ -92,6 +92,20 @@ class ReconciliationTests(unittest.TestCase):
     def test_main_returns_zero_for_real_content(self):
         self.assertEqual(chk.main([str(y) for y in YEARS]), 0)
 
+    def test_rank_claim_binds_value_to_driver(self):
+        good = {"kind": "champion_points", "value": 144, "driver": "michael_schumacher",
+                "_season": 2002}
+        bad = {**good, "driver": "barrichello"}
+        self.assertTrue(chk.verify_claim(self.con, good)[0])
+        self.assertFalse(chk.verify_claim(self.con, bad)[0])
+
+    def test_driver_position_kind_distinguishes_equal_points(self):
+        # 2007 Hamilton/Alonso 都是 109 分，但正式順位為 P2/P3。
+        hamilton = {"kind": "driver_position", "value": 2, "driver": "hamilton", "_season": 2007}
+        alonso_wrong = {"kind": "driver_position", "value": 2, "driver": "alonso", "_season": 2007}
+        self.assertTrue(chk.verify_claim(self.con, hamilton)[0])
+        self.assertFalse(chk.verify_claim(self.con, alonso_wrong)[0])
+
 
 class DefaultDenyGateTests(unittest.TestCase):
     """核准 gate：未核准不渲染且 byte-identical；合成核准後渲染；sha 不符不渲染。"""
