@@ -14,14 +14,12 @@ data/f1/page-fingerprints.json。跑時重算現況指紋 vs 上次：
   - 賽季 y：該年 results/sprint/qualifying/standings/races/status 切片 → _render_one_season(y)。
     當季（有新賽果）→ 指紋變 → 總覽＋seed 子頁＋（新）分站頁全部重生；歷史季指紋恆定 → 跳過。
   - 車手 did：該人 results＋driver_standings＋所涉賽季 status 切片 → gen_driver(did)。
-  - 車隊 cid：該隊 constructor_standings 的參賽季＋冠軍季（含當年積分/勝場）＋隊名切片 →
-    p0.gen_constructor(cid)。頁面歸屬權照 M3 v3：/constructors/** 歸 phase0，本檔只負責
-    「什麼時候呼叫它」與「URL 進不進 sitemap」，不把車隊頁搬到別的生成器。
+  - 車隊 cid：該隊正賽明細＋已完成季冠軍榜＋身分欄切片 → gen-racing-constructors.py。
   - /seasons/ 索引：全年指紋的合成 → 任一年變則重生。/drivers/ 索引：雙 roster 聯集 53 人指紋的合成。
-    /constructors/ 索引：4 隊指紋的合成。
+    /constructors/ 索引：11 隊指紋＋2026 積分榜名次的合成。
 
-呼叫端（update-racing.py 的百科段）在 published 且有新資料時：先跑 dr 的前置三 gate
-（invariants／verdicts／golden as_of），過了才 selective_regen；回傳的變更頁 URL 供 IndexNow。
+呼叫端（update-racing.py 的百科段）在 published 且有新資料時：依序跑車手與車隊的前置三 gate
+（invariants／verdicts／golden as_of），全過才 selective_regen；回傳的變更頁 URL 供 IndexNow。
 """
 import argparse
 import hashlib
@@ -45,12 +43,15 @@ def _load(name, fname):
 dr = _load("gen_racing_drivers", "gen-racing-drivers.py")
 # 共用 dr 的模組圖（單一 gs/fs/rc/p0/il 實例；PUB 重導在測試裡才一致）
 gs, fs, rc, p0, il = dr.gs, dr.fs, dr.rc, dr.p0, dr.il
+cg = _load("gen_racing_constructors", "gen-racing-constructors.py")
+# constructor owner 也綁到同一份模組圖，避免測試／管線的 PUB 與資料連線分岔。
+cg.gs, cg.fs, cg.rc, cg.p0, cg.il = gs, fs, rc, p0, il
 BASE = rc.BASE
 CHAMPION_IDS = dr.CHAMPION_IDS
 ACTIVE_IDS = dr.ACTIVE_IDS
 DRIVER_IDS = dr.DRIVER_IDS
-# 車隊頁名單的單一來源＝phase0 的 CONSTRUCTORS（該檔就是 /constructors/** 的擁有者），不另硬編。
-CONSTRUCTOR_IDS = p0.CONSTRUCTORS
+# 車隊頁名單的單一來源＝canonical constructor crosscheck report。
+CONSTRUCTOR_IDS = cg.CONSTRUCTOR_IDS
 FIRST_YEAR, LAST_YEAR = gs.FIRST_YEAR, gs.LAST_YEAR
 
 
@@ -115,27 +116,23 @@ def _driver_slice(con, did):
 
 
 def _constructor_slice(con, cid):
-    """車隊 cid 的頁面所讀的 db 切片（參賽季＋冠軍季含當年積分/勝場＋隊名）。
-
-    對齊 phase0.gen_constructor 實際渲染的東西，避免無謂重生：
-      - 冠軍卡與明細＝「已完賽賽季」中名次第 1 的季，明細印該季積分與勝場 → champ
-        （進行中賽季的榜首是「目前領先」不算冠軍，故用 seasons.status 過濾，與 f1stats
-        的 _is_completed 同義；status 一翻成 completed 指紋就會變 → 換季自動重生）
-      - 生涯時間軸的年格連結要知道「該季有沒有參賽」→ seasons
-      - hero 的中英對照名稱 → name
-    刻意**不**放進行中賽季的即時積分：那會讓四個車隊頁每週被重寫一次，但頁面內容一字不變。
-    """
-    rows = con.execute(
+    """車隊頁實際讀取的正賽明細、已完成季冠軍榜、參賽季 status 與身分欄。"""
+    results = con.execute(
+        # number 參與 constructor_career_db 的頒獎台去重鍵，漏切會讓 number 修正後頁面靜默 stale。
+        "SELECT season, round, position_text, number, id FROM results "
+        "WHERE constructor_id=? ORDER BY season, round, id", (cid,)).fetchall()
+    standings = con.execute(
         "SELECT season, position, points, wins FROM constructor_standings "
         "WHERE constructor_id=? ORDER BY season", (cid,)).fetchall()
     done = dict(con.execute("SELECT year, status FROM seasons").fetchall())
-    name = con.execute(
-        "SELECT name FROM constructors WHERE constructor_id=?", (cid,)).fetchone()
+    meta = con.execute(
+        "SELECT name, nationality, url FROM constructors WHERE constructor_id=?", (cid,)).fetchone()
     return {
-        "seasons": [r[0] for r in rows],
-        "champ": [(r[0], r[2], r[3]) for r in rows
+        "results": [tuple(r) for r in results],
+        "champ": [(r[0], r[2], r[3]) for r in standings
                   if r[1] == 1 and done.get(r[0]) == "completed"],
-        "name": name[0] if name else None,
+        "status": [(year, done.get(year)) for year in sorted({r[0] for r in results})],
+        "meta": tuple(meta) if meta else None,
     }
 
 
@@ -147,8 +144,8 @@ def round_keys(round_years):
 def compute_fingerprints(con, round_years=None):
     """回全站頁群指紋：{'seasons', 'rounds', 'drivers', 'constructors', 'indices'}。
 
-    ⚠️ 車手頁／分站頁指紋＝**db 切片 ＋ 文章 mention 切片**兩塊。原本只切 db.sqlite，但這兩種
-    頁的「相關報導」讀的是 articles/：新發一篇提到某車手／某站的文章時 db 一個 byte 都沒動 →
+    ⚠️ 車手頁／分站頁／車隊頁指紋＝**db 切片 ＋ 文章 mention 切片**兩塊。原本只切 db.sqlite，
+    但這三種頁的「相關報導」讀的是 articles/：新發一篇提到實體的文章時 db 一個 byte 都沒動 →
     指紋不變 → 該頁不重生 → 相關報導區永遠停在舊狀態。這正是本站記憶裡「自動內容旁的靜默
     staleness」，所以把 mention 映射一起切進去（比照 _constructor_slice 只切「頁面真的會渲染
     的東西」）。
@@ -170,7 +167,10 @@ def compute_fingerprints(con, round_years=None):
     fp_drivers = {did: _h({"db": fp_drivers_db[did],
                            "articles": il.driver_articles_slice(did)})
                   for did in DRIVER_IDS}
-    fp_cons = {cid: _h(_constructor_slice(con, cid)) for cid in CONSTRUCTOR_IDS}
+    fp_cons_db = {cid: _h(_constructor_slice(con, cid)) for cid in CONSTRUCTOR_IDS}
+    fp_cons = {cid: _h({"db": fp_cons_db[cid],
+                        "articles": il.team_articles_slice(cid)})
+               for cid in CONSTRUCTOR_IDS}
     return {
         "seasons": fp_years,
         "rounds": fp_rounds,
@@ -182,7 +182,11 @@ def compute_fingerprints(con, round_years=None):
             # 免得發一篇文章就把索引與總覽白刷一次（內容一字不變的重寫正是指紋機制要避免的）
             "seasons": _h(sorted(fp_years.items())),
             "drivers": _h(sorted(fp_drivers_db.items())),
-            "constructors": _h(sorted(fp_cons.items())),
+            # /constructors/ 索引不渲染相關報導，維持 db-only，避免發文章時白刷索引。
+            "constructors": _h({"pages": sorted(fp_cons_db.items()),
+                                  "standings_2026": [tuple(r) for r in con.execute(
+                                      "SELECT constructor_id, position FROM constructor_standings "
+                                      "WHERE season=2026 ORDER BY constructor_id")]}),
         },
     }
 
@@ -282,11 +286,11 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
         s = dr.gen_driver(did, con)
         changed_urls.append(f"{BASE}/drivers/{s['slug']}/")
 
-    # 車隊：索引 + 逐個變動車隊（生成方仍是 phase0——歸屬權不變，只是接進選擇性重生）
+    # 車隊：索引 + 逐個變動車隊（唯一 owner＝gen-racing-constructors.py）
     if idx_cons_changed:
-        changed_urls.append(p0.render_index())
+        changed_urls.append(cg.render_index(con))
     for cid in changed_constructors:
-        s = p0.gen_constructor(cid)
+        s = cg.gen_constructor(cid, con)
         changed_urls.append(f"{BASE}/constructors/{s['slug']}/")
 
     save_fingerprints(cur, fp_path)
@@ -312,8 +316,11 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
 
 def run(full=False, publish=False, skip_gates=False, fp_path=FINGERPRINTS):
     """CLI/orchestrator 入口：跑前置三 gate（as_of golden）→ selective_regen。回 (ok, result)。"""
-    if not skip_gates and not dr.run_gates():
-        return False, None
+    if not skip_gates:
+        if not dr.run_gates():
+            return False, None
+        if not cg.run_gates():
+            return False, None
     con = fs.connect_db()
     try:
         res = selective_regen(con, full=full, publish=publish, fp_path=fp_path)

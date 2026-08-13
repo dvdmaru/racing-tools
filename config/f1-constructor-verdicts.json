@@ -1,0 +1,77 @@
+{
+ "_doc": "2026 現役 11 車隊 Wikipedia infobox diff 的具名裁決。每個 diff 必須 exact-set 對應一條；definition_differs/wiki_wrong 才能解除，ours_wrong 永不解除。by=PENDING-charlie、缺 metadata、wiki_revid 或 bound_fingerprint 不符一律 FAIL。",
+ "_schema": {
+  "key": "<constructor_id>|<field>",
+  "verdict": "ours_wrong | definition_differs | wiki_wrong",
+  "reason": "人工裁決理由",
+  "by": "裁決者；PENDING-charlie 明確表示尚未核准",
+  "date": "YYYY-MM-DD",
+  "definition_id": "data/f1/constructor-crosscheck-report.json 的公式 id",
+  "bound_ours": "裁決當下我方值",
+  "bound_wiki": "裁決當下維基值",
+  "wiki_revid": "裁決當下條目版本",
+  "bound_fingerprint": "scripts/crosscheck-constructors.py::diff_fingerprint"
+ },
+ "verdicts": [
+  {
+   "key": "mclaren|wins",
+   "verdict": "definition_differs",
+   "reason": "歷史 constructor_id 身分邊界與維基車隊／constructor 統計範圍不同；本站此批維持 canonical roster 的單一 constructor_id 口徑，身分連續性映射留待下一批，未把差值靜默併入。（2026-08-13 Charlie 全批核准）",
+   "by": "charlie",
+   "date": "2026-08-13",
+   "definition_id": "constructor_results_position_text_eq_1_distinct_races",
+   "bound_ours": 200,
+   "bound_wiki": 204,
+   "wiki_revid": 1368532587,
+   "bound_fingerprint": "934df1747e93c7dda2f1ba8376ff3e72760f28457944a45dd3748d4c1c9ea402"
+  },
+  {
+   "key": "mclaren|podiums",
+   "verdict": "definition_differs",
+   "reason": "歷史 constructor_id 身分邊界與維基車隊／constructor 統計範圍不同；本站此批維持 canonical roster 的單一 constructor_id 口徑，身分連續性映射留待下一批，未把差值靜默併入。（2026-08-13 Charlie 全批核准）",
+   "by": "charlie",
+   "date": "2026-08-13",
+   "definition_id": "constructor_results_position_text_in_123_distinct_cars",
+   "bound_ours": 547,
+   "bound_wiki": 563,
+   "wiki_revid": 1368532587,
+   "bound_fingerprint": "1115cd341df90f2e50d01f517679e5e722d043f991870b7de886d4d3c64eec3d"
+  },
+  {
+   "key": "mclaren|entries",
+   "verdict": "definition_differs",
+   "reason": "歷史 constructor_id 身分邊界與維基車隊／constructor 統計範圍不同；本站此批維持 canonical roster 的單一 constructor_id 口徑，身分連續性映射留待下一批，未把差值靜默併入。（2026-08-13 Charlie 全批核准）",
+   "by": "charlie",
+   "date": "2026-08-13",
+   "definition_id": "constructor_results_distinct_races",
+   "bound_ours": 963,
+   "bound_wiki": 1009,
+   "wiki_revid": 1368532587,
+   "bound_fingerprint": "a9c4faee47540b5a99ece435df2309cfe31fcfff3909ec05ced8fe5f7b57ef1e"
+  },
+  {
+   "key": "williams|podiums",
+   "verdict": "definition_differs",
+   "reason": "歷史 constructor_id 身分邊界與維基車隊／constructor 統計範圍不同；本站此批維持 canonical roster 的單一 constructor_id 口徑，身分連續性映射留待下一批，未把差值靜默併入。（2026-08-13 Charlie 全批核准）",
+   "by": "charlie",
+   "date": "2026-08-13",
+   "definition_id": "constructor_results_position_text_in_123_distinct_cars",
+   "bound_ours": 316,
+   "bound_wiki": 315,
+   "wiki_revid": 1366028407,
+   "bound_fingerprint": "5b1a2abe825e1e06477726db50a0cfa71e56f945728a0ca2674d621a98fe42b7"
+  },
+  {
+   "key": "williams|entries",
+   "verdict": "definition_differs",
+   "reason": "歷史 constructor_id 身分邊界與維基車隊／constructor 統計範圍不同；本站此批維持 canonical roster 的單一 constructor_id 口徑，身分連續性映射留待下一批，未把差值靜默併入。（2026-08-13 Charlie 全批核准）",
+   "by": "charlie",
+   "date": "2026-08-13",
+   "definition_id": "constructor_results_distinct_races",
+   "bound_ours": 876,
+   "bound_wiki": 862,
+   "wiki_revid": 1366028407,
+   "bound_fingerprint": "860f587a25afc2ec0c38442500976002f63a5c1cdbeb3abfd504a267d4593f4a"
+  }
+ ]
+}

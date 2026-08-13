@@ -1,0 +1,770 @@
+{
+  "generated_at": "2026-08-13T03:17:51.739745+00:00",
+  "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 constructor}} / {{Infobox F1 team}}",
+  "note": "維基是外部編纂對照路徑，不是獨立 oracle；diff 必須具名且綁定 revid 裁決",
+  "coverage": {
+    "scope": "2026 grid 的 11 個 constructor_id",
+    "expected_constructor_count": 11,
+    "expected_constructor_ids": [
+      "alpine",
+      "aston_martin",
+      "audi",
+      "cadillac",
+      "ferrari",
+      "haas",
+      "mclaren",
+      "mercedes",
+      "rb",
+      "red_bull",
+      "williams"
+    ],
+    "compared_fields": [
+      "championships(count+years)",
+      "wins",
+      "podiums",
+      "entries"
+    ],
+    "as_of": {
+      "season": 2026,
+      "round": 11
+    },
+    "f1cstat_template_revid": 1366151286,
+    "f1cstat_coverage_reductions": [],
+    "blind_spots": [
+      "Wikipedia 與 Jolpica 可能共享上游資料",
+      "歷史 team／constructor_id 身分連續性不在本批修正"
+    ]
+  },
+  "definition_registry": {
+    "count_seasons_constructor_standing_eq_1": {
+      "formula": "count(completed seasons where constructor_standings.position==1)",
+      "coverage": "1958-2026",
+      "unit": "季"
+    },
+    "constructor_results_position_text_eq_1_distinct_races": {
+      "formula": "count(distinct season-round where position_text=='1')",
+      "coverage": "1950-2026",
+      "unit": "場"
+    },
+    "constructor_results_position_text_in_123_distinct_cars": {
+      "formula": "count(distinct season-round-position_text-number where position_text in ('1','2','3'))",
+      "coverage": "1950-2026",
+      "unit": "完賽車次"
+    },
+    "constructor_results_distinct_races": {
+      "formula": "count(distinct season-round where a constructor results row exists)",
+      "coverage": "1950-2026",
+      "unit": "場",
+      "caveat": "有賽果的不重複場次；Wikipedia Races entered 可能含未起跑報名"
+    }
+  },
+  "network": {
+    "from_cache": 11,
+    "from_network": 0,
+    "f1cstat_from_cache": true,
+    "total_api_requests_this_run": 0
+  },
+  "summary": {
+    "constructors_checked": 11,
+    "diffs_total": 5,
+    "diffs_by_field": {
+      "wins": 1,
+      "podiums": 2,
+      "entries": 2
+    },
+    "diffs_by_classification": {
+      "likely_entity_scope_differs": 3,
+      "likely_definition_differs": 2
+    },
+    "f1cstat_coverage_reduction_count": 0
+  },
+  "diffs": [
+    {
+      "constructor_id": "mclaren",
+      "constructor_name": "McLaren",
+      "field": "wins",
+      "ours": 200,
+      "wiki": 204,
+      "classification": "likely_entity_scope_differs",
+      "reason": "我方依 constructor_id 的完賽車次=200，維基 constructor infobox=204；優先檢查歷史 constructor_id／team identity 邊界，不先改數字",
+      "key": "mclaren|wins",
+      "definition_id": "constructor_results_position_text_eq_1_distinct_races",
+      "wiki_revid": 1368532587
+    },
+    {
+      "constructor_id": "mclaren",
+      "constructor_name": "McLaren",
+      "field": "podiums",
+      "ours": 547,
+      "wiki": 563,
+      "classification": "likely_entity_scope_differs",
+      "reason": "我方依 constructor_id 的完賽車次=547，維基 constructor infobox=563；優先檢查歷史 constructor_id／team identity 邊界，不先改數字",
+      "key": "mclaren|podiums",
+      "definition_id": "constructor_results_position_text_in_123_distinct_cars",
+      "wiki_revid": 1368532587
+    },
+    {
+      "constructor_id": "mclaren",
+      "constructor_name": "McLaren",
+      "field": "entries",
+      "ours": 963,
+      "wiki": 1009,
+      "classification": "likely_definition_differs",
+      "reason": "我方有賽果的不重複場次=963，維基 Races entered=1009；entered 與 results-row 存在口徑差，且歷史 constructor_id 邊界可能不同",
+      "key": "mclaren|entries",
+      "definition_id": "constructor_results_distinct_races",
+      "wiki_revid": 1368532587
+    },
+    {
+      "constructor_id": "williams",
+      "constructor_name": "Williams",
+      "field": "podiums",
+      "ours": 316,
+      "wiki": 315,
+      "classification": "likely_entity_scope_differs",
+      "reason": "我方依 constructor_id 的完賽車次=316，維基 constructor infobox=315；優先檢查歷史 constructor_id／team identity 邊界，不先改數字",
+      "key": "williams|podiums",
+      "definition_id": "constructor_results_position_text_in_123_distinct_cars",
+      "wiki_revid": 1366028407
+    },
+    {
+      "constructor_id": "williams",
+      "constructor_name": "Williams",
+      "field": "entries",
+      "ours": 876,
+      "wiki": 862,
+      "classification": "likely_definition_differs",
+      "reason": "我方有賽果的不重複場次=876，維基 Races entered=862；entered 與 results-row 存在口徑差，且歷史 constructor_id 邊界可能不同",
+      "key": "williams|entries",
+      "definition_id": "constructor_results_distinct_races",
+      "wiki_revid": 1366028407
+    }
+  ],
+  "constructors": [
+    {
+      "constructor_id": "alpine",
+      "name": "Alpine F1 Team",
+      "wikipedia_title": "Alpine_F1_Team",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Alpine_F1_Team",
+      "from_cache": true,
+      "wiki_revid": 1369018801,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [],
+          "wiki": [],
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 1,
+          "wiki": 1,
+          "wiki_raw": "{{F1cstat|ALP|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "ALP"
+        },
+        "podiums": {
+          "ours": 7,
+          "wiki": 7,
+          "wiki_raw": "{{F1cstat|ALP|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "ALP"
+        },
+        "entries": {
+          "ours": 125,
+          "wiki": 125,
+          "wiki_raw": "{{F1cstat|ALP|entries}} ({{F1cstat|ALP|starts}} starts)",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "ALP"
+        }
+      }
+    },
+    {
+      "constructor_id": "aston_martin",
+      "name": "Aston Martin",
+      "wikipedia_title": "Aston_Martin_in_Formula_One",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One",
+      "from_cache": true,
+      "wiki_revid": 1368402112,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [],
+          "wiki": [],
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|AST|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "AST"
+        },
+        "podiums": {
+          "ours": 9,
+          "wiki": 9,
+          "wiki_raw": "{{F1cstat|AST|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "AST"
+        },
+        "entries": {
+          "ours": 131,
+          "wiki": 131,
+          "wiki_raw": "{{F1cstat|AST|entries}} ({{F1cstat|AST|starts}} starts)",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "AST"
+        }
+      }
+    },
+    {
+      "constructor_id": "audi",
+      "name": "Audi",
+      "wikipedia_title": "Audi_in_Formula_One",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Audi_in_Formula_One",
+      "from_cache": true,
+      "wiki_revid": 1366804956,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [],
+          "wiki": [],
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|AUD|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "AUD"
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|AUD|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "AUD"
+        },
+        "entries": {
+          "ours": 11,
+          "wiki": 11,
+          "wiki_raw": "{{F1cstat|AUD|entries}} ({{F1cstat|AUD|starts}} starts)",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "AUD"
+        }
+      }
+    },
+    {
+      "constructor_id": "cadillac",
+      "name": "Cadillac F1 Team",
+      "wikipedia_title": "Cadillac_in_Formula_One",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Cadillac_in_Formula_One",
+      "from_cache": true,
+      "wiki_revid": 1369042327,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [],
+          "wiki": [],
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|CAD|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "CAD"
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|CAD|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "CAD"
+        },
+        "entries": {
+          "ours": 11,
+          "wiki": 11,
+          "wiki_raw": "{{F1cstat|CAD|entries}} ({{F1cstat|CAD|starts}} starts)",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "CAD"
+        }
+      }
+    },
+    {
+      "constructor_id": "ferrari",
+      "name": "Ferrari",
+      "wikipedia_title": "Scuderia_Ferrari",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+      "from_cache": true,
+      "wiki_revid": 1365605183,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 constructor",
+      "fields": {
+        "championships_count": {
+          "ours": 16,
+          "wiki": 16,
+          "wiki_raw": "16 ({{F1|1961}}, {{F1|1964}}, {{F1|1975}}, {{F1|1976}}, {{F1|1977}}, {{F1|1979}}, {{F1|1982}}, {{F1|1983}}, {{F1|1999}}, {{F1|2000}}, {{F1|2001}}, {{F1|2002}}, {{F1|2003}}, {{F1|2004}}, {{F1|2007}}, {{F1|2008}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [
+            1961,
+            1964,
+            1975,
+            1976,
+            1977,
+            1979,
+            1982,
+            1983,
+            1999,
+            2000,
+            2001,
+            2002,
+            2003,
+            2004,
+            2007,
+            2008
+          ],
+          "wiki": [
+            1961,
+            1964,
+            1975,
+            1976,
+            1977,
+            1979,
+            1982,
+            1983,
+            1999,
+            2000,
+            2001,
+            2002,
+            2003,
+            2004,
+            2007,
+            2008
+          ],
+          "wiki_raw": "16 ({{F1|1961}}, {{F1|1964}}, {{F1|1975}}, {{F1|1976}}, {{F1|1977}}, {{F1|1979}}, {{F1|1982}}, {{F1|1983}}, {{F1|1999}}, {{F1|2000}}, {{F1|2001}}, {{F1|2002}}, {{F1|2003}}, {{F1|2004}}, {{F1|2007}}, {{F1|2008}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 250,
+          "wiki": 250,
+          "wiki_raw": "{{F1cstat|FER|wins}}{{Efn|name=wins constructor|Includes [[Giancarlo Baghetti]]'s win in the [[1961 French Grand Prix]] in a [[Privateer (motorsport)|privately entered]] Ferrari.}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "FER"
+        },
+        "podiums": {
+          "ours": 845,
+          "wiki": 845,
+          "wiki_raw": "{{F1cstat|FER|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "FER"
+        },
+        "entries": {
+          "ours": 1135,
+          "wiki": 1135,
+          "wiki_raw": "{{F1cstat|FER|entries}} ({{F1cstat|FER|starts}} starts{{efn|name=starts constructor|Includes the [[1950 French Grand Prix]], where the team-entered cars did not start the race but [[Peter Whitehead (racing driver)|Peter Whitehead]] in a privately entered car did.}})",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "FER"
+        }
+      }
+    },
+    {
+      "constructor_id": "haas",
+      "name": "Haas F1 Team",
+      "wikipedia_title": "Haas_F1_Team",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Haas_F1_Team",
+      "from_cache": true,
+      "wiki_revid": 1369006139,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [],
+          "wiki": [],
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|HAA|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "HAA"
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|HAA|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "HAA"
+        },
+        "entries": {
+          "ours": 225,
+          "wiki": 225,
+          "wiki_raw": "{{F1cstat|HAA|entries}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "HAA"
+        }
+      }
+    },
+    {
+      "constructor_id": "mclaren",
+      "name": "McLaren",
+      "wikipedia_title": "McLaren",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/McLaren",
+      "from_cache": true,
+      "wiki_revid": 1368532587,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 10,
+          "wiki": 10,
+          "wiki_raw": "10 ({{F1|1974}}, {{F1|1984}}, {{F1|1985}}, {{F1|1988}}, {{F1|1989}}, {{F1|1990}}, {{F1|1991}}, {{F1|1998}}, {{F1|2024}}, {{F1|2025}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [
+            1974,
+            1984,
+            1985,
+            1988,
+            1989,
+            1990,
+            1991,
+            1998,
+            2024,
+            2025
+          ],
+          "wiki": [
+            1974,
+            1984,
+            1985,
+            1988,
+            1989,
+            1990,
+            1991,
+            1998,
+            2024,
+            2025
+          ],
+          "wiki_raw": "10 ({{F1|1974}}, {{F1|1984}}, {{F1|1985}}, {{F1|1988}}, {{F1|1989}}, {{F1|1990}}, {{F1|1991}}, {{F1|1998}}, {{F1|2024}}, {{F1|2025}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 200,
+          "wiki": 204,
+          "wiki_raw": "{{F1cstat|MCL|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "MCL"
+        },
+        "podiums": {
+          "ours": 547,
+          "wiki": 563,
+          "wiki_raw": "{{F1cstat|MCL|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "MCL"
+        },
+        "entries": {
+          "ours": 963,
+          "wiki": 1009,
+          "wiki_raw": "{{F1cstat|MCL|entries}} ({{F1cstat|MCL|starts}} starts) <!-- 5 no-starts are 1966 Belgium, 1966 Netherlands, 1983 Monaco, 2005 USA, 2026 China -->",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "MCL"
+        }
+      }
+    },
+    {
+      "constructor_id": "mercedes",
+      "name": "Mercedes",
+      "wikipedia_title": "Mercedes-Benz_in_Formula_One",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One",
+      "from_cache": true,
+      "wiki_revid": 1365963843,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 8,
+          "wiki": 8,
+          "wiki_raw": "8 ({{F1|2014}}, {{F1|2015}}, {{F1|2016}}, {{F1|2017}}, {{F1|2018}}, {{F1|2019}}, {{F1|2020}}, {{F1|2021}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021
+          ],
+          "wiki": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021
+          ],
+          "wiki_raw": "8 ({{F1|2014}}, {{F1|2015}}, {{F1|2016}}, {{F1|2017}}, {{F1|2018}}, {{F1|2019}}, {{F1|2020}}, {{F1|2021}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 139,
+          "wiki": 139,
+          "wiki_raw": "{{f1cstat|MRC|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "MRC"
+        },
+        "podiums": {
+          "ours": 324,
+          "wiki": 324,
+          "wiki_raw": "{{f1cstat|MRC|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "MRC"
+        },
+        "entries": {
+          "ours": 352,
+          "wiki": 352,
+          "wiki_raw": "{{f1cstat|MRC|entries}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "MRC"
+        }
+      }
+    },
+    {
+      "constructor_id": "rb",
+      "name": "RB F1 Team",
+      "wikipedia_title": "Racing_Bulls",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Racing_Bulls",
+      "from_cache": true,
+      "wiki_revid": 1368532606,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [],
+          "wiki": [],
+          "wiki_raw": "0",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1cstat|RBT|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "RBT"
+        },
+        "podiums": {
+          "ours": 1,
+          "wiki": 1,
+          "wiki_raw": "{{F1cstat|RBT|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "RBT"
+        },
+        "entries": {
+          "ours": 59,
+          "wiki": 59,
+          "wiki_raw": "{{F1cstat|RBT|entries}} ({{F1cstat|RBT|starts}} starts)",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "RBT"
+        }
+      }
+    },
+    {
+      "constructor_id": "red_bull",
+      "name": "Red Bull",
+      "wikipedia_title": "Red_Bull_Racing",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+      "from_cache": true,
+      "wiki_revid": 1368532638,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 6,
+          "wiki": 6,
+          "wiki_raw": "6 ({{F1|2010}}, {{F1|2011}}, {{F1|2012}}, {{F1|2013}}, {{F1|2022}}, {{F1|2023}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2022,
+            2023
+          ],
+          "wiki": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2022,
+            2023
+          ],
+          "wiki_raw": "6 ({{F1|2010}}, {{F1|2011}}, {{F1|2012}}, {{F1|2013}}, {{F1|2022}}, {{F1|2023}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 130,
+          "wiki": 130,
+          "wiki_raw": "{{F1cstat|RBR|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "RBR"
+        },
+        "podiums": {
+          "ours": 301,
+          "wiki": 301,
+          "wiki_raw": "{{F1cstat|RBR|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "RBR"
+        },
+        "entries": {
+          "ours": 429,
+          "wiki": 429,
+          "wiki_raw": "{{F1cstat|RBR|entries}} ({{F1cstat|RBR|starts}} starts)",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "RBR"
+        }
+      }
+    },
+    {
+      "constructor_id": "williams",
+      "name": "Williams",
+      "wikipedia_title": "Williams_Racing",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Williams_Racing",
+      "from_cache": true,
+      "wiki_revid": 1366028407,
+      "infobox_found": true,
+      "infobox_type": "Infobox F1 team",
+      "fields": {
+        "championships_count": {
+          "ours": 9,
+          "wiki": 9,
+          "wiki_raw": "9 ({{F1|1980}}, {{F1|1981}}, {{F1|1986}}, {{F1|1987}}, {{F1|1992}}, {{F1|1993}}, {{F1|1994}}, {{F1|1996}}, {{F1|1997}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "championships_years": {
+          "ours": [
+            1980,
+            1981,
+            1986,
+            1987,
+            1992,
+            1993,
+            1994,
+            1996,
+            1997
+          ],
+          "wiki": [
+            1980,
+            1981,
+            1986,
+            1987,
+            1992,
+            1993,
+            1994,
+            1996,
+            1997
+          ],
+          "wiki_raw": "9 ({{F1|1980}}, {{F1|1981}}, {{F1|1986}}, {{F1|1987}}, {{F1|1992}}, {{F1|1993}}, {{F1|1994}}, {{F1|1996}}, {{F1|1997}})",
+          "wiki_format": "literal",
+          "f1cstat_code": null
+        },
+        "wins": {
+          "ours": 114,
+          "wiki": 114,
+          "wiki_raw": "{{F1cstat|WIL|wins}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "WIL"
+        },
+        "podiums": {
+          "ours": 316,
+          "wiki": 315,
+          "wiki_raw": "{{F1cstat|WIL|podiums}}",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "WIL"
+        },
+        "entries": {
+          "ours": 876,
+          "wiki": 862,
+          "wiki_raw": "''As a team:'' {{sum|{{F1cstat|WIL|entries}}|11}} entries ({{sum|{{F1cstat|WIL|starts}}|8}} starts)<br>''As a constructor:'' {{F1cstat|WIL|entries}} entries ({{F1cstat|WIL|starts}} starts) <!-- 4 no-starts, 1977 France, 1977 Germany and 1977 Netherlands as a team, 2005 USA as a team & constructor. -->",
+          "wiki_format": "F1cstat",
+          "f1cstat_code": "WIL"
+        }
+      }
+    }
+  ]
+}

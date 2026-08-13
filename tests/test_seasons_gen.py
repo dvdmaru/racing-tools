@@ -521,12 +521,17 @@ class Phase0SeasonOwnershipTests(unittest.TestCase):
                          "phase0 不應再有 gen_driver（/drivers/** 歸 gen-racing-drivers 所有）")
 
     def test_ferrari_entity_page_links_to_team_subpage(self):
+        cg = _load("gen_racing_constructors_season_test", "gen-racing-constructors.py")
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
-        orig = self.p0.PUB
-        self.p0.PUB = tmp
-        self.addCleanup(lambda: setattr(self.p0, "PUB", orig))
-        self.p0.gen_constructor("ferrari")
+        orig = cg.PUB
+        cg.PUB = tmp
+        self.addCleanup(lambda: setattr(cg, "PUB", orig))
+        con = cg.fs.connect_db()
+        try:
+            cg.gen_constructor("ferrari", con)
+        finally:
+            con.close()
         html = (tmp / "constructors" / "ferrari" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="/seasons/2002/teams/ferrari/"', html)
 

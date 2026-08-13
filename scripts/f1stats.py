@@ -16,6 +16,20 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "f1" / "raw"
 DB = ROOT / "data" / "f1" / "db.sqlite"
 
+# 所有可發布的衍生公式必須先在這裡具名登記。這不是顯示用清單：_stat() 會 fail closed，
+# 避免生成器臨時塞一個沒有定義／沒有測試的公式 id。車隊頒獎台以「完賽車次」計，
+# 因此 shared-drive 年代依 (season, round, position_text, number) 去重，同場兩台車上台仍保留兩筆。
+FORMULAS = frozenset({
+    "count_seasons_driver_standing_eq_1",
+    "count_seasons_constructor_standing_eq_1",
+    "results_position_text_eq_1",
+    "results_position_text_in_123",
+    "results_distinct_races",
+    "constructor_results_position_text_eq_1_distinct_races",
+    "constructor_results_position_text_in_123_distinct_cars",
+    "constructor_results_distinct_races",
+})
+
 
 def _load(p):
     return json.loads(p.read_text(encoding="utf-8"))
@@ -57,6 +71,8 @@ def _is_completed(year):
 
 def _stat(kind, formula, coverage, detail):
     """統計欄位的唯一建構路徑。value 一律由 len(detail) 產生，不接受外部傳入。"""
+    if formula not in FORMULAS:
+        raise ValueError(f"未登記的統計公式：{formula}")
     return {"value": len(detail), "kind": kind, "formula": formula,
             "coverage": coverage, "detail": detail}
 
@@ -265,6 +281,110 @@ def constructor_championships(cid):
                                "wins_that_year": row.get("wins"),
                                "source": f"data/f1/raw/standings/constructor-{year}.json#pos1"})
     return _stat("derived", "count_seasons_constructor_standing_eq_1", "1958-2026", detail)
+
+
+# ---------- 車隊生涯（DB 路徑：L1 db.sqlite 的 results/constructor_standings） ----------
+
+def constructor_career_db(cid, con, as_of=None):
+    """車隊勝場／頒獎台／參賽場次（DB 路徑），所有 value 都等於 detail 的長度。
+
+    - 勝場：正賽結果 `position_text='1'` 的不重複場次。shared-drive 年代同一台勝車會有
+      多位車手結果列，依 (season, round) 去重，仍只是一個分站勝場。
+    - 頒獎台：以完賽車次計。依 (season, round, position_text, number) 去重可折疊
+      shared-drive 的同一台車；同場兩台車取得前三時會保留兩筆。
+    - 參賽場次：有此 constructor_id 正賽結果列的不重複 (season, round)。
+
+    as_of 只在 SQL 明細層截斷，絕不對總計做減法。
+    """
+    ap = _as_of_pair(as_of)
+    sql = ("SELECT r.season AS season, r.round AS round, r.position_text AS position_text, "
+           "       r.number AS number, "
+           "       r.id AS id, ra.name AS name "
+           "FROM results r LEFT JOIN races ra ON ra.season=r.season AND ra.round=r.round "
+           "WHERE r.constructor_id=?")
+    params = [cid]
+    if ap is not None:
+        sql += " AND (r.season < ? OR (r.season = ? AND r.round <= ?))"
+        params += [ap[0], ap[0], ap[1]]
+    sql += " ORDER BY r.season, r.round, r.id"
+    rows = con.execute(sql, params).fetchall()
+
+    def distinct_rows(pred, key_fn):
+        seen, detail = set(), []
+        for row in rows:
+            if not pred(row):
+                continue
+            key = key_fn(row)
+            if key in seen:
+                continue
+            seen.add(key)
+            detail.append(_race_detail(row))
+        return detail
+
+    wins = distinct_rows(
+        lambda r: r["position_text"] == "1",
+        lambda r: (r["season"], r["round"]),
+    )
+    podiums = distinct_rows(
+        lambda r: r["position_text"] in ("1", "2", "3"),
+        lambda r: (r["season"], r["round"], r["position_text"], r["number"]),
+    )
+    entries = distinct_rows(
+        lambda _r: True,
+        lambda r: (r["season"], r["round"]),
+    )
+    return {
+        "constructor_id": cid,
+        "wins": _stat("derived", "constructor_results_position_text_eq_1_distinct_races",
+                      "1950-2026", wins),
+        "podiums": _stat("derived", "constructor_results_position_text_in_123_distinct_cars",
+                         "1950-2026", podiums),
+        "entries": _stat("derived", "constructor_results_distinct_races", "1950-2026", entries),
+    }
+
+
+def constructor_championships_db(cid, con, as_of=None):
+    """車隊冠軍＝1958 起已完成賽季的車隊榜第 1；進行中賽季榜首不計冠軍。"""
+    ap = _as_of_pair(as_of)
+    sql = ("SELECT cs.season AS season, cs.points AS points, cs.wins AS wins "
+           "FROM constructor_standings cs JOIN seasons s ON s.year=cs.season "
+           "WHERE cs.constructor_id=? AND cs.position=1 AND s.status='completed'")
+    params = [cid]
+    if ap is not None:
+        sql += " AND cs.season <= ?"
+        params.append(ap[0])
+    sql += " ORDER BY cs.season"
+    detail = [
+        {"season": r["season"], "points": _fmt_points(r["points"]),
+         "wins_that_year": r["wins"],
+         "source": f"data/f1/raw/standings/constructor-{r['season']}.json#pos1"}
+        for r in con.execute(sql, params).fetchall()
+    ]
+    return _stat("derived", "count_seasons_constructor_standing_eq_1", "1958-2026", detail)
+
+
+def constructor_seasons_db(cid, con, as_of=None):
+    """此 constructor_id 有正賽結果列的參賽賽季（時間軸用）。"""
+    ap = _as_of_pair(as_of)
+    sql = "SELECT DISTINCT season FROM results WHERE constructor_id=?"
+    params = [cid]
+    if ap is not None:
+        sql += " AND (season < ? OR (season = ? AND round <= ?))"
+        params += [ap[0], ap[0], ap[1]]
+    sql += " ORDER BY season"
+    return [r[0] for r in con.execute(sql, params).fetchall()]
+
+
+def constructor_meta_db(cid, con):
+    """車隊身分欄：名稱、國籍與 Ergast/Jolpica 帶入的 Wikipedia URL。"""
+    row = con.execute(
+        "SELECT constructor_id, name, nationality, url FROM constructors WHERE constructor_id=?",
+        (cid,),
+    ).fetchone()
+    if row is None:
+        raise KeyError(f"db 無此車隊：{cid}")
+    return {"constructorId": row["constructor_id"], "name": row["name"] or cid,
+            "nationality": row["nationality"] or "", "url": row["url"] or ""}
 
 
 if __name__ == "__main__":

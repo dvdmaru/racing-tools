@@ -43,6 +43,7 @@ rc = dr.rc
 fs = dr.fs
 p0 = dr.p0
 gs = dr.gs
+cg = _load("gen_racing_constructors_for_driver_tests", "gen-racing-constructors.py")
 
 # 姊妹站那段從 rc.SISTER_SITES 推導，不手抄（原本三個測試檔各一份，加一站要改四處）。
 ALLOWED_HOSTS = {
@@ -457,8 +458,8 @@ class NoScriptNoFetchTests(unittest.TestCase):
 # ---------- 決定性 ----------
 
 class DeterminismTests(unittest.TestCase):
-    def test_existing_champion_pages_remain_byte_identical(self):
-        """擴編只增加新車手與索引分區；已公開 35 位冠軍頁內容不得被重構帶動。"""
+    def test_existing_champion_pages_gain_only_current_constructor_links(self):
+        """本棒允許效力車隊區新增 2026 車隊連結；其餘頁面內容必須不動。"""
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         con = fs.connect_db()
@@ -468,8 +469,13 @@ class DeterminismTests(unittest.TestCase):
             for did in dr.CHAMPION_IDS:
                 row = dr.gen_driver(did, con)
                 rel = pathlib.Path("drivers") / row["slug"] / "index.html"
-                self.assertEqual((tmp / rel).read_bytes(), (old_pub / rel).read_bytes(),
-                                 f"擴編意外改動既有冠軍頁：{did}")
+                new = (tmp / rel).read_text(encoding="utf-8")
+                old = (old_pub / rel).read_text(encoding="utf-8")
+                def without_links(value):
+                    return re.sub(r'<a href="/constructors/[^\"]+/">([^<]+)</a>',
+                                  r'<span class="rel-off">\1</span>', value)
+                self.assertEqual(without_links(new), without_links(old),
+                                 f"效力車隊連結外意外改動既有冠軍頁：{did}")
         finally:
             dr.PUB = old_pub
             con.close()
@@ -502,17 +508,8 @@ class Phase0OwnershipTests(unittest.TestCase):
         src = (ROOT / "scripts" / "gen-racing-entities-phase0.py").read_text(encoding="utf-8")
         self.assertNotIn('write_page(["drivers"', src)
 
-    def test_phase0_main_generates_no_driver_pages(self):
-        tmp = pathlib.Path(tempfile.mkdtemp())
-        self.addCleanup(shutil.rmtree, tmp)
-        orig = p0.PUB
-        p0.PUB = tmp
-        try:
-            p0.main()
-        finally:
-            p0.PUB = orig
-        self.assertFalse((tmp / "drivers").exists(), "phase0 不應再產 /drivers/")
-        self.assertTrue((tmp / "constructors").exists(), "phase0 仍應產 /constructors/")
+    def test_phase0_has_no_page_owner_main(self):
+        self.assertFalse(hasattr(p0, "main"), "phase0 只保留常數與元件，不應再是頁面 owner")
 
 
 # ---------- 全站死連結掃描 = 0 ----------
@@ -524,24 +521,26 @@ class NoDeadLinkTests(unittest.TestCase):
     def setUpClass(cls):
         cls.tmp = pathlib.Path(tempfile.mkdtemp())
         # 渲染整站三 owner（同一 pipeline 現實）：seasons（77 季 + 2002/2026 分站）、
-        # constructors（phase0 4 seed）、drivers（35）。
-        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB)
-        rc.PUB = gs.PUB = p0.PUB = dr.PUB = cls.tmp
+        # constructors（新 owner 11 隊）、drivers（53）。
+        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB, cg.PUB)
+        rc.PUB = gs.PUB = p0.PUB = dr.PUB = cg.PUB = cls.tmp
         try:
             built = set(range(gs.FIRST_YEAR, gs.LAST_YEAR + 1))
             urls = [gs.render_index(built)]
             for year in range(gs.LAST_YEAR, gs.FIRST_YEAR - 1, -1):
                 gs._render_one_season(year, urls, {2002, 2026})
-            p0.main()
             con = fs.connect_db()
             try:
+                cg.render_index(con)
+                for cid in cg.CONSTRUCTOR_IDS:
+                    cg.gen_constructor(cid, con)
                 dr.render_index(con)
                 for did in dr.DRIVER_IDS:
                     dr.gen_driver(did, con)
             finally:
                 con.close()
         finally:
-            rc.PUB, gs.PUB, p0.PUB, dr.PUB = orig
+            rc.PUB, gs.PUB, p0.PUB, dr.PUB, cg.PUB = orig
 
     @classmethod
     def tearDownClass(cls):

@@ -1,0 +1,224 @@
+{
+ "_meta": {
+  "_doc": "2026 grid 11 車隊四個發布欄位的 default-deny golden；approved_by=PENDING-charlie 時生成器必須拒絕。",
+  "generated_from": "scripts/f1stats.py DB 路徑",
+  "crosscheck_report": "data/f1/constructor-crosscheck-report.json",
+  "crosscheck_verdicts": "config/f1-constructor-verdicts.json",
+  "as_of_policy": "11 隊一律凍結於 {season:2026,round:11}；截斷只作用在明細，不對總計做減法。2026-08-13 Charlie 全批核准；此後任何值變更（含 as_of 推進）須重掛 PENDING 進裁決包。",
+  "excluded_fields": [
+   "poles",
+   "fastest_laps",
+   "career_points"
+  ]
+ },
+ "constructors": {
+  "alpine": {
+   "championships_count": 0,
+   "championships_years": [],
+   "wins": 1,
+   "podiums": 7,
+   "entries": 125,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "aston_martin": {
+   "championships_count": 0,
+   "championships_years": [],
+   "wins": 0,
+   "podiums": 9,
+   "entries": 131,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "audi": {
+   "championships_count": 0,
+   "championships_years": [],
+   "wins": 0,
+   "podiums": 0,
+   "entries": 11,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "cadillac": {
+   "championships_count": 0,
+   "championships_years": [],
+   "wins": 0,
+   "podiums": 0,
+   "entries": 11,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "ferrari": {
+   "championships_count": 16,
+   "championships_years": [
+    1961,
+    1964,
+    1975,
+    1976,
+    1977,
+    1979,
+    1982,
+    1983,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2007,
+    2008
+   ],
+   "wins": 250,
+   "podiums": 845,
+   "entries": 1135,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "haas": {
+   "championships_count": 0,
+   "championships_years": [],
+   "wins": 0,
+   "podiums": 0,
+   "entries": 225,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "mclaren": {
+   "championships_count": 10,
+   "championships_years": [
+    1974,
+    1984,
+    1985,
+    1988,
+    1989,
+    1990,
+    1991,
+    1998,
+    2024,
+    2025
+   ],
+   "wins": 200,
+   "podiums": 547,
+   "entries": 963,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "mercedes": {
+   "championships_count": 8,
+   "championships_years": [
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ],
+   "wins": 139,
+   "podiums": 324,
+   "entries": 352,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "rb": {
+   "championships_count": 0,
+   "championships_years": [],
+   "wins": 0,
+   "podiums": 1,
+   "entries": 59,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "red_bull": {
+   "championships_count": 6,
+   "championships_years": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2022,
+    2023
+   ],
+   "wins": 130,
+   "podiums": 301,
+   "entries": 429,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  },
+  "williams": {
+   "championships_count": 9,
+   "championships_years": [
+    1980,
+    1981,
+    1986,
+    1987,
+    1992,
+    1993,
+    1994,
+    1996,
+    1997
+   ],
+   "wins": 114,
+   "podiums": 316,
+   "entries": 876,
+   "as_of": {
+    "season": 2026,
+    "round": 11
+   },
+   "approved_by": "charlie",
+   "approved_at": "2026-08-13",
+   "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+  }
+ }
+}

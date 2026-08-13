@@ -577,8 +577,8 @@ class RoundMentionFingerprintTests(unittest.TestCase):
     def test_selective_regen_rewrites_only_that_round_page(self):
         pub = self.tmp / "pub"
         fp = self.tmp / "fp.json"
-        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB)
-        rc.PUB = gs.PUB = p0.PUB = dr.PUB = pub
+        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB, re_mod.cg.PUB)
+        rc.PUB = gs.PUB = p0.PUB = dr.PUB = re_mod.cg.PUB = pub
 
         def regen(**kw):
             con = sqlite3.connect(str(self.db))
@@ -609,7 +609,7 @@ class RoundMentionFingerprintTests(unittest.TestCase):
             self.assertIn('href="/articles/synthetic-hungary-e2e/"', page)
             self.assertIn("匈牙利站逐圈觀察", page)
         finally:
-            rc.PUB, gs.PUB, p0.PUB, dr.PUB = orig
+            rc.PUB, gs.PUB, p0.PUB, dr.PUB, re_mod.cg.PUB = orig
 
 
 if __name__ == "__main__":
