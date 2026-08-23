@@ -41,6 +41,24 @@
       "requires": "encyclopedia"
     },
     {
+      "label": "車手",
+      "href": "/drivers/",
+      "key": "drivers",
+      "requires": "encyclopedia"
+    },
+    {
+      "label": "車隊",
+      "href": "/constructors/",
+      "key": "constructors",
+      "requires": "encyclopedia"
+    },
+    {
+      "label": "賽道",
+      "href": "/circuits/",
+      "key": "circuits",
+      "requires": "encyclopedia"
+    },
+    {
       "label": "文章",
       "href": "/articles/",
       "key": "articles"
@@ -58,6 +76,26 @@
     {
       "label": "所有文章",
       "href": "/articles/"
+    },
+    {
+      "label": "歷年賽季",
+      "href": "/seasons/",
+      "requires": "encyclopedia"
+    },
+    {
+      "label": "車手",
+      "href": "/drivers/",
+      "requires": "encyclopedia"
+    },
+    {
+      "label": "車隊",
+      "href": "/constructors/",
+      "requires": "encyclopedia"
+    },
+    {
+      "label": "賽道",
+      "href": "/circuits/",
+      "requires": "encyclopedia"
     }
   ],
   "ga_id": "G-DN5FKJNCVQ"

@@ -23,7 +23,7 @@
     {
       "slug": "season-intro-2002",
       "article_sha256": "e00f98f54e4827da1b6876beea633bbaed456ccd4e42f3d5b34d77f84fbc2999",
-      "facts_sha256": "90b72dbad144822ee416c7390972871680ce50d0194977ca7ef87a3adf3bb839",
+      "facts_sha256": "854888aa854aabdf9ea3fd87c3316472c7db963ad86aab65593f6515177a7c1f",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-07-23T23:06:05+08:00",
@@ -32,7 +32,7 @@
     {
       "slug": "season-intro-1950",
       "article_sha256": "a3a90f17289dee4425167cdf7a7749cbe49c541189c9a568782bc71801487619",
-      "facts_sha256": "5eecb03e2d09bfd1c94d3da341e59521f6e7e596f041378fea29f85f6116399c",
+      "facts_sha256": "4e3bf862f2343e5218205532e78e5758f01eed2bb349949d4ce624421d6cb2fc",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-07-24T15:24:27+08:00",
@@ -41,7 +41,7 @@
     {
       "slug": "season-intro-1988",
       "article_sha256": "e352afaeba659b3520179be36d4275d8b05243527e8bdff7415b177cdcb7ed8b",
-      "facts_sha256": "46860a59c4b07370f424e064a9ebfc6069fc8627fe684b910f06a2e9dd231921",
+      "facts_sha256": "44dc4c838876080845d6ac4e061b90ecf927a869cc49f0b7d1d67e7e05117da1",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-07-24T15:24:27+08:00",
@@ -50,7 +50,7 @@
     {
       "slug": "season-intro-2021",
       "article_sha256": "e758b78b11cbab2e92e8be4f9fe872d16582a7747e42fa9949d9fb4e35b93abf",
-      "facts_sha256": "5666442d3e02378ce6232c8fdd4b23732f05e55926483422596592ed741a07e0",
+      "facts_sha256": "d7336e3e8fa928014ca9a01f2051b4c8195f2a44c3b3343bbd9ffd4ba6069a84",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-07-24T15:24:27+08:00",
@@ -113,7 +113,7 @@
     {
       "slug": "season-intro-1958",
       "article_sha256": "4ec46516961f0910e151ef4648b2d76cea6b9e9dfaebe27b66fe0eabf48a4e60",
-      "facts_sha256": "1708e2565b7783516b8233ff53428ebcb9f61c685f3f0ab1c7f5c16e259ce1b1",
+      "facts_sha256": "49263ca84d6ffe9dddd1c7b34d0fa81c83a4f9285777de42595ee601267e7d5f",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -122,7 +122,7 @@
     {
       "slug": "season-intro-1961",
       "article_sha256": "d6adb7fd64d6696b2eef81b2657f4e2cd615c28f826858e8fc09cf3d781bae15",
-      "facts_sha256": "5353b69068b98f81e384a88d9bbbf2ef505a1136cd5b939bc8655632cddad37c",
+      "facts_sha256": "3d1e9c134cec01fe6fa22c159471ec544aa5c3ceb10adf4aeee8f1301cf7ec84",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -131,7 +131,7 @@
     {
       "slug": "season-intro-1964",
       "article_sha256": "64130e8645db4c9ef2e3e66fccd888541f30cd00b52b47d9d85e20bfedc8e62b",
-      "facts_sha256": "1d96ca715878a37fedf05cfaf1373c199f008b66ea6cc3d94946e594d5241266",
+      "facts_sha256": "7c832383a6926f24aec6a89e0c682998bd39c6c003adcc50a8a15d62cfef4a7c",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -140,7 +140,7 @@
     {
       "slug": "season-intro-1976",
       "article_sha256": "b503e7a137f7c89ecea61d32e9cdd6f3033cadc3cc0761a534e80721f168b50d",
-      "facts_sha256": "86cbd7fc5eb4f365d339475ffa500003093794876ca036410d19b7b1a5d783b8",
+      "facts_sha256": "b8dd24115278850c7b32ea5aa5c9fa7382d7cc24626703a08a642d1e341a4bc1",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -149,7 +149,7 @@
     {
       "slug": "season-intro-1984",
       "article_sha256": "df8ba17ccbd9bf18f59cff2cae1a4856acf6bcde0886bb85d4b6a5cd42bf8618",
-      "facts_sha256": "6c5cfce753cfc4f1ee4c32d27a8d27372bb12f971565343863db2c6c7946e91d",
+      "facts_sha256": "b7ef259432faaf9581372e9e4b985f8cfc5da177ee5baea451429078f486b712",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -158,7 +158,7 @@
     {
       "slug": "season-intro-1986",
       "article_sha256": "6931cea50680d68614809f00658bf286f1357ec06826be4f828423ffc68ab168",
-      "facts_sha256": "e47e3034e28e847457a70786e233ca0ee7eeeff71e5532c553e702b2fe103642",
+      "facts_sha256": "bc8fced589c3917a65ebb9db58b0d04c1a002b1b871ad31f44c51c4852431e17",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -167,7 +167,7 @@
     {
       "slug": "season-intro-1994",
       "article_sha256": "3fc66bd8777ac0cda390fd9c11495e7ee1fd879c05495db4907493799371cd01",
-      "facts_sha256": "7abfde3d1f6370546a223b6a72df4b767148ee586548dee929a9c473fad8f103",
+      "facts_sha256": "563cb9b6ae1fcb9286788ec7a9ef3db01a7ae5d144b5e2f0605b132336e066e8",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -176,7 +176,7 @@
     {
       "slug": "season-intro-2007",
       "article_sha256": "ac20f03506c706bcd479c7cf55f70307e53bf7a035de93bfbce428467c6c406d",
-      "facts_sha256": "21a14943bd0a5d5f10644a89e753970e2bbfc441be8b97d7deb4b0fdf3db50f7",
+      "facts_sha256": "edc435764f9e342a3b52757f846cbd1d629d82350e8b425175d442280510ba17",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -185,7 +185,7 @@
     {
       "slug": "season-intro-2008",
       "article_sha256": "0558736d0dc3128b1c1db474ef76c829f4c6ff7c19f99e93b01315fcb1d22bbf",
-      "facts_sha256": "31caeb1f9d0b5abf6417e9c0752cfb066654158f1e796b9322151543cf93639f",
+      "facts_sha256": "6f8c811e0394b4be89fc4e9a1d41119d1eaefa8da557e93cfaf5c7969f43ac2d",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -194,7 +194,7 @@
     {
       "slug": "season-intro-2010",
       "article_sha256": "2bb1b8aab24e76acb258aee4bda4dcdd6d4501fab06b6c67aa7f1120efe74e39",
-      "facts_sha256": "6d7633ae98c9ecb726fcc220378da93c70078e2e7625e6df3537a2c0361b686f",
+      "facts_sha256": "3d9bea0404c1e8b907976d588163f2a3d49f5490331d93f4dc1e881b3f9c81ed",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -203,7 +203,7 @@
     {
       "slug": "season-intro-2012",
       "article_sha256": "f593b77beae8158993274a9bf242e7af5535e26e02c58aeb88a057ca49809121",
-      "facts_sha256": "2b54b8acd8f223aa8636257e26bc1859822504d9a7b566565e8f904d98a8f318",
+      "facts_sha256": "ca106ea41c4551fb98c570fcd9a90416af74477f27e042686e6139cc9fa23c2f",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",
@@ -212,7 +212,7 @@
     {
       "slug": "season-intro-2016",
       "article_sha256": "4d4642ddf48b9bcab5d6ad4640063f61f5e751cf085e59168791b6e1dbe18175",
-      "facts_sha256": "d119bf72a52c16a06fb067a9e349cc2e4a9a210d6a13048267ef540d58554f8b",
+      "facts_sha256": "412a8549ff8697faf839e71e576059368a7f4cbe8e2e2eb539a6b013890946f6",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-13T12:43:04+08:00",

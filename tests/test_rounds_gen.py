@@ -373,6 +373,77 @@ class CrossLinkTests(unittest.TestCase):
         self.assertIn('href="https://racing.twtools.cc/seasons/2002/"', html)   # 回連總覽
 
 
+class CircuitBacklinkTests(unittest.TestCase):
+    """分站頁的賽道名連回 /circuits/<slug>/——賽道實體層的反向端。
+
+    /circuits/ 78 頁在 2026-08-23 上站時，站內唯一的連入是導覽列與頁尾各一條索引連結；
+    「這一站在哪條賽道跑」是最有價值也最自然的深連結，缺了等於 78 頁只有索引一個父節點。
+
+    ☠️ 這裡最容易量產死連結：分站頁的 circuitId 來自賽曆快照，賽道頁的名單來自
+    append-only slug 註冊表，兩邊不保證同步（2026 新賽道 madring 就是先有賽曆後有頁）。
+    所以正向測「連得到且檔案真的在」，反向測「頁不在就不准連」。
+    """
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        self.orig = (rc.PUB, g.PUB)
+        rc.PUB = g.PUB = self.tmp
+        self.addCleanup(lambda: (setattr(rc, "PUB", self.orig[0]),
+                                 setattr(g, "PUB", self.orig[1])))
+
+    def _round_html(self, year, rnd):
+        g.render_round(year, rnd)
+        return (self.tmp / "seasons" / str(year) / "rounds" / str(rnd)
+                / "index.html").read_text(encoding="utf-8")
+
+    def _links(self, html):
+        return re.findall(r'href="(/circuits/[^"]+/)"', html)
+
+    def test_2002_and_2026_round_pages_link_to_existing_circuit_pages(self):
+        for year, rnd in ((2002, 1), (2026, 1)):
+            html = self._round_html(year, rnd)
+            links = self._links(html)
+            self.assertGreaterEqual(len(links), 1, f"{year} R{rnd} 分站頁沒有連到 /circuits/")
+            for href in links:
+                target = ROOT / "public-racing" / href.strip("/") / "index.html"
+                self.assertTrue(target.is_file(), f"{year} R{rnd} 連到不存在的賽道頁：{href}")
+
+    def test_every_generated_round_page_of_both_years_links_a_live_circuit(self):
+        """逐站掃：兩季所有分站頁都要有賽道連結，且目標頁存在（漏一站也算漏）。"""
+        for year in (2002, 2026):
+            for rnd in g.season_round_numbers(year):
+                links = self._links(self._round_html(year, rnd))
+                self.assertEqual(len(links), 1, f"{year} R{rnd} 賽道連結數不是 1：{links}")
+                target = ROOT / "public-racing" / links[0].strip("/") / "index.html"
+                self.assertTrue(target.is_file(), f"{year} R{rnd} 連到不存在的賽道頁：{links[0]}")
+
+    def test_no_link_when_circuit_page_absent(self):
+        """反向①：賽道頁清單為空（circuits 那條線還沒接上）→ 一條連結都不准出現，
+        賽道名仍要顯示（退回純文字，不是整段消失）。"""
+        orig = g.CIRCUIT_PAGE_SLUGS
+        g.CIRCUIT_PAGE_SLUGS = set()
+        self.addCleanup(setattr, g, "CIRCUIT_PAGE_SLUGS", orig)
+        html = self._round_html(2002, 1)
+        self.assertEqual(self._links(html), [])
+        self.assertIn("賽道 ", html)
+
+    def test_no_link_for_unregistered_circuit_id(self):
+        """反向②：circuitId 不在 slug 註冊表（例如新賽道還沒登記）→ 純文字，不猜 URL。"""
+        self.assertEqual(g.circuit_link("no-such-circuit-id", "某賽道"), "某賽道")
+
+    def test_link_requires_both_registry_and_part_file(self):
+        """反向③：只有註冊表有、part 檔沒有（頁還沒生成）→ 不准連。"""
+        cid = next(iter(rc._SLUGS.get("circuits", {})))
+        slug = rc._SLUGS["circuits"][cid]
+        orig = g.CIRCUIT_PAGE_SLUGS
+        g.CIRCUIT_PAGE_SLUGS = orig - {slug}
+        self.addCleanup(setattr, g, "CIRCUIT_PAGE_SLUGS", orig)
+        self.assertEqual(g.circuit_link(cid, "某賽道"), "某賽道")
+        g.CIRCUIT_PAGE_SLUGS = orig
+        self.assertIn(f'href="/circuits/{slug}/"', g.circuit_link(cid, "某賽道"))
+
+
 class DeterminismAndDeadLinkTests(unittest.TestCase):
     """決定性（兩次 byte-identical）＋全站含分站頁死連結掃描=0（2002＋2026 full pipeline 子集）。"""
 

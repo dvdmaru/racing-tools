@@ -260,7 +260,7 @@ SITE_HEADER_CSS = """
 .site-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.7; text-align: center; max-width: 640px; margin: 18px auto 0; }
 .site-disclaimer span { opacity: 0.75; }
 .article-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
-.foot-links { display: flex; gap: 22px; justify-content: center; font-size: 13px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center; font-size: 13px; }
 .foot-links a { color: var(--dim); text-decoration: none; }
 .foot-links a:hover { color: var(--accent); }
 """
@@ -323,6 +323,17 @@ def sister_sites_html(site: dict = None) -> str:
             f'color:var(--dim);line-height:2;text-align:center">姊妹站　{links}</div>')
 
 
+def nav_item_visible(item: dict) -> bool:
+    """導覽列／頁尾連結的共用 published gate：帶 `"requires": "encyclopedia"` 的項目
+    只在百科公開時輸出。
+
+    ☠️ 為什麼抽成共用函式而不是兩處各寫一份 if：這條判定的失敗模式是**單向的沉默**
+    ——導覽列補了新入口、頁尾忘了補 gate，未公開時全站每一頁就多一條 404，而站不會壞、
+    測試不會紅。同一條規則只能有一份實作。
+    """
+    return not (item.get("requires") == "encyclopedia" and not ENCYCLOPEDIA_PUBLISHED)
+
+
 def site_header_html(active: str, site: dict = None) -> str:
     """導覽列。帶 `"requires": "encyclopedia"` 的項目只在百科公開時出現。
 
@@ -335,7 +346,7 @@ def site_header_html(active: str, site: dict = None) -> str:
     site = site or SITE
     parts = []
     for n in site.get("nav", []):
-        if n.get("requires") == "encyclopedia" and not ENCYCLOPEDIA_PUBLISHED:
+        if not nav_item_visible(n):
             continue
         cls = ' class="active"' if n.get("key") == active else ""
         parts.append(f'<a href="{n["href"]}"{cls}>{n["label"]}</a>')
@@ -357,6 +368,8 @@ def site_footer_html(site: dict = None) -> str:
     site = site or SITE
     link_parts = []
     for l in site.get("footer_links", []):
+        if not nav_item_visible(l):
+            continue
         target = ' target="_blank" rel="noopener"' if l.get("external") else ""
         link_parts.append(f'<a href="{l["href"]}"{target}>{l["label"]}</a>')
     # 回報錯誤／勘誤紀錄不走 footer_links 設定（理由見 errata_entry_html 上方註解）
@@ -919,6 +932,19 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 # 舊版 sitemap_merge 靠字串比對 read-modify-write 整個 sitemap.xml（跑序敏感、易踩踏）；
 # 改成各 owner 各寫 data/sitemap-parts/<owner>.txt（append-only 擁有），build-sitemap.py
 # 依固定順序讀取、去重、產出最終 sitemap.xml。parts 檔進 git＝某 owner 這次沒跑時的保留機制。
+
+def read_sitemap_part(owner: str) -> list:
+    """讀 data/sitemap-parts/<owner>.txt，回 URL list；檔案不存在＝該線還沒接上 → 回 []。
+
+    這是 write_sitemap_part 的對稱面，也是「頁存在才連」的跨 owner 判定來源：part 檔是
+    各生成器落地且進 git 的實際 URL 清單，另一個 owner 想連過去時讀它，不必 import 對方
+    的生成器（那會拖進 gitignored 的 db.sqlite），也不准另抄一份清單。
+    """
+    p = ROOT / "data" / "sitemap-parts" / f"{owner}.txt"
+    if not p.exists():
+        return []
+    return [l.strip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+
 
 def write_sitemap_part(owner: str, urls: list):
     """寫 data/sitemap-parts/<owner>.txt：一行一 URL，結尾換行；內容相同不重寫。"""
