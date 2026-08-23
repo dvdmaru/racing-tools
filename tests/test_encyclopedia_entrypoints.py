@@ -33,6 +33,10 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 ENCYCLOPEDIA_INDEXES = ("/seasons/", "/drivers/", "/constructors/")
 
+# 全站導覽（導覽列＋頁尾）該有的百科入口。/circuits/ 2026-08-23 才建，因此比首頁磁磚
+# 那三塊多一條——首頁磁磚是另一個 owner（build-articles.render_home），沿用上面那組。
+ENCYCLOPEDIA_NAV_ENTRIES = ("/seasons/", "/drivers/", "/constructors/", "/circuits/")
+
 
 def _load(name, fname):
     spec = importlib.util.spec_from_file_location(name, ROOT / "scripts" / fname)
@@ -124,6 +128,71 @@ class ReachabilityTests(unittest.TestCase):
         missing = [h for h in ENCYCLOPEDIA_INDEXES if f'href="{h}"' not in html]
         self.assertEqual(missing, [],
                          f"已公開的首頁產物連不到：{missing}——374 頁只剩 sitemap 一條路")
+
+
+class SiteWideEncyclopediaEntriesTests(unittest.TestCase):
+    """導覽列與頁尾：百科四線各要有一個入口，且兩處都受 published gate。
+
+    ☠️ 為什麼頁尾也要測：2026-08-23 建 /circuits/ 時，78 頁賽道頁在站內的入口是 0
+    ——索引頁只能從 sitemap 或直接輸入網址進入，正是本站 2026-07 被 GSC 判
+    「URL is unknown to Google」那個病的同一形狀。導覽列與頁尾是唯一出現在**每一頁**
+    的兩個 surface，缺一條就是少一整線的站內連入。
+    """
+
+    def setUp(self):
+        self.orig = rc.ENCYCLOPEDIA_PUBLISHED
+        self.addCleanup(setattr, rc, "ENCYCLOPEDIA_PUBLISHED", self.orig)
+        self.site = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+
+    def _missing(self, html):
+        return [h for h in ENCYCLOPEDIA_NAV_ENTRIES if f'href="{h}"' not in html]
+
+    def test_nav_has_all_four_encyclopedia_entries(self):
+        rc.ENCYCLOPEDIA_PUBLISHED = True
+        self.assertEqual(self._missing(rc.site_header_html("home", self.site)), [])
+
+    def test_footer_has_all_four_encyclopedia_entries(self):
+        rc.ENCYCLOPEDIA_PUBLISHED = True
+        self.assertEqual(self._missing(rc.site_footer_html(self.site)), [])
+
+    def test_removing_one_entry_turns_the_check_red(self):
+        """反向：從設定檔拿掉任一條，上面兩個檢查都必須抓到（否則斷言是裝飾）。"""
+        rc.ENCYCLOPEDIA_PUBLISHED = True
+        for href in ENCYCLOPEDIA_NAV_ENTRIES:
+            doctored = dict(self.site)
+            doctored["nav"] = [n for n in self.site["nav"] if n.get("href") != href]
+            doctored["footer_links"] = [l for l in self.site["footer_links"]
+                                        if l.get("href") != href]
+            self.assertIn(href, self._missing(rc.site_header_html("home", doctored)),
+                          f"導覽列拿掉 {href} 卻沒被抓到")
+            self.assertIn(href, self._missing(rc.site_footer_html(doctored)),
+                          f"頁尾拿掉 {href} 卻沒被抓到")
+
+    def test_all_four_hidden_when_unpublished(self):
+        """未公開時兩處都不准出現——頁尾漏 gate＝全站每頁四條 404。"""
+        rc.ENCYCLOPEDIA_PUBLISHED = False
+        for html in (rc.site_header_html("home", self.site), rc.site_footer_html(self.site)):
+            for href in ENCYCLOPEDIA_NAV_ENTRIES:
+                self.assertNotIn(f'href="{href}"', html, f"未公開卻連向 {href}")
+
+    def test_non_encyclopedia_footer_links_survive_the_gate(self):
+        """反向：gate 只該擋帶 requires 的項目。寫太寬＝未公開時頁尾少一半，沒人會發現。"""
+        for pub in (True, False):
+            rc.ENCYCLOPEDIA_PUBLISHED = pub
+            html = rc.site_footer_html(self.site)
+            for href in ("/standings/", "/calendar/", "/articles/", rc.ERRATA_INDEX_PATH):
+                self.assertIn(href, html, f"published={pub} 時頁尾漏了 {href}")
+
+    def test_config_marks_every_encyclopedia_entry_with_requires(self):
+        """設定檔沒標 requires＝gate 沒有作用對象（實作對了、資料沒接上）。"""
+        for field in ("nav", "footer_links"):
+            items = [i for i in self.site[field]
+                     if i.get("href") in ENCYCLOPEDIA_NAV_ENTRIES]
+            self.assertEqual(len(items), len(ENCYCLOPEDIA_NAV_ENTRIES),
+                             f"{field} 的百科入口數不對")
+            for i in items:
+                self.assertEqual(i.get("requires"), "encyclopedia",
+                                 f'{field} 的 {i["href"]} 沒標 requires，未公開時會掛 404')
 
 
 if __name__ == "__main__":
