@@ -25,8 +25,9 @@ rc = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rc)
 
 # 固定 owner 序，對應現行 sitemap.xml 的頁面分組順序。
-# 後三個是百科線（regen-encyclopedia.py --publish 才寫；未公開時 part 檔不存在＝自然跳過）。
-OWNERS = ["articles", "standings", "calendar", "results", "seasons", "drivers", "constructors"]
+# 後四個是百科線（regen-encyclopedia.py --publish 才寫；未公開時 part 檔不存在＝自然跳過）。
+OWNERS = ["articles", "standings", "calendar", "results",
+          "seasons", "drivers", "constructors", "circuits"]
 # 單一 sitemap.xml 的上限（sitemaps.org 慣例 50,000，抓保守值防邊界）；
 # 現在遠用不到（M0 全站僅 7 個 URL），寫上防未來 entity 頁全量展開後爆量。
 MAX_PER_SITEMAP = 45000

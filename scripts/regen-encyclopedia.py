@@ -15,6 +15,8 @@ data/f1/page-fingerprints.json。跑時重算現況指紋 vs 上次：
     當季（有新賽果）→ 指紋變 → 總覽＋seed 子頁＋（新）分站頁全部重生；歷史季指紋恆定 → 跳過。
   - 車手 did：該人 results＋driver_standings＋所涉賽季 status 切片 → gen_driver(did)。
   - 車隊 cid：該隊正賽明細＋已完成季冠軍榜＋身分欄切片 → gen-racing-constructors.py。
+  - 賽道 cid：該賽道承辦分站＋每站冠軍＋身分欄＋兩份 roster 與三張譯名表切片
+    → gen-racing-circuits.py。
   - /seasons/ 索引：全年指紋的合成 → 任一年變則重生。/drivers/ 索引：雙 roster 聯集 53 人指紋的合成。
     /constructors/ 索引：11 隊指紋＋2026 積分榜名次的合成。
 
@@ -32,6 +34,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 FINGERPRINTS = ROOT / "data" / "f1" / "page-fingerprints.json"
 CONSTRUCTOR_ROSTER = ROOT / "data" / "f1" / "constructor-crosscheck-report.json"
+DRIVER_ROSTER = ROOT / "data" / "f1" / "crosscheck-report.json"
 
 
 def _load(name, fname):
@@ -47,12 +50,17 @@ gs, fs, rc, p0, il = dr.gs, dr.fs, dr.rc, dr.p0, dr.il
 cg = _load("gen_racing_constructors", "gen-racing-constructors.py")
 # constructor owner 也綁到同一份模組圖，避免測試／管線的 PUB 與資料連線分岔。
 cg.gs, cg.fs, cg.rc, cg.p0, cg.il = gs, fs, rc, p0, il
+ci = _load("gen_racing_circuits", "gen-racing-circuits.py")
+# 賽道 owner 同樣綁到同一份模組圖（PUB／db 連線不分岔，測試 patch PUB 才會一致）。
+ci.gs, ci.fs, ci.rc, ci.p0 = gs, fs, rc, p0
 BASE = rc.BASE
 CHAMPION_IDS = dr.CHAMPION_IDS
 ACTIVE_IDS = dr.ACTIVE_IDS
 DRIVER_IDS = dr.DRIVER_IDS
 # 車隊頁名單的單一來源＝canonical constructor crosscheck report。
 CONSTRUCTOR_IDS = cg.CONSTRUCTOR_IDS
+# 賽道頁名單的單一來源＝append-only slug 註冊表（與 db circuits 表由 ci.gate_registry 對齊）。
+CIRCUIT_IDS = ci.CIRCUIT_IDS
 FIRST_YEAR, LAST_YEAR = gs.FIRST_YEAR, gs.LAST_YEAR
 
 
@@ -173,6 +181,38 @@ def _constructor_slice(con, cid):
     }
 
 
+def _circuit_slice(con, cid):
+    """賽道頁實際渲染的東西：身分欄、承辦分站（含是否已舉行）、每站冠軍的車手／車隊名，
+    加上決定「哪些連結連得出去」的兩份 roster 與三張譯名表。
+
+    ⚠️ 譯名表的 sha 也切進來（車隊頁那份切片沒有，是既有的洞）：賽道頁把賽道／車手／車隊
+    三種名字都印在頁上，改譯名時 db 一個 byte 都不會動，不切就會靜默 stale。
+    """
+    meta = con.execute(
+        "SELECT name, locality, country, url FROM circuits WHERE circuit_id=?", (cid,)).fetchone()
+    races = con.execute(
+        "SELECT ra.season, ra.round, ra.name, "
+        "       (SELECT count(*) FROM results x WHERE x.season=ra.season AND x.round=ra.round) "
+        "FROM races ra WHERE ra.circuit_id=? ORDER BY ra.season, ra.round", (cid,)).fetchall()
+    winners = con.execute(
+        "SELECT r.season, r.round, r.driver_id, r.constructor_id, "
+        "       d.given_name, d.family_name, c.name "
+        "FROM results r JOIN races ra ON ra.season=r.season AND ra.round=r.round "
+        "LEFT JOIN drivers d ON d.driver_id=r.driver_id "
+        "LEFT JOIN constructors c ON c.constructor_id=r.constructor_id "
+        "WHERE ra.circuit_id=? AND r.position_text='1' "
+        "ORDER BY r.season, r.round, r.id", (cid,)).fetchall()
+    return {
+        "meta": tuple(meta) if meta else None,
+        "races": [tuple(r) for r in races],
+        "winners": [tuple(r) for r in winners],
+        "driver_roster_sha256": _file_sha(DRIVER_ROSTER),
+        "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER),
+        "zh_sha256": {name: _file_sha(SCRIPTS / name)
+                      for name in ("circuit-zh.json", "driver-zh.json", "team-zh.json")},
+    }
+
+
 def round_keys(round_years):
     """有分站頁的 (year, round) 全集（升冪）。站次表＝gs.season_round_numbers，不另抄判定。"""
     return [(y, r) for y in sorted(round_years) for r in gs.season_round_numbers(y)]
@@ -208,11 +248,14 @@ def compute_fingerprints(con, round_years=None):
     fp_cons = {cid: _h({"db": fp_cons_db[cid],
                         "articles": il.team_articles_slice(cid)})
                for cid in CONSTRUCTOR_IDS}
+    # 賽道頁不渲染相關報導 → db（＋roster／譯名表）only，發文章時不白刷。
+    fp_circuits = {cid: _h(_circuit_slice(con, cid)) for cid in CIRCUIT_IDS}
     return {
         "seasons": fp_years,
         "rounds": fp_rounds,
         "drivers": fp_drivers,
         "constructors": fp_cons,
+        "circuits": fp_circuits,
         # 索引＝其成員指紋的合成；任一成員變 → 索引指紋變 → 索引重生
         "indices": {
             # /seasons/ 索引與各季總覽都不渲染相關報導 → **db-only**，
@@ -224,6 +267,9 @@ def compute_fingerprints(con, round_years=None):
                                   "standings_2026": [tuple(r) for r in con.execute(
                                       "SELECT constructor_id, position FROM constructor_standings "
                                       "WHERE season=2026 ORDER BY constructor_id")]}),
+            # /circuits/ 索引整張表（承辦分站數、承辦賽季、國家地點）都是各賽道頁指紋的函數，
+            # 排序也是；成員全成合成即可，另外沒有索引專屬輸入。
+            "circuits": _h(sorted(fp_circuits.items())),
         },
     }
 
@@ -234,7 +280,7 @@ def load_fingerprints(path=FINGERPRINTS):
     try:
         return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return {"seasons": {}, "drivers": {}, "constructors": {}, "indices": {}}
+        return {"seasons": {}, "drivers": {}, "constructors": {}, "circuits": {}, "indices": {}}
 
 
 def save_fingerprints(fp, path=FINGERPRINTS):
@@ -267,6 +313,11 @@ def enumerate_constructor_urls():
             + [f"{BASE}/constructors/{rc.constructor_slug(c)}/" for c in CONSTRUCTOR_IDS])
 
 
+def enumerate_circuit_urls():
+    return ([f"{BASE}/circuits/"]
+            + [f"{BASE}/circuits/{ci.circuit_slug(c)}/" for c in CIRCUIT_IDS])
+
+
 # ---------- 選擇性重生 ----------
 
 def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
@@ -274,8 +325,8 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
     """只重生指紋變動的頁群。回 dict：changed_years/changed_drivers/changed_urls/…。
 
     con＝已連 db；round_years＝哪些季有分站頁（預設 config 的 round_years）；
-    full＝忽略指紋全量重生；publish＝True 時（重）寫 seasons/drivers/constructors sitemap part
-    （完整 URL 集，非只有這次變動的頁）。
+    full＝忽略指紋全量重生；publish＝True 時（重）寫 seasons/drivers/constructors/circuits
+    sitemap part（完整 URL 集，非只有這次變動的頁）。
     """
     round_years = set(rc.ROUND_YEARS if round_years is None else round_years)
     cur = compute_fingerprints(con, round_years)
@@ -283,6 +334,7 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
     pv_years, pv_drivers, pv_idx = (prev.get("seasons", {}), prev.get("drivers", {}),
                                     prev.get("indices", {}))
     pv_cons, pv_rounds = prev.get("constructors", {}), prev.get("rounds", {})
+    pv_circ = prev.get("circuits", {})
 
     changed_years = [y for y in range(LAST_YEAR, FIRST_YEAR - 1, -1)
                      if full or cur["seasons"][str(y)] != pv_years.get(str(y))]
@@ -291,9 +343,12 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
                        if full or cur["drivers"][d] != pv_drivers.get(d)]
     changed_constructors = [c for c in CONSTRUCTOR_IDS
                             if full or cur["constructors"][c] != pv_cons.get(c)]
+    changed_circuits = [c for c in CIRCUIT_IDS
+                        if full or cur["circuits"][c] != pv_circ.get(c)]
     idx_seasons_changed = full or cur["indices"]["seasons"] != pv_idx.get("seasons")
     idx_drivers_changed = full or cur["indices"]["drivers"] != pv_idx.get("drivers")
     idx_cons_changed = full or cur["indices"]["constructors"] != pv_idx.get("constructors")
+    idx_circ_changed = full or cur["indices"]["circuits"] != pv_idx.get("circuits")
 
     changed_urls = []
 
@@ -330,12 +385,20 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
         s = cg.gen_constructor(cid, con)
         changed_urls.append(f"{BASE}/constructors/{s['slug']}/")
 
+    # 賽道：索引 + 逐個變動賽道（唯一 owner＝gen-racing-circuits.py）
+    if idx_circ_changed:
+        changed_urls.append(ci.render_index(con))
+    for cid in changed_circuits:
+        s = ci.gen_circuit(cid, con)
+        changed_urls.append(f"{BASE}/circuits/{s['slug']}/")
+
     save_fingerprints(cur, fp_path)
 
     if publish:
         rc.write_sitemap_part("seasons", enumerate_season_urls(round_years))
         rc.write_sitemap_part("drivers", enumerate_driver_urls())
         rc.write_sitemap_part("constructors", enumerate_constructor_urls())
+        rc.write_sitemap_part("circuits", enumerate_circuit_urls())
 
     return {
         "changed_years": changed_years,
@@ -344,9 +407,11 @@ def selective_regen(con, full=False, round_years=None, fp_path=FINGERPRINTS,
         "rounds_rendered_standalone": rendered_rounds,
         "changed_drivers": changed_drivers,
         "changed_constructors": changed_constructors,
+        "changed_circuits": changed_circuits,
         "index_seasons": idx_seasons_changed,
         "index_drivers": idx_drivers_changed,
         "index_constructors": idx_cons_changed,
+        "index_circuits": idx_circ_changed,
         "changed_urls": sorted(set(changed_urls)),
     }
 
@@ -357,6 +422,8 @@ def run(full=False, publish=False, skip_gates=False, fp_path=FINGERPRINTS):
         if not dr.run_gates():
             return False, None
         if not cg.run_gates():
+            return False, None
+        if not ci.run_gates():
             return False, None
     con = fs.connect_db()
     try:
@@ -370,7 +437,7 @@ def main():
     ap = argparse.ArgumentParser(description="百科線選擇性重生（per-page 指紋；歷史頁不重寫）。")
     ap.add_argument("--full", action="store_true", help="忽略指紋全量重生（首次公開/指紋遺失）")
     ap.add_argument("--publish", action="store_true",
-                    help="（重）寫 seasons/drivers/constructors sitemap part")
+                    help="（重）寫 seasons/drivers/constructors/circuits sitemap part")
     ap.add_argument("--skip-gates", action="store_true", help=argparse.SUPPRESS)
     a = ap.parse_args()
     ok, res = run(full=a.full, publish=a.publish, skip_gates=a.skip_gates)
@@ -381,7 +448,9 @@ def main():
           f"單獨重生分站 {res['rounds_rendered_standalone'] or '—'}；"
           f"變動車手 {res['changed_drivers'] or '—'}；"
           f"變動車隊 {res['changed_constructors'] or '—'}；"
-          f"索引(季/手/隊) {res['index_seasons']}/{res['index_drivers']}/{res['index_constructors']}；"
+          f"變動賽道 {res['changed_circuits'] or '—'}；"
+          f"索引(季/手/隊/道) {res['index_seasons']}/{res['index_drivers']}"
+          f"/{res['index_constructors']}/{res['index_circuits']}；"
           f"變更頁 {len(res['changed_urls'])}", flush=True)
     return 0
 
