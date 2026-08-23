@@ -496,6 +496,15 @@ class RebuttalFixTests(unittest.TestCase):
         self.assertTrue(bf.LAPPED_STATUSES.match("+1 Lap"))
         self.assertIsNone(bf.LAPPED_STATUSES.match("Mystery Status"))
 
+    def test_classified_retired_is_named_state_not_swallowed(self):
+        """2026 R12 Albon：positionText=17＋status=Retired＝列入名次（未跑完），
+        是具名第四態；status 不是 Retired 的未知組合仍要炸。"""
+        src = (ROOT / "scripts" / "build-facts.py").read_text(encoding="utf-8")
+        self.assertIn('classified_retired = classified and status == "Retired"', src)
+        self.assertIn('"列入名次（未跑完）" if classified_retired', src)
+        # 反向：Mystery Status 仍走 _die 路徑（字串層面守住 fail-closed 分支沒被刪）
+        self.assertIn("未知的完賽狀態組合", src)
+
     def test_result_table_requires_all_five_columns(self):
         """只有兩欄的十列表格必須擋——通過條件不得小於 prompt 契約。"""
         md = "| 名次 | 車手 |\n|---|---|\n| 1 | 安東內利 |\n"
