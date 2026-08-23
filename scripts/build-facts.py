@@ -394,14 +394,21 @@ def build_race_recap(season, rnd):
     cs = rc.load_data(season, "constructor-standings.json")
     d_rows, c_rows = _standings_rows(ds, "driver"), _standings_rows(cs, "constructor")
 
+    # 「賽前」的定義＝本站週末前（round N-1 榜），與 check-facts verify-standings 的獨立 oracle
+    # 同一口徑。衝刺週末的衝刺賽積分也要減掉，否則 before 變成「衝刺賽後、正賽前」——
+    # 2026 R12 荷蘭站實測：只減正賽分，before 比 R11 榜多出衝刺賽的 8/7/6/5/…分，oracle 紅燈。
     d_delta = {}
     c_delta = {}
-    for e in entries:
-        pts, _ = _points_of(e, POINTS_RACE)
-        d_delta[(e.get("Driver") or {}).get("driverId", "")] = \
-            d_delta.get((e.get("Driver") or {}).get("driverId", ""), 0.0) + pts
-        cid_ = (e.get("Constructor") or {}).get("constructorId", "")
-        c_delta[cid_] = c_delta.get(cid_, 0.0) + pts
+    delta_sources = [(entries, POINTS_RACE)]
+    if sprint:
+        delta_sources.append((sprint.get("SprintResults") or sprint.get("Results") or [], POINTS_SPRINT))
+    for src_entries, table in delta_sources:
+        for e in src_entries:
+            pts, _ = _points_of(e, table)
+            d_delta[(e.get("Driver") or {}).get("driverId", "")] = \
+                d_delta.get((e.get("Driver") or {}).get("driverId", ""), 0.0) + pts
+            cid_ = (e.get("Constructor") or {}).get("constructorId", "")
+            c_delta[cid_] = c_delta.get(cid_, 0.0) + pts
 
     # 對帳：API 榜 vs 從結果檔累加，對不上就是快照跨了輪次或有賽後判罰
     acc_d, acc_c = _accumulate(results, rnd)

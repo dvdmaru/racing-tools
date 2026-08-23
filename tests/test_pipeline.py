@@ -496,6 +496,16 @@ class RebuttalFixTests(unittest.TestCase):
         self.assertTrue(bf.LAPPED_STATUSES.match("+1 Lap"))
         self.assertIsNone(bf.LAPPED_STATUSES.match("Mystery Status"))
 
+    def test_sprint_weekend_before_standings_exclude_sprint_points(self):
+        """衝刺週末的「賽前」＝週末前（round N-1 榜）：衝刺賽積分也要從賽後榜減掉。
+        用 repo 內 2026 R12 真實快照：只減正賽分會得 224（含衝刺 5 分），正確是 219。"""
+        pack = bf.build_race_recap(2026, 12)
+        before = {r["id"]: r["points"] for r in pack["standings"]["drivers_before"]}
+        self.assertEqual(before["antonelli"], 219.0)
+        self.assertEqual(before["russell"], 160.0)  # 衝刺賽冠軍 8 分必須被扣掉
+        cons = {r["id"]: r["points"] for r in pack["standings"]["constructors_before"]}
+        self.assertEqual(cons["mercedes"], 379.0)
+
     def test_classified_retired_is_named_state_not_swallowed(self):
         """2026 R12 Albon：positionText=17＋status=Retired＝列入名次（未跑完），
         是具名第四態；status 不是 Retired 的未知組合仍要炸。"""
