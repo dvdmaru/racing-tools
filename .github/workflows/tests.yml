@@ -19,7 +19,9 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - run: pip install 'markdown==3.10.2'
+      # pyyaml＝解析 .github/ISSUE_TEMPLATE/errata.yml 的回報表單測試需要。
+      # 不裝而讓那個測試檔 import 失敗／自我 skip，就是 CI 假覆蓋（同下方 build-f1-db 的理由）。
+      - run: pip install 'markdown==3.10.2' 'pyyaml==6.0.3'
       # F2（Sol 五輪）：DB-backed 測試需先建 L1，否則 3 個身分比對回歸測試被靜默 skip＝CI 假覆蓋
       - run: python scripts/build-f1-db.py
       - run: python -m unittest discover -s tests -v

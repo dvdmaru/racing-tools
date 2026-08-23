@@ -505,6 +505,80 @@ def render_feed(articles):
 """
 
 
+# ---------- 百科 URL 清單（單一資料源＝各生成器落地的 sitemap part） ----------
+# ☠️ 不准在這裡手寫任何 URL 清單。清單型設定只會「對某一批完工」——百科頁數會隨賽季、
+# 車手、車隊增減，手寫的那一份從寫下的那一刻起就開始腐蝕，而且腐蝕時沒有任何一層會叫
+# （2026-08-03 就發生過：sitemap OWNERS 名單漏列，374 頁百科頁靜默缺席 sitemap，全綠）。
+#
+# 為什麼讀 sitemap part 而不是 import regen-encyclopedia 的 enumerate_*_urls()：
+# 那三支函式要先 import gen-racing-drivers → 需要 data/f1/db.sqlite，而 db.sqlite 是
+# gitignored 的可重建層。build-articles.py 必須在沒有 db 的乾淨 checkout 上跑得起來
+# （CI、只改一篇文章的本機重建都是這個情形）。data/sitemap-parts/*.txt 正是那三支函式
+# 的落地輸出、且進 git——同一個資料源的另一個形態，不是另抄一份清單。
+PARTS_DIR = ROOT / "data" / "sitemap-parts"
+
+# (sitemap part owner, 區段標題, 索引頁 path, 該線一句話說明)
+# circuits 是另一條線正在建的 part：**存在才列**，不預設它一定會有。
+ENCYCLOPEDIA_LINES = [
+    ("seasons", "歷年賽季", "/seasons/",
+     "逐季總覽、各季子頁與單場分站頁"),
+    ("drivers", "車手", "/drivers/",
+     "歷代冠軍與當季車手的生涯逐季成績"),
+    ("constructors", "車隊", "/constructors/",
+     "當季車隊的參賽沿革、年度名次與頒獎台明細"),
+    ("circuits", "賽道", "/circuits/",
+     "各賽道的舉辦紀錄"),
+]
+
+
+def _part_urls(owner: str) -> list:
+    """讀 data/sitemap-parts/<owner>.txt；檔案不存在＝該線還沒接上 → 回空清單。"""
+    p = PARTS_DIR / f"{owner}.txt"
+    if not p.exists():
+        return []
+    return [l.strip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
+def _season_year_range(urls) -> str:
+    """從 /seasons/<year>/ 的 URL 推出涵蓋年份，回「1950 至 2026 年」或空字串。
+
+    ⚠️ 這個數字必須推算：llms.txt 曾寫死「全季 22 站」，賽曆一變就永遠錯下去
+    （2026-08-01 事故，check-site-facts.py 因此誕生）。凡是進 llms.txt 的數字，
+    來源只能是這次 build 讀到的實際清單。
+    """
+    years = sorted(int(m.group(1)) for m in
+                   (re.fullmatch(rf"{re.escape(BASE)}/seasons/([0-9]{{4}})/", u) for u in urls)
+                   if m)
+    return f"{years[0]} 至 {years[-1]} 年" if years else ""
+
+
+def render_encyclopedia_llms(base=BASE) -> str:
+    """llms.txt 的百科三（四）線區段。未公開時整段不輸出（比照導覽列的 published gate）。
+
+    為什麼非有不可：百科 478 頁佔全站頁數 97%，而 llms.txt 原本一條都沒列——
+    對照著讀 llms.txt 的引擎會以為這個站只有 5 個資料頁加 10 篇文章。
+    """
+    if not rc.ENCYCLOPEDIA_PUBLISHED:
+        return ""
+    blocks = []
+    for owner, label, index_path, gist in ENCYCLOPEDIA_LINES:
+        urls = _part_urls(owner)
+        if not urls:
+            continue
+        index_url = f"{base}{index_path}"
+        pages = [u for u in urls if u.rstrip("/") != index_url.rstrip("/")]
+        span = _season_year_range(urls) if owner == "seasons" else ""
+        note = (f"{gist}{('，涵蓋 ' + span) if span else ''}，共 {len(urls)} 頁。"
+                "資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，"
+                "實體頁每一筆明細都標到它所依據的來源快照檔；"
+                "本站非官方整理，數字以 FIA 與賽事官方公告為準。")
+        listed = "\n".join(f"- {u}" for u in pages)
+        blocks.append(f"## {label}（百科）\n\n"
+                      f"- [{label}索引]({index_url})：{note}\n"
+                      f"{listed}\n")
+    return "\n".join(blocks)
+
+
 # ---------- llms.txt（build-time 生成，永不 stale） ----------
 
 def render_llms_txt(articles):
@@ -512,6 +586,8 @@ def render_llms_txt(articles):
         f"- [{a['meta'].get('title', a['slug'])}]({BASE}/articles/{a['slug']}/)"
         + (f"（{a['meta']['date']}）" if a["meta"].get("date") else "")
         for a in articles[:10])
+    enc = render_encyclopedia_llms()
+    enc_blocks = f"{enc}\n" if enc else ""
     return f"""# 賽車數據誌（racing.twtools.cc）— F1 積分榜・台北時間賽曆・各站賽果
 
 > 非官方的繁體中文一級方程式（F1）數據與內容站。提供車手/車隊積分榜、全季賽曆台北時間對照、各站官方分類賽果三個每週自動更新的資料頁，以及規則解析、譯名對照等長青專題。內容以繁體中文撰寫、台灣慣用譯名、台北時間標示，面向台灣讀者。
@@ -535,11 +611,116 @@ def render_llms_txt(articles):
 - [RSS feed]({BASE}/feed.xml)：最新深度文章。
 - 深度文章：3000 字以上的長文，規則與事實逐項對照 FIA/官方說明查證後發布。
 
-## 使用說明
+## 更正與勘誤
+
+- [公開勘誤紀錄]({BASE}/errata/)：本站每一次事實修正的日期、原值、修正值、出處與致謝，逐筆公開。
+- 每一頁的頁尾都有回報錯誤的入口；回報經查證後才修改，查不到可靠出處一律維持原狀並說明理由。
+
+{enc_blocks}## 使用說明
 
 - 引用本站資料時，請註明資料為非官方整理、並以 FIA 及賽事官方公告為準。
 - 內容僅供資訊參考；時間以台北時間（UTC+8）標示。
 """
+
+
+# ---------- /errata/ 公開勘誤索引 ----------
+# 容錯放流程的最後一段：每頁「回報錯誤」→ default-deny 裁決 → 修 facts 層 →
+# **這一頁**公開紀錄＋具名致謝。沒有這一頁，前面三段對讀者來說等於不存在。
+#
+# data/errata.json 的 schema（單一資料源，stability.py 逐篇取用、本頁全站彙整）：
+#   slug   必填  對應 articles/<slug>；找不到已發布的同名文章時只顯示文字不給連結
+#   at     必填  台北時間「YYYY-MM-DD HH:MM」
+#   what   必填  修正說明（散文；舊資料只有這一欄）
+#   was/now 選填 結構化的「原值 → 修正值」；兩欄都在才渲染那一行
+#   source 選填  出處（URL 或可查證的說明）
+#   credit 必填欄位、值可為 null  null＝站方自查；字串＝回報者希望顯示的具名致謝
+#
+# ⚠️ credit 一律要有這個 key（即使是 null）。「沒有 credit 欄」與「站方自查」是兩件事，
+# 用 .get() 讓它們塌成同一個顯示值，日後就分不出「忘了記致謝」和「真的是自查」。
+ERRATA_CSS = """
+.err-item { display:block; padding:16px 0; border-bottom:1px dashed var(--line); }
+.err-item:last-child { border-bottom:0; }
+.err-row { font-size:13.5px; line-height:1.8; margin:2px 0; color:var(--fg-soft); }
+.err-row b { font-family:var(--font-mono); font-size:10.5px; letter-spacing:1.6px;
+  text-transform:uppercase; color:var(--dim); margin-right:8px; font-weight:600; }
+.err-row.err-what { color:var(--fg); }
+.err-credit { color:var(--fg); }
+"""
+
+
+def load_errata() -> list:
+    """讀 data/errata.json（stability.py 用的同一份檔）。缺檔／壞檔＝空清單，不猜。"""
+    p = ROOT / "data" / "errata.json"
+    if not p.exists():
+        return []
+    try:
+        items = json.loads(p.read_text(encoding="utf-8"))
+    except ValueError:
+        print("⚠️  data/errata.json 解析失敗 → /errata/ 以零筆渲染（不靜默假裝沒有勘誤）")
+        return []
+    return sorted(items, key=lambda e: str(e.get("at", "")), reverse=True)
+
+
+def _errata_item_html(e, titles):
+    esc = html_lib.escape
+    slug = e.get("slug", "")
+    title = titles.get(slug)
+    page = (f'<a href="{BASE}/articles/{esc(slug)}/">{esc(title)}</a>' if title
+            else f"{esc(slug)}（該頁目前未公開）")
+    rows = [f'<div class="err-row"><b>頁面</b>{page}</div>']
+    was, now = e.get("was"), e.get("now")
+    if was and now:
+        rows.append(f'<div class="err-row"><b>修正</b>{esc(was)} → {esc(now)}</div>')
+    rows.append(f'<div class="err-row err-what"><b>說明</b>{esc(e.get("what", ""))}</div>')
+    src = e.get("source")
+    rows.append('<div class="err-row"><b>出處</b>'
+                + (esc(src) if src else "未另列，見上方說明") + "</div>")
+    # credit 為 null＝站方自查。這裡刻意不寫「無」——讀者要看得出這筆是誰找出來的。
+    credit = e.get("credit")
+    rows.append('<div class="err-row err-credit"><b>致謝</b>'
+                + (esc(credit) if credit else "站方自查") + "</div>")
+    return (f'<li class="err-item"><span class="rs-at">{esc(e.get("at", ""))}</span>'
+            + "".join(rows) + "</li>")
+
+
+def render_errata_page(articles):
+    """/errata/：全站勘誤索引。零筆時照樣輸出並寫「尚無勘誤」，不藏頁。
+
+    ☠️ 零筆就不生成這一頁是錯的：頁尾每一頁都連過來，藏頁＝493 頁掛 404；
+    而且「還沒發生過勘誤」本身就是要對讀者講的話，不是要隱藏的空狀態。
+    """
+    items = load_errata()
+    titles = {a["slug"]: a["meta"].get("title", a["slug"]) for a in articles}
+    canonical = f"{BASE}/errata/"
+    if items:
+        # ⚠️ 這個 <ul class="rs-list rs-err"> 的 class 不是排版選擇：check-site-facts.py 的
+        # quote_zones 靠它把「引用原本錯的寫法」整段排除。勘誤的職責就是複述舊的錯數字
+        # （「縮為 22 站」），換掉 class 會讓事實 gate 當場對自己的勘誤頁報錯。
+        listing = ('<ul class="rs-list rs-err">'
+                   + "".join(_errata_item_html(e, titles) for e in items) + "</ul>")
+        count_line = f"目前共 <b>{len(items)}</b> 筆，最近一筆 {html_lib.escape(items[0].get('at', ''))}。"
+    else:
+        listing = '<p class="rs-none">尚無勘誤——本站尚未有任何一筆事實被回報並確認需要修正。</p>'
+        count_line = "目前共 <b>0</b> 筆。"
+    body = ('<h1 class="pg-h1">勘誤紀錄</h1>'
+            f'<div class="pg-sub">這個站不假裝零錯誤，改把改正過程攤開：任何一頁看到錯誤都可以回報，'
+            f'我們逐項查證——<b>查不到可靠出處就不改</b>，並說明理由；確認有誤則修正資料層、重建頁面，'
+            f'再把日期、原值、修正值、出處與致謝記在這一頁。{count_line}</div>'
+            + listing
+            + f'<p class="asof-note">看到與事實不符的內容，請用'
+              f'<a href="{rc.ERRATA_REPORT_URL}" target="_blank" rel="noopener">回報錯誤表單</a>'
+              '告訴我們（頁面網址、你看到的值、你認為正確的值、出處）。'
+              '回報者若願意具名，勘誤成立時會列在致謝欄；未具名或由站方自行複查發現者記為「站方自查」。'
+              '本站為非官方資料整理站，數字一律以 FIA 與賽事官方公告為準。</p>')
+    coll = {"@type": "CollectionPage", "@id": canonical, "url": canonical,
+            "name": "勘誤紀錄", "inLanguage": "zh-Hant",
+            "isPartOf": {"@id": f"{BASE}/#website"}}
+    jsonld = rc.graph_ld([rc.org_node(), rc.website_node(), coll,
+                          rc.breadcrumb_node([("首頁", f"{BASE}/"), ("勘誤紀錄", canonical)])])
+    desc = ("賽車數據誌的公開勘誤紀錄：每一次事實修正的日期、頁面、原值與修正值、出處與具名致謝，"
+            "逐筆列出。歡迎讀者回報錯誤。")
+    return rc.page_shell("勘誤紀錄", desc, canonical, jsonld, body, "errata",
+                         extra_css=ERRATA_CSS)
 
 
 # ---------- main build ----------
@@ -625,15 +806,23 @@ def build():
     (PUB / "articles").mkdir(parents=True, exist_ok=True)
     (PUB / "articles" / "index.html").write_text(render_articles_index(articles), encoding="utf-8")
     (PUB / "feed.xml").write_text(render_feed(articles), encoding="utf-8")
+    (PUB / "errata").mkdir(parents=True, exist_ok=True)
+    (PUB / "errata" / "index.html").write_text(render_errata_page(articles), encoding="utf-8")
     (PUB / "llms.txt").write_text(render_llms_txt(articles), encoding="utf-8")
     (PUB / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
 
     # sitemap manifest：本腳本只寫自己擁有的 part（首頁/文章 index/逐篇文章），
     # build-sitemap.py 在三個 gen-* 之後統一合併成最終 public-racing/sitemap.xml。
-    urls = [f"{BASE}/", f"{BASE}/articles/"] + [f"{BASE}/articles/{a['slug']}/" for a in articles]
+    # /errata/ 也掛在本 owner 底下：它由本腳本生成，沒有自己的 generator，
+    # 另開一個 owner 就得同步改 build-sitemap.py 的 OWNERS 名單——那份名單漏列過一次，
+    # 靜默吞掉 374 頁百科（見 build-sitemap.py 的事故註解）。少一份要同步的名單少一個坑。
+    urls = ([f"{BASE}/", f"{BASE}/articles/"]
+            + [f"{BASE}/articles/{a['slug']}/" for a in articles]
+            + [f"{BASE}/errata/"])
     rc.write_sitemap_part("articles", urls)
-    print(f"🏠 index + articles index + feed + llms.txt + sitemap part ({len(articles)} articles) → {PUB}/")
+    print(f"🏠 index + articles index + feed + errata + llms.txt + sitemap part "
+          f"({len(articles)} articles) → {PUB}/")
 
 
 if __name__ == "__main__":

@@ -292,6 +292,28 @@ SISTER_SITES = [
 ]
 
 
+# ---------- 容錯放流程：每頁的「回報錯誤」入口（2026-08-23） ----------
+# 這個站的定位不是「零錯誤」，是**把改正過程攤開**：讀者在任一頁看到錯 → 回報 →
+# default-deny 裁決（不採信就不改） → 修 facts 層 → /errata/ 公開勘誤紀錄＋具名致謝。
+#
+# ☠️ 為什麼寫死在這裡、不放 config/site.json 的 footer_links：比照 SISTER_SITES 的理由。
+# footer_links 是導覽用的清單，少一條沒人會發現；但這條是**回報通道本身**——它被順手
+# 拿掉時，站上不會壞、測試不會紅、讀者只是再也沒有地方告訴我們哪裡錯了，而我們會以為
+# 「都沒人回報＝沒有錯」。通道的存在必須由程式碼與測試釘住，不能是設定檔的一行。
+ERRATA_REPORT_URL = "https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml"
+ERRATA_INDEX_PATH = "/errata/"
+
+
+def errata_entry_html() -> str:
+    """footer 的兩條容錯連結：公開勘誤紀錄（站內）＋回報錯誤（GitHub issue 表單）。
+
+    外連只帶 target/rel="noopener"（開新分頁的基本安全屬性），不加 nofollow——
+    連的是自家 repo，不是需要切斷權重的第三方。
+    """
+    return (f'<a href="{ERRATA_INDEX_PATH}">勘誤紀錄</a>\n      '
+            f'<a href="{ERRATA_REPORT_URL}" target="_blank" rel="noopener">回報錯誤</a>')
+
+
 def sister_sites_html(site: dict = None) -> str:
     base = (site or SITE)["base"].rstrip("/") + "/"
     links = "　·　".join(
@@ -337,6 +359,8 @@ def site_footer_html(site: dict = None) -> str:
     for l in site.get("footer_links", []):
         target = ' target="_blank" rel="noopener"' if l.get("external") else ""
         link_parts.append(f'<a href="{l["href"]}"{target}>{l["label"]}</a>')
+    # 回報錯誤／勘誤紀錄不走 footer_links 設定（理由見 errata_entry_html 上方註解）
+    link_parts.append(errata_entry_html())
     links = "\n      ".join(link_parts)
     return f"""  <div class="article-footer">
     <div class="foot-links">

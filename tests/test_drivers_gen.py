@@ -46,10 +46,12 @@ gs = dr.gs
 cg = _load("gen_racing_constructors_for_driver_tests", "gen-racing-constructors.py")
 
 # 姊妹站那段從 rc.SISTER_SITES 推導，不手抄（原本三個測試檔各一份，加一站要改四處）。
+# footer 的「回報錯誤」外連 host 同樣從 rc.ERRATA_REPORT_URL 推導，不手抄 "github.com"：
+# 白名單寫死字面值，等於它比實際情況寬一格，而那一格永遠不會有人回來收。
 ALLOWED_HOSTS = {
     "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
     "schema.org", "en.wikipedia.org", "racing.twtools.cc",
-} | {urlsplit(u).netloc for _, u in rc.SISTER_SITES}
+} | {urlsplit(u).netloc for _, u in rc.SISTER_SITES} | {urlsplit(rc.ERRATA_REPORT_URL).netloc}
 FORBIDDEN_LABELS = ("桿位", "最快圈", "生涯積分")
 ALLOWED_STAT_LABELS = ("世界冠軍", "分站冠軍", "頒獎台", "參賽場次")
 

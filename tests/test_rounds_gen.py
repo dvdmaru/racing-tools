@@ -300,7 +300,9 @@ class JsonLdTests(unittest.TestCase):
         allowed = {
             "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
             "schema.org", "en.wikipedia.org", "racing.twtools.cc",
-        } | {urlsplit(u).netloc for _, u in rc.SISTER_SITES}
+        } | {urlsplit(u).netloc for _, u in rc.SISTER_SITES} | {
+            # footer 的「回報錯誤」外連（GitHub issue 表單）；host 由常數推導不手抄。
+            urlsplit(rc.ERRATA_REPORT_URL).netloc}
         self.assertFalse(hosts - allowed, f"白名單外 host：{hosts - allowed}")
 
 
