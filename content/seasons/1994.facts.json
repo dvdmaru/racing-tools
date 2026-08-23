@@ -2,14 +2,49 @@
   "_comment": "1994 賽季導言 facts pack。塞納於聖馬利諾大獎賽身亡、最後一站阿德雷德（澳洲站）舒馬克與希爾相撞雙雙退賽，屬歷史背景敘述、無被對帳的阿拉伯數字，列為 external-history、不進機械對帳；results 表已核對 senna round=3（San Marino）、round=16（Australian GP）schumacher／damon_hill 皆為 position_text='R'。92:91 為官方最終積分榜值，直接查得。",
   "season": 1994,
   "claims": [
-    {"kind": "season_exists", "text": "1994 賽季", "value": 1994, "verified": true,
-     "source": "sqlite: SELECT 1 FROM seasons WHERE year=1994"},
-    {"kind": "champion_wins", "driver": "michael_schumacher", "text": "舒馬克拿下 8 場分站冠軍", "value": 8, "verified": true,
-     "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1994 AND position=1"},
-    {"kind": "champion_points", "driver": "michael_schumacher", "text": "以 92 分險勝", "value": 92, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1994 AND position=1"},
-    {"kind": "runner_up_points", "driver": "damon_hill", "text": "希爾 91 分", "value": 91, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1994 AND position=2"}
+    {
+      "kind": "season_exists",
+      "text": "1994 賽季",
+      "value": 1994,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1994",
+      "anchors": [
+        "1994 年"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "michael_schumacher",
+      "text": "舒馬克拿下 8 場分站冠軍",
+      "value": 8,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1994 AND position=1",
+      "anchors": [
+        "拿下 8 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "michael_schumacher",
+      "text": "以 92 分險勝",
+      "value": 92,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1994 AND position=1",
+      "anchors": [
+        "以 92 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "damon_hill",
+      "text": "希爾 91 分",
+      "value": 91,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1994 AND position=2",
+      "anchors": [
+        "對 91 分"
+      ]
+    }
   ],
   "external_history": [
     "艾爾頓・塞納（Ayrton Senna）在聖馬利諾大獎賽的意外中身亡——歷史背景事實，無阿拉伯數字。",
