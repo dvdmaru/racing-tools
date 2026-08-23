@@ -1,0 +1,55 @@
+name: 回報錯誤（勘誤）
+description: 在 racing.twtools.cc 任何一頁看到與事實不符的內容，用這張表告訴我們。
+title: "[勘誤] "
+labels: ["errata"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝你願意花時間回報。這個站不假裝零錯誤——我們把改正過程公開：
+        收到回報後逐項查證（**查不到可靠出處就不改**，並在此回覆說明理由），
+        確認有誤則修正資料層並重建頁面，最後記在
+        [公開勘誤紀錄](https://racing.twtools.cc/errata/)，願意具名者列出致謝。
+
+        ⚠️ 請不要在這裡填寫個人聯絡資訊（Email、電話、通訊軟體帳號）——本表單公開可見。
+  - type: input
+    id: page_url
+    attributes:
+      label: 頁面網址
+      description: 出錯的那一頁的完整網址（含 https://）。
+      placeholder: https://racing.twtools.cc/seasons/2023/
+    validations:
+      required: true
+  - type: textarea
+    id: seen
+    attributes:
+      label: 你看到的值
+      description: 頁面上目前寫的內容，請盡量原文照抄（含數字、名次、時間、譯名）。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你認為正確的值
+      description: 正確的內容應該是什麼。
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 出處
+      description: >
+        佐證的來源，越具體越好：FIA 或賽事官方文件連結、可查證的報導網址、
+        或明確的推論步驟（例如「以積分反推名次」）。沒有出處也可以送出，
+        但我們會需要自行查證，處理會慢一些；查不到可靠來源時會維持原狀並回覆說明。
+    validations:
+      required: false
+  - type: input
+    id: credit
+    attributes:
+      label: 致謝署名（選填）
+      description: >
+        勘誤成立時，公開勘誤紀錄會列出致謝。想具名請填你希望顯示的名稱
+        （例如 GitHub 帳號或暱稱）；留白則記為「讀者回報」，不揭露身分。
+    validations:
+      required: false

@@ -39,10 +39,11 @@ fs = g.fs
 # 姊妹站那段**從 rc.SISTER_SITES 推導、不再手抄**：原本三個測試檔各抄一份同樣的 host 清單，
 # 加一站要改四個地方，漏掉哪個就是紅燈而不是保護。清單本身另有 test_site_identity 把關。
 SISTER_HOSTS = {urlsplit(u).netloc for _, u in rc.SISTER_SITES}
+# footer 的「回報錯誤」外連 host 同樣由常數推導，不手抄 "github.com"（理由同上）。
 ALLOWED_HOSTS = {
     "fonts.googleapis.com", "fonts.gstatic.com", "www.googletagmanager.com",
     "schema.org", "en.wikipedia.org", "racing.twtools.cc",
-} | SISTER_HOSTS
+} | SISTER_HOSTS | {urlsplit(rc.ERRATA_REPORT_URL).netloc}
 
 
 class IndexInProgressTests(unittest.TestCase):
