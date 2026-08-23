@@ -2,12 +2,49 @@
   "_comment": "2010 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字都必須落在本檔 verified claims 的值集合內。external-history 句屬常識性歷史背景、不進機械對帳。",
   "season": 2010,
   "claims": [
-    {"kind": "season_exists", "text": "2010 賽季", "value": 2010, "verified": true,
-     "source": "sqlite: SELECT 1 FROM seasons WHERE year=2010"},
-    {"kind": "champion_points", "driver": "vettel", "text": "以 256 分險勝", "value": 256, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2010 AND position=1"},
-    {"kind": "runner_up_points", "driver": "alonso", "text": "阿隆索的 252 分", "value": 252, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=2010 AND position=2"}
+    {
+      "kind": "season_exists",
+      "text": "2010 賽季",
+      "value": 2010,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2010",
+      "anchors": [
+        "2010 年"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "vettel",
+      "text": "以 256 分險勝",
+      "value": 256,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2010 AND position=1",
+      "anchors": [
+        "以 256 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "alonso",
+      "text": "阿隆索的 252 分",
+      "value": 252,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2010 AND position=2",
+      "anchors": [
+        "的 252 分"
+      ]
+    },
+    {
+      "kind": "rank_before_final",
+      "driver": "vettel",
+      "text": "末站前累計排名第三",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "末站前排名第三"
+      ],
+      "source": "逐站重算：截至 R18 的累計積分＋countback 排名"
+    }
   ],
   "external_history": [
     "紅牛車隊同年也拿下隊史首座車隊冠軍"

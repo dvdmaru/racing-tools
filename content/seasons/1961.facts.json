@@ -2,18 +2,81 @@
   "_comment": "1961 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字都必須落在本檔 verified claims 的值集合內。external-history 句屬常識性歷史背景、不進機械對帳。",
   "season": 1961,
   "claims": [
-    {"kind": "season_exists", "text": "1961 賽季", "value": 1961, "verified": true,
-     "source": "sqlite: SELECT 1 FROM seasons WHERE year=1961"},
-    {"kind": "season_rounds", "text": "全季 8 站", "value": 8, "verified": true,
-     "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1961"},
-    {"kind": "champion_wins", "driver": "phil_hill", "text": "菲爾・希爾拿下 2 場分站冠軍", "value": 2, "verified": true,
-     "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1961 AND driver_id='phil_hill' ORDER BY points DESC LIMIT 1"},
-    {"kind": "champion_points", "driver": "phil_hill", "text": "以 34 分險勝", "value": 34, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1961 AND driver_id='phil_hill'"},
-    {"kind": "runner_up_points", "driver": "trips", "text": "隊友 Wolfgang von Trips 33 分", "value": 33, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1961 AND driver_id='trips'"},
-    {"kind": "constructor_wins", "constructor": "ferrari", "text": "法拉利以 5 場分站冠軍拿下車隊冠軍", "value": 5, "verified": true,
-     "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1961 AND constructor_id='ferrari' AND position_text='1'"}
+    {
+      "kind": "season_exists",
+      "text": "1961 賽季",
+      "value": 1961,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1961",
+      "anchors": [
+        "1961 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 8 站",
+      "value": 8,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1961",
+      "anchors": [
+        "全季 8 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "phil_hill",
+      "text": "菲爾・希爾拿下 2 場分站冠軍",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1961 AND driver_id='phil_hill' ORDER BY points DESC LIMIT 1",
+      "anchors": [
+        "拿下 2 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "phil_hill",
+      "text": "以 34 分險勝",
+      "value": 34,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1961 AND driver_id='phil_hill'",
+      "anchors": [
+        "以 34 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "trips",
+      "text": "隊友 Wolfgang von Trips 33 分",
+      "value": 33,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1961 AND driver_id='trips'",
+      "anchors": [
+        "的 33 分"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "ferrari",
+      "text": "法拉利以 5 場分站冠軍拿下車隊冠軍",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1961 AND constructor_id='ferrari' AND position_text='1'",
+      "anchors": [
+        "以 5 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "clinch_from_end",
+      "driver": "phil_hill",
+      "text": "車手冠軍在倒數第二站（R7 義大利站）分出勝負",
+      "value": 2,
+      "verified": true,
+      "anchors": [
+        "在倒數第二站"
+      ],
+      "source": "逐站重算：捨分規則＋只計實際仍有出賽的對手，clinch=R7、全季 8 站"
+    }
   ],
   "external_history": []
 }

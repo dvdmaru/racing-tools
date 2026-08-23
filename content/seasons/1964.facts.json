@@ -2,12 +2,38 @@
   "_comment": "1964 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字都必須落在本檔 verified claims 的值集合內。external_history 句屬常識性歷史背景、不進機械對帳、不得攜帶阿拉伯數字。",
   "season": 1964,
   "claims": [
-    {"kind": "season_exists", "text": "1964 賽季", "value": 1964, "verified": true,
-     "source": "sqlite: SELECT 1 FROM seasons WHERE year=1964"},
-    {"kind": "champion_points", "driver": "surtees", "text": "蘇爾特斯以 40 分封王", "value": 40, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1964 AND position=1"},
-    {"kind": "runner_up_points", "driver": "hill", "text": "第二名葛拉罕・希爾 39 分", "value": 39, "verified": true,
-     "source": "sqlite: SELECT points FROM driver_standings WHERE season=1964 AND position=2"}
+    {
+      "kind": "season_exists",
+      "text": "1964 賽季",
+      "value": 1964,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1964",
+      "anchors": [
+        "1964 年"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "surtees",
+      "text": "蘇爾特斯以 40 分封王",
+      "value": 40,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1964 AND position=1",
+      "anchors": [
+        "以 40 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "hill",
+      "text": "第二名葛拉罕・希爾 39 分",
+      "value": 39,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1964 AND position=2",
+      "anchors": [
+        "的 39 分"
+      ]
+    }
   ],
   "external_history": [
     "最後一站墨西哥大獎賽開賽前，蘇爾特斯、希爾、克拉克三人皆有數學上的奪冠機會——賽季懸念背景，正文以列名（而非「三」這類數詞）呈現，不進機械對帳。",

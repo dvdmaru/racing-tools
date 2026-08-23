@@ -1,40 +1,63 @@
 {
- "_comment": "2012 賽季導言 facts pack。281:278 為官方最終積分榜值（driver_standings），直接查得；冠軍之爭拖到第 20 站（本季最終站，巴西站）才分出高下，season_rounds=20 同時對應「戰滿 20 站」與「最後一站」兩處敘述。「維特爾完成 2010-2012 三連冠」與「巴西站開局遭碰撞、隨後追回名次」屬歷史背景/事實層敘述、無被對帳的阿拉伯數字，列為 external-history、不進機械對帳。",
- "season": 2012,
- "claims": [
-  {
-   "kind": "season_exists",
-   "text": "2012 賽季",
-   "value": 2012,
-   "verified": true,
-   "source": "sqlite: SELECT 1 FROM seasons WHERE year=2012"
-  },
-  {
-   "kind": "season_rounds",
-   "text": "賽季戰滿 20 站",
-   "value": 20,
-   "verified": true,
-   "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2012"
-  },
-  {
-   "kind": "champion_points",
-   "driver": "vettel",
-   "text": "維特爾以 281 分封王",
-   "value": 281,
-   "verified": true,
-   "source": "sqlite: SELECT points FROM driver_standings WHERE season=2012 AND position=1"
-  },
-  {
-   "kind": "runner_up_points",
-   "driver": "alonso",
-   "text": "阿隆索 278 分",
-   "value": 278,
-   "verified": true,
-   "source": "sqlite: SELECT points FROM driver_standings WHERE season=2012 AND position=2"
-  }
- ],
- "external_history": [
-  "維特爾完成三連冠（三季冠軍歸屬已個別對 driver_standings 查證）。",
-  "巴西站開局遭碰撞一度落至尾段、隨後追回名次（名次數字刻意不入正文）。"
- ]
+  "_comment": "2012 賽季導言 facts pack。281:278 為官方最終積分榜值（driver_standings），直接查得；冠軍之爭拖到第 20 站（本季最終站，巴西站）才分出高下，season_rounds=20 同時對應「戰滿 20 站」與「最後一站」兩處敘述。「維特爾完成 2010-2012 三連冠」與「巴西站開局遭碰撞、隨後追回名次」屬歷史背景/事實層敘述、無被對帳的阿拉伯數字，列為 external-history、不進機械對帳。",
+  "season": 2012,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2012 賽季",
+      "value": 2012,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2012",
+      "anchors": [
+        "2012 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "賽季戰滿 20 站",
+      "value": 20,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2012",
+      "anchors": [
+        "戰滿 20 站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "vettel",
+      "text": "維特爾以 281 分封王",
+      "value": 281,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2012 AND position=1",
+      "anchors": [
+        "以 281 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "alonso",
+      "text": "阿隆索 278 分",
+      "value": 278,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2012 AND position=2",
+      "anchors": [
+        "的 278 分"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "vettel",
+      "text": "維特爾生涯第三座世界冠軍",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "個人第三座世界冠軍"
+      ],
+      "source": "sqlite: COUNT(driver_standings WHERE driver_id='vettel' AND position=1 AND season<=2012)"
+    }
+  ],
+  "external_history": [
+    "維特爾完成三連冠（三季冠軍歸屬已個別對 driver_standings 查證）。",
+    "巴西站開局遭碰撞一度落至尾段、隨後追回名次（名次數字刻意不入正文）。"
+  ]
 }
