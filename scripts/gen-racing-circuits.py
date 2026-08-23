@@ -21,6 +21,7 @@ import html as html_lib
 import importlib.util
 import json
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -72,6 +73,26 @@ def circuit_slug(cid):
 def approved_zh(cid):
     """譯名只走 circuit-zh.json approved-only；12 條沒有核准譯名的賽道會原文保留。"""
     return rc.CIRCUIT_ZH.get(cid)
+
+
+def display_name(zh, name):
+    """頁面文案裡指涉這條賽道的名字：有核准譯名用譯名，沒有就用原文。
+
+    ⚠️ 標題與描述的模板刻意**不再自己接「賽道」二字**。66 條核准譯名幾乎都自帶那個
+    名詞，接了就變成「蒙札賽道賽道承辦紀錄」（第一版真的產出 50/78 頁疊字）。
+    改成 endswith("賽道") 判斷也修不好：「亞伯特公園賽道（墨爾本）」名詞不在字尾、
+    「上海國際賽車場」與「紅牛環（史匹爾柏格）」名詞根本不是「賽道」二字——所以正解是
+    模板不帶這個名詞，而不是在生成器裡追加特例清單。
+    """
+    return zh or name
+
+
+_LATIN_TAIL = re.compile(r"[0-9A-Za-z)\]]$")
+
+
+def phrase(head, tail):
+    """名稱後面直接接中文的組字：結尾是拉丁字母／數字時補盤古之白（站規：中英之間留白）。"""
+    return f"{head} {tail}" if _LATIN_TAIL.search(head or "") else f"{head}{tail}"
 
 
 # ---------- 資料層（全部由 db 明細推導；value 一律 len()） ----------
@@ -423,8 +444,9 @@ def gen_circuit(cid, con):
     ld = rc.graph_ld([rc.org_node(), rc.website_node(),
                       rc.breadcrumb_node([("首頁", BASE + "/"), ("賽道", BASE + "/circuits/"),
                                           (zh or name, url)]), place_ld(summary, url)])
-    write_page(["circuits", slug], f"{zh or name}賽道承辦紀錄",
-               f"{zh or name}歷年承辦的每一場大獎賽、分站冠軍與冠軍車隊，以及本賽道最多勝的車手與車隊。",
+    disp = display_name(zh, name)
+    write_page(["circuits", slug], phrase(disp, "承辦紀錄"),
+               phrase(disp, "歷年承辦的每一場大獎賽、分站冠軍與冠軍車隊，以及本賽道最多勝的車手與車隊。"),
                ld, body)
     return summary
 

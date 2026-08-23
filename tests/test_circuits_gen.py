@@ -287,6 +287,43 @@ class BilingualTests(_Rendered):
         self.assertEqual(len(translated), 66)
         self.assertEqual(len(ci.CIRCUIT_IDS) - len(translated), len(NO_ZH_CIRCUITS))
 
+    def test_no_page_repeats_the_track_noun(self):
+        """反向：譯名幾乎都自帶「賽道」，模板再接一次就變「蒙札賽道賽道承辦紀錄」。
+
+        第一版 78 頁裡有 50 頁踩到。掃 title／h1／og:title／meta description 四個
+        文案位置，任何一處出現疊字都算失敗。
+        """
+        for cid in ci.CIRCUIT_IDS + ["index"]:
+            html = self.index if cid == "index" else self.page(cid)
+            for label, pattern in (
+                    ("title", r"<title>(.*?)</title>"),
+                    ("h1", r"<h1[^>]*>(.*?)</h1>"),
+                    ("og:title", r'<meta property="og:title" content="(.*?)">'),
+                    ("description", r'<meta name="description" content="(.*?)">')):
+                for text in re.findall(pattern, html, re.S):
+                    self.assertNotIn("賽道賽道", text, f"{cid} 的 {label}：{text[:60]}")
+
+    def test_translated_title_reads_correctly(self):
+        """正向對照：沒有這條，上面那條把「賽道」整個刪光也一樣全綠。"""
+        self.assertIn("<title>蒙札賽道承辦紀錄 | ", self.page("monza"))
+        self.assertIn('content="蒙札賽道承辦紀錄"', self.page("monza"))
+        self.assertIn("蒙札賽道歷年承辦的每一場大獎賽", self.page("monza"))
+
+    def test_untranslated_title_keeps_pangu_space(self):
+        """只有原文時，原文與中文之間要有盤古之白，不能黏成「Jarama承辦紀錄」。"""
+        con = fs.connect_db()
+        try:
+            for cid in ("jarama", "charade"):
+                name = ci.circuit_meta_db(cid, con)["name"]
+                self.assertIn(f"<title>{name} 承辦紀錄 | ", self.page(cid))
+        finally:
+            con.close()
+
+    def test_phrase_helper_both_branches(self):
+        self.assertEqual(ci.phrase("蒙札賽道", "承辦紀錄"), "蒙札賽道承辦紀錄")
+        self.assertEqual(ci.phrase("Jarama", "承辦紀錄"), "Jarama 承辦紀錄")
+        self.assertEqual(ci.phrase("紅牛環（史匹爾柏格）", "承辦紀錄"), "紅牛環（史匹爾柏格）承辦紀錄")
+
     def test_index_shows_both_scripts(self):
         self.assertIn('class="zh-en"', self.index)
         self.assertIn('class="en-only"', self.index)
