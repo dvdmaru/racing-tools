@@ -30,6 +30,20 @@
     "as_of_policy": "每位車手的凍結統計綁定一個 as_of 時點；golden gate 比對的是『重算到 as_of 時點』的統計 vs 凍結值（非全量現值）。2026 現役 22 人一律 as_of={season:2026,round:11}；新賽果進來不影響 gate（截斷只對明細 filter，不對總數減法）。新加入的 18 人與由 R10 推進至 R11 的 4 位既有冠軍已於 2026-08-13 由 Charlie 全批核准（裁決包 data/f1/grid-expansion-adjudication.md）；任何 approved_by 以 PENDING 開頭的條目 golden gate 一律 FAIL。"
   },
   "drivers": {
+    "albon": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 2,
+      "entries": 140,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
     "alonso": {
       "championships": 2,
       "championship_years": [
@@ -39,6 +53,34 @@
       "wins": 32,
       "podiums": 106,
       "entries": 439,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "antonelli": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 6,
+      "podiums": 12,
+      "entries": 35,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "arvid_lindblad": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 11,
       "as_of": {
         "season": 2026,
         "round": 11
@@ -60,6 +102,48 @@
         "season": 1955,
         "round": 2
       }
+    },
+    "bearman": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 38,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "bortoleto": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 35,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "bottas": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 10,
+      "podiums": 67,
+      "entries": 258,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     "button": {
       "championships": 1,
@@ -87,6 +171,20 @@
         "season": 1968,
         "round": 1
       }
+    },
+    "colapinto": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 38,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     "damon_hill": {
       "championships": 1,
@@ -144,6 +242,34 @@
         "season": 1955,
         "round": 7
       }
+    },
+    "gasly": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 1,
+      "podiums": 6,
+      "entries": 189,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "hadjar": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 1,
+      "entries": 35,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     "hakkinen": {
       "championships": 2,
@@ -207,6 +333,20 @@
         "season": 1975,
         "round": 2
       }
+    },
+    "hulkenberg": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 1,
+      "entries": 265,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     "hulme": {
       "championships": 1,
@@ -290,6 +430,34 @@
         "round": 16
       }
     },
+    "lawson": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 46,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "leclerc": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 9,
+      "podiums": 54,
+      "entries": 184,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
     "mansell": {
       "championships": 1,
       "championship_years": [
@@ -370,6 +538,34 @@
       "approved_at": "2026-08-13",
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
+    "ocon": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 1,
+      "podiums": 4,
+      "entries": 191,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "perez": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 6,
+      "podiums": 39,
+      "entries": 294,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
     "phil_hill": {
       "championships": 1,
       "championship_years": [
@@ -382,6 +578,20 @@
         "season": 1964,
         "round": 10
       }
+    },
+    "piastri": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 9,
+      "podiums": 28,
+      "entries": 81,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     "piquet": {
       "championships": 3,
@@ -453,6 +663,34 @@
         "round": 21
       }
     },
+    "russell": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 7,
+      "podiums": 29,
+      "entries": 163,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
+    "sainz": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 4,
+      "podiums": 29,
+      "entries": 243,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
     "scheckter": {
       "championships": 1,
       "championship_years": [
@@ -496,6 +734,20 @@
         "round": 15
       }
     },
+    "stroll": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 3,
+      "entries": 202,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-08-13",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+    },
     "surtees": {
       "championships": 1,
       "championship_years": [
@@ -508,6 +760,20 @@
         "season": 1972,
         "round": 10
       }
+    },
+    "tsunoda": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 115,
+      "as_of": {
+        "season": 2026,
+        "round": 12
+      },
+      "approved_by": "PENDING-charlie",
+      "approved_at": "2026-08-24",
+      "note": "2026 R12 荷蘭站首次進入本季 results（現役集合擴編）。統計由 db 明細 len() 重算（wins/podiums/entries=0/0/115，含 2021–2024 生涯）；維基對審 tsunoda 零 diff（crosscheck-report 現版）。待 Charlie 核准後改 approved_by。"
     },
     "vettel": {
       "championships": 4,
@@ -537,258 +803,6 @@
         "season": 2006,
         "round": 12
       }
-    },
-    "albon": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 2,
-      "entries": 140,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "antonelli": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 6,
-      "podiums": 12,
-      "entries": 35,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "arvid_lindblad": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 0,
-      "entries": 11,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "bearman": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 0,
-      "entries": 38,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "bortoleto": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 0,
-      "entries": 35,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "bottas": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 10,
-      "podiums": 67,
-      "entries": 258,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "colapinto": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 0,
-      "entries": 38,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "gasly": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 1,
-      "podiums": 6,
-      "entries": 189,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "hadjar": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 1,
-      "entries": 35,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "hulkenberg": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 1,
-      "entries": 265,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "lawson": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 0,
-      "entries": 46,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "leclerc": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 9,
-      "podiums": 54,
-      "entries": 184,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "ocon": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 1,
-      "podiums": 4,
-      "entries": 191,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "perez": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 6,
-      "podiums": 39,
-      "entries": 294,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "piastri": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 9,
-      "podiums": 28,
-      "entries": 81,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "russell": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 7,
-      "podiums": 29,
-      "entries": 163,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "sainz": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 4,
-      "podiums": 29,
-      "entries": 243,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
-    },
-    "stroll": {
-      "championships": 0,
-      "championship_years": [],
-      "wins": 0,
-      "podiums": 3,
-      "entries": 202,
-      "as_of": {
-        "season": 2026,
-        "round": 11
-      },
-      "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     }
   }
 }

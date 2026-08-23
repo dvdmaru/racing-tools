@@ -34,9 +34,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 32,
       "bound_wiki": 34,
-      "wiki_revid": 1361559998,
-      "bound_fingerprint": "b171646629ce73a75683080975a6391bd900e6176a4a62d5af6f00a79cdc72b9",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1370209992,
+      "bound_fingerprint": "3c772ef68506cfb868ae6eba09cda6d85b6872843bf9c788dfa843575394d048",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，定義錨（ours==wiki_starts）續成立，reason 不變"
     },
     {
       "key": "clark|entries",
@@ -47,9 +48,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 72,
       "bound_wiki": 73,
-      "wiki_revid": 1364783611,
-      "bound_fingerprint": "442a796abcefb4b32bf76ff4b4e53801154bbbed412428fe15cae343e4b00132",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1370473885,
+      "bound_fingerprint": "f306e63eeb39d3316057e23dec872a735b8e973068a892a2dde5e0242c550926",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，定義錨（ours==wiki_starts）續成立，reason 不變"
     },
     {
       "key": "damon_hill|entries",
@@ -60,9 +62,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 116,
       "bound_wiki": 122,
-      "wiki_revid": 1363344499,
-      "bound_fingerprint": "4c8f7ee409d514be16660e32fe8854e2e2e1986b863052eca748455cfae25a56",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1365876385,
+      "bound_fingerprint": "3e897d6aee21a56e94cc040d88a2e25eb5ecd43075d91331040bc78f39b2cbd8",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "emerson_fittipaldi|entries",
@@ -73,9 +76,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 146,
       "bound_wiki": 149,
-      "wiki_revid": 1363344667,
-      "bound_fingerprint": "4044105c9437acddc1a0712f882730c5fb2232624acdb420e7d96be6f49d8760",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1367337766,
+      "bound_fingerprint": "4d5b3ec2383a78dd6164f3a5925f0be9f0aa1597f037cd4c59d014bfccb157a9",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "fangio|entries",
@@ -112,9 +116,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 163,
       "bound_wiki": 165,
-      "wiki_revid": 1361695793,
-      "bound_fingerprint": "227de82b54106f7d39c7bba7fef3323dbda4df8420c0f09cdce38b50cefb07bf",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1366692195,
+      "bound_fingerprint": "e696d75b25c590ca1ca6cbb89114b29958fee1b300da51c67a3a9df9c34513fc",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "hawthorn|entries",
@@ -138,9 +143,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 177,
       "bound_wiki": 179,
-      "wiki_revid": 1362697943,
-      "bound_fingerprint": "d4bba72738a74edf4aec650db759f43825378b94d33f42133feb793502e48d31",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1368365067,
+      "bound_fingerprint": "6d2e8a3a27aa245dda52c57bdaa941385455076162ff1f496815b4730089679c",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "keke_rosberg|entries",
@@ -151,9 +157,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 114,
       "bound_wiki": 128,
-      "wiki_revid": 1365123311,
-      "bound_fingerprint": "484a5e4fa40bbf50412727a77e07b1fa15270698ee13392e48d8fed1eeb64b88",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1367663938,
+      "bound_fingerprint": "d02c41d49e29c4f7723014d6e8a1bceea1c99c8be9341527e1dfd559225a0a3b",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，定義錨（ours==wiki_starts）續成立，reason 不變"
     },
     {
       "key": "lauda|entries",
@@ -164,9 +171,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 173,
       "bound_wiki": 177,
-      "wiki_revid": 1363478112,
-      "bound_fingerprint": "402b6fd619c814b73a05790960e0ad3999dac617d382c04207178e60e1e2de2e",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1368329699,
+      "bound_fingerprint": "01d8c9ca45f49339fe9217e9a8285588a7d35e0e6db839f5d6dd03e1fa520a51",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "mansell|entries",
@@ -190,9 +198,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 128,
       "bound_wiki": 131,
-      "wiki_revid": 1363344734,
-      "bound_fingerprint": "f35cae340eb23565d86e36550c03a9d6b43453f56455ea59218a39f7b05cbb5d",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1370845228,
+      "bound_fingerprint": "bec455e2c5496591ec18f409b6067f9f1a2b360b01c5f0868e6e844bd0e8bd3d",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，定義錨（ours==wiki_starts）續成立，reason 不變"
     },
     {
       "key": "phil_hill|entries",
@@ -216,9 +225,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 205,
       "bound_wiki": 207,
-      "wiki_revid": 1364510901,
-      "bound_fingerprint": "233cf8ea9b2dd622dfd9b2c4a3339ba667efcf0049fc97654db0628d2fb7b458",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1369586850,
+      "bound_fingerprint": "f891193c8c5f05a07b815295e87594639901f51867c633297575de4afc0e3ba7",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "raikkonen|entries",
@@ -229,9 +239,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 352,
       "bound_wiki": 353,
-      "wiki_revid": 1365208361,
-      "bound_fingerprint": "e8959e07b4ed4a92ac556176d1968a5740cab55ab5ad851861624a9cfd288ed9",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1367448649,
+      "bound_fingerprint": "56628a15d1fc622014ffc7eee6565612608ef5118a659516db4b6713246740f7",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "rindt|entries",
@@ -242,9 +253,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 61,
       "bound_wiki": 62,
-      "wiki_revid": 1361826731,
-      "bound_fingerprint": "09956405a3990ce7f8b0b32b3426a54cfc8a5dd103db3eff0c3c16b6cd935aad",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1370335431,
+      "bound_fingerprint": "3224cde2ba4e271d62aa6ff02fd87758c3dc673dafd42acb22d09bb08bf56deb",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "scheckter|entries",
@@ -255,9 +267,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 112,
       "bound_wiki": 113,
-      "wiki_revid": 1362689685,
-      "bound_fingerprint": "61f2afd66d728e267de062f6c10948610c362141ff9675bf70d281e1bc6efbbd",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1368364858,
+      "bound_fingerprint": "4630dd052b5bf991a35a9f312b0bbafba4372eaa97c5df786290ef2a5ceba32a",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，定義錨（ours==wiki_starts）續成立，reason 不變"
     },
     {
       "key": "senna|entries",
@@ -268,9 +281,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 161,
       "bound_wiki": 162,
-      "wiki_revid": 1364590193,
-      "bound_fingerprint": "80aec6b0684d43b00d9019c3edbc39f5bf15e17a8b71fe114b6ab6d995e615e8",
-      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）"
+      "wiki_revid": 1368551997,
+      "bound_fingerprint": "f20bcbeb8213e9c2119bd11ca8ce77e7d77e1007733696f97e44869e300dcacf",
+      "note": "裁決包 E 群批次核准（Fable 預審：方向與機制單一，Senna 1984 DNQ/Rosberg 1978 DNQ 抽查吻合）",
+      "rebound": "2026-08-24 機械重綁 A(revid-only)：R12 出賽/維基例行編輯，定義錨（ours==wiki_starts）續成立，reason 不變"
     },
     {
       "key": "surtees|entries",
@@ -292,11 +306,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 140,
-      "bound_wiki": 141,
+      "bound_ours": 141,
+      "bound_wiki": 142,
       "wiki_revid": 1366385158,
-      "bound_fingerprint": "418c4aaa13dc10a9445de59381e075f04dcf488034f253546ed0983f10e3691a",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "bound_fingerprint": "e6789a5e4dcaab872ec462f7c0618a3153256d2001f949c1f95d3a1f9d5da2a4",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "perez|entries",
@@ -305,11 +320,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 294,
-      "bound_wiki": 296,
-      "wiki_revid": 1366168850,
-      "bound_fingerprint": "cf2be6516f610eefcf03377982bae8ba7184cfa5198f260e261aad806084b008",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "bound_ours": 295,
+      "bound_wiki": 297,
+      "wiki_revid": 1370054465,
+      "bound_fingerprint": "0b37756da4374defae3cfaeca27c5a0607459704d53dc4ebd5817d4912f11ae3",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "sainz|entries",
@@ -318,11 +334,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 243,
-      "bound_wiki": 244,
-      "wiki_revid": 1367449025,
-      "bound_fingerprint": "4fc638b37aaff112012f47056e6351a0761c3613db3e1e4043076095f8832526",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "bound_ours": 244,
+      "bound_wiki": 245,
+      "wiki_revid": 1370167795,
+      "bound_fingerprint": "e6ce06103ef7a21e9f4e7ad34ba48637499f07ee4b07cbdd7683b932724265c4",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     },
     {
       "key": "stroll|entries",
@@ -331,11 +348,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 202,
-      "bound_wiki": 204,
-      "wiki_revid": 1367825060,
-      "bound_fingerprint": "08eb6386adaad7049190e44a43b0e3e6d3b0a1d29b182fa5589a59a8bc75ef97",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "bound_ours": 203,
+      "bound_wiki": 205,
+      "wiki_revid": 1370856270,
+      "bound_fingerprint": "baba3e380dfbd6c16d61182cfd49550cd8e9e918ebc26e2eda0426c0b489f8b8",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變"
     }
   ]
 }
