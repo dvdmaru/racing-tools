@@ -933,6 +933,19 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 # 改成各 owner 各寫 data/sitemap-parts/<owner>.txt（append-only 擁有），build-sitemap.py
 # 依固定順序讀取、去重、產出最終 sitemap.xml。parts 檔進 git＝某 owner 這次沒跑時的保留機制。
 
+def read_sitemap_part(owner: str) -> list:
+    """讀 data/sitemap-parts/<owner>.txt，回 URL list；檔案不存在＝該線還沒接上 → 回 []。
+
+    這是 write_sitemap_part 的對稱面，也是「頁存在才連」的跨 owner 判定來源：part 檔是
+    各生成器落地且進 git 的實際 URL 清單，另一個 owner 想連過去時讀它，不必 import 對方
+    的生成器（那會拖進 gitignored 的 db.sqlite），也不准另抄一份清單。
+    """
+    p = ROOT / "data" / "sitemap-parts" / f"{owner}.txt"
+    if not p.exists():
+        return []
+    return [l.strip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
 def write_sitemap_part(owner: str, urls: list):
     """寫 data/sitemap-parts/<owner>.txt：一行一 URL，結尾換行；內容相同不重寫。"""
     parts_dir = ROOT / "data" / "sitemap-parts"

@@ -1872,6 +1872,31 @@ def _sprint_block(year, rnd):
     return f'<h2 class="sec-title">衝刺賽</h2>{note}{table}'
 
 
+# ---------- 分站頁 → /circuits/<slug>/ 反向連結（頁存在才連） ----------
+# 賽道頁的 owner 是 gen-racing-circuits.py。這裡不 import 它（會拖進 gitignored 的
+# db.sqlite），也不另抄一份賽道清單：判定來源＝它落地且進 git 的 sitemap part。
+# 兩道條件都要成立才連：① circuitId 在 append-only slug 註冊表裡 ② 該 slug 的 URL
+# 真的在 circuits part 裡。少任一條就退回純文字——寧漏勿死連結（同 _drv_subpage_link）。
+
+
+def _circuit_page_slugs():
+    prefix = f"{BASE}/circuits/"
+    return {u[len(prefix):].strip("/") for u in rc.read_sitemap_part("circuits")
+            if u.startswith(prefix) and u.rstrip("/") != prefix.rstrip("/")}
+
+
+CIRCUIT_PAGE_SLUGS = _circuit_page_slugs()
+
+
+def circuit_link(circuit_id, label_html):
+    """賽道名 → 賽道頁連結；無註冊 slug／該頁不存在 → 原樣回 label（不加 rel-off 灰 chip，
+    這裡是 hero 的識別列，灰 chip 會讀成「有頁但關閉」）。"""
+    slug = rc._SLUGS.get("circuits", {}).get(circuit_id or "")
+    if slug and slug in CIRCUIT_PAGE_SLUGS:
+        return f'<a href="/circuits/{slug}/">{label_html}</a>'
+    return label_html
+
+
 def _round_nav(year, rnd):
     """上一站／下一站導覽：只連該季已生成的分站頁；邊界站單向、禁死連結。"""
     rounds_all = season_round_numbers(year)
@@ -1927,7 +1952,7 @@ def render_round(year, rnd, round_paths=None, sub_paths=None):
               f'<span class="cur">R{rnd:02d}</span></nav>')
     ident_bits = [f'<span>第 <span class="mono">{rnd}</span> 站</span>']
     if circ_disp:
-        ident_bits.append(f'<span>賽道 {circ_disp}</span>')
+        ident_bits.append(f'<span>賽道 {circuit_link(circ.get("circuitId", ""), circ_disp)}</span>')
     if loc.get("country"):
         locality = f'{loc.get("locality")}・' if loc.get("locality") else ""
         ident_bits.append(f'<span>{esc(locality)}{esc(loc["country"])}</span>')
