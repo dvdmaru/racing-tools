@@ -1,0 +1,109 @@
+{
+  "_comment": "1959 賽季導言 facts pack。1959 是 Cooper-Climax 以後置引擎（rear-engined）賽車拿下車隊冠軍的一季；車手戰線由 Jack Brabham、Tony Brooks、Stirling Moss 三人爭到最終戰（美國大獎賽，Sebring）。clinch_round 由獨立重算 oracle 確認：Brabham 的保底積分（best-5 捨分後）到第 8 站尚未超過 Moss 的理論上限（若 Moss 該站奪冠，best-5 可達 33.5 分，高於 Brabham 的 31 分），要到第 9 站（＝全季最後一站）結果出爐才數學上鎖定冠軍——與 1961 案例不同，這裡『直到最終戰』是重算後成立的事實，故正文用具體站數（第 9 站）而非籠統『最終戰』字樣去掛 claim。Brabham 該站因燃料耗盡、賽末自行推車過線仍完賽取得第四名（position_text='4'）。Tony Brooks／Stirling Moss 查無 driver-zh.json 定版譯名，正文一律用原文，不加中文譯名或括號。車隊名：team-zh.json 的 cooper-climax 條目『庫珀－Climax車隊』雖標 status=approved，但 src=zhwiki-fallback-policy（非 charlie 手動核定）且屬同一詞內中英夾雜（庫珀＝中譯、Climax 留英文），與 lotus-climax／brabham-repco 兩條 charlie 直接核定的『中譯－英文車隊』式不同層級；修正輪裁決比照『查無乾淨中譯即用原文』處理，正文與 external_history 全面改回原文 Cooper-Climax，不使用該混合譯名，也不額外附加『車隊』二字（比照本目錄既有文章對 Maserati／Team Lotus 等原文車隊名的處理方式）。",
+  "season": 1959,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1959 賽季",
+      "value": 1959,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1959",
+      "anchors": [
+        "1959 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 9 站",
+      "value": 9,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1959",
+      "anchors": [
+        "全季 9 站"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "cooper-climax",
+      "text": "Cooper-Climax 全季拿下 5 場分站冠軍",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1959 AND constructor_id='cooper-climax' AND position_text='1'",
+      "anchors": [
+        "拿下 5 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "jack_brabham",
+      "text": "布拉漢姆整季拿下 2 場分站冠軍",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1959 AND position=1",
+      "anchors": [
+        "拿下 2 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "jack_brabham",
+      "text": "布拉漢姆到第 9 站（全季最後一站）才數學上鎖定冠軍",
+      "value": 9,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套 1959 年 best-5 捨分規則，對手上限只計其實際仍有出賽的站次；Moss 若在第 9 站奪冠，best-5 可達 33.5 分＞Brabham 的 31 分，故第 8 站尚未鎖定，需到第 9 站結果出爐才成立（見 check-season-intros.py SeasonOracle.clinch）",
+      "anchors": [
+        "第 9 站"
+      ]
+    },
+    {
+      "kind": "race_finish_position",
+      "driver": "jack_brabham",
+      "round": 9,
+      "text": "布拉漢姆在美國大獎賽（R9）以第四名完賽（賽末燃料耗盡、自行推車過線）",
+      "value": 4,
+      "verified": true,
+      "anchors": [
+        "第 4 名"
+      ],
+      "source": "sqlite: SELECT position_text FROM results WHERE season=1959 AND round=9 AND driver_id='jack_brabham'"
+    },
+    {
+      "kind": "champion_points",
+      "driver": "jack_brabham",
+      "text": "布拉漢姆以 31 分作收奪冠",
+      "value": 31,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1959 AND position=1",
+      "anchors": [
+        "以 31 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "brooks",
+      "text": "第二名 Tony Brooks 27 分",
+      "value": 27,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1959 AND position=2",
+      "anchors": [
+        "的 27 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "moss",
+      "text": "Stirling Moss 年度順位第三",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "排名第三"
+      ],
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1959 AND driver_id='moss'"
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "Cooper-Climax 以後置引擎設計取代傳統前置引擎車款，成為爾後賽車設計的主流。",
+    "布拉漢姆是首位奪冠的澳洲籍車手（1950－1958 歷屆冠軍分屬義大利、阿根廷、英國籍，查無反例）。"
+  ]
+}

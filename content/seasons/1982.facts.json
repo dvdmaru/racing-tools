@@ -1,0 +1,53 @@
+{
+  "_comment": "1982 賽季導言 facts pack。核心敘事：凱基・羅斯堡（keke_rosberg）以單季僅 1 勝拿下年度冠軍（driver_standings：wins=1, points=44, position=1）；全季 16 站的分站冠軍分散在多位不同車手身上（sqlite 重查為 11 位不同車手分別奪冠，但無對應 kind 可驗『人數』，依派工單規則不寫該數字，正文只寫 season_rounds 撐得起的 16）。Gilles Villeneuve（driver_id=gilles_villeneuve，非 zh 表中對應其子 Jacques Villeneuve 的 driver_id=villeneuve，故原文不加中譯）於 R5 比利時大獎賽排位賽發生致命意外（position_text='W'）；Riccardo Paletti（driver_id=paletti）於 R8 加拿大大獎賽起跑階段的碰撞中身故（position_text='R'）。兩起事故只寫事實層一句、不帶阿拉伯數字，列 external_history。",
+  "season": 1982,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1982 賽季",
+      "value": 1982,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1982",
+      "anchors": [
+        "1982 年"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "keke_rosberg",
+      "text": "羅斯堡全季只贏下 1 場分站冠軍",
+      "value": 1,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1982 AND driver_id='keke_rosberg'",
+      "anchors": [
+        "1 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "keke_rosberg",
+      "text": "羅斯堡最終以 44 分封王",
+      "value": 44,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1982 AND driver_id='keke_rosberg'",
+      "anchors": [
+        "44 分"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 16 站",
+      "value": 16,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1982",
+      "anchors": [
+        "16 站"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "Gilles Villeneuve 於比利時大獎賽排位賽發生致命意外身故。",
+    "Riccardo Paletti 在加拿大大獎賽起跑階段的碰撞中喪生。"
+  ]
+}

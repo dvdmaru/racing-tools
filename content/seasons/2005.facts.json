@@ -1,0 +1,118 @@
+{
+  "_comment": "2005 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。external_history 句屬常識性歷史背景、不進機械對帳、不得帶阿拉伯數字。",
+  "season": 2005,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2005 賽季",
+      "value": 2005,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2005",
+      "anchors": [
+        "2005 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 19 站",
+      "value": 19,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2005",
+      "anchors": [
+        "在 19 站中"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "alonso",
+      "text": "阿隆索贏下 7 場分站冠軍",
+      "value": 7,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=2005 AND position=1",
+      "anchors": [
+        "贏下 7 場"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "alonso",
+      "text": "第 17 站賽後鎖定冠軍",
+      "value": 17,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套當季捨分規則，對手上限只計其實際仍有出賽的站次；首個「冠軍保底分 ＞ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch）",
+      "anchors": [
+        "第 17 站賽後"
+      ]
+    },
+    {
+      "kind": "clinch_remaining",
+      "driver": "alonso",
+      "text": "鎖定冠軍時還剩 2 站未跑",
+      "value": 2,
+      "verified": true,
+      "source": "clinch 計算（v2）：同上，remaining＝總站數 − clinch 站次",
+      "anchors": [
+        "還剩 2 站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "alonso",
+      "text": "阿隆索最終以 133 分作收",
+      "value": 133,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2005 AND position=1",
+      "anchors": [
+        "以 133 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "raikkonen",
+      "text": "雷克南以 112 分屈居第二",
+      "value": 112,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2005 AND position=2",
+      "anchors": [
+        "以 112 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "raikkonen",
+      "text": "雷克南年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=2005 AND driver_id='raikkonen'",
+      "anchors": [
+        "屈居第二"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "mclaren",
+      "text": "麥拉倫全季拿下 10 場分站冠軍",
+      "value": 10,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2005 AND constructor_id='mclaren' AND position_text='1'",
+      "anchors": [
+        "拿下 10 場"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "renault",
+      "text": "雷諾車隊全季拿下 8 場分站冠軍",
+      "value": 8,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2005 AND constructor_id='renault' AND position_text='1'",
+      "anchors": [
+        "的 8 場"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "阿隆索也在該季成為當時最年輕的一級方程式世界冠軍（該紀錄之後已被刷新）"
+  ]
+}

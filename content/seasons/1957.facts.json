@@ -1,0 +1,108 @@
+{
+  "_comment": "1957 賽季導言 facts pack。方吉歐第五冠、Maserati；clinch 於第 7 站（倒數第二站，last_round=8）；Moss/Brooks 於英國大獎賽（第 5 站）共同駕駛 Vanwall 同列 position_text='1'，driver_standings 已正確聚合（moss wins=3、brooks wins=1），未另行手動計數避免雙筆重複。",
+  "season": 1957,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1957 賽季",
+      "value": 1957,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1957",
+      "anchors": [
+        "1957 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 8 站",
+      "value": 8,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1957",
+      "anchors": [
+        "8 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "fangio",
+      "text": "方吉歐贏下 4 場分站冠軍",
+      "value": 4,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1957 AND position=1",
+      "anchors": [
+        "4 場"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "fangio",
+      "text": "第 7 站數學上鎖定第五冠",
+      "value": 7,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套當季捨分規則，對手上限只計其實際仍有出賽的站次；首個「冠軍保底分 ＞ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch）",
+      "anchors": [
+        "第 7 站"
+      ]
+    },
+    {
+      "kind": "clinch_from_end",
+      "driver": "fangio",
+      "text": "第 7 站即倒數第二站鎖定",
+      "value": 2,
+      "verified": true,
+      "source": "clinch 計算（v2）：clinch_from_end＝last_round(8) − clinch_round(7) + 1 = 2",
+      "anchors": [
+        "倒數第二站"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "fangio",
+      "text": "生涯第五冠（1951／1954／1955／1956／1957）",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='fangio' AND position=1 AND season<=1957",
+      "anchors": [
+        "第五冠"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "fangio",
+      "text": "以 40 分作收",
+      "value": 40,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1957 AND position=1",
+      "anchors": [
+        "以 40 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "moss",
+      "text": "第二名 Stirling Moss 25 分",
+      "value": 25,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1957 AND position=2",
+      "anchors": [
+        "（25 分）"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "moss",
+      "text": "Moss 年度順位第二",
+      "value": 2,
+      "verified": true,
+      "anchors": [
+        "第二名"
+      ],
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1957 AND driver_id='moss'"
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "方吉歐全季代表 Maserati 出賽，構成本季敘事主軸（車隊隸屬本身不帶阿拉伯數字，未另立 claim）。",
+    "Stirling Moss 與 Tony Brooks 在英國大獎賽共駕范沃爾車隊（Vanwall）賽車奪冠，為英國車隊首次贏得世界錦標賽分站冠軍（1950–1956 全數冠軍分站由 Alfa／Ferrari／Maserati／Mercedes 或美系 Indy 500 車隊拿下，sqlite 逐季覆核無反例）；此為歷史背景敘述、不帶對帳阿拉伯數字。"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "_comment": "2014 賽季導言 facts pack。冠軍局勢『直到最終戰才確定』已用 SeasonOracle.clinch('hamilton') 驗證＝(19, 0)，即 clinch_round 等於全季最終站（season_rounds=19），賽季開打前不可能提早鎖定，非 1961 型『倒數第二站』誤植。最終站雙倍積分規則與油電混合動力賽制屬常識性歷史背景，不帶數字，列入 external_history，不進機械對帳。修正輪：正文原寫『纏鬥了一整季』（全稱詞），逐站重算 hamilton／rosberg 累積積分差發現 R8、R12 兩站曾單站拉開到 29 分（略超一場勝利的 25 分），且 R14 起 hamilton 連續 6 站保持領先未再落後，故刪除全稱詞改寫為中性的『冠軍之爭在隊內…之間展開』，不再暗示全季势均力敵。",
+  "season": 2014,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2014 賽季",
+      "value": 2014,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2014",
+      "anchors": [
+        "2014 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 19 站",
+      "value": 19,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2014",
+      "anchors": [
+        "19 站"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "mercedes",
+      "text": "賓士拿下 16 場分站勝利",
+      "value": 16,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2014 AND constructor_id='mercedes' AND position_text='1'",
+      "anchors": [
+        "16 場勝利"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "hamilton",
+      "text": "漢米爾頓全季拿下 11 場分站冠軍",
+      "value": 11,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=2014 AND position=1",
+      "anchors": [
+        "11 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "hamilton",
+      "text": "漢米爾頓以 384 分封王",
+      "value": 384,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2014 AND position=1",
+      "anchors": [
+        "384 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "rosberg",
+      "text": "羅斯堡以 317 分居次",
+      "value": 317,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2014 AND position=2",
+      "anchors": [
+        "317 分"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "油電渦輪增壓動力系統自本季起取代舊有自然進氣引擎，為系列賽重大技術轉型。",
+    "該季規則將最終站完賽積分加倍計算，是賽事史上罕見的賽制設計。"
+  ]
+}

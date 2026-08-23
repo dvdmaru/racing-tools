@@ -1,0 +1,63 @@
+{
+  "_comment": "1997 賽季導言 facts pack。麥可・舒馬克（michael_schumacher）在 driver_standings 該季的 position_text='D'、position 為 NULL（除名，未列入年度排名），故正文不寫任何舒馬克的數字（78 分／5 勝皆不引用），除名事件只放 external_history 一句、不帶阿拉伯數字。champion_points／champion_wins／race_finish_position 皆綁 villeneuve。⚠️本季刻意不寫 runner_up_points（Heinz-Harald Frentzen 42 分）：check-season-intros.py 的獨立重算 oracle（SeasonOracle.rank）純以 results 原始積分排序、不模型除名決議，會把仍保留 78 分原始積分但已除名的 schumacher 排進第 2，導致 frentzen 的官方順位 2 與重算順位 3 對不上、runner_up_points／driver_position 兩種 kind 都會在『順位與重算不符』判錯。此為 checker 結構限制（除名非捨分規則、oracle 無法模型），非資料錯誤；正文因此只用不帶數字的『領先居次的 Heinz-Harald Frentzen』一句，不建對應 claim。",
+  "season": 1997,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1997 賽季",
+      "value": 1997,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1997",
+      "anchors": [
+        "1997 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 17 站，最終戰即第 17 站",
+      "value": 17,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1997",
+      "anchors": [
+        "第 17 站"
+      ]
+    },
+    {
+      "kind": "race_finish_position",
+      "driver": "villeneuve",
+      "round": 17,
+      "text": "維倫紐夫在第 17 站（歐洲大獎賽）以第三名完賽",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT position_text FROM results WHERE season=1997 AND round=17 AND driver_id='villeneuve'",
+      "anchors": [
+        "第三名"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "villeneuve",
+      "text": "維倫紐夫全季拿下 7 場分站冠軍",
+      "value": 7,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1997 AND driver_id='villeneuve'",
+      "anchors": [
+        "7 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "villeneuve",
+      "text": "維倫紐夫以 81 分作收奪冠",
+      "value": 81,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1997 AND driver_id='villeneuve'",
+      "anchors": [
+        "81 分"
+      ]
+    }
+  ],
+  "external_history": [
+    "舒馬克在該戰與維倫紐夫相撞退賽後，賽季結束遭國際汽聯自年度車手排名除名。"
+  ]
+}

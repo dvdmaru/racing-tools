@@ -1,0 +1,94 @@
+{
+  "_comment": "1970 賽季導言 facts pack。約亨・林特（Jochen Rindt）於第 10 站義大利大獎賽（Monza）賽前意外身亡，此後未再出賽；生前累積的 45 分在第 12 站賽後已無人能追上（SeasonOracle.clinch 重算：rindt clinch_round=12, clinch_remaining=1，即倒數第二站封王，不是最終戰）。中立紀律：正文對死亡事件只寫一句事實層敘述，不渲染、不評價。",
+  "season": 1970,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1970 賽季",
+      "value": 1970,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1970",
+      "anchors": [
+        "1970 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 13 站",
+      "value": 13,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1970",
+      "anchors": [
+        "全季 13 站"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "rindt",
+      "text": "林特於第 12 站賽後已數學鎖定年度冠軍",
+      "value": 12,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套當季捨分規則（1-7 站取最佳 6、8-13 站取最佳 5），對手上限只計其實際仍有出賽的站次；首個「冠軍保底分 ＞ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch）。林特本人第 10 站後未再出賽，保底分維持 45 分；主要對手 Ickx 直到第 12 站賽後（31 分＋剩 1 站上限 9 分＝40 分 ＜ 45 分）才被排除",
+      "anchors": [
+        "第 12 站"
+      ]
+    },
+    {
+      "kind": "clinch_remaining",
+      "driver": "rindt",
+      "text": "鎖定冠軍時還剩 1 站",
+      "value": 1,
+      "verified": true,
+      "source": "clinch 計算（v2）：同上，remaining＝總站數（13）－clinch 站次（12）",
+      "anchors": [
+        "還剩 1 站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "rindt",
+      "text": "林特以 45 分作收",
+      "value": 45,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1970 AND driver_id='rindt'",
+      "anchors": [
+        "以 45 分"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "rindt",
+      "text": "林特贏下 5 場分站冠軍",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1970 AND driver_id='rindt'",
+      "anchors": [
+        "贏下 5 場"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "ickx",
+      "text": "Ickx 以 40 分作收",
+      "value": 40,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1970 AND driver_id='ickx'",
+      "anchors": [
+        "40 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "ickx",
+      "text": "Ickx 年度居第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1970 AND driver_id='ickx'",
+      "anchors": [
+        "第二"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": []
+}

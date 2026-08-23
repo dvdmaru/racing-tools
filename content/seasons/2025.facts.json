@@ -1,0 +1,82 @@
+{
+  "_comment": "2025 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字都必須落在本檔 verified claims 的值集合內。2025 為已完結賽季（2026 進行中不算冠軍）。",
+  "season": 2025,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2025 賽季",
+      "value": 2025,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2025",
+      "anchors": [
+        "2025 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 24 站",
+      "value": 24,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2025",
+      "anchors": [
+        "24 站"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "mclaren",
+      "text": "麥拉倫全季拿下 14 場分站冠軍",
+      "value": 14,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2025 AND constructor_id='mclaren' AND position_text='1'",
+      "anchors": [
+        "14 場"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "norris",
+      "text": "諾里斯以 423 分奪冠",
+      "value": 423,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2025 AND position=1",
+      "anchors": [
+        "423 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "max_verstappen",
+      "text": "維斯塔潘年度第二，421 分",
+      "value": 421,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2025 AND position=2",
+      "anchors": [
+        "421 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "piastri",
+      "text": "皮亞斯特里年度順位第三",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "第三"
+      ],
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=2025 AND driver_id='piastri'"
+    },
+    {
+      "kind": "clinch_from_end",
+      "driver": "norris",
+      "text": "諾里斯的冠軍在賽季最終站（倒數第 1 站）才數學鎖定",
+      "value": 1,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套當季捨分規則，對手上限只計其實際仍有出賽的站次；clinch_from_end＝最後一站－clinch 站次＋1（見 check-season-intros.py SeasonOracle.clinch）",
+      "anchors": [
+        "最終站"
+      ]
+    }
+  ],
+  "external_history": []
+}
