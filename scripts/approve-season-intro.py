@@ -13,6 +13,7 @@ sha256 補進 config/approved.json 的 approved 清單（slug="season-intro-<yea
   python3 scripts/approve-season-intro.py 2002              # 對帳→核准 2002
   python3 scripts/approve-season-intro.py 2002 1950 1988    # 一次核准多年
   python3 scripts/approve-season-intro.py 2002 --dry-run    # 只印會寫入的條目，不落盤
+  python3 scripts/approve-season-intro.py 2002 --hash-only  # 重簽：只更新 hash，核准人／時間不動
 """
 import argparse
 import datetime
@@ -43,6 +44,9 @@ def main(argv):
     ap.add_argument("--by", default="charlie", help="approved_by（預設 charlie）")
     ap.add_argument("--force", action="store_true", help="略過機械對帳（不建議）")
     ap.add_argument("--dry-run", action="store_true", help="只印，不落盤")
+    ap.add_argument("--hash-only", action="store_true",
+                    help="重簽：只更新既有條目的 article_sha256／facts_sha256，"
+                         "approved_by／approved_at／note 一律不動（條目不存在則拒絕）")
     args = ap.parse_args(argv)
 
     doc = json.loads(APPROVED.read_text(encoding="utf-8"))
@@ -71,7 +75,17 @@ def main(argv):
             "approved_at": now,
             "note": f"{year} 賽季人工導言核准",
         }
-        if slug in by_slug:
+        if args.hash_only:
+            # 重簽：核准人與核准時間是「誰在哪一天看過」的紀錄，不因為重算 hash 而改寫。
+            if slug not in by_slug:
+                print(f"❌ {year}：--hash-only 但 {slug} 尚未核准過（重簽不是核准）")
+                return 1
+            cur = by_slug[slug]
+            changed = [k for k in ("article_sha256", "facts_sha256") if cur.get(k) != entry[k]]
+            for k in ("article_sha256", "facts_sha256"):
+                cur[k] = entry[k]
+            print(f"  ↻ 重簽 {slug}：{'／'.join(changed) if changed else '無變更'}")
+        elif slug in by_slug:
             by_slug[slug].update(entry)
             print(f"  ↻ 更新既有核准條目 {slug}")
         else:

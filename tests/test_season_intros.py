@@ -41,6 +41,20 @@ def _sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+# 已核准 16 篇（config/approved.json 的 season-intro-* 條目；2026-08-23 重簽 facts hash）
+APPROVED_YEARS = [1950, 1958, 1961, 1964, 1976, 1984, 1986, 1988,
+                  1994, 2002, 2007, 2008, 2010, 2012, 2016, 2021]
+
+
+def _synthetic_entry(year, content_dir=CONTENT):
+    """合成一筆「當下檔案狀態」的核准條目（.md＋facts pack 兩個 sha 都綁）。"""
+    e = {"slug": f"season-intro-{year}", "article_sha256": _sha(content_dir / f"{year}.md")}
+    fp = content_dir / f"{year}.facts.json"
+    if fp.exists():
+        e["facts_sha256"] = _sha(fp)
+    return e
+
+
 class ReconciliationTests(unittest.TestCase):
     """機械對帳：真跑全綠 + 合成 tamper 抓得到。"""
 
@@ -153,16 +167,14 @@ class DefaultDenyGateTests(unittest.TestCase):
         # byte-identical 證明（單頁版）：合成核准後的頁面 == 未核准頁面「插入導言區塊」，
         # 移除該區塊即完全還原未核准頁面（gate 是純附加、不動其他任何位元）。
         unapproved = self._render_year(2002, {})  # 顯式空核准，與真 config 脫鉤
-        sha = _sha(CONTENT / "2002.md")
-        approved = {"season-intro-2002": {"slug": "season-intro-2002", "article_sha256": sha}}
+        approved = {"season-intro-2002": _synthetic_entry(2002)}
         approved_html = self._render_year(2002, approved)
         block = g.approved_intro_html(2002, approved)
         self.assertTrue(block)
         self.assertEqual(approved_html.replace(block, ""), unapproved)
 
     def test_synthetic_approval_renders_intro_at_top(self):
-        sha = _sha(CONTENT / "2002.md")
-        approved = {"season-intro-2002": {"slug": "season-intro-2002", "article_sha256": sha}}
+        approved = {"season-intro-2002": _synthetic_entry(2002)}
         html = self._render_year(2002, approved)
         self.assertIn("編輯導言", html)
         self.assertIn("144 分", html)
@@ -181,6 +193,78 @@ class DefaultDenyGateTests(unittest.TestCase):
         # 未寫導言的季（如 1999，無 content/seasons/1999.md）→ 恆空
         self.assertEqual(g.approved_intro_html(1999, {"season-intro-1999": {
             "slug": "season-intro-1999", "article_sha256": "x"}}), "")
+
+
+class FactsBindingGateTests(unittest.TestCase):
+    """核准綁定的第二條腿：facts pack 也要 sha 全等（2026-08-23 Charlie 裁決）。
+
+    原本 approved.json 記了 `facts_sha256` 但消費端只驗 `article_sha256`——那個欄位是
+    死字串。實害在 PR #53 現形：anchor 遷移一次改了 16 篇 facts pack，16 個
+    facts_sha256 全部過期，而 16 篇導言照常渲染，沒有任何一層會叫。核准的語意是
+    「這段文字，連同它宣稱的那組事實與那份機械對帳，被人看過」，只綁 .md 綁不住它。
+
+    正向（16 篇真的還在渲染）與反向（facts 改一個位元組就不渲染）都要有：
+    只測反向的話，把 gate 寫成「一律不渲染」也全綠。
+    """
+
+    def setUp(self):
+        # 改 facts 檔要在副本上動——INTRO_DIR 指向 content/seasons/，直接改真檔會污染 repo。
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        self.content = self.tmp / "seasons"
+        shutil.copytree(CONTENT, self.content)
+
+    def _use_copy(self):
+        orig = g.INTRO_DIR
+        g.INTRO_DIR = self.content
+        self.addCleanup(setattr, g, "INTRO_DIR", orig)
+
+    def test_all_sixteen_approved_intros_still_render(self):
+        """陰性：真 config／真檔案下，16 篇一篇都不能掉（重簽有沒有簽好，看這條）。"""
+        approved = g._load_approved()
+        missing = [y for y in APPROVED_YEARS if not g.approved_intro_html(y, approved)]
+        self.assertEqual(missing, [], f"這幾季的導言不渲染了：{missing}")
+
+    def test_real_config_records_current_facts_sha_for_all_sixteen(self):
+        """陰性（資料層）：approved.json 記的 facts hash＝現行 facts pack 的 hash。"""
+        approved = g._load_approved()
+        stale = [y for y in APPROVED_YEARS
+                 if approved[g.INTRO_SLUG.format(year=y)].get("facts_sha256")
+                 != _sha(CONTENT / f"{y}.facts.json")]
+        self.assertEqual(stale, [], f"facts_sha256 過期：{stale}")
+
+    def test_one_byte_change_in_facts_pack_kills_the_intro(self):
+        """陽性：facts pack 改一個位元組 → 該季導言不渲染（.md 一個字都沒動）。"""
+        self._use_copy()
+        approved = {"season-intro-2002": _synthetic_entry(2002, self.content)}
+        self.assertTrue(g.approved_intro_html(2002, approved), "改動前應該要渲染")
+        fp = self.content / "2002.facts.json"
+        fp.write_bytes(fp.read_bytes() + b" ")   # 一個位元組
+        self.assertEqual(g.approved_intro_html(2002, approved), "")
+
+    def test_approval_without_facts_hash_is_denied(self):
+        """陽性：facts pack 在、核准沒綁 hash → default-deny（不是「沒記就當通過」）。"""
+        entry = _synthetic_entry(2002)
+        for variant in ({k: v for k, v in entry.items() if k != "facts_sha256"},
+                        {**entry, "facts_sha256": None},
+                        {**entry, "facts_sha256": "0" * 64}):
+            self.assertEqual(g.approved_intro_html(2002, {"season-intro-2002": variant}), "")
+
+    def test_seasons_without_facts_pack_keep_article_only_binding(self):
+        """反向：沒有 facts pack 的舊條目維持原行為（gate 只准補檢查，不准連累無辜）。"""
+        self._use_copy()
+        (self.content / "2002.facts.json").unlink()
+        entry = {"slug": "season-intro-2002",
+                 "article_sha256": _sha(self.content / "2002.md")}
+        self.assertTrue(g.approved_intro_html(2002, {"season-intro-2002": entry}))
+
+    def test_article_binding_still_enforced(self):
+        """反向：加了 facts 這條腿，不准把原本那條腿弄鬆。"""
+        self._use_copy()
+        entry = _synthetic_entry(2002, self.content)
+        md = self.content / "2002.md"
+        md.write_bytes(md.read_bytes() + b" ")
+        self.assertEqual(g.approved_intro_html(2002, {"season-intro-2002": entry}), "")
 
 
 class IntroStyleTests(unittest.TestCase):

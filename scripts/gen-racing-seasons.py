@@ -1306,6 +1306,34 @@ def _intro_path(year):
     return INTRO_DIR / f"{year}.md"
 
 
+def _intro_facts_path(year):
+    return INTRO_DIR / f"{year}.facts.json"
+
+
+def _sha256_file(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def _facts_binding_ok(year, entry):
+    """facts pack 綁定：`facts_sha256` 與 content/seasons/<year>.facts.json 現值全等才算核准。
+
+    ☠️ 為什麼 facts 也要進 gate（2026-08-23 Charlie 裁決）：核准的語意是「這段文字，
+    連同它宣稱的那組事實與那份機械對帳，被人看過」。只綁 .md 的話，facts pack 可以在
+    核准之後被改寫（PR #53 的 anchor 遷移就一次改了 16 篇），而頁面照常渲染——導言仍在
+    站上，但它背後那份「已對帳」的證據已經換成另一份，沒有任何一層會叫。
+
+    三種情形，全部走 default-deny：
+    - facts 檔在、hash 也在 → 必須相符。
+    - facts 檔在、核准沒記 hash（null／缺欄）→ 不渲染：核准當時沒有綁到這份 facts。
+    - facts 檔不在 → 只驗 .md（沒有 facts pack 的舊條目維持原行為）。
+    """
+    fp = _intro_facts_path(year)
+    if not fp.exists():
+        return True
+    want = entry.get("facts_sha256")
+    return bool(want) and want == _sha256_file(fp)
+
+
 def approved_intro_html(year, approved=None):
     """回該季導言的 HTML 區塊字串；未核准 / sha 不符 / 無檔 → 回 ""（→ 頁面 byte-identical）。
 
@@ -1321,9 +1349,11 @@ def approved_intro_html(year, approved=None):
     if not entry:
         return ""  # default-deny：未列入核准清單
     want = entry.get("article_sha256", "")
-    actual = hashlib.sha256(md.read_bytes()).hexdigest()
+    actual = _sha256_file(md)
     if not want or want != actual:
         return ""  # 檔案被竄改或核准 sha 對不上 → 不渲染（現狀）
+    if not _facts_binding_ok(year, entry):
+        return ""  # facts pack 與核准當下不同 → 核准失效（見下方函式註解）
     prose = md.read_text(encoding="utf-8").strip()
     paras = "".join(f"<p>{esc(p.strip())}</p>" for p in prose.split("\n\n") if p.strip())
     return (f'\n\n<h2 class="sec-title">編輯導言</h2>'
