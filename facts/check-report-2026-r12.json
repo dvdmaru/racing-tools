@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-23T22:33:28.811283+00:00",
+  "season": 2026,
+  "round": 12,
+  "article": "articles/f1-2026-r12-dutch-report/index.md",
+  "article_sha256": "ac0bb5d1feec0748539407a1f35bc880726071b99c30063e5d6d698711455cdd",
+  "facts": "facts/race-recap-2026-r12.json",
+  "facts_sha256": "788d473d6576a8deb8d45d70ff29798b6407a4c8d7f51165b2b5ccf87a2c21af",
+  "prompt": "scripts/prompts/race-recap.md",
+  "prompt_sha256": "1ed87b977dbcd250700ed2b74360ae290247553cd720d61b82e1d5c9e8aa09d8",
+  "checks": [
+    {
+      "name": "verify-recap",
+      "passed": true
+    },
+    {
+      "name": "verify-standings",
+      "passed": true
+    },
+    {
+      "name": "verify-body",
+      "passed": true
+    },
+    {
+      "name": "no-causal",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "waivers": "none — 本管線無豁免機制，命中一律改稿"
+}

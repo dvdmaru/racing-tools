@@ -52,6 +52,8 @@ Agent(subagent_type="claude", model="sonnet", prompt=<本檔內容> + facts 路�
 5. **中英對照（站規）。** 車手／車隊／賽道／站名第一次出現時中英並列，
    中文在前、原文在後，**原文用全形括號包起來**：`諾里斯（Lando Norris）`。
    之後可只用中文。用 pack 裡的 `zh` 與 `en_full`／`en`，不要自己翻譯。
+   ⚠️ pack 的 `zh` 若本身就是羅馬字（查無核准中文譯名的 fallback，如 `Tsunoda`）＝**用原文全名、
+   不加括號**（`Yuki Tsunoda`），不要寫成「Tsunoda（Yuki Tsunoda）」的同語重複（2026-08-24 R12 裁決）。
    ⚠️ **本條只管文章（markdown 手寫稿）。生成頁（積分榜／賽曆／賽果／百科）走
    `racinglib._en()`，用的是 `<span class="zh-en">` ＋全形空格分隔，那是排版元件不是散文，
    兩者刻意不同、不要互相對齊。**（2026-07-27 Charlie 裁決：文章一律全形括號。
