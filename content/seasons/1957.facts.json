@@ -1,5 +1,5 @@
 {
-  "_comment": "1957 賽季導言 facts pack。方吉歐第五冠、Maserati；clinch 於第 7 站（倒數第二站，last_round=8）；Moss/Brooks 於英國大獎賽（第 5 站）共同駕駛 Vanwall 同列 position_text='1'，driver_standings 已正確聚合（moss wins=3、brooks wins=1），未另行手動計數避免雙筆重複。 ｜2026-08-23 查核桌 R1：Sol 指出封王站實為第 6 站德國站（oracle 不套 countback 延後一站＝對帳器 H7），本批刪鎖定站次語意、移除 clinch_round／clinch_from_end 兩條 claim。",
+  "_comment": "1957 賽季導言 facts pack。方吉歐第五冠、Maserati；Moss/Brooks 於英國大獎賽（第 5 站）共同駕駛 Vanwall 同列 position_text='1'，driver_standings 已正確聚合（moss wins=3、brooks wins=1），未另行手動計數避免雙筆重複。 ｜2026-08-23 查核桌 R1：Sol 指出封王站實為第 6 站德國站（oracle 不套 countback 延後一站＝對帳器 H7），本批刪鎖定站次語意、移除 clinch_round／clinch_from_end 兩條 claim。",
   "season": 1957,
   "claims": [
     {
