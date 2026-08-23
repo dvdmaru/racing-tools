@@ -1,0 +1,94 @@
+{
+  "_comment": "1991 賽季導言 facts pack。修正輪：原稿曾寫『開季即連奪美國/巴西/聖馬利諾/摩納哥四站冠軍』（中文數詞規避 anchor 檢查，判定為繞 gate）；改寫成『前 4 站』＋四條 race_finish_position（round=1..4, value=1, anchor『前 4 站』）後，checker 判『數字 4 綁到值為 1 的 claim：anchor 圈錯範圍』——race_finish_position 的 value 語意固定是「該站完賽名次」（=1，因為每站都贏），不是round 計數，無法承載『前 4 站』裡的『4』這個聚合計數，機械上無解。故整句改寫刪除開季連勝敘述，正文不再提開季連勝。career_titles 對應 1988/1990/1991 三個 driver_standings position=1 的 season（COUNT<=1991=3），支撐『第三座世界冠軍』。clinch_round 由 SeasonOracle.clinch('senna') 重算為 (round=15, remaining=1)。1991 年起 db 無外部維基快照（README 已聲明 1991 起無 crosscheck-report 覆蓋），standings 值僅靠 L1 db＋逐站重算兩層互證。",
+  "season": 1991,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1991 賽季",
+      "value": 1991,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1991",
+      "anchors": [
+        "1991 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 16 站",
+      "value": 16,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1991",
+      "anchors": [
+        "全季 16 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "senna",
+      "text": "塞納全季拿下 7 場分站冠軍",
+      "value": 7,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1991 AND position=1",
+      "anchors": [
+        "拿下 7 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "senna",
+      "text": "塞納生涯第三座世界冠軍（1988/1990/1991）",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='senna' AND position=1 AND season<=1991",
+      "anchors": [
+        "第三座世界冠軍"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "senna",
+      "text": "塞納在第 15 站數學上鎖定冠軍",
+      "value": 15,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套當季捨分規則，對手上限只計其實際仍有出賽的站次；首個「冠軍保底分 ＞ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch）",
+      "anchors": [
+        "第 15 站便已鎖定冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "senna",
+      "text": "塞納以 96 分作收",
+      "value": 96,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1991 AND position=1",
+      "anchors": [
+        "以 96 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "mansell",
+      "text": "曼塞爾以 72 分作收",
+      "value": 72,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1991 AND position=2",
+      "anchors": [
+        "以 72 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "mansell",
+      "text": "曼塞爾年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1991 AND driver_id='mansell'",
+      "anchors": [
+        "居年度第二"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": []
+}

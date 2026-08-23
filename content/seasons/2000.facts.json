@@ -1,0 +1,95 @@
+{
+  "_comment": "2000 賽季導言 facts pack。麥可・舒馬克為法拉利拿下車手暌違多年後的年度車手冠軍、對手為麥拉倫的米卡・哈基寧，於第 16 站日本大獎賽數學上鎖定。所有數字與順位詞皆以 sqlite（driver_standings／results）與 check-season-intros.py 的 SeasonOracle（逐站重算＋clinch 演算法）驗證。⚠️修正輪：正文原寫『法拉利車隊睽違多年後再度封王』語意錯——法拉利車隊冠軍（constructor_standings）1999 年已拿下，睽違的是『車手』冠軍，非『車隊』冠軍；已改寫為『法拉利車手睽違多年後再度奪下年度車手冠軍』。跨季『上次是哪一年』本身無對應 kind 可撐數字（無『車手上次奪冠年份』這類 kind），正文該分句不帶任何阿拉伯數字，列 external_history 存證；1980–1999 driver_standings position=1 逐年查無 constructor_id='ferrari'（見下方 external_history 的查證紀錄），故『睽違多年』在此區間內站得住。",
+  "season": 2000,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2000 賽季",
+      "value": 2000,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2000",
+      "anchors": [
+        "2000 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 17 站",
+      "value": 17,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2000",
+      "anchors": [
+        "17 站裡"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "michael_schumacher",
+      "text": "舒馬克全季贏下 9 場分站冠軍",
+      "value": 9,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=2000 AND position=1（逐站重算：R1/R2/R3/R6/R8/R14/R15/R16/R17 position_text='1'，共 9 場）",
+      "anchors": [
+        "9 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "michael_schumacher",
+      "text": "第 16 站（日本大獎賽）數學上鎖定年度冠軍",
+      "value": 16,
+      "verified": true,
+      "source": "clinch 計算（v2）：逐站積分套當季捨分規則，對手上限只計其實際仍有出賽的站次；首個「冠軍保底分 ＞ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch，實測 clinch('michael_schumacher')=(16, 1)）",
+      "anchors": [
+        "第 16 站"
+      ]
+    },
+    {
+      "kind": "clinch_remaining",
+      "driver": "michael_schumacher",
+      "text": "鎖定冠軍時還剩 1 站（第 17 站馬來西亞站）",
+      "value": 1,
+      "verified": true,
+      "source": "clinch 計算（v2）：同上，remaining＝總站數 17 − clinch 站次 16",
+      "anchors": [
+        "還剩 1 站"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "michael_schumacher",
+      "text": "2000 年為舒馬克生涯第 3 座年度冠軍（1994、1995、2000）",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='michael_schumacher' AND position=1 AND season<=2000",
+      "anchors": [
+        "第 3 冠"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "michael_schumacher",
+      "text": "以 108 分作收奪冠",
+      "value": 108,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2000 AND position=1",
+      "anchors": [
+        "108 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "hakkinen",
+      "text": "哈基寧以 89 分居年度第二",
+      "value": 89,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2000 AND position=2",
+      "anchors": [
+        "89 分"
+      ]
+    }
+  ],
+  "external_history": [
+    "法拉利車手睽違多年後再度奪下年度車手冠軍——上一次是多年之前，屬歷史背景敘述，無對應 kind 可查核年份差距，正文不帶任何阿拉伯數字。指的是『車手』冠軍而非『車隊』冠軍：法拉利車隊（constructor_standings）的年度冠軍在 1999 年已拿下，未曾中斷到 2000 年；查證：sqlite SELECT ds.season, ds.driver_id, r.constructor_id FROM driver_standings ds JOIN results r ON r.season=ds.season AND r.driver_id=ds.driver_id WHERE ds.season BETWEEN 1980 AND 1999 AND ds.position=1 GROUP BY ds.season——1980–1999 二十季逐年車手冠軍（jones/piquet/rosberg/piquet/lauda/prost/prost/piquet/senna/prost/senna/senna/mansell/prost/michael_schumacher/michael_schumacher/damon_hill/villeneuve/hakkinen/hakkinen）對應 constructor 皆為 williams/brabham/mclaren/benetton，無一是 ferrari，故 2000 年以前至少 1980–1999 這 20 季無法拉利車手奪得年度車手冠軍（史實上上一次是 1979 年 Jody Scheckter，早於本次查詢區間，未逐年覆核 1979 以前）。"
+  ]
+}

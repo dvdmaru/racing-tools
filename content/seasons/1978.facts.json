@@ -1,0 +1,76 @@
+{
+  "_comment": "1978 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與每個順位詞都必須落在本檔 verified claims 的 anchors 內。2026-08-23 裁決：原稿曾主張『安德烈蒂在第 13 站鎖定車手冠軍』，改稿人以 SeasonOracle.clinch 重算 clinch_round=13（依對手「實際仍有出賽的站次」計算理論上限）。經人工手算複驗發現：round13 後安德烈蒂保底分=63，Peterson 若排除其身故後未出賽的 R15/16、僅計入他已知會出賽的 R14 封頂，理論上限=60（<63）；但若按「數學鎖定」的正確定義——當下所有仍在名單上的對手按剩餘**排程**站次（不管後續實際有無出賽）封頂計算——Peterson 在 round13 後的理論上限＝78（segment1 最佳7=30 ＋ segment2 含 R14/15/16 全部封頂 9/9/9 後取最佳7=48，合計 78）>63，此時尚未鎖定。裁決認定 oracle 現行「只計實際仍有出賽站次」的口徑，對 1978 這種賽季中途身故案例會把 R14 之後『Peterson 事實上沒再出賽』這件事拿來反推 R13 的鎖定，等於用事後之明（Peterson 隔天過世導致他不會再出賽 R15/16）去判斷 R13 當下的數學狀態，對讀者是時間順序上的錯置，不是真正「當下」的鎖定。1961 年 von Trips 案例之所以成立，是因為他身故本身就發生在該站（R7）之內，回推的「事後之明」與該站是同一時點，不構成時間錯置；1978 Peterson 的死亡發生在 R14 之後、與 R13 的判定不同時點，兩案不可等同處理。故本稿移除 clinch_round／clinch_remaining 兩條 claim，正文不再主張任何『第 N 站鎖定冠軍』的站次，改以荷蘭站（R13）1-2 名次、季末積分（64 對 51）、雙方全季勝場數等不涉及鎖定判定的事實句呈現。champion_points／champion_wins／constructor_wins／runner_up_points／driver_position 五條 claim 不受影響，均已對 1978 完賽後 driver_standings 通過重算與 1950–1990 外部快照交叉驗證。義大利大獎賽（R14，蒙札）Peterson 於起跑事故受傷、翌日不治一事屬中立紀律事實句，不帶阿拉伯數字，故放 external_history、不進機械對帳；Peterson 仍以年度第二、51 分作收，是他本人整季實際成績，與其身故無因果關係。",
+  "season": 1978,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1978 賽季",
+      "value": 1978,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1978",
+      "anchors": [
+        "1978 年"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "mario_andretti",
+      "text": "安德烈蒂以 64 分作收",
+      "value": 64,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1978 AND position=1",
+      "anchors": [
+        "以 64 分"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "mario_andretti",
+      "text": "安德烈蒂全季拿下 6 場分站冠軍",
+      "value": 6,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1978 AND position=1",
+      "anchors": [
+        "全季拿下 6 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "team_lotus",
+      "text": "蓮花車隊全季拿下 8 場分站冠軍",
+      "value": 8,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1978 AND constructor_id='team_lotus' AND position_text='1'",
+      "anchors": [
+        "拿下 8 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "peterson",
+      "text": "Peterson 以 51 分作收",
+      "value": 51,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1978 AND position=2",
+      "anchors": [
+        "51 分作收"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "peterson",
+      "text": "Peterson 年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1978 AND driver_id='peterson'",
+      "anchors": [
+        "年度第二"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "蓮花車隊（Team Lotus）率先大量採用地面效應設計的賽車，是該項技術於一級方程式賽事的早期代表作。",
+    "義大利大獎賽起跑發生連環事故，Ronnie Peterson 受傷，翌日於醫院不治。"
+  ]
+}
