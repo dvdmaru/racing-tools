@@ -386,6 +386,22 @@ def _faq_sec(pairs):
             f'<section class="rc-faq">{qa}</section>')
 
 
+def _circuit_tile_gist() -> str:
+    """首頁賽道磁磚的說明文字；賽道條數從 sitemap part 推算，不寫死。
+
+    ⚠️ 為什麼不寫「78 條」：這個站已經因為寫死數字吃過虧（llms.txt 的「全季 22 站」，
+    2026-08-01 事故、check-site-facts.py 因此誕生）。賽道會隨新站加入而增加，
+    寫死的那一刻起就開始腐蝕，而且腐蝕時沒有任何一層會叫。
+
+    來源用 data/sitemap-parts/circuits.txt 而不是 db.sqlite：build-articles.py 必須在
+    沒有 db 的乾淨 checkout 上跑得起來（見 PARTS_DIR 上方那段註解），而 sitemap part
+    正是同一份清單進 git 的形態。part 還沒生出來時退回不帶數字的說法，不編一個數字。
+    """
+    n = len([u for u in _part_urls("circuits")
+             if u.rstrip("/") != f"{BASE}/circuits".rstrip("/")])
+    return f"{n} 條賽道的舉辦紀錄" if n else "各賽道的舉辦紀錄"
+
+
 def render_home(articles):
     standings_sec, rnd = _standings_mini()
     next_chip = _next_race_chip()
@@ -414,6 +430,8 @@ def render_home(articles):
                   '<span><span class="tt">車手</span><span class="ds">生涯冠軍 · 勝場 · 頒獎台</span></span><span class="go">→</span></a>'
                   '<a class="tile" href="/constructors/"><span class="ic">🏎️</span>'
                   '<span><span class="tt">車隊</span><span class="ds">車隊冠軍史</span></span><span class="go">→</span></a>'
+                  '<a class="tile" href="/circuits/"><span class="ic">📍</span>'
+                  f'<span><span class="tt">賽道</span><span class="ds">{_circuit_tile_gist()}</span></span><span class="go">→</span></a>'
                   '</div>')
     art_sec = ""
     if articles:
