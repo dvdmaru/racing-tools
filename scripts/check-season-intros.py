@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""check-season-intros.py — 人工賽季導言的機械對帳（v2：補上查核桌 SOL-VERDICT-5 指出的四個結構性漏洞）。
+"""check-season-intros.py — 人工賽季導言的機械對帳（v3：v2 補查核桌 SOL-VERDICT-5 的四個結構性漏洞
+H1–H4，v3 再補導言第二批實戰暴露的 H5 除名／H6 clinch 事後之明／H7 clinch 同分 countback）。
 
 v1 對 content/seasons/<year>.md 做兩層 gate：(1) 導言裡每個阿拉伯數字都要落在 facts pack
 verified claim 的**值集合**內；(2) 每條 verified claim 按 kind 對 data/f1/db.sqlite 重查。
@@ -38,8 +39,46 @@ v2 的四道對應修補（全部只加檢查、不放寬既有 gate）：
        重算解釋得出該順序）。正文出現同分字眼（並列／同列／同分／相同積分）而 pack 沒有任一條
        tie 型 claim → 判錯。
 
+2026-08-23 導言第二批實戰又暴露三個缺口（v3 補）：
+
+  H5 除名不建模：重算 oracle 純以積分排序，不看 driver_standings.position_text='D'（賽季結束後
+     遭年度除名）。1997 舒馬克的 78 分被排進 P2，Frentzen（官方 P2、42 分）的 runner_up_points／
+     driver_position 因此驗不過。
+  H6 clinch 事後之明：對手上限原本只算「該對手實際還有出賽的站次」，等於用賽季結束後才知道的
+     資訊回推當下。1978 Peterson 在 R14 蒙札事故後不再出賽，舊口徑把 Andretti 的封王算成 R13——
+     但 R13 當下 Peterson 上限 78 ＞ Andretti 保底 63，根本沒鎖定。
+  H7 clinch 同分未套 countback：舊判準是 `floor > best_rival` 嚴格大於，積分理論上可追平時沒有
+     比 countback。1957 方吉歐在第 6 站德國站就封王（同分時勝場多者勝），舊 oracle 延後到第 7 站。
+
+v3 的三道對應修補（同樣只加檢查、不放寬既有 gate）：
+
+  H5 → **除名建模**：`SeasonOracle` 從 driver_standings 讀 `position_text` 這個**分類標記**
+       （只讀標記，不讀 points／position 的值，故不構成 H1 的值循環引用——「賽季結束後遭除名」
+       是治理事實，results 層沒有這個訊號，沒有別的地方可讀）。標記 ∈ EXCLUDED_POSITION_TEXTS
+       者從年度排名中剔除，其餘車手順位往前遞補；標記既非數字、也不在具名清單內 → 判錯
+       （default-deny：不認得的標記不准默默當成一般車手）。
+       射程界線：只影響**年度最終排名** `rank()`。`rank_through()`（末站前的即時累計榜）與
+       `clinch()` 的對手集合**不套用**——1997 的除名是賽季結束後才發生的，賽季進行中舒馬克是
+       貨真價實的對手，把他從當下的榜上抹掉才是另一種事後之明。
+  H6 → **對手上限一律用剩餘排程站次封頂**，不再看「他之後實際有沒有出賽」。唯一的例外是
+       SEASON_ENDING_EVENTS：在**該站賽事當下**已身故／確定退出賽季的車手，自該站起不再計——
+       而且只有在評估站次 rnd ≥ 該站時才適用（rnd < 該站時事件還沒發生，不得預知）。
+       ⚠️ results.status 撐不起這個判定：1961 von Trips（R7 蒙札）與 1978 Peterson（R14 蒙札）
+       的 status 都只是泛用的 `Accident`，與 Moss 1960、Hunt 1973 這些傷退／退出完全同字串；
+       全庫只有 3 列 `Fatal accident`（1970 rindt／1974 koinigg／1982 paletti）。因此改用
+       **具名例外清單＋理由＋來源**（比照站規 default-deny），並把 FATAL_STATUSES 一併納入，
+       未來資料若標了致命狀態不必改清單。
+  H7 → clinch 判準改 `floor >= best_rival`，**同分時比 countback**：對手若要追平上限就必須把
+       剩餘站次全數拿下，因此對手的 countback 要用**理論最佳**（現有完賽分布 ＋ 剩餘站次各記
+       一勝）來比，不能拿他現實中的勝場數比。冠軍側則用保底情境（此後不再得分＝現有分布）。
+       countback 完全同階（分不出先後）→ 不算鎖定（default-deny）。
+
 已知邊界（誠實聲明，不得解讀為已驗）：
   - 1991 年起沒有外部 standings 快照，points 仍是單一來源（jolpica）＋逐站重算兩腿，報告會標。
+  - SEASON_ENDING_EVENTS 是**人工具名清單**，只補到目前對帳到的賽季；沒登記的季末退出者一律
+    照「剩餘排程站次全額封頂」處理（保守：只會把 clinch 算得比實際晚，不會提早放行）。
+  - clinch 的對手上限含當季所有出現在 results 的車手。1950 年代的 Indy 500 站次對歐洲車手來說
+    實際上不可能參賽，但「他不會去」是排程外知識，機械層不假設——同樣是保守方向。
   - 非數字、非順位的語意主張（因果、心理狀態、「首位／唯一」類全稱詞）機械層驗不了，仍須
     對抗式人工查核。全綠只代表「數字與順位這兩層沒抓到錯」。
 
@@ -74,6 +113,37 @@ TIE_WORDS = ("並列", "同列", "同分", "相同積分", "同積分", "積分�
 
 CN_DIGITS = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
              "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
+
+# ---- H5：standings 的 position_text 分類標記 --------------------------------
+# 只有這三類被認得；其餘一律判錯（default-deny：不認得的標記不准默默當一般車手處理）。
+UNRANKED_POSITION_TEXT = "-"            # 無積分／未列入年度榜（全庫 1463 列，points 皆為 0）
+EXCLUDED_POSITION_TEXTS = {"D", "E"}    # 賽季結束後遭年度除名（1997 michael_schumacher='D'）
+
+# ---- H6：在「該站賽事當下」即確定不再參賽的具名例外清單 ----------------------
+# 為什麼要人工具名：results.status 撐不起這個判定。全庫只有 3 列 'Fatal accident'，而 1961
+# von Trips 與 1978 Peterson 的 status 都只是泛用的 'Accident'——與 1960 Moss、1973 Hunt 這些
+# 傷退後復出的完全同字串。沒有這張表就只剩「他之後沒再出賽」這個事後之明（＝H6 本身）。
+# 每筆都要有理由與來源；沒登記的一律用「剩餘排程站次全額封頂」（保守方向）。
+SEASON_ENDING_EVENTS = {
+    (1961, "trips"): {"round": 7, "reason": "義大利站正賽事故身亡",
+                      "source": "en.wikipedia 1961 Italian Grand Prix"},
+    (1970, "rindt"): {"round": 10, "reason": "義大利站賽事週末事故身亡",
+                      "source": "results.status='Fatal accident'"},
+    (1973, "cevert"): {"round": 15, "reason": "美國站排位賽事故身亡",
+                       "source": "en.wikipedia 1973 United States Grand Prix"},
+    (1974, "koinigg"): {"round": 15, "reason": "美國站正賽事故身亡",
+                        "source": "results.status='Fatal accident'"},
+    (1975, "donohue"): {"round": 12, "reason": "奧地利站熱身賽事故，兩日後不治",
+                        "source": "en.wikipedia 1975 Austrian Grand Prix"},
+    (1978, "peterson"): {"round": 14, "reason": "義大利站起跑事故重傷，翌日不治",
+                         "source": "en.wikipedia 1978 Italian Grand Prix"},
+    (1982, "villeneuve"): {"round": 5, "reason": "比利時站排位賽事故身亡",
+                           "source": "en.wikipedia 1982 Belgian Grand Prix"},
+    (1982, "paletti"): {"round": 8, "reason": "加拿大站起跑碰撞身亡",
+                        "source": "results.status='Fatal accident'"},
+}
+# 資料層若已標成致命狀態，不必等人補清單（清單與這裡取較早的站次）。
+FATAL_STATUSES = {"Fatal accident"}
 
 # ---- kind 分類 -------------------------------------------------------------
 REQUIRE_DRIVER = {"champion_points", "runner_up_points", "champion_wins", "driver_position",
@@ -182,15 +252,35 @@ class SeasonOracle:
         self.round_points = defaultdict(lambda: defaultdict(float))
         self.finishes = defaultdict(Counter)
         self.entered = defaultdict(set)
+        self.round_finish = defaultdict(dict)   # driver → {round: 完賽名次}（供 clinch 的 countback）
         row = con.execute("SELECT MAX(round) FROM races WHERE season=?", (self.year,)).fetchone()
         self.last_round = int(row[0]) if row and row[0] else 0
-        for rnd, did, pts, ptext in con.execute(
-                "SELECT round, driver_id, points, position_text FROM results WHERE season=?",
+        # H6：資料層已標致命狀態者，自該站起不再計（與具名清單取較早者）。
+        self.season_ending = {}
+        for (season, did), item in SEASON_ENDING_EVENTS.items():
+            if int(season) == self.year:
+                self.season_ending[did] = int(item["round"])
+        for rnd, did, pts, ptext, status in con.execute(
+                "SELECT round, driver_id, points, position_text, status FROM results WHERE season=?",
                 (self.year,)):
             self.round_points[did][rnd] += float(pts or 0)
             self.entered[did].add(rnd)
             if str(ptext).isdigit() and float(pts or 0) > 0:
                 self.finishes[did][int(ptext)] += 1
+                self.round_finish[did][rnd] = int(ptext)
+            if status in FATAL_STATUSES:
+                self.season_ending[did] = min(self.season_ending.get(did, rnd), rnd)
+        # H5：年度除名標記（只讀 position_text 這個分類欄，不讀 points／position 的值）。
+        self.excluded, self.unknown_markers = set(), []
+        for did, ptext in con.execute(
+                "SELECT driver_id, position_text FROM driver_standings WHERE season=?", (self.year,)):
+            text = "" if ptext is None else str(ptext).strip()
+            if text.isdigit() or text == UNRANKED_POSITION_TEXT:
+                continue
+            if text.upper() in EXCLUDED_POSITION_TEXTS:
+                self.excluded.add(did)
+            else:
+                self.unknown_markers.append((did, ptext))
         for rnd, did, pts in con.execute(
                 "SELECT round, driver_id, points FROM sprint_results WHERE season=?", (self.year,)):
             self.round_points[did][rnd] += float(pts or 0)
@@ -215,8 +305,12 @@ class SeasonOracle:
         return self._points if driver is None else self._points.get(driver)
 
     def rank(self, driver=None):
+        """年度最終排名。H5：遭年度除名者（position_text='D'）不佔位，其後車手往前遞補。"""
         if self._rank is None:
-            self._rank = _cc()._rank(self.points(), self.finishes)
+            points = {d: v for d, v in self.points().items() if d not in self.excluded}
+            finishes = defaultdict(Counter, {d: c for d, c in self.finishes.items()
+                                             if d not in self.excluded})
+            self._rank = _cc()._rank(points, finishes)
         return self._rank if driver is None else self._rank.get(driver)
 
     def wins(self, driver):
@@ -242,40 +336,72 @@ class SeasonOracle:
                              (self.year,)).fetchone()
         return float((r and r[0]) or 0) + float((s and s[0]) or 0)
 
-    def clinch(self, driver):
-        """回 (clinch_round, remaining)：冠軍的保底積分首次超過所有對手的理論上限那一站。
+    def finishes_through(self, driver, upto):
+        """截至第 upto 站（含）的完賽名次分布 Counter。"""
+        return Counter(pos for rnd, pos in self.round_finish[driver].items() if rnd <= upto)
 
-        ⚠️ 兩項具名假設（寫死在這裡，不要偷偷改）：
-          1. 對手上限用「該對手實際還有出賽的站次」計算——退出／未再出賽者不再累積。1961 的
-             von Trips 在第 7 站身亡，此後不可能得分，敘事上的「倒數第二站分出勝負」正是這個
-             口徑；用全站次的天真上限會算成第 8 站。
-          2. 捨分季一律套當年 segments，不是純累加。
+    def _rival_future_rounds(self, other, rnd):
+        """H6：對手在第 rnd 站之後**還可能出賽**的排程站次。
+
+        預設＝剩餘全部排程站次（不看他之後實際有沒有出賽，那是事後之明）。唯一例外是
+        SEASON_ENDING_EVENTS／FATAL_STATUSES 登記的「該站當下已身故／確定退出」，且只有在
+        評估站次已經走到那一站（rnd ≥ end）才適用——rnd 更早時事件還沒發生，不得預知。
+        """
+        end = self.season_ending.get(other)
+        stop = self.last_round + 1
+        if end is not None and rnd >= end:
+            stop = end
+        return [f for f in range(rnd + 1, self.last_round + 1) if f < stop]
+
+    def clinch(self, driver):
+        """回 (clinch_round, remaining)：冠軍首次「保底積分壓過所有對手理論上限」的那一站。
+
+        ⚠️ 三項具名假設（寫死在這裡，不要偷偷改）：
+          1. （H6）對手上限用**剩餘排程站次**封頂；只有具名清單登記的「該站當下已身故／確定
+             退出」自該站起不再計，且不得預知（rnd ＜ 該站時照樣全額封頂）。
+          2. （H7）判準是 `floor >= 對手上限`：同分時比 countback。對手要追平上限就得把剩餘
+             站次全拿，所以他的 countback 用**理論最佳**（現有分布＋每個剩餘站次各記一勝）；
+             冠軍側用保底情境（此後不再得分＝現有分布）。完全同階＝分不出先後＝不算鎖定。
+          3. 捨分季一律套當年 segments，不是純累加。
         """
         if not self.last_round or driver not in self.round_points:
             return None, None
         ceiling = self._ceiling()
         for rnd in range(1, self.last_round + 1):
             floor = self._segments(self.round_points[driver], rnd)
-            best_rival = 0.0
-            for other, rp in self.round_points.items():
-                if other == driver:
-                    continue
-                hypo = {r: v for r, v in rp.items() if r <= rnd}
-                for future in range(rnd + 1, self.last_round + 1):
-                    if future in self.entered[other]:
-                        hypo[future] = ceiling
-                best_rival = max(best_rival, self._segments(hypo))
-            if floor > best_rival:
+            champ_finishes = self.finishes_through(driver, rnd)
+            if all(self._rival_settled(driver, floor, champ_finishes, other, rp, rnd, ceiling)
+                   for other, rp in self.round_points.items() if other != driver):
                 return rnd, self.last_round - rnd
         return None, None
 
-    def countback_beats(self, first, second):
-        """countback：依序比 1 勝數、2 名數…；回 True＝first 勝出，False＝敗，None＝完全同階。"""
-        a, b = self.finishes[first], self.finishes[second]
+    def _rival_settled(self, driver, floor, champ_finishes, other, rival_points, rnd, ceiling):
+        """這名對手在第 rnd 站後是否已經追不上（含 H7 的同分 countback）。"""
+        future = self._rival_future_rounds(other, rnd)
+        hypo = {r: v for r, v in rival_points.items() if r <= rnd}
+        for f in future:
+            hypo[f] = ceiling
+        best = self._segments(hypo)
+        if floor > best:
+            return True
+        if floor < best:
+            return False
+        # 同分：對手要打到這個上限就得剩餘站次全勝，countback 用他的理論最佳分布比。
+        rival_finishes = self.finishes_through(other, rnd)
+        rival_finishes[1] += len(future)
+        return self._countback_wins(champ_finishes, rival_finishes) is True
+
+    @staticmethod
+    def _countback_wins(a, b):
+        """countback：依序比 1 勝數、2 名數…；True＝a 勝出、False＝敗、None＝完全同階。"""
         for pos in range(1, max(list(a) + list(b) + [0]) + 1):
             if a[pos] != b[pos]:
                 return a[pos] > b[pos]
         return None
+
+    def countback_beats(self, first, second):
+        """countback：依序比 1 勝數、2 名數…；回 True＝first 勝出，False＝敗，None＝完全同階。"""
+        return self._countback_wins(self.finishes[first], self.finishes[second])
 
 
 # ---------- L0／L1／外部快照 provenance（H1-a、H1-c） ----------
@@ -439,6 +565,8 @@ def verify_claim(con, claim, oracle=None):
             f"driver_standings P{pos} {field}＋逐站重算"
     if kind == "driver_position":
         did = claim["driver"]
+        if did in oracle.excluded:
+            return False, None, f"{did} 在 {yr} 遭年度除名（position_text='D'），沒有年度順位可宣稱"
         got = _q1(con, "SELECT position FROM driver_standings WHERE season=? AND driver_id=?", (yr, did))
         ok, actual = eq(got)
         if ok and oracle.rank(did) != want:
@@ -471,7 +599,7 @@ def verify_claim(con, claim, oracle=None):
             return False, None, "無法算出 clinch（該車手無逐站資料）"
         actual = {"clinch_round": rnd, "clinch_remaining": rem,
                   "clinch_from_end": oracle.last_round - rnd + 1}[kind]
-        return (*eq(actual), f"{kind}（捨分規則＋僅計實際仍有出賽的對手）")
+        return (*eq(actual), f"{kind}（捨分規則＋剩餘排程站次封頂＋同分 countback）")
     if kind == "rank_before_final":
         did = claim["driver"]
         if oracle.last_round < 2:
@@ -643,6 +771,11 @@ def check_year(year: int, con):
 
     # (2) verified claim 重查（含 H2 實體必填、H1-b 獨立重算）
     oracle = SeasonOracle(con, season)
+    # (H5) default-deny：standings 出現不認得的 position_text 標記 → 判錯，不准默默當一般車手
+    for did, ptext in oracle.unknown_markers:
+        errors.append(f"[{year}] driver_standings 有不認得的 position_text 標記：{did}={ptext!r}"
+                      f"（認得的：數字、{UNRANKED_POSITION_TEXT!r}、"
+                      f"{sorted(EXCLUDED_POSITION_TEXTS)}；要嘛具名納入、要嘛修資料）")
     ok_claims = []
     for c in verified:
         try:
@@ -676,6 +809,11 @@ def season_notes(con, year):
     oracle = SeasonOracle(con, year)
     if not oracle.has_scoring_rule:
         notes.append("無捨分規則登記（重算採全站累加）")
+    if oracle.excluded:
+        notes.append("年度除名（不佔年度順位）：" + "／".join(sorted(oracle.excluded)))
+    if oracle.season_ending:
+        notes.append("clinch 具名例外（自該站起不再計）："
+                     + "／".join(f"{d} R{r}" for d, r in sorted(oracle.season_ending.items())))
     return notes
 
 
@@ -726,7 +864,7 @@ def main(argv):
         return 0
 
     all_errors = []
-    print("賽季導言機械對帳（v2：L1 斷言＋逐站重算＋外部快照＋位置綁定＋並列驗證）：")
+    print("賽季導言機械對帳（v3：L1 斷言＋逐站重算＋外部快照＋位置綁定＋並列驗證＋除名建模＋無事後之明 clinch）：")
     for y in years:
         errs = check_year(y, con)
         notes = "；".join(season_notes(con, y))
