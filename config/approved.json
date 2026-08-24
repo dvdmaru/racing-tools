@@ -334,6 +334,114 @@
       "approved_by": "charlie",
       "approved_at": "2026-08-24T01:55:00+08:00",
       "note": "R12 荷蘭站戰報。機械對帳四道綠（verify-standings 修衝刺週末口徑後過）＋Codex Terra 異源席 ledger：5 REFUTED 中 2 成立已修（第 2 圈 21 位非全場、下一站賽道無英文欄刪句）、2 誤報（正文實有中英對照，grep 可證）、1 駁回（Tsunoda zh=羅馬字，裁決用原文不加括號並已寫入 prompt）。核准以 Charlie 合併 PR 為授權時點。"
+    },
+    {
+      "slug": "season-intro-1955",
+      "article_sha256": "1a00c1d3a9a92ca37f14deca81da23e8ffaf9bf59fd0923f8d2697ad10af2e23",
+      "facts_sha256": "dc136ffc175cb9988606bcc1642f975ac44e666981fe011928ee9f6bb3b81382",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1955 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1963",
+      "article_sha256": "be6b4befeef644fbfffa9fc824fb4e658012d0279197e13c936f2d79a0b4f993",
+      "facts_sha256": "531935f631758c2071d05d799562b15f6d795e6e49be2d62e9e0f48ce0cdcfbc",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1963 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1968",
+      "article_sha256": "29e202af3ad02ffdd82ca03a748e834384e34b583c747ae76fc42a3d0d57417c",
+      "facts_sha256": "3be31a4b429abd08113f9d519be0a0e8f440003bc7a41d4f06241b52d7c665ee",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1968 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1972",
+      "article_sha256": "aad1859646d2ae31d58af9dd8eee4c8bb166162cc41c7bf6e6dd0af244e14820",
+      "facts_sha256": "ae51c0fb610ba20219f8d301c60cdf7f368716f90de4132acb70a06c3632171a",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1972 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1974",
+      "article_sha256": "0a05c1dea934339a850c88b6400e3adb64029b74e3e626d6a81ccbf3416c891b",
+      "facts_sha256": "85b39490b18126593c6aba714a0ac27cc4e33bf9cbfb51a5ca1bf328f99657fe",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1974 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1981",
+      "article_sha256": "964958fb97b55c901b07f4d60205899d1211a28316b3939999a9299ef3860051",
+      "facts_sha256": "4eb04695078f4ce29350081e08badf68efff83e60932f61b2d6426b17907cda9",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1981 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1989",
+      "article_sha256": "5fdae8afe51ab65da3b45e7f29d185cd95e1da59fe231d6f161baa04eba9d538",
+      "facts_sha256": "e0cc43afbbe8c95d45886ddcda4cad1a25b93ef732d48cb28c253cb7bc7e260e",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1989 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1990",
+      "article_sha256": "8cf9b7d961f84a2140d374819f954eea7932c1535cc8fff779319522b58b094c",
+      "facts_sha256": "38b151cbfadb7ba0d63b9010476d69e4ba5cfd6951b7db4f106b9b5813cf06eb",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1990 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-1992",
+      "article_sha256": "9b761a23ed988f86f4a3060516e2f69dc13aa7b2bc9cbe7b5e730af0da7e1c38",
+      "facts_sha256": "e2a5bfd8629fe1c1dbd6b1434c21edd50e39ea027b1814f64f37e2223598def9",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "1992 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-2009",
+      "article_sha256": "a5ed2a8d7019ccba100afe12ef6be406779d49b6751ef2bb3bef3ceec9fa45fa",
+      "facts_sha256": "406e0c4eacd6dc95da011aa335b1f1f219d5a2c15beabcbb31fd15a0eb1b60be",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "2009 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-2020",
+      "article_sha256": "6d3b3c62bcdd55a439216889b39ff6c0af0b4e198b0532568cdeed82d4a02078",
+      "facts_sha256": "2b0677c7abe413ffe9b0541ef6775b4200ad9020db09c3f4ecb6d560c3e803a6",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "2020 賽季人工導言核准"
+    },
+    {
+      "slug": "season-intro-2024",
+      "article_sha256": "dbe9a30b14dd32e230e90387031b625ca36de154d53b41c4585b82a70f0b0c42",
+      "facts_sha256": "09963c4d3076f4df13c1463cfb2da5c4b455e7c4d29a59eacf8e701890603d1f",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T10:51:21+08:00",
+      "note": "2024 賽季人工導言核准"
     }
   ]
 }

@@ -1,0 +1,51 @@
+{
+  "_comment": "1989 賽季導言 facts pack。日本站（R15）：sqlite results 顯示 senna position_text='D'（Disqualified）、prost status='Collision'（未完賽）——兩人碰撞後普羅斯特退賽、塞納賽後被判失去名次，正文只寫事實層、不評對錯、雙方都不背書。clinch_round 由 SeasonOracle.clinch('prost') 重算得 (15, 1)，用的是 v3 口徑（剩餘排程站次封頂＋同分 countback），該站當下的實際結果（含塞納 DSQ）已內含在逐站重算裡。冠亞軍積分 76／60 直接查 driver_standings，且與逐站重算及外部快照一致（season_notes：外部快照已覆蓋，無裁決覆寫）。",
+  "season": 1989,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1989 賽季",
+      "value": 1989,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1989",
+      "anchors": [
+        "1989 年"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "prost",
+      "text": "普羅斯特在第 15 站（日本站）數學上鎖定年度冠軍",
+      "value": 15,
+      "verified": true,
+      "source": "clinch 計算（v3）：SeasonOracle.clinch('prost') 於 data/f1/db.sqlite（season=1989）；剩餘排程站次封頂＋同分 countback，首個「保底分 ≥ 所有對手理論上限」的站次",
+      "anchors": [
+        "第 15 站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "prost",
+      "text": "普羅斯特以 76 分作收奪冠",
+      "value": 76,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1989 AND position=1",
+      "anchors": [
+        "以 76 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "senna",
+      "text": "塞納以 60 分居次",
+      "value": 60,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1989 AND position=2",
+      "anchors": [
+        "以 60 分"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": []
+}

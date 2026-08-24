@@ -1,0 +1,105 @@
+{
+  "_comment": "1992 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證（含 SeasonOracle 逐站重算與 clinch 計算）；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的值集合內。external_history 句屬常識性歷史背景、不進機械對帳。",
+  "season": 1992,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1992 賽季",
+      "value": 1992,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1992",
+      "anchors": [
+        "1992 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 16 站",
+      "value": 16,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1992",
+      "anchors": [
+        "全季 16 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "mansell",
+      "text": "曼塞爾贏下 9 場分站冠軍",
+      "value": 9,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1992 AND position=1",
+      "anchors": [
+        "贏下 9 場"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "mansell",
+      "text": "第 11 站賽後數學上鎖定年度冠軍",
+      "value": 11,
+      "verified": true,
+      "source": "clinch 計算（v3，SeasonOracle.clinch，H6 對手上限以剩餘排程站次封頂、無事後之明；H7 同分套 countback）：逐站積分套當季捨分規則，首個「冠軍保底分 ≥ 所有對手理論上限」且 countback 不落後的站次",
+      "anchors": [
+        "第 11 站"
+      ]
+    },
+    {
+      "kind": "clinch_remaining",
+      "driver": "mansell",
+      "text": "鎖定冠軍時尚剩 5 站未賽",
+      "value": 5,
+      "verified": true,
+      "source": "clinch 計算（v3）：同上，remaining＝總站數 − clinch 站次（16 − 11 = 5）",
+      "anchors": [
+        "尚剩 5 站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "mansell",
+      "text": "曼塞爾以 108 分作收",
+      "value": 108,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1992 AND position=1",
+      "anchors": [
+        "108 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "patrese",
+      "text": "第二名隊友 Riccardo Patrese 56 分",
+      "value": 56,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1992 AND position=2",
+      "anchors": [
+        "56 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "patrese",
+      "text": "帕特雷斯年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1992 AND driver_id='patrese'",
+      "anchors": [
+        "排名第二"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "williams",
+      "text": "威廉斯全季拿下 10 場分站冠軍",
+      "value": 10,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM constructor_standings WHERE season=1992 AND position=1",
+      "anchors": [
+        "10 勝"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": []
+}

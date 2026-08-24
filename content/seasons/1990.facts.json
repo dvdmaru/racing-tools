@@ -1,0 +1,82 @@
+{
+  "_comment": "1990 賽季導言 facts pack。塞納/普羅斯特積分 78/71 為官方最終積分榜值（driver_standings），直接查得，非相減得出。clinch(15,1) 由 SeasonOracle.clinch('senna') 對 db.sqlite 重算得出，與史實（塞納在鈴鹿以該站賽果數學鎖定冠軍）相符。日本站碰撞：results 該站 senna/prost 兩筆 status='Collision'、position_text='R'，正文只寫『兩車發生碰撞，雙雙退賽』，中立、不帶數字、不評責任。修正輪（2026-08-24）：刪除『普羅斯特自此無法再進帳分數』一句——經查 results round=16（澳洲站）prost：position_text='3'、points=4.0、status='Finished'，普羅斯特最終站仍出賽並得分，只是捨分制下不改變最終排名；原句與事實不符，已從正文刪除，改為中性的雙雙退賽＋鎖定冠軍敘述。",
+  "season": 1990,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1990 賽季",
+      "value": 1990,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1990",
+      "anchors": [
+        "1990 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 16 站",
+      "value": 16,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1990",
+      "anchors": [
+        "16 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "senna",
+      "text": "塞納全季拿下 6 場分站冠軍",
+      "value": 6,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1990 AND position=1",
+      "anchors": [
+        "6 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "senna",
+      "text": "塞納以 78 分作收奪冠",
+      "value": 78,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1990 AND position=1",
+      "anchors": [
+        "以 78 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "prost",
+      "text": "普羅斯特以 71 分居次",
+      "value": 71,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1990 AND position=2",
+      "anchors": [
+        "以 71 分"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "senna",
+      "text": "塞納在第 15 站（日本大獎賽）數學上鎖定冠軍",
+      "value": 15,
+      "verified": true,
+      "source": "clinch 計算（v3）：逐站積分套當季捨分規則，對手上限用剩餘排程站次封頂；SeasonOracle.clinch('senna') on season=1990 回傳 (15, 1)",
+      "anchors": [
+        "第 15 站"
+      ]
+    },
+    {
+      "kind": "clinch_remaining",
+      "driver": "senna",
+      "text": "鎖定冠軍時賽季尚剩 1 站",
+      "value": 1,
+      "verified": true,
+      "source": "clinch 計算（v3）：同上，remaining＝總站數（16）－clinch 站次（15）＝1",
+      "anchors": [
+        "尚剩 1 站"
+      ]
+    }
+  ],
+  "external_history": []
+}

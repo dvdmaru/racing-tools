@@ -1,0 +1,61 @@
+{
+  "_comment": "1974 賽季導言 facts pack。clinch 已用 SeasonOracle 驗證：emerson_fittipaldi 的 clinch round=15＝last_round=15（即全季最終站，美國站），故正文『延燒到全季最終站』屬經 oracle 驗證的事實，但因不帶阿拉伯數字，未另立 clinch_round claim（依 README，語意主張不強制走 clinch kind，只有數字/順位詞才需要 anchor）。分差（55－52＝3）未寫進正文，避免與 champion_wins/constructor_wins 的裸數字 3 混淆（依站規：分差不能直接寫，除非兩個積分各有 claim）。",
+  "season": 1974,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1974 賽季",
+      "value": 1974,
+      "verified": true,
+      "anchors": ["1974 年"],
+      "source": "sqlite: SELECT year FROM seasons WHERE year=1974"
+    },
+    {
+      "kind": "champion_points",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪最終以 55 分封王",
+      "value": 55,
+      "verified": true,
+      "anchors": ["55 分封王"],
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1974 AND position=1（driver_id=emerson_fittipaldi）；另以 results＋scoring-rules.json 逐站重算對照一致"
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "regazzoni",
+      "text": "Regazzoni 以 52 分居次",
+      "value": 52,
+      "verified": true,
+      "anchors": ["52 分居次"],
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1974 AND position=2（driver_id=regazzoni）；另以 results＋scoring-rules.json 逐站重算對照一致"
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪該季贏下 3 場分站冠軍",
+      "value": 3,
+      "verified": true,
+      "anchors": ["贏下 3 場分站冠軍"],
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1974 AND position=1（driver_id=emerson_fittipaldi）；另以 results COUNT(position_text='1') 逐站重算對照一致"
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "mclaren",
+      "text": "麥拉倫同季共拿下 4 場分站冠軍",
+      "value": 4,
+      "verified": true,
+      "anchors": ["拿下 4 場分站冠軍"],
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1974 AND constructor_id='mclaren' AND position_text='1'"
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "ferrari",
+      "text": "法拉利該季拿下 3 場分站冠軍",
+      "value": 3,
+      "verified": true,
+      "anchors": ["法拉利的 3 場"],
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1974 AND constructor_id='ferrari' AND position_text='1'"
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": []
+}

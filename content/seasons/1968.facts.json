@@ -1,0 +1,94 @@
+{
+  "_comment": "1968 賽季導言 facts pack。吉姆・克拉克（Jim Clark）身故於 1968 年 4 月霍肯海姆的一場 F2 賽事，非世界錦標賽站；正文與本檔採中立紀律，external_history 不帶阿拉伯數字、不評責任。",
+  "season": 1968,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1968 賽季",
+      "value": 1968,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1968",
+      "anchors": [
+        "1968 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 12 站",
+      "value": 12,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1968",
+      "anchors": [
+        "全季 12 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "hill",
+      "text": "希爾贏下 3 場分站冠軍",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1968 AND position=1",
+      "anchors": [
+        "3 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "driver_podiums",
+      "driver": "hill",
+      "text": "希爾全季 6 次站上頒獎台",
+      "value": 6,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1968 AND driver_id='hill' AND position_text IN ('1','2','3')",
+      "anchors": [
+        "6 次登上頒獎台"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "hill",
+      "text": "希爾在第 12 站（年度最終站）數學上鎖定冠軍",
+      "value": 12,
+      "verified": true,
+      "source": "clinch 計算（v3）：逐站積分套當季捨分規則，對手上限以剩餘排程站次封頂；首個「冠軍保底分 ≥ 所有對手理論上限」（同分套 countback）的站次（見 check-season-intros.py SeasonOracle.clinch）",
+      "anchors": [
+        "第 12 站最終站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "hill",
+      "text": "希爾以 48 分封王",
+      "value": 48,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1968 AND position=1",
+      "anchors": [
+        "48 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "stewart",
+      "text": "史都華以 36 分居年度第二",
+      "value": 36,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1968 AND position=2",
+      "anchors": [
+        "36 分"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "lotus-ford",
+      "text": "蓮花－福特車隊全季拿下 5 場分站冠軍",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM constructor_standings WHERE season=1968 AND position=1",
+      "anchors": [
+        "5 場分站冠軍"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": []
+}

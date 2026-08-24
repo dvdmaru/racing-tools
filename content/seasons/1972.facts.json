@@ -1,0 +1,80 @@
+{
+  "_comment": "1972 賽季導言 facts pack。「蓮花車隊同季也拿下年度車隊冠軍」不帶數字語意（README v2 kind 清單沒有 constructor_points/constructor_position，撐不起車隊積分或名次的數字主張，故不寫「同一份積分」這類暗示車隊分＝61 的措辭，也不掛額外 claim；sqlite 查證 constructor_standings 1972 team_lotus points=61，僅供內部核對，不進正文）。clinch 值（R10、剩 2 站）由 SeasonOracle.clinch()（v3）重算取得，已跑 checker 確認。",
+  "season": 1972,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1972 賽季",
+      "value": 1972,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1972",
+      "anchors": ["1972 年"]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪第 10 站（義大利大獎賽）數學上鎖定冠軍",
+      "value": 10,
+      "verified": true,
+      "source": "clinch 計算（v3）：逐站積分套當季捨分規則，對手上限以剩餘排程站次封頂；SeasonOracle.clinch()",
+      "anchors": ["第 10 站"]
+    },
+    {
+      "kind": "clinch_remaining",
+      "driver": "emerson_fittipaldi",
+      "text": "鎖定冠軍時尚剩 2 站",
+      "value": 2,
+      "verified": true,
+      "source": "clinch 計算（v3）：remaining＝總站數（12）－ clinch 站次（10）",
+      "anchors": ["尚剩 2 站"]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 12 站",
+      "value": 12,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1972",
+      "anchors": ["全季 12 站"]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪拿下 5 場分站冠軍",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1972 AND position=1",
+      "anchors": ["5 場分站冠軍"]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪以 61 分作收",
+      "value": 61,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1972 AND position=1",
+      "anchors": ["以 61 分"]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "stewart",
+      "text": "史都華年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1972 AND driver_id='stewart'",
+      "anchors": ["第二名"]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "stewart",
+      "text": "史都華 45 分",
+      "value": 45,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1972 AND position=2",
+      "anchors": ["45 分"]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "菲蒂帕爾迪封王時，是當時最年輕的世界冠軍。"
+  ]
+}

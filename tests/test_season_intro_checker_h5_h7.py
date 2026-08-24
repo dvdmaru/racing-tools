@@ -221,11 +221,11 @@ class Hole7ClinchCountback(_DbCase):
 
 # ---------------------------------------------------------------- 全篇不得翻紅
 class ApprovedIntrosStayGreen(_DbCase):
-    """v3 三道修補之後，28 篇已核准導言必須維持全綠、零豁免。"""
+    """v3 三道修補之後，已核准導言（2026-08-24 第三批後 40 篇）必須維持全綠、零豁免。"""
 
     def test_all_approved_intros_green(self):
         years = sorted(int(p.stem) for p in chk.CONTENT.glob("*.md") if p.stem.isdigit())
-        self.assertEqual(len(years), 28, "導言篇數變了，這條斷言要跟著重新確認")
+        self.assertEqual(len(years), 40, "導言篇數變了，這條斷言要跟著重新確認")
         failures = {y: chk.check_year(y, self.con) for y in years}
         self.assertEqual({y: e for y, e in failures.items() if e}, {})
 
