@@ -116,12 +116,13 @@ class FingerprintInputTests(unittest.TestCase):
         path.write_text(path.read_text(encoding="utf-8") + "\n", encoding="utf-8")
 
     def test_team_zh_edit_invalidates_every_page_group_that_prints_team_names(self):
-        """陽性：車隊頁（自己的譯名）、車手頁（車隊 chips）、賽道頁（優勝車隊）都要變。"""
+        """陽性：車隊頁（自己的譯名）、車手頁（車隊 chips）、賽道頁（優勝車隊）、
+        賽季線（車隊積分榜／車手所屬車隊）與分站頁都要變。"""
         sand = self._sandbox_scripts()
         before = regen.compute_fingerprints(self.con)
         self._touch(sand / "team-zh.json")
         after = regen.compute_fingerprints(self.con)
-        for group in ("constructors", "drivers", "circuits"):
+        for group in ("constructors", "drivers", "circuits", "seasons", "rounds"):
             self.assertNotEqual(before[group], after[group],
                                 f"改 team-zh.json 後 {group} 指紋沒變＝該頁群會靜默 stale")
 
@@ -137,21 +138,67 @@ class FingerprintInputTests(unittest.TestCase):
         after = regen.compute_fingerprints(self.con)
         self.assertNotEqual(before["drivers"], after["drivers"])
         self.assertNotEqual(before["circuits"], after["circuits"])
+        self.assertNotEqual(before["seasons"], after["seasons"],
+                            "賽季總覽印車手名（積分榜、各站冠軍），driver-zh 一改必須失效")
         self.assertEqual(before["constructors"], after["constructors"],
                          "車隊頁不印車手名，卻因 driver-zh.json 失效＝白刷")
 
-    def test_unrendered_zh_table_never_invalidates_anything(self):
-        """陰性：race-zh.json 不被任何百科頁群渲染，改它不准讓任何一群失效。"""
+    def test_driver_zh_edit_invalidates_the_season_line(self):
+        """陽性：賽季總覽的車手積分榜／各站冠軍、車手分頁、分站頁都印車手譯名，
+        改一個字元就必須讓 seasons 與 rounds 兩群失效（否則 415 頁靜默 stale）。"""
+        sand = self._sandbox_scripts()
+        before = regen.compute_fingerprints(self.con)
+        self._touch(sand / "driver-zh.json")
+        after = regen.compute_fingerprints(self.con)
+        for group in ("seasons", "rounds"):
+            self.assertNotEqual(before[group], after[group],
+                                f"改 driver-zh.json 後 {group} 指紋沒變＝該頁群會靜默 stale")
+        # 逐年檢查：不是只有某一季變，而是每一季的切片都吃到這張表。
+        self.assertEqual(sorted(before["seasons"]), sorted(after["seasons"]))
+        for year, sha in before["seasons"].items():
+            self.assertNotEqual(sha, after["seasons"][year], f"{year} 季指紋沒吃到 driver-zh")
+
+    def test_race_zh_edit_invalidates_only_the_season_line(self):
+        """陽性＋陰性：分站名譯名只印在賽季線（總覽的各站冠軍表、車手／車隊分頁的逐站列）
+        與分站頁上；車手生涯頁／車隊頁／賽道頁一個分站名都不印。
+
+        ⚠️ PR #59 原本這條叫 test_unrendered_zh_table_never_invalidates_anything，斷言
+        race-zh.json「不被任何百科頁群渲染」。那個前提對賽季線是錯的——2024 賽季總覽的
+        HTML 裡就有「澳洲站」。錯的陰性測試比沒有測試更糟：它會把真的洞鎖成「預期行為」。
+        """
         sand = self._sandbox_scripts()
         race_zh = sand / "race-zh.json"
         if not race_zh.exists():
-            self.skipTest("race-zh.json 不存在，此反向測試前提不成立")
+            self.skipTest("race-zh.json 不存在，此測試前提不成立")
         before = regen.compute_fingerprints(self.con)
         self._touch(race_zh)
         after = regen.compute_fingerprints(self.con)
-        for group in ("constructors", "drivers", "circuits", "seasons"):
+        for group in ("seasons", "rounds"):
+            self.assertNotEqual(before[group], after[group],
+                                f"{group} 印分站名，race-zh.json 一改卻沒失效＝靜默 stale")
+        for group in ("constructors", "drivers", "circuits"):
             self.assertEqual(before[group], after[group],
                              f"race-zh.json 沒被 {group} 渲染，卻讓它失效＝白刷")
+
+    def test_circuit_zh_edit_invalidates_round_pages_but_not_the_season_line(self):
+        """賽道譯名只有 render_round 印（rc.circuit_pair）；賽季總覽與車手／車隊分頁不印。
+
+        所以 circuit-zh.json 掛在分站頁指紋、不進 _year_slice：進去就等於改一個賽道譯名
+        白刷 415 頁的整條賽季線。陰性那半才是這條測試的重點。
+        """
+        sand = self._sandbox_scripts()
+        circuit_zh = sand / "circuit-zh.json"
+        if not circuit_zh.exists():
+            self.skipTest("circuit-zh.json 不存在，此測試前提不成立")
+        before = regen.compute_fingerprints(self.con)
+        self._touch(circuit_zh)
+        after = regen.compute_fingerprints(self.con)
+        for group in ("rounds", "circuits"):
+            self.assertNotEqual(before[group], after[group],
+                                f"{group} 印賽道名，circuit-zh.json 一改卻沒失效＝靜默 stale")
+        for group in ("seasons", "drivers", "constructors"):
+            self.assertEqual(before[group], after[group],
+                             f"circuit-zh.json 沒被 {group} 渲染，卻讓它失效＝白刷")
 
     def test_fingerprints_are_stable_when_nothing_changes(self):
         """陰性基準：什麼都不改，兩次計算必須完全相同（否則上面的陽性斷言毫無意義）。"""

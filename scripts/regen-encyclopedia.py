@@ -123,10 +123,20 @@ def _year_slice(con, year):
     ORDER BY 一律用唯一鍵（results/sprint/qualifying 用代理主鍵 id；standings 用實體 id；
     races 用 round）——避免用 nullable/非唯一欄（如 position）排序造成指紋抖動。
 
-    ⚠️ 已知未補的洞（2026-08-24 查證，本次刻意不動、避免射程外擴）：賽季頁與分站頁同樣
-    印車手與車隊譯名（gen-racing-seasons.py 的 DRIVER_ZH／TEAM_ZH_BY_ID），這份切片卻
-    沒有 _zh_sha256()——改 driver-zh.json／team-zh.json 時 415 頁賽季線會靜默 stale。
-    賽道頁（2026-08-23）與車手／車隊頁（2026-08-24）已補，補法照抄即可。
+    ⚠️ 譯名表 sha 也切進來（2026-08-24 補上，原本是洞）：賽季總覽／車手分頁／車隊分頁
+    都印車手、車隊與分站三種譯名（gen-racing-seasons.py 的 DRIVER_ZH／TEAM_ZH_BY_ID
+    ＋ rc.race_pair／rc.race_zh），改譯名時 db 一個 byte 都不會動，不切就是 415 頁靜默 stale。
+
+    切三張、不切 circuit-zh.json：以生成器實際讀的東西為準逐張查過——
+    ・driver-zh.json：`zh_driver()`（積分榜、各站冠軍、退賽明細）→ 切。
+    ・team-zh.json：`zh_team()`（車隊榜、車手所屬車隊）→ 切。
+    ・race-zh.json：`rc.race_pair()`／`rc.race_zh()`（各站冠軍表、車手／車隊分頁的逐站列）
+      → 切。（PR #59 的反向測試曾假設「race-zh 沒有任何百科頁群渲染」，該前提對賽季線
+      是錯的：2024 賽季總覽 HTML 裡就有「澳洲站」，本次一併更正該測試。）
+    ・circuit-zh.json：整份 gen-racing-seasons.py 只有 `render_round()` 用 `rc.circuit_pair()`，
+      賽季總覽與兩種分頁一個賽道譯名都不印（實測 2024 總覽 HTML 對 circuit-zh 全表零命中）
+      → **不切**，改在 compute_fingerprints 的分站頁指紋上單獨掛，免得改一個賽道譯名
+      就白刷整條賽季線。
     """
     slc = {}
     for tbl, cols, order in (
@@ -150,6 +160,7 @@ def _year_slice(con, year):
     st = con.execute("SELECT status FROM seasons WHERE year=?", (year,)).fetchone()
     slc["status"] = st[0] if st else None
     slc["season_intro"] = _season_intro_slice(year)
+    slc["zh_sha256"] = _zh_sha256("driver-zh.json", "team-zh.json", "race-zh.json")
     overrides = _season_override_slice(year)
     if overrides:
         slc["standings_overrides"] = overrides
@@ -211,8 +222,8 @@ def _circuit_slice(con, cid):
     加上決定「哪些連結連得出去」的兩份 roster 與三張譯名表。
 
     ⚠️ 譯名表的 sha 也切進來：賽道頁把賽道／車手／車隊三種名字都印在頁上，改譯名時
-    db 一個 byte 都不會動，不切就會靜默 stale。車手頁與車隊頁 2026-08-24 已補上同一道
-    （原本是既有的洞）；賽季頁與分站頁仍缺，見 _year_slice。
+    db 一個 byte 都不會動，不切就會靜默 stale。車手頁、車隊頁與賽季／分站線 2026-08-24
+    已補上同一道（原本都是既有的洞），全站五個頁群至此一致。
     """
     meta = con.execute(
         "SELECT name, locality, country, url FROM circuits WHERE circuit_id=?", (cid,)).fetchone()
@@ -262,8 +273,12 @@ def compute_fingerprints(con, round_years=None):
     # 沿用同一個 hash 當底，行為與 M7 原本的「季變→_render_one_season 全季重生」一致。
     # round 本身也切進 hash：否則同一季內沒有相關報導的站會算出同一個值，
     # 指紋就不再「識別那一頁」（比對雖仍逐鍵、不會出錯，但一個認不出自己是誰的指紋遲早被誤用）
+    # 分站頁比賽季線多印一種譯名：賽道名（render_round → rc.circuit_pair）。circuit-zh.json
+    # 不進 _year_slice（賽季總覽與車手／車隊分頁都不印賽道名，切進去＝改一個賽道譯名白刷
+    # 整條賽季線），只掛在分站頁這一層。
     fp_rounds = {f"{y}/{r}": _h({"round": [y, r], "db": fp_years[str(y)],
-                                 "articles": il.round_articles_slice(y, r)})
+                                 "articles": il.round_articles_slice(y, r),
+                                 "zh_sha256": _zh_sha256("circuit-zh.json")})
                  for y, r in round_keys(round_years)}
     fp_drivers_db = {did: _h(_driver_slice(con, did)) for did in DRIVER_IDS}
     fp_drivers = {did: _h({"db": fp_drivers_db[did],
