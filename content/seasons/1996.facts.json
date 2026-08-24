@@ -1,0 +1,65 @@
+{
+  "_comment": "1996 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。external_history 屬常識性歷史背景、不進機械對帳。",
+  "season": 1996,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1996 賽季",
+      "value": 1996,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1996",
+      "anchors": [
+        "1996 年"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "damon_hill",
+      "text": "戴蒙・希爾以 97 分封王",
+      "value": 97,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1996 AND position=1",
+      "anchors": [
+        "97 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "villeneuve",
+      "text": "雅克・維倫紐夫以 78 分居年度第二",
+      "value": 78,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1996 AND position=2",
+      "anchors": [
+        "78 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "michael_schumacher",
+      "text": "麥可・舒馬克位居年度第三",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "第三"
+      ],
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1996 AND driver_id='michael_schumacher'"
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "williams",
+      "text": "威廉斯車隊全季拿下 12 場分站冠軍",
+      "value": 12,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1996 AND constructor_id='williams' AND position_text='1'",
+      "anchors": [
+        "12 場"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "戴蒙・希爾（Damon Hill）繼其父葛拉罕・希爾（Graham Hill）之後，同樣登上世界冠軍之位——常識性歷史背景，父子皆曾奪得世界冠軍，不掛統計 claim，故零阿拉伯數字。",
+    "麥可・舒馬克（Michael Schumacher）甫加盟法拉利——常識性背景（本季為其法拉利生涯首季），不掛統計 claim，故零阿拉伯數字。"
+  ]
+}

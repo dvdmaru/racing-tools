@@ -1,0 +1,76 @@
+{
+  "_comment": "1975 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。external_history 屬常識性歷史背景、不進機械對帳。",
+  "season": 1975,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1975 賽季",
+      "value": 1975,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1975",
+      "anchors": [
+        "1975 年"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "lauda",
+      "text": "勞達全季拿下 5 勝",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1975 AND position=1（並以 COUNT(*) FROM results WHERE season=1975 AND driver_id='lauda' AND position_text='1' 重算對照）",
+      "anchors": [
+        "5 勝"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "lauda",
+      "text": "勞達以 64.5 分封王",
+      "value": 64.5,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1975 AND position=1",
+      "anchors": [
+        "64.5 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪以 45 分居年度第二",
+      "value": 45,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1975 AND position=2",
+      "anchors": [
+        "45 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "reutemann",
+      "text": "Reutemann 年度順位第三",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1975 AND driver_id='reutemann'",
+      "anchors": [
+        "第三"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "ferrari",
+      "text": "法拉利車隊全季拿下 6 場分站冠軍",
+      "value": 6,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1975 AND constructor_id='ferrari' AND position_text='1'",
+      "anchors": [
+        "6 場"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "勞達拿下生涯首座世界冠軍——生涯里程碑歷史背景，無阿拉伯數字。",
+    "那半分，來自奧地利站因雨提前終止賽事、只發放半數積分——事實層敘述，不涉其他事故細節，無阿拉伯數字。"
+  ]
+}

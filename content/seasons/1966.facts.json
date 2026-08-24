@@ -1,0 +1,65 @@
+{
+  "_comment": "1966 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。1966 是國際汽聯新引擎排氣量規則實施的第一季（外部史實常識，年份不帶入 external_history 以免裸奔數字）；正文的引擎規則句刻意不帶排氣量數字（如『3.0 升』）。傑克・布拉漢姆全季拿下 4 場分站冠軍（driver_standings.wins=4，與 results 逐站 COUNT 交叉核對一致）、以 42 分封王；車隊 brabham-repco 同分 42（constructor_standings，1966 車隊賽制僅計單站最高名次車手分數，非雙車手加總，故車隊分恰與 Brabham 個人分相同——正文因此不重複寫出車隊積分數字，避免與 champion_points 的 42 產生數值混淆，只用不帶數字的『拿下該季車隊冠軍』敘述）。Surtees 該季季中由 Ferrari 轉投 Cooper-Maserati（派工單陷阱①），正文與本檔均不拆分他的分數細節，只用 driver_standings 的年度總分 28（單一來源已含跨隊加總）。'首位以自身車隊賽車奪冠' 為降強度後的歷史背景敘述（派工單原錨點用『唯一』，唯一需窮舉全部賽季不可行，改用『首位』——史實上 Jack Brabham 是首位、且迄今仍是唯一一位以自己車隊製造的賽車奪得年度車手冠軍的人，但本檔僅對『首位』的順序性主張負責，不代管『唯一』的窮舉）。車隊譯名 brabham-repco 是 team-zh.json 核准的複合口徑『布拉漢姆－Repco車隊』，直接沿用不拆分。",
+  "season": 1966,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1966 賽季",
+      "value": 1966,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1966",
+      "anchors": [
+        "1966 年"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "jack_brabham",
+      "text": "布拉漢姆全季拿下 4 場分站冠軍",
+      "value": 4,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1966 AND driver_id='jack_brabham'（並以 SELECT COUNT(*) FROM results WHERE season=1966 AND driver_id='jack_brabham' AND position_text='1' 交叉核對，皆為 4）",
+      "anchors": [
+        "拿下 4 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "jack_brabham",
+      "text": "布拉漢姆以 42 分封王",
+      "value": 42,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1966 AND position=1",
+      "anchors": [
+        "以 42 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "surtees",
+      "text": "蘇爾特斯以 28 分居次",
+      "value": 28,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1966 AND position=2",
+      "anchors": [
+        "以 28 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "rindt",
+      "text": "林特年度順位第三",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "位居第三"
+      ],
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1966 AND driver_id='rindt'"
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "國際汽聯自本季起大幅放寬一級方程式引擎排氣量規則，賽車動力提升——賽制沿革歷史背景，正文刻意不帶排氣量數字。",
+    "傑克・布拉漢姆是史上首位以自身車隊打造的賽車奪得年度車手冠軍的人——生涯里程碑歷史背景，降強度用『首位』而非『唯一』（唯一需窮舉全部賽季，機械層無法驗證，僅『首位』的順序性主張有正向史實依據）。"
+  ]
+}

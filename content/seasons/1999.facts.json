@@ -1,0 +1,87 @@
+{
+  "_comment": "1999 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。external_history 屬常識性歷史背景、不進機械對帳。",
+  "season": 1999,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1999 賽季",
+      "value": 1999,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1999",
+      "anchors": [
+        "1999 年"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "hakkinen",
+      "text": "哈基寧在全季最後一站（第 16 站）才數學上鎖定冠軍，remaining=0",
+      "value": 16,
+      "verified": true,
+      "source": "clinch 計算（v3）：逐站積分套當季捨分規則，對手上限用剩餘排程站次封頂，同分套 countback；首個「冠軍保底分 ≥ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch，1999 無 SEASON_ENDING_EVENTS）",
+      "anchors": [
+        "第 16 站"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "hakkinen",
+      "text": "哈基寧以 76 分作收奪冠",
+      "value": 76,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1999 AND position=1",
+      "anchors": [
+        "76 分"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "hakkinen",
+      "text": "哈基寧全季贏下 5 場分站冠軍",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1999 AND position=1",
+      "anchors": [
+        "5 場"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "hakkinen",
+      "text": "哈基寧拿下生涯第 2 座世界冠軍（1998／1999）",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='hakkinen' AND position=1 AND season<=1999",
+      "anchors": [
+        "第 2 座"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "irvine",
+      "text": "Irvine 以 74 分居年度第二",
+      "value": 74,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1999 AND position=2",
+      "anchors": [
+        "74 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "frentzen",
+      "text": "Frentzen 年度順位第三",
+      "value": 3,
+      "verified": true,
+      "anchors": [
+        "位居第三"
+      ],
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1999 AND driver_id='frentzen'"
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "車手冠軍（麥拉倫／哈基寧）與車隊冠軍（法拉利）分屬不同陣營，是本季敘事重點；『車隊冠軍歸法拉利』不帶阿拉伯數字，法拉利／麥拉倫的車隊積分與勝場數不進正文、不另立 claim，僅以車手層 champion_points／runner_up_points／driver_position 三條 claim 對帳，車隊積分可查 constructor_standings。",
+    "Michael Schumacher 於本季英國站賽事中摔斷腿，缺賽多站，為賽季常識性背景；正文不寫缺賽站數，故不帶阿拉伯數字、不進機械對帳。"
+  ]
+}

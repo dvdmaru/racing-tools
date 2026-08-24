@@ -103,7 +103,7 @@ class C4aDoesNotOverfire(unittest.TestCase):
 
     def test_negative_all_approved_intros_have_zero_violations(self):
         """40 篇已核准導言一條都不准紅——紅了就是真命中，要回報而不是靜默放寬。"""
-        self.assertEqual(len(INTROS), 40, "導言篇數變了，這條斷言要重新確認")
+        self.assertEqual(len(INTROS), 52, "導言篇數變了，這條斷言要重新確認")
         hits = {p.stem: chk.check_cn_numerals(int(p.stem), p.read_text(encoding="utf-8"))
                 for p in INTROS}
         self.assertEqual({y: e for y, e in hits.items() if e}, {})
