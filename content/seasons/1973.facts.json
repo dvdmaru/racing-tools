@@ -1,0 +1,97 @@
+{
+  "_comment": "1973 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。史都華（Tyrrell）以 71 分、5 勝拿下生涯第 3 座（1969／1971／1973）年度冠軍後隨即退休；蓮花車隊（Fittipaldi 55 分年度第二、Peterson 年度第三）以車隊 7 場分站冠軍拿下車隊冠軍。末站（第 15 站）美國大獎賽排位賽 Cevert（Tyrrell）發生致命事故身故（SEASON_ENDING_EVENTS 已登記 1973/cevert/R15），史都華因此未出賽末站正賽——此句屬常識性歷史背景，正文寫法零阿拉伯數字，不進機械對帳。Peterson／Cevert 未列入 driver-zh.json 核准譯名表，正文保留原文，不自創譯名。",
+  "season": 1973,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1973 賽季",
+      "value": 1973,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1973",
+      "anchors": [
+        "1973 年"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "stewart",
+      "text": "史都華生涯第 3 座年度冠軍（≤1973）",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='stewart' AND position=1 AND season<=1973",
+      "anchors": [
+        "第 3 座"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "stewart",
+      "text": "史都華以 71 分作收奪冠",
+      "value": 71,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1973 AND position=1",
+      "anchors": [
+        "71 分"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "stewart",
+      "text": "史都華全季 5 勝",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1973 AND position=1",
+      "anchors": [
+        "5 勝"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪以 55 分居年度第二",
+      "value": 55,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1973 AND position=2",
+      "anchors": [
+        "55 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "emerson_fittipaldi",
+      "text": "菲蒂帕爾迪年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1973 AND driver_id='emerson_fittipaldi'",
+      "anchors": [
+        "第二"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "peterson",
+      "text": "Peterson 年度順位第三",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=1973 AND driver_id='peterson'",
+      "anchors": [
+        "第三"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "team_lotus",
+      "text": "蓮花車隊全季拿下 7 場分站冠軍",
+      "value": 7,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1973 AND constructor_id='team_lotus' AND position_text='1'",
+      "anchors": [
+        "7 場"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "末站美國站排位賽發生致命事故，François Cevert 因而身故，史都華未再出賽該站正賽。"
+  ]
+}

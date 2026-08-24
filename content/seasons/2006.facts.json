@@ -1,0 +1,108 @@
+{
+  "_comment": "2006 賽季導言 facts pack。每個 verified:true 的 claim 由 scripts/check-season-intros.py 內建查詢對 data/f1/db.sqlite 重查驗證；導言中每個阿拉伯數字與順位詞都必須落在本檔 verified claims 的 anchors 內。派工單提到的兩人皆 7 勝：champion_wins 只驗 P1（Alonso），Schumacher 的 7 勝沒有 kind 可掛，正文因此只寫 Alonso 一人的勝場，不做勝場對比。Renault 的 206 分車隊積分無對應 kind（constructor 層只有 constructor_wins），正文改用可驗證的分站冠軍場次（8 場）取代，比照 1981/2005 範式。舒馬克年底退役宣布為治理/生涯事實而非 sqlite 統計值，列 external_history，正文對應子句零阿拉伯數字。Massa 未列入 driver-zh.json 核准譯名表，正文保留原文，不自創譯名。",
+  "season": 2006,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2006 賽季",
+      "value": 2006,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2006",
+      "anchors": [
+        "2006 年"
+      ]
+    },
+    {
+      "kind": "clinch_round",
+      "driver": "alonso",
+      "text": "阿隆索在全季最後一站（第 18 站）才數學上鎖定冠軍，remaining=0",
+      "value": 18,
+      "verified": true,
+      "source": "clinch 計算（v3）：逐站積分套當季捨分規則，對手上限用剩餘排程站次封頂，同分套 countback；首個「冠軍保底分 ≥ 所有對手理論上限」的站次（見 check-season-intros.py SeasonOracle.clinch，2006 無 SEASON_ENDING_EVENTS）",
+      "anchors": [
+        "第 18 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "alonso",
+      "text": "阿隆索全季拿下 7 勝",
+      "value": 7,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=2006 AND position=1",
+      "anchors": [
+        "拿下 7 勝"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "alonso",
+      "text": "阿隆索以 134 分封王",
+      "value": 134,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2006 AND position=1",
+      "anchors": [
+        "134 分"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "alonso",
+      "text": "阿隆索生涯第 2 座年度冠軍（≤2006）",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='alonso' AND position=1 AND season<=2006",
+      "anchors": [
+        "第 2 座"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "michael_schumacher",
+      "text": "舒馬克以 121 分居年度第二",
+      "value": 121,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2006 AND position=2",
+      "anchors": [
+        "121 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "michael_schumacher",
+      "text": "舒馬克年度順位第二",
+      "value": 2,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=2006 AND driver_id='michael_schumacher'",
+      "anchors": [
+        "第二"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "massa",
+      "text": "Massa 年度順位第三",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=2006 AND driver_id='massa'",
+      "anchors": [
+        "第三"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "renault",
+      "text": "雷諾車隊全季拿下 8 場分站冠軍",
+      "value": 8,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2006 AND constructor_id='renault' AND position_text='1'",
+      "anchors": [
+        "8 場"
+      ]
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "舒馬克在賽季中宣布年底退役——生涯事實背景，不進機械對帳，正文對應子句零阿拉伯數字。"
+  ]
+}
