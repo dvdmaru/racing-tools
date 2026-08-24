@@ -52,7 +52,7 @@
       "value": 3,
       "verified": true,
       "anchors": [
-        "瓊斯位居第三"
+        "位居第三"
       ],
       "source": "sqlite: SELECT position FROM driver_standings WHERE season=1981 AND driver_id='jones'"
     },
