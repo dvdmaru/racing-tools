@@ -78,6 +78,20 @@ def _file_sha(path):
     return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
 
 
+def _zh_sha256(*names):
+    """把譯名表的內容 sha 切進頁面指紋。
+
+    ☠️ 為什麼非有不可：譯名只存在 scripts/*-zh.json，**不在 db.sqlite 裡**。改一個譯名，
+    db 一個 byte 都不會動 → db 切片的 sha 不變 → 選擇性重生判定該頁「沒變」→ 頁面上
+    印的還是舊譯名，而且全綠、沒有任何一層會叫。這正是 gate 靜默腐蝕的形狀。
+
+    只切「這個頁群真的會渲染」的那幾張表（default-deny）：多切一張＝那張表一改就白刷
+    一整個頁群，少切一張＝那張表一改就靜默 stale。哪張表會被渲染以生成器實際讀的
+    rc.*_ZH 為準，不憑印象。
+    """
+    return {name: _file_sha(SCRIPTS / name) for name in names}
+
+
 def _season_intro_slice(year):
     """季頁導言輸入：原始檔 sha＋目前是否通過 approved.json 綁定。"""
     path = gs._intro_path(year)
@@ -108,6 +122,11 @@ def _year_slice(con, year):
 
     ORDER BY 一律用唯一鍵（results/sprint/qualifying 用代理主鍵 id；standings 用實體 id；
     races 用 round）——避免用 nullable/非唯一欄（如 position）排序造成指紋抖動。
+
+    ⚠️ 已知未補的洞（2026-08-24 查證，本次刻意不動、避免射程外擴）：賽季頁與分站頁同樣
+    印車手與車隊譯名（gen-racing-seasons.py 的 DRIVER_ZH／TEAM_ZH_BY_ID），這份切片卻
+    沒有 _zh_sha256()——改 driver-zh.json／team-zh.json 時 415 頁賽季線會靜默 stale。
+    賽道頁（2026-08-23）與車手／車隊頁（2026-08-24）已補，補法照抄即可。
     """
     slc = {}
     for tbl, cols, order in (
@@ -157,7 +176,10 @@ def _driver_slice(con, did):
             "status": [tuple(r) for r in status],
             "meta": tuple(meta) if meta else None,
             # 車手頁 constructor chips 的可連名單來自這份 roster；其內容變更必須使頁面 stale。
-            "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER)}
+            "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER),
+            # 車手頁印兩種譯名：車手自己的（il.resolve_zh → driver-zh.json）與
+            # 車隊 chips 的（rc.TEAM_ZH → team-zh.json）。賽道／分站名不印，故不切那兩張。
+            "zh_sha256": _zh_sha256("driver-zh.json", "team-zh.json")}
 
 
 def _constructor_slice(con, cid):
@@ -178,6 +200,9 @@ def _constructor_slice(con, cid):
                   if r[1] == 1 and done.get(r[0]) == "completed"],
         "status": [(year, done.get(year)) for year in sorted({r[0] for r in results})],
         "meta": tuple(meta) if meta else None,
+        # 車隊頁只印車隊自己的譯名（approved_zh → rc.TEAM_ZH → team-zh.json）：
+        # 頁上沒有任何車手名或賽道名，所以只切這一張。
+        "zh_sha256": _zh_sha256("team-zh.json"),
     }
 
 
@@ -185,8 +210,9 @@ def _circuit_slice(con, cid):
     """賽道頁實際渲染的東西：身分欄、承辦分站（含是否已舉行）、每站冠軍的車手／車隊名，
     加上決定「哪些連結連得出去」的兩份 roster 與三張譯名表。
 
-    ⚠️ 譯名表的 sha 也切進來（車隊頁那份切片沒有，是既有的洞）：賽道頁把賽道／車手／車隊
-    三種名字都印在頁上，改譯名時 db 一個 byte 都不會動，不切就會靜默 stale。
+    ⚠️ 譯名表的 sha 也切進來：賽道頁把賽道／車手／車隊三種名字都印在頁上，改譯名時
+    db 一個 byte 都不會動，不切就會靜默 stale。車手頁與車隊頁 2026-08-24 已補上同一道
+    （原本是既有的洞）；賽季頁與分站頁仍缺，見 _year_slice。
     """
     meta = con.execute(
         "SELECT name, locality, country, url FROM circuits WHERE circuit_id=?", (cid,)).fetchone()
@@ -208,8 +234,7 @@ def _circuit_slice(con, cid):
         "winners": [tuple(r) for r in winners],
         "driver_roster_sha256": _file_sha(DRIVER_ROSTER),
         "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER),
-        "zh_sha256": {name: _file_sha(SCRIPTS / name)
-                      for name in ("circuit-zh.json", "driver-zh.json", "team-zh.json")},
+        "zh_sha256": _zh_sha256("circuit-zh.json", "driver-zh.json", "team-zh.json"),
     }
 
 
