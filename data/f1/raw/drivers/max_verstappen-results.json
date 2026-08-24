@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 244,
+  "total": 245,
   "Races": [
     {
       "season": "2015",
@@ -14460,11 +14460,57 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "12",
+      "url": "https://en.wikipedia.org/wiki/2026_Dutch_Grand_Prix",
+      "raceName": "Dutch Grand Prix",
+      "Circuit": {
+        "circuitId": "zandvoort",
+        "url": "https://en.wikipedia.org/wiki/Circuit_Zandvoort",
+        "circuitName": "Circuit Park Zandvoort",
+        "Location": {
+          "lat": "52.3888",
+          "long": "4.54092",
+          "locality": "Zandvoort",
+          "country": "Netherlands"
+        }
+      },
+      "date": "2026-08-23",
+      "time": "13:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "22",
+          "positionText": "R",
+          "points": "0",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": null,
+          "laps": "0",
+          "status": "Retired"
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-08-03T08:04:42.283537+00:00",
+    "fetched_at": "2026-08-23T16:21:23.611372+00:00",
     "backfill": true
   }
 }

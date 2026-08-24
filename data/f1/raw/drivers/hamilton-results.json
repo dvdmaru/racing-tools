@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 391,
+  "total": 392,
   "Races": [
     {
       "season": "2007",
@@ -23429,11 +23429,61 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "12",
+      "url": "https://en.wikipedia.org/wiki/2026_Dutch_Grand_Prix",
+      "raceName": "Dutch Grand Prix",
+      "Circuit": {
+        "circuitId": "zandvoort",
+        "url": "https://en.wikipedia.org/wiki/Circuit_Zandvoort",
+        "circuitName": "Circuit Park Zandvoort",
+        "Location": {
+          "lat": "52.3888",
+          "long": "4.54092",
+          "locality": "Zandvoort",
+          "country": "Netherlands"
+        }
+      },
+      "date": "2026-08-23",
+      "time": "13:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "4",
+          "positionText": "4",
+          "points": "12",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": null,
+          "laps": "72",
+          "status": "Finished",
+          "Time": {
+            "millis": "7501614",
+            "time": "+16.755"
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-08-03T08:04:37.649779+00:00",
+    "fetched_at": "2026-08-23T16:21:19.199475+00:00",
     "backfill": true
   }
 }

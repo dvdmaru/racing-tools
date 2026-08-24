@@ -261,8 +261,9 @@ class GoldenDisciplineTests(unittest.TestCase):
                              self.golden[did]["championship_years"])
 
     def test_golden_covers_exact_union(self):
+        # 2026-08-24 R12 已賽/tsunoda 擴編：現役 roster 53→54，golden 隨之覆蓋 54 人。
         self.assertEqual(set(self.golden), set(dr.DRIVER_IDS))
-        self.assertEqual(len(self.golden), 53)
+        self.assertEqual(len(self.golden), 54)
 
 
 # ---------- 產出完整性 ----------
@@ -279,7 +280,8 @@ class GenerationTests(unittest.TestCase):
         shutil.rmtree(cls.tmp)
 
     def test_all_53_driver_pages_generated(self):
-        self.assertEqual(len(self.pages), 53)
+        # 2026-08-24 R12 已賽/tsunoda 擴編：現役 roster 53→54，全 54 頁應生成。
+        self.assertEqual(len(self.pages), 54)
         for did in dr.DRIVER_IDS:
             slug = rc.driver_slug(did)
             self.assertTrue((self.tmp / "drivers" / slug / "index.html").is_file(),
@@ -291,11 +293,14 @@ class GenerationTests(unittest.TestCase):
             self.assertIn(f'href="/drivers/{slug}/"', self.index, f"索引缺 {slug}")
 
     def test_index_itemlist_has_35(self):
+        # 冠軍 ItemList 固定 35 不受 roster 擴編影響。
         m = re.search(r'"@type":"ItemList".*?"numberOfItems":(\d+)', self.index)
         self.assertTrue(m)
         self.assertEqual(int(m.group(1)), 35)
-        # ListItem = ItemList 的 35 + BreadcrumbList 的 2（首頁／車手）
-        self.assertEqual(self.index.count('"@type":"ListItem"'), 59)
+        # 2026-08-24 tsunoda 擴編：現役 22→23。
+        # ListItem = 冠軍 ItemList 的 35 + 現役 ItemList 的 len(ACTIVE_IDS) + BreadcrumbList 的 2（首頁／車手）。
+        self.assertEqual(len(dr.ACTIVE_IDS), 23)
+        self.assertEqual(self.index.count('"@type":"ListItem"'), 35 + len(dr.ACTIVE_IDS) + 2)
 
     def test_active_section_lists_all_22(self):
         self.assertIn("2026 現役陣容", self.index)

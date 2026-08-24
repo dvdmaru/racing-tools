@@ -242,7 +242,8 @@ class RetirementEraRenderTests(unittest.TestCase):
         self.assertNotIn("db.sqlite", self.section)
 
     def test_2020s_scope_is_explicit(self):
-        self.assertIn("2020 年代（截至 2026 R11）", html.unescape(self.section))
+        # 2026-08-24 R12 已賽：db 推進到 R12，對產物實值同步更新。
+        self.assertIn("2020 年代（截至 2026 R12）", html.unescape(self.section))
 
 
 if __name__ == "__main__":

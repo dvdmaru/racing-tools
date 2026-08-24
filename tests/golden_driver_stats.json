@@ -766,14 +766,14 @@
       "championship_years": [],
       "wins": 0,
       "podiums": 0,
-      "entries": 115,
+      "entries": 114,
       "as_of": {
         "season": 2026,
-        "round": 12
+        "round": 11
       },
-      "approved_by": "PENDING-charlie",
+      "approved_by": "charlie",
       "approved_at": "2026-08-24",
-      "note": "2026 R12 荷蘭站首次進入本季 results（現役集合擴編）。統計由 db 明細 len() 重算（wins/podiums/entries=0/0/115，含 2021–2024 生涯）；維基對審 tsunoda 零 diff（crosscheck-report 現版）。待 Charlie 核准後改 approved_by。"
+      "note": "2026 R12 荷蘭站首次進入本季 results（現役集合擴編）。統計由 db 明細 len() 重算（wins/podiums/entries=0/0/114＝重算到 as_of R11 基線，2026 首賽在 R12 故不計；含 2021–2024 生涯）；維基對審 tsunoda 零 diff（crosscheck-report 現版）。Charlie 2026-08-24 口頭「核准 tsunoda」。"
     },
     "vettel": {
       "championships": 4,

@@ -2,7 +2,7 @@
   "Status": [
     {
       "statusId": "1",
-      "count": "8117",
+      "count": "8124",
       "status": "Finished"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "statusId": "143",
-      "count": "375",
+      "count": "384",
       "status": "Lapped"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "statusId": "31",
-      "count": "292",
+      "count": "298",
       "status": "Retired"
     },
     {
@@ -684,7 +684,7 @@
   "total": 136,
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/status.json",
-    "fetched_at": "2026-08-03T08:04:18.770537+00:00",
+    "fetched_at": "2026-08-23T16:21:12.902484+00:00",
     "backfill": true
   }
 }

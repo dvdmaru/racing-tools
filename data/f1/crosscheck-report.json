@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:46:53.225799+00:00",
+  "generated_at": "2026-08-23T22:51:18.979387+00:00",
   "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
   "note": "維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決",
   "coverage": {
@@ -163,10 +163,10 @@
     }
   },
   "network": {
-    "from_cache": 54,
-    "from_network": 0,
-    "f1stat_from_cache": true,
-    "total_api_requests_this_run": 0
+    "from_cache": 0,
+    "from_network": 54,
+    "f1stat_from_cache": false,
+    "total_api_requests_this_run": 59
   },
   "summary": {
     "drivers_checked": 54,
@@ -505,7 +505,7 @@
       "name": "Alexander Albon",
       "wikipedia_title": "Alexander_Albon",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alexander_Albon",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366385158,
       "infobox_found": true,
       "fields": {
@@ -575,7 +575,7 @@
       "name": "Fernando Alonso",
       "wikipedia_title": "Fernando_Alonso",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Fernando_Alonso",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370890947,
       "infobox_found": true,
       "fields": {
@@ -651,7 +651,7 @@
       "name": "Andrea Kimi Antonelli",
       "wikipedia_title": "Andrea_Kimi_Antonelli",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370124807,
       "infobox_found": true,
       "fields": {
@@ -721,7 +721,7 @@
       "name": "Arvid Lindblad",
       "wikipedia_title": "Arvid_Lindblad",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arvid_Lindblad",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370869352,
       "infobox_found": true,
       "fields": {
@@ -791,7 +791,7 @@
       "name": "Alberto Ascari",
       "wikipedia_title": "Alberto_Ascari",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alberto_Ascari",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370209992,
       "infobox_found": true,
       "fields": {
@@ -867,7 +867,7 @@
       "name": "Oliver Bearman",
       "wikipedia_title": "Oliver_Bearman",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Oliver_Bearman",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369740181,
       "infobox_found": true,
       "fields": {
@@ -937,7 +937,7 @@
       "name": "Gabriel Bortoleto",
       "wikipedia_title": "Gabriel_Bortoleto",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Gabriel_Bortoleto",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369565337,
       "infobox_found": true,
       "fields": {
@@ -1007,7 +1007,7 @@
       "name": "Valtteri Bottas",
       "wikipedia_title": "Valtteri_Bottas",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Valtteri_Bottas",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369222186,
       "infobox_found": true,
       "fields": {
@@ -1077,7 +1077,7 @@
       "name": "Jenson Button",
       "wikipedia_title": "Jenson_Button",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jenson_Button",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1368900797,
       "infobox_found": true,
       "fields": {
@@ -1151,7 +1151,7 @@
       "name": "Jim Clark",
       "wikipedia_title": "Jim_Clark",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jim_Clark",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370473885,
       "infobox_found": true,
       "fields": {
@@ -1227,7 +1227,7 @@
       "name": "Franco Colapinto",
       "wikipedia_title": "Franco_Colapinto",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Franco_Colapinto",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370907110,
       "infobox_found": true,
       "fields": {
@@ -1297,7 +1297,7 @@
       "name": "Damon Hill",
       "wikipedia_title": "Damon_Hill",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Damon_Hill",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1365876385,
       "infobox_found": true,
       "fields": {
@@ -1371,7 +1371,7 @@
       "name": "Emerson Fittipaldi",
       "wikipedia_title": "Emerson_Fittipaldi",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Emerson_Fittipaldi",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1367337766,
       "infobox_found": true,
       "fields": {
@@ -1447,7 +1447,7 @@
       "name": "Juan Fangio",
       "wikipedia_title": "Juan_Manuel_Fangio",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Juan_Manuel_Fangio",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1364230610,
       "infobox_found": true,
       "fields": {
@@ -1529,7 +1529,7 @@
       "name": "Nino Farina",
       "wikipedia_title": "Nino_Farina",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nino_Farina",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1336550249,
       "infobox_found": true,
       "fields": {
@@ -1603,7 +1603,7 @@
       "name": "Pierre Gasly",
       "wikipedia_title": "Pierre_Gasly",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Pierre_Gasly",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369414321,
       "infobox_found": true,
       "fields": {
@@ -1673,7 +1673,7 @@
       "name": "Isack Hadjar",
       "wikipedia_title": "Isack_Hadjar",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Isack_Hadjar",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370278773,
       "infobox_found": true,
       "fields": {
@@ -1743,7 +1743,7 @@
       "name": "Mika Häkkinen",
       "wikipedia_title": "Mika_Häkkinen",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366692195,
       "infobox_found": true,
       "fields": {
@@ -1819,7 +1819,7 @@
       "name": "Lewis Hamilton",
       "wikipedia_title": "Lewis_Hamilton",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370877821,
       "infobox_found": true,
       "fields": {
@@ -1905,7 +1905,7 @@
       "name": "Mike Hawthorn",
       "wikipedia_title": "Mike_Hawthorn",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Mike_Hawthorn",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1361573865,
       "infobox_found": true,
       "fields": {
@@ -1979,7 +1979,7 @@
       "name": "Graham Hill",
       "wikipedia_title": "Graham_Hill",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Graham_Hill",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1368365067,
       "infobox_found": true,
       "fields": {
@@ -2055,7 +2055,7 @@
       "name": "Nico Hülkenberg",
       "wikipedia_title": "Nico_Hülkenberg",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369714073,
       "infobox_found": true,
       "fields": {
@@ -2125,7 +2125,7 @@
       "name": "Denny Hulme",
       "wikipedia_title": "Denny_Hulme",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Denny_Hulme",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370814821,
       "infobox_found": true,
       "fields": {
@@ -2199,7 +2199,7 @@
       "name": "James Hunt",
       "wikipedia_title": "James_Hunt",
       "wikipedia_url": "http://en.wikipedia.org/wiki/James_Hunt",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1365762528,
       "infobox_found": true,
       "fields": {
@@ -2273,7 +2273,7 @@
       "name": "Jack Brabham",
       "wikipedia_title": "Jack_Brabham",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jack_Brabham",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369788375,
       "infobox_found": true,
       "fields": {
@@ -2351,7 +2351,7 @@
       "name": "Alan Jones",
       "wikipedia_title": "Alan_Jones_(Formula_1)",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alan_Jones_(Formula_1)",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1367498908,
       "infobox_found": true,
       "fields": {
@@ -2425,7 +2425,7 @@
       "name": "Keke Rosberg",
       "wikipedia_title": "Keke_Rosberg",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Keke_Rosberg",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1367663938,
       "infobox_found": true,
       "fields": {
@@ -2499,7 +2499,7 @@
       "name": "Niki Lauda",
       "wikipedia_title": "Niki_Lauda",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Niki_Lauda",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1368329699,
       "infobox_found": true,
       "fields": {
@@ -2577,7 +2577,7 @@
       "name": "Liam Lawson",
       "wikipedia_title": "Liam_Lawson",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Liam_Lawson",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370949991,
       "infobox_found": true,
       "fields": {
@@ -2647,7 +2647,7 @@
       "name": "Charles Leclerc",
       "wikipedia_title": "Charles_Leclerc",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Charles_Leclerc",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370561690,
       "infobox_found": true,
       "fields": {
@@ -2717,7 +2717,7 @@
       "name": "Nigel Mansell",
       "wikipedia_title": "Nigel_Mansell",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nigel_Mansell",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1365267406,
       "infobox_found": true,
       "fields": {
@@ -2791,7 +2791,7 @@
       "name": "Mario Andretti",
       "wikipedia_title": "Mario_Andretti",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Mario_Andretti",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370845228,
       "infobox_found": true,
       "fields": {
@@ -2865,7 +2865,7 @@
       "name": "Max Verstappen",
       "wikipedia_title": "Max_Verstappen",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Max_Verstappen",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370382193,
       "infobox_found": true,
       "fields": {
@@ -2945,7 +2945,7 @@
       "name": "Michael Schumacher",
       "wikipedia_title": "Michael_Schumacher",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Michael_Schumacher",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370001414,
       "infobox_found": true,
       "fields": {
@@ -3031,7 +3031,7 @@
       "name": "Lando Norris",
       "wikipedia_title": "Lando_Norris",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Lando_Norris",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366497171,
       "infobox_found": true,
       "fields": {
@@ -3105,7 +3105,7 @@
       "name": "Esteban Ocon",
       "wikipedia_title": "Esteban_Ocon",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Esteban_Ocon",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366128482,
       "infobox_found": true,
       "fields": {
@@ -3175,7 +3175,7 @@
       "name": "Sergio Pérez",
       "wikipedia_title": "Sergio_Pérez",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370054465,
       "infobox_found": true,
       "fields": {
@@ -3245,7 +3245,7 @@
       "name": "Phil Hill",
       "wikipedia_title": "Phil_Hill",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Phil_Hill",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1356364975,
       "infobox_found": true,
       "fields": {
@@ -3319,7 +3319,7 @@
       "name": "Oscar Piastri",
       "wikipedia_title": "Oscar_Piastri",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Oscar_Piastri",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370863221,
       "infobox_found": true,
       "fields": {
@@ -3389,7 +3389,7 @@
       "name": "Nelson Piquet",
       "wikipedia_title": "Nelson_Piquet",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nelson_Piquet",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369586850,
       "infobox_found": true,
       "fields": {
@@ -3467,7 +3467,7 @@
       "name": "Alain Prost",
       "wikipedia_title": "Alain_Prost",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alain_Prost",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366968700,
       "infobox_found": true,
       "fields": {
@@ -3547,7 +3547,7 @@
       "name": "Kimi Räikkönen",
       "wikipedia_title": "Kimi_Räikkönen",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Kimi_R%C3%A4ikk%C3%B6nen",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1367448649,
       "infobox_found": true,
       "fields": {
@@ -3621,7 +3621,7 @@
       "name": "Jochen Rindt",
       "wikipedia_title": "Jochen_Rindt",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jochen_Rindt",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370335431,
       "infobox_found": true,
       "fields": {
@@ -3695,7 +3695,7 @@
       "name": "Nico Rosberg",
       "wikipedia_title": "Nico_Rosberg",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nico_Rosberg",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366102321,
       "infobox_found": true,
       "fields": {
@@ -3769,7 +3769,7 @@
       "name": "George Russell",
       "wikipedia_title": "George_Russell_(racing_driver)",
       "wikipedia_url": "http://en.wikipedia.org/wiki/George_Russell_(racing_driver)",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1368534149,
       "infobox_found": true,
       "fields": {
@@ -3839,7 +3839,7 @@
       "name": "Carlos Sainz",
       "wikipedia_title": "Carlos_Sainz_Jr.",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Carlos_Sainz_Jr.",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370167795,
       "infobox_found": true,
       "fields": {
@@ -3909,7 +3909,7 @@
       "name": "Jody Scheckter",
       "wikipedia_title": "Jody_Scheckter",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jody_Scheckter",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1368364858,
       "infobox_found": true,
       "fields": {
@@ -3983,7 +3983,7 @@
       "name": "Ayrton Senna",
       "wikipedia_title": "Ayrton_Senna",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Ayrton_Senna",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1368551997,
       "infobox_found": true,
       "fields": {
@@ -4061,7 +4061,7 @@
       "name": "Jackie Stewart",
       "wikipedia_title": "Jackie_Stewart",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jackie_Stewart",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1364117726,
       "infobox_found": true,
       "fields": {
@@ -4139,7 +4139,7 @@
       "name": "Lance Stroll",
       "wikipedia_title": "Lance_Stroll",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Lance_Stroll",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370856270,
       "infobox_found": true,
       "fields": {
@@ -4209,7 +4209,7 @@
       "name": "John Surtees",
       "wikipedia_title": "John_Surtees",
       "wikipedia_url": "http://en.wikipedia.org/wiki/John_Surtees",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1364521906,
       "infobox_found": true,
       "fields": {
@@ -4283,7 +4283,7 @@
       "name": "Yuki Tsunoda",
       "wikipedia_title": "Yuki_Tsunoda",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Yuki_Tsunoda",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1370672243,
       "infobox_found": true,
       "fields": {
@@ -4353,7 +4353,7 @@
       "name": "Sebastian Vettel",
       "wikipedia_title": "Sebastian_Vettel",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Sebastian_Vettel",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1369187312,
       "infobox_found": true,
       "fields": {
@@ -4433,7 +4433,7 @@
       "name": "Jacques Villeneuve",
       "wikipedia_title": "Jacques_Villeneuve",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jacques_Villeneuve",
-      "from_cache": true,
+      "from_cache": false,
       "wiki_revid": 1366705063,
       "infobox_found": true,
       "fields": {

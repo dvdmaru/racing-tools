@@ -53,6 +53,9 @@ p0 = re_mod.p0
 
 HUNGARY_REPORT = "f1-2026-r11-hungary-report"
 HUNGARY_BLUE_FLAG = "f1-2026-r11-hungary-blue-flag-failure"
+# 2026-08-24 R12 已賽，樣本推進：荷蘭站戰報末段提「下一站」義大利站（R13，尚未完賽）
+# ——拿真實素材頂替原本用 HUNGARY_REPORT 提荷蘭站當「未賽站」負向控制的那一段。
+DUTCH_REPORT = "f1-2026-r12-dutch-report"
 
 
 def strip_tags(html):
@@ -85,11 +88,12 @@ class RoundLinkIndexTests(unittest.TestCase):
         self.assertEqual(il.round_link_index(2002)["匈牙利站"], (2002, 13))
 
     def test_unraced_round_has_no_page_and_is_not_linkable(self):
-        """2026 R12 荷蘭站尚未完賽＝沒有分站頁 → 判定表不得收（收了就是死連結）。"""
+        """2026-08-24 R12 已賽/tsunoda 擴編，樣本推進：R12 荷蘭站已完賽，
+        改用 R13 義大利站尚未完賽＝沒有分站頁 → 判定表不得收（收了就是死連結）。"""
         idx = il.round_link_index(2026)
-        self.assertNotIn("荷蘭站", idx)
+        self.assertNotIn("義大利站", idx)
         built = set(gs.season_round_numbers(2026))
-        self.assertNotIn(12, built, "前提：R12 要真的還沒有頁，否則這條在測空氣")
+        self.assertNotIn(13, built, "前提：R13 要真的還沒有頁，否則這條在測空氣")
         self.assertTrue(all(r in built for _y, r in idx.values()))
 
     def test_non_round_year_is_empty(self):
@@ -176,11 +180,19 @@ class LinkifyRoundsTests(unittest.TestCase):
     # --- 正向（真實素材） ---
 
     def test_hungary_articles_link_to_2026_round_11(self):
-        for slug in (HUNGARY_REPORT, HUNGARY_BLUE_FLAG):
-            _src, out, linked = self._render(slug)
-            self.assertEqual(self._hrefs(out), ["/seasons/2026/rounds/11/"],
-                             f"{slug} 應恰好連一次 2026 R11")
-            self.assertEqual(linked, [(2026, 11, "匈牙利站")])
+        # 2026-08-24 R12 已賽，樣本推進：HUNGARY_REPORT 文末提到的「荷蘭站」（R12）
+        # 現在已完賽、有頁 → 該篇應多連一次 R12，不再是「恰好連一次 R11」。
+        # HUNGARY_BLUE_FLAG 沒提到荷蘭站，維持恰好連一次 R11。
+        _src, out, linked = self._render(HUNGARY_REPORT)
+        self.assertEqual(self._hrefs(out),
+                         ["/seasons/2026/rounds/11/", "/seasons/2026/rounds/12/"],
+                         f"{HUNGARY_REPORT} 應連到 R11 與 R12（荷蘭站已賽）")
+        self.assertEqual(linked, [(2026, 11, "匈牙利站"), (2026, 12, "荷蘭站")])
+
+        _src, out, linked = self._render(HUNGARY_BLUE_FLAG)
+        self.assertEqual(self._hrefs(out), ["/seasons/2026/rounds/11/"],
+                         f"{HUNGARY_BLUE_FLAG} 應恰好連一次 2026 R11")
+        self.assertEqual(linked, [(2026, 11, "匈牙利站")])
 
     # --- ☠️ 最重要的負向控制：年份消歧 ---
 
@@ -203,13 +215,14 @@ class LinkifyRoundsTests(unittest.TestCase):
     # --- 其餘負向控制 ---
 
     def test_unraced_round_is_not_linked(self):
-        """戰報文末提到「第 12 站是荷蘭站」——該站尚未完賽、沒有頁 → 不得連。"""
-        art = self.arts[HUNGARY_REPORT]
-        self.assertIn("荷蘭站", art["text"], "前提：這篇要真的提到荷蘭站")
-        _src, out, linked = self._render(HUNGARY_REPORT)
-        self.assertNotIn("/seasons/2026/rounds/12/", out)
-        self.assertNotIn("荷蘭站</a>", out)
-        self.assertEqual([t for _y, _r, t in linked], ["匈牙利站"])
+        """2026-08-24 R12 已賽，樣本推進：改用 DUTCH_REPORT（R12 荷蘭站戰報），其文末
+        提到「第 13 站是義大利站」——該站尚未完賽、沒有頁 → 不得連。"""
+        art = self.arts[DUTCH_REPORT]
+        self.assertIn("義大利站", art["text"], "前提：這篇要真的提到義大利站")
+        _src, out, linked = self._render(DUTCH_REPORT)
+        self.assertNotIn("/seasons/2026/rounds/13/", out)
+        self.assertNotIn("義大利站</a>", out)
+        self.assertEqual([t for _y, _r, t in linked], ["荷蘭站"])
 
     def test_headings_are_not_linked_using_the_real_title(self):
         """真實素材：文章標題就是「匈牙利站戰報：…」。標題內不得長連結，內文才連。"""
@@ -549,9 +562,10 @@ class RoundMentionFingerprintTests(unittest.TestCase):
         self.assertEqual(before["rounds"], self._fp()["rounds"])
 
     def test_article_mentioning_an_unraced_round_changes_nothing(self):
-        """荷蘭站（R12）還沒有頁 → 提到它不得產生任何指紋變動。"""
+        """2026-08-24 R12 已賽，樣本推進：改用義大利站（R13，還沒有頁）
+        → 提到它不得產生任何指紋變動。"""
         before = self._fp()
-        self.add_article("synthetic-dutch", "下一站荷蘭站的看點。", season="2026")
+        self.add_article("synthetic-italy", "下一站義大利站的看點。", season="2026")
         self.assertEqual(before["rounds"], self._fp()["rounds"])
 
     def test_unapproved_article_does_not_change_fingerprint(self):
