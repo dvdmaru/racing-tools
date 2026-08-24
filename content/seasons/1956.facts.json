@@ -1,5 +1,5 @@
 {
-  "_comment": "1956 賽季導言 facts pack。方吉歐（Ferrari）3 勝奪冠，生涯第四冠（1951／1954／1955／1956，career_titles=season<=1956 之累計，非其生涯總數 5——生涯第五冠在 1957 才成立，本季不可用）；Moss（Maserati）27 分居次；Collins 25 分位居第三——第三名的積分本身無對應 kind（champion_points／runner_up_points 只覆蓋第一、二名），故正文只寫『位居第三』（driver_position）不帶其點數。全季 8 站，1956 年 constructor_standings 無列（車隊世界錦標賽至 1958 年才設立），no_constructor_championship 驗證。末站義大利站（蒙札）柯林斯讓出座車給方吉歐一節為常識性歷史背景，走 external_history、不帶阿拉伯數字、不進機械對帳。中立紀律：不評策略對錯，只述事實。Moss／Collins 查 driver-zh.json 與 phase0 ZH dict 均無核准譯名，依規保留原文、不自創譯名。⚠️champion_points（方吉歐 30 分）已刪：driver_standings.points=30 且外部快照（wiki）無 diff（該值正確），但 check-season-intros.py 的 SeasonOracle 獨立重算（逐站 results 相加＋best-5-of-8）得 31.5——手算查出 R2（摩納哥站）方吉歐有兩筆 results 列（position_text=2 之 4.0 分＋position_text=4 之共駕 1.5 分），oracle 對同輪多列一律加總，未對這種共駕/部分接手的歷史計分規則排除，導致獨立重算虛高 1.5 分並使 30 這個值卡在 H1-b 重算關卡。本批工作單僅能碰 <year>.md／.facts.json 兩檔，無法修 checker 或補 override，故刪除此 claim 與正文中的『30 分』，僅保留可通過重查的 champion_wins（3 勝，走 COUNT(position_text='1')，不受此加總路徑影響）。",
+  "_comment": "1956 賽季導言 facts pack。方吉歐（Ferrari）3 勝奪冠，生涯第四冠（1951／1954／1955／1956，career_titles=season<=1956 之累計，非其生涯總數 5——生涯第五冠在 1957 才成立，本季不可用）；Moss（Maserati）27 分居次；Collins 25 分位居第三——第三名的積分本身無對應 kind（champion_points／runner_up_points 只覆蓋第一、二名），故正文只寫『位居第三』（driver_position）不帶其點數。全季 8 站，1956 年 constructor_standings 無列（車隊世界錦標賽至 1958 年才設立），no_constructor_championship 驗證。末站義大利站（蒙札）Collins 讓出座車給方吉歐一節為常識性歷史背景，走 external_history、不帶阿拉伯數字、不進機械對帳。中立紀律：不評策略對錯，只述事實。Moss／Collins 查 driver-zh.json 與 phase0 ZH dict 均無核准譯名，依規保留原文、不自創譯名。⚠️champion_points（方吉歐 30 分）已刪：driver_standings.points=30 且外部快照（wiki）無 diff（該值正確），但 check-season-intros.py 的 SeasonOracle 獨立重算（逐站 results 相加＋best-5-of-8）得 31.5——手算查出 R2（摩納哥站）方吉歐有兩筆 results 列（position_text=2 之 4.0 分＋position_text=4 之共駕 1.5 分），oracle 對同輪多列一律加總，未對這種共駕/部分接手的歷史計分規則排除，導致獨立重算虛高 1.5 分並使 30 這個值卡在 H1-b 重算關卡。本批工作單僅能碰 <year>.md／.facts.json 兩檔，無法修 checker 或補 override，故刪除此 claim 與正文中的『30 分』，僅保留可通過重查的 champion_wins（3 勝，走 COUNT(position_text='1')，不受此加總路徑影響）。",
   "season": 1956,
   "claims": [
     {
@@ -76,6 +76,6 @@
   ],
   "non_statistical_tokens": [],
   "external_history": [
-    "最後一站義大利站（蒙札），柯林斯讓出座車給方吉歐，助其保住冠軍（事實層敘述、不評策略對錯、不帶阿拉伯數字）。"
+    "最後一站義大利站（蒙札），Collins 讓出座車給方吉歐，助其保住冠軍（事實層敘述、不評策略對錯、不帶阿拉伯數字）。"
   ]
 }

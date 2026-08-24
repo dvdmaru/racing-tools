@@ -48,7 +48,7 @@
     {
       "kind": "runner_up_points",
       "driver": "perez",
-      "text": "培瑞茲以 285 分居年度第二",
+      "text": "培瑞茲以 285 分居次（年度第二）",
       "value": 285,
       "verified": true,
       "source": "sqlite: SELECT points FROM driver_standings WHERE season=2023 AND position=2",

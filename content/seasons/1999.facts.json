@@ -81,7 +81,7 @@
   ],
   "non_statistical_tokens": [],
   "external_history": [
-    "車手冠軍（麥拉倫／哈基寧）與車隊冠軍（法拉利）分屬不同陣營，是本季敘事重點；『車隊冠軍歸法拉利』不帶阿拉伯數字，法拉利／麥拉倫的車隊積分（128／124）與勝場數不進正文、不另立 claim，僅以車手層 champion_points／runner_up_points／driver_position 三條 claim 對帳。",
+    "車手冠軍（麥拉倫／哈基寧）與車隊冠軍（法拉利）分屬不同陣營，是本季敘事重點；『車隊冠軍歸法拉利』不帶阿拉伯數字，法拉利／麥拉倫的車隊積分與勝場數不進正文、不另立 claim，僅以車手層 champion_points／runner_up_points／driver_position 三條 claim 對帳，車隊積分可查 constructor_standings。",
     "Michael Schumacher 於本季英國站賽事中摔斷腿，缺賽多站，為賽季常識性背景；正文不寫缺賽站數，故不帶阿拉伯數字、不進機械對帳。"
   ]
 }
