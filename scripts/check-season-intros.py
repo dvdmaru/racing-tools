@@ -73,6 +73,29 @@ v3 的三道對應修補（同樣只加檢查、不放寬既有 gate）：
        一勝）來比，不能拿他現實中的勝場數比。冠軍側則用保底情境（此後不再得分＝現有分布）。
        countback 完全同階（分不出先後）→ 不算鎖定（default-deny）。
 
+2026-08-24 導言第三批查核桌抓到同型的第四類漏洞（C4 補）：
+
+  C4 中文數詞繞過 gate：H3 的位置綁定只掃**阿拉伯數字**（`NUM_RE`），寫手改寫成中文數詞就整條
+     繞開——1991 初稿的「四站」與第三批的「三人爭冠」都在機械全綠下溜過，靠對抗式人工查核才抓到。
+     連帶暴露第二層：「N 人爭冠」這種主張要用**末站前的積分數學可能性**驗，不是季末排名。
+     1981 末站前 Jones 上限 46 分 ＜ Reutemann 保底 49 分，早已出局；真正的第三人是 Laffite。
+     寫手與指揮位都倒推錯，而 checker 當時連一條驗證路徑都沒有。
+
+v4 的兩道對應修補（同樣只加檢查、不放寬既有 gate）：
+
+  C4-a → **中文數詞量化主張硬 fail**：正文出現「中文數詞＋統計量詞」一律判錯，訊息叫寫手改阿拉伯
+       數字並掛 claim。量詞清單 `CN_QUANTIFIERS` 由 40 篇導言的**阿拉伯數字後綴**歸納（分／站／場／
+       年／冠／座／名／次／勝）再補同族人數與長度單位（人／位／隊／圈／季）。default-deny：慣用語
+       走 `CN_IDIOM_ALLOW` **具名詞位**白名單（每條附理由），不是放寬 regex。數詞字元集**重用
+       `CN_DIGITS`**，不另外手敲（手敲字元集必出假陽性）。「第 N／倒數第 N／並列第 N」已由
+       `ordinal_occurrences()` 管，與順位詞區間重疊的命中不重複開火。
+  C4-b → 新 claim kind **`title_contenders`**：綁 `round`（「第 R 站前」，通常是末站）＋`drivers`
+       名單，`value` ＝人數。重算**完全重用既有 clinch 機制**（`_rival_settled`，含捨分 segments、
+       H6 剩餘排程站次封頂、H7 同分 countback）：存活集合 ＝ 榜首 ∪ {未被 `_rival_settled` 淘汰者}，
+       **人數與成員兩者都要對**。SEASON_ENDING_EVENTS 已登記且事件已發生者不算爭冠者。
+       正文出現「爭冠／冠軍之爭」搭配人數（阿拉伯或中文數詞）而 pack 無此 claim → 判錯。
+       ⚠️ 語意強度：驗的是「數學上仍可能奪冠」，**不是**「必然奪冠」，報告與訊息都不得升格。
+
 已知邊界（誠實聲明，不得解讀為已驗）：
   - 1991 年起沒有外部 standings 快照，points 仍是單一來源（jolpica）＋逐站重算兩腿，報告會標。
   - SEASON_ENDING_EVENTS 是**人工具名清單**，只補到目前對帳到的賽季；沒登記的季末退出者一律
@@ -81,6 +104,17 @@ v3 的三道對應修補（同樣只加檢查、不放寬既有 gate）：
     實際上不可能參賽，但「他不會去」是排程外知識，機械層不假設——同樣是保守方向。
   - 非數字、非順位的語意主張（因果、心理狀態、「首位／唯一」類全稱詞）機械層驗不了，仍須
     對抗式人工查核。全綠只代表「數字與順位這兩層沒抓到錯」。
+  - C4-a 的數詞字元集就是 `CN_DIGITS`（一–十）。「兩」「倆」「廿」**刻意不在裡面**：40 篇導言的
+    「兩」8 次全是「兩人／兩車／兩隊」這種指稱既有二者的用法（1988「兩人幾乎瓜分了所有勝利，
+    冠軍之爭一路延燒到終點」納入就會誤傷），要不要納入得先把這 8 條逐條分類過才算數。這是已知
+    缺口，不是「驗過沒問題」。
+  - C4-a 掃的是「數詞＋量詞」。「三連冠」這種「數詞＋名詞複合」不在射程內（`連冠` 不是量詞），
+    2012 導言現行就有一例。要不要擴到名詞複合是站規問題，留給人裁決，機械層不偷偷擴。
+  - C4-b 的捨分上限**不是近似**：`_apply_segments` 是「每段取前 k 名相加」，對每一站的分數單調
+    不減，所以「剩餘站次全填單站上限」算出來的就是精確最大值（多段規則同理）。
+  - C4-b 的單站上限沿用 clinch 既有的 `_ceiling()`（該季 results／sprint 實際出現過的單站最高分）。
+    若某季的理論最高分從未真的被人拿到，這個上限會偏低——這是繼承自 clinch 的既有性質，C4-b 沒有
+    改善它，也不得被讀成「已驗證方向安全」。
 
 用法：
   python3 scripts/check-season-intros.py                # 掃 content/seasons/ 全部導言
@@ -113,6 +147,37 @@ TIE_WORDS = ("並列", "同列", "同分", "相同積分", "同積分", "積分�
 
 CN_DIGITS = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
              "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
+
+# ---- C4-a：中文數詞量化主張 -------------------------------------------------
+# 數詞字元集**重用上面的 CN_DIGITS**，不另外手敲（手敲字元集必出假陽性，這是血訓）。
+CN_NUMERAL_CHARS = "".join(CN_DIGITS)
+# 統計量詞：由 40 篇導言的**阿拉伯數字後綴**歸納（分 76／站 52／場 45／年 40／冠 2／座 2／
+# 名 1／次 1／勝 1），再補同族且站規會用到的人數與長度單位（人／位／隊／圈／季）。
+# 這是 default-deny 的「該抓」面；不在清單裡的搭配（如「三連冠」的名詞複合）機械層不擴權。
+CN_QUANTIFIERS = ("站", "場", "分", "名", "次", "座", "勝", "圈", "人", "位", "隊", "年", "季", "冠")
+CN_QUANT_RE = re.compile(f"[{CN_NUMERAL_CHARS}]+(?:{'|'.join(CN_QUANTIFIERS)})")
+
+# 具名詞位白名單：這些是慣用語／指示語，不是統計主張。每條都對應 40 篇導言的實際命中並附理由。
+# ⚠️ 只認**整串詞位**，不放寬 regex，也不擴成「一＋任意量詞」——新的慣用語要在這裡具名加一條。
+CN_IDIOM_ALLOW = {
+    "最後一站": "序列指示語（＝最終站）；「一」是定冠詞用法，不是站數統計。1964/1981/1984/1986/1994/2007/2012/2021",
+    "最後一圈": "序列指示語（＝最終圈）；同「最後一站」。2008",
+    "每一站": "全稱量化（＝每站都…）；「一」不承載數量。2002",
+    "這一季": "指示詞（＝本季）；「一」是量詞搭配不是季數。1958",
+    "上一季": "指示詞（＝前一季）；同「這一季」。1990",
+    "的一季": "定語從句框架（「…奪下年度車手冠軍的一季」＝那一季）；「一」不承載季數。2000",
+    "唯一一座": "唯一性主張的贅詞；量在「唯一」，後面的「一座」是它的搭配。2016",
+    "是一場": "繫詞＋不定冠詞（「是一場…的賽季」）；不是場次計數。2002",
+    "於一場": "介詞＋不定冠詞（「於一場非世界錦標賽事故」）；不是場次計數。1968",
+}
+
+# ---- C4-b：爭冠人數的正文觸發詞 ---------------------------------------------
+CONTENDER_WORDS = ("爭冠", "冠軍之爭", "冠軍爭奪", "頭銜之爭")
+# 人數詞：阿拉伯或中文數詞＋人／位／名。「第 N 名」這種順位由 ordinal_occurrences 管，
+# 這裡靠**區間重疊**排除（不用 lookbehind——「第十二名」會從「二名」重新起匹配而漏掉）。
+PERSON_COUNT_RE = re.compile(f"(?:[0-9]+(?:\\.[0-9]+)?|[{CN_NUMERAL_CHARS}]+)\\s*[人位名]")
+# 觸發詞與人數詞的鄰接窗（字元）：超過就不視為同一個主張。
+CONTENDER_WINDOW = 14
 
 # ---- H5：standings 的 position_text 分類標記 --------------------------------
 # 只有這三類被認得；其餘一律判錯（default-deny：不認得的標記不准默默當一般車手處理）。
@@ -150,7 +215,8 @@ REQUIRE_DRIVER = {"champion_points", "runner_up_points", "champion_wins", "drive
                   "driver_podiums", "clinch_round", "clinch_remaining", "clinch_from_end",
                   "rank_before_final", "career_titles", "race_finish_position"}
 REQUIRE_CONSTRUCTOR = {"constructor_wins"}
-REQUIRE_DRIVERS = {"tied_before_final", "tied_position", "countback_order"}
+REQUIRE_DRIVERS = {"tied_before_final", "tied_position", "countback_order",
+                   "title_contenders"}
 # 可以覆蓋「第 N」這種順位詞的 kind
 ORDINAL_KINDS = {"driver_position", "race_finish_position", "clinch_round", "season_rounds",
                  "career_titles", "rank_before_final", "earliest_race", "champion_wins",
@@ -210,6 +276,72 @@ def ordinal_occurrences(text: str):
         if value is None:
             continue
         out.append((m.start(), m.end(), m.group(0), value, m.group(1)))
+    return out
+
+
+# ---------- C4-a：中文數詞量化主張掃描 ----------
+
+def _idiom_spans(text):
+    """回白名單詞位在正文中的所有出現區間 [(start, end, lexeme)]。"""
+    spans = []
+    for lexeme in CN_IDIOM_ALLOW:
+        for m in re.finditer(re.escape(lexeme), text):
+            spans.append((m.start(), m.end(), lexeme))
+    return spans
+
+
+def cn_numeral_occurrences(text):
+    """回 [(start, end, raw, verdict, note)]。
+
+    verdict ∈ {'violation', 'ordinal', 'idiom'}：
+      ordinal   ＝與「第 N／倒數第 N／並列第 N」區間重疊，已由 ordinal_occurrences() 開火，不重複；
+      idiom     ＝整串落在 CN_IDIOM_ALLOW 的具名詞位裡（note ＝該詞位）；
+      violation ＝default-deny 的預設值，中文數詞＋統計量詞一律違規。
+    """
+    ord_spans = [(s, e) for s, e, *_ in ordinal_occurrences(text)]
+    idioms = _idiom_spans(text)
+    out = []
+    for m in CN_QUANT_RE.finditer(text):
+        start, end = m.start(), m.end()
+        if any(s < end and start < e for s, e in ord_spans):
+            out.append((start, end, m.group(0), "ordinal", None))
+            continue
+        cover = next((lex for s, e, lex in idioms if s <= start and end <= e), None)
+        if cover is not None:
+            out.append((start, end, m.group(0), "idiom", cover))
+            continue
+        out.append((start, end, m.group(0), "violation", None))
+    return out
+
+
+def check_cn_numerals(year, text):
+    """C4-a：中文數詞量化主張硬 fail（default-deny，慣用語走具名白名單）。"""
+    errors = []
+    for start, end, raw, verdict, _note in cn_numeral_occurrences(text):
+        if verdict != "violation":
+            continue
+        errors.append(
+            f"[{year}] 中文數詞量化主張 {raw!r}（位置 {start}）：統計值一律改阿拉伯數字，"
+            f"並在 facts pack 掛一條 verified claim ＋ anchor 綁到這個位置"
+            f"（中文數詞會整條繞過位置綁定 gate——1991 的「四站」、第三批的「三人爭冠」就是這樣溜過的）"
+            f"；若這是慣用語而非統計主張，請在 CN_IDIOM_ALLOW 具名列出詞位並附理由"
+            f"：{text[max(0, start - 8):end + 8]!r}")
+    return errors
+
+
+def contender_count_mentions(text):
+    """回 [(count_start, count_end, count_raw, trigger)]：與爭冠觸發詞相鄰的人數詞。"""
+    ord_spans = [(s, e) for s, e, *_ in ordinal_occurrences(text)]
+    triggers = [(m.start(), m.end(), w) for w in CONTENDER_WORDS for m in re.finditer(w, text)]
+    out = []
+    for m in PERSON_COUNT_RE.finditer(text):
+        start, end = m.start(), m.end()
+        if any(s < end and start < e for s, e in ord_spans):
+            continue    # 「第 N 名」是順位不是人數，歸 ordinal_occurrences 管
+        near = next((w for ts, te, w in triggers
+                     if ts - CONTENDER_WINDOW <= end and start <= te + CONTENDER_WINDOW), None)
+        if near:
+            out.append((start, end, m.group(0), near))
     return out
 
 
@@ -374,6 +506,50 @@ class SeasonOracle:
                    for other, rp in self.round_points.items() if other != driver):
                 return rnd, self.last_round - rnd
         return None, None
+
+    def contenders_before(self, before_round):
+        """C4-b：「第 before_round 站前」數學上仍可能奪冠的車手集合。回 (result_dict, why_none)。
+
+        存活集合 ＝ 榜首 ∪ {未被 `_rival_settled` 淘汰者}——判定**完全重用 clinch 機制**，
+        因此自動吃到捨分 segments（`_apply_segments`）、H6 剩餘排程站次封頂、H7 同分 countback。
+        `_rival_settled` 為 True ＝該對手已追不上榜首保底 ＝ 出局。
+
+        SEASON_ENDING_EVENTS 已登記且事件已發生（end ≤ rnd）者不算爭冠者，即使他當下還是榜首
+        （1970 Rindt 的形狀）——他人不在了，機械層不把他寫成「正在爭冠」。
+
+        ⚠️ 語意強度：這是「**數學上仍可能**奪冠」，不是「必然奪冠」，訊息與報告都不得升格。
+        捨分上限不是近似：`_apply_segments` 對每站分數單調不減，「剩餘站次全填單站上限」即精確
+        最大值。單站上限沿用 `_ceiling()`，其既有偏差見檔頭「已知邊界」。
+        """
+        rnd = int(before_round) - 1
+        if not self.last_round:
+            return None, f"{self.year} 無排程站次，算不出爭冠人數"
+        if not 1 <= rnd < self.last_round + 1:
+            return None, (f"「第 {before_round} 站前」超出範圍："
+                          f"{self.year} 共 {self.last_round} 站，round 須介於 2–{self.last_round}")
+        raced = {r for (r,) in self.con.execute(
+            "SELECT DISTINCT round FROM results WHERE season=? AND round<=?", (self.year, rnd))}
+        missing = sorted(set(range(1, rnd + 1)) - raced)
+        if missing:
+            return None, f"第 {missing} 站尚無 results，算不出第 {before_round} 站前的積分狀態"
+        standing = self.rank_through(rnd)
+        leaders = sorted(d for d, pos in standing.items() if pos == 1)
+        if not leaders:
+            return None, f"算不出第 {before_round} 站前的榜首"
+        leader = leaders[0]      # 並列榜首時取字典序首位當基準；他們保底與 countback 完全同階
+        floor = self._segments(self.round_points[leader], rnd)
+        champ_finishes = self.finishes_through(leader, rnd)
+        ceiling = self._ceiling()
+        alive = {leader}
+        for other, rival_points in self.round_points.items():
+            if other == leader:
+                continue
+            if not self._rival_settled(leader, floor, champ_finishes, other,
+                                       rival_points, rnd, ceiling):
+                alive.add(other)
+        gone = {d for d, end in self.season_ending.items() if end <= rnd}
+        return {"contenders": alive - gone, "leader": leader, "through_round": rnd,
+                "leader_floor": _num(floor), "excluded_by_event": sorted(alive & gone)}, None
 
     def _rival_settled(self, driver, floor, champ_finishes, other, rival_points, rnd, ceiling):
         """這名對手在第 rnd 站後是否已經追不上（含 H7 的同分 countback）。"""
@@ -611,6 +787,26 @@ def verify_claim(con, claim, oracle=None):
         return (*eq(_q1(con, "SELECT COUNT(*) FROM driver_standings "
                              "WHERE driver_id=? AND position=1 AND season<=?", (did, yr))),
                 f"生涯冠軍季數 {did}（≤{yr}）")
+    if kind == "title_contenders":
+        before = claim.get("round")
+        if before in (None, "final"):
+            before = oracle.last_round
+        result, why = oracle.contenders_before(before)
+        if result is None:
+            return False, None, why
+        contenders, claimed = result["contenders"], set(claim["drivers"])
+        detail = (f"第 {before} 站前的數學存活集合（榜首 {result['leader']} 保底 "
+                  f"{result['leader_floor']} 分；clinch 機制重算，＝仍有可能而非必然）")
+        if claimed != contenders:
+            return False, {"claimed": sorted(claimed), "recomputed": sorted(contenders),
+                           "leader": result["leader"], "leader_floor": result["leader_floor"],
+                           "excluded_by_event": result["excluded_by_event"]}, \
+                (f"爭冠成員與重算不符：{detail} 是 {sorted(contenders)}，"
+                 f"pack 寫 {sorted(claimed)}")
+        if len(contenders) != want:
+            return False, len(contenders), f"爭冠人數與重算不符：{detail} 共 {len(contenders)} 人"
+        return True, {"count": len(contenders), "drivers": sorted(contenders),
+                      "leader": result["leader"]}, detail
     if kind == "tied_before_final":
         vals = [_num(oracle._segments(oracle.round_points[d], oracle.last_round - 1))
                 for d in claim["drivers"]]
@@ -732,6 +928,15 @@ def check_bindings(year, text, verified, ok_claims, pack):
     if hit_words and not any(c.get("kind") in TIE_KINDS for c in ok_claims):
         errors.append(f"[{year}] 正文出現同分字眼 {hit_words}，但 facts pack 沒有任何通過重查的 "
                       f"tie 型 claim（{sorted(TIE_KINDS)}）")
+
+    # (C4-b) 爭冠人數必須有通過重查的 title_contenders claim
+    mentions = contender_count_mentions(text)
+    if mentions and not any(c.get("kind") == "title_contenders" for c in ok_claims):
+        shown = "／".join(f"{raw!r}（近 {trig}）" for _s, _e, raw, trig in mentions)
+        errors.append(
+            f"[{year}] 正文宣稱爭冠人數 {shown}，但 facts pack 沒有通過重查的 title_contenders "
+            f"claim。爭冠人數要用**末站前的積分數學可能性**驗（綁 round＋drivers 名單），"
+            f"不是季末排名——1981 末站前 Jones 上限 46 分已出局，第三人是 Laffite")
     return errors
 
 
@@ -792,7 +997,10 @@ def check_year(year: int, con):
     # (H1-c) 外部快照對照
     errors += check_external_corroboration(season, verified)
 
-    # (H3／H4) 位置綁定
+    # (C4-a) 中文數詞量化主張（default-deny）
+    errors += check_cn_numerals(year, text)
+
+    # (H3／H4／C4-b) 位置綁定與爭冠人數
     errors += check_bindings(year, text, verified, ok_claims, pack)
     return errors
 
@@ -840,6 +1048,14 @@ def scaffold(year, con):
             continue
         print(f"  順位 {raw!r} (value={value}, modifier={modifier})  "
               f"建議 anchor {text[max(0, start - 4):end + 6]!r}")
+    for start, end, raw, verdict, _note in cn_numeral_occurrences(text):
+        if verdict != "violation":
+            continue
+        print(f"  ⚠ 中文數詞 {raw!r}（位置 {start}）：統計值要改阿拉伯數字＋claim，"
+              f"慣用語要進 CN_IDIOM_ALLOW  ctx={text[max(0, start - 8):end + 8]!r}")
+    for start, _end, raw, trig in contender_count_mentions(text):
+        print(f"  ⚠ 爭冠人數 {raw!r}（近 {trig}，位置 {start}）：需要一條 title_contenders claim"
+              f"（round＋drivers 名單）")
 
 
 def main(argv):
@@ -864,7 +1080,8 @@ def main(argv):
         return 0
 
     all_errors = []
-    print("賽季導言機械對帳（v3：L1 斷言＋逐站重算＋外部快照＋位置綁定＋並列驗證＋除名建模＋無事後之明 clinch）：")
+    print("賽季導言機械對帳（v4：L1 斷言＋逐站重算＋外部快照＋位置綁定＋並列驗證＋除名建模＋"
+          "無事後之明 clinch＋中文數詞 gate＋爭冠人數數學驗證）：")
     for y in years:
         errs = check_year(y, con)
         notes = "；".join(season_notes(con, y))

@@ -39,6 +39,11 @@ facts pack 格式：
   - 冠軍鎖定：`clinch_round`、`clinch_remaining`、`clinch_from_end`
   - 同分：`tied_before_final`、`tied_position`（真並列才過）、`countback_order`（同分循序，
     必須由 countback 重算解釋得出宣稱順序）
+  - 爭冠人數（v4／C4-b）：`title_contenders`——需 `round`（「第 R 站前」，通常是末站）＋`drivers`
+    名單，`value` ＝人數。對帳器用**末站前的積分數學可能性**重算存活集合（重用 clinch 機制：
+    捨分 segments ＋剩餘排程站次封頂＋同分 countback），**人數與成員兩者都要對**。
+    `SEASON_ENDING_EVENTS` 已登記且事件已發生者不算爭冠者。
+    驗的是「數學上仍可能奪冠」，不是「必然奪冠」——正文的措辭也不要升格。
 - **實體綁定必填**：車手層 kind 一定要寫 `driver`、車隊層一定要寫 `constructor`、同分類要寫 `drivers`。
   漏寫＝直接判錯（不是「有寫才驗」）。
 - `anchors`：**正文逐字片段**清單。導言中每個阿拉伯數字與每個順位詞（第 N／倒數第 N／並列第 N）
@@ -46,6 +51,14 @@ facts pack 格式：
   綁到值不對的 claim 也判錯（這是「數字被移植到別的主張」的抓手）。
   順位詞另有修飾語規則：`倒數第 N` 只接受 `clinch_from_end`，`並列／同列第 N` 只接受 `tied_position`。
   正文只要出現同分字眼（並列／同列／同分／相同積分），pack 就必須有一條通過重查的同分類 claim。
+- **中文數詞是硬 fail（v4／C4-a）**：正文出現「中文數詞＋統計量詞」（站／場／分／名／次／座／勝／
+  圈／人／位／隊／年／季／冠）一律判錯——中文數詞會整條繞過上面的 anchor 位置綁定（1991 初稿的
+  「四站」、第三批的「三人爭冠」都是這樣在全綠下溜過的）。統計值請改阿拉伯數字並掛 claim。
+  慣用語（最後一站／每一站／唯一一座…）走 `check-season-intros.py` 裡的 `CN_IDIOM_ALLOW`
+  **具名詞位**白名單，每條要附理由；不是放寬 regex，也不是「一＋任意量詞」都放行。
+  「第 N／倒數第 N／並列第 N」歸順位詞規則管，不重複開火。
+- **爭冠人數要有 claim（v4／C4-b）**：正文出現「爭冠／冠軍之爭／冠軍爭奪／頭銜之爭」搭配人數
+  （阿拉伯或中文數詞＋人／位／名）而 pack 沒有通過重查的 `title_contenders` → 判錯。
 - `non_statistical_tokens`：英數混排 token 的具名白名單（如 `F1`、`V10`、`MP4`）。夾在這類 token 裡的
   數字不是統計值，未具名一律判錯——避免「F1 的 1」被某條值為 1 的無關 claim 放行。
 - `external_history`：常識性歷史背景句（如「捨分制」「賽事總監制度改組」）。**不進機械對帳**，
