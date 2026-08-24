@@ -31,11 +31,13 @@ import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-ENCYCLOPEDIA_INDEXES = ("/seasons/", "/drivers/", "/constructors/")
+# 百科四線的索引頁。/circuits/ 2026-08-23 建、2026-08-24 補上首頁磁磚——在那之前
+# 首頁磁磚只有三塊，賽道線在首頁零連入（站內只剩導覽列與頁尾兩個 surface）。
+# 首頁磁磚（build-articles.render_home）與全站導覽（racinglib）是兩個 owner，
+# 但該連到的東西是同一組，所以共用這一份清單：任何一線漏掉哪個 surface 都會紅。
+ENCYCLOPEDIA_INDEXES = ("/seasons/", "/drivers/", "/constructors/", "/circuits/")
 
-# 全站導覽（導覽列＋頁尾）該有的百科入口。/circuits/ 2026-08-23 才建，因此比首頁磁磚
-# 那三塊多一條——首頁磁磚是另一個 owner（build-articles.render_home），沿用上面那組。
-ENCYCLOPEDIA_NAV_ENTRIES = ("/seasons/", "/drivers/", "/constructors/", "/circuits/")
+ENCYCLOPEDIA_NAV_ENTRIES = ENCYCLOPEDIA_INDEXES
 
 
 def _load(name, fname):
@@ -103,11 +105,36 @@ class HomepageEntryTests(unittest.TestCase):
             self.assertNotIn(f'href="{href}"', html,
                              f"未公開卻連向 {href}——那是一條 404")
 
-    def test_all_three_indexes_linked_when_published(self):
+    def test_all_four_indexes_linked_when_published(self):
         html = self._home(True)
         for href in ENCYCLOPEDIA_INDEXES:
             self.assertIn(f'href="{href}"', html,
                           f"公開了卻沒有連向 {href} 的站內入口")
+
+    def test_circuit_tile_count_comes_from_the_sitemap_part(self):
+        """賽道磁磚上的條數必須跟實際頁數同步——寫死的數字新賽道一加就永遠錯。"""
+        part = (ROOT / "data" / "sitemap-parts" / "circuits.txt").read_text(
+            encoding="utf-8").splitlines()
+        urls = [u.strip() for u in part if u.strip()]
+        n = len([u for u in urls if not u.rstrip("/").endswith("/circuits")])
+        self.assertGreater(n, 0, "circuits sitemap part 是空的，測試前提不成立")
+        self.assertIn(f"{n} 條賽道", self._home(True))
+
+    def test_circuit_tile_count_follows_a_doctored_part(self):
+        """反向：拿掉幾條賽道 URL，磁磚上的數字必須跟著變。
+
+        不做這一條的話，上面那個斷言在「實作把 78 寫死」的情況下照樣是綠的
+        （78 剛好等於今天的真實條數），gate 等於裝飾。
+        """
+        orig = self.ba._part_urls
+        self.addCleanup(setattr, self.ba, "_part_urls", orig)
+        trimmed = orig("circuits")[:-3]
+        expect = len([u for u in trimmed
+                      if u.rstrip("/") != f"{self.ba.BASE}/circuits"])
+        self.ba._part_urls = lambda owner: trimmed if owner == "circuits" else orig(owner)
+        html = self._home(True)
+        self.assertIn(f"{expect} 條賽道", html)
+        self.assertNotIn(f"{expect + 3} 條賽道", html)
 
 
 class ReachabilityTests(unittest.TestCase):

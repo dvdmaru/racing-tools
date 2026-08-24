@@ -21,7 +21,6 @@ import html as html_lib
 import importlib.util
 import json
 import pathlib
-import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -87,12 +86,9 @@ def display_name(zh, name):
     return zh or name
 
 
-_LATIN_TAIL = re.compile(r"[0-9A-Za-z)\]]$")
-
-
-def phrase(head, tail):
-    """名稱後面直接接中文的組字：結尾是拉丁字母／數字時補盤古之白（站規：中英之間留白）。"""
-    return f"{head} {tail}" if _LATIN_TAIL.search(head or "") else f"{head}{tail}"
+# 盤古之白的組字規則搬進 racinglib（站規層）——車手頁與車隊頁的標題樣板有同一個病
+# （2026-08-24）。這裡保留模組層名稱，賽道頁與既有測試的呼叫方式不變。
+phrase = rc.phrase
 
 
 # ---------- 資料層（全部由 db 明細推導；value 一律 len()） ----------

@@ -550,6 +550,24 @@ RACE_ZH = _load_zh("race-zh.json")
 CIRCUIT_ZH = _load_zh("circuit-zh.json")
 
 
+_LATIN_TAIL = re.compile(r"[0-9A-Za-z)\]]$")
+
+
+def phrase(head, tail):
+    """名稱後面直接接中文的組字：結尾是拉丁字母／數字時補盤古之白（站規：中英之間留白）。
+
+    ⚠️ 為什麼是站規層而不是各生成器自己判斷：譯名表是 approved-only，沒核准就**誠實
+    保留原文**（站規：不自翻）。也就是說任何一個 `f"{zh or name}中文"` 的樣板，在沒有
+    譯名的那幾筆上都會吐出「Yuki Tsunoda生涯數據」這種黏在一起的字。這不是資料問題、
+    是樣板問題——凡是「名稱後面直接接中文」的地方都得走這一支。
+
+    2026-08-24 實查：drivers/tsunoda（title／og:title／description）、
+    constructors/alpine、constructors/rb 三頁在線上就是這個樣子。
+    """
+    head = head or ""
+    return f"{head} {tail}" if _LATIN_TAIL.search(head) else f"{head}{tail}"
+
+
 def race_zh(name: str) -> str:
     return RACE_ZH.get(name, name)
 
