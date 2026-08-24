@@ -1,0 +1,2248 @@
+{
+  "_type": "race-recap",
+  "season": 2026,
+  "round": 12,
+  "provenance": {
+    "schema_version": 2,
+    "generator": "scripts/build-facts.py",
+    "generator_commit": "160d3884e22ecaaa5f52fa2a3c5c5bfcff99cbc5",
+    "built_at": "2026-08-23T17:33:12.769461+00:00",
+    "inputs": [
+      {
+        "path": "data/2026/results/round-12.json",
+        "sha256": "cbe77fc3c4108726259a247bade927d4c63ae11249889bb51352936d3da35f16",
+        "fetched_at": null
+      },
+      {
+        "path": "data/2026/results/round-12-laps.json",
+        "sha256": "0cdc29b0b431d0825054e38c7cc7a98404ae2477d2562ba588b1a4db90f7cd6c",
+        "fetched_at": null
+      },
+      {
+        "path": "data/2026/results/round-12-pitstops.json",
+        "sha256": "613d2416a8a12ac50bd6d12512cbce43157757e9f2f06226ef73bfdd90c9a54b",
+        "fetched_at": null
+      },
+      {
+        "path": "data/2026/driver-standings.json",
+        "sha256": "a674fe2fad670a5bc5f4b3714023491a008649642c2db196660a3f32fcc6c61e",
+        "fetched_at": "2026-08-23T16:20:46+00:00"
+      },
+      {
+        "path": "data/2026/constructor-standings.json",
+        "sha256": "5c2a20e113b04261ab9e1ff3329e39b1d2fd80fc1606d11ed45d89dfaf90c8f3",
+        "fetched_at": "2026-08-23T16:20:46+00:00"
+      },
+      {
+        "path": "data/2026/schedule.json",
+        "sha256": "bf003d3ab41032619cc2fd80bcda5815dcba09c84c098e153eea7c46392345c8",
+        "fetched_at": null
+      }
+    ]
+  },
+  "source": "jolpica-f1 API（Ergast 相容）落地快照",
+  "rule_notes": [
+    "本檔所有數字皆來自 jolpica-f1 API 落地快照；文中每一個數字都必須在本檔找得到，禁止憑記憶補。",
+    "戰報只寫「發生了什麼」，不寫「為什麼」。輪胎策略、車隊決策、失誤歸因屬於賽後分析文型，不進戰報。",
+    "紀錄型主張（本季最大、史上第一、隊史新高）除非本檔有 record_claims 支撐，否則一律降成畫面描述。",
+    "車隊的內部意圖不可斷言；只能描述可觀察事實（進站圈數、名次變化、完賽狀態）。",
+    "人名／車隊／賽道／站名一律中英對照（站規），中文在前、原文在後。",
+    "站名不出現 F1 字樣；不引用官方素材；賽車紅用 #d63a2f。",
+    "status 欄位的英文原文（Accident／Engine／+1 Lap）不要直譯成因果句，未完賽一律寫「未完賽」並附原因原文。"
+  ],
+  "integrity": {
+    "standings_data_through_round": 12,
+    "constructor_data_through_round": 12,
+    "standings_match_accumulated": true,
+    "mismatched_driver_ids": [],
+    "mismatched_constructor_ids": [],
+    "note": "車手榜與車隊榜均與逐站累加一致"
+  },
+  "race": {
+    "name_zh": "荷蘭站",
+    "name_en": "Dutch Grand Prix",
+    "circuit_zh": "贊德沃特賽道",
+    "circuit_en": "Circuit Park Zandvoort",
+    "locality": "Zandvoort",
+    "country": "Netherlands",
+    "date": "2026-08-23",
+    "taipei": "8/23（日）21:00",
+    "total_laps": 72,
+    "entries": 22,
+    "date_year": 2026,
+    "date_month": 8,
+    "date_day": 23,
+    "round_number": 12,
+    "season_year": 2026
+  },
+  "winner": {
+    "position": 1,
+    "position_text": "1",
+    "driver": {
+      "driver_id": "norris",
+      "code": "NOR",
+      "zh": "諾里斯",
+      "en_full": "Lando Norris",
+      "en_family": "Norris",
+      "nationality": "British"
+    },
+    "constructor": {
+      "constructor_id": "mclaren",
+      "zh": "麥拉倫",
+      "en": "McLaren"
+    },
+    "grid": 1,
+    "grid_note": "",
+    "laps": 72,
+    "status": "Finished",
+    "classified": true,
+    "finish_state": "完賽",
+    "time": "2:04:44.859",
+    "points": 25.0,
+    "points_inferred": false,
+    "grid_to_finish": 0
+  },
+  "podium": [
+    {
+      "position": 1,
+      "position_text": "1",
+      "driver": {
+        "driver_id": "norris",
+        "code": "NOR",
+        "zh": "諾里斯",
+        "en_full": "Lando Norris",
+        "en_family": "Norris",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren"
+      },
+      "grid": 1,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "2:04:44.859",
+      "points": 25.0,
+      "points_inferred": false,
+      "grid_to_finish": 0
+    },
+    {
+      "position": 2,
+      "position_text": "2",
+      "driver": {
+        "driver_id": "antonelli",
+        "code": "ANT",
+        "zh": "安東內利",
+        "en_full": "Andrea Kimi Antonelli",
+        "en_family": "Antonelli",
+        "nationality": "Italian"
+      },
+      "constructor": {
+        "constructor_id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes"
+      },
+      "grid": 3,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+11.536",
+      "points": 18.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 3,
+      "position_text": "3",
+      "driver": {
+        "driver_id": "russell",
+        "code": "RUS",
+        "zh": "羅素",
+        "en_full": "George Russell",
+        "en_family": "Russell",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes"
+      },
+      "grid": 2,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+15.906",
+      "points": 15.0,
+      "points_inferred": false,
+      "grid_to_finish": -1
+    }
+  ],
+  "top10": [
+    {
+      "position": 1,
+      "position_text": "1",
+      "driver": {
+        "driver_id": "norris",
+        "code": "NOR",
+        "zh": "諾里斯",
+        "en_full": "Lando Norris",
+        "en_family": "Norris",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren"
+      },
+      "grid": 1,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "2:04:44.859",
+      "points": 25.0,
+      "points_inferred": false,
+      "grid_to_finish": 0
+    },
+    {
+      "position": 2,
+      "position_text": "2",
+      "driver": {
+        "driver_id": "antonelli",
+        "code": "ANT",
+        "zh": "安東內利",
+        "en_full": "Andrea Kimi Antonelli",
+        "en_family": "Antonelli",
+        "nationality": "Italian"
+      },
+      "constructor": {
+        "constructor_id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes"
+      },
+      "grid": 3,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+11.536",
+      "points": 18.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 3,
+      "position_text": "3",
+      "driver": {
+        "driver_id": "russell",
+        "code": "RUS",
+        "zh": "羅素",
+        "en_full": "George Russell",
+        "en_family": "Russell",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes"
+      },
+      "grid": 2,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+15.906",
+      "points": 15.0,
+      "points_inferred": false,
+      "grid_to_finish": -1
+    },
+    {
+      "position": 4,
+      "position_text": "4",
+      "driver": {
+        "driver_id": "hamilton",
+        "code": "HAM",
+        "zh": "漢米爾頓",
+        "en_full": "Lewis Hamilton",
+        "en_family": "Hamilton",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "ferrari",
+        "zh": "法拉利",
+        "en": "Ferrari"
+      },
+      "grid": 5,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+16.755",
+      "points": 12.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 5,
+      "position_text": "5",
+      "driver": {
+        "driver_id": "leclerc",
+        "code": "LEC",
+        "zh": "勒克萊爾",
+        "en_full": "Charles Leclerc",
+        "en_family": "Leclerc",
+        "nationality": "Monegasque"
+      },
+      "constructor": {
+        "constructor_id": "ferrari",
+        "zh": "法拉利",
+        "en": "Ferrari"
+      },
+      "grid": 6,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+17.258",
+      "points": 10.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 6,
+      "position_text": "6",
+      "driver": {
+        "driver_id": "piastri",
+        "code": "PIA",
+        "zh": "皮亞斯特里",
+        "en_full": "Oscar Piastri",
+        "en_family": "Piastri",
+        "nationality": "Australian"
+      },
+      "constructor": {
+        "constructor_id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren"
+      },
+      "grid": 4,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+32.332",
+      "points": 8.0,
+      "points_inferred": false,
+      "grid_to_finish": -2
+    },
+    {
+      "position": 7,
+      "position_text": "7",
+      "driver": {
+        "driver_id": "lawson",
+        "code": "LAW",
+        "zh": "勞森",
+        "en_full": "Liam Lawson",
+        "en_family": "Lawson",
+        "nationality": "New Zealander"
+      },
+      "constructor": {
+        "constructor_id": "red_bull",
+        "zh": "紅牛",
+        "en": "Red Bull"
+      },
+      "grid": 8,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+1:19.915",
+      "points": 6.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 8,
+      "position_text": "8",
+      "driver": {
+        "driver_id": "hulkenberg",
+        "code": "HUL",
+        "zh": "霍肯伯格",
+        "en_full": "Nico Hülkenberg",
+        "en_family": "Hülkenberg",
+        "nationality": "German"
+      },
+      "constructor": {
+        "constructor_id": "audi",
+        "zh": "奧迪",
+        "en": "Audi"
+      },
+      "grid": 13,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+36.049",
+      "points": 4.0,
+      "points_inferred": false,
+      "grid_to_finish": 5
+    },
+    {
+      "position": 9,
+      "position_text": "9",
+      "driver": {
+        "driver_id": "alonso",
+        "code": "ALO",
+        "zh": "阿隆索",
+        "en_full": "Fernando Alonso",
+        "en_family": "Alonso",
+        "nationality": "Spanish"
+      },
+      "constructor": {
+        "constructor_id": "aston_martin",
+        "zh": "奧斯頓馬丁",
+        "en": "Aston Martin"
+      },
+      "grid": 18,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+48.393",
+      "points": 2.0,
+      "points_inferred": false,
+      "grid_to_finish": 9
+    },
+    {
+      "position": 10,
+      "position_text": "10",
+      "driver": {
+        "driver_id": "gasly",
+        "code": "GAS",
+        "zh": "蓋斯利",
+        "en_full": "Pierre Gasly",
+        "en_family": "Gasly",
+        "nationality": "French"
+      },
+      "constructor": {
+        "constructor_id": "alpine",
+        "zh": "Alpine",
+        "en": "Alpine F1 Team"
+      },
+      "grid": 11,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+49.640",
+      "points": 1.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    }
+  ],
+  "full_results": [
+    {
+      "position": 1,
+      "position_text": "1",
+      "driver": {
+        "driver_id": "norris",
+        "code": "NOR",
+        "zh": "諾里斯",
+        "en_full": "Lando Norris",
+        "en_family": "Norris",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren"
+      },
+      "grid": 1,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "2:04:44.859",
+      "points": 25.0,
+      "points_inferred": false,
+      "grid_to_finish": 0
+    },
+    {
+      "position": 2,
+      "position_text": "2",
+      "driver": {
+        "driver_id": "antonelli",
+        "code": "ANT",
+        "zh": "安東內利",
+        "en_full": "Andrea Kimi Antonelli",
+        "en_family": "Antonelli",
+        "nationality": "Italian"
+      },
+      "constructor": {
+        "constructor_id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes"
+      },
+      "grid": 3,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+11.536",
+      "points": 18.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 3,
+      "position_text": "3",
+      "driver": {
+        "driver_id": "russell",
+        "code": "RUS",
+        "zh": "羅素",
+        "en_full": "George Russell",
+        "en_family": "Russell",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes"
+      },
+      "grid": 2,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+15.906",
+      "points": 15.0,
+      "points_inferred": false,
+      "grid_to_finish": -1
+    },
+    {
+      "position": 4,
+      "position_text": "4",
+      "driver": {
+        "driver_id": "hamilton",
+        "code": "HAM",
+        "zh": "漢米爾頓",
+        "en_full": "Lewis Hamilton",
+        "en_family": "Hamilton",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "ferrari",
+        "zh": "法拉利",
+        "en": "Ferrari"
+      },
+      "grid": 5,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+16.755",
+      "points": 12.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 5,
+      "position_text": "5",
+      "driver": {
+        "driver_id": "leclerc",
+        "code": "LEC",
+        "zh": "勒克萊爾",
+        "en_full": "Charles Leclerc",
+        "en_family": "Leclerc",
+        "nationality": "Monegasque"
+      },
+      "constructor": {
+        "constructor_id": "ferrari",
+        "zh": "法拉利",
+        "en": "Ferrari"
+      },
+      "grid": 6,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+17.258",
+      "points": 10.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 6,
+      "position_text": "6",
+      "driver": {
+        "driver_id": "piastri",
+        "code": "PIA",
+        "zh": "皮亞斯特里",
+        "en_full": "Oscar Piastri",
+        "en_family": "Piastri",
+        "nationality": "Australian"
+      },
+      "constructor": {
+        "constructor_id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren"
+      },
+      "grid": 4,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+32.332",
+      "points": 8.0,
+      "points_inferred": false,
+      "grid_to_finish": -2
+    },
+    {
+      "position": 7,
+      "position_text": "7",
+      "driver": {
+        "driver_id": "lawson",
+        "code": "LAW",
+        "zh": "勞森",
+        "en_full": "Liam Lawson",
+        "en_family": "Lawson",
+        "nationality": "New Zealander"
+      },
+      "constructor": {
+        "constructor_id": "red_bull",
+        "zh": "紅牛",
+        "en": "Red Bull"
+      },
+      "grid": 8,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+1:19.915",
+      "points": 6.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 8,
+      "position_text": "8",
+      "driver": {
+        "driver_id": "hulkenberg",
+        "code": "HUL",
+        "zh": "霍肯伯格",
+        "en_full": "Nico Hülkenberg",
+        "en_family": "Hülkenberg",
+        "nationality": "German"
+      },
+      "constructor": {
+        "constructor_id": "audi",
+        "zh": "奧迪",
+        "en": "Audi"
+      },
+      "grid": 13,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+36.049",
+      "points": 4.0,
+      "points_inferred": false,
+      "grid_to_finish": 5
+    },
+    {
+      "position": 9,
+      "position_text": "9",
+      "driver": {
+        "driver_id": "alonso",
+        "code": "ALO",
+        "zh": "阿隆索",
+        "en_full": "Fernando Alonso",
+        "en_family": "Alonso",
+        "nationality": "Spanish"
+      },
+      "constructor": {
+        "constructor_id": "aston_martin",
+        "zh": "奧斯頓馬丁",
+        "en": "Aston Martin"
+      },
+      "grid": 18,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+48.393",
+      "points": 2.0,
+      "points_inferred": false,
+      "grid_to_finish": 9
+    },
+    {
+      "position": 10,
+      "position_text": "10",
+      "driver": {
+        "driver_id": "gasly",
+        "code": "GAS",
+        "zh": "蓋斯利",
+        "en_full": "Pierre Gasly",
+        "en_family": "Gasly",
+        "nationality": "French"
+      },
+      "constructor": {
+        "constructor_id": "alpine",
+        "zh": "Alpine",
+        "en": "Alpine F1 Team"
+      },
+      "grid": 11,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+49.640",
+      "points": 1.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 11,
+      "position_text": "11",
+      "driver": {
+        "driver_id": "tsunoda",
+        "code": "TSU",
+        "zh": "Tsunoda",
+        "en_full": "Yuki Tsunoda",
+        "en_family": "Tsunoda",
+        "nationality": "Japanese"
+      },
+      "constructor": {
+        "constructor_id": "rb",
+        "zh": "Racing Bulls",
+        "en": "RB F1 Team"
+      },
+      "grid": 12,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+54.322",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 12,
+      "position_text": "12",
+      "driver": {
+        "driver_id": "arvid_lindblad",
+        "code": "LIN",
+        "zh": "林德布拉德",
+        "en_full": "Arvid Lindblad",
+        "en_family": "Lindblad",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "rb",
+        "zh": "Racing Bulls",
+        "en": "RB F1 Team"
+      },
+      "grid": 10,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+1:05.680",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": -2
+    },
+    {
+      "position": 13,
+      "position_text": "13",
+      "driver": {
+        "driver_id": "bortoleto",
+        "code": "BOR",
+        "zh": "博托萊托",
+        "en_full": "Gabriel Bortoleto",
+        "en_family": "Bortoleto",
+        "nationality": "Brazilian"
+      },
+      "constructor": {
+        "constructor_id": "audi",
+        "zh": "奧迪",
+        "en": "Audi"
+      },
+      "grid": 9,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+1:06.235",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": -4
+    },
+    {
+      "position": 14,
+      "position_text": "14",
+      "driver": {
+        "driver_id": "colapinto",
+        "code": "COL",
+        "zh": "科拉平托",
+        "en_full": "Franco Colapinto",
+        "en_family": "Colapinto",
+        "nationality": "Argentine"
+      },
+      "constructor": {
+        "constructor_id": "alpine",
+        "zh": "Alpine",
+        "en": "Alpine F1 Team"
+      },
+      "grid": 14,
+      "grid_note": "",
+      "laps": 70,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+20.534",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": 0
+    },
+    {
+      "position": 15,
+      "position_text": "15",
+      "driver": {
+        "driver_id": "perez",
+        "code": "PER",
+        "zh": "培瑞茲",
+        "en_full": "Sergio Pérez",
+        "en_family": "Pérez",
+        "nationality": "Mexican"
+      },
+      "constructor": {
+        "constructor_id": "cadillac",
+        "zh": "凱迪拉克",
+        "en": "Cadillac F1 Team"
+      },
+      "grid": 22,
+      "grid_note": "",
+      "laps": 70,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+58.582",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": 7
+    },
+    {
+      "position": 16,
+      "position_text": "16",
+      "driver": {
+        "driver_id": "sainz",
+        "code": "SAI",
+        "zh": "塞恩斯",
+        "en_full": "Carlos Sainz",
+        "en_family": "Sainz",
+        "nationality": "Spanish"
+      },
+      "constructor": {
+        "constructor_id": "williams",
+        "zh": "威廉斯",
+        "en": "Williams"
+      },
+      "grid": 17,
+      "grid_note": "",
+      "laps": 70,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+1:10.271",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": 1
+    },
+    {
+      "position": 17,
+      "position_text": "17",
+      "driver": {
+        "driver_id": "albon",
+        "code": "ALB",
+        "zh": "阿爾本",
+        "en_full": "Alexander Albon",
+        "en_family": "Albon",
+        "nationality": "Thai"
+      },
+      "constructor": {
+        "constructor_id": "williams",
+        "zh": "威廉斯",
+        "en": "Williams"
+      },
+      "grid": 16,
+      "grid_note": "",
+      "laps": 66,
+      "status": "Retired",
+      "classified": true,
+      "finish_state": "列入名次（未跑完）",
+      "time": "",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": -1
+    },
+    {
+      "position": 18,
+      "position_text": "R",
+      "driver": {
+        "driver_id": "bottas",
+        "code": "BOT",
+        "zh": "博塔斯",
+        "en_full": "Valtteri Bottas",
+        "en_family": "Bottas",
+        "nationality": "Finnish"
+      },
+      "constructor": {
+        "constructor_id": "cadillac",
+        "zh": "凱迪拉克",
+        "en": "Cadillac F1 Team"
+      },
+      "grid": 21,
+      "grid_note": "",
+      "laps": 61,
+      "status": "Retired",
+      "classified": false,
+      "finish_state": "未完賽",
+      "time": "",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": null
+    },
+    {
+      "position": 19,
+      "position_text": "R",
+      "driver": {
+        "driver_id": "ocon",
+        "code": "OCO",
+        "zh": "奧康",
+        "en_full": "Esteban Ocon",
+        "en_family": "Ocon",
+        "nationality": "French"
+      },
+      "constructor": {
+        "constructor_id": "haas",
+        "zh": "哈斯",
+        "en": "Haas F1 Team"
+      },
+      "grid": 15,
+      "grid_note": "",
+      "laps": 52,
+      "status": "Retired",
+      "classified": false,
+      "finish_state": "未完賽",
+      "time": "",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": null
+    },
+    {
+      "position": 20,
+      "position_text": "R",
+      "driver": {
+        "driver_id": "stroll",
+        "code": "STR",
+        "zh": "斯托爾",
+        "en_full": "Lance Stroll",
+        "en_family": "Stroll",
+        "nationality": "Canadian"
+      },
+      "constructor": {
+        "constructor_id": "aston_martin",
+        "zh": "奧斯頓馬丁",
+        "en": "Aston Martin"
+      },
+      "grid": 19,
+      "grid_note": "",
+      "laps": 45,
+      "status": "Retired",
+      "classified": false,
+      "finish_state": "未完賽",
+      "time": "",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": null
+    },
+    {
+      "position": 21,
+      "position_text": "R",
+      "driver": {
+        "driver_id": "bearman",
+        "code": "BEA",
+        "zh": "貝爾曼",
+        "en_full": "Oliver Bearman",
+        "en_family": "Bearman",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "haas",
+        "zh": "哈斯",
+        "en": "Haas F1 Team"
+      },
+      "grid": 20,
+      "grid_note": "",
+      "laps": 2,
+      "status": "Retired",
+      "classified": false,
+      "finish_state": "未完賽",
+      "time": "",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": null
+    },
+    {
+      "position": 22,
+      "position_text": "R",
+      "driver": {
+        "driver_id": "max_verstappen",
+        "code": "VER",
+        "zh": "維斯塔潘",
+        "en_full": "Max Verstappen",
+        "en_family": "Verstappen",
+        "nationality": "Dutch"
+      },
+      "constructor": {
+        "constructor_id": "red_bull",
+        "zh": "紅牛",
+        "en": "Red Bull"
+      },
+      "grid": 7,
+      "grid_note": "",
+      "laps": 0,
+      "status": "Retired",
+      "classified": false,
+      "finish_state": "未完賽",
+      "time": "",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": null
+    }
+  ],
+  "fastest_lap": {
+    "driver": {
+      "driver_id": "leclerc",
+      "code": "LEC",
+      "zh": "勒克萊爾",
+      "en_full": "Charles Leclerc",
+      "en_family": "Leclerc",
+      "nationality": "Monegasque"
+    },
+    "constructor": {
+      "constructor_id": "ferrari",
+      "zh": "法拉利",
+      "en": "Ferrari"
+    },
+    "lap": 60,
+    "time": "1:14.230"
+  },
+  "dnf": [
+    {
+      "driver": {
+        "driver_id": "bottas",
+        "code": "BOT",
+        "zh": "博塔斯",
+        "en_full": "Valtteri Bottas",
+        "en_family": "Bottas",
+        "nationality": "Finnish"
+      },
+      "constructor": {
+        "constructor_id": "cadillac",
+        "zh": "凱迪拉克",
+        "en": "Cadillac F1 Team"
+      },
+      "laps": 61,
+      "status": "Retired",
+      "note": "status 為英文原文，不要直譯成因果句"
+    },
+    {
+      "driver": {
+        "driver_id": "ocon",
+        "code": "OCO",
+        "zh": "奧康",
+        "en_full": "Esteban Ocon",
+        "en_family": "Ocon",
+        "nationality": "French"
+      },
+      "constructor": {
+        "constructor_id": "haas",
+        "zh": "哈斯",
+        "en": "Haas F1 Team"
+      },
+      "laps": 52,
+      "status": "Retired",
+      "note": "status 為英文原文，不要直譯成因果句"
+    },
+    {
+      "driver": {
+        "driver_id": "stroll",
+        "code": "STR",
+        "zh": "斯托爾",
+        "en_full": "Lance Stroll",
+        "en_family": "Stroll",
+        "nationality": "Canadian"
+      },
+      "constructor": {
+        "constructor_id": "aston_martin",
+        "zh": "奧斯頓馬丁",
+        "en": "Aston Martin"
+      },
+      "laps": 45,
+      "status": "Retired",
+      "note": "status 為英文原文，不要直譯成因果句"
+    },
+    {
+      "driver": {
+        "driver_id": "bearman",
+        "code": "BEA",
+        "zh": "貝爾曼",
+        "en_full": "Oliver Bearman",
+        "en_family": "Bearman",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "haas",
+        "zh": "哈斯",
+        "en": "Haas F1 Team"
+      },
+      "laps": 2,
+      "status": "Retired",
+      "note": "status 為英文原文，不要直譯成因果句"
+    },
+    {
+      "driver": {
+        "driver_id": "max_verstappen",
+        "code": "VER",
+        "zh": "維斯塔潘",
+        "en_full": "Max Verstappen",
+        "en_family": "Verstappen",
+        "nationality": "Dutch"
+      },
+      "constructor": {
+        "constructor_id": "red_bull",
+        "zh": "紅牛",
+        "en": "Red Bull"
+      },
+      "laps": 0,
+      "status": "Retired",
+      "note": "status 為英文原文，不要直譯成因果句"
+    }
+  ],
+  "dnf_count": 5,
+  "biggest_gainers": [
+    {
+      "position": 9,
+      "position_text": "9",
+      "driver": {
+        "driver_id": "alonso",
+        "code": "ALO",
+        "zh": "阿隆索",
+        "en_full": "Fernando Alonso",
+        "en_family": "Alonso",
+        "nationality": "Spanish"
+      },
+      "constructor": {
+        "constructor_id": "aston_martin",
+        "zh": "奧斯頓馬丁",
+        "en": "Aston Martin"
+      },
+      "grid": 18,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+48.393",
+      "points": 2.0,
+      "points_inferred": false,
+      "grid_to_finish": 9
+    },
+    {
+      "position": 15,
+      "position_text": "15",
+      "driver": {
+        "driver_id": "perez",
+        "code": "PER",
+        "zh": "培瑞茲",
+        "en_full": "Sergio Pérez",
+        "en_family": "Pérez",
+        "nationality": "Mexican"
+      },
+      "constructor": {
+        "constructor_id": "cadillac",
+        "zh": "凱迪拉克",
+        "en": "Cadillac F1 Team"
+      },
+      "grid": 22,
+      "grid_note": "",
+      "laps": 70,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+58.582",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": 7
+    },
+    {
+      "position": 8,
+      "position_text": "8",
+      "driver": {
+        "driver_id": "hulkenberg",
+        "code": "HUL",
+        "zh": "霍肯伯格",
+        "en_full": "Nico Hülkenberg",
+        "en_family": "Hülkenberg",
+        "nationality": "German"
+      },
+      "constructor": {
+        "constructor_id": "audi",
+        "zh": "奧迪",
+        "en": "Audi"
+      },
+      "grid": 13,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+36.049",
+      "points": 4.0,
+      "points_inferred": false,
+      "grid_to_finish": 5
+    }
+  ],
+  "biggest_losers": [
+    {
+      "position": 13,
+      "position_text": "13",
+      "driver": {
+        "driver_id": "bortoleto",
+        "code": "BOR",
+        "zh": "博托萊托",
+        "en_full": "Gabriel Bortoleto",
+        "en_family": "Bortoleto",
+        "nationality": "Brazilian"
+      },
+      "constructor": {
+        "constructor_id": "audi",
+        "zh": "奧迪",
+        "en": "Audi"
+      },
+      "grid": 9,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+1:06.235",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": -4
+    },
+    {
+      "position": 12,
+      "position_text": "12",
+      "driver": {
+        "driver_id": "arvid_lindblad",
+        "code": "LIN",
+        "zh": "林德布拉德",
+        "en_full": "Arvid Lindblad",
+        "en_family": "Lindblad",
+        "nationality": "British"
+      },
+      "constructor": {
+        "constructor_id": "rb",
+        "zh": "Racing Bulls",
+        "en": "RB F1 Team"
+      },
+      "grid": 10,
+      "grid_note": "",
+      "laps": 71,
+      "status": "Lapped",
+      "classified": true,
+      "finish_state": "完賽（遭套圈）",
+      "time": "+1:05.680",
+      "points": 0.0,
+      "points_inferred": false,
+      "grid_to_finish": -2
+    },
+    {
+      "position": 6,
+      "position_text": "6",
+      "driver": {
+        "driver_id": "piastri",
+        "code": "PIA",
+        "zh": "皮亞斯特里",
+        "en_full": "Oscar Piastri",
+        "en_family": "Piastri",
+        "nationality": "Australian"
+      },
+      "constructor": {
+        "constructor_id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren"
+      },
+      "grid": 4,
+      "grid_note": "",
+      "laps": 72,
+      "status": "Finished",
+      "classified": true,
+      "finish_state": "完賽",
+      "time": "+32.332",
+      "points": 8.0,
+      "points_inferred": false,
+      "grid_to_finish": -2
+    }
+  ],
+  "sprint": {
+    "results": [
+      {
+        "position": 1,
+        "driver": {
+          "driver_id": "russell",
+          "code": "RUS",
+          "zh": "羅素",
+          "en_full": "George Russell",
+          "en_family": "Russell",
+          "nationality": "British"
+        },
+        "constructor": {
+          "constructor_id": "mercedes",
+          "zh": "賓士",
+          "en": "Mercedes"
+        },
+        "points": 8.0
+      },
+      {
+        "position": 2,
+        "driver": {
+          "driver_id": "leclerc",
+          "code": "LEC",
+          "zh": "勒克萊爾",
+          "en_full": "Charles Leclerc",
+          "en_family": "Leclerc",
+          "nationality": "Monegasque"
+        },
+        "constructor": {
+          "constructor_id": "ferrari",
+          "zh": "法拉利",
+          "en": "Ferrari"
+        },
+        "points": 7.0
+      },
+      {
+        "position": 3,
+        "driver": {
+          "driver_id": "norris",
+          "code": "NOR",
+          "zh": "諾里斯",
+          "en_full": "Lando Norris",
+          "en_family": "Norris",
+          "nationality": "British"
+        },
+        "constructor": {
+          "constructor_id": "mclaren",
+          "zh": "麥拉倫",
+          "en": "McLaren"
+        },
+        "points": 6.0
+      },
+      {
+        "position": 4,
+        "driver": {
+          "driver_id": "antonelli",
+          "code": "ANT",
+          "zh": "安東內利",
+          "en_full": "Andrea Kimi Antonelli",
+          "en_family": "Antonelli",
+          "nationality": "Italian"
+        },
+        "constructor": {
+          "constructor_id": "mercedes",
+          "zh": "賓士",
+          "en": "Mercedes"
+        },
+        "points": 5.0
+      },
+      {
+        "position": 5,
+        "driver": {
+          "driver_id": "piastri",
+          "code": "PIA",
+          "zh": "皮亞斯特里",
+          "en_full": "Oscar Piastri",
+          "en_family": "Piastri",
+          "nationality": "Australian"
+        },
+        "constructor": {
+          "constructor_id": "mclaren",
+          "zh": "麥拉倫",
+          "en": "McLaren"
+        },
+        "points": 4.0
+      },
+      {
+        "position": 6,
+        "driver": {
+          "driver_id": "max_verstappen",
+          "code": "VER",
+          "zh": "維斯塔潘",
+          "en_full": "Max Verstappen",
+          "en_family": "Verstappen",
+          "nationality": "Dutch"
+        },
+        "constructor": {
+          "constructor_id": "red_bull",
+          "zh": "紅牛",
+          "en": "Red Bull"
+        },
+        "points": 3.0
+      },
+      {
+        "position": 7,
+        "driver": {
+          "driver_id": "hamilton",
+          "code": "HAM",
+          "zh": "漢米爾頓",
+          "en_full": "Lewis Hamilton",
+          "en_family": "Hamilton",
+          "nationality": "British"
+        },
+        "constructor": {
+          "constructor_id": "ferrari",
+          "zh": "法拉利",
+          "en": "Ferrari"
+        },
+        "points": 2.0
+      },
+      {
+        "position": 8,
+        "driver": {
+          "driver_id": "gasly",
+          "code": "GAS",
+          "zh": "蓋斯利",
+          "en_full": "Pierre Gasly",
+          "en_family": "Gasly",
+          "nationality": "French"
+        },
+        "constructor": {
+          "constructor_id": "alpine",
+          "zh": "Alpine",
+          "en": "Alpine F1 Team"
+        },
+        "points": 1.0
+      }
+    ]
+  },
+  "standings": {
+    "drivers_after": [
+      {
+        "id": "antonelli",
+        "zh": "安東內利",
+        "en": "Antonelli",
+        "team_en": "Mercedes",
+        "position": 1,
+        "points": 242.0,
+        "wins": 6
+      },
+      {
+        "id": "russell",
+        "zh": "羅素",
+        "en": "Russell",
+        "team_en": "Mercedes",
+        "position": 2,
+        "points": 183.0,
+        "wins": 2
+      },
+      {
+        "id": "hamilton",
+        "zh": "漢米爾頓",
+        "en": "Hamilton",
+        "team_en": "Ferrari",
+        "position": 3,
+        "points": 183.0,
+        "wins": 1
+      },
+      {
+        "id": "norris",
+        "zh": "諾里斯",
+        "en": "Norris",
+        "team_en": "McLaren",
+        "position": 4,
+        "points": 159.0,
+        "wins": 2
+      },
+      {
+        "id": "leclerc",
+        "zh": "勒克萊爾",
+        "en": "Leclerc",
+        "team_en": "Ferrari",
+        "position": 5,
+        "points": 155.0,
+        "wins": 1
+      }
+    ],
+    "drivers_before": [
+      {
+        "id": "antonelli",
+        "zh": "安東內利",
+        "en": "Antonelli",
+        "team_en": "Mercedes",
+        "position": 1,
+        "points": 219.0,
+        "wins": 6
+      },
+      {
+        "id": "hamilton",
+        "zh": "漢米爾頓",
+        "en": "Hamilton",
+        "team_en": "Ferrari",
+        "position": 2,
+        "points": 169.0,
+        "wins": 1
+      },
+      {
+        "id": "russell",
+        "zh": "羅素",
+        "en": "Russell",
+        "team_en": "Mercedes",
+        "position": 3,
+        "points": 160.0,
+        "wins": 2
+      },
+      {
+        "id": "leclerc",
+        "zh": "勒克萊爾",
+        "en": "Leclerc",
+        "team_en": "Ferrari",
+        "position": 4,
+        "points": 138.0,
+        "wins": 1
+      },
+      {
+        "id": "norris",
+        "zh": "諾里斯",
+        "en": "Norris",
+        "team_en": "McLaren",
+        "position": 5,
+        "points": 128.0,
+        "wins": 1
+      }
+    ],
+    "constructors_after": [
+      {
+        "id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes",
+        "team_en": "",
+        "position": 1,
+        "points": 425.0,
+        "wins": 8
+      },
+      {
+        "id": "ferrari",
+        "zh": "法拉利",
+        "en": "Ferrari",
+        "team_en": "",
+        "position": 2,
+        "points": 338.0,
+        "wins": 2
+      },
+      {
+        "id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren",
+        "team_en": "",
+        "position": 3,
+        "points": 263.0,
+        "wins": 2
+      },
+      {
+        "id": "red_bull",
+        "zh": "紅牛",
+        "en": "Red Bull",
+        "team_en": "",
+        "position": 4,
+        "points": 186.0,
+        "wins": 0
+      },
+      {
+        "id": "rb",
+        "zh": "Racing Bulls",
+        "en": "RB F1 Team",
+        "team_en": "",
+        "position": 5,
+        "points": 66.0,
+        "wins": 0
+      }
+    ],
+    "constructors_before": [
+      {
+        "id": "mercedes",
+        "zh": "賓士",
+        "en": "Mercedes",
+        "team_en": "",
+        "position": 1,
+        "points": 379.0,
+        "wins": 8
+      },
+      {
+        "id": "ferrari",
+        "zh": "法拉利",
+        "en": "Ferrari",
+        "team_en": "",
+        "position": 2,
+        "points": 307.0,
+        "wins": 2
+      },
+      {
+        "id": "mclaren",
+        "zh": "麥拉倫",
+        "en": "McLaren",
+        "team_en": "",
+        "position": 3,
+        "points": 220.0,
+        "wins": 1
+      },
+      {
+        "id": "red_bull",
+        "zh": "紅牛",
+        "en": "Red Bull",
+        "team_en": "",
+        "position": 4,
+        "points": 177.0,
+        "wins": 0
+      },
+      {
+        "id": "rb",
+        "zh": "Racing Bulls",
+        "en": "RB F1 Team",
+        "team_en": "",
+        "position": 5,
+        "points": 66.0,
+        "wins": 0
+      }
+    ],
+    "leader_change": false,
+    "driver_gap_after": 59.0,
+    "driver_gap_before": 50.0
+  },
+  "next_race": {
+    "round": 13,
+    "zh": "義大利站",
+    "en": "Italian Grand Prix",
+    "date": "2026-09-06",
+    "taipei": "9/6（日）21:00",
+    "circuit_zh": "蒙札賽道",
+    "has_sprint": false
+  },
+  "timeline": {
+    "source": "jolpica /laps 與 /pitstops（同一志願者資料源，非 FIA 官方時序）",
+    "total_laps": 72,
+    "pit_stop_records": 65,
+    "lead_changes": [
+      {
+        "lap": 5,
+        "from_id": "norris",
+        "to_id": "antonelli"
+      },
+      {
+        "lap": 22,
+        "from_id": "antonelli",
+        "to_id": "hamilton"
+      },
+      {
+        "lap": 25,
+        "from_id": "hamilton",
+        "to_id": "antonelli"
+      },
+      {
+        "lap": 40,
+        "from_id": "antonelli",
+        "to_id": "norris"
+      },
+      {
+        "lap": 48,
+        "from_id": "norris",
+        "to_id": "hamilton"
+      },
+      {
+        "lap": 54,
+        "from_id": "hamilton",
+        "to_id": "norris"
+      }
+    ],
+    "lead_change_count": 6,
+    "laps_led_by": {
+      "antonelli": 32,
+      "norris": 31,
+      "hamilton": 9
+    },
+    "pit_strategy": [
+      {
+        "driver_id": "albon",
+        "stops": 3,
+        "laps": [
+          2,
+          26,
+          49
+        ],
+        "durations": [
+          "26:19.260",
+          "17.592",
+          "17.482"
+        ]
+      },
+      {
+        "driver_id": "alonso",
+        "stops": 2,
+        "laps": [
+          2,
+          34
+        ],
+        "durations": [
+          "26:27.131",
+          "17.606"
+        ]
+      },
+      {
+        "driver_id": "antonelli",
+        "stops": 4,
+        "laps": [
+          2,
+          21,
+          40,
+          56
+        ],
+        "durations": [
+          "26:12.514",
+          "18.797",
+          "17.767",
+          "19.142"
+        ]
+      },
+      {
+        "driver_id": "arvid_lindblad",
+        "stops": 3,
+        "laps": [
+          2,
+          5,
+          36
+        ],
+        "durations": [
+          "26:18.208",
+          "12.338",
+          "18.578"
+        ]
+      },
+      {
+        "driver_id": "bearman",
+        "stops": 1,
+        "laps": [
+          2
+        ],
+        "durations": [
+          "26:24.691"
+        ]
+      },
+      {
+        "driver_id": "bortoleto",
+        "stops": 4,
+        "laps": [
+          2,
+          11,
+          34,
+          53
+        ],
+        "durations": [
+          "26:23.720",
+          "18.074",
+          "17.519",
+          "19.215"
+        ]
+      },
+      {
+        "driver_id": "bottas",
+        "stops": 3,
+        "laps": [
+          2,
+          28,
+          51
+        ],
+        "durations": [
+          "26:52.131",
+          "20.045",
+          "19.658"
+        ]
+      },
+      {
+        "driver_id": "colapinto",
+        "stops": 4,
+        "laps": [
+          2,
+          8,
+          21,
+          45
+        ],
+        "durations": [
+          "26:18.808",
+          "12.092",
+          "19.477",
+          "18.355"
+        ]
+      },
+      {
+        "driver_id": "gasly",
+        "stops": 3,
+        "laps": [
+          2,
+          18,
+          46
+        ],
+        "durations": [
+          "26:17.299",
+          "18.003",
+          "18.116"
+        ]
+      },
+      {
+        "driver_id": "hamilton",
+        "stops": 3,
+        "laps": [
+          2,
+          25,
+          55
+        ],
+        "durations": [
+          "26:16.669",
+          "17.872",
+          "18.710"
+        ]
+      },
+      {
+        "driver_id": "hulkenberg",
+        "stops": 3,
+        "laps": [
+          2,
+          19,
+          48
+        ],
+        "durations": [
+          "26:22.964",
+          "17.082",
+          "17.771"
+        ]
+      },
+      {
+        "driver_id": "lawson",
+        "stops": 3,
+        "laps": [
+          2,
+          21,
+          47
+        ],
+        "durations": [
+          "26:16.876",
+          "18.668",
+          "18.256"
+        ]
+      },
+      {
+        "driver_id": "leclerc",
+        "stops": 4,
+        "laps": [
+          2,
+          21,
+          43,
+          55
+        ],
+        "durations": [
+          "26:13.710",
+          "19.770",
+          "18.746",
+          "18.730"
+        ]
+      },
+      {
+        "driver_id": "norris",
+        "stops": 3,
+        "laps": [
+          2,
+          21,
+          47
+        ],
+        "durations": [
+          "26:11.504",
+          "18.074",
+          "17.552"
+        ]
+      },
+      {
+        "driver_id": "ocon",
+        "stops": 3,
+        "laps": [
+          2,
+          16,
+          36
+        ],
+        "durations": [
+          "26:24.823",
+          "18.662",
+          "17.965"
+        ]
+      },
+      {
+        "driver_id": "perez",
+        "stops": 3,
+        "laps": [
+          2,
+          29,
+          52
+        ],
+        "durations": [
+          "26:58.090",
+          "18.424",
+          "18.564"
+        ]
+      },
+      {
+        "driver_id": "piastri",
+        "stops": 4,
+        "laps": [
+          2,
+          18,
+          44,
+          55
+        ],
+        "durations": [
+          "26:14.840",
+          "20.267",
+          "18.100",
+          "17.851"
+        ]
+      },
+      {
+        "driver_id": "russell",
+        "stops": 3,
+        "laps": [
+          2,
+          17,
+          40
+        ],
+        "durations": [
+          "26:13.693",
+          "18.010",
+          "17.451"
+        ]
+      },
+      {
+        "driver_id": "sainz",
+        "stops": 3,
+        "laps": [
+          2,
+          30,
+          65
+        ],
+        "durations": [
+          "26:57.479",
+          "17.814",
+          "18.047"
+        ]
+      },
+      {
+        "driver_id": "stroll",
+        "stops": 3,
+        "laps": [
+          2,
+          15,
+          35
+        ],
+        "durations": [
+          "26:59.974",
+          "17.645",
+          "17.200"
+        ]
+      },
+      {
+        "driver_id": "tsunoda",
+        "stops": 3,
+        "laps": [
+          2,
+          18,
+          44
+        ],
+        "durations": [
+          "26:21.147",
+          "18.019",
+          "17.824"
+        ]
+      }
+    ],
+    "unexplained_position_gains": [
+      {
+        "lap": 4,
+        "driver_id": "sainz",
+        "from_pos": 19,
+        "to_pos": 17,
+        "gained": 2,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "stroll",
+          "bottas"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 5,
+        "driver_id": "piastri",
+        "from_pos": 5,
+        "to_pos": 3,
+        "gained": 2,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "russell",
+          "leclerc"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 4,
+        "driver_id": "tsunoda",
+        "from_pos": 12,
+        "to_pos": 11,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "hulkenberg"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 5,
+        "driver_id": "antonelli",
+        "from_pos": 2,
+        "to_pos": 1,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "norris"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 5,
+        "driver_id": "alonso",
+        "from_pos": 15,
+        "to_pos": 14,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "ocon"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 5,
+        "driver_id": "stroll",
+        "from_pos": 18,
+        "to_pos": 17,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "sainz"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 7,
+        "driver_id": "bortoleto",
+        "from_pos": 15,
+        "to_pos": 14,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "alonso"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 13,
+        "driver_id": "arvid_lindblad",
+        "from_pos": 18,
+        "to_pos": 17,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "perez"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 15,
+        "driver_id": "arvid_lindblad",
+        "from_pos": 17,
+        "to_pos": 16,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "bottas"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 19,
+        "driver_id": "bortoleto",
+        "from_pos": 16,
+        "to_pos": 15,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "bottas"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 23,
+        "driver_id": "lawson",
+        "from_pos": 9,
+        "to_pos": 8,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "alonso"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 24,
+        "driver_id": "lawson",
+        "from_pos": 8,
+        "to_pos": 7,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "albon"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 24,
+        "driver_id": "ocon",
+        "from_pos": 18,
+        "to_pos": 17,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "perez"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 24,
+        "driver_id": "stroll",
+        "from_pos": 19,
+        "to_pos": 18,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "perez"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      },
+      {
+        "lap": 25,
+        "driver_id": "ocon",
+        "from_pos": 17,
+        "to_pos": 16,
+        "gained": 1,
+        "self_pitted_nearby": false,
+        "passed_drivers": [
+          "bottas"
+        ],
+        "passed_driver_pitted": false,
+        "retirement_on_this_lap": false,
+        "unexplained": true
+      }
+    ],
+    "excluded_move_count": 145,
+    "retirement_transition_laps": [
+      3,
+      46,
+      53,
+      62,
+      67,
+      71,
+      72
+    ],
+    "caveats": [
+      "unexplained_position_gains 只代表「已排除進站與退場遞補後仍未解釋的名次上升」，**不等於超車**。本資料源沒有超車事件標記，也無法排除打滑、讓位、罰則。",
+      "只能寫成「第 N 圈上升到第 X 位」這種位置描述，不可寫「超越了誰」。",
+      "無輪胎配方、無安全車、無事故時點——任何涉及這三者的因果都不可寫。",
+      "本站有 5 位未完賽；退場遞補圈為 [3, 46, 53, 62, 67, 71, 72]，已排除。"
+    ]
+  },
+  "record_claims": []
+}

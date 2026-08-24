@@ -349,7 +349,12 @@ def build_race_recap(season, rnd):
         # 完賽狀態必須逐一列舉，未知組合拒絕產 pack。原本「只要有名次、status 又不是
         # Finished，一律歸成『完賽（遭套圈）』」——上游冒出沒見過的 status 會被靜默
         # 吞成一個看似合理的敘述（2026-07-20 圓桌覆核 S8）。
-        if classified and status != "Finished" and not LAPPED_STATUSES.match(status):
+        # 2026-08-24 R12 Albon：positionText=17、status=Retired、66/72 圈——退賽但完成里程夠，
+        # 被列入分類名次（FIA 分類規則），資料源狀態仍標 Retired。具名映射成第四態，
+        # 其餘未知組合照舊拒產 pack。
+        classified_retired = classified and status == "Retired"
+        if classified and status != "Finished" and not classified_retired \
+                and not LAPPED_STATUSES.match(status):
             _die(f"未知的完賽狀態組合：positionText={ptext} status={status!r}"
                  f"（{d.get('familyName','')}）——沒有明確映射就不產 pack，"
                  "請先確認這個 status 的語意再把它加進 LAPPED_STATUSES")
@@ -363,6 +368,7 @@ def build_race_recap(season, rnd):
             "status": status,
             "classified": classified,
             "finish_state": ("完賽" if status == "Finished" else
+                             "列入名次（未跑完）" if classified_retired else
                              "完賽（遭套圈）" if classified else "未完賽"),
             "time": (e.get("Time") or {}).get("time", ""),
             "points": pts, "points_inferred": inferred,
@@ -388,14 +394,21 @@ def build_race_recap(season, rnd):
     cs = rc.load_data(season, "constructor-standings.json")
     d_rows, c_rows = _standings_rows(ds, "driver"), _standings_rows(cs, "constructor")
 
+    # 「賽前」的定義＝本站週末前（round N-1 榜），與 check-facts verify-standings 的獨立 oracle
+    # 同一口徑。衝刺週末的衝刺賽積分也要減掉，否則 before 變成「衝刺賽後、正賽前」——
+    # 2026 R12 荷蘭站實測：只減正賽分，before 比 R11 榜多出衝刺賽的 8/7/6/5/…分，oracle 紅燈。
     d_delta = {}
     c_delta = {}
-    for e in entries:
-        pts, _ = _points_of(e, POINTS_RACE)
-        d_delta[(e.get("Driver") or {}).get("driverId", "")] = \
-            d_delta.get((e.get("Driver") or {}).get("driverId", ""), 0.0) + pts
-        cid_ = (e.get("Constructor") or {}).get("constructorId", "")
-        c_delta[cid_] = c_delta.get(cid_, 0.0) + pts
+    delta_sources = [(entries, POINTS_RACE)]
+    if sprint:
+        delta_sources.append((sprint.get("SprintResults") or sprint.get("Results") or [], POINTS_SPRINT))
+    for src_entries, table in delta_sources:
+        for e in src_entries:
+            pts, _ = _points_of(e, table)
+            d_delta[(e.get("Driver") or {}).get("driverId", "")] = \
+                d_delta.get((e.get("Driver") or {}).get("driverId", ""), 0.0) + pts
+            cid_ = (e.get("Constructor") or {}).get("constructorId", "")
+            c_delta[cid_] = c_delta.get(cid_, 0.0) + pts
 
     # 對帳：API 榜 vs 從結果檔累加，對不上就是快照跨了輪次或有賽後判罰
     acc_d, acc_c = _accumulate(results, rnd)

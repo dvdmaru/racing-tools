@@ -50,5 +50,6 @@ https://racing.twtools.cc/drivers/senna/
 https://racing.twtools.cc/drivers/stewart/
 https://racing.twtools.cc/drivers/stroll/
 https://racing.twtools.cc/drivers/surtees/
+https://racing.twtools.cc/drivers/tsunoda/
 https://racing.twtools.cc/drivers/vettel/
 https://racing.twtools.cc/drivers/villeneuve/

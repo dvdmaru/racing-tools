@@ -546,19 +546,19 @@
       "time": "07:00:00Z",
       "FirstPractice": {
         "date": "2026-10-02",
-        "time": "02:00:00Z"
+        "time": "04:30:00Z"
       },
       "SecondPractice": {
         "date": "2026-10-02",
-        "time": "06:00:00Z"
+        "time": "08:00:00Z"
       },
       "ThirdPractice": {
         "date": "2026-10-03",
-        "time": "06:00:00Z"
+        "time": "04:30:00Z"
       },
       "Qualifying": {
         "date": "2026-10-03",
-        "time": "09:00:00Z"
+        "time": "08:00:00Z"
       }
     },
     {
@@ -809,7 +809,7 @@
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/2026.json",
-    "fetched_at": "2026-08-03T08:01:47.170872+00:00",
+    "fetched_at": "2026-08-23T16:20:55.072657+00:00",
     "backfill": true
   }
 }

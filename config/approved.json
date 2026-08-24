@@ -325,6 +325,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-08-23T23:00:29+08:00",
       "note": "2025 賽季人工導言核准"
+    },
+    {
+      "slug": "f1-2026-r12-dutch-report",
+      "article_sha256": "ac0bb5d1feec0748539407a1f35bc880726071b99c30063e5d6d698711455cdd",
+      "facts_sha256": "788d473d6576a8deb8d45d70ff29798b6407a4c8d7f51165b2b5ccf87a2c21af",
+      "check_report_sha256": "e9102535f92f7bc9fb37561c26e5c69e5a67b3bba8f03c91b6c2971bd5cbd598",
+      "approved_by": "charlie",
+      "approved_at": "2026-08-24T01:55:00+08:00",
+      "note": "R12 荷蘭站戰報。機械對帳四道綠（verify-standings 修衝刺週末口徑後過）＋Codex Terra 異源席 ledger：5 REFUTED 中 2 成立已修（第 2 圈 21 位非全場、下一站賽道無英文欄刪句）、2 誤報（正文實有中英對照，grep 可證）、1 駁回（Tsunoda zh=羅馬字，裁決用原文不加括號並已寫入 prompt）。核准以 Charlie 合併 PR 為授權時點。"
     }
   ]
 }
