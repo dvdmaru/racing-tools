@@ -398,8 +398,13 @@ def gen_driver(did, con):
                       rc.breadcrumb_node([("首頁", BASE + "/"), ("車手", BASE + "/drivers/"),
                                           (zh or name_full, url)]),
                       person_ld(meta, zh, url)])
-    title = f"{zh or name_full}生涯數據"
-    desc = f"{zh or name_full}的世界冠軍、分站冠軍、頒獎台與參賽場次，每個數字可回溯官方來源。"
+    # 譯名是 approved-only，沒核准就誠實留原文（站規：不自翻）——所以這裡的 head 可能是
+    # 羅馬字。rc.phrase() 負責在羅馬字／數字結尾時補盤古之白，否則會吐出
+    # 「Yuki Tsunoda生涯數據」（2026-08-24 線上實例：/drivers/tsunoda/）。
+    # og:title 由 page_shell 取用同一個 title，修這裡三處一起好。
+    disp = zh or name_full
+    title = rc.phrase(disp, "生涯數據")
+    desc = rc.phrase(disp, "的世界冠軍、分站冠軍、頒獎台與參賽場次，每個數字可回溯官方來源。")
     write_page(["drivers", slug], title, desc, ld, body)
     return s
 

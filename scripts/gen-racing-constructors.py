@@ -231,8 +231,11 @@ def gen_constructor(cid, con):
     ld = rc.graph_ld([rc.org_node(), rc.website_node(),
                       rc.breadcrumb_node([("首頁", BASE + "/"), ("車隊", BASE + "/constructors/"),
                                           (zh or name, url)]), sports_team_ld(summary, url)])
-    write_page(["constructors", slug], f"{zh or name}車隊生涯數據",
-               f"{zh or name}的車隊世界冠軍、分站勝場、頒獎台與參賽場次，每個數字可回溯官方來源。",
+    # Alpine／Racing Bulls 刻意保留原文（見 approved_zh），標題模板若直接黏中文會變成
+    # 「Alpine車隊生涯數據」。rc.phrase() 在羅馬字／數字結尾時補盤古之白。
+    disp = zh or name
+    write_page(["constructors", slug], rc.phrase(disp, "車隊生涯數據"),
+               rc.phrase(disp, "的車隊世界冠軍、分站勝場、頒獎台與參賽場次，每個數字可回溯官方來源。"),
                ld, body)
     return summary
 

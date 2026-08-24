@@ -422,9 +422,13 @@ class TranslationFallbackTests(unittest.TestCase):
         self.assertNotIn("尚無定版繁中譯名", h)
 
     def test_no_self_translation_for_unknown(self):
-        # fallback 不得憑空生一個中文名（title 用原文）
+        # fallback 不得憑空生一個中文名（title 用原文）。
+        # 2026-08-24：原文與後面的中文之間要有盤古之白（站規），本斷言隨之從
+        # 「Barrichello生涯數據」改為「Barrichello 生涯數據」——守的東西沒變
+        # （title 仍是原文、沒有被自翻），變的只是組字留白。
         h = self.untr_html
-        self.assertIn("<title>Rubens Barrichello生涯數據", h)
+        self.assertIn("<title>Rubens Barrichello 生涯數據", h)
+        self.assertNotIn("Rubens Barrichello生涯數據", h)
 
     def test_all_champions_have_approved_translation(self):
         # M6 回填後：35 位冠軍全數具 approved 譯名（誠實 fallback 不再由任何冠軍頁觸發）。
