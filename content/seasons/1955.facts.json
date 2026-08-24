@@ -1,0 +1,92 @@
+{
+  "_comment": "1955 賽季導言 facts pack。方吉歐（Mercedes）生涯第三冠（1951／1954／1955），全季 7 站贏 4 場；隊友 Stirling Moss（無 approved zh，查表無結果，用原文）23 分居次；Mercedes 包辦 5 場勝利（COUNT results position_text='1'）；1955 年 constructor_standings 無列（車隊世界錦標賽至 1958 年才設立），no_constructor_championship 驗證。2026-08-24 修正輪：原句『同年利曼發生重大意外後，多站非世錦賽賽事遭取消』語意錯——利曼事故後被取消的法國、德國、瑞士、西班牙站都是世錦賽站，『非世錦賽』該修飾利曼本身（利曼 24 小時耐力賽不是世錦賽分站）。改為『同年利曼耐力賽（非世錦賽賽事）發生重大意外後，本季多場世錦賽分站取消』；未沿用協調者建議句中的『24 小時』字面，因『24』是無 claim 可撐的裸奔阿拉伯數字、且非 F1／V10 型英數混排token（24 與『小時』中間有空格、非字母緊鄰數字），會被 checker 判錯，故以『利曼耐力賽』保留『非世錦賽賽事』的語意修正、同時滿足『不帶數字』的 external_history 規則。中立紀律：外部事件、不評責任。",
+  "season": 1955,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "1955 賽季",
+      "value": 1955,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=1955",
+      "anchors": [
+        "1955 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 7 站",
+      "value": 7,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=1955",
+      "anchors": [
+        "全季 7 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "fangio",
+      "text": "方吉歐贏下 4 場分站冠軍",
+      "value": 4,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=1955 AND position=1",
+      "anchors": [
+        "贏下 4 場"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "fangio",
+      "text": "生涯第三冠（1951／1954／1955）",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='fangio' AND position=1 AND season<=1955",
+      "anchors": [
+        "第三冠"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "fangio",
+      "text": "以 40 分作收",
+      "value": 40,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1955 AND position=1",
+      "anchors": [
+        "以 40 分"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "moss",
+      "text": "隊友 Stirling Moss 以 23 分居次",
+      "value": 23,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=1955 AND position=2",
+      "anchors": [
+        "以 23 分"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "mercedes",
+      "text": "賓士（Mercedes）包辦其中 5 場勝利",
+      "value": 5,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=1955 AND constructor_id='mercedes' AND position_text='1'",
+      "anchors": [
+        "包辦其中 5 場"
+      ]
+    },
+    {
+      "kind": "no_constructor_championship",
+      "text": "當年尚無車隊世界錦標賽",
+      "value": 0,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM constructor_standings WHERE season=1955"
+    }
+  ],
+  "non_statistical_tokens": [],
+  "external_history": [
+    "同年利曼耐力賽（非世錦賽賽事）發生重大意外，本季多場世錦賽分站因此取消（事實層敘述、不評責任、不帶阿拉伯數字）。"
+  ]
+}

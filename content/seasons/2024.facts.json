@@ -1,0 +1,93 @@
+{
+  "_comment": "2024 賽季導言 facts pack。核心事實：紅牛車手維斯塔潘拿下車手冠軍（437 分、9 勝、生涯第 4 冠），麥拉倫則以 6 場分站冠軍拿下車隊冠軍——車手冠軍與車隊冠軍分屬紅牛／麥拉倫兩隊，是本季敘事主軸。修正輪已刪除跨季「衛冕」主張（無 claim 撐）與重述性 external_history。",
+  "season": 2024,
+  "claims": [
+    {
+      "kind": "season_exists",
+      "text": "2024 賽季",
+      "value": 2024,
+      "verified": true,
+      "source": "sqlite: SELECT 1 FROM seasons WHERE year=2024",
+      "anchors": [
+        "2024 年"
+      ]
+    },
+    {
+      "kind": "season_rounds",
+      "text": "全季 24 站",
+      "value": 24,
+      "verified": true,
+      "source": "sqlite: SELECT MAX(round) FROM races WHERE season=2024",
+      "anchors": [
+        "在 24 站"
+      ]
+    },
+    {
+      "kind": "champion_wins",
+      "driver": "max_verstappen",
+      "text": "維斯塔潘全季拿下 9 場分站冠軍",
+      "value": 9,
+      "verified": true,
+      "source": "sqlite: SELECT wins FROM driver_standings WHERE season=2024 AND position=1",
+      "anchors": [
+        "拿下 9 場分站冠軍"
+      ]
+    },
+    {
+      "kind": "champion_points",
+      "driver": "max_verstappen",
+      "text": "維斯塔潘以 437 分封王",
+      "value": 437,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2024 AND position=1",
+      "anchors": [
+        "437 分"
+      ]
+    },
+    {
+      "kind": "career_titles",
+      "driver": "max_verstappen",
+      "text": "維斯塔潘生涯第 4 座年度冠軍（≤2024）",
+      "value": 4,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM driver_standings WHERE driver_id='max_verstappen' AND position=1 AND season<=2024",
+      "anchors": [
+        "第 4 冠"
+      ]
+    },
+    {
+      "kind": "runner_up_points",
+      "driver": "norris",
+      "text": "諾里斯以 374 分居年度第二",
+      "value": 374,
+      "verified": true,
+      "source": "sqlite: SELECT points FROM driver_standings WHERE season=2024 AND position=2",
+      "anchors": [
+        "374 分"
+      ]
+    },
+    {
+      "kind": "driver_position",
+      "driver": "leclerc",
+      "text": "勒克萊爾年度順位第三",
+      "value": 3,
+      "verified": true,
+      "source": "sqlite: SELECT position FROM driver_standings WHERE season=2024 AND driver_id='leclerc'",
+      "anchors": [
+        "第三"
+      ]
+    },
+    {
+      "kind": "constructor_wins",
+      "constructor": "mclaren",
+      "text": "麥拉倫全季拿下 6 場分站冠軍",
+      "value": 6,
+      "verified": true,
+      "source": "sqlite: SELECT COUNT(*) FROM results WHERE season=2024 AND constructor_id='mclaren' AND position_text='1'",
+      "anchors": [
+        "全季拿下 6 場分站冠軍"
+      ]
+    }
+  ],
+  "external_history": []
+}
