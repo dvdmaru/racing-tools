@@ -10,3 +10,16 @@ data/f1/db.sqlite
 data/f1/raw/_pages/
 # M6 圖的邊：純衍生自 db.sqlite（同屬可重建層），~5MB 不 commit（build-graph-edges.py 一鍵重生）
 data/f1/graph/
+
+# --- secrets (added 2026-08-29 after Zeabur env-var leak audit) ---
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+credentials*.json
+service-account*.json
+service_account*.json
+.mcp.json
+.claude/settings.local.json
