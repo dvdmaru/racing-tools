@@ -66,9 +66,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -76,7 +76,7 @@ jobs:
         # pin 版本：後續步驟帶 CLOUDFLARE_API_TOKEN，防惡意 release 供應鏈
         run: pip install 'markdown==3.10.2' 'pyyaml==6.0.3'
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
 
