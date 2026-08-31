@@ -38,7 +38,7 @@ F1 官方網站算的是另一件事。原文寫「will be 31 and have spent 12 
 
 兩份官方文件在合約內容上是一致的：至少到 2030 年底，官方措辭是「until at least the end of 2030」與「until at least 2030」；另含多年選擇權，可延續至 2030 年之後，原文「a multi-year option to commit beyond that date」。麥拉倫新聞稿把接下來這段時間形容為「for at least the next four years」——至少接下來 4 年，指 2027 到 2030 這四個賽季。這份合約由諾里斯本人在麥拉倫科技中心的家庭與親友開放日上向團隊宣布。作為附帶事項，他將獲贈一台 MCL39，就是他 2025 年奪冠賽季所駕駛的那輛車。
 
-官方沒有公布的部分，本站對兩份原始文件全文檢索過：
+官方沒有公布的部分：
 
 - **合約金額**：兩份文件都沒有任何金額、幣別或估值。motorsport.com 就薪資只留下一句話：「Salaries are rarely revealed in F1」——F1 的薪資很少公開。
 - **新合約的生效起算日**：兩份文件只寫到期年份，沒有寫從哪一天或哪一個賽季開始算。
@@ -49,7 +49,7 @@ F1 官方網站算的是另一件事。原文寫「will be 31 and have spent 12 
 
 ## 163 場，麥拉倫史上沒人比他站上正賽賽道更多次
 
-麥拉倫新聞稿列出的諾里斯生涯數字是：163 場、18 次桿位、48 次頒獎台、13 勝、2 座車隊冠軍、1 座車手世界冠軍。其中出賽場次、勝場、頒獎台次數，本站以自有資料重算都一致。桿位 18 次只掛官方：本站資料庫裡 2026 年第 11、12 站的排位賽資料還沒有落地，這個數字本站不重算。
+麥拉倫新聞稿列出的諾里斯生涯數字是：163 場、18 次桿位、48 次頒獎台、13 勝、2 座車隊冠軍、1 座車手世界冠軍。其中出賽場次、勝場、頒獎台次數，本站以自有資料重算都一致。桿位 18 次是麥拉倫官方的數字：本站資料庫的排位賽資料還沒有補到 2026 年第 11、12 站。
 
 本站資料庫涵蓋一級方程式世界錦標賽 1950 年起的分站賽事，非錦標賽賽事、青年車手計畫與測試工作都不在其中。以起跑場次計，麥拉倫車隊歷史上出賽最多的六位車手：
 
@@ -57,10 +57,12 @@ F1 官方網站算的是另一件事。原文寫「will be 31 and have spent 12 
 |---|---|---|---|---|
 | 諾里斯（Lando Norris） | 163 | 164 | 2019–2026 | 8 |
 | David Coulthard | 150 | 150 | 1996–2004 | 9 |
-| 巴頓（Jenson Button） | 136 | 137 | 2010–2017 | 8 |
-| 哈基寧（Mika Häkkinen） | 131 | 133 | 1993–2001 | 9 |
+| 詹森・巴頓（Jenson Button） | 136 | 137 | 2010–2017 | 8 |
+| 米卡・哈基寧（Mika Häkkinen） | 131 | 133 | 1993–2001 | 9 |
 | 漢米爾頓（Lewis Hamilton） | 110 | 110 | 2007–2012 | 6 |
-| 普羅斯特（Alain Prost） | 106 | 109 | 1980–1989 | 7 |
+| 亞倫・普羅斯特（Alain Prost） | 106 | 109 | 1980–1989 | 7 |
+
+這裡的「起跑場次」是登錄場次扣掉登錄後沒有起跑的場次，判定方式是該場完成 0 圈、且名次欄記為退出。這是本站的判定，不是官方統計：官方對諾里斯給的 163 場與本站這一欄一致，漢米爾頓在賓士的 246 場、Michael Schumacher 在法拉利的 180 場，也都與賓士官方公布的數字一致。但「起跑之後隨即退出、資料庫同樣記為 0 圈」的個案，本站分不出來，會算進未起跑那一側——普羅斯特 1989 年澳洲站就屬於這一類。
 
 諾里斯的 163 場比第二名多 13 場。但以賽季數計，他目前是 8 季，David Coulthard 與哈基寧都是 9 季，並列麥拉倫車手目前效力最久——出賽場次最多，不等於效力年資最久，這是兩件不同的事。
 
@@ -122,9 +124,8 @@ F1 官方網站把諾里斯這份合約的長度，拿去對照一段已經結�
 - [Reigning World Champion Lando Norris extends contract with McLaren Mastercard Formula 1 Team until at least the end of 2030](https://www.mclaren.com/racing/formula-1/2026/lando-norris-contract-extension-2030/)（麥拉倫官方，2026-08-29，合約年限、續約引言、贈車細節，本文核心來源）
 - [Oracle Red Bull Racing 續約維斯塔潘至 2030 年球季結束](https://www.redbullracing.com/int-en/max-oracle-red-bull-racing-2030)（紅牛官方，2026-08-20，維斯塔潘合約年限與雙口徑年資）
 - [McLaren Formula 1 Team announce multi-year contract extension with Oscar Piastri](https://www.mclaren.com/racing/formula-1/2025/mclaren-formula-1-team-announce-multi-year-contract-extension-with-oscar-piastri/)（麥拉倫官方，2025-03-11，只寫「multi-year」，未給具體年份）
-- [In Numbers: Lewis' historic career at Mercedes](https://www.mercedesamgf1.com/news/in-numbers-lewis-historic-career-at-mercedes)（賓士官方，2024-12-11，12 季、246 場、賓士車隊最長單一車手任期紀錄）
+- [In Numbers: Lewis' historic career at Mercedes](https://www.mercedesamgf1.com/news/in-numbers-lewis-historic-career-at-mercedes)（賓士官方，2024-12-11，12 季、246 場，以及「同一車隊出賽最多場」這項 F1 紀錄的由來）
 - [Inside McLaren's driver development programme](https://www.mclaren.com/racing/formula-1/2025/inside-mclarens-driver-development-programme/)（麥拉倫官方，2025，漢米爾頓與諾里斯的雙口徑年資並提）
-- [Lando on his first half-season as World Champion](https://www.mclaren.com/racing/formula-1/2026/lando-on-his-first-half-season-as-world-champion/)（麥拉倫官方，2026-07-28，半季時點的車隊與車手表態）
 
 **官方說明**（F1 官方網站）：
 - [Norris commits future to McLaren as he signs new deal until the end of 2030](https://www.formula1.com/en/latest/article/lando-norris-commits-future-to-mclaren-as-he-signs-new-deal-until-the-end-of-2030.7ErHTktjoW2mAo5zEEtuA0)（2026-08-29，12 年算法、與漢米爾頓在賓士的任期對照、皮亞斯特里合約年份、前約「據信」到期年份）
