@@ -553,12 +553,12 @@
     },
     {
       "slug": "f1-2026-norris-mclaren-2030-extension",
-      "article_sha256": "d5de82330f7a9938d3c31c17bebc672897609586b7e333ca81b4648646e782f4",
-      "facts_sha256": "abbce4108582db7e70e664c4a2d9c7fe8ef8b5199e05e8e614eedf1bf91083d0",
+      "article_sha256": "a04d6cab7cc2efcd145c32d4aaa990093f741a538f0b897f3d43d071dc6f8b7e",
+      "facts_sha256": "0ef3dd5305a08fc318393017090aba40e62e3aa6d2a13672b84acba7aa1ddfc1",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-31T10:40:00+08:00",
-      "note": "選題台 2026-08-31 R1（18 分，cross-check 等級）。查核桌 CoWork/roundtable/2026-08-31-racing-norris-mclaren-2030：Terra R1 判 NO-GO 四項（C1 起跑口徑、C3 譯名、C4 來源等級、V1 方法論語言），R2 覆核四項全數 RESOLVED、總判 GO with fixes，最後一項（事實表 4 處盤古之白）已修。C1 為部分駁回——舊口徑會得出 Michael Schumacher 在法拉利 181 場，與賓士官方載明的 180 場矛盾；六個差異點逐案皆為明確未起跑，審稿席重建資料庫後接受反駁。Charlie 以合併 PR 為核准發布的授權行為。"
+      "note": "選題台 2026-08-31 R1（18 分，cross-check 等級）。查核桌 CoWork/roundtable/2026-08-31-racing-norris-mclaren-2030：Terra R1 判 NO-GO 四項（C1 起跑口徑、C3 譯名、C4 來源等級、V1 方法論語言），R2 覆核四項全數 RESOLVED、總判 GO with fixes，最後一項（事實表 4 處盤古之白）已修。C1 為部分駁回——舊口徑會得出 Michael Schumacher 在法拉利 181 場，與賓士官方載明的 180 場矛盾；六個差異點逐案皆為明確未起跑，審稿席重建資料庫後接受反駁。Charlie 以合併 PR 為核准發布的授權行為。　2026-08-31 譯名勘誤重新核准（Charlie：「加譯名」）：David Coulthard 新增定版譯名「大衛・庫塔」進 scripts/driver-zh.json；Michael Schumacher 的「麥可・舒馬克」本來就已核准（在 check-zh.py 與 gen-racing-entities-phase0.py 的 phase0 seed 裡，不在 driver-zh.json——發布時只 grep 了一張表因而誤判為無定版，正文才用英文原名）。正文、事實表與封面改用定版譯名，首見全名、之後只用姓。sha256 d5de8233… → a04d6cab…"
     }
   ]
 }
