@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 麥拉倫史上車手出賽榜（起跑口徑），資料來源＝facts/analysis-norris-mclaren-2030.json
+ * 的 own_data.mclaren_appearance_table.rows，六個值依序為
+ * 163, 150, 136, 131, 110, 106。
+ * 長條寬度是線性換算，不是手調的：w = 1560 × starts ÷ 163，起點固定 x=440。
+ * 要改資料就照這條式子重算 width，別手動微調——長度與數字必須對得上。
+ * 顏色只用來區分「本篇主角」與其餘車手，不對應任何車隊塗裝（站規：不用官方素材）。 */
+.chart { width: 100%; height: 424px; display: block; }
+.chart .nm { font-family: 'Noto Sans TC'; font-size: 34px; fill: #493c40; }
+.chart .vl { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700;
+  font-size: 40px; fill: #786a6e; }
+.chart .vl.hi { fill: #d63a2f; font-size: 46px; }
+h1 { font-size: 104px; margin-top: 40px; }
+.sub { margin-top: 26px; margin-bottom: 6px; }
+.lbl { margin-bottom: 10px; }
+.stats { margin-top: 34px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 合約</div>
+  <h1>諾里斯的 <span class="y">163</span> 場<br>麥拉倫史上沒有人比他多</h1>
+  <div class="sub">同一天，官方算 163 場、本站車手頁算 164 站——差在他登錄了 2026 年中國站，沒有起跑</div>
+  <div class="viz">
+    <div class="lbl">麥拉倫車手生涯出賽場次（起跑口徑，世界錦標賽 1950 年起）</div>
+    <svg class="chart" viewBox="0 0 2140 424" preserveAspectRatio="none">
+      <text x="410" y="42" text-anchor="end" class="nm">諾里斯</text>
+      <rect x="440" y="10" width="1560.0" height="44" rx="6" fill="#d63a2f"/>
+      <text x="2020" y="44" class="vl hi">163</text>
+
+      <text x="410" y="114" text-anchor="end" class="nm">David Coulthard</text>
+      <rect x="440" y="82" width="1435.6" height="44" rx="6" fill="#c9b8bb"/>
+      <text x="1896" y="116" class="vl">150</text>
+
+      <text x="410" y="186" text-anchor="end" class="nm">巴頓</text>
+      <rect x="440" y="154" width="1301.6" height="44" rx="6" fill="#c9b8bb"/>
+      <text x="1762" y="188" class="vl">136</text>
+
+      <text x="410" y="258" text-anchor="end" class="nm">哈基寧</text>
+      <rect x="440" y="226" width="1253.7" height="44" rx="6" fill="#c9b8bb"/>
+      <text x="1714" y="260" class="vl">131</text>
+
+      <text x="410" y="330" text-anchor="end" class="nm">漢米爾頓</text>
+      <rect x="440" y="298" width="1052.8" height="44" rx="6" fill="#c9b8bb"/>
+      <text x="1514" y="332" class="vl">110</text>
+
+      <text x="410" y="402" text-anchor="end" class="nm">普羅斯特</text>
+      <rect x="440" y="370" width="1014.5" height="44" rx="6" fill="#c9b8bb"/>
+      <text x="1475" y="404" class="vl">106</text>
+    </svg>
+    <div class="stats">
+      <div class="stat"><b>13</b><span>分站冠軍</span></div>
+      <div class="stat"><b>48</b><span>次頒獎台</span></div>
+      <div class="stat"><b>2030</b><span>新合約至少到這一年</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 出賽場次由本站資料庫重算</div>
+</div>
+</body>
+</html>

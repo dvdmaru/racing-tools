@@ -259,6 +259,31 @@ class LinkifyRoundsTests(unittest.TestCase):
         src = "<p>這是 2026 賽季第 11 站，全季共 23 站。</p>"
         self.assertEqual(il.linkify_rounds(src, 2026), (src, []))
 
+    def test_explicit_other_year_in_sentence_blocks_the_link(self):
+        """☠️ 句子裡明寫的年份優先於 frontmatter 的 season（2026-08-31 諾里斯續約文實例）。
+
+        原病灶：一篇 season: 2026 的文章寫「普羅斯特 1989 年澳洲站」，
+        舊版連到 2026 年的澳洲站——讀者點進去看到的是另一場比賽。
+        """
+        for src in ("<p>普羅斯特 1989 年澳洲站就屬於這一類。</p>",
+                    "<p>2022 年他在澳洲站超越了前人的場次。</p>",
+                    "<p>他在 1998 年匈牙利站拿下分站冠軍。</p>"):
+            out, linked = il.linkify_rounds(src, 2026)
+            self.assertEqual((out, linked), (src, []), src)
+
+    def test_same_year_as_season_still_links(self):
+        """陽性對照：明寫的年份**就是**該文 season 時照連，否則上面那條會變成全面關閉互鏈。"""
+        src = "<p>2026 年匈牙利站由諾里斯奪冠。</p>"
+        out, linked = il.linkify_rounds(src, 2026)
+        self.assertEqual(linked, [(2026, 11, "匈牙利站")])
+        self.assertIn('href="/seasons/2026/rounds/11/"', out)
+
+    def test_round_ordinal_without_year_still_links(self):
+        """沒有明寫年份時維持原行為——「第 11 站匈牙利站」照連當季。"""
+        src = "<p>第 11 站匈牙利站與第 9 站英國站。</p>"
+        _, linked = il.linkify_rounds(src, 2026)
+        self.assertEqual(linked, [(2026, 11, "匈牙利站"), (2026, 9, "英國站")])
+
     def test_only_first_occurrence_per_round(self):
         src = "<p>匈牙利站</p><p>匈牙利站</p><p>匈牙利站與英國站</p>"
         out, linked = il.linkify_rounds(src, 2026)

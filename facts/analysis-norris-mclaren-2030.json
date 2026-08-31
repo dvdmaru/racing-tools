@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "kind": "analysis-external-sourced",
+  "slug": "f1-2026-norris-mclaren-2030-extension",
+  "built_at": "2026-08-31",
+  "revision": 4,
+  "verified_on": "2026-08-31",
+  "_who_built": "指揮席（Claude Code conductor）。一手（車隊官方新聞稿）與官方（F1 官網）兩份來源逐字取原文，所有自有資料數字由 data/f1/db.sqlite（L1，含 2026 年第 12 站）現算，成品值寫在本檔。",
+  "thesis": "同一則續約消息裡，諾里斯在麥拉倫的年資有兩種算法：車隊從 2017 年的青年車手計畫算起說是 9 年，F1 官網從 2019 年的正賽席位算起說合約走完是 12 年。兩個都成立，差別在算的是進公司還是上車。同一天還有第二組雙口徑：官方說他為麥拉倫出賽 163 場，本站車手頁寫 164 站——差在 2026 年中國站他登錄了但沒有起跑。這篇把這份合約放回可查證的資料裡：兩種口徑各自的算法、他在麥拉倫史上出賽榜的位置，以及被官方媒體拿來對照的那個 12 年（漢米爾頓在賓士的 12 個賽季）長度相同、內容不同。",
+  "_structure_hint": "從『同一天、同一個人，數字有兩套』這個具體的怪事切進去（9 年／12 年、163／164） → 合約到底寫了什麼、官方沒說什麼（金額、起算日、2031 之後） → 把 163 場放回麥拉倫史上出賽榜（David Coulthard 150、巴頓 136、哈基寧 131） → 那個被拿來對照的 12 年：漢米爾頓在賓士（246 場、84 勝、6 冠）對照諾里斯目前的 8 季（163 場、13 勝、1 冠），長度相同內容不同，且麥拉倫上一位車手世界冠軍就是漢米爾頓（2008），到 2025 年相隔 17 年 → 簽約當下的積分現況（截至第 12 站第 4 名 159 分、領先者安東內利 242 分）只陳述不解釋動機 → 隊友與對手的合約年限 → 常見問題 → 資料來源。",
+  "primary_sources": {
+    "_grade": "一手（車隊官方新聞稿）與官方（F1 官網報導）。兩份全文快照存於 CoWork/roundtable/2026-08-31-racing-norris-mclaren-2030/evidence/。",
+    "mclaren_press_release": {
+      "title": "Reigning World Champion Lando Norris extends contract with McLaren Mastercard Formula 1 Team until at least the end of 2030",
+      "publisher": "McLaren Racing 官方網站",
+      "published": "2026-08-29 11:20 UTC",
+      "url": "https://www.mclaren.com/racing/formula-1/2026/lando-norris-contract-extension-2030/",
+      "snapshot": "evidence/k-mclaren-press-release-20260829.txt",
+      "grade": "一手",
+      "verbatim": {
+        "core": "Lando Norris, the 2025 Formula 1 Drivers' World Champion, has extended his contract with the McLaren Mastercard Formula 1 Team until at least 2030, with a multi-year option to commit beyond that date.",
+        "career": "Lando, 26, from Somerset, United Kingdom, is a homegrown talent who first joined McLaren nine years ago through the team's junior programme in 2017, when he held the role of Test and Simulator Driver. He was promoted to a race seat in 2019 and has since raced in 163 Grands Prix for the team, more than any other McLaren driver in history. In that time, he has secured 18 Pole positions, 48 podiums, 13 wins, two Constructors' Championships and the Drivers' World Championship.",
+        "announcement": "This extension, announced by Lando in person to the team today at the McLaren Technology Centre during the annual family and friends open day, provides further stability for the team. This follows Oscar Piastri's contract extension in March last year, while CEO Zak Brown and Team Principal Andrea Stella have both signed long-term contracts in the last two years.",
+        "gift": "In addition to confirming his future with McLaren for at least the next four years, Lando will be gifted an MCL39, which he raced during his 2025 World Championship-winning season.",
+        "gift_reason": "This gift serves as a lasting reminder of his contribution to the team, in particular his part in securing the team's second consecutive Constructors' title in 2025, while also becoming the team's first Formula 1 Drivers' World Champion since 2008.",
+        "quote_norris": "\"McLaren is my home, and I'm very pleased to be signing a new contract to keep me with the team until at least 2030. When I started this journey nine years ago, I was clear about the goals I wanted to achieve: to get McLaren back to the front and to win Championships. We've achieved that goal, but we want more; we want to keep on winning, and we know as a team that we're capable of achieving it. I can't wait to get back in the car in Monza, and I'm very excited about what the future holds for us, both over the rest of this season, and in the coming years.\"",
+        "quote_stella": "\"Lando has been an integral part of McLaren's journey and success over the last nine years, and we are delighted to continue our partnership with him through to at least 2030. He is an exceptional driver, someone who combines outstanding natural speed with maturity, consistency and a strong commitment to McLaren, but above all, he is a special human being who is valued by everyone in the team.\"",
+        "quote_brown": "\"I'm incredibly pleased to be signing a new contract with Lando, extending his commitment with McLaren until at least 2030. His journey with the team is a fantastic example of our commitment to identifying, developing and supporting world-class talent, and his achievements speak for themselves. Together with Andrea, Oscar and the wider team, Lando has helped drive McLaren into a new papaya era of success, helping us go from the back of the grid, to double consecutive Constructors' titles in 2024 and 2025 and our first Drivers' Championship in 17 years.\""
+      },
+      "_writer_note": "⛔ 引用時保留官方措辭 at least（至少到 2030 年）與 multi-year option（多年選擇權），不得寫成「簽到 2030 年」或「五年約」。⛔ Championships 一詞在引言裡是複數泛稱，不可換算成具體座數。"
+    },
+    "formula1_com": {
+      "title": "Norris commits future to McLaren as he signs new deal until the end of 2030",
+      "publisher": "Formula1.com（F1 官方網站）",
+      "published": "2026-08-29 09:23 UTC",
+      "url": "https://www.formula1.com/en/latest/article/lando-norris-commits-future-to-mclaren-as-he-signs-new-deal-until-the-end-of-2030.7ErHTktjoW2mAo5zEEtuA0",
+      "snapshot": "evidence/k-formula1com-article-20260829.txt",
+      "grade": "官方",
+      "verbatim": {
+        "core": "Lando Norris has committed his future to McLaren after signing a new deal that will extend his stay at the British team until at least the end of 2030, with a multi-year option to commit beyond that date.",
+        "career": "The Briton joined McLaren in 2017 as a test and development driver before earning promotion to the grid as a race driver for 2019.",
+        "stats": "The 26-year-old has since gone on to claim 13 Grand Prix victories, 18 pole positions and 48 podiums – as well as his maiden World Championship in 2025. Additionally he has now raced in 163 Grands Prix for the team, more than any other McLaren driver in history.",
+        "previous_deal": "His previous deal is believed to have been set to expire at the end of 2027, but McLaren moved to lock him down for the foreseeable future with a fresh contract extension.",
+        "hamilton_comparison": "By the end of the current agreement, Norris will be 31 and have spent 12 years with McLaren, matching the stint Lewis Hamilton achieved with Mercedes.",
+        "verstappen": "His deal expires at the same time as his rival and friend Max Verstappen, who recently committed to Red Bull, whom he joined in 2016, until the end of 2030",
+        "piastri": "Norris' team mate Oscar Piastri, meanwhile, is contracted with McLaren up until the end of 2028, having signed a fresh deal ahead of the 2025 campaign. That gives McLaren stability for at least the next two Formula 1 campaigns."
+      },
+      "_writer_note": "⛔ previous_deal 那句的語氣是 is believed to have been（據信），寫進正文必須保留推測語氣並標明是 F1 官網的說法，不可寫成「原合約到 2027 年」。⛔ hamilton_comparison 是 F1 官網的對照，不是本站發明的，引用時要標明是誰做的對照。"
+    }
+  },
+  "context_sources": {
+    "_grade": "一手（各車隊官方新聞稿）與官方（F1 官網）。全文快照同存於 evidence/。",
+    "verstappen_redbull": {
+      "title": "Max Verstappen 續約 Oracle Red Bull Racing 至 2030 年球季結束",
+      "publisher": "Oracle Red Bull Racing 官方網站",
+      "published": "2026-08-20 06:53 UTC",
+      "url": "https://www.redbullracing.com/int-en/max-oracle-red-bull-racing-2030",
+      "snapshot": "evidence/k-redbullracing-verstappen-20260831.txt",
+      "grade": "一手",
+      "verbatim": {
+        "core": "Oracle Red Bull Racing is proud to confirm Max Verstappen will continue with the Team until the end of the 2030 Formula One season",
+        "joined": "Since joining the Red Bull Junior Programme in 2014 and making his Team debut in 2016 with a victory at his very first Grand Prix, Max has become far more than a driver."
+      },
+      "f1com_note": "F1 官網另寫 despite his previous contract lasting until 2028（原約到 2028 年），出處 https://www.formula1.com/en/latest/article/verstappen-signs-contract-extension-with-red-bull-until-the-end-of-2030.4gUd8JEkYnKmD6bNMS5syw ，2026-08-20 07:02 UTC，快照 evidence/k-f1com-verstappen-20260831.txt。",
+      "_writer_note": "⛔ 紅牛官方稿與 F1 官網稿都沒有提到任何選擇權或退出條款，不得寫維斯塔潘那份合約有選擇權。⛔ 維斯塔潘的年份也有兩種算法（青年車手計畫 2014、車隊出賽 2016），與諾里斯同型，可寫但要標明各自算什麼。"
+    },
+    "piastri_mclaren_2025": {
+      "title": "McLaren Formula 1 Team announce multi-year contract extension with Oscar Piastri",
+      "publisher": "McLaren Racing 官方網站",
+      "published": "2025-03-11 21:00 UTC",
+      "url": "https://www.mclaren.com/racing/formula-1/2025/mclaren-formula-1-team-announce-multi-year-contract-extension-with-oscar-piastri/",
+      "snapshot": "evidence/k-mclaren-piastri-20260831.txt",
+      "grade": "一手",
+      "verbatim": {
+        "core": "The McLaren Formula 1 Team today announced a multi-year extension of its winning partnership with [Piastri]. The Australian driver will continue in papaya for the long term. Oscar joined the team in 2023 on a multi-year deal, which was quickly extended later that year to run until 2026."
+      },
+      "no_year_in_official": "本站對這份官方稿全文檢索 2027 與 2028 皆零命中；官方只寫 multi-year（多年），沒有寫出新約到哪一年。",
+      "where_2028_comes_from": "2028 這個年份出現在 F1 官網 2026-08-29 報導諾里斯續約時附帶提到的句子（contracted with McLaren up until the end of 2028），以及 Sky Sports 與 motorsport.com 同日報導。",
+      "_writer_note": "⛔ 寫皮亞斯特里合約到 2028 年時，必須標明那是 F1 官網與媒體的說法；⛔ 不得寫成麥拉倫官方宣布過 2028 這個年份。"
+    },
+    "hamilton_mercedes_official": {
+      "title": "In Numbers: Lewis' historic career at Mercedes",
+      "publisher": "Mercedes-AMG PETRONAS F1 Team 官方網站",
+      "published": "2024-12-11",
+      "url": "https://www.mercedesamgf1.com/news/in-numbers-lewis-historic-career-at-mercedes",
+      "snapshot": "evidence/k-mercedesamgf1-hamilton-20260831.txt",
+      "grade": "一手",
+      "verbatim": {
+        "record": "Twelve seasons, 246 starts. Lewis holds the F1 record for the most starts with the same constructor",
+        "farewell": "The end of an era. Sunday closed the final chapter of one of F1's most incredible stories, as Lewis raced his last lap for Mercedes in Abu Dhabi."
+      },
+      "departure": "F1 官網 2024-02-01 報導雙方聲明：Mercedes confirmed that both they and Hamilton would be parting ways at the end of 2024 with Hamilton activating a release option in his contract.（快照 evidence/k-f1com-hamilton-ferrari-20260831.txt）",
+      "_writer_note": "⛔ 12 季與 246 場是賓士官方自己的數字，本站重算一致（見 own_data.same_constructor_starts），寫的時候可以說兩邊一致，不要只掛單邊。"
+    },
+    "mclaren_driver_programme": {
+      "title": "Inside McLaren's driver development programme",
+      "publisher": "McLaren Racing 官方網站",
+      "published": "2025（頁面未見獨立日期戳，URL 路徑年份為 2025）",
+      "url": "https://www.mclaren.com/racing/formula-1/2025/inside-mclarens-driver-development-programme/",
+      "snapshot": "evidence/k-mclaren-ddp-20260831.txt",
+      "grade": "一手",
+      "verbatim": {
+        "parallel": "Lewis Hamilton had been with McLaren for nearly 10 years when he made his F1 debut in 2007, while Lando had already been with the team for two seasons as a Test and Reserve Driver when he was promoted to F1 in 2019."
+      },
+      "_writer_note": "⛔ 官方措辭是 nearly 10 years（將近 10 年），沒有給確切年份；不得寫漢米爾頓是 1998 年加入麥拉倫青年計畫——本站沒有取得可驗證的一手出處。"
+    },
+    "mclaren_half_season": {
+      "title": "Lando on his first half-season as World Champion",
+      "publisher": "McLaren Racing 官方網站",
+      "published": "2026-07-28 11:30 UTC",
+      "url": "https://www.mclaren.com/racing/formula-1/2026/lando-on-his-first-half-season-as-world-champion/",
+      "snapshot": "evidence/k-mclaren-halfseason-20260831.txt",
+      "grade": "一手",
+      "verbatim": {
+        "team": "fifth place in the standings for Lando, and third position for the team, at the midway mark of 2026 does represent a downwards step",
+        "norris": "We have still had some good results, but we also know we're not where we should be. We're not happy with that, we've been disappointed with our own performance, but we're working hard to improve."
+      },
+      "_writer_note": "⛔ 這篇發布於 2026-07-28（第 11 站之前的半季時點），文中的第 5 名是當時的名次；引用時必須標明是半季時的說法，不可與第 12 站後的第 4 名混寫。"
+    }
+  },
+  "media_layer": {
+    "_grade": "媒體報導（二手）。用途是呈現同一件事各家寫法的差異，不是拿來當事實依據。",
+    "previous_contract_expiry": {
+      "_what": "前一份合約到期年份，四家寫法的把握程度不同",
+      "f1com": "His previous deal is believed to have been set to expire at the end of 2027（據信）",
+      "sky_sports": "The 26-year-old Brit's previous extension, which was announced ahead of the start of the 2024 season, was understood to tie him to the team until at least the end of 2027（據了解）",
+      "motorsport_com": "Norris' previous deal ran until the end of 2027（直述，未加保留語氣）",
+      "bbc_sport": "The Briton had no need to rush his decision to commit to McLaren because his existing contract still had more than a year to run（不給年份，只說還有一年多）",
+      "urls": {
+        "sky_sports": "https://www.skysports.com/f1/news/12433/13577711/lando-norris-mclaren-driver-signs-contract-extension-until-2030-with-target-of-more-world-championships",
+        "motorsport_com": "https://www.motorsport.com/f1/news/lando-norris-extends-mclaren-deal-until-f1-2030/10850347/",
+        "bbc_sport": "https://www.bbc.com/sport/formula1/articles/cj06j11ej4lo"
+      },
+      "snapshots": "evidence/k-skysports-norris-20260831.txt、evidence/k-motorsport-norris-20260831.txt、evidence/k-bbc-norris-20260831.txt",
+      "_writer_note": "⛔ 四家並陳，不替它們裁決哪一家對。⛔ 麥拉倫官方新聞稿完全沒有提到前一份合約，這一點要寫出來。"
+    },
+    "salary": {
+      "_what": "合約金額",
+      "motorsport_com_verbatim": "Salaries are rarely revealed in F1",
+      "_writer_note": "⛔ 正文只准寫『官方沒有公布金額』與 motorsport.com 這句『F1 的薪資很少公開』。⛔ 任何具體金額、幣別、年薪估算、網路流傳數字一律不得出現，即使有媒體寫過。"
+    },
+    "bbc_interview": {
+      "_what": "BBC Sport 2026-08-29 專訪，諾里斯談衛冕",
+      "verbatim": "I'm starting the fight of defending it. I'm trying to. I'm doing my best. We all are... It's still a big mountain to climb in terms of trying to achieve it.",
+      "url": "https://www.bbc.com/sport/formula1/articles/cj06j11ej4lo",
+      "snapshot": "evidence/k-bbc-norris-20260831.txt",
+      "_writer_note": "⛔ 這是 BBC 的專訪引語，引用要標明出處與日期。⛔ 同篇提到的剩餘站數不要寫進正文（本站對『剩下 N 站』另有跨頁一致性 gate，且推算值最容易腐蝕）。"
+    }
+  },
+  "contract_terms": {
+    "_grade": "一手／官方（兩份來源逐字一致的部分）",
+    "duration": "至少到 2030 年底（官方措辭 until at least the end of 2030 / until at least 2030）",
+    "option": "含多年選擇權，可延續至 2030 年之後（multi-year option to commit beyond that date）",
+    "announced_on": "2026-08-29",
+    "announced_where": "麥拉倫科技中心（McLaren Technology Centre）年度家庭與親友開放日，由諾里斯本人向團隊宣布",
+    "years_remaining_official_wording": "for at least the next four years（官方措辭，指 2027 至 2030 這四年）",
+    "gift": "獲贈一台 MCL39，即他 2025 年奪冠賽季所駕駛的車",
+    "_writer_note": "⛔ for at least the next four years 是官方對『接下來』的算法（不含 2026 剩餘賽季），寫進正文要照官方措辭寫成「至少接下來 4 年」，不要自己改成 5 年或 4 年半。"
+  },
+  "official_silence": {
+    "_grade": "本站對一手與官方兩份快照全文檢索的結果（可窮盡驗證的否定，受檢對象就是麥拉倫官方新聞稿（一手）與 Formula1.com 報導（官方）這兩份文件）",
+    "method": "對 evidence/k-mclaren-press-release-20260829.txt 與 evidence/k-formula1com-article-20260829.txt 全文檢索 salary／worth／million／pay／fee／value 等字串",
+    "not_disclosed": [
+      "合約金額：兩份文件都沒有任何金額、幣別或估值",
+      "新合約的生效起算日：只寫到期年份，沒有寫從哪一天或哪一個賽季起算",
+      "2031 年之後：只寫有多年選擇權，沒有寫選擇權的年限、行使條件或由哪一方行使",
+      "前一份合約的到期年份：麥拉倫新聞稿完全沒提；F1 官網用的是據信（is believed to have been）"
+    ],
+    "_writer_note": "⛔ 這四項一律寫成「官方沒說」，不可寫成「查無」「尚未公布」以外的推測；⛔ 不可用其他媒體的金額估值補洞。"
+  },
+  "own_data": {
+    "_grade": "本站自有資料（L1 sqlite，由 jolpica-f1 快照決定性重建）",
+    "scope": "涵蓋範圍＝一級方程式世界錦標賽 1950 年起的分站賽事；非錦標賽賽事、青年車手計畫、測試與模擬器工作皆不在資料庫內。",
+    "method": "勝場以 position_text='1' 計；頒獎台以 position_text 為 1、2、3 計；『登錄』＝該場有參賽紀錄列，『起跑』＝登錄場次扣掉未起跑者，未起跑的判定＝該場完成圈數為 0，且名次欄記為 W（退出）或狀態明寫未起跑。",
+    "method_calibration": "這個起跑口徑的每一個判定點都對過個案：Michael Schumacher 1996 年法國站（暖胎圈引擎故障）、哈基寧 1995 年澳洲站（排位賽事故未出賽）與 2001 年法國站（暖胎圈變速箱故障）、巴頓 2015 年巴林站（起跑前 ERS 故障）、普羅斯特 1980 年南非站（練習賽受傷）、勒克萊爾 2021 年摩納哥站（傳動軸故障，自桿位未能起跑）——這些都是登錄後沒有起跑。以本口徑重算 Michael Schumacher 在法拉利＝180 場，與賓士官方新聞稿載明的紀錄由來一致；重算漢米爾頓在賓士＝246 場，與賓士官方數字一致；重算諾里斯在麥拉倫＝163 場，與麥拉倫官方新聞稿一致。",
+    "method_boundary": "已揭露的邊界：「起跑後隨即退出、資料庫記為 0 圈」的個案（例：普羅斯特 1989 年澳洲站）會被算成未起跑，新舊兩種判定方式都一樣。本站不宣稱這一欄等同官方統計，正文必須就此加註。",
+    "as_of": "2026 年第 12 站荷蘭站（2026-08-23）結束後，與官方新聞稿發布時（2026-08-29）的區間內沒有其他分站。",
+    "norris_at_mclaren": {
+      "entries": 164,
+      "starts": 163,
+      "not_started": "1 場：2026 年中國站登錄後未起跑（圈數 0）",
+      "wins": 13,
+      "podiums": 48,
+      "seasons": 8,
+      "season_span": "2019 至 2026",
+      "_reconcile": "官方新聞稿的 163 場等於本站的起跑口徑；本站車手頁公布的 164 站是登錄口徑。13 勝、48 次頒獎台兩邊完全一致。",
+      "_writer_note": "⛔ 桿位數不由本站重算：2026 年第 11、12 站的排位賽資料尚未落進本站資料庫，18 次桿位一律標明是官方數字。"
+    },
+    "mclaren_appearance_table": {
+      "_universe": "麥拉倫車隊史上所有車手，起跑口徑，資料庫涵蓋 1950 年起的世界錦標賽",
+      "rows": [
+        {
+          "driver": "諾里斯（Lando Norris）",
+          "starts": 163,
+          "entries": 164,
+          "span": "2019–2026",
+          "seasons": 8
+        },
+        {
+          "driver": "David Coulthard",
+          "starts": 150,
+          "entries": 150,
+          "span": "1996–2004",
+          "seasons": 9
+        },
+        {
+          "driver": "詹森・巴頓（Jenson Button）",
+          "starts": 136,
+          "entries": 137,
+          "span": "2010–2017",
+          "seasons": 8
+        },
+        {
+          "driver": "米卡・哈基寧（Mika Häkkinen）",
+          "starts": 131,
+          "entries": 133,
+          "span": "1993–2001",
+          "seasons": 9
+        },
+        {
+          "driver": "漢米爾頓（Lewis Hamilton）",
+          "starts": 110,
+          "entries": 110,
+          "span": "2007–2012",
+          "seasons": 6
+        },
+        {
+          "driver": "亞倫・普羅斯特（Alain Prost）",
+          "starts": 106,
+          "entries": 109,
+          "span": "1980–1989",
+          "seasons": 7
+        }
+      ],
+      "gap_to_second": 13,
+      "_writer_note": "⛔ 表格照抄，不要自己再排名次或加註『史上最多』以外的最高級形容。⛔ David Coulthard 與哈基寧的效力賽季數都是 9 季，是目前麥拉倫車手的並列最多；諾里斯目前 8 季。"
+    },
+    "mclaren_team": {
+      "constructors_titles_total": 10,
+      "constructors_titles_years": "1974、1984、1985、1988、1989、1990、1991、1998、2024、2025",
+      "consecutive_2024_2025": "2024 與 2025 連續兩年拿下車隊冠軍",
+      "drivers_champions_before_norris": "2008 年漢米爾頓",
+      "gap_years_2008_to_2025": 17,
+      "_writer_note": "⛔ 17 年是 2008 到 2025 的年份差，成品值已給，寫手不要自己再減一次。"
+    },
+    "hamilton_at_mercedes": {
+      "seasons": 12,
+      "season_span": "2013 至 2024",
+      "starts": 246,
+      "wins": 84,
+      "podiums": 153,
+      "drivers_titles": 6,
+      "drivers_titles_years": "2014、2015、2017、2018、2019、2020",
+      "_note": "漢米爾頓在賓士的 12 個賽季，是賓士車隊史上單一車手最長的任期（次長為羅斯堡 7 季）。"
+    },
+    "same_constructor_starts": {
+      "_universe": "全 F1 世界錦標賽史（1950 年起），以車手與車隊的組合計起跑場次；車隊以本站資料庫的車隊代號為準，隊名沿革不合併。",
+      "rows": [
+        {
+          "pair": "漢米爾頓 × 賓士",
+          "starts": 246,
+          "span": "2013–2024"
+        },
+        {
+          "pair": "維斯塔潘 × 紅牛",
+          "starts": 222,
+          "span": "2016–2026"
+        },
+        {
+          "pair": "Michael Schumacher × 法拉利",
+          "starts": 180,
+          "span": "1996–2006"
+        },
+        {
+          "pair": "諾里斯 × 麥拉倫",
+          "starts": 163,
+          "span": "2019–2026"
+        },
+        {
+          "pair": "勒克萊爾 × 法拉利",
+          "starts": 162,
+          "span": "2019–2026"
+        }
+      ],
+      "norris_rank": "第 4",
+      "record_confirms": "賓士官方說漢米爾頓保有「同一車隊出賽最多場」的 F1 紀錄，並載明紀錄由來是 2022 年澳洲站超越 Michael Schumacher 在法拉利的 180 場。本站以自有資料重算兩個數字都一致：漢米爾頓 246 場、Michael Schumacher 180 場。",
+      "_writer_note": "⛔ 這張表是把 163 場放進全 F1 尺規，與麥拉倫隊內出賽榜是兩張不同的表，不要混為一談。⛔ 不得推算諾里斯到 2030 年會累積幾場——未來賽曆與出賽場次都是未知數。"
+    },
+    "hamilton_at_mclaren": {
+      "seasons": 6,
+      "season_span": "2007 至 2012",
+      "starts": 110,
+      "wins": 21,
+      "podiums": 49,
+      "drivers_titles": 1,
+      "drivers_titles_years": "2008"
+    },
+    "season_2026_snapshot": {
+      "as_of": "第 12 站荷蘭站結束後",
+      "rounds_completed": 12,
+      "norris_position": 4,
+      "norris_points": 159,
+      "norris_wins_2026": 2,
+      "norris_wins_2026_races": "第 11 站匈牙利站、第 12 站荷蘭站",
+      "leader": "安東內利（Kimi Antonelli），242 分，6 勝",
+      "gap_to_leader": 83,
+      "top5": "安東內利 242 分、羅素 183 分、漢米爾頓 183 分、諾里斯 159 分、勒克萊爾 155 分",
+      "constructors": "賓士 425 分居首、法拉利 338 分次之、麥拉倫 263 分第三",
+      "_writer_note": "⛔ 只陳述積分現況與簽約時間點，不得解釋或推測續約動機與積分之間有任何因果關係——官方沒有說過這件事。⛔ 不得寫『衛冕失敗』『衛冕無望』：賽季還沒結束。"
+    },
+    "norris_personal": {
+      "dob": "1999-11-13",
+      "age_at_signing": 26,
+      "age_end_of_2030": 31,
+      "_note": "26 歲與 31 歲兩個數字官方文件都寫了（26-year-old／will be 31），與本站生日資料一致。"
+    }
+  },
+  "two_clocks": {
+    "_grade": "一手／官方（兩份文件並列即可見）",
+    "team_clock": "麥拉倫從 2017 年的青年車手計畫算起：nine years ago（9 年前），身分是測試與模擬器車手",
+    "race_clock": "F1 官網從 2019 年的正賽席位算起：合約走完會是 spent 12 years with McLaren（12 年）",
+    "why_both_valid": "兩個數字算的是不同的東西：一個是加入車隊組織的年數，一個是坐上正賽席位的賽季數。",
+    "_writer_note": "⛔ 不可裁決哪一種算法才對，兩種都要寫出來並說明各自算什麼。⛔ 9 年與 12 年都是原文給的數字，不要自己重算或延伸出第三個數字。"
+  },
+  "count_discrepancy": {
+    "_grade": "本站自有資料對帳結果",
+    "official": "163 場（官方新聞稿與 F1 官網一致）",
+    "site_driver_page": "164 站（本站車手頁的參賽場次欄）",
+    "cause": "2026 年中國站諾里斯有參賽登錄但未起跑（圈數 0），官方算的是起跑場次，本站車手頁算的是登錄場次",
+    "_writer_note": "⛔ 這一段的寫法是『兩個數字都對、算的是不同的東西』，不是『誰錯了』。⛔ 不要順手宣稱本站車手頁要改口徑——那是另一個決定，本文不做。"
+  },
+  "voice": {
+    "_why": "只給事實不給聲音，寫手會回到預設的報告腔。",
+    "reference": "小 Lin 說＋張泉靈：從具體的怪事切進去、短句、不在正文裡解釋自己的方法論。",
+    "headline_style": "小標本身就是一句事實，不是分類標籤。例：『同一天，他的年資有兩種算法』可以；『一、合約內容分析』不行。",
+    "forbidden_meta": "禁止把本站的查證紀律寫進正文。『這是官方新聞稿的說法，本站不替它加碼，也不換算成新台幣，那樣只會製造一個查無出處的假精確數字』→『官方沒有公布金額』。『本站資料庫的涵蓋範圍是世界錦標賽，因此以下數字均以此為界，且本站不對非錦標賽賽事做任何主張』→『本站資料庫只涵蓋世界錦標賽』。",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前面講的』『後者』，一律換成具體名詞（哪一站、哪一年、哪一個人）。"
+  },
+  "must_not_claim": [
+    "不可把 at least the end of 2030（至少到 2030 年底）寫成『簽到 2030 年』或『5 年約』——官方措辭是至少，且另有多年選擇權。",
+    "不可寫出任何合約金額、薪資、估值或幣別——兩份官方文件都沒有，任何數字都會是編的。",
+    "不可把 F1 官網『據信原合約到 2027 年底』寫成確定事實，引用時要保留推測語氣並標明是 F1 官網的說法。",
+    "不可解釋或推測續約的動機、談判過程、誰主動、有沒有其他車隊接觸——官方沒說，本站也沒有來源。",
+    "不可把 2026 年的積分落後與這份合約做因果連結（例如『因為衛冕不順所以簽長約』）。",
+    "不可寫『衛冕失敗』『衛冕無望』『無緣衛冕』——2026 賽季尚未結束。",
+    "不可用無名歸因：專家認為、業界人士指出、有分析認為、消息人士、據了解、外界普遍認為，全部禁用（verify-sources 會擋）。",
+    "不可宣稱諾里斯是麥拉倫史上效力最久的車手——以賽季數計目前是 8 季，David Coulthard 與哈基寧各 9 季；只有出賽場次是目前最多。",
+    "不可把桿位 18 次寫成本站算出來的——2026 年第 11、12 站排位資料尚未進本站資料庫，這個數字掛官方。",
+    "不可自行計算任何數字（年數差、場次差、勝率、每季平均）——需要的成品值都在本檔，沒有的就不要寫。",
+    "不可使用官方 logo、車隊塗裝、車手肖像或任何官方素材描述；封面與插圖一律自製資料視覺。",
+    "不可把漢米爾頓在賓士的 12 季與諾里斯的合約長度寫成成就對照（84 勝對 13 勝之類的優劣判斷）——F1 官網做的對照只有任期長度這一項。",
+    "不可宣稱這份合約讓諾里斯成為麥拉倫史上任期最長的車手——那要等合約真的走完，寫成假設句並標明前提。",
+    "不可寫皮亞斯特里的合約年限是麥拉倫官方宣布的——麥拉倫 2025 年 3 月那份官方稿只寫多年（multi-year），2028 這個年份出自 F1 官網與媒體。",
+    "不可寫漢米爾頓加入麥拉倫青年車手計畫的確切年份——官方措辭只有將近 10 年（nearly 10 years），本站沒有可驗證的一手出處。",
+    "不可寫維斯塔潘那份合約含選擇權或退出條款——紅牛官方稿與 F1 官網稿都沒有提到。",
+    "不可寫本季剩餘站數（剩下 N 站）——推算值最容易腐蝕，本站另有跨頁一致性 gate 在盯這個數字。",
+    "不可推算諾里斯到 2030 年會累積多少場出賽、多少勝或多少積分——未來賽曆與結果都是未知數。"
+  ],
+  "required_sections": [
+    "## 常見問題（下轄 ### 問答，至少 4 題）",
+    "## 資料來源（分級列出一手／官方／媒體／本站自有資料，每條可點擊，文末標查證日 2026-08-31）"
+  ],
+  "interlinks": {
+    "_note": "站內可連結的頁面，寫作時自然帶入即可，不要硬塞。",
+    "targets": [
+      {
+        "path": "/drivers/norris/",
+        "label": "諾里斯生涯數據"
+      },
+      {
+        "path": "/drivers/hamilton/",
+        "label": "漢米爾頓生涯數據"
+      },
+      {
+        "path": "/constructors/mclaren/",
+        "label": "麥拉倫車隊生涯數據"
+      },
+      {
+        "path": "/articles/f1-2026-r12-dutch-report/",
+        "label": "荷蘭站戰報"
+      },
+      {
+        "path": "/articles/f1-2026-half-season-review/",
+        "label": "2026 上半季盤點"
+      },
+      {
+        "path": "/articles/f1-2026-names-glossary/",
+        "label": "繁中譯名對照表"
+      }
+    ]
+  },
+  "zh_names": {
+    "_source": "scripts/driver-zh.json 與 team-zh.json 定版，全站唯一資料源",
+    "norris": "諾里斯（Lando Norris）",
+    "hamilton": "漢米爾頓（Lewis Hamilton）",
+    "piastri": "皮亞斯特里（Oscar Piastri）",
+    "verstappen": "維斯塔潘（Max Verstappen）",
+    "antonelli": "安東內利（Kimi Antonelli）",
+    "russell": "羅素（George Russell）",
+    "leclerc": "勒克萊爾（Charles Leclerc）",
+    "mclaren": "麥拉倫（McLaren）",
+    "mercedes": "賓士（Mercedes）",
+    "ferrari": "法拉利（Ferrari）",
+    "red_bull": "紅牛（Red Bull）",
+    "_writer_note": "⛔ 人名首次出現用本站定版字串＋英文原名，之後只用姓（站內已核准賽季導言的慣例，例：「亞倫・普羅斯特（Alain Prost）」→ 之後「普羅斯特」）。⛔ 未列在定版表的人名一律保留英文原名，不得自創中譯。",
+    "button": "詹森・巴頓（Jenson Button）",
+    "hakkinen": "米卡・哈基寧（Mika Häkkinen）",
+    "prost": "亞倫・普羅斯特（Alain Prost）",
+    "rosberg": "尼可・羅斯堡（Nico Rosberg）",
+    "no_zh": "David Coulthard、Michael Schumacher、Zak Brown、Andrea Stella——本站譯名定版表沒有這幾個條目，一律英文原名"
+  },
+  "_revision_note": "v2（2026-08-31）：併入研究棒補到的五份一手來源（紅牛/維斯塔潘、麥拉倫/皮亞斯特里 2025-03、賓士/漢米爾頓 In Numbers、麥拉倫青年車手計畫、麥拉倫半季訪談）＋媒體層四家對前約年份的不同把握程度＋同一車隊出賽榜全史對照，並補 5 條禁區。 v3（同日）：起跑口徑修正——原判定漏掉「圈數 0 且名次欄記為 W」這一類（Michael Schumacher 1996 年法國站暖胎圈引擎故障未起跑，狀態欄寫的是 Engine）。修正後以賓士官方的 180 場與 246 場、麥拉倫官方的 163 場三個數字校準通過。連帶更新麥拉倫出賽榜（巴頓 137→136、哈基寧 133→131、普羅斯特 107→106）與同一車隊出賽榜（Michael Schumacher 181→180、勒克萊爾 163→162，諾里斯由並列第 4 改為第 4）。 v4（同日，Terra R1 後）：①口徑說明就地重寫——method_calibration 改為逐案列舉，method_boundary 更正為「新舊兩種判定都會排除起跑後隨即退出的 0 圈個案」；②表格列的人名改用定版字串或英文原名；③來源等級不再把 Formula1.com 稱為一手。"
+}

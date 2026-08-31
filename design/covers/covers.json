@@ -71,6 +71,12 @@
       "allow_claims": {
         "次數": "統計欄位名（「領先易主次數」），與 R11 同例；承重數字 6 已對帳。"
       }
+    },
+    {
+      "slug": "f1-2026-norris-mclaren-2030-extension",
+      "html": "cover-norris-2030.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

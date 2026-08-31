@@ -381,7 +381,7 @@ def _visible_neighbor(parts, pos, step, limit):
 
 def _linkify(body_html, index, href_of, key_of, cache_key=None,
              allow_table_first_td=False, blocker_target=None, blocker_tokens=frozenset(),
-             blocked_prefixes=frozenset()):
+             blocked_prefixes=frozenset(), veto=None):
     """保護區感知的行內連結替換——正向互鏈的**唯一**實作（車手與分站共用）。
 
     index＝{匹配字串: 目標值}；href_of(目標值)→URL；key_of(目標值)→去重鍵
@@ -420,6 +420,8 @@ def _linkify(body_html, index, href_of, key_of, cache_key=None,
                 if at <= cstart and at + len(blocked) >= cend:
                     return token
                 at = context.find(blocked, at + 1, stop)
+        if veto is not None and veto(context, cstart, cend):
+            return token
         key = key_of(target)
         if key in used or not _boundary_ok(m.string, m.start(), m.end(), token):
             return token
@@ -514,14 +516,41 @@ def linkify_rounds(body_html, season, index=None):
     season＝該文的賽季脈絡（article_round_season 決定）；None → 原封不動回傳（寧漏勿錯連）。
     linked＝依出現順序的 [(year, round, matched_text)]；每篇每場次只連第一次出現。
     呼叫順序在 linkify() **之後**：先加的車手連結是 <a>（保護區），不會被巢狀包一層。
+
+    ☠️ **句子裡明寫的年份優先於 frontmatter 的 season**（2026-08-31 諾里斯續約文實例）：
+    一篇 `season: 2026` 的文章寫「普羅斯特 1989 年澳洲站」「2022 年他在澳洲站超越……」，
+    舊版會把這兩處都連到 **2026** 年的澳洲站——讀者點進去看到的是另一場比賽。
+    frontmatter 的 season 只是「沒有其他線索時」的預設，不是覆蓋句子本身的權威。
+    現在 token 前 `_YEAR_WINDOW` 個可見字元內若出現「<四位數> 年」且與 season 不同，
+    整個 token 不連（寧漏勿錯連——本站互鏈的既定教義）。
     """
     default = index is None
     index = round_link_index(season) if default else index
     key = ("round_pattern", season) if default and index else None
     out, hits = _linkify(body_html, index,
                          href_of=lambda t: f"/seasons/{t[0]}/rounds/{t[1]}/",
-                         key_of=lambda t: t, cache_key=key)
+                         key_of=lambda t: t, cache_key=key,
+                         veto=_other_year_veto(season))
     return out, [(t[0], t[1], tok) for t, tok in hits]
+
+
+# token 往前看幾個可見字元找「明寫的年份」。24 是手調值：夠含住「2022 年他在」這類
+# 中間夾了幾個字的寫法，又不至於跨到上一句去。放寬只會多漏連，不會錯連。
+_YEAR_WINDOW = 24
+_EXPLICIT_YEAR = re.compile(r"(\d{4})\s*年")
+
+
+def _other_year_veto(season):
+    """回傳 veto(context, cstart, cend)：token 前方明寫的年份與 season 不同 → 不連。"""
+    if not season:
+        return None
+
+    def veto(context, cstart, _cend):
+        window = context[max(0, cstart - _YEAR_WINDOW):cstart]
+        found = _EXPLICIT_YEAR.findall(window)
+        return bool(found) and int(found[-1]) != int(season)
+
+    return veto
 
 
 def linkify_teams(body_html, index=None):
