@@ -71,18 +71,40 @@ FIRST_YEAR, LAST_YEAR = gs.FIRST_YEAR, gs.LAST_YEAR
 # 就地「治好」，讓 drift gate 失去意義。名單放在這裡＝新增 owner 時只有這一處要改。
 PAGE_OWNERS = (rc, gs, p0, dr, cg, ci)
 
+# 輸出根目錄註冊表（單一來源）：名稱 → 取得「現在實際會寫到哪」。
+# ⭐ pub_override 依它重導、回歸測試依它決定要驗哪些目錄——**新增輸出目標只加在這裡一處**。
+# ☠️ 為什麼要有這張表：同一份「輸出目標清單」在程式與測試各手寫一次，就會有一邊漏。
+# 2026-09-03 同一病灶已三犯（測試重導 PUB 漏 ci／publish 寫 4 個 part 而還原清單只有 3 個／
+# 探針掃描範圍手寫成只有 public-racing）。斷言若自己列舉目錄，它就是第四份手寫清單。
+OUTPUT_ROOTS = {
+    "pages": lambda: rc.PUB,
+    "sitemap_parts": lambda: rc.sitemap_parts_dir(),
+}
+
 
 @contextlib.contextmanager
 def pub_override(target):
-    """把全部頁面 owner 的 PUB 導到 target，離開時還原。測試一律用它，不要自己列名單。"""
+    """把**所有輸出根目錄**導到 target 底下，離開時還原。測試一律用它，不要自己列名單。
+
+    ☠️ 2026-09-03：這裡有兩個輸出根目錄，不是一個——
+      ・頁面 → 各 owner 的 PUB（`target` 本身）
+      ・sitemap part → `rc.sitemap_parts_dir()`（正式路徑 data/sitemap-parts/，**在 PUB 之外**）
+    早一版只導 PUB，於是 `selective_regen(publish=True)` 仍把四個 part 寫進版控目錄；
+    其中 seasons／drivers／constructors 被測試自己還原（只留 mtime churn），circuits 因為
+    不在那份手寫還原清單裡而被永久改寫。⇒ **加新的輸出目標時要加在這裡**，
+    不要在測試裡各自 save/restore。
+    """
     orig = [m.PUB for m in PAGE_OWNERS]
+    orig_parts = rc.SITEMAP_PARTS_OVERRIDE
     for m in PAGE_OWNERS:
         m.PUB = target
+    rc.SITEMAP_PARTS_OVERRIDE = pathlib.Path(target) / "_sitemap-parts"
     try:
         yield target
     finally:
         for m, p in zip(PAGE_OWNERS, orig):
             m.PUB = p
+        rc.SITEMAP_PARTS_OVERRIDE = orig_parts
 
 
 # ---------- 指紋（db.sqlite 切片 → SHA-256） ----------

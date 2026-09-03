@@ -334,10 +334,16 @@ class SelectiveRegenTests(unittest.TestCase):
         self.assertEqual(len(res["changed_constructors"]), len(re_mod.CONSTRUCTOR_IDS))
 
     def test_publish_writes_sitemap_parts(self):
-        parts = ROOT / "data" / "sitemap-parts"
+        # ☠️ 2026-09-03 之前這個測試寫進**版控裡**的 data/sitemap-parts/，再手動還原
+        # 存下來的三個檔（seasons／drivers／constructors）——publish 區塊其實寫四個，
+        # circuits 不在那份手寫清單裡，於是每跑一次全套測試就把 circuits.txt 永久改寫一次。
+        # 現在整段 save/restore 拿掉：setUp 的 pub_override 已把 part 目錄一起導到 tmp。
+        # 測試不該碰真目錄，即使會還原也不行——行程中途死掉就留髒，而且 mtime churn 會讓
+        # mtime 型探針失去判別力（見 TestsDoNotTouchRepoArtifactsTests）。
+        parts = rc.sitemap_parts_dir()
+        self.assertFalse(parts.is_relative_to(ROOT / "data"),
+                         f"part 目錄沒被導開，還指著版控目錄：{parts}")
         sp, dp, cp = parts / "seasons.txt", parts / "drivers.txt", parts / "constructors.txt"
-        pre = [p.read_bytes() if p.exists() else None for p in (sp, dp, cp)]
-        self.addCleanup(self._restore, (sp, dp, cp), pre)
         con = self._con(self.dbA)
         try:
             re_mod.selective_regen(con, full=True, fp_path=self.fp, publish=True)
@@ -356,14 +362,10 @@ class SelectiveRegenTests(unittest.TestCase):
         self.assertIn(f"{rc.BASE}/constructors/", c_urls)
         self.assertEqual(len([u for u in c_urls if u != f"{rc.BASE}/constructors/"]),
                          len(re_mod.CONSTRUCTOR_IDS))
-
-    @staticmethod
-    def _restore(paths, pre):
-        for p, b in zip(paths, pre):
-            if b is None:
-                p.unlink(missing_ok=True)
-            else:
-                p.write_bytes(b)
+        # circuits 也是 publish 區塊的一員——它當年被漏掉正是這個測試會弄髒 repo 的原因，
+        # 所以連同斷言一起補上，避免又變成「寫了但沒人驗」的那一個。
+        self.assertIn(f"{rc.BASE}/circuits/",
+                      (parts / "circuits.txt").read_text(encoding="utf-8").splitlines())
 
 
 # ============================================================
@@ -607,41 +609,146 @@ class _Ret:
 # ============================================================
 
 class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
-    """釘住：全量重生在 pub_override 之下，一個位元組都不准落到 public-racing/。
+    """釘住：全量重生在 pub_override 之下，一個位元組都不准落到**任何**版控輸出目錄。
 
-    病灶：測試把 PUB 逐一列名重導，漏了 ci（circuits owner），於是每跑一次全套測試
-    就把 79 個賽道頁寫進版控裡的產物目錄。內容碰巧一樣時 git status 完全看不出來——
-    要比 mtime 才抓得到，所以它安靜活了很久。危害不只是弄髒工作樹：產物一旦與生成器
-    有落差，跑測試會把落差就地「治好」，drift gate 從此永遠是綠的。
+    病灶（2026-09-03，同一族三犯）：
+      ① 測試把 PUB 逐一列名重導，漏了 ci（circuits owner）→ 每跑一次全套測試就有 79 個
+         賽道頁被寫進版控產物，而且是測試合成資料庫產生的（含捏造的共同優勝者）。
+      ② `selective_regen(publish=True)` 寫四個 sitemap part，但當年那個測試的手動還原清單
+         只有三個 → circuits.txt 每跑一次就被永久改寫一次。
+      ③ 探針的掃描範圍被手寫成只有 public-racing/ → 上面②在探針下完全隱形。
+
+    ⭐ 射程一律從 `re_mod.OUTPUT_ROOTS` 推導，**不在這裡列舉目錄**——斷言若自己列舉，
+    它就是第四份手寫清單，下一個輸出目標照樣會漏。
     """
+
+    def _real_roots(self):
+        """尚未重導時的真實輸出根目錄（＝版控裡那幾個）。"""
+        return {name: getter() for name, getter in re_mod.OUTPUT_ROOTS.items()}
+
+    @staticmethod
+    def _snap(root):
+        root = pathlib.Path(root)
+        if not root.exists():
+            return {}
+        return {p: (p.stat().st_mtime_ns, p.stat().st_size)
+                for p in root.rglob("*") if p.is_file()}
 
     def test_full_regen_under_override_leaves_repo_artifacts_untouched(self):
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         pub = tmp / "pub"
-        real = re_mod.rc.PUB
-        before = {p: p.stat().st_mtime_ns for p in real.rglob("*") if p.is_file()}
+        real = self._real_roots()
+        self.assertIn("sitemap_parts", real,
+                      "OUTPUT_ROOTS 少了 sitemap_parts，本測試的射程會退回只驗頁面")
+        before = {name: self._snap(root) for name, root in real.items()}
 
         con = sqlite3.connect(str(_copy_db(tmp)))
         con.row_factory = sqlite3.Row
+        redirected = {}
         try:
+            # publish=True 才會寫 sitemap part——用最大射程跑，否則驗不到②那一型。
             with re_mod.pub_override(pub):
-                re_mod.selective_regen(con, full=True, fp_path=tmp / "fp.json")
+                # 重導後的實際路徑一律從註冊表取回，不在測試裡寫死目錄名。
+                redirected = {name: pathlib.Path(getter())
+                              for name, getter in re_mod.OUTPUT_ROOTS.items()}
+                re_mod.selective_regen(con, full=True, fp_path=tmp / "fp.json",
+                                       publish=True)
         finally:
             con.close()
 
-        after = {p: p.stat().st_mtime_ns for p in real.rglob("*") if p.is_file()}
-        touched = sorted(str(p.relative_to(real)) for p, t in after.items()
-                         if before.get(p) != t)
-        added = sorted(str(p.relative_to(real)) for p in after if p not in before)
-        self.assertEqual(touched, [], f"重生寫進了版控產物（改寫）：{touched[:5]}")
-        self.assertEqual(added, [], f"重生寫進了版控產物（新增）：{added[:5]}")
+        for name, root in real.items():
+            after = self._snap(root)
+            touched = sorted(str(p) for p, v in after.items() if before[name].get(p) != v)
+            added = sorted(str(p) for p in after if p not in before[name])
+            self.assertEqual(touched, [], f"重生改寫了版控輸出（{name}）：{touched[:5]}")
+            self.assertEqual(added, [], f"重生新增了版控輸出（{name}）：{added[:5]}")
 
         # 陽性對照：證明上面的「零改動」不是因為根本沒生成任何東西。
         # 少了這一段，把 selective_regen 改成 return 也會全綠。
         for kind in ("seasons", "drivers", "constructors", "circuits"):
             self.assertTrue(any((pub / kind).rglob("index.html")),
                             f"重生沒有產出 {kind} 頁，前面的零改動不成立")
+        # 陽性對照（sitemap part 那一路）：part 檔要真的落在被導開的目錄裡。
+        parts = redirected["sitemap_parts"]
+        self.assertTrue(any(parts.glob("*.txt")),
+                        f"publish=True 沒有把 sitemap part 寫到被導開的目錄 {parts}，"
+                        "前面的零改動不成立")
+
+    def test_no_write_target_lands_inside_the_repo_during_regen(self):
+        """攔寫入端本身：重生期間每一個「要寫到哪」都不准落在 repo 裡。
+
+        為什麼還要這一道（前兩道不夠）：
+        ・「零改動」那道靠比 mtime，對**內容相同就跳過**的寫入端（`write_sitemap_part`）
+          是盲的——目標指著版控目錄但內容剛好一樣時它靜默 no-op，mtime 不動、測試全綠。
+          實測：把 pub_override 的 parts 重導拿掉，那道測試仍然全綠。
+        ・「重導」那道只驗 `OUTPUT_ROOTS` 裡列到的目標，**註冊表本身漏一個就驗不到**。
+        這一道不依賴 mtime、也不依賴註冊表完整，所以能擋住「新增了輸出目標又忘了註冊」。
+
+        ⚠️ 已知邊界：只攔 `Path.write_text`／`write_bytes` 與 `rc.write_sitemap_part`。
+        走 `open(..., "w")` 的寫入攔不到；本 repo 的生成器目前都不走那條路（若日後改了，
+        這道測試的射程就不再等於它宣稱的範圍——這正是上一輪踩到的那種措辭寬於證據）。
+        """
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        pub = tmp / "pub"
+        repo = pathlib.Path(ROOT).resolve()
+        seen = []
+
+        orig_text, orig_bytes = pathlib.Path.write_text, pathlib.Path.write_bytes
+        orig_part = re_mod.rc.write_sitemap_part
+
+        def spy_text(self_p, *a, **k):
+            seen.append(pathlib.Path(self_p).resolve())
+            return orig_text(self_p, *a, **k)
+
+        def spy_bytes(self_p, *a, **k):
+            seen.append(pathlib.Path(self_p).resolve())
+            return orig_bytes(self_p, *a, **k)
+
+        def spy_part(owner, urls):
+            # 這一支即使不實際寫檔也要記——它的「目標目錄」才是我們要驗的東西。
+            seen.append((re_mod.rc.sitemap_parts_dir() / f"{owner}.txt").resolve())
+            return orig_part(owner, urls)
+
+        con = sqlite3.connect(str(_copy_db(tmp)))
+        con.row_factory = sqlite3.Row
+        pathlib.Path.write_text, pathlib.Path.write_bytes = spy_text, spy_bytes
+        re_mod.rc.write_sitemap_part = spy_part
+        try:
+            with re_mod.pub_override(pub):
+                re_mod.selective_regen(con, full=True, fp_path=tmp / "fp.json",
+                                       publish=True)
+        finally:
+            pathlib.Path.write_text, pathlib.Path.write_bytes = orig_text, orig_bytes
+            re_mod.rc.write_sitemap_part = orig_part
+            con.close()
+
+        inside = sorted({str(p) for p in seen if p.is_relative_to(repo)
+                         and not p.is_relative_to(tmp.resolve())})
+        self.assertEqual(inside, [], f"重生把寫入目標指向 repo 內：{inside[:5]}")
+        # 陽性對照：spy 真的攔到東西了，否則「零命中」只是因為沒攔到任何寫入。
+        self.assertGreater(len(seen), 100,
+                           f"spy 只攔到 {len(seen)} 次寫入，太少＝攔截沒生效，"
+                           "前面的零命中不成立")
+
+    def test_pub_override_redirects_every_registered_output_root(self):
+        """`OUTPUT_ROOTS` 裡每一個輸出根目錄，在 pub_override 之下都必須指到 target 底下。
+
+        這道測試補的是「註冊表加了新目標，但 pub_override 忘了重導它」——
+        那種情況下上面那道測試會拿真目錄當 target 去比對，看起來仍然全綠。
+        """
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        target = tmp / "pub"
+        outside = []
+        with re_mod.pub_override(target):
+            for name, getter in re_mod.OUTPUT_ROOTS.items():
+                root = pathlib.Path(getter()).resolve()
+                if not root.is_relative_to(tmp.resolve()):
+                    outside.append((name, str(root)))
+        self.assertEqual(outside, [],
+                         f"pub_override 沒有重導這些已註冊的輸出根目錄：{outside}")
 
     def test_page_owners_covers_every_module_with_a_pub(self):
         """PAGE_OWNERS 要涵蓋 regen 模組圖裡每一個有 PUB 屬性的生成器模組。
