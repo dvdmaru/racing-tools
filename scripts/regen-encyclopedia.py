@@ -24,6 +24,7 @@ data/f1/page-fingerprints.json。跑時重算現況指紋 vs 上次：
 （invariants／verdicts／golden as_of），全過才 selective_regen；回傳的變更頁 URL 供 IndexNow。
 """
 import argparse
+import contextlib
 import hashlib
 import importlib.util
 import json
@@ -62,6 +63,26 @@ CONSTRUCTOR_IDS = cg.CONSTRUCTOR_IDS
 # 賽道頁名單的單一來源＝append-only slug 註冊表（與 db circuits 表由 ci.gate_registry 對齊）。
 CIRCUIT_IDS = ci.CIRCUIT_IDS
 FIRST_YEAR, LAST_YEAR = gs.FIRST_YEAR, gs.LAST_YEAR
+
+# 會往磁碟寫頁面的模組全集（＝selective_regen 一次全量重生會碰到的 owner）。
+# ☠️ 2026-09-03：測試把 PUB 逐一列名重導到 tmp，漏了 ci，於是每跑一次全套測試就把
+# 79 個 circuits 頁**寫進版控裡的 public-racing/**。內容剛好一樣時 git status 看不出來
+# （得比 mtime 才抓得到），所以它安靜活了很久；一旦產物與生成器有落差，跑測試會把落差
+# 就地「治好」，讓 drift gate 失去意義。名單放在這裡＝新增 owner 時只有這一處要改。
+PAGE_OWNERS = (rc, gs, p0, dr, cg, ci)
+
+
+@contextlib.contextmanager
+def pub_override(target):
+    """把全部頁面 owner 的 PUB 導到 target，離開時還原。測試一律用它，不要自己列名單。"""
+    orig = [m.PUB for m in PAGE_OWNERS]
+    for m in PAGE_OWNERS:
+        m.PUB = target
+    try:
+        yield target
+    finally:
+        for m, p in zip(PAGE_OWNERS, orig):
+            m.PUB = p
 
 
 # ---------- 指紋（db.sqlite 切片 → SHA-256） ----------

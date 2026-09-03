@@ -215,13 +215,14 @@ class SelectiveRegenTests(unittest.TestCase):
         self.addCleanup(shutil.rmtree, self.tmp)
         self.fp = self.tmp / "fp.json"
         self.pub = self.tmp / "pub"
-        # cg.PUB 也要接管：/constructors/** 由專用生成器生成。
-        self._orig_pub = (gs.PUB, dr.PUB, rc.PUB, p0.PUB, re_mod.cg.PUB)
-        gs.PUB = dr.PUB = rc.PUB = p0.PUB = re_mod.cg.PUB = self.pub
+        # ⚠️ 一律用 re_mod.pub_override：自己列 PUB 名單會漏（漏過 ci＝circuits，
+        # 害全套測試把 79 個賽道頁寫進版控產物目錄）。新增 owner 只改 PAGE_OWNERS。
+        self._pub_ctx = re_mod.pub_override(self.pub)
+        self._pub_ctx.__enter__()
         self.dbA = _copy_db(self.tmp)
 
     def tearDown(self):
-        gs.PUB, dr.PUB, rc.PUB, p0.PUB, re_mod.cg.PUB = self._orig_pub
+        self._pub_ctx.__exit__(None, None, None)
 
     def _con(self, db):
         c = sqlite3.connect(str(db))
@@ -273,6 +274,12 @@ class SelectiveRegenTests(unittest.TestCase):
         self.assertTrue(res["index_drivers"])
         self.assertEqual(res["changed_constructors"], ["mercedes"])
         self.assertTrue(res["index_constructors"])
+        # 賽道線：2026 第 11 站在匈牙利站，多一個本賽道勝場 → 該賽道頁與賽道索引都要變。
+        # ☠️ 2026-09-03 之前這三行不存在，而且下面的預期集合也沒有 circuits——不是因為
+        # 賽道頁真的沒變，是因為 ci.PUB 沒被重導，賽道頁被寫到**版控裡的產物目錄**去了，
+        # 這個暫存目錄裡自然看不到。斷言看起來全綠，其實整條賽道線不在射程內。
+        self.assertEqual(res["changed_circuits"], ["hungaroring"])
+        self.assertTrue(res["index_circuits"])
 
         rewritten = {str(p.relative_to(self.pub)) for p, (m, _) in snap.items()
                      if p.stat().st_mtime_ns != m}
@@ -281,7 +288,9 @@ class SelectiveRegenTests(unittest.TestCase):
             return (rel.startswith("seasons/2026/") or rel == "seasons/index.html"
                     or rel == "drivers/index.html" or rel == "drivers/hamilton/index.html"
                     or rel == "constructors/index.html"
-                    or rel == "constructors/mercedes/index.html")
+                    or rel == "constructors/mercedes/index.html"
+                    or rel == "circuits/index.html"
+                    or rel == "circuits/hungaroring/index.html")
         stray = [r for r in rewritten if not _expected(r)]
         self.assertEqual(stray, [], f"重寫了預期集合外的頁：{stray[:10]}")
         # 1950–2025 歷史賽季頁 byte-identical 零重寫
@@ -297,12 +306,21 @@ class SelectiveRegenTests(unittest.TestCase):
             if rel.startswith("drivers/") and rel not in (
                     "drivers/index.html", "drivers/hamilton/index.html"):
                 self.assertEqual(p.stat().st_mtime_ns, m, f"非受影響車手頁被重寫：{rel}")
-        # 預期集合確有重寫（2026 總覽 + hamilton 頁 + 索引）
+        # 非受影響賽道頁零重寫（只有匈牙利站該動）
+        for p, (m, b) in snap.items():
+            rel = str(p.relative_to(self.pub))
+            if rel.startswith("circuits/") and rel not in (
+                    "circuits/index.html", "circuits/hungaroring/index.html"):
+                self.assertEqual(p.stat().st_mtime_ns, m, f"非受影響賽道頁被重寫：{rel}")
+                self.assertEqual(p.read_bytes(), b, f"非受影響賽道頁內容變動：{rel}")
+        # 預期集合確有重寫（2026 總覽 + hamilton 頁 + 匈牙利站 + 索引）
         self.assertIn("seasons/2026/index.html", rewritten)
         self.assertIn("drivers/hamilton/index.html", rewritten)
         self.assertIn("drivers/index.html", rewritten)
         self.assertIn("constructors/mercedes/index.html", rewritten)
         self.assertIn("constructors/index.html", rewritten)
+        self.assertIn("circuits/hungaroring/index.html", rewritten)
+        self.assertIn("circuits/index.html", rewritten)
 
     def test_full_flag_ignores_fingerprints(self):
         self._full_build()
@@ -582,6 +600,62 @@ class UpdateRacingDormantTests(unittest.TestCase):
 class _Ret:
     def __init__(self, rc):
         self.returncode = rc
+
+
+# ============================================================
+# 6. 測試不得寫進版控產物（2026-09-03；2026-08-03 同型事故的復發）
+# ============================================================
+
+class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
+    """釘住：全量重生在 pub_override 之下，一個位元組都不准落到 public-racing/。
+
+    病灶：測試把 PUB 逐一列名重導，漏了 ci（circuits owner），於是每跑一次全套測試
+    就把 79 個賽道頁寫進版控裡的產物目錄。內容碰巧一樣時 git status 完全看不出來——
+    要比 mtime 才抓得到，所以它安靜活了很久。危害不只是弄髒工作樹：產物一旦與生成器
+    有落差，跑測試會把落差就地「治好」，drift gate 從此永遠是綠的。
+    """
+
+    def test_full_regen_under_override_leaves_repo_artifacts_untouched(self):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        pub = tmp / "pub"
+        real = re_mod.rc.PUB
+        before = {p: p.stat().st_mtime_ns for p in real.rglob("*") if p.is_file()}
+
+        con = sqlite3.connect(str(_copy_db(tmp)))
+        con.row_factory = sqlite3.Row
+        try:
+            with re_mod.pub_override(pub):
+                re_mod.selective_regen(con, full=True, fp_path=tmp / "fp.json")
+        finally:
+            con.close()
+
+        after = {p: p.stat().st_mtime_ns for p in real.rglob("*") if p.is_file()}
+        touched = sorted(str(p.relative_to(real)) for p, t in after.items()
+                         if before.get(p) != t)
+        added = sorted(str(p.relative_to(real)) for p in after if p not in before)
+        self.assertEqual(touched, [], f"重生寫進了版控產物（改寫）：{touched[:5]}")
+        self.assertEqual(added, [], f"重生寫進了版控產物（新增）：{added[:5]}")
+
+        # 陽性對照：證明上面的「零改動」不是因為根本沒生成任何東西。
+        # 少了這一段，把 selective_regen 改成 return 也會全綠。
+        for kind in ("seasons", "drivers", "constructors", "circuits"):
+            self.assertTrue(any((pub / kind).rglob("index.html")),
+                            f"重生沒有產出 {kind} 頁，前面的零改動不成立")
+
+    def test_page_owners_covers_every_module_with_a_pub(self):
+        """PAGE_OWNERS 要涵蓋 regen 模組圖裡每一個有 PUB 屬性的生成器模組。
+
+        新增一個 owner 卻忘了加進 PAGE_OWNERS，pub_override 就會再漏一次——
+        這道測試就是為了讓那個「忘了」當場紅燈，而不是等到產物被偷寫。
+        """
+        import types
+        have_pub = {name for name, obj in vars(re_mod).items()
+                    if isinstance(obj, types.ModuleType) and hasattr(obj, "PUB")}
+        covered = {name for name, obj in vars(re_mod).items()
+                   if isinstance(obj, types.ModuleType) and obj in re_mod.PAGE_OWNERS}
+        self.assertEqual(have_pub - covered, set(),
+                         f"有 PUB 卻不在 PAGE_OWNERS：{sorted(have_pub - covered)}")
 
 
 if __name__ == "__main__":

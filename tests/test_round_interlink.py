@@ -616,8 +616,10 @@ class RoundMentionFingerprintTests(unittest.TestCase):
     def test_selective_regen_rewrites_only_that_round_page(self):
         pub = self.tmp / "pub"
         fp = self.tmp / "fp.json"
-        orig = (rc.PUB, gs.PUB, p0.PUB, dr.PUB, re_mod.cg.PUB)
-        rc.PUB = gs.PUB = p0.PUB = dr.PUB = re_mod.cg.PUB = pub
+        # ⚠️ 一律用 re_mod.pub_override：自己列 PUB 名單會漏（漏過 ci＝circuits，
+        # 害全套測試把 79 個賽道頁寫進版控產物目錄）。新增 owner 只改 PAGE_OWNERS。
+        pub_ctx = re_mod.pub_override(pub)
+        pub_ctx.__enter__()
 
         def regen(**kw):
             con = sqlite3.connect(str(self.db))
@@ -648,7 +650,7 @@ class RoundMentionFingerprintTests(unittest.TestCase):
             self.assertIn('href="/articles/synthetic-hungary-e2e/"', page)
             self.assertIn("匈牙利站逐圈觀察", page)
         finally:
-            rc.PUB, gs.PUB, p0.PUB, dr.PUB, re_mod.cg.PUB = orig
+            pub_ctx.__exit__(None, None, None)
 
 
 if __name__ == "__main__":
