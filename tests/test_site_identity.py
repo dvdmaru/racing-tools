@@ -55,10 +55,15 @@ class TestSisterSiteInterlink(unittest.TestCase):
     全家族的 GSC pending。所以這道測試釘的不是排版，是**發現路徑不能被靜默拿掉**。
     """
 
-    # twtools 生態系八站（不含本站自己）。改名可以改文案，網域不准消失。
+    # twtools 生態系（不含本站自己）。改名可以改文案，網域不准消失。
+    # 2026-09-03 補 health（8/28 上線）與 tender（9/3 上線）——這兩站原本漏列六天／當天，
+    # 是害 racing 自己隱形三個月的同一個「清單型設定沒有完工狀態」缺陷再度發作。
+    # 把新站釘進這道 gate，是目前唯一會在漏列時真的紅燈的機制（寫在註解裡攔不住）。
     REQUIRED_HOSTS = {
         "aire.twtools.cc", "tree.twtools.cc", "foootball.twtools.cc",
-        "baseball.twtools.cc", "basketball.twtools.cc", "shhhh.cc", "dvdmaru.com",
+        "baseball.twtools.cc", "basketball.twtools.cc",
+        "health.twtools.cc", "tender.twtools.cc",
+        "shhhh.cc", "dvdmaru.com",
     }
 
     @staticmethod

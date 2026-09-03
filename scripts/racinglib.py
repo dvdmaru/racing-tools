@@ -287,6 +287,8 @@ SISTER_SITES = [
     ("@foootball — 2026 世界盃賽程", "https://foootball.twtools.cc/"),
     ("@baseball — 中職 CPBL＋MLB 深度戰報", "https://baseball.twtools.cc/"),
     ("籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據", "https://basketball.twtools.cc/"),
+    ("健檢數據誌 — 健檢報告上的數字，各機構判準並列", "https://health.twtools.cc/"),
+    ("標案雷達 — 網通設備標案查詢、押標金試算與規格預檢", "https://tender.twtools.cc/"),
     ("Shhhh — 專業短網址管理平台", "https://shhhh.cc/"),
     ("dvdmaru — 把事實和敘事分開來看", "https://dvdmaru.com/"),
 ]
