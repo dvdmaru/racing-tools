@@ -697,7 +697,17 @@ class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
         ・「重導」那道只驗 `OUTPUT_ROOTS` 裡列到的目標，**註冊表本身漏一個就驗不到**。
         這一道不依賴 mtime、也不依賴註冊表完整，所以能擋住「新增了輸出目標又忘了註冊」。
 
-        ⚠️ 已知邊界：攔截點清單見 `_INTERCEPTED_WRITES`。走 `open(..., "w")` 的寫入攔不到。
+        ⚠️ 已知邊界（三條，都是「這道 gate 主張的範圍」的一部分，不是缺點）：
+        ① 攔截點清單見 `_INTERCEPTED_WRITES`；走 `open(..., "w")` 的寫入攔不到。
+        ② **只涵蓋本行程**。測試若用 `subprocess.run` 真的跑生成器，寫入發生在子行程，
+           monkeypatch 完全看不到（姊妹站 baseball 2026-09-03 實測：同樣攔九個原語跑全套
+           只抓到 6 次，2,866 個被寫的檔一個都沒看到，因為它的洩漏正是子行程）。
+           racing 目前唯一會 spawn 腳本的測試是 `test_crosscheck` 跑
+           `crosscheck-wikipedia.py --gate-only`，該分支在任何寫入之前就 return（已逐行查過），
+           所以沒有暴露；但**新增會 spawn 腳本的測試時，這道 gate 不會替你把關**。
+        ③ 只涵蓋 `selective_regen` 這一段，不涵蓋 build-articles 等其他管線。
+        跨行程的那一層目前靠**手動**的整棵工作樹哨兵探針（在「輸出已知過期」狀態下跑全套，
+        比 content-hash 與 mtime），不是自動測試——這一點也要算進「這道 gate 沒守到什麼」。
         ☠️ **攔截點清單本身也是一份手寫清單**（＝本檔一再踩到的那個形狀的遞歸實例）：
         原子寫入（寫 tmp 再 `os.replace`）是這類攔截的標準死角，而且它是**好的工程實踐**，
         所以愈成熟的程式愈會踩到——可靠性做得好的那條寫入路徑剛好是攔不到的那條。
