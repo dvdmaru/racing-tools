@@ -953,6 +953,20 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 # 改成各 owner 各寫 data/sitemap-parts/<owner>.txt（append-only 擁有），build-sitemap.py
 # 依固定順序讀取、去重、產出最終 sitemap.xml。parts 檔進 git＝某 owner 這次沒跑時的保留機制。
 
+# ☠️ 2026-09-03：parts 目錄是**第二個輸出根目錄**（頁面在 PUB、part 在這裡）。
+# 測試把 PUB 導到 tmp 時導不走它，於是 `publish=True` 的重生會寫進版控裡的 data/sitemap-parts/。
+# 這個 override 就是給測試用的統一出口——**不要在別處自己組這個路徑**。
+# 為什麼不寫成 import 時算好的常數：有一批測試是靠 patch `rc.ROOT` 來重導的（實測 12 次
+# 呼叫都正確落在 tmp），改成常數會讓那些呼叫反而開始寫真目錄＝修法自己引進新缺陷。
+# 所以維持「呼叫時解析 ROOT」，只多一個明確的 override 掛勾。
+SITEMAP_PARTS_OVERRIDE = None
+
+
+def sitemap_parts_dir():
+    """sitemap part 的落地目錄（單一來源）。測試請走 regen-encyclopedia.pub_override()。"""
+    return SITEMAP_PARTS_OVERRIDE or (ROOT / "data" / "sitemap-parts")
+
+
 def read_sitemap_part(owner: str) -> list:
     """讀 data/sitemap-parts/<owner>.txt，回 URL list；檔案不存在＝該線還沒接上 → 回 []。
 
@@ -960,15 +974,19 @@ def read_sitemap_part(owner: str) -> list:
     各生成器落地且進 git 的實際 URL 清單，另一個 owner 想連過去時讀它，不必 import 對方
     的生成器（那會拖進 gitignored 的 db.sqlite），也不准另抄一份清單。
     """
-    p = ROOT / "data" / "sitemap-parts" / f"{owner}.txt"
+    p = sitemap_parts_dir() / f"{owner}.txt"
     if not p.exists():
         return []
     return [l.strip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 def write_sitemap_part(owner: str, urls: list):
-    """寫 data/sitemap-parts/<owner>.txt：一行一 URL，結尾換行；內容相同不重寫。"""
-    parts_dir = ROOT / "data" / "sitemap-parts"
+    """寫 data/sitemap-parts/<owner>.txt：一行一 URL，結尾換行；內容相同不重寫。
+
+    ⚠️ 「內容相同不重寫」讓這支函式對 mtime 型探針隱形：產物與生成器同步時它靜默 no-op，
+    探針全綠但毫無資訊量。驗這一型要先把 part 檔弄成已知過期（見同名回歸測試）。
+    """
+    parts_dir = sitemap_parts_dir()
     parts_dir.mkdir(parents=True, exist_ok=True)
     p = parts_dir / f"{owner}.txt"
     content = "".join(f"{u}\n" for u in urls)
