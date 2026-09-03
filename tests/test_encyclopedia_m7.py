@@ -16,6 +16,7 @@
 import copy
 import importlib.util
 import json
+import os
 import pathlib
 import shutil
 import sqlite3
@@ -622,6 +623,17 @@ class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
     它就是第四份手寫清單，下一個輸出目標照樣會漏。
     """
 
+    # 攔截點清單（單一來源）：(物件, 屬性名, 目的地是第幾個引數)。
+    # os.replace／os.rename／shutil.move 都是 (src, dst)＝目的地在第 2 個。
+    # ⭐ 攔截測試與「攔截清單把關」那道掃描**都從這一份推導**——實測過：這兩處若各寫一份，
+    # 把攔截清單縮小而忘了同步縮小掃描的白名單，掃描就不會叫，缺陷完全隱形。
+    _INTERCEPTED_WRITES = (
+        (pathlib.Path, "write_text", 0), (pathlib.Path, "write_bytes", 0),
+        (pathlib.Path, "rename", 1), (pathlib.Path, "replace", 1),
+        (os, "replace", 1), (os, "rename", 1),
+        (shutil, "move", 1), (shutil, "copy", 1), (shutil, "copy2", 1),
+    )
+
     def _real_roots(self):
         """尚未重導時的真實輸出根目錄（＝版控裡那幾個）。"""
         return {name: getter() for name, getter in re_mod.OUTPUT_ROOTS.items()}
@@ -685,9 +697,12 @@ class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
         ・「重導」那道只驗 `OUTPUT_ROOTS` 裡列到的目標，**註冊表本身漏一個就驗不到**。
         這一道不依賴 mtime、也不依賴註冊表完整，所以能擋住「新增了輸出目標又忘了註冊」。
 
-        ⚠️ 已知邊界：只攔 `Path.write_text`／`write_bytes` 與 `rc.write_sitemap_part`。
-        走 `open(..., "w")` 的寫入攔不到；本 repo 的生成器目前都不走那條路（若日後改了，
-        這道測試的射程就不再等於它宣稱的範圍——這正是上一輪踩到的那種措辭寬於證據）。
+        ⚠️ 已知邊界：攔截點清單見 `_INTERCEPTED_WRITES`。走 `open(..., "w")` 的寫入攔不到。
+        ☠️ **攔截點清單本身也是一份手寫清單**（＝本檔一再踩到的那個形狀的遞歸實例）：
+        原子寫入（寫 tmp 再 `os.replace`）是這類攔截的標準死角，而且它是**好的工程實踐**，
+        所以愈成熟的程式愈會踩到——可靠性做得好的那條寫入路徑剛好是攔不到的那條。
+        因此清單不能只靠「記得加」：`test_regen_path_uses_only_intercepted_write_primitives`
+        會靜態掃描重生路徑上的腳本，用到清單以外的寫入原語就當場紅燈。
         """
         tmp = pathlib.Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
@@ -695,32 +710,36 @@ class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
         repo = pathlib.Path(ROOT).resolve()
         seen = []
 
-        orig_text, orig_bytes = pathlib.Path.write_text, pathlib.Path.write_bytes
+        patches = self._INTERCEPTED_WRITES
+        originals = [(obj, name, getattr(obj, name)) for obj, name, _ in patches]
+
+        def make_spy(fn, dest_idx):
+            def spy(*a, **k):
+                if len(a) > dest_idx:
+                    seen.append(pathlib.Path(a[dest_idx]).resolve())
+                return fn(*a, **k)
+            return spy
+
         orig_part = re_mod.rc.write_sitemap_part
 
-        def spy_text(self_p, *a, **k):
-            seen.append(pathlib.Path(self_p).resolve())
-            return orig_text(self_p, *a, **k)
-
-        def spy_bytes(self_p, *a, **k):
-            seen.append(pathlib.Path(self_p).resolve())
-            return orig_bytes(self_p, *a, **k)
-
         def spy_part(owner, urls):
-            # 這一支即使不實際寫檔也要記——它的「目標目錄」才是我們要驗的東西。
+            # 這一支即使不實際寫檔也要記——它的「目標目錄」才是我們要驗的東西
+            # （內容相同就跳過，真正的寫入不會發生，但目標指著哪裡才是重點）。
             seen.append((re_mod.rc.sitemap_parts_dir() / f"{owner}.txt").resolve())
             return orig_part(owner, urls)
 
         con = sqlite3.connect(str(_copy_db(tmp)))
         con.row_factory = sqlite3.Row
-        pathlib.Path.write_text, pathlib.Path.write_bytes = spy_text, spy_bytes
+        for obj, name, dest_idx in patches:
+            setattr(obj, name, make_spy(getattr(obj, name), dest_idx))
         re_mod.rc.write_sitemap_part = spy_part
         try:
             with re_mod.pub_override(pub):
                 re_mod.selective_regen(con, full=True, fp_path=tmp / "fp.json",
                                        publish=True)
         finally:
-            pathlib.Path.write_text, pathlib.Path.write_bytes = orig_text, orig_bytes
+            for obj, name, fn in originals:
+                setattr(obj, name, fn)
             re_mod.rc.write_sitemap_part = orig_part
             con.close()
 
@@ -731,6 +750,54 @@ class TestsDoNotTouchRepoArtifactsTests(unittest.TestCase):
         self.assertGreater(len(seen), 100,
                            f"spy 只攔到 {len(seen)} 次寫入，太少＝攔截沒生效，"
                            "前面的零命中不成立")
+
+    def test_regen_path_uses_only_intercepted_write_primitives(self):
+        """重生路徑上的腳本只准用「攔得到」的寫入原語。
+
+        ☠️ 這道是給**攔截點清單本身**把關的——上一道的攔截清單是手寫的，而
+        `os.replace`（寫 tmp 再原子換上）恰恰是這類攔截的標準死角，**而且它是好的工程實踐**，
+        所以愈成熟的程式愈可能改用它。真的改了而沒有同步擴充攔截清單，上一道會安靜失效：
+        它仍然全綠，只是什麼都沒攔到。
+
+        racing 目前零原子寫入（實查 `os.replace`／`os.rename`／`shutil.move` 皆零命中），
+        所以這是**潛在**而非現行的洞。這道測試的作用就是讓它在變成現行的洞那一刻紅燈。
+
+        掃描對象由模組圖推導（不手寫檔名清單）：`PAGE_OWNERS` 與 regen 自己的原始碼。
+        """
+        import types
+        # ⭐ 白名單從攔截清單推導，不另寫一份（實測：兩份各寫時，縮小攔截清單而忘了縮小
+        # 白名單，這道掃描就不會叫——缺陷完全隱形）。
+        intercepted = {name for _, name, _ in self._INTERCEPTED_WRITES}
+        # 已知會繞過攔截的寫入原語。用到就必須先擴充上一道的 patches 清單。
+        risky = {
+            "os.replace": "os.replace", "os.rename": "os.rename",
+            "shutil.move": "shutil.move", "shutil.copy": "shutil.copy",
+            "shutil.copy2": "shutil.copy2", "os.link": "os.link",
+            "os.symlink": "os.symlink", "os.truncate": "os.truncate",
+        }
+        sources = {}
+        for name, obj in vars(re_mod).items():
+            if isinstance(obj, types.ModuleType) and obj in re_mod.PAGE_OWNERS:
+                f = getattr(obj, "__file__", None)
+                if f:
+                    sources[name] = pathlib.Path(f)
+        sources["regen_encyclopedia"] = pathlib.Path(re_mod.__file__)
+        self.assertGreaterEqual(len(sources), 5,
+                                f"只掃到 {len(sources)} 份原始碼，模組圖推導壞了，"
+                                "本測試等於沒掃")
+
+        offenders = []
+        for mod, path in sorted(sources.items()):
+            src = path.read_text(encoding="utf-8")
+            code = "\n".join(l for l in src.split("\n")
+                             if not l.lstrip().startswith("#"))
+            for pattern, label in risky.items():
+                if pattern in code and label.split(".")[-1] not in intercepted:
+                    offenders.append(f"{mod}({path.name}) 用了 {label}")
+        self.assertEqual(offenders, [],
+                         "重生路徑用了攔截清單以外的寫入原語，"
+                         "上一道攔截測試會安靜失效——請先把它加進 patches："
+                         f"{offenders}")
 
     def test_pub_override_redirects_every_registered_output_root(self):
         """`OUTPUT_ROOTS` 裡每一個輸出根目錄，在 pub_override 之下都必須指到 target 底下。
