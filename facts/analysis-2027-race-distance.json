@@ -1,0 +1,528 @@
+{
+  "schema_version": 1,
+  "kind": "analysis-external-sourced",
+  "slug": "f1-2027-race-distance-290km",
+  "built_at": "2026-09-04",
+  "revision": 4,
+  "verified_on": "2026-09-04",
+  "_revision_note": "rev2（2026-09-04）：指揮席把七篇媒體原文抓成本地快照，對事實表裡每一句英文引句做逐字 grep（正規化 HTML 實體與彎引號後比對）。18 句中 16 句命中、2 句沒有——沒命中的正是 rev1 標為「⭐⭐ 全篇最有價值」的那段（talking point／shelf life／commercial rights holder）。那三句是研究席從網頁摘要取得，摘要改寫過原文。已整段刪除並換成 grep 命中的真實理由。同一輪還修正了三個錯誤判斷：①The Race 其實明講 apart from Monaco（rev1 誤列為未明講）；②「媒體都寫摩納哥是唯一例外」是假的，The Race 有寫安全車那一項；③「少跑幾圈」本站算不出來但媒體算了，rev1 把兩件事混成不能寫。⇒ 教訓：**摘要不能當引文用**；引文的驗證單位是原文快照，不是轉述。 rev3（同日）：新增 scripts/verify-quotes.py 這道 gate 後，對事實表**與成品文章**一起重跑，又抓到四類 rev2 沒發現的問題——①B2.5.3 引的是 Issue 07 的文字卻掛 Issue 08 出處（兩版真的不同，且 Issue 08 多了一整款三小時上限），②Tombazis 引句漏掉原文的編按插入 [the teams]，③RacingNews365 那句拼接引文在 rev2 改好之後仍被寫進文章（所以驗 pack 不等於驗文章，要兩邊都驗），④『七篇報導』的母體含 5 月兩篇，其中 GPFans 正文未談摩納哥。⇒ 教訓：**版本要逐條比，不要抽一條相同就宣稱整節相同**；**pack 綠燈不等於成品綠燈**。 rev4（同日，對抗式查核席回報後）：又修四類——①維斯塔潘兩句引語順序與原文相反；②Tombazis 職稱掛錯出處（來源寫的是口語 boss，正式頭銜要引 FIA 任命公告）；③『只有 The Race 提到只談定 2027 一年』是假的，RacingNews365 也寫了；④B2.5.3 的版本比較宣稱為真但 Issue 07 沒歸檔，等於查不到出處。⇒ 兩條可帶走的教訓：**「只有 X」「所有人都」這種排他性句子一律逐份 grep**；**做過的比對要留得下痕跡，只在腦袋裡的查證等於沒做**。",
+  "_who_built": "指揮席（Claude Code conductor）。一手＝FIA 2026 F1 Sporting Regulations Issue 08（2026-08-05）PDF 本文，本機 pdftotext 抽取後逐字取用，全文快照存 CoWork/roundtable/2026-09-04-racing-2027-race-distance/evidence/。媒體層由兩席分別掃並交叉比對。自有資料由 data/f1/db.sqlite（L1，jolpica-f1 決定性重建）算出成品值。",
+  "thesis": "F1 打算把 2027 年的正賽里程從 305 公里縮到 290 公里。但這件事有三層比數字更值得講：①因果是反的——為了讓引擎更有力（提高燃油流量），代價是比賽變短；②原本只打算縮少數幾站，改成全部一起縮，報導寫出來的理由不是技術，是不想讓那幾站每個週末都變成話題；③它還沒定案，2027 年的運動規則根本還沒發布，而現行條文寫的仍是 305 公里。至於摩納哥縮不縮，同一天的六篇報導分成兩派。",
+  "_structure_hint": "從摩納哥這個具體的怪事切進去（2026 圈數最多的一站，卻是跑最短距離的一站，因為那道門檻從來沒適用過它）→ 條文原文長什麼樣、例外其實有兩個 → 為什麼要縮（加油門的代價這條因果鏈）→ 從『縮幾站』變成『全部縮』的理由 → 它還沒定案（規則還沒發布、同意的強度媒體用詞不一）→ 摩納哥到底縮不縮，兩派並陳 → 少跑幾圈？本站能算什麼、不能算什麼。",
+  "primary_sources": {
+    "_grade": "一手（FIA 官方運動規則 PDF 本文）。",
+    "fia_sporting_2026_iss08": {
+      "title": "FIA 2026 Formula 1 Sporting Regulations, Section B",
+      "publisher": "Fédération Internationale de l'Automobile（FIA）",
+      "version": "Issue 08",
+      "published": "2026-08-05",
+      "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf",
+      "snapshot": "evidence/fia-2026-sporting-iss08-B2.5.txt（B2.5 全節）＋ fia-2026-sporting-iss08-full.txt（全文）",
+      "grade": "一手",
+      "verbatim": {
+        "B2.5.2_distance": "The distance of the Race, from the start signal referred to in Article B5.7.2 to the end-of-session signal referred to in Article B5.16.1, shall be equal to the least number of complete laps which exceed a distance of 305km, with the exception of the two following circumstances:",
+        "B2.5.2_a_safety_car": "If the formation lap(s) is started behind the Safety Car (Article B5.10) the number of Race laps will be reduced by the number of laps carried out by the Safety Car minus one.",
+        "B2.5.2_b_monaco": "The distance of the Race in Monaco shall be equal to the least number of complete laps which exceed a distance of 260km.",
+        "B2.5.3_two_hours": "Should two hours elapse from the start signal before the scheduled Race distance is completed, the leader will be shown the end-of-session signal when they cross the Line at the end of the lap following the lap during which the two (2) hour period ended, provided this does not result in the scheduled number of laps being exceeded."
+      },
+      "_writer_note": "⭐ 這是全篇唯一的一手來源，也是本站與所有中文轉述的差別，正文一定要用上條號 B2.5.2 與原文。⛔ 條文寫的是 the least number of complete laps which exceed a distance of 305km——是『超過 305 公里的最少完整圈數』，不是『305 公里』。正賽實際里程一律略多於 305，不是剛好 305，寫的時候不可以說『每場正好跑 305 公里』。⛔ 條文說例外有 two following circumstances（兩個），(a) 是安全車帶起跑扣圈、(b) 才是摩納哥。摩納哥是唯一的『賽道別』例外，(a) 是情境型例外，這個區別要說清楚。☠️ **負向主張已實測，不要寫錯**：指揮席逐份 grep 七份快照，**只有 The Race 提到了安全車那個例外**（逐字：The only exception to this (beyond when grands prix start behind the safety car) is the Monaco GP, which runs to 260km），其餘六份完全未提。⛔ 因此絕對不得寫『媒體都寫摩納哥是唯一例外』——那是假的，The Race 寫對了。☠️ rev3 更正母體：七份快照裡有兩份是 5 月的舊方案報導，其中 GPFans 正文根本沒談摩納哥（那 5 次 Monaco 全在側欄導航）。可比較的母體是 9 月 3 日至 4 日那六篇。要寫就寫『本站掃過 9 月那六篇報導，只有 The Race 提到還有安全車那一項，其餘五篇都只提到摩納哥』。⛔ 不得寫成 FIA 已經修改這一條。",
+      "version_check": "☠️ rev1 這裡寫『Issue 07 與 Issue 08 同一條逐字相同』——那對 B2.5.2 成立，對 B2.5.3 **不成立**。rev3 實測兩版並排：B2.5.2 的 305km／260km 與例外結構逐字相同；但 B2.5.3 兩版不同——Issue 07 寫 cross the control line (the Line)，Issue 08 改成 cross the Line，而且 Issue 08 新增了一整款 (b)（比賽中止時中止時間計入，總時長上限三小時），Issue 07 沒有。rev1 引的 B2.5.3 是 Issue 07 的文字卻掛 Issue 08 的出處，已改正。⇒ 教訓：**比對版本要逐條比，不要抽一條相同就宣稱整節相同。**"
+    },
+    "fia_2027_sporting_absence": {
+      "_claim": "截至 2026-09-04，FIA 規則頁面上沒有任何 2027 年的『運動規則（Sporting Regulations）』文件；2027 年只有技術規則（Section C，Issue 2，2026-08-05）。",
+      "checked_url": "https://www.fia.com/regulation/category/110",
+      "checked_on": "2026-09-04",
+      "grade": "一手（官方文件清單）",
+      "_writer_note": "⭐ 這條是『尚未定案』最硬的證據，比任何媒體轉述都強：規則文件根本還沒發布，290 公里不可能已經寫進去。⛔ 但不得由此推論『所以一定不會通過』或『所以會延後』——文件還沒發布只說明現在還沒入規，不說明未來。"
+    },
+    "fia_sporting_2026_iss07_for_diff": {
+      "title": "FIA 2026 Formula 1 Sporting Regulations, Section B",
+      "version": "Issue 07",
+      "published": "2026-06-25",
+      "url": "https://api.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_07_-_2026-06-25.pdf",
+      "snapshot": "evidence/fia-2026-sporting-iss07-B2.5.3.txt（B2.5.3 全條）＋ fia-2026-sporting-iss07-full.txt（全文）",
+      "grade": "一手",
+      "why_filed": "☠️ 查核席指出：稿子宣稱『Issue 08 多了一款 Issue 07 沒有的 (b)』，但 evidence 目錄裡**沒有任何 Issue 07 的檔案可供核對**——宣稱為真，證據卻沒歸檔，等於查不到出處。已補歸檔。⇒ 教訓：**做過的比對要留得下痕跡**；只存在於指揮席腦袋裡的查證，對後面每一個人都等於沒做過。",
+      "verbatim_iss07_B2_5_3_only_a": "a.   Should two hours elapse from the start signal before the scheduled Race distance is completed, the leader will be shown the end-of-session signal when they cross the control line (the Line) at the end of the lap following the lap during which the two (2) hour period ended, provided this does not result in the scheduled number of laps being exceeded.",
+      "_diff": "Issue 07 的 B2.5.3 只有 (a) 款；Issue 08 保留 (a)（措辭由 cross the control line (the Line) 改為 cross the Line）並新增 (b) 款（中止時間計入，總時長上限三小時）。"
+    }
+  },
+  "media_layer": {
+    "_grade": "媒體報導（二手）。⚠️ 掃過的六篇全部發於 2026-09-03 至 09-04，全部標明消息來自匿名管道（Autosport understands／Motorsport.com understands／as first reported by Autoracer.it），沒有一篇是官方公告，也沒有任何一篇引用具名人士談這次提案。",
+    "core_numbers": {
+      "current_km": 305,
+      "proposed_km": 290,
+      "delta_km": 15,
+      "pct": "約 4.9%（15 ÷ 305）",
+      "_writer_note": "⛔ 這個百分比是本站由 15÷305 算出的成品值，寫『約 5%』或『約 4.9%』都可以，但不得寫成某家媒體公布的數字。⛔ 不得把 290 寫成『每場正好 290 公里』，理由同 B2.5.2 那條——條文是『超過 X 公里的最少完整圈數』。",
+      "how_many_laps_media_says": {
+        "the_race": {
+          "verbatim": "will pull the events back by around three laps",
+          "_label": "The Race 自己算的（該篇附有一張 The Race's calculations of the likely impact if race distances are set at 290km）"
+        },
+        "rn365": {
+          "verbatim": "The move would see most races trimmed by roughly two to three laps"
+        },
+        "_writer_note": "⭐ 本站算不出這個數字（沒有圈長），但媒體算了，可以引用並標明是誰算的。⛔ 不得把它寫成本站的計算結果，⛔ 也不得寫成 FIA 公布的數字。⚠️ 兩家給的是『約三圈』與『大約二到三圈』，不完全一致，兩個都寫。 ⭐ rev4 補：Crash.net 是第三個估算（二到四圈）。三家各自算出三個不完全一樣的區間，這件事本身就是內容——媒體的估算不是同一個數字。",
+        "crash": {
+          "verbatim": "For most races, this means that lap counts will be cut by between two and four laps",
+          "_label": "Crash.net 自己算的，區間與另外兩家都不同"
+        }
+      },
+      "only_for_2027": {
+        "outlet": "The Race",
+        "date": "2026-09-03",
+        "verbatim": "It is understood that the reduction in race distance is currently only agreed for next season because of the compromise caused by the change of power unit rules at such a late stage. However, teams may decide to keep it at that level for longer if it is found that the additional fuel-flow changes planned for 2028 cause further trouble.",
+        "_writer_note": "☠️ rev3 這裡寫『只有 The Race 提到』——**那是假的**，RacingNews365 也獨立寫了同一件事（措辭不同、主張相同）。這與『媒體都寫摩納哥是唯一例外』是同一型錯誤：排他性主張沒有逐份 grep 就寫下去。⇒ **凡是「只有 X」「所有人都」這種句子，一律逐份 grep 每一份快照。** 兩家都用 It is understood 起手，要標明是媒體轉述。",
+        "rn365_verbatim": "It is understood that the reduction is currently agreed only for 2027, given that it arose as a direct consequence of the late-stage power unit rule changes."
+      }
+    },
+    "monaco_dispute": {
+      "_this_is_the_point": "同一天六篇報導，對摩納哥的說法分成相反的兩派。本站不裁決，兩邊都寫。",
+      "camp_unaffected": [
+        {
+          "outlet": "Crash.net",
+          "date": "2026-09-04",
+          "verbatim": "Monaco will not be affected by the changes",
+          "verbatim2": "The race distance around the streets of the principality will not shrink further.",
+          "url": "https://www.crash.net/f1/news/1103444/1/f1-teams-back-plan-shorter-grand-prix-distances-2027"
+        },
+        {
+          "outlet": "RacingNews365",
+          "date": "2026-09-03",
+          "verbatim": "Monaco, which already runs to a reduced distance of 260km, would be unaffected by the change.",
+          "url": "https://racingnews365.com/f1-teams-agree-plan-to-reduce-2027-grand-prix-distances"
+        },
+        {
+          "outlet": "The Race",
+          "date": "2026-09-03",
+          "verbatim": "The change agreed by teams for next year would result in all races (apart from Monaco) being reduced to around 290km - so will pull the events back by around three laps.",
+          "url": "https://www.the-race.com/formula-1/f1-teams-agree-plan-to-cut-race-distances-2027/",
+          "_conductor_note": "☠️ 第 1 版事實表把 The Race 列為『未明講』，那是錯的——指揮席讀原文快照後確認它明講 apart from Monaco。已改列本欄。"
+        }
+      ],
+      "camp_also_shortened": [
+        {
+          "outlet": "Autosport",
+          "date": "2026-09-04",
+          "verbatim": "Monaco, which is capped at 260km because of its unique layout, is also likely to be shortened.",
+          "url": "https://www.autosport.com/f1/news/f1-races-set-to-be-shortened-to-290km-in-2027/10852102/"
+        },
+        {
+          "outlet": "Motorsport.com",
+          "date": "2026-09-03",
+          "verbatim": "Monaco, which is capped at 260km because of its unique layout, is also likely to be shortened.",
+          "url": "https://www.motorsport.com/f1/news/why-all-f1-gps-could-be-shortened-next-season/10851980/"
+        },
+        {
+          "outlet": "Grandprix.com",
+          "date": "2026-09-03",
+          "verbatim": "It could also be shortened under the new approach, although the final wording has not been published.",
+          "url": "https://www.grandprix.com/news/f1-teams-back-plan-to-cut-2027-grands-prix-to-290km.html"
+        }
+      ],
+      "_independence_note": "⭐ 帳面 3 比 3，但兩邊的獨立性不對等：說『不受影響』的 Crash.net、RacingNews365、The Race 是三家不同publisher；說『也可能縮』的 Autosport 與 Motorsport.com 同屬 Motorsport Network、該句逐字相同，Grandprix.com 則自己加了保留（final wording has not been published）。",
+      "why_monaco_is_260": {
+        "outlet": "Crash.net",
+        "date": "2026-09-04",
+        "verbatim": "The outlier is Monaco, which for years has been limited to 260km, due to the slow nature of the track making it difficult to complete the regular distance in the allotted time.",
+        "_writer_note": "⭐ 這句解釋了摩納哥為什麼是 260 公里：賽道慢，在時限內跑不完正常里程。它直接接到 B2.5.3 的兩小時上限，是本篇把條文與現實接起來的關鍵句。⛔ allotted time 指的就是兩小時上限，但這個連結是本站做的，寫的時候要讓讀者看得出哪句是 Crash.net 說的、哪句是本站把條文接上去的。"
+      },
+      "_writer_note": "⛔ 不得選邊。⛔ 不得寫『目前普遍認為』『多數媒體認為』——那是無名歸因。要寫成：哪一家寫了什麼，逐字。⭐ 兩家逐字相同這件事要寫出來，那是讀者判斷證據力的依據。⛔ 不得聲稱本站確認兩家同集團之外的關係（例如共用記者），只寫『同屬 Motorsport Network、該句逐字相同』。"
+    },
+    "agreement_strength_dispute": {
+      "_this_is_the_point": "連『車隊同意到什麼程度』，六家媒體都分成兩種強度的用詞。",
+      "camp_unanimous": [
+        {
+          "outlet": "The Race",
+          "date": "2026-09-03",
+          "verbatim": "this idea has now received unanimous support from teams",
+          "url": "https://www.the-race.com/formula-1/f1-teams-agree-plan-to-cut-race-distances-2027/"
+        },
+        {
+          "outlet": "RacingNews365",
+          "date": "2026-09-03",
+          "verbatim_dek": "All 11 F1 teams have reached an agreement to reduce the distance of grands prix",
+          "verbatim_body": "with teams having unanimously backed a proposal to reduce the standard race distance from 305km to approximately 290km, according to multiple reports",
+          "url": "https://racingnews365.com/f1-teams-agree-plan-to-reduce-2027-grand-prix-distances",
+          "_conductor_correction": "☠️ rev1 這裡寫的是「All 11 F1 teams have unanimously backed a proposal」——**那句話原文不存在**。它是把導言的『All 11 F1 teams have reached an agreement』和內文的『unanimously backed a proposal』拼在一起的產物：每個字都真，句子是假的。這一型比整句捏造更難抓，因為關鍵詞 grep 得到。已拆成兩句各自逐字。",
+          "_writer_note": "⛔ 要寫『11 支車隊』只能引導言那句（reached an agreement）；要寫『一致』只能引內文那句（unanimously backed）。⛔ 不得把兩者合寫成『11 支車隊一致同意』——沒有任何一句原文這樣說。⭐ 內文那句結尾是 according to multiple reports，RacingNews365 自己標明是彙整他人報導，這條要進 independence_map 的敘述。"
+        },
+        {
+          "outlet": "Crash.net",
+          "date": "2026-09-04",
+          "verbatim": "F1 teams have unanimously backed plans to shorten Grand Prix distances",
+          "url": "https://www.crash.net/f1/news/1103444/1/f1-teams-back-plan-shorter-grand-prix-distances-2027"
+        }
+      ],
+      "camp_broad": [
+        {
+          "outlet": "Autosport",
+          "date": "2026-09-04",
+          "verbatim": "this proposal was put to the teams via email last week and received broad agreement, but it has yet to be ratified by the World Motorsport Council.",
+          "url": "https://www.autosport.com/f1/news/f1-races-set-to-be-shortened-to-290km-in-2027/10852102/"
+        },
+        {
+          "outlet": "Motorsport.com",
+          "date": "2026-09-03",
+          "verbatim": "this proposal was put to the teams via email last week and received broad agreement, but it has yet to be ratified",
+          "url": "https://www.motorsport.com/f1/news/why-all-f1-gps-could-be-shortened-next-season/10851980/"
+        },
+        {
+          "outlet": "Grandprix.com",
+          "date": "2026-09-03",
+          "verbatim": "the proposal was circulated to the teams by email last week and received broad agreement.",
+          "url": "https://www.grandprix.com/news/f1-teams-back-plan-to-cut-2027-grands-prix-to-290km.html"
+        }
+      ],
+      "_writer_note": "⛔ 不得自己選一個詞。⭐ 有一個所有六家都同意的共同點可以寫：這件事是**用電子郵件發給車隊**的（put to the teams via email last week），三家都這樣寫。⛔ 沒有任何一家給出投票細節（幾隊贊成、有無棄權），不得補。"
+    },
+    "ratification_status": {
+      "consensus": "六家一致：尚未經 F1 Commission 正式通過，也尚未經 FIA World Motor Sport Council 批准。",
+      "the_race_verbatim": "revised regulations need to be proposed to the F1 Commission... Once approved there, it will then need ratification by the FIA's World Motor Sport Council.",
+      "autosport_verbatim": "it has yet to be ratified by the World Motorsport Council",
+      "crash_reporter_judgment": {
+        "verbatim": "the World Motor Sport Council is still required to give its seal of approval, but this is expected to be a formality",
+        "_writer_note": "⛔ expected to be a formality 是 Crash.net 記者自己的判斷，不是官方說法。引用時必須標明是該媒體的判斷。"
+      },
+      "wmsc_meeting_dates": {
+        "value": "FIA 公布的 2026 年 WMSC 會期為 6 月 23 日（澳門，已開）、10 月 15 日（視訊）、12 月 10 日（上海）。",
+        "_writer_note": "☠️ 沒有任何報導說這個提案會排進哪一場議程。⛔ 不得寫『預計 10 月 15 日審議』——那是把行事曆對應當成事實。要嘛整段不寫，要嘛明講『沒有報導說會排在哪一場』。"
+      },
+      "f1_commission_next_meeting": "查無報導。⛔ 不得補日期。"
+    },
+    "scope_change_selected_to_all": {
+      "_this_is_the_best_material": "原本只打算縮少數幾站，後來改成全部一起縮。而報導寫出來的理由不是技術。",
+      "earlier_selected_plan": [
+        {
+          "outlet": "GPFans",
+          "headline": "F1 teams 'agree' to shorter races from 2027",
+          "date": "2026-05-25",
+          "speaker": "Alan Permane",
+          "title": "Racing Bulls team boss（該報導用語）",
+          "context": "2026 年加拿大大獎賽（本站第 5 站）期間",
+          "verbatim_full": "We've come to an agreement, certainly at team principal level, that if anyone wanted to carry their chassis over and that wasn't quite big enough to do the 310km race, we would look at selective races and, of course, only where absolutely necessary, by shortening them by maybe one or two laps, and limiting laps to grid to one,",
+          "url": "https://www.gpfans.com/en/f1-news/1084328/fia-shorter-f1-races-2027-agreement-canadian-grand-prix/",
+          "_verified_by_conductor": "2026-09-04 指揮席親自開啟原文核對：標題、日期、職稱、引句逐字皆相符。（查核席原先回報的 URL 是截斷版，會回 No results，已更正。）",
+          "_writer_note": "⭐⭐ 這是全篇唯一一句具名人士的直接引語，一定要用。⭐ 注意他說的是 the 310km race，不是 305——這正好印證 B2.5.2 的『超過 305 公里的最少完整圈數』：實際跑的距離一定略多於 305。這個對照很值得寫出來，但要寫成『他講的數字是 310』的事實陳述，⛔ 不得寫成『Permane 說錯了』或『他把規則記錯』——他講的是實際里程，條文講的是門檻，兩者本來就不同。⛔ 引句很長，正文可以只取需要的片段，但取出來的每一個字都必須與 verbatim_full 逐字相符。⚠️ 他同時提到 limiting laps to grid to one（暖胎圈限一圈），這是 5 月方案的一部分，9 月的報導沒有再提；⛔ 不得寫成 2027 年確定會這樣改。"
+        },
+        {
+          "outlet": "RaceFans",
+          "date": "2026-05-30",
+          "headline": "F1 could shorten selected races in 2027 to help teams cope with engine rules change",
+          "_grade": "⚠️ 只有標題。RaceFans 全站對本站的抓取回 403，內文未逐字核對。",
+          "url": "https://www.racefans.net/2026/05/30/f1-could-shorten-selected-races-in-2027-to-help-teams-cope-with-engine-rules-change/",
+          "_writer_note": "⛔ 只能引標題，不得引任何內文句子。"
+        }
+      ],
+      "why_it_became_all_races": {
+        "_conductor_correction_2026-09-04": "☠️ 本欄第 1 版寫的三句引文（talking point during those weekends／shorter shelf life／commercial rights holder very sensitive）**在原文快照中逐字比對後完全找不到**，是研究席從網頁摘要取得、摘要改寫過的產物。已全部刪除。以下是指揮席逐句 grep 原文快照後確認的版本。",
+        "reason_a_sporting": {
+          "_summary": "各站里程不一，會讓某些站變成省油賽——這是技術／競技理由，不是公關理由。",
+          "the_race": {
+            "outlet": "The Race",
+            "authors": "Jon Noble、Rosario Giuliana",
+            "date": "2026-09-03",
+            "verbatim": "But amid the talks with teams about which races needed to be targeted for adjustment, it became clear that there could be some unintended consequences if there was a variety of race distances throughout the season. It is understood that there was a risk of some events turning into fuel-economy runs. So, following dialogue between the FIA and teams, it was agreed that it would be better to have a universal distance for a grand prix throughout the season, as there is now.",
+            "url": "https://www.the-race.com/formula-1/f1-teams-agree-plan-to-cut-race-distances-2027/"
+          },
+          "rn365": {
+            "outlet": "RacingNews365",
+            "date": "2026-09-03",
+            "verbatim": "It is understood that certain events risked turning into fuel-economy runs rather than genuine wheel-to-wheel contests, which was clearly not the intended outcome.",
+            "url": "https://racingnews365.com/f1-teams-agree-plan-to-reduce-2027-grand-prix-distances"
+          },
+          "_writer_note": "⛔ 兩家都用 It is understood（據了解）起手——那是媒體的匿名消息用語。引用時要標明這是報導的說法，⛔ 不得寫成 FIA 說或車隊說。⚠️ The Race 與 RacingNews365 這兩段措辭高度雷同（unintended consequences／fuel-economy runs），可能同源，正文可以指出雷同，⛔ 但不得斷言誰抄誰。"
+        },
+        "reason_b_perception": {
+          "_summary": "另一個理由來自 Grandprix.com，而且是不同的一件事：避免『不同的比賽長度』在特定幾站變成反覆出現的話題。",
+          "outlet": "Grandprix.com",
+          "date": "2026-09-03",
+          "verbatim": "A uniform change is now regarded as preferable because it avoids turning a different race length into a recurring story at particular events.",
+          "url": "https://www.grandprix.com/news/f1-teams-back-plan-to-cut-2027-grands-prix-to-290km.html",
+          "_writer_note": "⭐ 這句是真的、逐字核對過。⛔ 但它只有 Grandprix.com 一家，且該家在同一篇裡明講自己的消息是引用 Motorsport.com 的（見 independence_map），寫的時候要標明是哪一家的說法。⛔ 不得寫成『F1 想掩蓋規則失敗』——原文沒有這個力道，那是加碼。⛔ 不得把這句與 reason_a 混成同一個理由：一個是省油賽（競技），一個是話題（觀感），是兩家講的兩件事。"
+        }
+      },
+      "independence_map": {
+        "_why": "六篇報導不等於六個獨立信源。這件事本身就值得寫給讀者看。",
+        "origin": {
+          "verbatim": "As first reported by Autoracer.it",
+          "outlet": "The Race",
+          "_note": "這則消息的源頭是義大利媒體 Autoracer.it。本站未查證 Autoracer.it 原文。"
+        },
+        "motorsport_network": "Autosport 與 Motorsport.com 同屬 Motorsport Network，兩篇的摩納哥句與 broad agreement 句逐字相同。",
+        "grandprix_is_aggregating": {
+          "verbatim": "Motorsport.com reports that the proposal was circulated to the teams by email last week and received broad agreement.",
+          "_note": "⭐ Grandprix.com 自己在文中標明 broad agreement 這個說法是引用 Motorsport.com 的。所以『broad agreement』實際上只追得到一個信源。"
+        },
+        "_writer_note": "⭐ 這一段是本站對讀者最有用的東西之一。⛔ 但只准照上面三條寫，⛔ 不得推論任何一家的編採關係、不得說誰抄誰、不得用『內容農場』這類評價詞。"
+      }
+    }
+  },
+  "causal_chain": {
+    "_grade": "媒體報導＋FIA 官方聲明混合，逐項標明。",
+    "step_1_2026_split": {
+      "target": "2026 年動力單元的設計目標是內燃機與電動輸出各半（本站規則指南寫的 50/50）。",
+      "actual": "實測落在約 53:47（內燃機 400kW／MGU-K 350kW）。",
+      "why_gap_verbatim": "One of the reasons it hasn't been right there from the start is that cars are going a bit faster. They have found a bit more downforce than we were expecting, and therefore the energy recovered during braking is a bit lower than it would normally be.",
+      "speaker": "Nikolas Tombazis",
+      "title": "FIA 單座賽車總監（Single-Seater Director）",
+      "outlet": "Autosport",
+      "date": "2026-05-08",
+      "url": "https://www.autosport.com/f1/news/how-the-2027-f1-rule-changes-will-work/10819182/",
+      "_writer_note": "⚠️ 400kW／350kW 這組數字來自研究席的媒體掃描，本站未對 FIA 技術規則原文核對。寫的時候標明是媒體報導的數字，或只寫『約 53 比 47』。⛔ 職稱不得縮短成『FIA 官員』。",
+      "title_source": {
+        "title_zh": "FIA 單座賽車總監",
+        "title_en_official": "Single Seater Director",
+        "official_verbatim": "FIA Single Seater Director Nikolas Tombazis said:",
+        "official_url": "https://www.fia.com/news/fia-details-new-structure-formula-1-following-transitional-period",
+        "official_published": "2023-01-18",
+        "snapshot": "evidence/raw-fia-tombazis-title.html",
+        "_conductor_correction": "☠️ rev1-3 把職稱寫成 Single-Seater Director 並掛在 Autosport 那篇下面，但 Autosport 原文用的是口語的 FIA single-seater boss，該快照裡 grep 不到 Single-Seater Director。正式頭銜出自 FIA 自己 2023-01-18 的任命公告，已補一手出處。⇒ 教訓：**職稱與頭銜也是需要出處的事實**，不能因為『看起來就是這樣』而不查。"
+      }
+    },
+    "step_2_symptoms": {
+      "_note": "2026 年賽季實際出現的症狀。以下全部是具名車手的直接引語。",
+      "quotes": [
+        {
+          "speaker": "貝爾曼（Oliver Bearman）",
+          "verbatim": "The annoying thing is definitely the energy management, the clipping and all of these things",
+          "context": "2026 年巴塞隆納季前測試",
+          "date": "2026-02-06",
+          "outlet": "Motorsport.com",
+          "url": "https://www.motorsport.com/f1/news/f1-2026-energy-management-annoying-sad-drivers-lift-early/10794872/"
+        },
+        {
+          "speaker": "奧康（Esteban Ocon）",
+          "verbatim": "On quali-style runs, we are doing like lift-and-coast and stuff,",
+          "verbatim2": "That's a very new thing to do. But, you know, honestly, from the simulator, it took me one run to do it.",
+          "context": "2026 年巴塞隆納季前測試",
+          "date": "2026-02-06",
+          "outlet": "Motorsport.com",
+          "url": "https://www.motorsport.com/f1/news/f1-2026-energy-management-annoying-sad-drivers-lift-early/10794872/",
+          "_conductor_correction": "☠️ rev1 把原文分開的兩段引號併成一句連續引文（中間隔著 the Frenchman commented）。已拆回兩段。",
+          "_writer_note": "⛔ 兩段之間原文有記者的插入語，不得寫成他一口氣說完。⚠️ 奧康的語氣與貝爾曼不同：報導原文說 Ocon doesn't view it as negatively as his young team-mate（他沒有隊友那麼負面），引用時不要把他寫成在抱怨。"
+        },
+        {
+          "speaker": "維斯塔潘（Max Verstappen）",
+          "verbatim": "You are boosting past, then you run out of battery the next straight, they boost past you again. For me, it's just a joke.",
+          "verbatim2": "It's playing Mario Kart. This is not racing.",
+          "context": "2026 年中國大獎賽（上海）",
+          "date": "2026-03-15",
+          "outlet": "Motorsport.com",
+          "url": "https://www.motorsport.com/f1/news/max-verstappen-f1-fans-who-enjoy-2026-rules-dont-understand-racing/10805518/"
+        },
+        {
+          "speaker": "諾里斯（Lando Norris）",
+          "verbatim": "It still hurts your soul when you see your speed dropping so much — 56 kph down the straight",
+          "context": "2026 年日本大獎賽（鈴鹿）排位賽",
+          "date": "2026-05",
+          "outlet": "TSN",
+          "url": "https://www.tsn.ca/motorsports/article/it-hurts-your-soul-norris-alonso-among-those-underwhelmed-by-suzuka-qualifying-n1-48328639/",
+          "_writer_note": "⚠️ TSN 那篇的確切日期研究席只給到 2026-05，寫的時候不要編出日。"
+        }
+      ],
+      "no_quantification": "☠️ 找不到任何來源給出量化效應（例如某站有多少比例的圈在做能量管理、單圈因此損失幾秒）。⛔ 不得自己估算，也不得寫『大幅』『嚴重』這種替代量化的形容詞而不標出處。正文要寫『沒有公開的量化數字』。"
+    },
+    "step_3_2027_fix": {
+      "power_split_2027": "58:42（內燃機提高到 420kW、MGU-K 降到 300kW）",
+      "power_split_2028": "60:40（內燃機 450kW）",
+      "fuel_flow_2027": "比 2026 提高 5%",
+      "fuel_flow_2028": "比 2026 提高 13%",
+      "sources": [
+        "Autosport 2026-05-08",
+        "Crash.net 2026-06-11 https://www.crash.net/f1/news/1097606/1/fia-announces-6040-f1-engine-power-split-pushed-back-2028",
+        "PlanetF1 2026-06-23 https://www.planetf1.com/news/fia-approves-f1-2026-power-unit-rule-changes"
+      ],
+      "fia_verbatim": {
+        "text": "The proposed changes are intended to address issues related to energy management and fuel energy flow characteristics and make qualifying more flat out.",
+        "attributed_to": "FIA",
+        "via": "Crash.net 2026-06-11",
+        "_writer_note": "⚠️ 研究席標明這句是 WebFetch 摘要中的 Key Quote、未逐字核對原始 HTML。引用時寫成『Crash.net 引述 FIA 的說法』，並且如果指揮席未能再核對，就只取大意不加引號。"
+      },
+      "kw_numbers_grade": "⚠️ 420kW／300kW／450kW 這組數字來自媒體，本站未對 FIA 技術規則原文核對。",
+      "☠️_do_not_use": "☠️ 絕對不要寫燃油流量的絕對值（3000MJ/h、3150MJ/h、73-79kg/h 之類）。研究席查證後明說：那些數字只出現在單一搜尋摘要、無法定位到可逐字核對的原文，而且是拿 5% 反推出來的。這正是本站規範第 5 條說的偽精確數字。只准用 5% 與 13% 這兩個百分比（三個獨立來源交叉確認）。"
+    },
+    "step_4_why_shorter": {
+      "verbatim": "Increasing the fuel flow rate will mean that more fuel will be required, and that will have consequences on fuel tank size for the race.",
+      "outlet": "The Race",
+      "date": "2026-05-09",
+      "url": "https://www.the-race.com/formula-1/the-key-complication-of-major-f1-2027-rule-changes/",
+      "verbatim_2026_09": "more fuel going through the engine means more is needed to complete a race distance",
+      "chain": "燃油流量提高 → 跑完全程需要的油變多 → 但 2027 年多數車隊沿用 2026 年的底盤，油箱容量是照舊規格設計的 → 要裝更多油就得改車體，成本高 → 改成縮短里程。",
+      "alternatives_considered": {
+        "verbatim_source": "The Race 2026-05-09",
+        "options": [
+          "在成本上限內額外開放車隊改裝底盤",
+          "縮短正賽里程（當時談的幅度約 10%）",
+          "只在排位賽提高流量、正賽維持 2026 年水準，當作通往 2028 年的過渡"
+        ],
+        "_writer_note": "⛔ 這三個選項是 The Race 5 月 9 日那篇列出的『當時被討論的方案』，不得寫成『FIA 否決了』——沒有來源說誰否決了什麼。寫『當時被討論過的做法還有……』。"
+      }
+    }
+  },
+  "history": {
+    "1958_precedent": {
+      "claim": "The Race 2026-09-03 那篇提到 1958 年正賽距離曾從 500 公里降到 300 公里的先例。",
+      "grade": "媒體報導",
+      "_writer_note": "⚠️ 本站未對一手規則史料核對這組年份與數字。⛔ 只能寫成『The Race 提到』，不得寫成本站查證的史實。⛔ 不得補充該次變動的細節（原因、適用範圍），研究席沒查到。"
+    },
+    "no_comparability_coverage": "☠️ 研究席掃過後明說：沒有任何報導談里程縮短對跨年代紀錄可比性的影響。⛔ 不得自己寫一段『這會讓歷史數據不可比』然後不標出處——那是把本站推論寫成別人的說法。要寫就標明是本站推論並附信賴度，或者不寫。"
+  },
+  "own_data": {
+    "_grade": "本站自有資料（L1 sqlite，由 jolpica-f1 快照決定性重建）。",
+    "scope": "一級方程式世界錦標賽 1950 年起的分站賽事，共 1172 場。☠️ 本站資料庫存的是**圈數**，沒有存每條賽道的**單圈長度**，因此本站無法自行重算任何一站的公里數。正文必須把這條邊界說出來。",
+    "_writer_note_scope": "⛔ 不得由圈數反推公里數（例如『78 圈 × 3.337 公里』）。⛔ 不得由本站資料算出『少 15 公里等於少跑幾圈』——那需要圈長，本站沒有，而且各站圈長不同、答案本來就每站不一樣。⚠️ 但媒體算了（見 media_layer.core_numbers.how_many_laps_media_says：The Race 約三圈、RacingNews365 約二到三圈），可以引用並標明是誰算的。這一節要講的是：這個數字本站給不出來，我們引用的是別人算的。",
+    "laps_2026": {
+      "_note": "勝者完成圈數＝該站正賽圈數；截至本站已落地的 2026 年第 12 站荷蘭大獎賽（2026-08-23）。",
+      "most_laps": {
+        "round": 6,
+        "name": "摩納哥大獎賽",
+        "laps": 78
+      },
+      "second": {
+        "round": 12,
+        "name": "荷蘭大獎賽",
+        "laps": 72
+      },
+      "gap_monaco_over_second": 6,
+      "fewest_laps": {
+        "round": 10,
+        "name": "比利時大獎賽（斯帕）",
+        "laps": 44
+      },
+      "full_table": [
+        {
+          "round": 1,
+          "zh": "澳洲大獎賽",
+          "laps": 58
+        },
+        {
+          "round": 2,
+          "zh": "中國大獎賽",
+          "laps": 56
+        },
+        {
+          "round": 3,
+          "zh": "日本大獎賽",
+          "laps": 53
+        },
+        {
+          "round": 4,
+          "zh": "邁阿密大獎賽",
+          "laps": 57
+        },
+        {
+          "round": 5,
+          "zh": "加拿大大獎賽",
+          "laps": 68
+        },
+        {
+          "round": 6,
+          "zh": "摩納哥大獎賽",
+          "laps": 78
+        },
+        {
+          "round": 7,
+          "zh": "巴塞隆納大獎賽",
+          "laps": 66
+        },
+        {
+          "round": 8,
+          "zh": "奧地利大獎賽",
+          "laps": 71
+        },
+        {
+          "round": 9,
+          "zh": "英國大獎賽",
+          "laps": 52
+        },
+        {
+          "round": 10,
+          "zh": "比利時大獎賽",
+          "laps": 44
+        },
+        {
+          "round": 11,
+          "zh": "匈牙利大獎賽",
+          "laps": 70
+        },
+        {
+          "round": 12,
+          "zh": "荷蘭大獎賽",
+          "laps": 72
+        }
+      ],
+      "_the_hook": "⭐ 摩納哥是 2026 年目前為止圈數最多的一站（78 圈，比第二多的荷蘭站多 6 圈），卻是跑最短距離的一站——因為 305 公里那條規則從來沒有適用過它。這是全篇的開場。"
+    },
+    "monaco_laps_history": {
+      "laps_2026": 78,
+      "first_year_at_78_laps": 1973,
+      "years_since_1973": 53,
+      "years_at_78_since_1973": 38,
+      "years_not_78_since_1973": 15,
+      "notable_short": [
+        {
+          "season": 1984,
+          "laps": 31
+        },
+        {
+          "season": 1997,
+          "laps": 62
+        },
+        {
+          "season": 2022,
+          "laps": 64
+        }
+      ],
+      "safe_phrasing": "1973 年以來的 53 屆摩納哥大獎賽，有 38 屆的勝者完成 78 圈；其餘 15 屆完成圈數較少。",
+      "_writer_note": "☠️☠️ 本站資料庫存的是**勝者完成圈數**，不是**排定圈數**。⛔ 因此絕對不得寫『摩納哥自 1973 年起固定 78 圈』——1984 年只完成 31 圈、1997 年 62 圈、2022 年 64 圈，那是雨戰、紅旗或 B2.5.3 兩小時上限提前結束，不是排定圈數改了。要講連續性只能用 safe_phrasing 那句原文照抄，或者只寫 2026 年的 78 圈。⭐ 這 15 屆正好可以接到 B2.5.3 的兩小時條文——條文解釋了資料庫裡的異常，這個銜接很值得寫。"
+    }
+  },
+  "voice": {
+    "_why": "只給事實不給聲音，寫手會回到預設的報告腔。",
+    "reference": "小 Lin 說＋張泉靈：從具體的怪事切進去、短句、不在正文裡解釋自己的方法論。",
+    "headline_style": "小標本身就是一句事實。✅『摩納哥是今年跑最多圈的一站，也是跑最短的一站』；❌『一、規則背景說明』『機制二：燃油流量』。",
+    "forbidden_meta": "禁止把本站的查證紀律寫進正文。❌『本站不替兩家媒體裁決哪邊對，因為在沒有一手文件的情況下選邊會製造一個看起來確定、實際上查無出處的結論』→ ✅『兩家說法相反，官方文件還沒出來』。❌『本站資料庫的涵蓋範圍是世界錦標賽，因此以下數字均以此為界』→ ✅『本站資料庫只涵蓋世界錦標賽』。",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前面講的』『後者』『上述』，一律換成具體名詞。",
+    "no_arithmetic": "⛔ 寫手不做算術。所有要出現在正文的數字，本表都已給成品值；表裡沒有的數字就是不能寫。"
+  },
+  "must_not_claim": [
+    "⛔ 不得寫『2027 年正賽里程將縮短』這種確定語氣。它還沒定案：2027 年運動規則尚未發布，現行條文寫的仍是 305 公里，F1 Commission 與 WMSC 都還沒過。要用『打算』『提案』『若通過』。",
+    "⛔ 不得寫『每場正好跑 305 公里／290 公里』。條文是『超過該距離的最少完整圈數』。",
+    "⛔ 不得在摩納哥縮不縮這件事上選邊，也不得寫『多數媒體認為』。",
+    "⛔ 不得寫燃油流量的絕對數值（MJ/h、kg/h）。只准 5% 與 13%。",
+    "⛔ 不得由圈數反推公里數，不得說『少 15 公里等於少跑幾圈』。",
+    "⛔ 不得寫『摩納哥自 1973 年起固定 78 圈』。",
+    "⛔ 不得使用無名歸因：專家認為／業界人士指出／有分析認為／消息人士／外界普遍認為／一般認為。",
+    "⛔ 不得寫『各方一致支持』或『沒有人反對』。查核席掃過 5 組查詢沒找到具名反對聲音，那只代表沒找到。要寫就寫『本站掃過的報導裡沒有出現具名的反對意見』。",
+    "⛔ 不得補 F1 Commission 或 WMSC 審議這個提案的日期。",
+    "⛔ 不得寫成 FIA 或 F1 官方已經宣布。六篇報導全部標明消息來自匿名管道。",
+    "⛔ 不得寫『媒體都寫摩納哥是唯一例外』。已逐份 grep 七份快照：只有 The Race 提到安全車那一項，其餘六份未提——它是寫對的那一家。",
+    "⛔ 不得寫本站算出少跑幾圈。本站沒有圈長。引用 The Race 的『約三圈』與 RacingNews365 的『約二到三圈』時，一律標明是誰算的。",
+    "⛔ 不得把『省油賽』與『避免變成反覆出現的話題』寫成同一個理由——前者出自 The Race 與 RacingNews365，後者只有 Grandprix.com，是兩件事。"
+  ],
+  "required_sections": [
+    "文末必備『## 資料來源』區塊，分級列出（一手文件／媒體報導／本站自有資料），每條可點擊，含查證日 2026-09-04，並聲明本站限制。"
+  ],
+  "interlinks": {
+    "rules_guide": {
+      "path": "/articles/f1-2026-rules-guide/",
+      "why": "2026 年新規則完全指南，講 50/50 動力單元與 Overtake Mode，是本篇因果鏈的上游。正文提到 2026 年動力配比時應連過去。"
+    },
+    "results": {
+      "path": "/results/",
+      "why": "本站各站賽果，圈數數字的來源。"
+    },
+    "_writer_note": "⛔ 只連這兩個本站頁面，不要自己造其他站內連結（造出不存在的路徑 check-links 會擋）。"
+  },
+  "zh_names": {
+    "Max Verstappen": "維斯塔潘",
+    "Lando Norris": "諾里斯",
+    "Oliver Bearman": "貝爾曼",
+    "Esteban Ocon": "奧康",
+    "Nikolas Tombazis": "Nikolas Tombazis（本站無核定譯名，保留原文）",
+    "Alan Permane": "Alan Permane（本站無核定譯名，保留原文）",
+    "_writer_note": "⛔ 車手譯名一律用本表（本站已核定）。⛔ 沒有核定譯名的人名保留英文原文，不要自己音譯。首次出現用「譯名（English Name）」格式。"
+  }
+}

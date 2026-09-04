@@ -559,6 +559,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-08-31T10:40:00+08:00",
       "note": "選題台 2026-08-31 R1（18 分，cross-check 等級）。查核桌 CoWork/roundtable/2026-08-31-racing-norris-mclaren-2030：Terra R1 判 NO-GO 四項（C1 起跑口徑、C3 譯名、C4 來源等級、V1 方法論語言），R2 覆核四項全數 RESOLVED、總判 GO with fixes，最後一項（事實表 4 處盤古之白）已修。C1 為部分駁回——舊口徑會得出 Michael Schumacher 在法拉利 181 場，與賓士官方載明的 180 場矛盾；六個差異點逐案皆為明確未起跑，審稿席重建資料庫後接受反駁。Charlie 以合併 PR 為核准發布的授權行為。　2026-08-31 譯名勘誤重新核准（Charlie：「加譯名」）：David Coulthard 新增定版譯名「大衛・庫塔」進 scripts/driver-zh.json；Michael Schumacher 的「麥可・舒馬克」本來就已核准（在 check-zh.py 與 gen-racing-entities-phase0.py 的 phase0 seed 裡，不在 driver-zh.json——發布時只 grep 了一張表因而誤判為無定版，正文才用英文原名）。正文、事實表與封面改用定版譯名，首見全名、之後只用姓。sha256 d5de8233… → a04d6cab…"
+    },
+    {
+      "slug": "f1-2027-race-distance-290km",
+      "article_sha256": "7e973ce4109d1ff8fd4cc8b4af594ce7d650937d042cc5677e2638a607a9e306",
+      "facts_sha256": "99d7f2759cfd6c33eb04c594be8ac8056ed2f0c9bedcc26fc3b79b80883e66d5",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-04T19:51:35+08:00",
+      "note": "2026-09-04 Charlie 指定題目（2027 年正賽里程縮 5%），Conductor 模式產出。一手＝FIA 2026 運動規則 Issue 08 的 B2.5.2／B2.5.3 本文（本機 pdftotext 抽取），外加 FIA 規則頁面實查（截至 2026-09-04 尚無 2027 年運動規則）。媒體層 9 篇原文抓成本地快照存 CoWork/roundtable/2026-09-04-racing-2027-race-distance/evidence/，全文引文以新增的 scripts/verify-quotes.py 逐字比對，82 句全數命中。兩席對抗式查核回報後修正：①三句 The Race 引文為網頁摘要改寫、原文不存在（整段刪除換成 grep 命中的真實理由）②B2.5.3 引的是 Issue 07 文字卻掛 Issue 08 出處（兩版確有差異，Issue 08 多一款三小時上限）③『只有 The Race 提到只談定 2027 一年』為假，RacingNews365 亦有 ④Tombazis 職稱掛錯出處（來源寫 boss，正式頭銜改引 FIA 2023 任命公告）⑤維斯塔潘兩句引語順序與原文相反 ⑥Permane 引文的 maybe hedge 被吃掉 ⑦『其餘六篇都只提到摩納哥』母體含 5 月兩篇，GPFans 正文未談摩納哥。⚠️ 題目原句『所有分站賽的正賽里程將會縮短』的語氣經查核後降級：此案尚未經 F1 Commission 與 WMSC，2027 年運動規則尚未發布，全文改用「打算／提案／若通過」。gate：verify-sources／verify-numbers／check-links（19 條 200）／check-zh／check-covers／verify-quotes 全綠。Charlie 以合併 PR 為核准發布的授權行為。"
     }
   ]
 }

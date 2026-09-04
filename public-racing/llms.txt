@@ -14,6 +14,7 @@
 
 ## 最新文章
 
+- [F1 打算把 2027 年正賽距離門檻從 305 公里降到 290 公里：摩納哥縮不縮，六篇報導各執一詞](https://racing.twtools.cc/articles/f1-2027-race-distance-290km/)（2026-09-04）
 - [諾里斯續約麥拉倫至 2030 年：他在車隊的年資有兩種算法，出賽場次也有兩種](https://racing.twtools.cc/articles/f1-2026-norris-mclaren-2030-extension/)（2026-08-31）
 - [荷蘭站戰報：諾里斯第 1 位發車奪冠，全場領先易主 6 次](https://racing.twtools.cc/articles/f1-2026-r12-dutch-report/)（2026-08-23）
 - [F1 夏季停工期是怎麼運作的：14 天、每隊自己挑日子，法源不在比賽規則裡](https://racing.twtools.cc/articles/f1-summer-shutdown-guide/)（2026-08-11）
@@ -23,7 +24,6 @@
 - [匈牙利站藍旗故障：FIA 紀錄裡 11 條藍旗，7 條早了 17 分鐘以上、2 條發給從沒被套圈的車](https://racing.twtools.cc/articles/f1-2026-r11-hungary-blue-flag-failure/)（2026-07-30）
 - [匈牙利站戰報：諾里斯第 1 位發車奪冠，全場領先易主 7 次](https://racing.twtools.cc/articles/f1-2026-r11-hungary-report/)（2026-07-27）
 - [2026 F1 新規則完全指南：Overtake Mode、主動空力、50/50 動力單元一次看懂](https://racing.twtools.cc/articles/f1-2026-rules-guide/)（2026-07-19）
-- [2026 F1 車手、車隊繁中譯名對照表：台灣慣用版（含港陸差異與術語表）](https://racing.twtools.cc/articles/f1-2026-names-glossary/)（2026-07-19）
 
 ## 文章與更新
 
