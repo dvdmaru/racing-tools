@@ -66,7 +66,13 @@ jobs:
     permissions:
       contents: read
     steps:
+      # fetch-depth: 2 ＝ IndexNow 的 commit-diff 來源需要 HEAD 的父 commit。
+      # 預設的淺層 clone（深度 1）拿不到父 commit，update-racing.py 會明講並降級成
+      # 只看工作樹髒檔——而內容型 PR 的產物已 commit、工作樹永遠不髒，
+      # 那正是 2026-09-04 抓到的洞（文章頁從來沒被 IndexNow 推過）。
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
 
       - uses: actions/setup-python@v6
         with:
@@ -98,5 +104,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        # workflow_dispatch 帶 --force：手動跑就是要重建部署（否則首次部署/改版會被 quiet-skip 擋住）
-        run: python scripts/update-racing.py --deploy ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+        # workflow_dispatch 帶 --force：手動跑就是要重建部署（否則首次部署/改版會被 quiet-skip 擋住）。
+        # 同時帶 --indexnow-from-commit：手動 dispatch 的情境就是「剛合了內容 PR，要它上線」，
+        # 而那種 PR 的產物已經 commit 進 repo → CI 重建後工作樹不髒 → 舊的判斷會說「無變動」
+        # 而不推。⚠️ 只在 dispatch 帶，不在 cron 帶：cron 每週都跑，帶了會把上一個 commit 的
+        # URL 一推再推，而那些通常早就推過了。
+        run: python scripts/update-racing.py --deploy ${{ github.event_name == 'workflow_dispatch' && '--force --indexnow-from-commit' || '' }}
