@@ -50,26 +50,75 @@ def script(name, *extra):
     return [PY, str(ROOT / "scripts" / name), *extra]
 
 
-def _indexnow_changed_urls():
-    """本次 build 實際變動的頁面 URL（IndexNow 只推變動）。靠 git：public-racing/ 產物有
-    commit、CI checkout 乾淨 → build 後髒檔＝本次變動。new_urls＝untracked 新頁（部署前
-    404，是「真 live」的 poll 訊號；既有頁永遠 200 不能當訊號）。"""
+def _path_to_url(path):
+    """public-racing/ 底下的產物路徑 → 公開 URL。非頁面檔回 None。"""
+    if path.endswith("index.html"):
+        return f"{BASE_URL}/{path[len('public-racing/'):-len('index.html')]}"
+    if path.endswith("llms.txt"):
+        return f"{BASE_URL}/llms.txt"
+    return None
+
+
+def _indexnow_changed_urls(from_commit=False):
+    """本次部署實際變動的頁面 URL（IndexNow 只推變動）。**兩個來源，缺一不可。**
+
+    來源 A：工作樹髒檔。public-racing/ 產物有 commit、CI checkout 乾淨 →
+      build 後髒檔＝本次變動。這一條服務的是**每週 cron**：抓到新賽果 → 重建結果
+      與 committed 產物不同 → 有髒檔 → 推。
+
+    來源 B（`from_commit=True` 才啟用）：本次 HEAD commit 帶進來的產物變更。
+      ☠️ **2026-09-04 補上，補的是一個長期存在、無聲的洞**：內容型 PR 的產物是在
+      PR 裡就 commit 進去的（本 repo 慣例，public-racing/ 有近 600 個追蹤檔），
+      於是 CI 重建出**位元組相同**的東西 → 零髒檔；文章頁已被追蹤所以也不是 untracked
+      → 來源 A 判定「無變動」→ **文章頁永遠不會被 IndexNow 推**。
+      實測：2026-08-31 諾里斯續約篇與 2026-09-04 本篇，兩次部署推的都只有 /results/
+      這種靠 live 資料驅動的頁，文章本身一次都沒推過。手動去 GSC 要求索引一直在遮蓋它。
+
+    ⚠️ 來源 B 只在 `workflow_dispatch` 啟用（workflow 傳旗標），不在 cron 啟用——
+      否則每週 cron 都會把「上一個 commit」的 URL 再推一次，而那些通常早就推過了。
+    ⚠️ 來源 B 需要 HEAD 的父 commit。CI 的 actions/checkout 預設是深度 1 的淺層 clone，
+      拿不到父 commit → workflow 必須設 `fetch-depth: 2`。拿不到時**明講並跳過**，
+      不要靜默當成「沒有變動」（那正是本來那個洞的形狀）。
+
+    new_urls＝這次才新增的頁（部署前 404，是「真 live」的 poll 訊號；既有頁永遠 200
+    不能當訊號）：來源 A 取 untracked，來源 B 取 diff-filter=A。
+    """
+    urls, new = set(), []
+
+    # 來源 A：工作樹髒檔
     # -uall：porcelain 預設把整個新目錄縮成一行「?? dir/」，新文章頁的 index.html 會被漏掉
     out = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all", "--", "public-racing"],
                          cwd=str(ROOT), capture_output=True, text=True).stdout
-    urls, new = set(), []
     for line in out.splitlines():
         status, path = line[:2], line[3:].strip().strip('"')
-        u = None
-        if path.endswith("index.html"):
-            rel = path[len("public-racing/"):-len("index.html")]
-            u = f"{BASE_URL}/{rel}"
-        elif path.endswith("llms.txt"):
-            u = f"{BASE_URL}/llms.txt"
+        u = _path_to_url(path)
         if u:
             urls.add(u)
             if status == "??":
                 new.append(u)
+
+    # 來源 B：本次 commit 帶進來的產物變更
+    if from_commit:
+        parent = subprocess.run(["git", "rev-parse", "--verify", "--quiet", "HEAD^"],
+                                cwd=str(ROOT), capture_output=True, text=True)
+        if parent.returncode != 0 or not parent.stdout.strip():
+            print("⚠️  IndexNow：拿不到 HEAD 的父 commit（淺層 clone？"
+                  "workflow 需 fetch-depth: 2）→ 只用工作樹髒檔判斷變動", flush=True)
+        else:
+            def diff(*extra):
+                r = subprocess.run(["git", "diff", "--name-only", *extra,
+                                    "HEAD^", "HEAD", "--", "public-racing"],
+                                   cwd=str(ROOT), capture_output=True, text=True)
+                return r.stdout.splitlines() if r.returncode == 0 else []
+
+            added = {_path_to_url(p) for p in diff("--diff-filter=A")} - {None}
+            for path in diff():
+                u = _path_to_url(path)
+                if u:
+                    urls.add(u)
+                    if u in added and u not in new:
+                        new.append(u)
+
     return sorted(urls), new
 
 
@@ -130,10 +179,10 @@ def encyclopedia_step(full=False):
     print("✅ 百科段完成（變更頁已進 public-racing，隨部署由 IndexNow 自動推送）", flush=True)
 
 
-def indexnow_after_deploy():
+def indexnow_after_deploy(from_commit=False):
     """best-effort：任何失敗只警告、不擋 pipeline。帶瀏覽器樣 UA（runner 裸 UA 會被 CF 擋）。"""
     try:
-        urls, new = _indexnow_changed_urls()
+        urls, new = _indexnow_changed_urls(from_commit=from_commit)
         if not urls:
             print("\n⏭  IndexNow：本次 build 無頁面變動，不 ping", flush=True)
             return
@@ -173,6 +222,9 @@ def main():
     ap.add_argument("--season", type=int, default=season_default)
     ap.add_argument("--force", action="store_true", help="無視快照比對強制重建")
     ap.add_argument("--deploy", action="store_true", help="重建後 wrangler deploy")
+    ap.add_argument("--indexnow-from-commit", action="store_true",
+                    help="IndexNow 變動判斷額外納入 HEAD commit 的產物 diff"
+                         "（內容型 PR 的產物已 commit，工作樹不會髒；需 fetch-depth>=2）")
     ap.add_argument("--full", action="store_true",
                     help="百科段全量重生（忽略 per-page 指紋；透傳 regen-encyclopedia.py --full）")
     args = ap.parse_args()
@@ -223,7 +275,7 @@ def main():
     if args.deploy or os.environ.get("CLOUDFLARE_API_TOKEN"):
         rc_dep = run(["npx", "wrangler@4.108.0", "deploy", "-c", "wrangler-racing.jsonc"], "wrangler deploy")
         if rc_dep == 0:
-            indexnow_after_deploy()
+            indexnow_after_deploy(from_commit=args.indexnow_from_commit)
     else:
         print("\n⏭  未 --deploy 且無 CLOUDFLARE_API_TOKEN → 只重建未部署。")
 
