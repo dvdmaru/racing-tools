@@ -106,7 +106,7 @@ Grandprix.com（2026 年 9 月 3 日）給的是另一個理由，講的是觀�
 
 六篇報導的消息都來自匿名管道——例如 Autosport 寫的是「Autosport understands」，Motorsport.com 寫的是「Motorsport.com understands」——沒有一篇報導引用具名人士談這次提案，也沒有一篇是 FIA 或 F1 的官方公告。
 
-六篇報導一致的部分是：這個方案尚未經 F1 Commission 正式提案，也尚未經 FIA 世界摩托運動理事會（World Motor Sport Council，WMSC）批准。The Race 寫：「revised regulations need to be proposed to the F1 Commission... Once approved there, it will then need ratification by the FIA's World Motor Sport Council.」Autosport 寫得更直接：「it has yet to be ratified by the World Motorsport Council」。
+六篇報導一致的部分是：這個方案尚未經 F1 Commission 正式提案，也尚未經 FIA 世界汽車運動理事會（World Motor Sport Council，WMSC）批准。The Race 寫：「revised regulations need to be proposed to the F1 Commission... Once approved there, it will then need ratification by the FIA's World Motor Sport Council.」Autosport 寫得更直接：「it has yet to be ratified by the World Motorsport Council」。
 
 但六篇報導在「車隊同意到什麼程度」這件事上，用詞分成兩派。The Race、RacingNews365、Crash.net 三家都用「一致同意」：The Race 寫「this idea has now received unanimous support from teams」，RacingNews365 的導言寫「All 11 F1 teams have reached an agreement to reduce the distance of grands prix」，內文寫「with teams having unanimously backed a proposal to reduce the standard race distance from 305km to approximately 290km, according to multiple reports」——注意它自己在句尾標明是彙整他人報導，Crash.net 寫「F1 teams have unanimously backed plans to shorten Grand Prix distances」。
 
