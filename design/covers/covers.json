@@ -77,6 +77,12 @@
       "html": "cover-norris-2030.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2027-race-distance-290km",
+      "html": "cover-2027-race-distance.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

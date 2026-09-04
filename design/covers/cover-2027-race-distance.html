@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 2026 賽季各站正賽圈數（勝者完成圈數），資料來源＝data/f1/db.sqlite。
+ * 長條高度是線性換算不是手調：h = 300 × laps ÷ 78（摩納哥），底線固定 y=340。
+ * 要改資料就照這條式子重算高度，別手動微調——高度與數字必須對得上。
+ * 只有摩納哥上色，用來標示本篇主角，不對應任何車隊塗裝（站規：不用官方素材）。
+ * 只標最高與最低兩根的數字：封面 gate 會逐個數字比對正文，多印無關數字只是噪音。
+ * ⚠️ viewBox 上緣留 80px：最高那根的數字標籤基線在 y=20、字級 56px，
+ *   不留白會被裁掉上半截（2026-09-04 首次算圖就踩到，PNG 目檢才看得出來）。
+ *   ⚠️ CSS 高度維持 BASE+60 不要跟著加：preserveAspectRatio="none" 會把 viewBox
+ *   內容縮放進這個高度，加高 CSS 反而把底下的數據列擠出版面（第二次目檢才看到）。 */
+.chart { width: 100%; height: 400px; display: block; }
+.chart .nm { font-family: 'Noto Sans TC'; font-weight: 500; font-size: 34px; fill: #493c40; }
+.chart .vl { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700;
+  font-size: 46px; fill: #786a6e; }
+.chart .vl.hi { fill: #d63a2f; font-size: 56px; }
+h1 { font-size: 108px; margin-top: 44px; }
+.sub { margin-top: 28px; }
+.stats { margin-top: 36px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 規則</div>
+  <h1>今年跑最多圈的一站<br>也是<span class="y">跑最短</span>的一站</h1>
+  <div class="sub">那道「正賽距離須超過 305 公里」的門檻，從來沒有適用過摩納哥</div>
+  <div class="viz">
+    <div class="lbl">2026 賽季正賽圈數（已跑完的 12 站，勝者完成圈數）</div>
+    <svg class="chart" viewBox="0 -80 2100 480" preserveAspectRatio="none">
+      <rect x="0" y="116.9" width="120" height="223.1" rx="6" fill="#c9b8bb"/>
+      <rect x="180" y="124.6" width="120" height="215.4" rx="6" fill="#c9b8bb"/>
+      <rect x="360" y="136.2" width="120" height="203.8" rx="6" fill="#c9b8bb"/>
+      <rect x="540" y="120.8" width="120" height="219.2" rx="6" fill="#c9b8bb"/>
+      <rect x="720" y="78.5" width="120" height="261.5" rx="6" fill="#c9b8bb"/>
+      <rect x="900" y="40.0" width="120" height="300.0" rx="6" fill="#d63a2f"/>
+      <text x="960" y="20" text-anchor="middle" class="vl hi">78</text>
+      <text x="960" y="386" text-anchor="middle" class="nm">摩納哥</text>
+      <rect x="1080" y="86.2" width="120" height="253.8" rx="6" fill="#c9b8bb"/>
+      <rect x="1260" y="66.9" width="120" height="273.1" rx="6" fill="#c9b8bb"/>
+      <rect x="1440" y="140.0" width="120" height="200.0" rx="6" fill="#c9b8bb"/>
+      <rect x="1620" y="170.8" width="120" height="169.2" rx="6" fill="#c9b8bb"/>
+      <text x="1680" y="151" text-anchor="middle" class="vl">44</text>
+      <text x="1680" y="386" text-anchor="middle" class="nm">斯帕</text>
+      <rect x="1800" y="70.8" width="120" height="269.2" rx="6" fill="#c9b8bb"/>
+      <rect x="1980" y="63.1" width="120" height="276.9" rx="6" fill="#c9b8bb"/>
+    </svg>
+    <div class="stats">
+      <div class="stat"><b>305<i> 公里</i></b><span>現行條文的門檻</span></div>
+      <div class="stat"><b>290<i> 公里</i></b><span>2027 年的提案，還沒定案</span></div>
+      <div class="stat"><b>260<i> 公里</i></b><span>摩納哥自己的那個數字</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 圈數由本站資料庫重算</div>
+</div>
+</body>
+</html>
