@@ -1,0 +1,597 @@
+{
+  "_meta": {
+    "slug": "f1-monza-italian-drought-60-years",
+    "built_by": "conductor",
+    "built_at": "2026-09-06",
+    "type": "feature",
+    "note": "混合來源文：歷史統計全部出自本站資料庫（世界錦標賽 1950 起），2026 義大利站的比賽結果出自外部來源（賽後約 2 小時，jolpica 尚未落地）。正文前段必須把兩者切開。"
+  },
+  "thesis": "義大利大獎賽辦了 76 屆，義大利車手只贏過 4 次，最後一次是 1966 年的 Scarfiotti——而他生涯只贏過那一場。60 年又 2 天之後，安東內利在同一條賽道上結束了這段乾旱，方式是從第 19 位發車：蒙札此前的冠軍發車位最差紀錄，是 1971 年的第 11 位。",
+  "_structure_hint": "從『上一個做到這件事的人，生涯只做到過這一次』切進去（Scarfiotti 的 10 場 1 勝），再把乾旱量化（59 屆、42 人、182 次起跑、4 座頒獎台），然後才講今天。不要從『今天誰贏了』開頭——那是戰報的寫法，本站另有戰報。Andretti 那條反例要主動端出來，不要等讀者來抓。",
+  "own_data": {
+    "scope": "本站資料庫涵蓋 F1 世界錦標賽 1950 年起的正式分站，不含非錦標賽性質的比賽。國籍欄採資料源記載的參賽國籍（執照國籍），不是出生地——這一點在 Mario Andretti 那條會咬人。1950 至 1960 年的印地 500 計入世界錦標賽（共 11 屆），所以 Vukovich 會出現在 F1 的發車位紀錄裡。",
+    "source": "jolpica-f1 落地快照 data/f1/db.sqlite，指揮席以 SQL 直接查詢，2026-09-06。",
+    "italian_gp_editions": {
+      "held_1950_2025": 76,
+      "gaps": "無缺年——1950 至 2025 年每年都辦",
+      "today_is_edition": 77,
+      "note": "1980 年那屆在 Imola 舉行（蒙札整修），其餘各屆均在蒙札。"
+    },
+    "italian_winners_of_italian_gp": {
+      "total_wins": 4,
+      "distinct_drivers": 3,
+      "list": [
+        {
+          "year": 1950,
+          "driver": "Nino Farina"
+        },
+        {
+          "year": 1951,
+          "driver": "Alberto Ascari"
+        },
+        {
+          "year": 1952,
+          "driver": "Alberto Ascari"
+        },
+        {
+          "year": 1966,
+          "driver": "Ludovico Scarfiotti"
+        }
+      ]
+    },
+    "the_drought": {
+      "span": "1967 至 2025 年",
+      "editions": 59,
+      "italian_wins": 0,
+      "italian_starts": 182,
+      "distinct_italian_drivers": 42,
+      "starts_note": "182 是排除未起跑（position_text='W'）後的起跑人次；含未起跑則為 184。正文用 182。",
+      "editions_with_zero_italians": 12,
+      "editions_with_zero_italians_years": "1968、1969、2012、2013、2014、2015、2016、2017、2018、2022、2023、2024",
+      "italian_podiums": {
+        "count": 4,
+        "list": [
+          {
+            "year": 1984,
+            "driver": "Michele Alboreto",
+            "pos": 2,
+            "team": "Ferrari"
+          },
+          {
+            "year": 1984,
+            "driver": "Riccardo Patrese",
+            "pos": 3,
+            "team": "Alfa Romeo"
+          },
+          {
+            "year": 1988,
+            "driver": "Michele Alboreto",
+            "pos": 2,
+            "team": "Ferrari"
+          },
+          {
+            "year": 2005,
+            "driver": "Giancarlo Fisichella",
+            "pos": 3,
+            "team": "Renault"
+          }
+        ],
+        "last_one": "2005 年 Fisichella 的季軍，距今 21 年"
+      }
+    },
+    "scarfiotti_1966": {
+      "date": "1966-09-04",
+      "round": 7,
+      "circuit": "monza",
+      "grid": 2,
+      "laps": 68,
+      "team": "Ferrari",
+      "runner_up": "Mike Parkes（英國籍，同為 Ferrari）＝法拉利包辦一二名",
+      "third": "Denny Hulme（Brabham-Repco）",
+      "career_starts": 10,
+      "career_wins": 1,
+      "career_note": "生涯 10 場起跑、1 勝，那 1 勝就是這一場。本站資料庫另記 3 場 position_text='W'（未起跑），不計入 10 場。他 1967 年義大利站以 Eagle-Weslake 出賽退賽，1968 年最後三場改駕 Cooper-BRM。"
+    },
+    "gap_to_today": {
+      "from": "1966-09-04",
+      "to": "2026-09-06",
+      "days": 21917,
+      "exact": "60 年 0 個月 2 天",
+      "round_phrase": "60 年又 2 天"
+    },
+    "worst_winning_grid": {
+      "italian_gp_record_before_today": {
+        "grid": 11,
+        "driver": "Peter Gethin",
+        "year": 1971
+      },
+      "italian_gp_next": [
+        {
+          "grid": 10,
+          "driver": "Pierre Gasly",
+          "year": 2020
+        },
+        {
+          "grid": 9,
+          "driver": "John Surtees",
+          "year": 1967
+        }
+      ],
+      "f1_all_time": [
+        {
+          "grid": 22,
+          "driver": "John Watson",
+          "race": "1983 美國西岸大獎賽（長堤）",
+          "rank": "史上最差"
+        },
+        {
+          "grid": 19,
+          "driver": "Bill Vukovich",
+          "race": "1954 印地 500",
+          "rank": "並列史上第二差",
+          "caveat": "印地 500 於 1950 至 1960 年計入世界錦標賽，共 11 屆；它與同期的 F1 分站在性質上並不相同，引用時必須寫出這個但書。"
+        },
+        {
+          "grid": 18,
+          "driver": "Rubens Barrichello",
+          "race": "2000 德國大獎賽",
+          "rank": "史上第三差"
+        }
+      ],
+      "antonelli_today": {
+        "grid": 19,
+        "rank_statement": "與 1954 年的 Vukovich 並列史上第二差；若只看印地 500 以外的分站，僅次於 Watson 1983 年的第 22 位。"
+      }
+    },
+    "youngest_italian_gp_winner": {
+      "antonelli_today": {
+        "days": 7317,
+        "phrase": "20 歲又 12 天"
+      },
+      "previous_record": {
+        "driver": "Sebastian Vettel",
+        "year": 2008,
+        "days": 7744,
+        "phrase": "21 歲"
+      },
+      "third": {
+        "driver": "Charles Leclerc",
+        "year": 2019,
+        "days": 7997,
+        "phrase": "21 歲"
+      },
+      "margin": "比 Vettel 的前紀錄年輕 427 天",
+      "statement": "今天這場之後，安東內利是義大利大獎賽 77 屆以來最年輕的冠軍。"
+    },
+    "antonelli_2026_before_today": {
+      "wins": 6,
+      "wins_list": "中國（R2）、日本（R3）、邁阿密（R4）、加拿大（R5）、摩納哥（R6）、比利時（R10）",
+      "points": 242,
+      "standings_position": 1,
+      "standings_scope": "截至第 12 站荷蘭站的車手積分榜；第二名 Russell 183 分、第三名 Hamilton 183 分。",
+      "career_starts": 36,
+      "career_wins": 6,
+      "dob": "2006-08-25",
+      "monza_2025": "2025 年義大利站他從第 6 位發車、完賽第 9 名",
+      "team": "Mercedes"
+    },
+    "italian_win_leaderboard": {
+      "before_today": [
+        {
+          "driver": "Alberto Ascari",
+          "wins": 13
+        },
+        {
+          "driver": "Riccardo Patrese",
+          "wins": 6
+        },
+        {
+          "driver": "Andrea Kimi Antonelli",
+          "wins": 6
+        },
+        {
+          "driver": "Nino Farina",
+          "wins": 5
+        },
+        {
+          "driver": "Michele Alboreto",
+          "wins": 5
+        },
+        {
+          "driver": "Giancarlo Fisichella",
+          "wins": 3
+        }
+      ],
+      "after_today": "安東內利 7 勝，成為義大利籍車手史上第二多勝，僅次於 Ascari 的 13 勝——而他生涯只跑了 37 場。"
+    },
+    "italian_win_drought_overall": {
+      "previous_last_italian_win": {
+        "driver": "Giancarlo Fisichella",
+        "race": "2006 馬來西亞大獎賽",
+        "date": "2006-03-19"
+      },
+      "ended_by": {
+        "driver": "Andrea Kimi Antonelli",
+        "race": "2026 中國大獎賽",
+        "date": "2026-03-15"
+      },
+      "gap_days": 7301,
+      "gap_exact": "19 年 11 個月 24 天",
+      "point": "義大利車手『整體』的冠軍荒今年三月就結束了，蒙札這一項比它多撐了將近二十年。"
+    },
+    "andretti_counterexample": {
+      "fact": "Mario Andretti 於 1977 年替 Team Lotus 贏得義大利大獎賽。",
+      "db_nationality": "American",
+      "dob": "1940-02-28",
+      "why_it_matters": "本站資料庫的國籍欄是參賽（執照）國籍，不是出生地。Andretti 出生於義大利，1977 年那場勝利在『出生地』的定義下會讓乾旱只有 49 年而不是 60 年。⚠️ 出生地的確切地名、當時與現在的所屬國、以及他取得美國籍的時間，**由查證席 D 外部查證後補入本欄**，未補入前正文只能寫到『資料庫記為美國籍』這個層次，不得自行描述其出生地。",
+      "handling": "這條要主動寫進正文，不要等讀者來抓。寫法是把定義攤開（執照國籍 vs 出生地），不是替讀者裁決哪個定義才對。"
+    },
+    "completeness_checks": {
+      "_why": "最高級表述只有在欄位沒有缺漏時才成立。缺漏會讓最高級靜默退化成「在有資料的那些人裡最…」，而且從查詢結果看不出來。以下是指揮席針對本篇兩個最高級主張做的欄位完整度檢查。",
+      "dob_of_italian_gp_winners": "76 筆義大利大獎賽冠軍，dob 缺漏 0 筆 → 「77 屆以來最年輕冠軍」在資料庫射程內成立。（全庫 881 位車手中有 16 位缺 dob，但沒有一位是義大利站冠軍。）",
+      "grid_of_italian_gp_winners": "76 筆義大利大獎賽冠軍，grid 缺漏 0 筆、為 0 者 0 筆 → 「蒙札冠軍發車位最差＝1971 年第 11 位」成立。",
+      "grid_of_all_winners": "全庫 1,164 筆分站冠軍中，grid 為 NULL 者僅 1 筆＝2026 年荷蘭站的 Lando Norris（該站 grid 欄整批未落地；本站該場戰報寫他「從第 1 位發車」）。桿位不可能是更差的發車位 → 「F1 史上發車位最差的冠軍是 1983 年 John Watson 的第 22 位」不受這筆缺漏影響。",
+      "scope_reminder": "以上皆限於 F1 世界錦標賽 1950 年起，且 1950 至 1960 年的印地 500 計入。"
+    },
+    "derived_values": {
+      "_why": "以下三個值原本是寫手在稿子裡自己算的，已由指揮席對資料庫重算後補成成品值。其中『五分之一』與『三年後』是中文數詞，verify-numbers 掃不到（該 gate 只掃阿拉伯數字），靠人工掃描中文數詞才抓到。",
+      "editions_1950_to_1966": {
+        "value": 17,
+        "derivation": "SELECT COUNT(*) FROM races WHERE name='Italian Grand Prix' AND season BETWEEN 1950 AND 1966 → 17。亦即義大利籍車手的 4 次冠軍（1950、1951、1952、1966）全部落在前 17 屆之內。",
+        "wording_note": "⚠️ 稿子原寫『集中在前 17 屆的前段』——1966 年正是第 17 屆本身，不是『前段』。正確寫法是『全部落在前 17 屆之內』，不要加『前段』。"
+      },
+      "zero_italian_share": {
+        "value": "12 屆 ÷ 59 屆 ＝ 20.3%",
+        "derivation": "12/59 = 0.2034。四捨五入約兩成，寫成『五分之一』是可接受的概數。",
+        "wording_note": "要用概數就寫『約五分之一』或『約兩成』，不要寫成剛好五分之一。"
+      },
+      "scarfiotti_1963_to_1966": {
+        "value": 3,
+        "derivation": "1963 年簽進法拉利 F1 車隊 → 1966 年蒙札奪冠，相隔 3 年。兩個年份都在 external_biography.scarfiotti 裡。"
+      }
+    }
+  },
+  "race_2026_italian": {
+    "_source_class": "外部來源，但**已升為官方級**。2026-09-06 UTC 15:30 左右（賽後約 1.5 小時），formula1.com 的正式 RACE RESULT 表與 STARTING GRID 表都已上架，指揮席以 curl 取得原始 HTML 後自行解析表格（不經任何摘要器），快照留存。本站自有管線 jolpica-f1 此刻仍未落地本站資料庫——所以正文若要提資料來源，說法是『本站資料庫尚未收錄今天這場，賽果引自 F1 官方賽果表』。",
+    "confirmed_high": {
+      "winner": "Andrea Kimi Antonelli（Mercedes）",
+      "evidence": "三個互相獨立的來源族群逐字一致：formula1.com 官網標題「LIVE COVERAGE: Antonelli takes brilliant Italy win from P19」（同字串在官網首頁、義大利站賽事頁、最新消息列表三處出現）、Autosport 即時文字、Sky Sports 影片標題與賽果表。",
+      "grid": 19,
+      "grid_evidence": "formula1.com 官方 STARTING GRID 頁（已計入罰則）：P19 #12 Kimi Antonelli (Mercedes) 1:22.093，附註為使用超量動力單元元件須自後方起跑。",
+      "qualifying_position": 7,
+      "qualifying_evidence": "本站自有管線 jolpica-f1，2026 第 13 站排位賽 22 筆已完整落地。桿位 Pierre Gasly（Alpine）1:21.786，第二 Russell、第三 Piastri、第四 Leclerc、第五 Hamilton、第六 Verstappen、第七 Antonelli 1:22.093。",
+      "internal_consistency": "排位第 7 → 動力單元罰退 → 發車第 19，兩個數字互相解釋，且 1:22.093 這個單圈成績在排位表與官方發車表上完全相同。"
+    },
+    "confirmed_medium": {
+      "p2": "George Russell（Mercedes）",
+      "p3": "Max Verstappen（Red Bull）",
+      "evidence": "Sky Sports 賽果表（含時間差：Russell +3.857、Verstappen +14.718、Norris +19.056、Piastri +19.253，全部 53 圈）與 RacingNews365 賽後報導一致。**尚無官方分類表。**",
+      "laps": 53,
+      "_superseded": "本節的『尚無官方分類表』已不成立——見 official_classification。保留僅為紀錄當時的證據狀態。"
+    },
+    "unconfirmed": {
+      "red_flag": "多家賽後報導提到本場出現紅旗（RacingNews365 賽後稿逐字：red-flagged race）；有來源指第 2 圈 Leclerc 在 Parabolica 撞車引發、停約 30 分鐘後以站立起跑重啟。⚠️ 紅旗的圈數、起因與重啟方式**尚未取得官方文件佐證**，查證席 D 正在查。未取得前正文不得寫圈數與彎名。"
+    },
+    "must_not_write": [
+      "☠️ 不得寫『從最後一位起跑』或『從全場最後起跑』——安東內利是第 19 位，他身後還有 Albon（20）、Alonso（21）、Lawson（22）三人。這是硬錯。",
+      "☠️ 不得寫『自 1954 年 Vukovich 之後首見』。這句話今天由 WebFetch 摘要器對維基百科生成，該條目原始 wikitext 裡**沒有這句**（賽果表整段仍被註解掉），而且句子本身也錯——Watson 1983 年從第 22 位奪冠，比 1954 年晚。",
+      "☠️ 不得引用英文維基百科的 2026 Italian Grand Prix 條目作為賽果來源——它此刻仍在 live 編輯中。"
+    ],
+    "official_classification": {
+      "_grade": "官方（formula1.com 正式賽果表，指揮席直接解析原始 HTML）",
+      "_retrieved": "2026-09-06 UTC 約 15:30",
+      "top7": [
+        {
+          "pos": 1,
+          "no": 12,
+          "driver": "Kimi Antonelli",
+          "team": "Mercedes",
+          "laps": 53,
+          "time": "1:51:15.281",
+          "pts": 25
+        },
+        {
+          "pos": 2,
+          "no": 63,
+          "driver": "George Russell",
+          "team": "Mercedes",
+          "laps": 53,
+          "time": "+3.857s",
+          "pts": 18
+        },
+        {
+          "pos": 3,
+          "no": 3,
+          "driver": "Max Verstappen",
+          "team": "Red Bull Racing",
+          "laps": 53,
+          "time": "+14.718s",
+          "pts": 15
+        },
+        {
+          "pos": 4,
+          "no": 1,
+          "driver": "Lando Norris",
+          "team": "McLaren",
+          "laps": 53,
+          "time": "+19.056s",
+          "pts": 12
+        },
+        {
+          "pos": 5,
+          "no": 81,
+          "driver": "Oscar Piastri",
+          "team": "McLaren",
+          "laps": 53,
+          "time": "+19.253s",
+          "pts": 10
+        },
+        {
+          "pos": 6,
+          "no": 44,
+          "driver": "Lewis Hamilton",
+          "team": "Ferrari",
+          "laps": 53,
+          "time": "+24.655s",
+          "pts": 8
+        },
+        {
+          "pos": 7,
+          "no": 10,
+          "driver": "Pierre Gasly",
+          "team": "Alpine",
+          "laps": 53,
+          "time": "+27.351s",
+          "pts": 6
+        }
+      ],
+      "winning_time": "1 小時 51 分 15.281 秒",
+      "cross_check": "Sky Sports 賽果表的時間差（+3.857／+14.718／+19.056／+19.253）與官方表逐位吻合，兩者獨立一致。"
+    },
+    "official_starting_grid": {
+      "_grade": "官方（formula1.com 正式發車表，指揮席直接解析原始 HTML）",
+      "pole": {
+        "pos": 1,
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
+        "time": "1:21.786"
+      },
+      "antonelli": {
+        "pos": 19,
+        "no": 12,
+        "team": "Mercedes",
+        "time": "1:22.093"
+      },
+      "behind_antonelli": [
+        {
+          "pos": 20,
+          "driver": "Alexander Albon",
+          "team": "Williams"
+        },
+        {
+          "pos": 21,
+          "driver": "Fernando Alonso",
+          "team": "Aston Martin"
+        },
+        {
+          "pos": 22,
+          "driver": "Liam Lawson",
+          "team": "Red Bull Racing"
+        }
+      ],
+      "internal_consistency": "官方發車表上 Antonelli 的 1:22.093 與本站 jolpica 排位資料的 1:22.093 完全相同 → 排位第 7、罰退後發車第 19，同一個單圈成績串起兩張表。",
+      "not_last": "☠️ 他不是最後一位。身後還有 Albon、Alonso、Lawson 三人。此點已由官方發車表親自驗證。"
+    }
+  },
+  "checked_not_used": [
+    {
+      "item": "「這是義大利籍車手在 F1 世界錦標賽的第 50 座分站冠軍」",
+      "why_checked": "賽前義大利車手累計 49 勝，今天這場剛好是第 50 座，是個漂亮的整數。",
+      "why_not_used": "Luigi Fagioli 1951 年法國大獎賽那勝是與 Fangio 共用一輛車（本站資料庫記其得分 4.0＝該場冠軍分數的一半），共乘勝場算不算一座在不同統計慣例下有分歧。為一個裝飾性的整數引進一個可爭議的判準不划算，整條不用。"
+    },
+    {
+      "item": "義大利站冠軍完整名單逐年列出",
+      "why_not_used": "76 筆清單放進正文會蓋掉論點。只用『4 次義大利籍冠軍』與『1967 年後 0 次』兩個彙總值。"
+    }
+  ],
+  "must_not_claim": [
+    "不得寫『史上第一』『破天荒』這類最高級表述來形容今天這場勝利，除非該最高級有本站資料庫的明確查詢支撐、且正文寫出涵蓋範圍。可用的兩個是『義大利大獎賽 77 屆以來最年輕的冠軍』與『蒙札冠軍發車位最差紀錄』，兩者都要帶範圍。",
+    "不得把『182 次起跑』寫成『182 位車手』——那是 42 位車手累計的起跑人次。",
+    "不得寫『從最後一位起跑』（見 race_2026_italian.must_not_write）。",
+    "不得寫紅旗的圈數、彎名或中斷時間，除非查證席 D 取得官方文件佐證。",
+    "不得替『義大利車手』下一個本站自創的定義。資料庫用的是參賽國籍，Andretti 這條就照這個定義寫，並把定義本身講給讀者聽。",
+    "不得寫『義大利人終於在主場贏了』這類把讀者情緒替他寫完的句子。給事實，讓讀者自己有感覺。",
+    "不得寫任何無名歸因：『外界普遍認為』『分析認為』『車迷們都說』一律禁用。",
+    "不得寫 Ferrari 今天的表現如何如何——本文主題是義大利車手，不是義大利車隊，兩者是不同的統計對象，混在一起會讓論點散掉。若要提 1966 年法拉利包辦一二名，那是史實陳述，不要延伸成今天的評論。",
+    "不得依賴今天賽果的『名次以外』細節（進站策略、輪胎、安全車）——本站資料庫沒有這些欄位，外部來源此刻也還沒有官方文件。",
+    "不得把『60 年』寫成『60 年來第一次』之外的其他年數。精確值是 60 年又 2 天（21,917 天），四捨五入寫『60 年』可以，寫『將近 60 年』或『61 年』都不行。",
+    "不得寫 Andretti 何時取得美國執照或美國公民身分的精確日期——執照那項查不到，公民身分那項兩個來源互斥（1964-04-15 vs 1965-04-07）。",
+    "不得寫 Scarfiotti 死亡瞬間的細節（送醫途中／被拋出座艙），兩家說法不同。只寫『1968 年在登山賽練習中身亡，34 歲』。",
+    "不得寫 Leclerc 撞車的成因機制，除非兩種說法（後軸失控／壓到排水孔蓋）都寫出來並標明互相矛盾。",
+    "不得在查證席 E 回報前寫 Parabolica 彎的紀念命名（Curva Alboreto）。",
+    "不得寫『Fiat 九位創辦人之一』——『九位』只有單一來源。只寫『創辦人之一，並為第一任總裁』。",
+    "☠️ 不得宣稱紅旗『幫了』『成就了』『讓』安東內利奪冠。本站沒有任何來源支持這個因果——紅旗在第 2 圈出現，之後還跑了 51 圈。把並置寫成因果是無源主張，正好是 verify-sources 要擋的東西。可以寫『比賽在第 2 圈因 Leclerc 撞車紅旗中斷、以站立起跑重啟』這個事實，然後停下。",
+    "☠️ 不得把 Curva Alboreto 這條連結寫成命運或宿命。並置就是並置——寫出兩件事，讓讀者自己看見，不要替他下結論。",
+    "☠️ 不得只寫『Curva Alboreto』而不提 Parabolica，也不得只寫 Parabolica 而不提正式名。兩個名字都要出現。",
+    "☠️ 不得把 Alboreto 的『1985 年世界錦標賽亞軍』與『1984、1988 義大利大獎賽亞軍』混寫成同一件事。",
+    "☠️ 不得寫任何描述『本站資料庫此刻收錄到哪裡』的句子——包括『本站資料庫尚未收錄今天這場』。理由：本站的部署管線會在發佈前先抓 jolpica，這句話很可能在上線當下就已經是假的（本站記過的『手動靜態檔＝staleness 炸彈』一族）。也不得寫『官方分類表尚未上架』，賽後約 1.5 小時已上架。**正確寫法是只講來源、不講時態**：歷史統計出自本站資料庫（世界錦標賽 1950 年起），今天這場的名次與時間出自 F1 官方賽果表。兩句都不帶「目前」「尚未」「此刻」這類會過期的詞。",
+    "☠️ 中文數詞一樣算數字。『五分之一』『三年後』『二十年』『十幾次』全部受『寫手不做算術』這條規範拘束——verify-numbers 掃不到它們（該 gate 只掃阿拉伯數字），但掃不到不等於可以寫。要用概數，成品值必須先在 own_data.derived_values 裡。"
+  ],
+  "voice": {
+    "headline_style": "標題自己要是一個事實，不要用編號或分類標籤。❌『一、乾旱的歷史』→ ✅『上一個在蒙札奪冠的義大利人，生涯只贏過那一場』。",
+    "forbidden_meta": "gate 語言不進正文。❌『本站資料庫涵蓋世界錦標賽 1950 年起，因此非錦標賽性質的比賽不在統計內，這一點必須先講清楚，否則讀者可能誤解統計口徑』→ ✅『以下數字只算世界錦標賽，1950 年起。』｜❌『這是媒體報導而非官方分類表，本站不替兩者裁決』→ ✅『官方分類表還沒出，這是媒體的賽果表。』",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』，一律換回具體名詞（哪一年、誰、哪一場）。",
+    "tone": "小 Lin 說＋張泉靈。從具體的怪事切進去，短句，一句話講一件事。不要在正文裡解釋我們怎麼查證的。",
+    "length": "下限 3,000 字（含標點）。不設上限。"
+  },
+  "required_sections": [
+    "開頭：從 Scarfiotti 生涯 10 場 1 勝切入，不要從今天誰贏了切入",
+    "乾旱的量化：59 屆、42 位車手、182 次起跑、0 勝、4 座頒獎台、12 屆連義大利人都沒有",
+    "資料口徑：一段講清楚哪些數字是本站資料庫（世界錦標賽 1950 起、執照國籍）、哪些是外部來源（今天的賽果，官方分類表尚未上架）",
+    "Andretti 反例：把『執照國籍 vs 出生地』的定義攤開",
+    "今天：第 19 位發車，以及蒙札此前的第 11 位紀錄、F1 全歷史的 Watson 與 Vukovich",
+    "最年輕冠軍：20 歲又 12 天 vs Vettel 的前紀錄",
+    "把蒙札的乾旱與義大利車手整體的冠軍荒分開講（後者今年三月已由安東內利本人結束）",
+    "資料來源區塊（分級、含查證日 2026-09-06、含本站限制聲明）"
+  ],
+  "interlinks": {
+    "note": "frontmatter 必須有 season: 2026，否則正文的站名不會連到分站頁。",
+    "candidates": [
+      "/results/",
+      "/standings/",
+      "/calendar/"
+    ]
+  },
+  "zh_names": {
+    "_rule": "站規：文章（手寫 markdown）用全形括號的中英對照，如『安東內利（Andrea Kimi Antonelli）』。首次出現時對照，之後可只用中文。譯名唯一資料源是 scripts/driver-zh.json。",
+    "approved": {
+      "antonelli": "安東內利",
+      "russell": "羅素",
+      "max_verstappen": "維斯塔潘",
+      "leclerc": "勒克萊爾",
+      "hamilton": "漢米爾頓",
+      "gasly": "蓋斯利",
+      "norris": "諾里斯",
+      "piastri": "皮亞斯特里",
+      "farina": "朱塞佩・法里納",
+      "ascari": "阿爾貝托・阿斯卡里",
+      "vettel": "賽巴斯蒂安・維特爾",
+      "mario_andretti": "馬里奧・安德烈蒂",
+      "hulme": "丹尼・休姆",
+      "surtees": "約翰・蘇爾特斯"
+    },
+    "no_approved_translation": {
+      "_rule": "⚠️ 以下車手不在 scripts/driver-zh.json 裡，站上沒有定版譯名。正文一律只寫原文，不要自己造譯名——本站的譯名是單一資料源制，文章擅自造名會讓站內出現兩套寫法。",
+      "list": [
+        "Ludovico Scarfiotti",
+        "Michele Alboreto",
+        "Riccardo Patrese",
+        "Giancarlo Fisichella",
+        "Jarno Trulli",
+        "Alessandro Nannini",
+        "Elio de Angelis",
+        "Peter Gethin",
+        "John Watson",
+        "Bill Vukovich",
+        "Rubens Barrichello",
+        "Mike Parkes",
+        "Luigi Fagioli"
+      ],
+      "_correction_2026_09_06": "☠️ 本名單原先誤列 Mario Andretti、Denny Hulme、John Surtees 三人——他們其實都在 scripts/driver-zh.json 裡且狀態為 approved（馬里奧・安德烈蒂／丹尼・休姆／約翰・蘇爾特斯，src 為 charlie-2026-07-23 與 07-24）。根因是指揮席建表時只 grep 了名單中的一部分，其餘憑印象填入。寫手照名單全篇只寫原文，Andretti 因此在正文出現 6 次原文——正好製造了譯名單一資料源制想防的「站內兩套寫法」。**判準：任何「這些人都沒有 X」的排他性主張，一律逐個 grep，不准憑印象。**已用 tmp/audit_names.py 對文章裡的每一個人名重查一次，確認恰好這三人需改。"
+    }
+  },
+  "external_biography": {
+    "_source_class": "外部查證（查證席 D，2026-09-06）。⚠️ 該席只有 WebFetch／WebSearch，而 WebFetch 回的是摘要器讀完頁面後的摘要、不是原文，因此以下沒有任何一條達到『逐字讀到原文』的等級。降險做法是對關鍵句改用 action=raw 做字串檢索、再拿第二個獨立來源覆核；已覆核者標明。正文引用時分級照下面每條的 grade 欄。",
+    "andretti": {
+      "birthplace": {
+        "value": "Montona（義大利文），今名 Motovun，位於伊斯特里亞（Istria）半島",
+        "then_country": "義大利王國（Kingdom of Italy）",
+        "now_country": "克羅埃西亞",
+        "grade": "媒體＋Motovun 觀光官方，兩源覆核",
+        "note": "⚠️ 當時屬國與現屬國兩者都要寫，只寫一個會誤導。"
+      },
+      "dob": {
+        "value": "1940-02-28",
+        "grade": "兩源覆核，與本站資料庫一致"
+      },
+      "citizenship_date": {
+        "value": "☠️ 兩個互斥日期，本站不裁決：1964-04-15（出處為他 1970 年的自傳，多數媒體沿用『1964』）／ 1965-04-07（維基敘述稱 Andretti 後來透露實際歸化日為此日）",
+        "grade": "來源互斥",
+        "handling": "**建議整條不進正文。** 文章不需要精確歸化日；若要寫，兩個日期都要寫並說明來源互斥。"
+      },
+      "licence_nationality_date": {
+        "value": "查不到",
+        "grade": "查不到",
+        "handling": "☠️ 不得寫『他從某年起以美國執照參賽』。沒有任何來源講執照的國別與發放日。可用的時間錨點只有：1964-04-19 首場 USAC Championship（Trenton）、1968-10-06 F1 處女戰（Watkins Glen，首戰即拿下竿位）——這兩個是媒體級，且**不等於**執照國籍的時間點。"
+      },
+      "family_departure": {
+        "value": "1947 年巴黎和約把伊斯特里亞劃給南斯拉夫；家族 1948 年隨 Istrian–Dalmatian exodus 離開，在義大利 Lucca 的難民營待了七年，1955 年赴美，定居賓州 Nazareth。",
+        "grade": "1948／Lucca／1955 三個時間點有第二來源覆核；『難民營七年』與『只准帶一卡車家當』只有維基單一來源",
+        "handling": "『七年』與『一卡車家當』若要寫，降強度或不寫。"
+      },
+      "zh_name": {
+        "value": "中文維基作『馬里奧·安德烈蒂』",
+        "grade": "中文維基，非本站定版",
+        "handling": "站上 driver-zh.json 無此人，正文只寫原文 Mario Andretti。"
+      }
+    },
+    "scarfiotti": {
+      "born": {
+        "value": "1933-10-18，義大利都靈（Turin）",
+        "grade": "兩源覆核"
+      },
+      "died": {
+        "value": "1968-06-08，34 歲，於德國 Berchtesgaden 附近的 Rossfeld 登山賽（hillclimb），駕 Porsche 910",
+        "grade": "兩源覆核",
+        "note": "☠️ 是登山賽的**練習／試車**時段，不是正式競賽圈——用詞兩家不同（Motor Sport 寫 during practice、維基寫 during trials）。死亡瞬間的細節兩家說法不同（送醫途中過世 vs 被拋出座艙），**正文只寫『登山賽練習中身亡』，不寫瞬間細節。**"
+      },
+      "fiat_link": {
+        "value": "他的祖父同名（拼法差一個字母：Lodovico Scarfiotti）是 Fiat 的創辦人之一，並且是 Fiat 的第一任總裁。",
+        "grade": "媒體級",
+        "note": "維基另稱『九位創辦人之一』，『九位』只有維基有 → 正文只寫『創辦人之一』，不寫人數。"
+      },
+      "ferrari_career": {
+        "value": "1960 年首度獲 Enzo Ferrari 選用；1962 年被召回主攻登山賽；1963 年簽入 F1 車隊，同年替 Ferrari 拿下利曼 24 小時與 Sebring 12 小時；1966-09-04 駕 Ferrari 312 在蒙札奪下生涯唯一的 F1 分站冠軍。",
+        "grade": "媒體級（Motor Sport）"
+      },
+      "media_corroboration": {
+        "value": "Motor Sport 該文寫他是「the last Italian driver to win the Italian Grand Prix for 60 years」。",
+        "grade": "媒體級",
+        "note": "這句可當本站自有資料結論的旁證——本站的『1967 至 2025 年 59 屆 0 勝』是自己算的，媒體這句是獨立來源得到同樣結論。"
+      },
+      "zh_name": {
+        "value": "查不到可引用的中文權威譯名",
+        "handling": "正文只寫原文 Ludovico Scarfiotti。"
+      }
+    },
+    "race_narrative_2026": {
+      "red_flag": {
+        "lap": 2,
+        "value": "第 2 圈末出現紅旗，起因是 Charles Leclerc（Ferrari）單人事故，他自行下車無恙。",
+        "grade": "F1 官方影片標題「Race red-flagged after Leclerc crashes out on Lap 2」＋ the-race／autosport／planetf1 賽後報導一致",
+        "dissent": "planetf1 的即時文字流有一行寫 Lap 4，研判是 live blog 的計數偏移。採第 2 圈。"
+      },
+      "corner": {
+        "value": "Parabolica",
+        "grade": "媒體級",
+        "pending": "⚠️ 查證席 D 另稱該彎正式名稱為 Curva Alboreto（以 Michele Alboreto 命名）。**此項由查證席 E 獨立查證中，未回報前正文不得寫這個彎名的紀念意涵。**"
+      },
+      "crash_mechanism": {
+        "value": "☠️ 兩說並存：the-race／autosport 寫後軸突然失控（snap of oversteer），當時正遭 Piastri 進攻；planetf1 寫左後輪壓到 Parabolica 外側的排水孔蓋。",
+        "grade": "媒體級，互相矛盾",
+        "handling": "兩邊都寫，或整條不寫。**不得自行裁決哪個對。**"
+      },
+      "restart": {
+        "value": "以站立起跑（standing restart）重啟，重排發車格後由 Russell 居首、Gasly 次之。",
+        "grade": "媒體級，未取得 FIA 官方文件"
+      },
+      "laps": {
+        "value": 53,
+        "grade": "the-race 成績表與 planetf1 覆核一致"
+      },
+      "antonelli_penalty": {
+        "value": "合計 30 格罰退，因超出動力單元配額：第 5 具 ICE（內燃機）、第 4 具 ES（儲能）、第 4 具 CE（控制電子），三項各罰 10 格。",
+        "grade": "FIA decision 文件措辭經 GPFans 轉引，**未取得 fia.com 原始 PDF**；F1 官網以較粗的措辭寫「Kimi Antonelli and Williams' Alex Albon are serving back-of-the-grid penalties – all for power unit changes」",
+        "handling": "『30 格』與三項元件名稱屬轉引級，寫進正文要標明是轉引 FIA 文件而非本站取得原檔。若不想背這個風險，只寫 F1 官網那句『因更換動力單元自後方起跑』即可。"
+      },
+      "grid_dissent_note": "GPFans 等轉述寫 Antonelli『drops to P20』，F1 官方發車表與 autosport／planetf1 賽後寫 19th，差異疑因 Lawson、Alonso 改為維修區起跑而遞補。**本站採 19，依據是 F1 官網正式發車表。**"
+    },
+    "curva_alboreto": {
+      "_verified_by": "查證席 E，2026-09-06",
+      "renamed": {
+        "value": "屬實。蒙札的 Parabolica 彎於 2021 年正式更名為 Curva Alboreto，紀念 Michele Alboreto。命名由義大利汽車俱樂部（ACI）主席於 2021-08-28 宣布，命名儀式於 2021-09-11 該站週末舉行。",
+        "grade": "賽道官方（monzanet.it）＋ F1 官方（formula1.com）＋ ACI 官方刊物存檔，三者一致——不是俗稱、不是媒體傳說"
+      },
+      "both_names_still_used": {
+        "value": "☠️ 兩個名字並用，且 Parabolica 在口語與轉播中仍是主流。F1 官網 2026-09-03 的彎名解說文自己就寫「Last but by no means least is Curva Alboreto, still often called Parabolica」；賽道官網的彎道頁列為「Alboreto Curve (Parabolic)」，正式名在前、舊名附括號。",
+        "handling": "**正文一定要雙名並寫。** 只寫「已改名叫 Alboreto 彎」會被熟悉賽道的讀者挑。"
+      },
+      "michele_alboreto": {
+        "value": "義大利米蘭人，生 1956-12-23，卒 2001-04-25（44 歲），於 Lausitzring 為耐力賽備戰測試時事故身亡。1985 年世界錦標賽亞軍。生涯 5 座 F1 分站冠軍。1997 年利曼 24 小時冠軍。",
+        "grade": "ACI 官方刊物＋賽道官網；其中「生涯 5 座分站冠軍」已由本站資料庫獨立算出同值",
+        "trap": "☠️ **1985 年『世界錦標賽亞軍』與本站統計裡的『1984、1988 兩屆義大利大獎賽亞軍』是三件不同的事，不得寫成同一句。**"
+      },
+      "why_it_matters_here": "今天引發紅旗的 Leclerc 撞車地點，正是這個以 Alboreto 命名的彎；而 Alboreto 本人是乾旱期裡義大利車手在蒙札最接近奪冠的人（1984、1988 兩度亞軍）。這條連結可以寫，但只能寫成並置的事實，不得寫成因果或命運。"
+    }
+  }
+}
