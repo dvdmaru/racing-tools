@@ -195,6 +195,38 @@ def _stability(meta, slug):
     return stability.status(slug, season, rnd), stability
 
 
+def _nav_title(title: str, limit: int = 40) -> str:
+    """前／後篇導覽用的標題截斷。
+
+    ☠️ 原本是 `html_lib.escape(title)[:40]`，一行裡有兩個問題：
+
+    ① **先 escape 再切**：切點若落在 HTML 實體中間（`&quot;` 被切成 `&qu`），
+       產出的是壞標記。改成先切原文、再 escape。
+    ② **硬切、無省略號、不避開數字**：讀者看不出被截斷，而切在數字串中間時，
+       會造出一個「看起來完整、意思卻相反」的片段。
+       實測（2026-09-06 全站 22 條導覽有 9 條被硬切，其中 5 條切在數字上）：
+         〈…然後今天有人從第 19 位贏了〉→「…有人從第 1」＝讀起來像從竿位奪冠
+         〈…4 人變成 5X〉→「…人變成 5」
+       這正是本站「一個視覺通道只承載一種語意」與「狀態類 UI 要 fail-honest」
+       那一族：截斷本身沒問題，**看不出是截斷**才是問題。
+
+    做法：超長才動刀；把尾端的「未完數字串」與「孤立標點空白」**交替退到穩定**，
+    再補上刪節號。
+
+    ⚠️ 交替是必要的，不能只做一輪（2026-09-06 本函式第一版就踩到）：
+    先退數字再退空白時，`…以上、2 條` 切在「2」與空白之間 → 退數字沒命中（尾端是空白），
+    退空白之後反而把「2」重新露到最後 → 產出 `…以上、2…`，缺陷原封不動。
+    """
+    if len(title) <= limit:
+        return title
+    JUNK = "　 、，,：:；;．.－-—"
+    cut, prev = title[:limit], None
+    while cut != prev:
+        prev = cut
+        cut = re.sub(r"\d+$", "", cut.rstrip(JUNK))
+    return cut.rstrip(JUNK) + "…"
+
+
 def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=None):
     _st, _stmod = _stability(meta, slug)
     status_html = _stmod.status_line_html(_st)
@@ -210,10 +242,10 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
     nav_parts = []
     if prev_nav:
         nav_parts.append(f'<a href="/articles/{prev_nav["slug"]}/"><span class="lbl">← 前一篇</span>'
-                         f'{html_lib.escape(prev_nav["meta"].get("title",""))[:40]}</a>')
+                         f'{html_lib.escape(_nav_title(prev_nav["meta"].get("title", "")))}</a>')
     if next_nav:
         nav_parts.append(f'<a href="/articles/{next_nav["slug"]}/" style="text-align:right"><span class="lbl">後一篇 →</span>'
-                         f'{html_lib.escape(next_nav["meta"].get("title",""))[:40]}</a>')
+                         f'{html_lib.escape(_nav_title(next_nav["meta"].get("title", "")))}</a>')
     nav_html = f'<div class="art-nav">{"".join(nav_parts)}</div>' if nav_parts else ""
 
     art_node = {

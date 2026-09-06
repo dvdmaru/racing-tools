@@ -83,6 +83,12 @@
       "html": "cover-2027-race-distance.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-monza-italian-drought-60-years",
+      "html": "cover-monza-italian-drought.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

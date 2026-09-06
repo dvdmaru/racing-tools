@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 義大利大獎賽 77 屆（1950-2026）冠軍國籍時間軸，資料來源＝data/f1/db.sqlite。
+ * 刻度 x 由屆序線性換算（step = (2140-16) ÷ 76），高度只有兩級：
+ * 義大利籍冠軍 118px、其餘 46px。要改資料請重跑 tmp/gen_cover.py，不要手調座標。
+ * 2026 那屆賽果尚未落地本站資料庫，其國籍是依外部已確認結果補的（見 facts pack）。
+ * 只標 1950／1966／2026 三個年份：封面 gate 會逐個數字比對正文，多印無關數字只是噪音。
+ * 顏色只用來區分「是不是義大利籍」，不對應任何車隊塗裝（站規：不用官方素材）。 */
+.chart { width: 100%; height: 300px; display: block; }
+.chart .yr { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700;
+  font-size: 40px; fill: #786a6e; }
+.chart .gap { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700;
+  font-size: 52px; fill: #d63a2f; }
+h1 { font-size: 112px; margin-top: 48px; }
+.sub { margin-top: 30px; margin-bottom: 26px; }
+.stats { margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 紀錄</div>
+  <h1>義大利人在蒙札<br>等了 <span class="y">60 年</span></h1>
+  <div class="sub">1966 年之後，42 位義大利車手、182 次起跑，一次都沒贏</div>
+  <div class="viz">
+    <div class="lbl">義大利大獎賽歷屆冠軍（1950-2026），紅色為義大利籍</div>
+    <svg class="chart" viewBox="0 -20 2140 240" preserveAspectRatio="none">
+      <rect x="0.0" y="32" width="16" height="118" rx="3" fill="#d63a2f"/>
+      <rect x="27.9" y="32" width="16" height="118" rx="3" fill="#d63a2f"/>
+      <rect x="55.9" y="32" width="16" height="118" rx="3" fill="#d63a2f"/>
+      <rect x="83.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="111.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="139.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="167.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="195.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="223.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="251.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="279.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="307.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="335.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="363.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="391.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="419.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="447.2" y="32" width="16" height="118" rx="3" fill="#d63a2f"/>
+      <rect x="475.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="503.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="531.0" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="558.9" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="586.9" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="614.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="642.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="670.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="698.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="726.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="754.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="782.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="810.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="838.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="866.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="894.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="922.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="950.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="978.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1006.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1034.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1062.0" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1089.9" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1117.9" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1145.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1173.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1201.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1229.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1257.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1285.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1313.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1341.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1369.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1397.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1425.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1453.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1481.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1509.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1537.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1565.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1593.0" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1620.9" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1648.9" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1676.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1704.8" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1732.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1760.7" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1788.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1816.6" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1844.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1872.5" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1900.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1928.4" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1956.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="1984.3" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="2012.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="2040.2" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="2068.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="2096.1" y="104" width="16" height="46" rx="3" fill="#cbbcbf"/>
+      <rect x="2124.0" y="32" width="16" height="118" rx="3" fill="#d63a2f"/>
+      <text x="8.0" y="202" text-anchor="start" class="yr">1950</text>
+      <text x="455.2" y="202" text-anchor="middle" class="yr">1966</text>
+      <text x="2132.0" y="202" text-anchor="end" class="yr">2026</text>
+      <line x1="455.2" y1="-2" x2="2132.0" y2="-2" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/>
+      <line x1="455.2" y1="-16" x2="455.2" y2="12" stroke="#a6989c" stroke-width="3"/>
+      <line x1="2132.0" y1="-16" x2="2132.0" y2="12" stroke="#a6989c" stroke-width="3"/>
+      <rect x="1177.6" y="-34" width="232" height="64" rx="8" fill="#f3e9e9"/>
+      <text x="1293.6" y="14" text-anchor="middle" class="gap">60 年</text>
+    </svg>
+    <div class="stats">
+      <div class="stat"><b>77</b><span>屆義大利大獎賽</span></div>
+      <div class="stat"><b>5</b><span>次義大利籍冠軍</span></div>
+      <div class="stat"><b>19</b><span>今天奪冠者的發車位</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc · 資料截至 2026-09-06</div>
+</div>
+</body>
+</html>
