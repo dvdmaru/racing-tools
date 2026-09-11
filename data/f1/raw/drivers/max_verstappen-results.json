@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 245,
+  "total": 246,
   "Races": [
     {
       "season": "2015",
@@ -14501,16 +14501,73 @@
             "name": "Red Bull",
             "nationality": "Austrian"
           },
-          "grid": null,
+          "grid": "7",
           "laps": "0",
           "status": "Retired"
+        }
+      ]
+    },
+    {
+      "season": "2026",
+      "round": "13",
+      "url": "https://en.wikipedia.org/wiki/2026_Italian_Grand_Prix",
+      "raceName": "Italian Grand Prix",
+      "Circuit": {
+        "circuitId": "monza",
+        "url": "https://en.wikipedia.org/wiki/Monza_Circuit",
+        "circuitName": "Autodromo Nazionale di Monza",
+        "Location": {
+          "lat": "45.6156",
+          "long": "9.28111",
+          "locality": "Monza",
+          "country": "Italy"
+        }
+      },
+      "date": "2026-09-06",
+      "time": "13:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "3",
+          "positionText": "3",
+          "points": "15",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": "5",
+          "laps": "53",
+          "status": "Finished",
+          "Time": {
+            "millis": "6689999",
+            "time": "+14.718"
+          },
+          "FastestLap": {
+            "rank": "2",
+            "lap": "37",
+            "Time": {
+              "time": "1:24.242"
+            }
+          }
         }
       ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-08-23T16:21:23.611372+00:00",
+    "fetched_at": "2026-09-11T12:21:20.281953+00:00",
     "backfill": true
   }
 }

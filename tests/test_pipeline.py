@@ -15,6 +15,7 @@ import pathlib
 import shutil
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -498,8 +499,16 @@ class RebuttalFixTests(unittest.TestCase):
 
     def test_sprint_weekend_before_standings_exclude_sprint_points(self):
         """衝刺週末的「賽前」＝週末前（round N-1 榜）：衝刺賽積分也要從賽後榜減掉。
-        用 repo 內 2026 R12 真實快照：只減正賽分會得 224（含衝刺 5 分），正確是 219。"""
-        pack = bf.build_race_recap(2026, 12)
+        用 repo 內 2026 R12 真實快照：只減正賽分會得 224（含衝刺 5 分），正確是 219。
+        2026-09-11 R13 已賽後，data/2026/ 的現行積分榜涵蓋到 R13，build_race_recap 的
+        輪次守衛會擋 R12——這是守衛該做的事。R12 的真實快照仍在 data/2026/history/
+        （2026-08-24 落地那天的榜），改從那裡讀，樣本不變。"""
+        hist = {"driver-standings.json": "history/2026-08-24-driver-standings.json",
+                "constructor-standings.json": "history/2026-08-24-constructor-standings.json"}
+        real_load = bf.rc.load_data   # build-facts 自己 import 的 racinglib 實例，不是本檔的 rc
+        with mock.patch.object(bf.rc, "load_data",
+                               lambda season, name: real_load(season, hist.get(name, name))):
+            pack = bf.build_race_recap(2026, 12)
         before = {r["id"]: r["points"] for r in pack["standings"]["drivers_before"]}
         self.assertEqual(before["antonelli"], 219.0)
         self.assertEqual(before["russell"], 160.0)  # 衝刺賽冠軍 8 分必須被扣掉

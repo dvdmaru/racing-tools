@@ -147,9 +147,10 @@ class RegistryAndStatGateTests(unittest.TestCase):
             ci.circuit_summary = real
 
     def test_2026_pending_round_is_excluded_from_hosted_count(self):
-        s = ci.circuit_summary("monza", self.con)
+        # 2026-09-11 R13 已賽：蒙札不再有待賽場次，樣本推進到巴庫（R15 亞塞拜然站，9/26 才跑）。
+        s = ci.circuit_summary("baku", self.con)
         scheduled = self.con.execute(
-            "SELECT count(*) FROM races WHERE circuit_id='monza'").fetchone()[0]
+            "SELECT count(*) FROM races WHERE circuit_id='baku'").fetchone()[0]
         self.assertEqual(len(s["pending"]), 1)
         self.assertEqual(s["hosted"]["value"], scheduled - 1)
 
@@ -232,7 +233,8 @@ class GenerationTests(_Rendered):
             con.close()
 
     def test_pending_round_is_labelled_not_counted(self):
-        html = self.page("monza")
+        # 2026-09-11 R13 已賽：蒙札頁不再有待賽列，樣本推進到巴庫（R15 待賽）。
+        html = self.page("baku")
         self.assertIn('<span class="pending">尚未舉行</span>', html)
         self.assertIn("不計入", html)
 
