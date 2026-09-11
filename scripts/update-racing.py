@@ -7,7 +7,7 @@ sprint 週末加跑六、日＋workflow_dispatch 手動。非賽週跑了沒新�
 （fetch_racing.py exit 3 = 無變化 → 不重建、不部署、CI 綠燈結束）。
 
 跑序鐵則（sitemap manifest 化，M0 後）：
-  1. fetch_racing all：積分榜+賽曆+賽果快照（exit 3 = 無新資料 → 安靜跳過，除非 --force）
+  1. fetch_racing all：積分榜+賽曆+賽果快照（exit 3 = 無新資料 → 安靜跳過，除非 --force；exit 4 = 積分對帳不一致 → 禁止部署）
   2. build-articles：文章+首頁 dashboard+寫 sitemap part（articles）
   3. 各 gen-*：standings / calendar / results，各自寫自己的 sitemap part
   3b. build-sitemap：合併全部 part → public-racing/sitemap.xml
@@ -232,7 +232,10 @@ def main():
 
     print(f"🏁 update-racing · season={s} · force={args.force} · deploy={args.deploy}")
 
-    # 1. 抓資料；exit 3 = 無新資料 → 非 force 時安靜跳過（非賽週的每週 cron 走這裡）
+    # 1. 抓資料；exit 3 = 無新資料 → 非 force 時安靜跳過（非賽週的每週 cron 走這裡）。
+    #    exit 4 = 積分榜與賽果加總不一致（fetch_racing 的週更層旁路不變量）→ 不在 allow_exit，
+    #    進 FAILED → 下面的 hard gate 禁止部署。2026-09-11 起賽果每站每次重抓（追溯改判會落地），
+    #    這條是「上游只改了一邊」的警報。
     rcode = run(script("fetch_racing.py", "all", "--season", s), "fetch racing data", allow_exit=(3,))
     if rcode == 3 and not args.force:
         print("\n😴 無新資料（非賽週或賽果未出）→ 安靜跳過，不重建不部署")
