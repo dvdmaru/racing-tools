@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 392,
+  "total": 393,
   "Races": [
     {
       "season": "2007",
@@ -23470,12 +23470,76 @@
             "name": "Ferrari",
             "nationality": "Italian"
           },
-          "grid": null,
+          "grid": "5",
           "laps": "72",
           "status": "Finished",
           "Time": {
             "millis": "7501614",
             "time": "+16.755"
+          },
+          "FastestLap": {
+            "rank": "4",
+            "lap": "61",
+            "Time": {
+              "time": "1:14.566"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "season": "2026",
+      "round": "13",
+      "url": "https://en.wikipedia.org/wiki/2026_Italian_Grand_Prix",
+      "raceName": "Italian Grand Prix",
+      "Circuit": {
+        "circuitId": "monza",
+        "url": "https://en.wikipedia.org/wiki/Monza_Circuit",
+        "circuitName": "Autodromo Nazionale di Monza",
+        "Location": {
+          "lat": "45.6156",
+          "long": "9.28111",
+          "locality": "Monza",
+          "country": "Italy"
+        }
+      },
+      "date": "2026-09-06",
+      "time": "13:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "6",
+          "positionText": "6",
+          "points": "8",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": "4",
+          "laps": "53",
+          "status": "Finished",
+          "Time": {
+            "millis": "6699936",
+            "time": "+24.655"
+          },
+          "FastestLap": {
+            "rank": "9",
+            "lap": "23",
+            "Time": {
+              "time": "1:25.300"
+            }
           }
         }
       ]
@@ -23483,7 +23547,7 @@
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-08-23T16:21:19.199475+00:00",
+    "fetched_at": "2026-09-11T12:21:15.864080+00:00",
     "backfill": true
   }
 }
