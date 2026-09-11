@@ -89,6 +89,12 @@
       "html": "cover-monza-italian-drought.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2026-r13-leclerc-parabolica-telemetry",
+      "html": "cover-leclerc-monza-parabolica.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

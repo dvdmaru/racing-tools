@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 勒克萊爾 2026 義大利站第 2 圈出 Curva Alboreto 的車速（紅）與油門踏板（灰）曲線，
+ * 資料＝F1 官方即時計時公開存檔（livetiming.formula1.com）以 FastF1 解析，約每 0.24 秒一筆。
+ * 橫軸＝時間 5 秒；紅線縱軸 90–240 km/h、灰線縱軸 0–100%。要改資料請重跑 tmp/gen_cover_lec.py。
+ * 只標三個時刻：205 km/h 全油門、233 km/h 打滑、鬆油門——封面 gate 逐個數字比對正文。
+ * 顏色不對應任何車隊塗裝（站規：不用官方素材）。 */
+.chart { width: 100%; height: 300px; display: block; overflow: visible; }
+.chart .yr { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700; font-size: 34px; fill: #786a6e; }
+h1 { font-size: 104px; margin-top: 48px; }
+.sub { margin-top: 30px; margin-bottom: 26px; }
+.stats { margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 遙測</div>
+  <h1>205 km/h 就踩下全油門<br>比上一圈早 <span class="y">18 km/h</span></h1>
+  <div class="sub">轉速在車速不變時跳了 4%，而油門還在 100%</div>
+  <div class="viz">
+    <div class="lbl">第 2 圈出 Curva Alboreto：車速（紅）與油門（灰），5 秒；最後一條虛線＝鬆油門</div>
+    <svg class="chart" viewBox="0 -40 2140 340" preserveAspectRatio="none">
+      <line x1="1078.8" y1="0" x2="1078.8" y2="300" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/><text x="1078.8" y="-12" text-anchor="start" class="yr">205 km/h 全油門</text><line x1="1708.3" y1="0" x2="1708.3" y2="300" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/><text x="1708.3" y="-12" text-anchor="end" class="yr">233 km/h 轉速跳 4%</text><line x1="1834.2" y1="0" x2="1834.2" y2="300" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/><text x="1834.2" y="-12" text-anchor="end" class="yr"></text>
+      <polyline points="0.0,274.8 107.9,266.4 233.8,255.2 323.8,249.6 431.2,235.6 503.2,143.2 575.1,126.4 701.0,92.8 773.0,81.6 898.9,78.8 1006.8,45.2 1078.8,20.0 1186.7,56.4 1330.6,50.8 1456.5,67.6 1564.4,20.0 1636.4,20.0 1708.3,20.0 1834.2,162.8 1942.1,157.2 2032.1,274.8 2140.0,297.2" fill="none" stroke="#cbbcbf" stroke-width="10" stroke-linejoin="round"/>
+      <polyline points="0.0,49.9 107.9,83.5 233.8,96.5 323.8,111.5 431.2,115.2 503.2,126.4 575.1,126.4 701.0,120.8 773.0,113.3 898.9,105.9 1006.8,96.5 1078.8,85.3 1186.7,77.9 1330.6,62.9 1456.5,49.9 1564.4,42.4 1636.4,33.1 1708.3,33.1 1834.2,33.1 1942.1,36.8 2032.1,31.2 2140.0,74.1" fill="none" stroke="#d63a2f" stroke-width="12" stroke-linejoin="round"/>
+    </svg>
+    <div class="stats">
+      <div class="stat"><b>7<i> m</i></b><span>皮亞斯特里最近時的距離</span></div>
+      <div class="stat"><b>0.3<i> 秒</i></b><span>轉速跳起來之後才鬆油門</span></div>
+      <div class="stat"><b>0.007<i> 秒</i></b><span>第 2 圈第一段跟維斯塔潘只差</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc · 資料截至 2026-09-11</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,601 @@
+{
+  "_meta": {
+    "slug": "f1-2026-r13-leclerc-parabolica-telemetry",
+    "built_by": "conductor",
+    "built_at": "2026-09-11",
+    "type": "feature",
+    "revision": "R1 判決後第 2 版",
+    "note": "混合來源文。遙測數字由指揮位從 F1 官方即時計時公開存檔（livetiming.formula1.com，2026 義大利站正賽）以 FastF1 3.8.3 解析，另由分析席 E 與查核席 R1 各自用獨立腳本重算（三套腳本逐項一致）；當事人、車隊與評論者的說法出自外部報導，逐字引文已對來源快照比對。正文前段用一個短段落切開兩者，不開 H2。"
+  },
+  "thesis": "勒克萊爾在 Curva Alboreto 的失控，公開遙測看得到的部分是：他在 205 km/h 就踩到全油門，比自己第 1 圈早 18 km/h，也比表裡六個對照都早；然後轉速在車速不動時跳了 4%，從轉速看像是後輪開始轉得比車快，而那一刻油門還在 100%。排水蓋、在左側跑太出去、慢漏氣三種說法，公開資料都看不見，只能說哪些相容、哪些沒有跡象；第 1 圈與漢米爾頓的接觸，第 2 圈前段的公開數據裡沒有出現可辨識的後遺症。",
+  "section_claims": [
+    "① 第 1 圈與漢米爾頓接觸之後，第 2 圈前段的公開數據看不出異狀：第 2 圈第一段勒克萊爾 28.460 秒、維斯塔潘 28.453 秒，差 0.007 秒；Curva Alboreto 的煞車點與第 1 圈相差 2 公尺；他自己的全圈最高速從第 1 圈 323 km/h 升到第 2 圈 334 km/h。Smedley 自己也說慢漏氣在前三到五圈看不出來——所以這一節只能寫「看不出」，不能寫「沒有」。",
+    "② 進 Curva Alboreto 時離他最近的兩輛車是維斯塔潘與皮亞斯特里：煞車時維斯塔潘在前 27 公尺、皮亞斯特里在後 11 公尺，彎中最慢處縮到 12 公尺與 7 公尺；第四輛車科拉平托在 31 公尺外。皮亞斯特里彎中最低速 165 km/h、4 檔，勒克萊爾 183 km/h。Motorsport.com 寫他當時在防守皮亞斯特里，GPBlog 看 F1 釋出的畫面說兩人在那個彎沒有直接纏鬥、但勒克萊爾有為了給皮亞斯特里空間偏離自己的線。資料只有距離，兩種說法都寫。",
+    "③ 勒克萊爾在 205 km/h 就把油門踩到 99% 以上（油門通道的全開），比自己第 1 圈的 223 km/h 早 18 km/h；六個對照——五位對手的第 2 圈（羅素 210、皮亞斯特里 211、諾里斯 212、漢米爾頓 215、維斯塔潘 220）與他自己的第 1 圈（223）——都比他晚。之後他退到 87、89、83，228 km/h 再全開。",
+    "④ 6 檔、車速停在 233 km/h 的三筆裡，轉速從 10,801 跳到 11,251，轉速對車速的比值從 46.4 變 48.3，高出 4%；從轉速看像是後輪開始轉得比車快，而那一刻油門還在 100%。這是本站推論，信賴度中：另一個可能是換檔瞬間的取樣（第 1 圈就有一筆同形狀的 49.35）。再過 0.3 秒他才把油門鬆到 49%。",
+    "⑤ 他賽後說第 1 圈出這個彎「就覺得有點怪，得收油再補油」、第 2 圈「試著做同樣的事，還是覺得有點怪」。資料裡第 1 圈的收油看得到（油門 88% 退回 76% 約 1 秒），但羅素、漢米爾頓、維斯塔潘出同一個彎也有同形狀的退油；而且第 2 圈他做的不是同樣的事：第 1 圈是全開之前退油，第 2 圈是全開之後才退。引擎有沒有多給，公開資料沒有扭矩與能量通道，判不了。",
+    "⑥ 撞車成因有三種說法、三種機制：Vasseur 說他在左側跑太出去（沒提排水蓋）；Brundle 說左後輪壓在含排水蓋的綠色漆帶上，車滑了出去；Motorsport.com 的 Nugnes 寫撞排水蓋彈跳、跑寬撞胎牆。三家共同點只有位置在出彎的左側。公開位置串流沒有橫向解析度，三輛車過這個彎對同一條線的垂直距離全在 0.6 公尺內，所以這三種說法資料都看不見，只能說與資料相容。",
+    "⑦ 慢漏氣的說法只有 Rob Smedley 一個人講，而且他講的是右後輪；Brundle 講的是左後輪，兩條線指的不是同一個輪子。公開通道裡能看的幾項——直線極速、煞車點、第 2 圈第一段——都沒有指向漏氣；但胎壓不在公開通道，這個說法排除不了。",
+    "⑧ 公開遙測有值的通道只有五個（車速、轉速、檔位、油門踏板百分比、煞車開關），DRS 欄位還在但 2026 年整場恆為 0；車輛通道約每 0.24 秒一筆。電池、扭矩、胎壓、方向盤、輪速都不在裡面；FastF1 作者說 F1 決定不公開主動空力與 ERS 狀態。"
+  ],
+  "_structure_hint": "從『彎裡最近的兩輛車距離 12 公尺與 7 公尺』切進去，不要從『Leclerc 撞車了』切（讀者都看過，前一篇也寫過）。每一節只回答一個問題，標題就是答案。⑥⑦ 兩節寫成『資料看得到什麼／看不到什麼』，不要寫成『我們怎麼查』。⑧ 放最後，短，是給讀者判斷前七節可信度用的邊界，不是方法論。撞車圈數（第 2 圈末）與紅旗訊息圈數（第 3 圈）要分開寫，前一篇寫的是紅旗出現在第 2 圈末。",
+  "telemetry": {
+    "_scope": "F1 官方即時計時的公開存檔（livetiming.formula1.com/static/2026/2026-09-06_Italian_Grand_Prix/2026-09-06_Race/），車輛通道 CarData 約每 240 毫秒一筆、位置通道 Position 約每 220 毫秒一筆，以 FastF1 3.8.3 於 2026-09-11 解析。Speed 單位 km/h、Throttle 為油門踏板百分比、Brake 只有踩／沒踩、位置座標精度 0.1 公尺。",
+    "_units_warning": "油門是踏板位置不是引擎輸出；車速通道的來源官方未說明；轉速對車速比值的變化只能推論輪胎滑差，不能量測；換檔瞬間的取樣會製造同形狀的比值跳動。",
+    "crash_lap": {
+      "value": "第 2 圈末",
+      "red_flag_message_lap": 3,
+      "note": "撞車在第 2 圈末（前一篇寫『紅旗出現在第 2 圈末』），賽會的 RED FLAG 訊息掛在第 3 圈。正文兩者分開寫。⛔ 不得寫撞車在第 3 圈。"
+    },
+    "lap1_result": {
+      "leclerc_position_end_lap1": 3,
+      "hamilton_position_end_lap1": 10,
+      "order_end_lap1": "蓋斯利 1、羅素 2、勒克萊爾 3、維斯塔潘 4、皮亞斯特里 5、諾里斯 7、漢米爾頓 10"
+    },
+    "lap2_sector1": {
+      "leclerc": "28.460 秒",
+      "verstappen": "28.453 秒",
+      "piastri": "28.376 秒",
+      "norris": "28.318 秒",
+      "hamilton": "28.159 秒",
+      "russell": "28.283 秒",
+      "leclerc_minus_verstappen": "0.007 秒",
+      "note": "第一段不含 Curva Alboreto。"
+    },
+    "lap2_sector2": {
+      "leclerc": "30.488 秒",
+      "verstappen": "30.254 秒",
+      "piastri": "30.149 秒",
+      "leclerc_minus_verstappen": "0.234 秒",
+      "leclerc_minus_piastri": "0.339 秒",
+      "note": "第 2 圈第二段勒克萊爾被維斯塔潘超越，慢 0.234 秒是攻防中的差距，不能歸因胎壓，也不能寫成『沒有差距』。"
+    },
+    "lap2_top_speed": {
+      "leclerc": 334,
+      "piastri": 334,
+      "verstappen": 331,
+      "norris": 324,
+      "hamilton": 351,
+      "leclerc_lap1": 323,
+      "note": "全圈最高速，km/h。⛔ 334 不是當圈全場最高（漢米爾頓 351、皮亞斯特里同為 334）；能寫的是『他自己從第 1 圈的 323 升到第 2 圈的 334』。"
+    },
+    "brake_point_lap1_vs_lap2": {
+      "value": "兩圈在 Curva Alboreto 的煞車點以積分距離計相差 2 公尺（4,959 對 4,961 公尺）",
+      "note": "分析席 E 算得；指揮位以原始串流核對兩圈煞車起點前一筆皆為 100% 油門，形狀一致；R1 重算 PASS。"
+    },
+    "nearest_cars_through_alboreto": {
+      "order": "維斯塔潘 → 勒克萊爾 → 皮亞斯特里",
+      "gap_at_braking": {
+        "verstappen_ahead_m": 27,
+        "piastri_behind_m": 11
+      },
+      "gap_at_min_speed": {
+        "verstappen_ahead_m": 12,
+        "piastri_behind_m": 7,
+        "colapinto_behind_m": 31,
+        "norris_behind_m": 71
+      },
+      "gap_at_first_full_throttle": {
+        "verstappen_ahead_m": 14,
+        "piastri_behind_m": 15
+      },
+      "gap_at_slip_onset": {
+        "verstappen_ahead_m": 21,
+        "piastri_behind_m": 20
+      },
+      "min_speed_kmh": {
+        "piastri": 165,
+        "leclerc": 183,
+        "verstappen": 186
+      },
+      "piastri_gear_at_min_speed": 4,
+      "note": "距離是兩車座標的直線距離，取整數公尺；位置串流沒有橫向解析度，所以只能講前後距離，不能講內線外線。⛔ 不得寫『只有三輛車』：科拉平托在 31 公尺外、諾里斯在 71 公尺外。"
+    },
+    "leclerc_lap2_exit_throttle_sequence": {
+      "sequence_percent": [
+        23,
+        56,
+        62,
+        74,
+        78,
+        79,
+        91,
+        100,
+        87,
+        89,
+        83,
+        100,
+        100,
+        100,
+        49,
+        51,
+        9
+      ],
+      "speed_at_first_full": 205,
+      "gear_at_first_full": 5,
+      "lift_after_first_full": [
+        87,
+        89,
+        83
+      ],
+      "speed_during_lift": "209 到 224 km/h",
+      "speed_at_second_full": 228,
+      "gear_at_second_full": 6,
+      "speed_when_throttle_dropped_to_49": 233,
+      "seconds_from_second_full_to_slip_onset": "0.3 秒",
+      "seconds_from_slip_onset_to_lift": "0.3 秒",
+      "speed_sequence_from_lift_to_stop": "233（油門 49%）→ 231 → 234（已踩煞車）→ 211 → 117 → 96 → 20 → 6 → 0",
+      "peak_speed_before_deceleration": 234,
+      "note": "每筆約 0.24 秒。『第二次掉到 83』與 GPBlog（引 GP-Tempo）的圖一致。⛔ 撞前峰值是 234，不是 233；233 是油門被鬆開那一筆的車速。"
+    },
+    "slip_onset_evidence": {
+      "gear": 6,
+      "speed_kmh": [
+        228,
+        233,
+        233
+      ],
+      "rpm": [
+        10698,
+        10801,
+        11251
+      ],
+      "rpm_per_kmh": [
+        46.9,
+        46.4,
+        48.3
+      ],
+      "deviation": "4%",
+      "throttle_at_that_moment": 100,
+      "reference_ratios": {
+        "leclerc_lap1_exit_of_alboreto_6th_gear_8_samples": "42.1 到 46.0",
+        "hamilton_lap1_6th_gear_full_throttle": "39.8 到 46.2",
+        "hamilton_lap2_6th_gear_full_throttle": "41.1 到 46.1",
+        "leclerc_lap1_whole_lap_6th_gear_full_throttle_35_samples": "38.9 到 49.4，其中一筆 49.35 的轉速與下一筆完全相同，是換檔瞬間取樣的形狀"
+      },
+      "interpretation": "本站推論，信賴度中：同一檔位、車速不變而轉速上升 4%，是後輪轉得比車速快的形狀，也就是打滑起點；48.3 高於他自己出彎段與漢米爾頓兩圈的所有取樣（上限 46.2），但第 1 圈全圈掃描裡有一筆換檔瞬態的 49.35 形狀相同，所以不能排除是取樣瞬態。公開資料沒有輪速通道，這不是量測。"
+    },
+    "leclerc_lap1_exit_throttle": {
+      "sequence_percent": [
+        12,
+        23,
+        37,
+        58,
+        72,
+        80,
+        88,
+        82,
+        76,
+        79,
+        76,
+        95,
+        100
+      ],
+      "lift_from": 88,
+      "lift_to": 76,
+      "lift_duration": "約 1 秒",
+      "speed_during_lift": "206 到 212 km/h",
+      "gear": 5,
+      "speed_at_first_full": 223,
+      "exit_acceleration": "出彎 205 到 225 km/h 那段平均加速度 3.38 m/s²，六個對照段為 6.11 到 7.94 m/s²（各段速度帶略有不同）",
+      "note": "3.38 與對照段的加速度由分析席 E 算得、R1 重算 PASS，指揮位未獨立重算；正文可引，不要在它上面再蓋一層結論。"
+    },
+    "controls_first_full_throttle_speed": {
+      "_what": "出 Curva Alboreto 時油門踏板第一次到 99% 以上的車速（km/h）。用 99% 當門檻是因為皮亞斯特里的油門通道整場上限就是 99，沒有 100 的取樣。",
+      "leclerc_lap1": 223,
+      "leclerc_lap2": 205,
+      "piastri_lap1": 223,
+      "piastri_lap2": 211,
+      "verstappen_lap1": 222,
+      "verstappen_lap2": 220,
+      "norris_lap1": 216,
+      "norris_lap2": 212,
+      "hamilton_lap1": 221,
+      "hamilton_lap2": 215,
+      "russell_lap1": 219,
+      "russell_lap2": 210,
+      "six_controls_definition": "五位對手的第 2 圈（羅素 210、皮亞斯特里 211、諾里斯 212、漢米爾頓 215、維斯塔潘 220）＋勒克萊爾自己的第 1 圈（223）",
+      "six_controls_range": "210 到 223",
+      "leclerc_lap2_earlier_than_own_lap1_kmh": 18,
+      "leclerc_lap2_earlier_than_own_lap1_seconds": "1.4 秒（從彎中最低速那一筆起算到全開）",
+      "note": "若改用 100% 當門檻，諾里斯第 1 圈 221、第 2 圈 218，漢米爾頓第 1 圈 230，其餘不變，皮亞斯特里無值；結論方向不變，只會更強。羅素的值由指揮位從原始串流算得，R1 未取得該切片。"
+    },
+    "controls_partial_lift_shapes": {
+      "russell_lap1": "82 → 79 → 76 再到 100",
+      "hamilton_lap2": "61 → 57 → 46 → 71 → 82 → 79 再到 98",
+      "verstappen_lap1": "72 → 61 → 63 → 88 再到 98",
+      "verstappen_lap2_after_full": "在 232 km/h、6 檔有一筆 85 再回 100",
+      "note": "『全開之前中途退油』每個人都有；『全開之後再退』只有勒克萊爾第 2 圈（三筆）與維斯塔潘第 2 圈（一筆）。"
+    },
+    "position_stream_limits": {
+      "no_lateral_resolution": "維斯塔潘、勒克萊爾、皮亞斯特里三車過 Curva Alboreto 時，對同一條路徑的垂直距離全部在 0.6 公尺以內；起跑格 22 輛車也排成一條線、沒有兩列的形狀。",
+      "no_offtrack_flag": "Status 欄位整場 39,143 筆全部 OnTrack。",
+      "ghost_after_crash": "16 號車撞停後，車輛通道仍顯示油門 0 而車速 150 到 170 km/h、位置沿賽道繼續前進。撞擊筆之後的資料不採。",
+      "interpretation": "公開位置資料只能講沿賽道的前後距離，不能講內線外線、也不能講偏離多少公尺。"
+    },
+    "public_feed_channels": {
+      "channels_with_values": [
+        "車速",
+        "引擎轉速",
+        "檔位",
+        "油門踏板百分比",
+        "煞車（踩／沒踩）"
+      ],
+      "channel_count_with_values": 5,
+      "drs_field": "DRS 欄位仍在，但 2026 年整場恆為 0（第 1、2 圈 652 筆全為 0）。",
+      "car_data_interval": "約 240 毫秒",
+      "position_interval": "約 220 毫秒",
+      "not_in_feed": [
+        "電池電量",
+        "ERS 部署與回收",
+        "扭矩",
+        "胎壓",
+        "胎溫",
+        "方向盤",
+        "輪速",
+        "懸吊"
+      ],
+      "drs_2026": "2026 年主動空力取代 DRS，FastF1 作者 2026 年 3 月 14 日說 F1 決定不公開主動空力與 ERS 狀態。",
+      "sample_spacing_at_233kmh": "約 15 公尺一筆",
+      "overlay_error_docs": "FastF1 文件：疊不同圈的遙測誤差約 ±10 公尺"
+    }
+  },
+  "regulations": {
+    "_source_class": "一手：FIA 2026 F1 Technical Regulations Section C Issue 16（2026-02-27），PDF 抽純文字後 grep 條號。",
+    "C8_2_1": "所有車必須由 FIA 標準 ECU 控制。",
+    "C8_4_1": {
+      "summary": "FIA 對標準 ECU 的即時遙測資料與事件有無限制存取權，車隊要照 FIA 定的格式把即時遙測送上 FIA 網路。",
+      "verbatim": "the FIA requires unlimited access to the following FIA Standard ECU"
+    },
+    "C8_5_3": {
+      "summary": "禁止車隊對車的反向遙測。",
+      "verbatim": "F1 Team to car Telemetry is prohibited"
+    },
+    "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_16_-_2026-02-27.pdf"
+  },
+  "external_statements": {
+    "_source_class": "媒體報導與當事人公開發言。每條 verbatim 已對來源快照逐字比對；中文翻譯是本站翻譯。",
+    "leclerc_0906": {
+      "who": "勒克萊爾，賽後 9 月 6 日，F1 官網訪問稿",
+      "verbatim": "on the first lap it felt kind of weird, I had to go back off and on throttle",
+      "verbatim2": "On that second lap, I tried to do the same thing but, I don't know, it just felt a little bit weird, so we'll look into it",
+      "zh": "「第 1 圈就覺得有點怪，我得收油再補油」「第 2 圈我試著做同樣的事，但不知道為什麼，還是覺得有點怪，我們會去查」",
+      "url": "https://www.formula1.com/en/latest/article/leclerc-explains-monza-crash-as-he-reacts-to-way-too-close-hamilton-battle.5tBJS6iY8muL6Um6cgcnvS",
+      "note": "兩句連著講，引一句就要引兩句。『我們會去查』接在第 2 圈那句後面。⛔ 他沒有說撞車是自己的失誤。"
+    },
+    "leclerc_on_hamilton_contact_0906": {
+      "who": "勒克萊爾，賽後 9 月 6 日",
+      "verbatim": "I don't know if we had contact or whatsoever",
+      "zh": "「我不知道我們有沒有碰到」",
+      "url": "https://www.formula1.com/en/latest/article/leclerc-explains-monza-crash-as-he-reacts-to-way-too-close-hamilton-battle.5tBJS6iY8muL6Um6cgcnvS"
+    },
+    "leclerc_turn2_blame_0910": {
+      "who": "勒克萊爾，9 月 10 日馬德里媒體日，F1 官網",
+      "verbatim": "in Turn 2 I didn't behave the way I should have",
+      "zh": "「在第 2 彎我沒有做出我該做的行為」",
+      "url": "https://www.formula1.com/en/latest/article/clear-that-i-could-have-done-a-better-job-leclerc-accepts-blame-in-hamilton-incident-at-monza.2yST0f7W6RoGO8HPgxNiBS",
+      "note": "他認錯的是第 1 圈第 2 彎對漢米爾頓那件事，不是 Curva Alboreto 的撞車。兩件事分開寫。"
+    },
+    "vasseur_0906": {
+      "who": "Fred Vasseur（Ferrari 車隊領隊），Speedweek 9 月 6 日",
+      "verbatim": "he simply lost control of the car because he was too far out on the left",
+      "verbatim2": "It was a 50g impact",
+      "zh": "「他就是失控了，因為他在左側跑太出去」「那是 50g 的撞擊」",
+      "url": "https://www.speedweek.com/en/a/formula-1/ferrari-weak-leclerc-crash-hamilton-angry-team-principal-vasseur-explains-it",
+      "note": "50G 的具名源頭是 Vasseur；Motorsport.com 9 月 9 日寫『超過 50G』；60G 出自 Brundle 專欄。三個寫法要各標來源。"
+    },
+    "brundle_0907": {
+      "who": "Martin Brundle，Sky Sports 專欄 9 月 7 日",
+      "verbatim": "his left-rear tyre was on the green painted strip which includes a drain cover",
+      "verbatim2": "this put the Ferrari into a slide",
+      "verbatim3": "I was told by a trusted source",
+      "verbatim4": "but that was not from the team",
+      "verbatim5": "two red flags at Monza F1 this century, in 2020 and 2026, both for Charles Leclerc crashing a Ferrari at the final Parabolica corner",
+      "zh": "「他的左後輪在含排水蓋的綠色漆帶上」「這讓 Ferrari 滑了出去」；他另寫賽後「有一個我信任的消息來源告訴我」Ferrari 在那種情況動力會微微尖峰，「但這不是車隊說的」；他也提到本世紀蒙札兩次紅旗（2020 與 2026）都是勒克萊爾在 Parabolica 撞車。",
+      "url": "https://www.skysports.com/f1/news/24096/13582707/",
+      "note": "『動力尖峰』的源頭是 Brundle 的匿名消息來源，依站規不能當證據；正文只能寫成『Brundle 說賽後有人告訴他，並註明不是車隊說的』。他寫 60G。"
+    },
+    "motorsport_0909": {
+      "who": "Motorsport.com（Franco Nugnes），9 月 9 日",
+      "verbatim": "a bounce over a water drain",
+      "verbatim2": "will only have the transmission casing replaced",
+      "verbatim3": "with deceleration exceeding 50G",
+      "zh": "撞排水蓋彈跳、當時正在防守皮亞斯特里的 McLaren、跑寬撞胎牆；減速超過 50G；只換變速箱殼，不換整具動力單元",
+      "url": "https://www.motorsport.com/f1/news/charles-leclerc-avoiding-spanish-gp-penalty/10853820/",
+      "note": "⛔ 這是記者自己的成因敘述句，全文沒有『Ferrari 檢查／確認／調查』的字樣。上限寫法：『Motorsport.com 的 Franco Nugnes 寫，成因是撞排水蓋彈跳』。"
+    },
+    "smedley_0910": {
+      "who": "Rob Smedley（前 Ferrari／Williams 工程師），在 High Performance Racing podcast 上說，GPFans 9 月 10 日轉引",
+      "verbatim": "I think he got a puncture when he hit when they clashed wheels down at turn one",
+      "verbatim2": "I think he got a right rear puncture",
+      "verbatim3": "over the first three to five laps, the tyre pressure goes up quite a lot",
+      "zh": "「我認為他在第 1 彎碰輪的時候就漏氣了」「我認為是右後輪慢漏氣」；他解釋前三到五圈胎壓本來就會一直升，慢漏氣因此看不出來",
+      "url": "https://www.gpfans.com/en/f1-news/1090067/ferrari-f1-charles-leclerc-italian-grand-prix-crash-monza-rob-smedley-analysis/",
+      "note": "單一來源。他講的是右後輪；Brundle 講的是左後輪。『碰輪』是 Smedley 的用詞，勒克萊爾本人說不知道有沒有接觸。podcast 日期快照未給，只寫 GPFans 9 月 10 日。"
+    },
+    "gpblog_0908": {
+      "who": "GPBlog 9 月 8 日，圖表來源 GP-Tempo（用 FastF1，即同一份公開資料）",
+      "verbatim": "The second time, it even drops to 83",
+      "verbatim2": "Leclerc was still ahead of Piastri at that moment and was not directly battling in that particular corner",
+      "verbatim3": "Leclerc did have to deviate from his line to give Piastri room",
+      "zh": "「第二次甚至掉到 83」；他們看 F1 釋出的畫面說「勒克萊爾那時還在皮亞斯特里前面，在那個彎沒有直接纏鬥」，但「確實得偏離自己的線給皮亞斯特里空間」",
+      "url": "https://www.gpblog.com/en/analysis/leclercs-monza-crash-didnt-come-out-of-nowhere-this-is-why-he-crashed-at-233-kmh",
+      "note": "他們的圖不可嵌入，本文用同一份資料自己算。『沒有直接纏鬥』與 Motorsport.com 的『防守』要兩邊都寫。"
+    },
+    "fastf1_author_0314": {
+      "who": "FastF1 作者 theOehrly，GitHub 討論串 2026 年 3 月 14 日",
+      "verbatim": "F1 has decided to not make any data on active aero and ERS state available publicly",
+      "zh": "「F1 決定不公開任何主動空力與 ERS 狀態的資料」",
+      "url": "https://github.com/theOehrly/Fast-F1/discussions/861"
+    },
+    "fastf1_docs": {
+      "who": "FastF1 文件",
+      "verbatim": "The data stream has a sample rate of (usually) 240ms",
+      "url": "https://docs.fastf1.dev/api.html"
+    },
+    "stewards": {
+      "value": "賽會訊息：第 2 圈「Turn 2 事件涉及 16 號（LEC）與 44 號（HAM）noted」，第 4 圈「審視後不再調查」；RED FLAG 訊息掛在第 3 圈。",
+      "source": "賽會訊息串流（同一份公開存檔）"
+    },
+    "hamilton_radio": {
+      "value": "漢米爾頓無線電「Charles pushed me off」。",
+      "source": "F1 官網 9 月 6 日",
+      "note": "與 Curva Alboreto 失控無關，正文只用來交代第 1 圈接觸確有其事。"
+    }
+  },
+  "checked_not_used": [
+    "F1 官網『Leclerc admits spectacular Monza crash was my mistake』影片——2020 年那次 Parabolica 撞車的內容，未存快照；Brundle 9 月 7 日專欄佐證本世紀蒙札兩次紅旗（2020、2026）都是勒克萊爾在 Parabolica 撞車。不用。",
+    "AWS『每車 300 個感測器、每秒 110 萬筆』——本文不需要，且各來源措辭不一。",
+    "OpenF1——本站不採用其資料，其條款限非商業。",
+    "Coulthard 9 月 10 日『他就是小失誤』——評論而非證據，不用。",
+    "scuderiafans 稱 Madrid 改用 ADUO1——未二次驗證，不用。"
+  ],
+  "must_not_claim": [
+    "不得寫『勒克萊爾承認撞車是自己的失誤』——他對 Curva Alboreto 的撞車沒說過這種話；他 9 月 10 日認錯的是第 1 圈第 2 彎對漢米爾頓那件事（見 leclerc_turn2_blame_0910），兩件事不能互相污染。F1 官網那支『admits crash was my mistake』影片是 2020 年的。",
+    "不得寫撞車在『第 3 圈』——撞車在第 2 圈末，紅旗訊息掛第 3 圈，兩者分開寫。",
+    "不得寫『內線／外線』『偏離多少公尺』『走到最外側』——公開位置串流沒有橫向解析度。『在左側跑太出去』只能作為 Vasseur 的話引用。",
+    "不得寫『三車並排』或『只有三輛車在彎裡』——資料只能證明最近距離 7 公尺，科拉平托在 31 公尺外。",
+    "不得寫『與漢米爾頓碰輪』為事實——勒克萊爾說不知道有沒有接觸，『碰輪』只是 Smedley 的用詞；寫『接觸』或『第 1 彎與第 2 彎的糾纏』並標明誰說的。",
+    "不得寫『後輪打滑』為量測——它是轉速對車速比值的推論，正文每次提到都要帶『從轉速看』這類措辭，至少一次要寫『本站推論，信賴度中』，並寫出換檔瞬態這個替代解釋。",
+    "不得寫『電池沒電』『能量放完』『ERS 尖峰』為事實——公開通道沒有電量與扭矩；Brundle 的動力尖峰是他的匿名消息來源說的，只能寫成『Brundle 說賽後有人告訴他』並連著『不是車隊說的』，不能當證據。",
+    "不得寫『慢漏氣已排除』——胎壓不在公開通道，只能寫『公開通道裡能看的幾項沒有指向漏氣』。",
+    "不得漏寫 Smedley 講的是右後輪、Brundle 講的是左後輪。",
+    "不得寫『Ferrari 查到／檢查出／確認是排水蓋』——Motorsport.com 9 月 9 日那句是記者自己的成因敘述，全文沒有 Ferrari 檢查的字樣。上限＝『Motorsport.com 的 Franco Nugnes 寫成因是撞排水蓋彈跳』。也不得寫『三方交集』——三家講的是三種機制。",
+    "不得寫『50G』出自 Motorsport.com 或義大利媒體——50G 的具名源頭是 Vasseur，Motorsport.com 寫『超過 50G』，60G 出自 Brundle。要寫就各標來源。",
+    "不得寫『他當時正在防守皮亞斯特里』為事實——Motorsport.com 與 Brundle 寫防守，GPBlog 看畫面寫沒有直接纏鬥但有讓線。兩邊都寫，或只寫距離。",
+    "不得只引勒克萊爾第 1 圈那半句——同一段他還說第 2 圈試著做同樣的事也覺得怪。引一句就要引兩句。",
+    "不得寫『334 是當圈最高速』——漢米爾頓 351、皮亞斯特里同為 334；只能寫他自己從 323 升到 334。",
+    "不得寫『撞前最高速 233』——峰值是 234（已踩煞車那一筆）；233 是油門被鬆開那一筆。",
+    "不得同時寫『DRS 是公開通道之一』與『2026 年 DRS 旗標被拿掉』——欄位在、整場恆 0，照 public_feed_channels 寫。",
+    "不得寫『第 2 圈找不到任何後遺症』『沒有任何跡象』——絕對詞。寫『第 2 圈前段的公開數據沒有出現可辨識的後遺症』。",
+    "不得寫『比場上每一個對照都早』——只有六個對照，寫死是哪六個。",
+    "不得把對照組的『全開』寫成 100%——門檻是油門通道 99% 以上，皮亞斯特里整場上限就是 99。",
+    "不得嵌入 GPBlog／GP-Tempo／轉播的任何圖或截圖；封面用本站自繪。",
+    "不得寫 GPS——站上另一篇已查證 2026 技術規則裡沒有 GPS 三個字母；位置串流的來源機制本文不下斷言。",
+    "不得寫『每 4 Hz』『0.24 秒一定』這種寫死的頻率——文件原文是 usually 240ms，寫『約每 0.24 秒』。",
+    "不得做任何算術：所有差值（0.007 秒、18 km/h、1.4 秒、4%、2 公尺、0.234 秒、0.339 秒）都在本表，直接引。",
+    "不得寫『本站資料庫』——本文的遙測不是站上賽果資料庫，是 F1 官方即時計時公開存檔；『本站』全文不得超過 8 次。",
+    "不得把『油門』寫成『引擎輸出』——油門通道是踏板位置。",
+    "不得寫『第 1 圈的收油是異常』——羅素、漢米爾頓、維斯塔潘出同一個彎都有同形狀的退油。",
+    "不得替 Ferrari 或 FIA 補一個結論；查不到的（FIA 對 T2 事件的文件原文、Ferrari 官方逐字原因聲明、60G 的出處、位置串流的產生機制、Ferrari 有沒有檢查輪胎）寫查不到。",
+    "不得用『那個彎』『這條線』『前者後者』等指代詞；彎名寫『Curva Alboreto（舊名 Parabolica）』，與站上前一篇一致。"
+  ],
+  "voice": {
+    "_instruction": "⚠️ 下面 spec_verbatim 是站上文風規格的原文整段，派寫作 agent 時要整段複製進派工單的風格節，不要節錄、不要改寫、不要只挑幾條。",
+    "spec_verbatim": "## 📋 派工單貼文（派寫作 agent 時整段複製到 §風格，不要節錄）\n\n> **文風標竿＝小 Lin 說＋張泉靈。**（硅谷101 可作為「明寫查證工作量」的補充模式，\n> 但**不能取代**上面兩個標竿。）三個特徵：①從具體的怪事切進去，不從分類切進去\n> ②短句，一句話講一件事 ③不在正文解釋自己的方法論。\n>\n> **張泉靈式的直接＝連不確定都直接告訴你**，不是每句都下斷語；\n> 敢斷的是條文、日期、前例，走向與動機明說不知道。\n>\n> **⭐⭐⭐ 動筆前先寫一句話論點（W32，2026-09-10 Charlie 裁定，全站群通用）——先讀這條**\n>\n> 動筆之前，先在稿子最上方寫下（交稿前刪掉，或交給指揮位放進 `05-thesis.md`）：\n> ① **這篇在主張什麼**——一句話。它要是讀者**可以不同意**的判斷，不是「本文介紹／整理了 X」；\n> ② **每一節要撐的主張**——一節一句，說出那一節的「所以呢」。\n>\n> 寫完自檢：**每一節讀完，讀者知道的是「事情放在哪裡」，還是「那代表什麼」？**\n> 前者＝地圖句（「那則貼文有三句話，那個數字在第二句」），整節重寫，不是改句子。\n>\n> ⚠️ **論點要站在事實上**：寫不出站得住的論點，回報指揮位縮題或換角度。\n> **不要用絕對詞（最／唯一／完全沒有／只可能）硬造張力**——論述需要張力，\n> 而最省力的張力就是把對比兩端各推遠一點；2026-09-10 那篇改寫後的 26 條查核 finding，\n> 有 24 條是這樣造出來的。\n>\n> **⭐⭐ 正向規格：先讀這條，再讀下面的症狀清單（W29，2026-09-07 Charlie 裁定）**\n>\n> **標題、副標、H2、以及正文每一句，都要是一個「唸得完」的句子**：一個主詞、一個主要動詞。\n> 一句裡如果有兩半，**兩半之間的關係要用連接詞明說**（之後／因為／但是／直到／雖然），\n> **不能只用逗號並排、讓讀者自己去接**。\n>\n> ❌ 並置：「台鋼雄鷹連 33 局沒有得分，起點是一場勝利」\n> —— 兩個各自完整的事實黏在一起，讀者要先問「起點是什麼的起點」，才拼得出反差。\n> ✅ 明說關係：「台鋼雄鷹 8 月 29 日贏球之後，連續 33 局沒有得分」\n> —— 一個主詞、一條時間線、一個結果，唸一次就懂，而且反差鉤子更強。\n>\n> **自檢：把它唸給人聽。對方如果會反問「所以呢？」或「這兩件事有什麼關係？」，就是並置病。**\n>\n> ⚠️ **這條放在症狀清單前面是有原因的**：下面整串都是「不要做什麼」。\n> 只有禁令、沒有正向規格時，最省事的解就是**把句子拆成各自合法的碎片、用逗號並排**\n> ——因為碎片不容易踩到任何一條禁令。**並置正是「照著禁令最佳化」的產物，不是寫壞。**\n>\n> **五個必須自檢的漂移症狀**（①④⑤ 同一個病根＝**成品在展示工序**；一句話測試：\n> 這句是在告訴讀者「一件事」，還是在告訴讀者「我怎麼知道這件事」？後者一律改寫）：\n> ①**gate 語言長進正文**——讀者要知道數字多可靠，不需要知道我們訂了什麼規矩；\n> 也包含「誠實說／照實說／老實說」這類自我標榜誠實的框架詞：誠實是預設不是賣點，\n> 直接講事實就是誠實；\n> ②**標籤式標題**——標題自己就要是一個事實，不要「機制一二三」；\n> ③**指代不具體**——「那次／這件事／那家公司／後者／前面講的」凡是要讀者往回翻的，\n> 一律換成具體名詞或改寫成不需要指代的句子。**H2 標題裡尤其不准出現指代詞。**\n>\n> ④**第一人稱主詞「我」浮濫**——中文是可以省主詞的語言。查證工作量要寫，\n> **但動作者幾乎都不必出場**：❌「我把 84 場全部拉出來排了一次」\n> ✅「把 84 場全部拉出來、逐場看場地欄，結果是：」；❌「我從三個官方入口找票務資訊」\n> ✅「三個彼此獨立的官方入口都找過票務資訊：」。**改法是把句子改成主題句，\n> 不是把「我」硬刪掉留下半殘的句子**，也不是換成「我們」（換了一樣多餘）。\n> 收尾前 grep 一次「我」，逐一問「拿掉會不會不通」，不通才留。\n>\n> ⑤**標題塞證據鏈**——標題放**結論**，不放推導過程。\n> ❌「中職一週內 4 場雨延：8 月 8 日兩場補在 10 月 4 日，8 月 9 日兩場只寫「補賽週」」\n> ✅「中職延賽的兩種補法：給日期，或只寫「補賽週」」。\n> 日期、場次、數量這類**原料降到副標**，標題只留讀者要帶走的那一句。\n> **要和②合起來讀**：「標題自己就是一個事實」的**「一個」是認真的**——\n> 太抽象（機制一二三）和太具體（整條證據鏈）是同一條軸的兩端，別修完一端盪到另一端。\n> 自檢＝**把標題唸進封面版面（兩行）試試，塞不進去的多半是工序**。\n>\n> ⑥**廢話文學＝為了維持系列句型，填一個形狀正確但零資訊的句子。**\n> 最典型是同義反覆（A 就是 A）：❌「開球時間就是手機上的時間，下午 3 點 30 分就是下午 3 點 30 分」\n> ✅「一個換算都不用做——星期日吃完午餐出門，趕得上下午 3 點 30 分那場」。\n> 判準＝**讀者讀完這句，知道的事情有沒有比讀之前多**；沒有就是廢話，不管它多像金句。\n> ⚠️ 高發位置：系列文／系列卡的**共同軸句位**（前幾篇都在這裡放一句對比，這篇沒東西可放也硬放）。\n>\n> **⭐⭐ 標題的正向規格（W30，2026-09-09 Charlie 第 N 次退標題後定）：先問「有沒有人想讀」。**\n> 下面所有規則都是在講標題**不可以**長什麼樣。它們全部通過，仍然可以是一個沒有人想讀的標題——\n> **本站沒有任何一道 gate 在檢查這件事。**\n> Charlie 原話：「文章、標題符合我們的每一個紀律，但是沒有去考慮好不好讀、內容好不好看的問題」。\n>\n> ⭐ **選題台的原標題通常已經有鉤子，先問「鉤子在哪個詞上」再動它。**\n> 查證推翻了標題裡的某個詞時，**只換那個詞**；被推翻的詞如果不是鉤子本身，不要重寫整句。\n> ❌ 2026-09-09 實例：選題台「拜仁 59 場**不敗**進球**紀錄**終結」只有兩個詞錯，\n>    我把整句連鉤子一起丟掉，改成「拜仁的連續進球同時被算成 59 場和 47 場，而兩個數字都對」\n>    ——每一條紀律都過，而且是死的（「被算成」是會計語言，「兩個數字都對」是邏輯保證不是理由）。\n> ✅ 正解：「拜仁連續進球終結，是 59 場還是 47 場？兩家媒體都沒算錯」\n>    ——沿用原鉤子的動詞，只換掉錯的兩個詞，主題接成問句＋反轉。\n>\n> **三種在本站驗證過會被接受的形狀**（不是套版，是起手處）：\n> ①**問句＋反轉**：「英超 380 場，幾場能晚飯後看完？算完才發現數字是假的」（Charlie 挑過這個方向）\n> ②**具體人事時地物**：「南市台鋼 PK 5 比 3、新北航源 2 比 1，台灣兩隊同日晉級」\n> ③**反直覺的具體事實**：「伊薩克第二季開賽三場，就追上他整個首季的英超進球」\n>\n> **自檢一句話：把標題唸給一個不看足球的人聽，他會不會問「然後呢？」**\n> 會問＝有鉤子；點頭說「喔」＝合規但沒人想讀，重寫。\n>\n> **W26 材料計數（2026-08-27 起，派工前先數）**：非虛構稿 ≥1,200 字，事實表要能列出**至少五件具體材料**（動作／數字／原話／代價／結果，各註來路），且五件能串成一條實際過程，不是五句相鄰的道理。數不夠就回報縮篇幅，**不補解釋、不補用途意義風險未來**——三條抽象想法各講五遍仍只有三條材料。字數目標不能把材料變多。\n>\n> ---\n>\n> **⭐⭐⭐ 交稿前的最後一關（W31，2026-09-09 Charlie 裁定，每個寫文章的 agent 都要做）**\n>\n> Charlie 原話：「**以後每一個寫文章的 Agent 都要在寫完之後再 Review 最重要的文章\n> 「文章好不好讀、內容好不好看的問題」**」。\n>\n> **上面所有規則都是負面閘門，它們是地板，不是量尺。** 全部通過，仍然可以是一篇\n> 沒有人想讀完的文章——2026-09-09 拜仁篇就是這樣被退的（「符合我們的每一個紀律，\n> 但是沒有去考慮好不好讀、內容好不好看的問題」）。\n>\n> **這一關排在所有紀律檢查之後，而且它有權推翻紀律產生的寫法**\n> （事實紅線除外——事實錯了就是錯了，不能為了好看留著）。\n> ⚠️ 順序不能反：紀律檢查是二元的、可勾選的，可讀性不是；混在一起做，\n> 勾得完的那一邊一定會贏，然後你會交出一篇「每一格都打勾」的死稿。\n>\n> **三個動作，逐項把答案寫進交稿回報：**\n>\n> 1. **從頭到尾真讀一次。** 不是掃描、不是 grep、不是只看自己改過的地方。\n> 2. **標出你自己讀到會想跳過的段落——至少一段，寫出段號與第一句。**\n>    一段都標不出來，代表你沒有真的讀，重讀。\n>    （借小說線已驗證的 Sag Map：[[reference_multimodel_novel_readthrough]]）\n> 3. **逐個 H2 問一次：讀者讀完這一節，為什麼要繼續往下讀？**\n>    答不出來的那一節就是問題所在——不是把它寫得更漂亮，是問它該不該搬位置或併掉。\n>    （借同一份小說線方法的「每章讀者為什麼翻下一頁」）\n>\n> **產物要求：這一關交出來的必須是指名的段號與句子，不是「已檢查，通過」。**\n> 「我讀過了」是一句自述，沒有任何人能檢查它——同查重產物那條的道理。\n>\n> ⛔ **不准把這一關做成掃描器。** 沒有任何機械規則量得出「好不好看」，\n> 硬做成 gate 只會得到一道永遠亮綠的假保證（見 [[feedback_gate_erosion_patterns]]）。\n> 這一關就是要人（或 agent）真的讀完，並且說得出讀到哪裡想跳過。\n>\n> ⚠️ **與既有的「draft 完成後通讀一遍」不是同一件事**\n> （[[feedback_worldcup_special_depth_data]] 那條查的是**內部矛盾**）。\n> 那一關問「有沒有打架」，這一關問「有沒有人想讀」，兩關都要跑。\n\n",
+    "headline_style": "標題自己要是一個事實，而且是結論那一個事實，不是推導過程。原料（時間戳、取樣率、筆數）降到內文。不要編號、不要分類標籤。自檢：把標題唸進封面兩行版面，塞不進去的多半是工序。",
+    "forbidden_meta": "gate 語言不進正文，「本站」全文 ≤8 次，不得有任何 H2 在講我們怎麼取材。❌「本站從公開存檔解析出的資料顯示，他在 205 km/h 踩到全油門」→ ✅「他在 205 km/h 踩到全油門」｜❌「兩家說法互相矛盾，本站兩邊都寫，不裁決：A 說…；B 說…」→ ✅「A 說…；B 說…。兩家說法不一樣。」｜❌「分析席 E 與指揮位兩套腳本重算一致」→ 這句只准出現在資料來源區塊。",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』『那個彎』『這條線』『這一刻』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+    "tone": "小 Lin 說＋張泉靈。從具體的怪事切進去、短句、不在正文解釋方法論。",
+    "length": "下限 3,000 字（含標點）。不設上限。"
+  },
+  "required_sections": [
+    "開頭：彎裡最近的兩輛車（維斯塔潘前 27 公尺、皮亞斯特里後 11 公尺），不從『撞車了』開頭",
+    "混合來源的一段話交代（正文前段，一個短段落，不開 H2）：遙測數字來自 F1 官方即時計時公開存檔、當事人與車隊說法來自報導、兩者哪些能複查哪些不能",
+    "第 1 圈接觸之後第 2 圈前段看不出異狀：0.007 秒、煞車點差 2 公尺、323 → 334；Smedley 說前三到五圈看不出來",
+    "205 km/h 全開與六個對照的表（表格可用，門檻寫 99% 以上）",
+    "從轉速看的打滑起點：10,801 → 11,251、油門 100、0.3 秒後才鬆；本站推論信賴度中＋換檔瞬態替代解釋",
+    "他說的『怪』：第 1 圈 88 → 76 與三個對照的同形狀退油；第 2 圈做的不是同樣的事；引擎輸出判不了；Brundle 的匿名消息只能寫成有人告訴他",
+    "三種說法三種機制：Vasseur、Brundle、Nugnes；位置串流看不見橫向",
+    "慢漏氣：只有 Smedley，右後輪 vs Brundle 的左後輪；資料無跡象；排除不了",
+    "五個有值通道與恆 0 的 DRS 欄（短）",
+    "資料來源區塊（分級、含查證日 2026-09-11、含限制聲明：位置串流無橫向解析度、撞擊之後的資料不採、油門是踏板不是輸出、胎壓與能量不在公開通道、公開串流的產生機制本文不斷言）"
+  ],
+  "interlinks": {
+    "note": "frontmatter 必須有 season: 2026 與 round: 13。",
+    "candidates": [
+      "/articles/f1-monza-italian-drought-60-years/（前一篇，寫了紅旗與 Curva Alboreto 命名；該篇說撞車成因兩說互斥，本篇補上資料）",
+      "/articles/f1-tech-timing-positioning-race-control/（站上的計時與定位科技篇；本篇的位置串流限制與它『不給定位精度數字』一致）",
+      "/results/",
+      "/standings/"
+    ]
+  },
+  "zh_names": {
+    "_rule": "站規：文章用全形括號的中英對照，首次出現時對照，之後可只用中文。譯名唯一資料源是 scripts/driver-zh.json。",
+    "approved": {
+      "leclerc": "勒克萊爾（Charles Leclerc）",
+      "hamilton": "漢米爾頓（Lewis Hamilton）",
+      "piastri": "皮亞斯特里（Oscar Piastri）",
+      "max_verstappen": "維斯塔潘（Max Verstappen）",
+      "russell": "羅素（George Russell）",
+      "norris": "諾里斯（Lando Norris）",
+      "gasly": "蓋斯利（Pierre Gasly）",
+      "colapinto": "科拉平托（Franco Colapinto）"
+    },
+    "no_approved_translation": {
+      "_rule": "以下人名不是車手、不在 driver-zh.json，全文只寫原文：Fred Vasseur、Martin Brundle、Rob Smedley、Franco Nugnes、theOehrly。車隊寫 Ferrari、McLaren、Mercedes、Red Bull（與前一篇一致）。"
+    }
+  },
+  "derived_values": {
+    "_rule": "寫手不做算術：正文出現的每個數字都要能在本表找到。numbers_used 由本表全文自動抽取。",
+    "numbers_used": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "02",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "18",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "26",
+      "27",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "35",
+      "37",
+      "44",
+      "46",
+      "47",
+      "49",
+      "50",
+      "51",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "71",
+      "72",
+      "74",
+      "76",
+      "78",
+      "79",
+      "80",
+      "82",
+      "83",
+      "84",
+      "85",
+      "87",
+      "88",
+      "89",
+      "91",
+      "95",
+      "96",
+      "98",
+      "99",
+      "0.1",
+      "0.3",
+      "0.6",
+      "1.4",
+      "100",
+      "101",
+      "110",
+      "117",
+      "150",
+      "165",
+      "170",
+      "183",
+      "186",
+      "205",
+      "206",
+      "209",
+      "210",
+      "211",
+      "212",
+      "215",
+      "216",
+      "218",
+      "219",
+      "220",
+      "221",
+      "222",
+      "223",
+      "224",
+      "225",
+      "228",
+      "230",
+      "231",
+      "232",
+      "233",
+      "234",
+      "240",
+      "300",
+      "323",
+      "324",
+      "331",
+      "334",
+      "351",
+      "380",
+      "652",
+      "861",
+      "0.24",
+      "0314",
+      "0906",
+      "0907",
+      "0908",
+      "0909",
+      "0910",
+      "2020",
+      "2026",
+      "3.38",
+      "38.9",
+      "39.8",
+      "41.1",
+      "42.1",
+      "46.0",
+      "46.1",
+      "46.2",
+      "46.4",
+      "46.9",
+      "48.3",
+      "49.4",
+      "6.11",
+      "7.94",
+      "0.007",
+      "0.234",
+      "0.339",
+      "1,200",
+      "10698",
+      "10801",
+      "11251",
+      "24096",
+      "3,000",
+      "3.8.3",
+      "4,959",
+      "4,961",
+      "49.35",
+      "10,801",
+      "11,251",
+      "28.159",
+      "28.283",
+      "28.318",
+      "28.376",
+      "28.453",
+      "28.460",
+      "30.149",
+      "30.254",
+      "30.488",
+      "39,143",
+      "1090067",
+      "10853820",
+      "13582707"
+    ]
+  }
+}
