@@ -595,9 +595,10 @@ class RoundMentionFingerprintTests(unittest.TestCase):
 
     def test_article_mentioning_an_unraced_round_changes_nothing(self):
         """2026-08-24 R12 已賽，樣本推進：改用義大利站（R13，還沒有頁）
-        → 提到它不得產生任何指紋變動。"""
+        → 提到它不得產生任何指紋變動。
+        2026-09-11 R13 已賽，樣本再推進：改用西班牙站（R14，馬德里，9/13 才跑）。"""
         before = self._fp()
-        self.add_article("synthetic-italy", "下一站義大利站的看點。", season="2026")
+        self.add_article("synthetic-spain", "下一站西班牙站的看點。", season="2026")
         self.assertEqual(before["rounds"], self._fp()["rounds"])
 
     def test_unapproved_article_does_not_change_fingerprint(self):

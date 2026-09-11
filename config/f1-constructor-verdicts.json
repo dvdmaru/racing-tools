@@ -76,8 +76,8 @@
     {
       "key": "alpine|podiums",
       "verdict": "wiki_wrong",
-      "reason": "FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利 2026 摩納哥站兩次 5 秒罰時（F1 官網 2026-09-04：gasly-loses-monaco-podium-as-penalties-reinstated-following-mclaren-and-red-bull-appeal），蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 −1（本站 6）、Red Bull 頒獎台 +1（本站 302）。維基 infobox 於快照 revid 時尚未反映改判（Alpine 7、Red Bull 301），F1 官網賽果與積分榜與本站一致。【待 Charlie 核准】",
-      "by": "PENDING-charlie",
+      "reason": "FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利 2026 摩納哥站兩次 5 秒罰時（F1 官網 2026-09-04：gasly-loses-monaco-podium-as-penalties-reinstated-following-mclaren-and-red-bull-appeal），蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 −1（本站 6）、Red Bull 頒獎台 +1（本站 302）。維基 infobox 於快照 revid 時尚未反映改判（Alpine 7、Red Bull 301），F1 官網賽果與積分榜與本站一致。（Charlie 核准）",
+      "by": "charlie",
       "date": "2026-09-11",
       "definition_id": "constructor_results_position_text_in_123_distinct_cars",
       "bound_ours": 6,
@@ -88,8 +88,8 @@
     {
       "key": "red_bull|podiums",
       "verdict": "wiki_wrong",
-      "reason": "FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利 2026 摩納哥站兩次 5 秒罰時（F1 官網 2026-09-04：gasly-loses-monaco-podium-as-penalties-reinstated-following-mclaren-and-red-bull-appeal），蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 −1（本站 6）、Red Bull 頒獎台 +1（本站 302）。維基 infobox 於快照 revid 時尚未反映改判（Alpine 7、Red Bull 301），F1 官網賽果與積分榜與本站一致。【待 Charlie 核准】",
-      "by": "PENDING-charlie",
+      "reason": "FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利 2026 摩納哥站兩次 5 秒罰時（F1 官網 2026-09-04：gasly-loses-monaco-podium-as-penalties-reinstated-following-mclaren-and-red-bull-appeal），蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 −1（本站 6）、Red Bull 頒獎台 +1（本站 302）。維基 infobox 於快照 revid 時尚未反映改判（Alpine 7、Red Bull 301），F1 官網賽果與積分榜與本站一致。（Charlie 核准）",
+      "by": "charlie",
       "date": "2026-09-11",
       "definition_id": "constructor_results_position_text_in_123_distinct_cars",
       "bound_ours": 302,

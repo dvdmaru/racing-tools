@@ -22,9 +22,9 @@
         "season": 2026,
         "round": 11
       },
-      "approved_by": "PENDING-charlie",
+      "approved_by": "charlie",
       "approved_at": "2026-09-11",
-      "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）　2026-09-11 FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利摩納哥站（R6）罰時，蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 7→6、Red Bull 頒獎台 301→302（F1 官網 2026-09-04 報導；賽果與積分榜與 jolpica 一致）。as_of {2026,R11} 不變。【待 Charlie 核准】"
+      "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）　2026-09-11 FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利摩納哥站（R6）罰時，蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 7→6、Red Bull 頒獎台 301→302（F1 官網 2026-09-04 報導；賽果與積分榜與 jolpica 一致）。as_of {2026,R11} 不變。　Charlie 核准。"
     },
     "aston_martin": {
       "championships_count": 0,
@@ -192,9 +192,9 @@
         "season": 2026,
         "round": 11
       },
-      "approved_by": "PENDING-charlie",
+      "approved_by": "charlie",
       "approved_at": "2026-09-11",
-      "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）　2026-09-11 FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利摩納哥站（R6）罰時，蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 7→6、Red Bull 頒獎台 301→302（F1 官網 2026-09-04 報導；賽果與積分榜與 jolpica 一致）。as_of {2026,R11} 不變。【待 Charlie 核准】"
+      "note": "2026-08-13 Charlie 全批核准車隊擴編裁決包（data/f1/constructor-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）　2026-09-11 FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利摩納哥站（R6）罰時，蓋斯利第 3→第 7、哈賈第 4→第 3：Alpine 頒獎台 7→6、Red Bull 頒獎台 301→302（F1 官網 2026-09-04 報導；賽果與積分榜與 jolpica 一致）。as_of {2026,R11} 不變。　Charlie 核准。"
     },
     "williams": {
       "championships_count": 9,
