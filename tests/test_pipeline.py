@@ -540,3 +540,159 @@ class RebuttalFixTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class _FakeResultsSource:
+    """fetch_results 用的假資料源：記錄呼叫、回預先給的賽果文件。"""
+
+    def __init__(self, results, sprints=None):
+        self.results = results          # {rnd: doc}
+        self.sprints = sprints or {}    # {rnd: doc}
+        self.calls = []
+
+    def race_results(self, season, rnd):
+        self.calls.append(("race", rnd))
+        return self.results.get(rnd)
+
+    def sprint_results(self, season, rnd):
+        self.calls.append(("sprint", rnd))
+        return self.sprints.get(rnd)
+
+    def race_laps(self, season, rnd):
+        return {"Laps": []}
+
+    def race_pitstops(self, season, rnd):
+        return {"PitStops": []}
+
+
+def _race_doc(rnd, **pts):
+    return {"round": str(rnd),
+            "Results": [{"points": str(v), "Driver": {"driverId": k}} for k, v in pts.items()]}
+
+
+def _sprint_doc(rnd, **pts):
+    return {"round": str(rnd),
+            "SprintResults": [{"points": str(v), "Driver": {"driverId": k}} for k, v in pts.items()]}
+
+
+def _standings_doc(through, **pts):
+    return {"season": 2026, "data_through_round": through,
+            "standings": {"DriverStandings": [{"points": str(v), "Driver": {"driverId": k}}
+                                              for k, v in pts.items()]}}
+
+
+class ResultsRefetchTests(unittest.TestCase):
+    """2026-09-11：賽果每站每次重抓。舊版以「檔案已存在」跳過已完賽站，FIA 國際上訴法院
+    追溯改判摩納哥站（R6）後本站快照永遠不更新，線上錯了 8 天。"""
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.base = self.tmp / "2026" / "results"
+        self.base.mkdir(parents=True)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def _run(self, src, latest=2, races=None):
+        races = races or [{"round": "1"}, {"round": "2"}]
+        with mock.patch.object(fr, "DATA", self.tmp), contextlib.redirect_stdout(io.StringIO()):
+            return fr.fetch_results(src, 2026, latest, races)
+
+    def test_existing_round_is_refetched_when_upstream_reclassifies(self):
+        with contextlib.redirect_stdout(io.StringIO()):
+            fr._write(self.base / "round-01.json", _race_doc(1, gasly=15))   # 改判前的舊快照
+        src = _FakeResultsSource({1: _race_doc(1, gasly=6), 2: _race_doc(2, gasly=0)})
+        changed = self._run(src)
+        self.assertIn(("race", 1), src.calls, "已存在的 round 1 必須重抓")
+        self.assertTrue(changed)
+        got = json.loads((self.base / "round-01.json").read_text(encoding="utf-8"))
+        self.assertEqual(got["Results"][0]["points"], "6")
+
+    def test_unchanged_upstream_keeps_changed_false_for_exit_3(self):
+        docs = {1: _race_doc(1, gasly=15), 2: _race_doc(2, gasly=0)}
+        with contextlib.redirect_stdout(io.StringIO()):
+            for rnd, d in docs.items():
+                fr._write(self.base / f"round-{rnd:02d}.json", d)
+        changed = self._run(_FakeResultsSource(docs))
+        self.assertFalse(changed, "重抓但內容相同 → changed 必須維持 False，否則週更每次都會重建部署")
+
+    def test_existing_sprint_round_is_refetched_too(self):
+        with contextlib.redirect_stdout(io.StringIO()):
+            fr._write(self.base / "round-02-sprint.json", _sprint_doc(2, gasly=8))
+        src = _FakeResultsSource({1: _race_doc(1), 2: _race_doc(2)}, {2: _sprint_doc(2, gasly=7)})
+        races = [{"round": "1"}, {"round": "2", "Sprint": {"date": "2026-03-01", "time": "07:00:00Z"}}]
+        changed = self._run(src, races=races)
+        self.assertIn(("sprint", 2), src.calls)
+        self.assertNotIn(("sprint", 1), src.calls, "非 sprint 站不抓衝刺賽")
+        self.assertTrue(changed)
+
+
+class PointsReconciliationTests(unittest.TestCase):
+    """週更層旁路不變量：車手積分榜 == 賽果加總（對應百科層 I6）。"""
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        (self.tmp / "2026" / "results").mkdir(parents=True)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def test_consistent_season_has_no_mismatch(self):
+        st = _standings_doc(2, gasly=21, hadjar=8)
+        res = [_race_doc(1, gasly=15, hadjar=0), _race_doc(2, gasly=6, hadjar=0)]
+        spr = [None, _sprint_doc(2, hadjar=8)]
+        self.assertEqual(fr.points_mismatches(st, res, spr, season=2026), [])
+
+    def test_retroactive_reclassification_is_caught(self):
+        # 摩納哥 ICA 形狀：積分榜已反映改判、賽果快照還是舊的
+        st = _standings_doc(1, gasly=6, hadjar=15)
+        res = [_race_doc(1, gasly=15, hadjar=6)]
+        self.assertEqual(fr.points_mismatches(st, res, [None], season=2026),
+                         [("gasly", 15.0, 6.0), ("hadjar", 6.0, 15.0)])
+
+    def test_exception_registry_needs_season_and_driver(self):
+        st = _standings_doc(1, michael_schumacher=0)
+        res = [_race_doc(1, michael_schumacher=10)]
+        with mock.patch.dict(fr.POINTS_EXCEPTIONS, {(1997, "michael_schumacher"): "WMSC 1997-11-11 除名"}):
+            self.assertEqual(fr.points_mismatches(st, res, [None], season=1997), [])
+            self.assertEqual(len(fr.points_mismatches(st, res, [None], season=1998)), 1)
+
+    def _write(self, rel, obj):
+        p = self.tmp / "2026" / rel
+        p.write_text(json.dumps(obj, ensure_ascii=False), encoding="utf-8")
+
+    def test_check_skips_when_standings_snapshot_lags_results(self):
+        self._write("driver-standings.json", _standings_doc(1, gasly=6))
+        self._write("results/round-01.json", _race_doc(1, gasly=6))
+        with mock.patch.object(fr, "DATA", self.tmp), contextlib.redirect_stdout(io.StringIO()):
+            self.assertTrue(fr.check_points_vs_results(2026, 2), "積分榜保留舊快照時不是不一致")
+
+    def test_check_fails_on_mismatch_then_passes_after_refetch(self):
+        self._write("driver-standings.json", _standings_doc(1, gasly=6))
+        self._write("results/round-01.json", _race_doc(1, gasly=15))
+        with mock.patch.object(fr, "DATA", self.tmp), contextlib.redirect_stdout(io.StringIO()) as out:
+            self.assertFalse(fr.check_points_vs_results(2026, 1))
+        self.assertIn("gasly: results 15 ≠ standings 6", out.getvalue())
+        self._write("results/round-01.json", _race_doc(1, gasly=6))
+        with mock.patch.object(fr, "DATA", self.tmp), contextlib.redirect_stdout(io.StringIO()):
+            self.assertTrue(fr.check_points_vs_results(2026, 1))
+
+    def test_main_exits_4_on_mismatch(self):
+        """接線測試：main 的 results 指令碰到不一致要以 exit 4 離開（update-racing 據此禁止部署）。"""
+        self._write("driver-standings.json", _standings_doc(1, gasly=6))
+        self._write("schedule.json", {"season": 2026, "races": [{"round": "1"}]})
+
+        class Src(_FakeResultsSource):
+            def schedule(self, season):
+                return [{"round": "1"}]
+
+            def latest_race(self, season):
+                return {"round": "1"}
+
+        src = Src({1: _race_doc(1, gasly=15)})
+        with mock.patch.object(fr, "DATA", self.tmp), mock.patch.object(fr, "JolpicaSource", lambda: src), \
+                mock.patch.object(fr.sys, "argv", ["fetch_racing.py", "results", "--season", "2026"]), \
+                contextlib.redirect_stdout(io.StringIO()):
+            with self.assertRaises(SystemExit) as cm:
+                fr.main()
+        self.assertEqual(cm.exception.code, 4)

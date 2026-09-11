@@ -8,7 +8,11 @@ data/<season>/，dated 副本進 data/<season>/history/ 當自有歷史庫——
 本站已發布過的數據不受影響。
 
 jolpica rate limit（官方 docs/rate_limits.md）：burst 4 req/s、sustained 500 req/hr。
-本腳本每輪完整抓取約 6-10 個 request，加 0.35s 間距 + 429/5xx 指數退避，遠低於限。
+本腳本每輪完整抓取約 30–45 個 request（當季**每一站**賽果每次重抓，見 fetch_results docstring），
+加 0.35s 間距 + 429/5xx 指數退避，遠低於限。
+
+exit code：0＝有新資料、3＝無新資料（update-racing 安靜跳過）、4＝積分榜與賽果加總不一致
+（週更層旁路不變量，見 check_points_vs_results；update-racing 據此禁止部署）。
 
 Ergast 相容 schema 注意：season-level standings 的 round 欄位可能指向「即將進行」的
 一站（實測 2026-07-19：正賽當天早上 round 標 10、積分實為 round 9 完賽後）→
@@ -332,24 +336,29 @@ def sprint_session_passed(race_entry, now_utc):
 
 
 def fetch_results(src, season, latest_round, races, force=False):
-    """抓 1..latest_round 的正賽賽果（+ sprint 站的衝刺賽果）。已完賽站結果原則上不變，
-    檔案已存在就跳過；最新一站每次重抓（FIA 賽後改判/失格會回寫，sprint 同理）。
+    """抓 1..latest_round 的正賽賽果（+ sprint 站的衝刺賽果）——**每一站每次都重抓**，
+    不以「檔案已存在」當跳過條件。
+
+    ☠️ 2026-09-11 之前只重抓最新一站，理由是「已完賽站結果原則上不變」。這個前提是錯的：
+    FIA 國際上訴法院 2026-09-03 追溯改判 R6 摩納哥站名次（jolpica 跟著改），本站 R6 快照因為
+    「已存在」永遠不重抓，線上摩納哥賽果錯了 8 天，而且**沒有任何 gate 會叫**——每次部署都成功、
+    exit 0、頁面有更新時間戳。賽果／裁決類資料的歷史**會**被改。
+    代價＝每週多約 24＋6 個 request（jolpica 500/hr，遠低於限）；_write 無變化不重寫，
+    所以沒有改判時 changed 仍為 False，exit 3 的安靜跳過邏輯不受影響。
+    逐圈與進站仍只抓最新一站（每站約 870 筆、9 頁，全季重抓沒必要）；--force 連這兩份也重抓。
     另外：下一站若是 sprint 站且衝刺賽已開跑（正賽還沒跑），單獨抓衝刺賽果——
-    否則六/日排程在正賽前永遠抓不到當站衝刺賽。--force 全重抓。"""
+    否則六/日排程在正賽前永遠抓不到當站衝刺賽。"""
     base = DATA / str(season) / "results"
     sprint_rounds = {int(r["round"]) for r in races if "Sprint" in r}
     changed = False
     for rnd in range(1, latest_round + 1):
-        p = base / f"round-{rnd:02d}.json"
-        if force or (not p.exists()) or rnd == latest_round:
-            res = src.race_results(season, rnd)
-            if res:
-                changed |= _write(p, res)
-        sp = base / f"round-{rnd:02d}-sprint.json"
-        if rnd in sprint_rounds and (force or not sp.exists() or rnd == latest_round):
+        res = src.race_results(season, rnd)
+        if res:
+            changed |= _write(base / f"round-{rnd:02d}.json", res)
+        if rnd in sprint_rounds:
             res = src.sprint_results(season, rnd)
             if res:
-                changed |= _write(sp, res)
+                changed |= _write(base / f"round-{rnd:02d}-sprint.json", res)
     # 逐圈與進站：只抓最新一站（每站約 870 筆逐圈紀錄，全季重抓沒有必要也吃 rate limit）。
     # 這兩份是賽後戰報敘事的唯一可查證來源——沒有它們，「全場最大轉折」這種句子只能靠編。
     lp = base / f"round-{latest_round:02d}-laps.json"
@@ -373,6 +382,65 @@ def fetch_results(src, season, latest_round, races, force=False):
     return changed
 
 
+# 積分榜與賽果加總容許的已知差額：{(season, driverId): "原因＋出處"}。
+# 只有 FIA 明文把積分從「車手積分榜」拿掉、但賽果照記的情況才進來（史上例：1997 Schumacher）。
+# 加一條就要附裁決出處；沒有出處的差額一律視為資料錯，讓 exit 4 擋線。
+POINTS_EXCEPTIONS = {}
+
+
+def points_mismatches(standings_doc, results_docs, sprint_docs, season=None):
+    """逐車手：賽果毛積分（正賽＋衝刺）vs 官方車手積分榜。回 [(driverId, gross, official)]，
+    已扣掉 POINTS_EXCEPTIONS。純函式，供測試。"""
+    gross = {}
+    for doc in results_docs:
+        for r in (doc or {}).get("Results", []):
+            d = r["Driver"]["driverId"]
+            gross[d] = gross.get(d, 0.0) + float(r.get("points") or 0)
+    for doc in sprint_docs:
+        for r in (doc or {}).get("SprintResults", []):
+            d = r["Driver"]["driverId"]
+            gross[d] = gross.get(d, 0.0) + float(r.get("points") or 0)
+    mism = []
+    for e in ((standings_doc or {}).get("standings") or {}).get("DriverStandings", []):
+        d = e["Driver"]["driverId"]
+        if (season, d) in POINTS_EXCEPTIONS:
+            continue
+        off = float(e.get("points") or 0)
+        g = gross.get(d, 0.0)
+        if abs(g - off) > 1e-9:
+            mism.append((d, g, off))
+    return sorted(mism)
+
+
+def check_points_vs_results(season, data_round):
+    """週更層的旁路不變量（對應百科層 check-f1-invariants 的 I6）：車手積分榜 == 賽果加總。
+
+    這是摩納哥改判錯 8 天那次唯一咬到的東西（百科層 I6 在 R13 落地時抓到蓋斯利積分「倒退」），
+    週更層以前沒有——所以就算 fetch_results 改成每站重抓，仍要留這條當警報：
+    上游哪天只改了積分榜沒改賽果（或反過來），這裡會叫。
+    只在積分榜快照的 data_through_round == 本輪賽果 round 時檢查：fetch_standings 驗證未過會
+    保留舊快照，那時兩邊 round 不同是刻意的，不是不一致。回 True＝一致或跳過、False＝有差額。"""
+    base = DATA / str(season)
+    st = _load_json(base / "driver-standings.json")
+    if not st:
+        print("  ⏭  無積分榜快照 → 跳過積分對帳", flush=True)
+        return True
+    if int(st.get("data_through_round", -1)) != int(data_round):
+        print(f"  ⏭  積分榜 data_through_round={st.get('data_through_round')} ≠ 賽果 round={data_round}"
+              " → 跳過積分對帳（積分榜保留舊快照時屬預期）", flush=True)
+        return True
+    results = [_load_json(base / "results" / f"round-{r:02d}.json") for r in range(1, int(data_round) + 1)]
+    sprints = [_load_json(base / "results" / f"round-{r:02d}-sprint.json") for r in range(1, int(data_round) + 1)]
+    mism = points_mismatches(st, results, sprints, season=season)
+    if not mism:
+        print(f"  ✅ 積分對帳：{len(st['standings']['DriverStandings'])} 位車手 賽果加總 == 積分榜（R1–R{data_round}）", flush=True)
+        return True
+    print(f"  🛑 積分對帳不一致 {len(mism)} 位（賽果加總 vs 積分榜）——上游追溯改判未落地或資料錯：", flush=True)
+    for d, g, off in mism:
+        print(f"     {d}: results {g:g} ≠ standings {off:g}（差 {g - off:+g}）", flush=True)
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["all", "standings", "schedule", "results"])
@@ -384,6 +452,7 @@ def main():
     print(f"🏁 fetch_racing · {args.cmd} · season={season}")
 
     changed = False
+    points_ok = True
     races = []
     if args.cmd in ("all", "schedule", "results"):
         sch_changed, races = fetch_schedule(src, season)
@@ -396,9 +465,13 @@ def main():
             latest = src.latest_race(season)
             data_round = int(latest["round"]) if latest else 0
         changed |= fetch_results(src, season, data_round, races, force=args.force)
+        points_ok = check_points_vs_results(season, data_round)
 
     print(f"{'🔄 有新資料' if changed else '😴 無新資料'}")
-    # exit code 供 update-racing.py 的安靜跳過邏輯用：0=有變化、3=無變化
+    # exit code 供 update-racing.py 用：0=有變化、3=無變化（安靜跳過）、4=積分對帳不一致（禁止部署）
+    if not points_ok:
+        print("🛑 積分榜與賽果加總不一致 → exit 4（update-racing 會禁止部署，正式站維持上一版）")
+        sys.exit(4)
     sys.exit(0 if changed else 3)
 
 
