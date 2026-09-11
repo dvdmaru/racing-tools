@@ -247,29 +247,29 @@
       "championships": 0,
       "championship_years": [],
       "wins": 1,
-      "podiums": 6,
+      "podiums": 5,
       "entries": 189,
       "as_of": {
         "season": 2026,
         "round": 11
       },
       "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "approved_at": "2026-09-11",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）　Charlie 核准。　2026-09-11 FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利摩納哥站（R6）兩次 5 秒進站超速罰時，蓋斯利第 3→第 7、哈賈第 4→第 3（F1 官網 2026-09-04：gasly-loses-monaco-podium-as-penalties-reinstated-following-mclaren-and-red-bull-appeal；F1 官網積分榜蓋斯利 41、哈賈 71 與 jolpica 一致）。as_of {2026,R11} 不變，只有 podiums 隨改判變動。　Charlie 核准。"
     },
     "hadjar": {
       "championships": 0,
       "championship_years": [],
       "wins": 0,
-      "podiums": 1,
+      "podiums": 2,
       "entries": 35,
       "as_of": {
         "season": 2026,
         "round": 11
       },
       "approved_by": "charlie",
-      "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "approved_at": "2026-09-11",
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）　Charlie 核准。　2026-09-11 FIA 國際上訴法院 2026-09-03 裁決重新施加蓋斯利摩納哥站（R6）兩次 5 秒進站超速罰時，蓋斯利第 3→第 7、哈賈第 4→第 3（F1 官網 2026-09-04：gasly-loses-monaco-podium-as-penalties-reinstated-following-mclaren-and-red-bull-appeal；F1 官網積分榜蓋斯利 41、哈賈 71 與 jolpica 一致）。as_of {2026,R11} 不變，只有 podiums 隨改判變動。　Charlie 核准。"
     },
     "hakkinen": {
       "championships": 2,

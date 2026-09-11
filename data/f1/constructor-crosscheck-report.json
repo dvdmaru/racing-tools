@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T03:17:51.739745+00:00",
+  "generated_at": "2026-09-11T12:35:51.024723+00:00",
   "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 constructor}} / {{Infobox F1 team}}",
   "note": "維基是外部編纂對照路徑，不是獨立 oracle；diff 必須具名且綁定 revid 裁決",
   "coverage": {
@@ -66,19 +66,31 @@
   },
   "summary": {
     "constructors_checked": 11,
-    "diffs_total": 5,
+    "diffs_total": 7,
     "diffs_by_field": {
+      "podiums": 4,
       "wins": 1,
-      "podiums": 2,
       "entries": 2
     },
     "diffs_by_classification": {
-      "likely_entity_scope_differs": 3,
+      "likely_entity_scope_differs": 5,
       "likely_definition_differs": 2
     },
     "f1cstat_coverage_reduction_count": 0
   },
   "diffs": [
+    {
+      "constructor_id": "alpine",
+      "constructor_name": "Alpine F1 Team",
+      "field": "podiums",
+      "ours": 6,
+      "wiki": 7,
+      "classification": "likely_entity_scope_differs",
+      "reason": "我方依 constructor_id 的完賽車次=6，維基 constructor infobox=7；優先檢查歷史 constructor_id／team identity 邊界，不先改數字",
+      "key": "alpine|podiums",
+      "definition_id": "constructor_results_position_text_in_123_distinct_cars",
+      "wiki_revid": 1373412113
+    },
     {
       "constructor_id": "mclaren",
       "constructor_name": "McLaren",
@@ -116,6 +128,18 @@
       "wiki_revid": 1368532587
     },
     {
+      "constructor_id": "red_bull",
+      "constructor_name": "Red Bull",
+      "field": "podiums",
+      "ours": 302,
+      "wiki": 301,
+      "classification": "likely_entity_scope_differs",
+      "reason": "我方依 constructor_id 的完賽車次=302，維基 constructor infobox=301；優先檢查歷史 constructor_id／team identity 邊界，不先改數字",
+      "key": "red_bull|podiums",
+      "definition_id": "constructor_results_position_text_in_123_distinct_cars",
+      "wiki_revid": 1371252330
+    },
+    {
       "constructor_id": "williams",
       "constructor_name": "Williams",
       "field": "podiums",
@@ -147,7 +171,7 @@
       "wikipedia_title": "Alpine_F1_Team",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Alpine_F1_Team",
       "from_cache": true,
-      "wiki_revid": 1369018801,
+      "wiki_revid": 1373412113,
       "infobox_found": true,
       "infobox_type": "Infobox F1 team",
       "fields": {
@@ -173,7 +197,7 @@
           "f1cstat_code": "ALP"
         },
         "podiums": {
-          "ours": 7,
+          "ours": 6,
           "wiki": 7,
           "wiki_raw": "{{F1cstat|ALP|podiums}}",
           "wiki_format": "F1cstat",
@@ -644,7 +668,7 @@
       "wikipedia_title": "Red_Bull_Racing",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
       "from_cache": true,
-      "wiki_revid": 1368532638,
+      "wiki_revid": 1371252330,
       "infobox_found": true,
       "infobox_type": "Infobox F1 team",
       "fields": {
@@ -684,7 +708,7 @@
           "f1cstat_code": "RBR"
         },
         "podiums": {
-          "ours": 301,
+          "ours": 302,
           "wiki": 301,
           "wiki_raw": "{{F1cstat|RBR|podiums}}",
           "wiki_format": "F1cstat",
