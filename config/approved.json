@@ -580,7 +580,7 @@
     },
     {
       "slug": "f1-2026-r13-leclerc-parabolica-telemetry",
-      "article_sha256": "38bd581da9b8eb079a2a31a75fab32a52e2c50738bc52b0f79db8b5d85f0013e",
+      "article_sha256": "ab85b889094458b635848a0a4c443f246b0d9cd6dae3624dc3a40252dc325e3b",
       "facts_sha256": "30fd499f497040ff59f2589361e55b49b457afdbf564c10032665eceedc5dc5f",
       "check_report_sha256": null,
       "approved_by": "charlie",
