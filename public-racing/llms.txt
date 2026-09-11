@@ -37,7 +37,7 @@
 
 ## 歷年賽季（百科）
 
-- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 415 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
+- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 416 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
 - https://racing.twtools.cc/seasons/2026/
 - https://racing.twtools.cc/seasons/2026/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2026/drivers/max-verstappen/
@@ -64,6 +64,7 @@
 - https://racing.twtools.cc/seasons/2026/rounds/10/
 - https://racing.twtools.cc/seasons/2026/rounds/11/
 - https://racing.twtools.cc/seasons/2026/rounds/12/
+- https://racing.twtools.cc/seasons/2026/rounds/13/
 - https://racing.twtools.cc/seasons/2025/
 - https://racing.twtools.cc/seasons/2025/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2025/drivers/max-verstappen/
