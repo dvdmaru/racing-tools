@@ -97,9 +97,9 @@ lede: "安東內利（Kimi Antonelli）在西班牙站後以 292 分領先羅素
 **媒體報導**
 
 - [Grande Prêmio](https://grandepremio.com/en/f1/f1-delays-decision-on-qatar-and-abu-dhabi-gps-in-2026-we-are-monitoring/)（2026 年 9 月 9 日）：多梅尼卡利談卡達與阿布達比的兩段話，中文為本站翻譯。
-- [PlanetF1](https://www.planetf1.com/facts-stats/kimi-antonelli-f1-2026-championship-title-win-points)（2026 年 9 月 15 日）與 [Grande Prêmio](https://grandepremio.com/en/f1/what-does-antonelli-need-to-become-2026-f1-champion/)（9 月 8 日發、9 月 13 日更新）：同樣算出新加坡是最早的封王站與 153 分保證線，可與本文表格對照。
+- [PlanetF1](https://www.planetf1.com/facts-stats/kimi-antonelli-f1-2026-championship-title-win-points)（2026 年 9 月 15 日）與 [Grande Prêmio](https://grandepremio.com/en/f1/what-does-antonelli-need-to-become-2026-f1-champion/)（9 月 8 日發、9 月 13 日更新）：兩篇各自算出新加坡是最早的封王站；PlanetF1 另有 153 分保證線，Grande Prêmio 則寫至少領先 151、三站要淨賺至少 70，可與本文表格對照。
 - [金氏世界紀錄](https://www.guinnessworldrecords.com/world-records/youngest-formula-one-world-champion)：最年輕 F1 車手總冠軍，維特爾 2010 年 23 歲 134 天。
 
 查證日 2026 年 9 月 21 日。
 
-**本站限制聲明**：本文的封王線一律要求領先差嚴格大於剩餘可得分，不靠同分時的勝場數決勝；FIA 條文對衝刺賽名次算不算進同分決勝沒有明文，本文不依賴這一點。卡達站與阿布達比站截至查證日仍在官方賽曆上，本站沒有找到 F1 或 FIA 對兩站的取消、延期或改地點公告；文中的 22 站與 7 站賽曆是算術假設，不是賽曆消息，例如伊莫拉是否替補其中一場，官方尚未公告。今年連續三個週末的最好與最差成績，是前 14 站的實績，不是對接下來結果的預測。西班牙站以前各站的名次與積分若日後被追溯改判，本文的所有差距都要重算。
+**本站限制聲明**：本文的封王線一律要求領先差嚴格大於剩餘可得分，不靠同分時的勝場數決勝；FIA 條文對衝刺賽名次算不算進同分決勝沒有明文，本文不依賴這一點。卡達站與阿布達比站截至查證日仍在官方賽曆上，本站沒有找到 F1 或 FIA 對兩站的取消、延期或改地點公告；文中的 22 站與 7 站賽曆是算術假設，不是賽曆消息，例如伊莫拉是否替補其中一場，官方尚未公告。今年連續三個週末的最好與最差成績，是前 14 站的實績，不是對接下來結果的預測。
