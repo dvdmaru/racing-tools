@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 灰色長條＝每一站結束後的「封王線」（＝賽曆上還沒跑的場次裡單一車手最多還能拿的分數＋1），
+ * 第 15–23 站依序 209、184、151、126、101、76、51、26、1。資料來源＝facts/analysis-antonelli-clinch-arithmetic.json
+ * 的 derived_values.main_table.T。長條高度是線性換算不是手調：h = 300 × T ÷ 209，底線固定 y=340。
+ * 紅色虛線＝現有領先差 81：y = 340 − 300 × 81 ÷ 209 = 223.7。虛線第一次高過長條的是第 20 站（巴西，76）。
+ * 紅色長條＝新加坡（151），最早能封王的一站；其餘不標數字，封面 gate 逐個數字比對正文。
+ * 顏色不對應任何車隊塗裝（站規：不用官方素材）。
+ * ⚠️ viewBox 上緣留 80px 給標籤；CSS 高度不要跟著加（preserveAspectRatio="none" 會把內容縮放進去）。 */
+.chart { width: 100%; height: 400px; display: block; }
+.chart .nm { font-family: 'Noto Sans TC'; font-weight: 500; font-size: 34px; fill: #493c40; }
+.chart .vl { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700; font-size: 46px; fill: #786a6e; }
+.chart .vl.hi { fill: #d63a2f; font-size: 56px; }
+.chart .ln { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 36px; fill: #d63a2f; }
+h1 { font-size: 100px; margin-top: 44px; }
+.sub { margin-top: 28px; }
+.stats { margin-top: 36px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 積分算術</div>
+  <h1>安東內利最快在新加坡封王<br>前提是三個週末對羅素淨賺 <span class="y">70 分</span></h1>
+  <div class="sub">他今年任何連續三個週末，最多淨賺過 59 分</div>
+  <div class="viz">
+    <div class="lbl">第 15–23 站結束後的封王線（灰）與現有領先差 81 分（紅色虛線）</div>
+    <svg class="chart" viewBox="0 -80 2160 480" preserveAspectRatio="none">
+      <rect x="0" y="40.0" width="150" height="300.0" rx="6" fill="#c9b8bb"/>
+      <rect x="240" y="75.9" width="150" height="264.1" rx="6" fill="#c9b8bb"/>
+      <rect x="480" y="123.3" width="150" height="216.7" rx="6" fill="#d63a2f"/>
+      <text x="555" y="100" text-anchor="middle" class="vl hi">151</text>
+      <rect x="720" y="159.1" width="150" height="180.9" rx="6" fill="#c9b8bb"/>
+      <rect x="960" y="195.0" width="150" height="145.0" rx="6" fill="#c9b8bb"/>
+      <rect x="1200" y="230.9" width="150" height="109.1" rx="6" fill="#c9b8bb"/>
+      <text x="1275" y="208" text-anchor="middle" class="vl">76</text>
+      <rect x="1440" y="266.8" width="150" height="73.2" rx="6" fill="#c9b8bb"/>
+      <rect x="1680" y="302.7" width="150" height="37.3" rx="6" fill="#c9b8bb"/>
+      <rect x="1920" y="338.6" width="150" height="1.4" rx="1" fill="#c9b8bb"/>
+      <line x1="0" y1="223.7" x2="2160" y2="223.7" stroke="#d63a2f" stroke-width="6" stroke-dasharray="18 14"/>
+      <text x="1500" y="180" text-anchor="start" class="ln">81 分</text>
+      <text x="75" y="386" text-anchor="middle" class="nm">巴庫</text>
+      <text x="315" y="386" text-anchor="middle" class="nm">雪邦</text>
+      <text x="555" y="386" text-anchor="middle" class="nm">新加坡</text>
+      <text x="795" y="386" text-anchor="middle" class="nm">美國</text>
+      <text x="1035" y="386" text-anchor="middle" class="nm">墨西哥城</text>
+      <text x="1275" y="386" text-anchor="middle" class="nm">巴西</text>
+      <text x="1515" y="386" text-anchor="middle" class="nm">拉斯維加斯</text>
+      <text x="1755" y="386" text-anchor="middle" class="nm">卡達</text>
+      <text x="1995" y="386" text-anchor="middle" class="nm">阿布達比</text>
+    </svg>
+    <div class="stats">
+      <div class="stat"><b>17<i> 分</i></b><span>羅素全勝、他每場第 2，季末仍多</span></div>
+      <div class="stat"><b>13<i> 分</i></b><span>新加坡封王，羅素三個週末合計上限</span></div>
+      <div class="stat"><b>76<i> 分</i></b><span>第 20 站封王線</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc · 資料截至 2026-09-13（第 14 站後）</div>
+</div>
+</body>
+</html>
