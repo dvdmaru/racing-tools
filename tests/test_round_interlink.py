@@ -90,11 +90,12 @@ class RoundLinkIndexTests(unittest.TestCase):
     def test_unraced_round_has_no_page_and_is_not_linkable(self):
         """2026-08-24 R12 已賽/tsunoda 擴編，樣本推進：R12 荷蘭站已完賽，
         改用 R13 義大利站尚未完賽＝沒有分站頁 → 判定表不得收（收了就是死連結）。
-        2026-09-11 R13 已賽，樣本再推進：改用 R14 西班牙站（馬德里，9/13 才跑）。"""
+        2026-09-11 R13 已賽，樣本再推進：改用 R14 西班牙站（馬德里，9/13 才跑）。
+        2026-09-21 R14 已賽，樣本再推進：改用 R15 亞塞拜然站（巴庫，9/26 才跑）。"""
         idx = il.round_link_index(2026)
-        self.assertNotIn("西班牙站", idx)
+        self.assertNotIn("亞塞拜然站", idx)
         built = set(gs.season_round_numbers(2026))
-        self.assertNotIn(14, built, "前提：R14 要真的還沒有頁，否則這條在測空氣")
+        self.assertNotIn(15, built, "前提：R15 要真的還沒有頁，否則這條在測空氣")
         self.assertTrue(all(r in built for _y, r in idx.values()))
 
     def test_non_round_year_is_empty(self):
@@ -219,16 +220,17 @@ class LinkifyRoundsTests(unittest.TestCase):
         """2026-08-24 R12 已賽，樣本推進：改用 DUTCH_REPORT（R12 荷蘭站戰報），其文末
         提到「第 13 站是義大利站」——該站尚未完賽、沒有頁 → 不得連。
         2026-09-11 R13 已賽，樣本再推進：義大利站現在有頁，DUTCH_REPORT 應連到 R12 與 R13；
-        「未賽站不得連」改用合成文字提 R14 西班牙站（站上尚無帶 season 的文章提到它）。"""
+        「未賽站不得連」改用合成文字提 R14 西班牙站（站上尚無帶 season 的文章提到它）。
+        2026-09-21 R14 已賽：西班牙站現在有頁，合成文字改提 R15 亞塞拜然站（9/26 才跑）。"""
         art = self.arts[DUTCH_REPORT]
         self.assertIn("義大利站", art["text"], "前提：這篇要真的提到義大利站")
         _src, out, linked = self._render(DUTCH_REPORT)
         self.assertIn("/seasons/2026/rounds/13/", out, "義大利站已賽、有頁 → 應連")
         self.assertEqual([t for _y, _r, t in linked], ["荷蘭站", "義大利站"])
-        src = "<p>下一站是西班牙站。</p>"
+        src = "<p>下一站是亞塞拜然站。</p>"
         out26, linked26 = il.linkify_rounds(src, 2026)
-        self.assertNotIn("/seasons/2026/rounds/14/", out26)
-        self.assertNotIn("西班牙站</a>", out26)
+        self.assertNotIn("/seasons/2026/rounds/15/", out26)
+        self.assertNotIn("亞塞拜然站</a>", out26)
         self.assertEqual(linked26, [])
 
     def test_headings_are_not_linked_using_the_real_title(self):
@@ -596,9 +598,10 @@ class RoundMentionFingerprintTests(unittest.TestCase):
     def test_article_mentioning_an_unraced_round_changes_nothing(self):
         """2026-08-24 R12 已賽，樣本推進：改用義大利站（R13，還沒有頁）
         → 提到它不得產生任何指紋變動。
-        2026-09-11 R13 已賽，樣本再推進：改用西班牙站（R14，馬德里，9/13 才跑）。"""
+        2026-09-11 R13 已賽，樣本再推進：改用西班牙站（R14，馬德里，9/13 才跑）。
+        2026-09-21 R14 已賽，樣本再推進：改用亞塞拜然站（R15，巴庫，9/26 才跑）。"""
         before = self._fp()
-        self.add_article("synthetic-spain", "下一站西班牙站的看點。", season="2026")
+        self.add_article("synthetic-azerbaijan", "下一站亞塞拜然站的看點。", season="2026")
         self.assertEqual(before["rounds"], self._fp()["rounds"])
 
     def test_unapproved_article_does_not_change_fingerprint(self):
