@@ -50,6 +50,22 @@ def _render_all(target):
         ci.PUB = old
 
 
+def _unraced_madring_con():
+    """2026-09-21 R14 已賽：madring 有了第一場正賽，真實資料裡已沒有「一場都沒跑的賽道」。
+    為了讓「誠實顯示 0、不是被藏起來」這條分支繼續有測試，用記憶體副本把 madring R14 的賽果列刪掉，
+    還原成 R14 前的形狀（不動真實 db）。"""
+    import sqlite3
+    src = fs.connect_db()
+    mem = sqlite3.connect(":memory:")
+    try:
+        src.backup(mem)
+    finally:
+        src.close()
+    mem.row_factory = sqlite3.Row
+    mem.execute("DELETE FROM results WHERE season=2026 AND round=14")
+    return mem
+
+
 _RENDERED = []
 
 
@@ -155,8 +171,13 @@ class RegistryAndStatGateTests(unittest.TestCase):
         self.assertEqual(s["hosted"]["value"], scheduled - 1)
 
     def test_circuit_with_no_race_yet_is_honest_not_empty(self):
-        """2026 新賽道（madring）一場都還沒跑：統計是 0，不是被藏起來或假裝有資料。"""
-        s = ci.circuit_summary("madring", self.con)
+        """2026 新賽道（madring）一場都還沒跑：統計是 0，不是被藏起來或假裝有資料。
+        2026-09-21 R14 已賽：改用「刪掉 madring R14 賽果」的記憶體副本測這條分支。"""
+        con = _unraced_madring_con()
+        try:
+            s = ci.circuit_summary("madring", con)
+        finally:
+            con.close()
         self.assertEqual(s["hosted"]["value"], 0)
         self.assertEqual(s["driver_wins"], {})
         self.assertIsNone(s["first_season"])
@@ -239,7 +260,18 @@ class GenerationTests(_Rendered):
         self.assertIn("不計入", html)
 
     def test_no_race_yet_circuit_says_so(self):
-        html = self.page("madring")
+        # 2026-09-21 R14 已賽：真實頁已有一場；用記憶體副本渲染「一場都沒跑」的 madring 頁。
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        old = ci.PUB
+        ci.PUB = tmp
+        con = _unraced_madring_con()
+        try:
+            ci.gen_circuit("madring", con)
+        finally:
+            con.close()
+            ci.PUB = old
+        html = (tmp / "circuits" / ci.circuit_slug("madring") / "index.html").read_text(encoding="utf-8")
+        shutil.rmtree(tmp, ignore_errors=True)
         self.assertIn("尚無資料", html)
         self.assertIn('<div class="stat-v mono">0<', html)
 

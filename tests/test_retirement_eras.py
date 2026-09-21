@@ -244,7 +244,8 @@ class RetirementEraRenderTests(unittest.TestCase):
     def test_2020s_scope_is_explicit(self):
         # 2026-08-24 R12 已賽：db 推進到 R12，對產物實值同步更新。
         # 2026-09-11 R13 已賽（義大利站）：db 推進到 R13，樣本同步推進。
-        self.assertIn("2020 年代（截至 2026 R13）", html.unescape(self.section))
+        # 2026-09-21 R14 已賽（西班牙站）：db 推進到 R14，樣本同步推進。
+        self.assertIn("2020 年代（截至 2026 R14）", html.unescape(self.section))
 
 
 if __name__ == "__main__":
