@@ -26999,7 +26999,7 @@
       "Circuit": {
         "circuitId": "losail",
         "url": "https://en.wikipedia.org/wiki/Lusail_International_Circuit",
-        "circuitName": "Losail International Circuit",
+        "circuitName": "Lusail International Circuit",
         "Location": {
           "lat": "25.49",
           "long": "51.4542",
@@ -27065,7 +27065,7 @@
   "total": 1172,
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/races.json",
-    "fetched_at": "2026-08-23T16:21:10.809626+00:00",
+    "fetched_at": "2026-09-21T03:25:30.576178+00:00",
     "backfill": true
   }
 }
