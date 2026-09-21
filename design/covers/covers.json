@@ -95,6 +95,12 @@
       "html": "cover-leclerc-monza-parabolica.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2026-antonelli-clinch-arithmetic",
+      "html": "cover-antonelli-clinch-arithmetic.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
