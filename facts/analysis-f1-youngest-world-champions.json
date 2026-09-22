@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "slug": "f1-youngest-world-champions-vettel-antonelli",
+    "built_by": "conductor",
+    "built_at": "2026-09-22",
+    "type": "feature",
+    "topic_ref": "2026-09-22:R1（選題台 racing R1，18 分，查核等級＝查核桌，過期日 2026-10-06）",
+    "note": "混合來源文：歷代冠軍生日＋封王站日期查 Wikipedia（一手傳記/賽事條目），年齡（年＋天）由指揮位以 Python 逐日計算自算，不採信 F1.com／Motorsport Magazine 兩篇既有排行文章預先算好的天數（兩篇互相矛盾且各自與本站自算值有出入，見 verified_facts 的 discrepancy 欄）。Antonelli 現有積分、2026 賽曆由 jolpica-f1 本站落地資料（data/2026/，2026-09-22 讀取，season/round 見 driver-standings.json 與 schedule.json）。研究席：agy（Terra 本週用量緊繃、明天下午才重置，Charlie 2026-09-22 指示優先用 agy，這輪未派 Terra）。agy 第一輪查到 F1.com／Motorsport Magazine 對 Vettel（133/134 天）與 Verstappen（66/73 天，F1.com 自己文章內互相矛盾）兩處分歧；agy 另主張 GPblog 一篇報導『152 分』的推算在數學上不可能，但該推論漏算了雪邦站（R16），與本站已發佈的 f1-2026-antonelli-clinch-arithmetic 文（已歷經多輪查核）矛盾，本文不採用 agy 那段推論，改直接引用本站既有文章的『新加坡是算術上最早封王站』結論。歷代冠軍精確日期改由指揮位直接以 WebFetch 讀 Wikipedia 逐位核實（agy 多次嘗試批次讀取 8 個 Wikipedia 頁面時因權限設定不穩定、兩次拿到空回應，遂改指揮位自己查）。"
+  },
+  "thesis": "維特爾 2010 年封王時 23 歲又 134 天保持了 16 年的最年輕世界冠軍紀錄，安東內利現在領先羅素 81 分，無論賽季剩下哪一站封王，封王當天都只有 20 歲出頭，會把這個紀錄刷新超過 3 年。",
+  "section_claims": [
+    "H2①（排行表）：兩篇既有『最年輕排行』文章互有出入（Vettel 差 1 天、Verstappen 差 7 天、部分車手天數與本站自算值不同），本站用生日與封王站精確日期重新逐位算過一次年＋天，列出歷代前 10 名。",
+    "H2②（Antonelli 情境）：安東內利 2006 年 8 月 25 日出生，現領先羅素 81 分；若在算術上最早可能的新加坡站（10 月 11 日）封王是 20 歲又 47 天，若拖到墨西哥城站（11 月 1 日）是 20 歲又 68 天，就算撐到年度最後一戰阿布達比（12 月 6 日）也只有 20 歲又 103 天——三個日期都比維特爾的紀錄年輕超過 3 年。",
+    "H2③（為什麼是新加坡最早）：不重算封王算術，直接引用本站既有文章結論，不重算；賽曆變數只當情境。"
+  ],
+  "own_data": {
+    "scope": "2026 賽季第 1–14 站（含衝刺賽）車手積分榜；2026 官方賽曆第 15–23 站；均來自本站 jolpica-f1 落地資料 data/2026/，2026-09-22 讀取。season=2026，round=14（西班牙站，2026-09-13）。",
+    "standings_after_r14": {
+      "antonelli": 292,
+      "russell": 211,
+      "lead": 81,
+      "source": "data/2026/driver-standings.json，2026-09-22 讀取，round=14"
+    },
+    "remaining_calendar_2026": [
+      {"round": 15, "name": "亞塞拜然大獎賽（巴庫）", "date": "2026-09-26"},
+      {"round": 16, "name": "馬來西亞雪邦大獎賽（原巴林站移師）", "date": "2026-10-04"},
+      {"round": 17, "name": "新加坡大獎賽", "date": "2026-10-11", "sprint": true},
+      {"round": 18, "name": "美國大獎賽", "date": "2026-10-25"},
+      {"round": 19, "name": "墨西哥城大獎賽", "date": "2026-11-01"},
+      {"round": 20, "name": "巴西大獎賽", "date": "2026-11-08"},
+      {"round": 21, "name": "拉斯維加斯大獎賽", "date": "2026-11-22"},
+      {"round": 22, "name": "卡達大獎賽", "date": "2026-11-29"},
+      {"round": 23, "name": "阿布達比大獎賽（賽季最後一戰）", "date": "2026-12-06"}
+    ],
+    "calendar_source": "data/2026/schedule.json，2026-09-22 讀取；官方賽曆仍列卡達、阿布達比兩站（未見官方取消公告，Domenicali 9 月 9 日曾表示賽程不變，見既有文 f1-2026-antonelli-clinch-arithmetic 的資料來源段）。",
+    "antonelli_birthdate": "2006-08-25",
+    "antonelli_birthdate_source": "https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli （原文：'born 25 August 2006'）；Mercedes-AMG PETRONAS 官方車手頁 https://www.mercedesamgf1.com/drivers/andrea-kimi-antonelli （原文：'Born: 25 August 2006'）。",
+    "own_singapore_earliest_clinch_claim": {
+      "source_article": "/articles/f1-2026-antonelli-clinch-arithmetic/",
+      "claim": "新加坡站（第 17 站，台北時間 10 月 11 日）是安東內利算術上最早能封王的一站，前提是他在第 15、16、17 站三個週末對羅素淨賺 70 分（今年最好的三週末紀錄是 59 分，四週末內做到過 72 分）。",
+      "note": "此結論已歷經 R1／R1b／R2／R2b／R2c 多輪查核與一次勘誤（PR #81），本文直接引用，不重算。"
+    }
+  },
+  "derived_values": {
+    "age_calc_method": "年齡＝(clinch_date − birth_date) 的完整年數＋當年生日到封王日的剩餘天數；逐日直接用西元日期相減，不用『每年 365 天』估算，跨閏年逐一驗證過。",
+    "verified_facts_ages": [
+      {"driver": "vettel", "birth": "1987-07-03", "clinch_date": "2010-11-14", "clinch_race": "2010 阿布達比大獎賽", "age_years": 23, "age_days": 134, "age_total_days": 8535},
+      {"driver": "hamilton", "birth": "1985-01-07", "clinch_date": "2008-11-02", "clinch_race": "2008 巴西大獎賽", "age_years": 23, "age_days": 300, "age_total_days": 8700},
+      {"driver": "alonso", "birth": "1981-07-29", "clinch_date": "2005-09-25", "clinch_race": "2005 巴西大獎賽", "age_years": 24, "age_days": 58, "age_total_days": 8824},
+      {"driver": "max_verstappen", "birth": "1997-09-30", "clinch_date": "2021-12-12", "clinch_race": "2021 阿布達比大獎賽", "age_years": 24, "age_days": 73, "age_total_days": 8839},
+      {"driver": "emerson_fittipaldi", "birth": "1946-12-12", "clinch_date": "1972-09-10", "clinch_race": "1972 義大利大獎賽", "age_years": 25, "age_days": 273, "age_total_days": 9404},
+      {"driver": "schumacher", "birth": "1969-01-03", "clinch_date": "1994-11-13", "clinch_race": "1994 澳洲大獎賽（阿得雷德）", "age_years": 25, "age_days": 314, "age_total_days": 9445},
+      {"driver": "norris", "birth": "1999-11-13", "clinch_date": "2025-12-07", "clinch_race": "2025 阿布達比大獎賽", "age_years": 26, "age_days": 24, "age_total_days": 9521},
+      {"driver": "lauda", "birth": "1949-02-22", "clinch_date": "1975-09-07", "clinch_race": "1975 義大利大獎賽", "age_years": 26, "age_days": 197, "age_total_days": 9693},
+      {"driver": "villeneuve", "birth": "1971-04-09", "clinch_date": "1997-10-26", "clinch_race": "1997 歐洲大獎賽（赫雷茲）", "age_years": 26, "age_days": 200, "age_total_days": 9697},
+      {"driver": "clark", "birth": "1936-03-04", "clinch_date": "1963-09-08", "clinch_race": "1963 義大利大獎賽", "age_years": 27, "age_days": 188, "age_total_days": 10049, "note": "Motorsport Magazine 寫 27 歲又 174 天，與本站用生日／賽事日期逐日重算的 188 天不同，差 14 天；本站數字以維基百科逐頁核實的日期為準。"}
+    ],
+    "source_discrepancies": [
+      {"driver": "vettel", "f1com_days": 133, "motorsport_magazine_days": 134, "own_computed_days": 134, "note": "F1.com 該篇文章寫 133 天，比自算值少 1 天；Motorsport Magazine 寫 134 天，與本站逐日重算一致。"},
+      {"driver": "max_verstappen", "f1com_intro_days": 66, "f1com_table_days": 73, "motorsport_magazine_days": 73, "own_computed_days": 73, "note": "F1.com 同一篇文章內，導言段寫 24 歲又 66 天，文末排行表卻寫 24 歲又 73 天，兩處自相矛盾；Motorsport Magazine 全文一致寫 73 天，與本站重算一致。"},
+      {"driver": "alonso", "f1com_days": 57, "motorsport_magazine_days": 58, "own_computed_days": 58, "note": "F1.com 寫 57 天，比自算值少 1 天；Motorsport Magazine 寫 58 天，與本站重算一致。"},
+      {"driver": "clark", "motorsport_magazine_days": 174, "own_computed_days": 188, "note": "差 14 天，來源不明；本站數字以維基百科逐頁核實的出生日期與 1963 年義大利大獎賽比賽日期（1963-09-08）逐日重算。"}
+    ],
+    "antonelli_scenarios": [
+      {"scenario": "新加坡站封王（本站既有文章推算的最早可能日）", "date": "2026-10-11", "age_years": 20, "age_days": 47, "age_total_days": 7352, "days_younger_than_vettel": 1183},
+      {"scenario": "墨西哥城站封王", "date": "2026-11-01", "age_years": 20, "age_days": 68, "age_total_days": 7373, "days_younger_than_vettel": 1162},
+      {"scenario": "撐到賽季最後一戰阿布達比站才封王（最晚可能日，官方賽曆現版）", "date": "2026-12-06", "age_years": 20, "age_days": 103, "age_total_days": 7408, "days_younger_than_vettel": 1127}
+    ],
+    "vettel_total_days_for_diff": 8535,
+    "record_held_years": 15,
+    "record_held_days_since_last_anniversary": 312,
+    "record_held_next_16th_anniversary": "2026-11-14",
+    "record_held_years_note": "查核桌 Terra 抓到 BLOCKER：原寫『16 年』是用年份直接相減（2026-2010=16），未做週年日比較。封王日 2010-11-14 到查證日 2026-09-22，尚未過 2026-11-14 這個滿 16 週年的日子，正確為『15 年又 312 天』，正文改寫為『超過 15 年』，不寫精確天數（避免隨查證日過期）。"
+  },
+  "verified_facts": [
+    "維特爾（Sebastian Vettel）1987 年 7 月 3 日出生（來源：https://en.wikipedia.org/wiki/Sebastian_Vettel），2010 年 11 月 14 日在阿布達比大獎賽封王（來源：https://en.wikipedia.org/wiki/2010_Abu_Dhabi_Grand_Prix，原文'At 23 years and 134 days old, he broke Lewis Hamilton's previous record for youngest World Drivers' Champion'），當天 23 歲又 134 天。Motorsport Magazine 與金氏世界紀錄（https://www.guinnessworldrecords.com/world-records/youngest-formula-one-world-champion）同為 134 天；F1.com 寫 133 天。本站用生日與比賽日重算一致（134 天）。",
+    "維斯塔潘（Max Verstappen）1997 年 9 月 30 日出生（來源：https://en.wikipedia.org/wiki/Max_Verstappen），2021 年 12 月 12 日在阿布達比大獎賽封王（來源：https://en.wikipedia.org/wiki/2021_Abu_Dhabi_Grand_Prix），當天 24 歲又 73 天。來源：Motorsport Magazine 全文一致寫 73 天；F1.com（https://www.formula1.com/en/latest/article/the-youngest-world-champions-where-does-verstappen-rank-alongside-vettel.5maXjugCVIKMSrPdky0p7Q）排行表同為 73 天，但同篇導言段誤寫 66 天。本站重算一致（73 天）。",
+    "漢米爾頓（Lewis Hamilton）1985 年 1 月 7 日出生（來源：https://en.wikipedia.org/wiki/Lewis_Hamilton），2008 年 11 月 2 日在巴西大獎賽封王（來源：https://en.wikipedia.org/wiki/2008_Brazilian_Grand_Prix，原文提及'the youngest World Drivers' Champion aged 23 years and 300 days'），當天 23 歲又 300 天，三處來源一致。",
+    "阿隆索（Fernando Alonso）1981 年 7 月 29 日出生（來源：https://en.wikipedia.org/wiki/Fernando_Alonso），2005 年 9 月 25 日於巴西大獎賽提前兩站封王（來源：https://en.wikipedia.org/wiki/2005_Formula_One_World_Championship，原文'Alonso secured his Drivers' Championship with a third-place finish in the Brazilian Grand Prix'），本站重算為 24 歲又 58 天，與 Motorsport Magazine 一致，F1.com 寫 57 天。",
+    "埃默森・菲蒂帕爾迪（Emerson Fittipaldi）1946 年 12 月 12 日出生，1972 年 9 月 10 日於義大利大獎賽封王，當天 25 歲又 273 天，三處來源一致。來源：https://en.wikipedia.org/wiki/Emerson_Fittipaldi 、https://en.wikipedia.org/wiki/1972_Italian_Grand_Prix （原文'youngest ever champion at 25 years and 273 days'）。",
+    "舒馬克（Michael Schumacher）1969 年 1 月 3 日出生，1994 年 11 月 13 日於澳洲大獎賽（阿得雷德）封王，本站重算 25 歲又 314 天，與 Motorsport Magazine 一致。來源：https://en.wikipedia.org/wiki/Michael_Schumacher 、https://en.wikipedia.org/wiki/1994_Australian_Grand_Prix 。",
+    "諾里斯（Lando Norris）1999 年 11 月 13 日出生，2025 年 12 月 7 日於阿布達比大獎賽封王，本站重算 26 歲又 24 天，與 Motorsport Magazine 一致。來源：https://en.wikipedia.org/wiki/Lando_Norris 、https://en.wikipedia.org/wiki/2025_Abu_Dhabi_Grand_Prix 。",
+    "尼基・勞達（Niki Lauda）1949 年 2 月 22 日出生，1975 年 9 月 7 日於義大利大獎賽封王，本站重算 26 歲又 197 天，與 Motorsport Magazine 一致。來源：https://en.wikipedia.org/wiki/Niki_Lauda 、https://en.wikipedia.org/wiki/1975_Italian_Grand_Prix 。",
+    "雅克・維倫紐夫（Jacques Villeneuve）1971 年 4 月 9 日出生，1997 年 10 月 26 日於歐洲大獎賽（赫雷茲）封王，本站重算 26 歲又 200 天，與 Motorsport Magazine 一致。來源：https://en.wikipedia.org/wiki/Jacques_Villeneuve 、https://en.wikipedia.org/wiki/1997_European_Grand_Prix 。",
+    "吉姆・克拉克（Jim Clark）1936 年 3 月 4 日出生，1963 年 9 月 8 日於義大利大獎賽封王，本站重算 27 歲又 188 天，Motorsport Magazine 寫 174 天，差 14 天。來源：https://en.wikipedia.org/wiki/Jim_Clark 、https://en.wikipedia.org/wiki/1963_Italian_Grand_Prix 、https://en.wikipedia.org/wiki/1963_Formula_One_season （賽曆表列義大利大獎賽為 9 月 8 日）。",
+    "安東內利（Andrea Kimi Antonelli）2006 年 8 月 25 日出生。來源：https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli 、Mercedes-AMG PETRONAS 官方車手頁。",
+    "2026 賽季第 14 站（西班牙站）結束後，安東內利以 292 分領先羅素的 211 分，領先 81 分。來源：本站 data/2026/driver-standings.json（jolpica-f1，2026-09-22 讀取）。",
+    "本站已發布文章推算，新加坡站（2026 年 10 月 11 日）是安東內利算術上最早能封王的一站，前提是他在第 15、16、17 站三個週末對羅素淨賺 70 分。來源：/articles/f1-2026-antonelli-clinch-arithmetic/（已歷經多輪查核，含一次公開勘誤 PR #81）。",
+    "2026 年官方賽曆最後一戰為阿布達比大獎賽，2026 年 12 月 6 日。來源：本站 data/2026/schedule.json（jolpica-f1，2026-09-22 讀取）。"
+  ],
+  "external_statements": [
+    {
+      "who": "Motorsport Magazine",
+      "what": "《Who are F1's 10 youngest F1 champions?》一文列出歷代前 10 名最年輕封王車手排行，本文表格數字大致與本站重算一致，僅 Jim Clark 一筆（174 天 vs 本站重算 188 天）有出入。",
+      "url": "https://www.motorsportmagazine.com/articles/single-seaters/f1/who-are-f1s-10-youngest-world-champions/"
+    },
+    {
+      "who": "F1.com（Formula 1 官方網站）",
+      "what": "《The youngest world champions: Where does Verstappen rank alongside Vettel?》一文列出前 5 名，其中 Vettel（133 天）、Verstappen（導言段 66 天／排行表 73 天）兩處與本站重算或 Motorsport Magazine 的數字不同。",
+      "url": "https://www.formula1.com/en/latest/article/the-youngest-world-champions-where-does-verstappen-rank-alongside-vettel.5maXjugCVIKMSrPdky0p7Q"
+    }
+  ],
+  "checked_not_used": {
+    "gpblog_152_points_claim": {
+      "what": "GPblog 一篇報導（https://www.gpblog.com/en/news/heres-when-kimi-antonelli-can-clinch-the-2026-f1-world-championship）提到安東內利『還需要 152 分才能保證封王』，並討論若卡達、阿布達比取消，封王可能落在墨西哥城站。",
+      "why_not_used": "查核席（agy）比對後認為這段話在數學上有矛盾（西班牙站到新加坡站之間只有 2 站、上限 58 分，不可能達成 152 分），但那個反駁本身漏算了雪邦站（第 16 站）——三個週末（巴庫、雪邦、新加坡）上限其實是 83 分，與本站既有文章的算術一致。本文不採用 GPblog 這段推算，也不採用 agy 對它的反駁，只引用本站已發布、經多輪查核的『新加坡最早封王』結論。",
+      "date_checked": "2026-09-22"
+    }
+  },
+  "must_not_claim": [
+    "⛔ 不寫『安東內利已經封王』『幾乎封王』『封王已成定局』——冠軍未定，第 14 站後只是領先 81 分。",
+    "⛔ 不寫『卡達與阿布達比將被取消』——官方賽曆截至查證日仍列這兩站，只能寫『官方賽曆現版』與『外媒曾討論的情境』兩層，不當事實。",
+    "⛔ 不寫『史上最年輕』而不同時標出紀錄保持人與精確數字（維特爾 23 歲 134 天）。",
+    "⛔ 不寫『安東內利一定會打破紀錄』『必然』——他可能整季都拿不到冠軍（雖然機率低，本文不評機率）；本文只講『若在賽季剩下任一站封王，年齡會是多少』的算術，不是預測他會封王。",
+    "⛔ 不寫 GPblog『152 分』或 agy 反駁的那套算術（見 checked_not_used），也不重新推導封王算術——直接引用本站既有文章的結論。",
+    "⛔ 不用無名歸因（『專家認為』『據了解』『外界普遍認為』）。",
+    "⛔ 不把 Motorsport Magazine／F1.com 的數字直接抄進正文而不做本站自己的逐日重算對照；兩處分歧（Vettel、Verstappen、Alonso、Clark）都要點出。",
+    "⛔ 不用『我』；不寫『本站重算』以外的展示工序敘述（哪席查的、幾輪核對）。",
+    "⛔ 不評價安東內利或羅素的表現（『狀態不好』『表現失常』之類）；只用積分與日期算術。"
+  ],
+  "voice": {
+    "_instruction": "⚠️ 下面 spec_verbatim 與既有 f1-2026-antonelli-clinch-arithmetic 的 voice 節完全相同（同站規），整段複製自該檔，撰稿時原樣套用，不節錄不改寫。",
+    "headline_style": "標題放結論與前提（維特爾的紀錄、安東內利刷新的幅度），不塞證據鏈；具體天數降到副標與內文。不要編號、不要分類標籤。自檢：唸進封面兩行。",
+    "forbidden_meta": "gate 語言不進正文，「本站」全文 ≤3 次，不得有任何 H2 在講我們怎麼算。❌「本站以維基百科資料逐位重算，並自算年＋天」→ ✅「用生日與封王當天的日期算一次」｜❌「這張表是為了對照兩篇既有文章的出入」→ ✅ 直接呈現對照數字，不解釋為什麼要對照。",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+    "tone": "小 Lin 說＋張泉靈。從具體的數字切進去、短句、不在正文解釋方法論。",
+    "length": "正文（不含表格與資料來源）3,000–4,000 字含標點（選題台給的長度帶是 3000–4500 含標點）。"
+  },
+  "required_sections": [
+    "開頭：維特爾 2010 年 23 歲又 134 天封王、保持 16 年；安東內利現領先羅素 81 分；不從『他要封王了』開頭",
+    "H2①：歷代最年輕封王排行表（前 10 名，含生日、封王站、日期、年＋天），並點出與兩篇既有文章的出入（Vettel、Verstappen、Alonso、Clark 四處）",
+    "H2②：安東內利三個情境的年齡算術（新加坡／墨西哥城／賽季最後一戰），每個都比維特爾年輕超過 3 年",
+    "H2③：新加坡為何是最早——引用本站既有文章結論，不重算；賽曆變數只當情境",
+    "資料來源區塊（分級：一手 Wikipedia／官方賽曆與積分榜／媒體排行文章，含查證日 2026-09-22）"
+  ],
+  "interlinks": {
+    "note": "frontmatter 必須有 season: 2026；不寫 round:。",
+    "candidates": [
+      "/articles/f1-2026-antonelli-clinch-arithmetic/",
+      "/standings/",
+      "/calendar/"
+    ]
+  },
+  "zh_names": {
+    "_rule": "站規：文章用全形括號的中英對照，首次出現時對照，之後可只用中文。譯名唯一資料源是 scripts/driver-zh.json。",
+    "approved": {
+      "vettel": "賽巴斯蒂安・維特爾（Sebastian Vettel）",
+      "max_verstappen": "維斯塔潘（Max Verstappen）",
+      "hamilton": "漢米爾頓（Lewis Hamilton）",
+      "alonso": "阿隆索（Fernando Alonso）",
+      "emerson_fittipaldi": "埃默森・菲蒂帕爾迪（Emerson Fittipaldi）",
+      "norris": "諾里斯（Lando Norris）",
+      "lauda": "尼基・勞達（Niki Lauda）",
+      "villeneuve": "雅克・維倫紐夫（Jacques Villeneuve）",
+      "antonelli": "安東內利（Kimi Antonelli）",
+      "russell": "羅素（George Russell）"
+    },
+    "no_approved_translation": {
+      "schumacher": "driver-zh.json 無收錄，全文寫「舒馬克（Michael Schumacher）」（繁中主流慣用譯名，非站上既有登記，首次出現時標明原文）。",
+      "clark": "driver-zh.json 無收錄，全文寫「吉姆・克拉克（Jim Clark）」。"
+    }
+  }
+}

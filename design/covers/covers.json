@@ -101,6 +101,12 @@
       "html": "cover-antonelli-clinch-arithmetic.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-youngest-world-champions-vettel-antonelli",
+      "html": "cover-youngest-champions.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
