@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut | 賽車數據誌</title>
+<meta name="description" content="進站要付出時間代價，車隊卻常主動把車叫進去。看懂 undercut 與 overcut，就看懂轉播裡那些名次突然翻轉的時刻。">
+<meta property="og:title" content="先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut">
+<meta property="og:description" content="進站要付出時間代價，車隊卻常主動把車叫進去。看懂 undercut 與 overcut，就看懂轉播裡那些名次突然翻轉的時刻。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/#article","headline":"先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut","description":"進站要付出時間代價，車隊卻常主動把車叫進去。看懂 undercut 與 overcut，就看懂轉播裡那些名次突然翻轉的時刻。","datePublished":"2026-09-25","dateModified":"2026-09-25","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut","item":"https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/#faq","mainEntity":[{"@type":"Question","name":"進站不是在浪費時間嗎？","acceptedAnswer":{"@type":"Answer","text":"進站確實要花時間，車子得開過維修區，也得停下來換胎。但進站換上的新胎比舊胎跑得快，F1 官方術語表對 undercut 的定義就是靠更新的輪胎跑出比前車更快的圈速。策略的問題是，換胎之後的圈速優勢，能不能讓先進站的車在前車自己進站時完成超越。"}},{"@type":"Question","name":"Undercut 和 overcut 誰比較好？","acceptedAnswer":{"@type":"Answer","text":"沒有哪一種比較好。F1 官方術語表把兩者定義為方向相反的做法：undercut 是比前車更早進站，overcut 是比前車更晚進站。用哪一種，要看當時賽道上的情況。"}},{"@type":"Question","name":"維修區裡可以開多快？","acceptedAnswer":{"@type":"Answer","text":"FIA 2026 年運動規則規定，維修區的速限是 80 km/h，但賽事總監可以修改。F1 官方網站說明，部分大獎賽會降到 60 km/h，摩納哥是其中一例。"}},{"@type":"Question","name":"正賽中可以加油嗎？","acceptedAnswer":{"@type":"Answer","text":"不行。FIA 2026 年運動規則第 B5.1.4 條規定，賽車離開維修區跑探路圈之後，直到該場次的結束訊號出示為止，不得添加或抽取燃油。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-7012104e50.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+
+<div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav">
+      <a href="/">首頁</a>
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">賽曆</a>
+      <a href="/results/">賽果</a>
+      <a href="/seasons/">歷年</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active">文章</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut</h1>
+  <div class="art-meta"><span>2026 年 9 月 25 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">轉播裡兩台車貼得很近，後面那台突然拐進維修區。照直覺，這是把時間送給對手，等對手也進了站，名次卻可能是它跑在對手前面。這篇從 F1 官方對 undercut 與 overcut 的定義講起，說明進站時間花在哪裡、為什麼新胎的第一圈這麼重要，以及前車怎麼防守。</p>
+  <article class="prose">
+<p>轉播畫面裡，兩台車貼得很近，後面那台突然拐進維修區。</p>
+<p>照直覺，這是認輸：離開賽道，時間就送給對手了。但等到對手也進了站，名次卻可能是它跑在對手前面。</p>
+<p>這一招有名字，叫 undercut。它的反面叫 overcut。這兩個詞在 F1 轉播裡出現得很頻繁，理解它們，就能讀懂「為什麼車隊要在這一圈叫車進站」。</p>
+<h2>後車先進站，回到賽道時名次卻可能超過前車</h2>
+<p>F1 官方術語表把 undercut 定義成一種比賽策略：追趕的車手比前車更早進站，希望取得優勢。目的是用比前車更快的圈速，也就是靠比較新的輪胎，在前車自己進站時完成超越。</p>
+<p>換成白話：後面那台車不在賽道上硬超，它先進站換胎，再用新胎跑出比對手更快的圈速。</p>
+<p>這裡有兩個新手常卡住的詞。車手拐進維修區進站的那一圈叫「進站圈」（in-lap）。從維修區開出來、回到賽道上的那一圈叫「出站圈」（out-lap），這時車上是新胎。F1 官方賽後分析文章用這兩個詞給 undercut 下的定義是：你在對手前面進站，靠「新胎出站圈」跑得比他「舊胎進站圈」快，就把他超過去。</p>
+<p>所以這一招的核心是一組比較：新胎的出站圈，對上對手舊胎的進站圈。誰的圈速快，誰就有機會在前車自己進站時領先。</p>
+<p>輪胎有軟、中、硬，各自抓地力與壽命不同，那是另一個話題，請看 <a href="/articles/f1-101-tyres/">F1 輪胎為什麼分軟中硬</a>。這篇只需要記得一件事：新胎比舊胎跑得快，這是 undercut 成立的前提。</p>
+<h2>維修區限速 80 km/h，正賽中還不能加油</h2>
+<p>進站為什麼是「代價」？先看規章怎麼管維修區。</p>
+<p>FIA 2026 年運動規則第 B1.6.3a 條規定，整場比賽期間維修區的速限是 80 km/h。條文接著寫，為了讓比賽安全有序，賽事總監可以修改這個上限。</p>
+<p>F1 官方網站的說明文章補了一個實例：部分大獎賽會把維修區限速降到 60 km/h，摩納哥就是其中一站。也就是說，80 km/h 是預設值，不是每一站都一樣。</p>
+<p>超速會被罰，細節見 <a href="/articles/f1-101-penalties/">F1 罰則怎麼判</a>。</p>
+<p>換句話說，車手不能為了少花一點進站時間就在維修區裡衝。想省時間，只能靠車隊把換胎動作做快。</p>
+<p>另一條規則把進站的功能鎖死了。規章第 B5.1.4 條寫，賽車離開維修區、出發跑探路圈之後，直到該場次的結束訊號出示為止，都不得添加或抽取燃油。所以 F1 正賽中不能加油。這篇談的進站，指的是換胎。</p>
+<h2>四顆輪胎最快 1.80 秒換完，車子卻仍得慢慢開過維修區</h2>
+<p>進站時間分成兩段：車子停在自家車庫前換胎的那一段，以及開進、開出維修區的那一段。</p>
+<p>第一段，是車隊比拚速度的地方。F1 換胎的世界紀錄是 1.80 秒，2023 年卡達大獎賽由 <a href="/constructors/mclaren/">McLaren</a>（麥拉倫）為 <a href="/drivers/norris/">Lando Norris</a> 換四顆輪胎時創下。前一個紀錄是 <a href="/constructors/red-bull/">Red Bull</a> Racing 在 2019 年巴西大獎賽為 Verstappen 完成的 1.82 秒。</p>
+<p>在 formula1.com 的 DHL 最快進站獎頁面上，2025 賽季的最快是 McLaren 在義大利站的 1.91 秒，2026 賽季（查證日的頁面）是 <a href="/constructors/rb/">Racing Bulls</a> 在匈牙利站的 1.99 秒，都沒有破 1.80。</p>
+<p>第二段，車子必須守維修區的限速。無論車庫前的動作多快，車子在維修區裡的行駛速度，上限就是前一節那條規則。</p>
+<p>這解釋了一件事：進站的成本不會只在換胎那 1.80 秒。要付出多少時間，每一站的維修區長度與限速都不同，F1 官方沒有公布統一的數字，車隊怎麼算，也沒有對外說明。</p>
+<h2>Undercut：賭新胎的第一圈，比對手的舊胎更快</h2>
+<p>回到那個問題：既然進站要付出時間，為什麼還要先進？</p>
+<p>因為 undercut 賭的是一件事：先進站換上較新的輪胎，跑出比前車更快的圈速，等前車自己進站時完成超越。</p>
+<p>先看下面這張示意圖。上方那排是後車，下方是前車。時間從左往右走：</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 250" role="img" aria-label="Undercut 示意圖：後車先進站，新胎出站圈比前車舊胎進站圈快，前車稍後進站時，後車已經跑到前面。">
+<title>Undercut 示意圖</title>
+<desc>兩台車、三個時間階段。先：後車進站，前車還在用舊胎繼續跑。接著：後車跑新胎出站圈，前車跑舊胎進站圈，後車的圈速比較快。最後：前車稍後進站時，後車已經在前車前面。</desc>
+<rect class="d-surface d-line-s" x="10" y="10" width="400" height="230" rx="12"/>
+<text class="d-fg" x="30" y="50" font-size="14">時間</text>
+<line class="d-dim-s" x1="75" y1="45" x2="385" y2="45" stroke-width="2"/>
+<polygon class="d-dim" points="385,39 397,45 385,51"/>
+<text class="d-fg" x="105" y="85" font-size="14">先</text>
+<text class="d-fg" x="205" y="85" font-size="14">接著</text>
+<text class="d-fg" x="310" y="85" font-size="14">最後</text>
+<text class="d-fg" x="25" y="135" font-size="14">後車</text>
+<rect class="d-surface d-line-s" x="75" y="105" width="95" height="44" rx="6"/>
+<text class="d-fg" x="90" y="133" font-size="14">進站</text>
+<rect class="d-surface d-accent-s" x="175" y="105" width="115" height="44" rx="6" stroke-width="3"/>
+<text class="d-fg" x="180" y="133" font-size="14">新胎出站圈</text>
+<rect class="d-surface d-line-s" x="295" y="105" width="105" height="44" rx="6"/>
+<text class="d-fg" x="303" y="133" font-size="14">已在前面</text>
+<text class="d-fg" x="25" y="195" font-size="14">前車</text>
+<rect class="d-surface d-line-s" x="75" y="165" width="95" height="44" rx="6"/>
+<text class="d-fg" x="90" y="193" font-size="14">舊胎</text>
+<rect class="d-surface d-line-s" x="175" y="165" width="115" height="44" rx="6"/>
+<text class="d-fg" x="180" y="193" font-size="14">舊胎進站圈</text>
+<rect class="d-surface d-line-s" x="295" y="165" width="105" height="44" rx="6"/>
+<text class="d-fg" x="303" y="193" font-size="14">稍後進站</text>
+</svg>
+<figcaption>圖：Undercut 的先後順序。粗框那格是關鍵：新胎出站圈要比對手的舊胎進站圈快。本站示意圖，非依比例、非實測。</figcaption>
+</figure>
+
+<p>圖中粗框那一格是整招的勝負點。後車跑出站圈的同一圈，前車還在舊胎上跑進站圈。如果後車的圈速夠快，兩台車的時間差就會被拉近，甚至反過來。</p>
+<p><a href="/constructors/williams/">Williams</a> 車隊官網用另一種說法講同一件事：比對手早進站，換上新胎、全力去推，然後期待對手稍後進站時，自己已經跳到前面。「全力去推」四個字有意義：這一圈不是保守跑，是專門用來換時間的。</p>
+<p>不過，undercut 不是一定成功的。官方術語表在 undercut 這個條目下也提到，前車可以立刻進站防守，也就是 cover off。這一點下面再講。</p>
+<h2>Overcut：賭舊胎還撐得住，新胎的第一圈還不夠快</h2>
+<p>Overcut 是同一場賽局的另一半。F1 官方術語表的定義是：追趕的車手比前車更晚進站，目的是比前車在賽道上待得更久，趁前車進站時超過他，然後在自己進站之前先把差距拉開。</p>
+<p>Undercut 賭的是新胎，overcut 賭的是舊胎還撐得住。</p>
+<p>下面這張圖和前一張用同一種畫法，只是前後車的進站順序換過來：</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 250" role="img" aria-label="Overcut 示意圖：前車先進站，後車留在賽道上，舊胎進站圈比前車新胎出站圈快，後車進站後回到前車前面。">
+<title>Overcut 示意圖</title>
+<desc>兩台車、三個時間階段。先：前車進站，後車留在賽道上繼續跑。接著：前車跑新胎出站圈，後車跑舊胎進站圈，這時後車的圈速比較快。最後：後車進站後回到賽道，出現在前車前面。</desc>
+<rect class="d-surface d-line-s" x="10" y="10" width="400" height="230" rx="12"/>
+<text class="d-fg" x="30" y="50" font-size="14">時間</text>
+<line class="d-dim-s" x1="75" y1="45" x2="385" y2="45" stroke-width="2"/>
+<polygon class="d-dim" points="385,39 397,45 385,51"/>
+<text class="d-fg" x="105" y="85" font-size="14">先</text>
+<text class="d-fg" x="205" y="85" font-size="14">接著</text>
+<text class="d-fg" x="310" y="85" font-size="14">最後</text>
+<text class="d-fg" x="25" y="135" font-size="14">後車</text>
+<rect class="d-surface d-line-s" x="75" y="105" width="95" height="44" rx="6"/>
+<text class="d-fg" x="90" y="133" font-size="14">留在場上</text>
+<rect class="d-surface d-accent-s" x="175" y="105" width="115" height="44" rx="6" stroke-width="3"/>
+<text class="d-fg" x="180" y="133" font-size="14">舊胎進站圈</text>
+<rect class="d-surface d-line-s" x="295" y="105" width="105" height="44" rx="6"/>
+<text class="d-fg" x="303" y="133" font-size="14">已在前面</text>
+<text class="d-fg" x="25" y="195" font-size="14">前車</text>
+<rect class="d-surface d-line-s" x="75" y="165" width="95" height="44" rx="6"/>
+<text class="d-fg" x="90" y="193" font-size="14">進站</text>
+<rect class="d-surface d-line-s" x="175" y="165" width="115" height="44" rx="6"/>
+<text class="d-fg" x="180" y="193" font-size="14">新胎出站圈</text>
+<rect class="d-surface d-line-s" x="295" y="165" width="105" height="44" rx="6"/>
+<text class="d-fg" x="303" y="193" font-size="14">落在後面</text>
+</svg>
+<figcaption>圖：Overcut 的先後順序。粗框那格是關鍵：舊胎進站圈要比對手的新胎出站圈快。本站示意圖，非依比例、非實測。</figcaption>
+</figure>
+
+<p>前一節是新胎出站圈贏舊胎進站圈，這一節反過來，是舊胎進站圈贏新胎出站圈。</p>
+<p>為什麼新胎的出站圈有時候反而慢？F1 官方賽後分析文章給的說法是：通常因為新胎還沒升到夠高的溫度。換上新胎不等於立刻有抓地力，胎要先跑熱。</p>
+<p>Williams 官網補了另一個原因：晚進站的車，前面因為對手進站而出現了乾淨的空氣，可以跑出更快的圈速，然後進站，回到對手前面。</p>
+<p>兩家的說法不一樣，可以並列看：一個講新胎的溫度，一個講賽道上前面有沒有車擋著。</p>
+<h2>前車不是呆呆等著：對手一進站，可以立刻跟進</h2>
+<p>看到這裡，你可能會想：既然先進站有好處，那前車直接跟著進站不就好了？</p>
+<p>事實上車隊就是這樣做的。F1 官方術語表在 undercut 條目下的說法是，被 undercut 的前車可以立刻進站，防守對手的進站策略，這就叫 cover off。</p>
+<p>所以 undercut 不是一個「先進站就贏」的公式，而是兩台車在互相猜：我現在進站，你會不會馬上跟進？你若跟進，我換新胎的優勢有沒有被抵消？你若不跟進，我的出站圈能不能快到把你超過？</p>
+<p>換個角度看，前後兩台車的進站時機，常常不是各自的決定，而是彼此的反應。</p>
+<p>同樣的道理適用於 overcut。晚進站的車不必等自己的舊胎撐到極限，它只需要在對手進站之後，快過對手的新胎出站圈就可以。</p>
+<h2>安全車出動時，維修區關閉了嗎？</h2>
+<p>還有一個新手常問的情況：安全車（Safety Car）出動的時候，可以進站嗎？</p>
+<p>規章第 B5.13.3 條的原文是：安全車出動期間，除非全部賽車與安全車被要求使用維修區，否則任何賽車不得進入維修區，唯一的例外是進站目的是換輪胎。</p>
+<p>翻成白話：安全車出動時，維修區並沒有完全關閉，為了換胎進站是允許的。至於安全車出來時，車隊會不會趁機進站、進站的代價會變成多少，規章沒有寫。
+安全車與其他旗號、燈號各代表什麼，請看 <a href="/articles/f1-101-flags/">F1 賽道旁的旗子與燈號</a>。虛擬安全車（VSC）等機制，可以看 <a href="/articles/f1-tech-timing-positioning-race-control/">計時、定位、藍旗、黃旗分區與 VSC</a>。</p>
+<h2>下次看轉播，可以盯這兩件事</h2>
+<p>第一，盯出站圈。一台車剛從維修區出來，它的單圈時間和對手比起來是快還是慢？進站策略成不成功，答案藏在那一圈。看不到單圈時間，就看計時塔上兩台車之間的間隔有沒有縮小。計時塔上那些數字與縮寫怎麼讀，請看 <a href="/articles/f1-101-timing-tower/">看懂轉播畫面：計時塔、間隔、扇區顏色與那些縮寫</a>。</p>
+<p>第二，盯前車的反應。對手先進站之後，車隊是立刻把前車叫進來，還是讓它繼續跑？前者是防守，後者是在賭 overcut。兩種選擇沒有標準答案，得看賽後結果才知道賭對了沒有。</p>
+<p>整個比賽週末怎麼安排，正賽在哪個時間點，可以先看 <a href="/articles/f1-101-race-weekend/">F1 大獎賽週末怎麼過</a>。</p>
+<h2>常見問題</h2>
+<h3>進站不是在浪費時間嗎？</h3>
+<p>進站確實要花時間，車子得開過維修區，也得停下來換胎。但進站換上的新胎比舊胎跑得快，F1 官方術語表對 undercut 的定義就是靠更新的輪胎跑出比前車更快的圈速。策略的問題是，換胎之後的圈速優勢，能不能讓先進站的車在前車自己進站時完成超越。</p>
+<h3>Undercut 和 overcut 誰比較好？</h3>
+<p>沒有哪一種比較好。F1 官方術語表把兩者定義為方向相反的做法：undercut 是比前車更早進站，overcut 是比前車更晚進站。用哪一種，要看當時賽道上的情況。</p>
+<h3>維修區裡可以開多快？</h3>
+<p>FIA 2026 年運動規則規定，維修區的速限是 80 km/h，但賽事總監可以修改。F1 官方網站說明，部分大獎賽會降到 60 km/h，摩納哥是其中一例。</p>
+<h3>正賽中可以加油嗎？</h3>
+<p>不行。FIA 2026 年運動規則第 B5.1.4 條規定，賽車離開維修區跑探路圈之後，直到該場次的結束訊號出示為止，不得添加或抽取燃油。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-101-tyres/">F1 輪胎為什麼分軟中硬：抓地、壽命與『必須換一次胎』</a></li>
+<li><a href="/articles/f1-101-timing-tower/">看懂轉播畫面：計時塔、間隔、扇區顏色與那些縮寫</a></li>
+<li><a href="/articles/f1-101-penalties/">F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績</a></li>
+</ul>
+<h2>資料來源</h2>
+<p>一手：</p>
+<ul>
+<li>FIA 2026 年 F1 運動規則第 B 節（第 8 版，2026 年 8 月 5 日）：<a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf">fia_2026_f1_regulations_-<em>section_b_sporting</em>-<em>iss_08</em>-_2026-08-05_7.pdf</a>，引用第 B1.6.3a、B5.1.4、B5.13.3 條。</li>
+</ul>
+<p>官方說明：</p>
+<ul>
+<li>Formula 1 官方術語表 U 至 Z（undercut）：<a href="https://www.formula1.com/en/latest/article/f1-glossary-u-z.5JSlDsnyvYmbK0TCjTs7KB">formula1.com</a></li>
+<li>Formula 1 官方術語表 K 至 O（overcut）：<a href="https://www.formula1.com/en/latest/article/f1-glossary-k-o.6g2hrWHA2pyxbXoe8FT9Db">formula1.com</a></li>
+<li>Formula 1 賽後分析，undercut 與 overcut 的定義與新胎升溫說法：<a href="https://www.formula1.com/en/latest/article/undercut-vs-overcut-why-tyre-strategy-was-so-finely-poised-in-monaco-and-why.1YYMDkEBnFols8bDWtSXiz">formula1.com</a></li>
+<li>Formula 1 說明維修區限速：<a href="https://www.formula1.com/en/latest/article/explained-why-are-there-pit-lane-speed-limits-in-f1-and-how-are-they-measured.jc4jiWVsfbRhb62QomSf0">formula1.com</a></li>
+<li>Formula 1 DHL 最快進站獎影片頁，1.80 秒紀錄：<a href="https://www.formula1.com/en/video/dhl-world-record-fastest-pit-stop-qatar-grand-prix.1779230177007315938">formula1.com</a></li>
+<li>Formula 1 2025 賽季 DHL 最快進站獎頁面，1.91 秒：<a href="https://www.formula1.com/en/results/2025/awards/fastest-pit-stops">formula1.com</a></li>
+<li>Formula 1 2026 賽季 DHL 最快進站獎頁面，1.99 秒（查證日的頁面）：<a href="https://www.formula1.com/en/results/2026/awards/fastest-pit-stops">formula1.com</a></li>
+<li>Williams 車隊官網，F1 術語解說：<a href="https://www.williamsf1.com/articles/612f78bc-6dea-4a1c-929c-e2a16a1369f5/f1-terms-you-ve-always-wanted-to-know-part-1">williamsf1.com</a></li>
+</ul>
+<p>二手：</p>
+<ul>
+<li>2023 年卡達大獎賽條目，1.80 秒與前紀錄 1.82 秒：<a href="https://en.wikipedia.org/wiki/2023_Qatar_Grand_Prix">Wikipedia</a></li>
+</ul>
+<p>查證日：2026-09-25。查不到的部分：各賽道的進站損失時間沒有官方統一數字，也查不到可逐字核對的現實比賽 undercut 或 overcut 完整案例，所以這篇不寫進站損失的秒數，也不舉比賽實例。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂策略 第 2 / 2 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-tyres/"><span class="lbl">← 新手村上一篇</span>F1 輪胎為什麼分軟中硬：同一款 C3，在澳洲站是硬胎，在日本站是軟胎</a></div></div><div class="art-nav"><a href="/articles/f1-101-penalties/"><span class="lbl">← 前一篇</span>F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績</a><a href="/articles/f1-101-points-championship/" style="text-align:right"><span class="lbl">後一篇 →</span>F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+</script>
+</body>
+</html>

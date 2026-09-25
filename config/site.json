@@ -59,6 +59,12 @@
       "requires": "encyclopedia"
     },
     {
+      "label": "新手村",
+      "href": "/guide/",
+      "key": "guide",
+      "requires": "guide"
+    },
+    {
       "label": "文章",
       "href": "/articles/",
       "key": "articles"

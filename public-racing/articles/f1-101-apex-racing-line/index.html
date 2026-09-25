@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑 | 賽車數據誌</title>
+<meta name="description" content="外進、內切、外出，路線比較長，卻是多數情況下的標準走法。這篇從公式 a = v²/r 推出原因，再講晚彎心、早彎心、連續彎，以及 FIA 規章怎麼定義賽道邊界。">
+<meta property="og:title" content="F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑">
+<meta property="og:description" content="外進、內切、外出，路線比較長，卻是多數情況下的標準走法。這篇從公式 a = v²/r 推出原因，再講晚彎心、早彎心、連續彎，以及 FIA 規章怎麼定義賽道邊界。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-apex-racing-line/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-apex-racing-line/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-apex-racing-line/#article","headline":"F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑","description":"外進、內切、外出，路線比較長，卻是多數情況下的標準走法。這篇從公式 a = v²/r 推出原因，再講晚彎心、早彎心、連續彎，以及 FIA 規章怎麼定義賽道邊界。","datePublished":"2026-09-25","dateModified":"2026-09-25","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-apex-racing-line/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑","item":"https://racing.twtools.cc/articles/f1-101-apex-racing-line/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-apex-racing-line/#faq","mainEntity":[{"@type":"Question","name":"彎心一定在彎道正中間嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。英文維基百科的賽車術語辭典把彎心定義成賽車線最靠近彎道內側的位置，所以它由車手實際走的線決定，不是彎道形狀的幾何中心。晚彎心與早彎心，就是同一個彎裡彎心位置不同的兩種走法。"}},{"@type":"Question","name":"為什麼走最短的路不是最快的路？","acceptedAnswer":{"@type":"Answer","text":"因為過彎的車速上限跟轉彎半徑有關。向心加速度的公式是 a = v²/r，輪胎能給的側向加速度有上限，由公式推得，半徑越大，能維持的車速越高。這是簡化的推論，沒有算進下壓力隨車速的變化，來源也沒有給出實際省下多少時間。"}},{"@type":"Question","name":"早彎心一定是錯的嗎？","acceptedAnswer":{"@type":"Answer","text":"英文維基百科引用 George A. Anderson 的書，說早彎心大體上被視為新手的錯誤，原文用的是 largely considered，不是絕對。Ross Bentley 的經驗法則也指出，彎的快慢不同，適合的走法就不同。"}},{"@type":"Question","name":"輪胎壓到路肩，算離開賽道嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。依 FIA 2026 年規章，白線本身算賽道，路肩不算，但夾在白線之間的路肩部分視為賽道。判斷離開賽道的標準，是賽車有沒有任何一部分還接觸賽道，完全沒有接觸才算離開。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-7012104e50.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+
+<div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav">
+      <a href="/">首頁</a>
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">賽曆</a>
+      <a href="/results/">賽果</a>
+      <a href="/seasons/">歷年</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active">文章</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑</h1>
+  <div class="art-meta"><span>2026 年 9 月 25 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">F1 轉播切到彎道正上方的俯視畫面時，會看到一件怪事：車手明明可以貼著內側走最短的弧線，卻偏偏在入彎前先把車開到賽道最外緣，轉到一半才擦過內側邊緣的一個點，出彎後又把車帶回外側。那個點叫彎心（Apex）。這篇拆解為什麼走比較遠的路反而可能比較快，以及彎心的位置為什麼不是固定的。</p>
+  <article class="prose">
+<p>轉播切到彎道正上方的畫面時，車手的動作看起來很反直覺。內側有一條最短的弧線，他不走。他先把車貼到賽道最外緣，轉到一半才靠向內側，出彎後又回到外側。走得比較遠的那條路，為什麼值得？</p>
+<h2>車手為什麼先往外開，轉完又開回外側？</h2>
+<p>這條路線叫賽車線（racing line）。英文維基百科的 Racing line 條目寫得很直接：多數情況下，賽車線會用滿整條賽道的寬度來拉長轉彎的半徑，入彎時貼著外緣，擦過內側邊緣上的一個點，再回到外側出彎。原文的限定詞是 in most cases，也就是多數情況，不是每個彎都這樣走。</p>
+<p>內側邊緣上的那個點，就是彎心（Apex）。英文維基百科的賽車術語辭典（Glossary of motorsport terms）把它定義成：彎道裡，賽車線最靠近內側的那個位置。這個定義有一個容易被忽略的地方。彎心是車實際走的那條線離內側最近的點，不是彎道形狀的正中間。走法不同，彎心的位置就跟著不同。</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 600" role="img" aria-label="彎道俯視示意圖：實線的賽車線從外側進來，在內側邊緣的彎心擦過，再回到外側出彎">
+<title>彎道俯視：外進、內切、外出的賽車線</title>
+<desc>一個向右轉的直角彎，車從下方直線進來、往上再轉向右。實線是賽車線：入彎前先靠賽道外側，經過入彎點，在內側邊緣的彎心擦過，最後帶到出彎外側。虛線是一路貼著內側走的路線，弧度比實線更緊。此圖為概念示意，不含實際賽道。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="592" rx="12"/>
+<path class="d-none d-dim-s" stroke-width="3" d="M90 470 L90 150 Q90 90 150 90 L330 90"/>
+<path class="d-none d-dim-s" stroke-width="3" d="M190 470 L190 230 Q190 190 230 190 L330 190"/>
+<path class="d-none d-dim-s" stroke-width="3" stroke-dasharray="8 6" d="M177 470 L177 240 Q177 178 240 178 L330 178"/>
+<path class="d-none d-accent-s" stroke-width="5" d="M110 470 L110 340 C110 250 150 205 200 200 C260 195 300 150 325 108"/>
+<path class="d-accent" d="M110 424 l-8 16 l16 0 z"/>
+<text class="d-fg" x="24" y="462" font-size="14">行進</text>
+<text class="d-fg" x="24" y="480" font-size="14">方向</text>
+<circle class="d-fg" cx="110" cy="340" r="5"/>
+<path class="d-none d-dim-s" stroke-width="1.5" d="M117 340 L198 340"/>
+<text class="d-fg" x="204" y="346" font-size="15">入彎點</text>
+<circle class="d-accent d-fg-s" stroke-width="2" cx="200" cy="200" r="7"/>
+<path class="d-none d-dim-s" stroke-width="1.5" d="M205 206 L214 222"/>
+<text class="d-fg" x="212" y="240" font-size="16">彎心</text>
+<text class="d-fg" x="212" y="258" font-size="14">（Apex）</text>
+<path class="d-none d-dim-s" stroke-width="1.5" d="M325 102 L325 80"/>
+<text class="d-fg" x="352" y="72" text-anchor="end" font-size="15">出彎外側</text>
+<path class="d-none d-accent-s" stroke-width="5" d="M24 516 L64 516"/>
+<text class="d-fg" x="76" y="522" font-size="14">實線：外進、內切、外出的賽車線</text>
+<path class="d-none d-dim-s" stroke-width="3" stroke-dasharray="8 6" d="M24 544 L64 544"/>
+<text class="d-fg" x="76" y="550" font-size="14">虛線：一路貼著內側走的路線</text>
+<text class="d-fg" x="24" y="578" font-size="14">車朝右轉，內側在右下方。</text>
+</svg>
+<figcaption>圖：彎道俯視的賽車線概念圖。本站示意圖，非依比例／非實測，不對應任何實際賽道。走線原理見英文維基百科 Racing line 條目。</figcaption>
+</figure>
+
+<p>圖上是同一個彎的兩種走法。實線從外側進來，在內側邊緣的彎心擦過，再回到外側。虛線一路貼著內側，弧度比實線更緊。兩條線的差別，決定了下一節要講的速度。</p>
+<h2>走最短的路，車速反而上不去：彎道速度的上限跟半徑有關</h2>
+<p>如果比的是誰走的距離短，貼內側的虛線會贏。但賽車比的是誰先到終點，不是誰走得短，兩件事在彎道裡會分開。</p>
+<p>車在彎道裡繞圈，要靠輪胎把車拉向圓心。英文維基百科的 Skidpad 條目給了這個向心加速度的公式：a = v²/r，v 是車速，r 是轉彎半徑。Centripetal force 條目寫的是同一個式子。輪胎能提供的側向加速度有上限，把公式移項，得到 v = √(a·r)。</p>
+<p>物理上，半徑越大，抓地力極限下能維持的車速就越高。這裡假設抓地力固定，沒有把空氣動力下壓力隨車速變化算進去，所以只是簡化版。下壓力的部分，可以接著看<a href="/articles/f1-101-downforce/">下壓力那一篇</a>。</p>
+<p>照這個關係，貼內側的虛線半徑小，速度上限低。實線把半徑拉大，速度上限跟著抬高，代價是路線變長。省下多少時間，沒有可引用的數字，這篇不猜。</p>
+<h2>彎心晚一點，出彎速度就高一點：晚彎心與早彎心</h2>
+<p>彎心不一定在弧線的中段。晚彎心（Late Apex）是把轉向點往後延，讓擦到內側的位置比較晚。英文維基百科的 Racing line 條目寫它的目的：拉長出彎時的轉彎半徑。出彎進入直線的速度因此更高，代價是入彎速度必須放慢。</p>
+<p>反過來叫早彎心（Early Apex）：車手比較早轉進彎道，入彎比較快，出彎比較慢。同一個條目引用賽車手 George A. Anderson 的《Winning: A Race Driver's Handbook》（1993），說這種做法大體上被視為新手的錯誤。原文的用字是 largely considered，不是絕對。</p>
+<p>兩種走法的取捨是對稱的。早彎心賺入彎、賠出彎，晚彎心賠入彎、賺出彎。來源談的情境，是彎道後面接著直線。照上一節的關係，出彎半徑大，出彎的速度上限就高，油門也有空間比較早加大。</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 600" role="img" aria-label="彎心位置比較圖：早彎心的虛線在弧線起點就貼到內側，晚彎心的實線到弧線後段才貼到內側">
+<title>早彎心與晚彎心的走線比較</title>
+<desc>同一個向右轉的直角彎。實線是晚彎心：先靠外側，延後轉向，在弧線後段才貼到內側邊緣，入彎速度較慢，出彎進入直線的速度較高。虛線是早彎心：較早轉向，在弧線起點就貼到內側，入彎較快，出彎較慢，大體上被視為新手錯誤。此圖為概念示意，不含實際賽道。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="592" rx="12"/>
+<path class="d-none d-dim-s" stroke-width="3" d="M90 470 L90 150 Q90 90 150 90 L330 90"/>
+<path class="d-none d-dim-s" stroke-width="3" d="M190 470 L190 230 Q190 190 230 190 L330 190"/>
+<path class="d-none d-fg-s" stroke-width="4" stroke-dasharray="8 6" d="M110 470 L110 400 C110 330 190 320 190 240 C190 160 250 115 325 105"/>
+<path class="d-none d-accent-s" stroke-width="5" d="M110 470 L110 300 C110 215 150 188 230 188 C280 188 310 150 325 105"/>
+<path class="d-accent" d="M110 440 l-8 16 l16 0 z"/>
+<text class="d-fg" x="24" y="472" font-size="14">行進</text>
+<text class="d-fg" x="24" y="490" font-size="14">方向</text>
+<circle class="d-fg" cx="190" cy="240" r="6"/>
+<path class="d-none d-dim-s" stroke-width="1.5" d="M195 245 L214 266"/>
+<text class="d-fg" x="214" y="288" font-size="16">早彎心</text>
+<circle class="d-accent d-fg-s" stroke-width="2" cx="230" cy="188" r="7"/>
+<path class="d-none d-dim-s" stroke-width="1.5" d="M235 194 L262 222"/>
+<text class="d-fg" x="250" y="242" font-size="16">晚彎心</text>
+<path class="d-none d-accent-s" stroke-width="5" d="M24 516 L64 516"/>
+<text class="d-fg" x="76" y="522" font-size="14">實線：晚彎心，入彎慢、出彎速度高</text>
+<path class="d-none d-fg-s" stroke-width="3" stroke-dasharray="8 6" d="M24 544 L64 544"/>
+<text class="d-fg" x="76" y="550" font-size="14">虛線：早彎心，入彎快、出彎慢</text>
+<text class="d-fg" x="24" y="578" font-size="14">兩條線都從左下進彎，車朝右轉。</text>
+</svg>
+<figcaption>圖：早彎心與晚彎心的位置比較。本站示意圖，非依比例／非實測，快慢描述依英文維基百科 Racing line 條目。</figcaption>
+</figure>
+
+<p>圖上兩個圓點，就是兩種走法各自的彎心。圓點越靠近弧線後段，彎心就越晚。</p>
+<h2>高速彎貼近幾何路線，慢速彎才需要晚彎心</h2>
+<p>職業車手 Ross Bentley 的著作《Speed Secrets》有一條經驗法則，英文維基百科轉引了兩句。第一句：「The faster the corner, the closer to the geometric line you should drive」。意思是越快的彎，越應該貼近幾何路線，目的是保住過彎的速度。
+第二句反過來：「the slower the corner, the more you need to alter your line with a later apex」。越慢的彎，越需要用更晚的彎心來改變走線。</p>
+<p>所以沒有一條放諸四海皆準的標準線。彎心的位置跟彎的快慢有關，也跟後面接的是直線還是另一個彎有關。前面提過的 in most cases 也是同樣的意思：外進、內切、外出是多數情況下的基本型，不是每個彎的答案。</p>
+<h2>連續彎裡，前面幾個彎的走線是故意犧牲的</h2>
+<p>有些彎道是連續的，一個彎剛出來，下一個馬上接上。這時候車手的目標，是用最高的速度衝出最後一個彎，進入後面的直線。英文維基百科轉引 Bentley 1998 年著作（頁 93 至 94）的說法：為了做到這件事，車手會在前幾個彎「犧牲走線」（sacrifice the line），換取最後一個彎的最佳位置。</p>
+<p>這代表一件事：看轉播時，某個彎的走線看起來不漂亮，不一定是失誤，也可能是在替下一個彎鋪路。前面的彎讓出一點，換最後那個彎出得更好。英文維基百科該節只在圖說裡提到，銀石賽道（Silverstone Circuit）的 Maggots 與 Becketts 連續彎是這類彎道的例子，正文沒有講這段實際怎麼走，這篇也不展開。</p>
+<h2>彎心貼的是白線，路肩不一定算賽道</h2>
+<p>彎心貼近內側邊緣，就會碰到賽道邊界的問題。FIA 2026 年規章的寫法是：定義賽道邊緣的白線，本身算賽道；路肩（kerb，常見的紅白條紋路面）不算。但有一句例外：夾在兩條白線之間的那一段路肩，視為賽道。這是 Appendix L 2026 第四章第 2c 條的內容。</p>
+<p>判斷有沒有離開賽道，看的是賽車還有沒有任何一部分接觸賽道。只要還有一部分接觸，就不算離開，完全沒有接觸才算。運動規章 Section B Issue 08 的 B1.8.6 條，講的是同一件事。所以輪胎壓在白線上，車還在賽道上。</p>
+<p>離開賽道還有另一層。Appendix L 第四章第 2d 條寫道：造成碰撞、重複犯下嚴重錯誤，或顯現對賽車缺乏控制（例如離開賽道），會被提報給賽會幹事，處罰最高可到取消資格。實際怎麼罰，看<a href="/articles/f1-101-penalties/">罰則那一篇</a>。</p>
+<h2>下次看轉播，先找三個位置</h2>
+<p>看彎道俯視畫面時，可以找三件事。第一，入彎前，車有沒有先往外靠。第二，車在哪裡最貼近內側邊緣，那就是彎心，它靠前還是靠後，取決於這個彎後面接的是直線還是另一個彎。第三，出彎時，車有沒有被帶到外側。</p>
+<p>三件事都對得上，就是外進、內切、外出。對不上的時候，先想想是不是晚彎心，或者這個彎後面還有一個彎在等著。</p>
+<h2>常見問題</h2>
+<h3>彎心一定在彎道正中間嗎？</h3>
+<p>不一定。英文維基百科的賽車術語辭典把彎心定義成賽車線最靠近彎道內側的位置，所以它由車手實際走的線決定，不是彎道形狀的幾何中心。晚彎心與早彎心，就是同一個彎裡彎心位置不同的兩種走法。</p>
+<h3>為什麼走最短的路不是最快的路？</h3>
+<p>因為過彎的車速上限跟轉彎半徑有關。向心加速度的公式是 a = v²/r，輪胎能給的側向加速度有上限，由公式推得，半徑越大，能維持的車速越高。這是簡化的推論，沒有算進下壓力隨車速的變化，來源也沒有給出實際省下多少時間。</p>
+<h3>早彎心一定是錯的嗎？</h3>
+<p>英文維基百科引用 George A. Anderson 的書，說早彎心大體上被視為新手的錯誤，原文用的是 largely considered，不是絕對。Ross Bentley 的經驗法則也指出，彎的快慢不同，適合的走法就不同。</p>
+<h3>輪胎壓到路肩，算離開賽道嗎？</h3>
+<p>不一定。依 FIA 2026 年規章，白線本身算賽道，路肩不算，但夾在白線之間的路肩部分視為賽道。判斷離開賽道的標準，是賽車有沒有任何一部分還接觸賽道，完全沒有接觸才算離開。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-101-tyres/">F1 輪胎為什麼分軟中硬：抓地、壽命與『必須換一次胎』</a></li>
+<li><a href="/articles/f1-101-downforce/">下壓力是什麼：為什麼 F1 賽車能倒過來貼在天花板上跑（理論上）</a></li>
+<li><a href="/articles/f1-101-penalties/">F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績</a></li>
+</ul>
+<h2>資料來源</h2>
+<p>一手來源（FIA 規章）：</p>
+<ul>
+<li><a href="https://www.fia.com/system/files/documents/appendix_l_2026_publie_le_24_juin_2026.pdf">FIA International Sporting Code Appendix L 2026，第四章第 2c、2d 條（白線與路肩、離開賽道、提報幹事）</a></li>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf">FIA 2026 Formula 1 Sporting Regulations, Section B, Issue 08（2026-08-05），B1.8.6 條（離開賽道的判定）</a></li>
+</ul>
+<p>二手來源（線上百科，含轉引書籍）：</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Racing_line">英文維基百科，Racing line 條目（外進內切外出、晚彎心、早彎心、Bentley 經驗法則、連續彎）</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Glossary_of_motorsport_terms">英文維基百科，Glossary of motorsport terms 條目（彎心定義）</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Skidpad">英文維基百科，Skidpad 條目（向心加速度公式 v²/r）</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Centripetal_force">英文維基百科，Centripetal force 條目（同一公式的第二個出處）</a></li>
+</ul>
+<p>查證日：2026-09-25。限制：走線的說法全部來自英文維基百科，其中 Bentley（1998）與 Anderson（1993）兩本書只查到轉引，沒有查到原書；查不到車隊或 F1 官方對外進內切外出的教學文字，也查不到現役車手談彎心的原話；「半徑越大車速上限越高」是由公式推得，不是來源明述，且沒有算進下壓力；維基只在圖說裡把銀石的 Maggots 與 Becketts 連續彎當作例子，沒有講具體走法。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂賽車 第 2 / 2 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-downforce/"><span class="lbl">← 新手村上一篇</span>F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地</a></div></div><div class="art-nav"><a href="/articles/f1-youngest-world-champions-vettel-antonelli/"><span class="lbl">← 前一篇</span>維特爾保持超過 15 年的最年輕世界冠軍紀錄，安東內利最快這站就能打破</a><a href="/articles/f1-101-downforce/" style="text-align:right"><span class="lbl">後一篇 →</span>F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+</script>
+</body>
+</html>

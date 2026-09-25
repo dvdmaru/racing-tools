@@ -83,6 +83,9 @@ DRAFT_EXCLUDE = ROOT / "config" / "draft-exclude.json"
 PROTECTED_TAGS = frozenset({
     "a", "code", "pre", "kbd", "samp", "script", "style", "table",
     "h1", "h2", "h3", "h4", "h5", "h6",
+    # 示意圖（內嵌 SVG，見 scripts/prompts/external-sourced.md「示意圖」）：<text> 裡的
+    # 車手／分站／車隊名是圖上的標籤，塞 <a> 進去會壞圖也壞 a11y；figure 連 figcaption 一併保護。
+    "svg", "figure",
 })
 
 _TAG_SPLIT = re.compile(r"(<[^>]*>)")

@@ -1,0 +1,12 @@
+{
+  "_comment": "F1 新手村 /guide/ 入口頁設定（單一資料源）。published 非 true 一律全暗（入口頁不生成、導覽/首頁磚/llms.txt/sitemap 都不出現）。levels[].slugs 依閱讀順序排；入口頁只列「approved 且已 build 出來」的 slug，沒過簽核的自動略過（不出死連結），空層級不渲染。文章 URL 仍是 /articles/<slug>/，不搬家。",
+  "published": true,
+  "title": "F1 新手村",
+  "intro": "第一次看 F1、想搞懂比賽在比什麼？這裡把入門文章依「看懂比賽、看懂賽車、看懂策略、看懂數據」四個層級排好，從最上面往下讀就不會迷路。",
+  "levels": [
+    {"id": "race", "title": "看懂比賽", "blurb": "週末怎麼進行、發車順序怎麼排、積分怎麼算、旗號與處罰代表什麼。", "slugs": ["f1-101-race-weekend", "f1-101-qualifying", "f1-101-points-championship", "f1-101-flags", "f1-101-penalties"]},
+    {"id": "car", "title": "看懂賽車", "blurb": "賽車靠什麼在彎道裡抓住地面，以及車手怎麼把它開過去。", "slugs": ["f1-101-downforce", "f1-101-apex-racing-line"]},
+    {"id": "strategy", "title": "看懂策略", "blurb": "輪胎與進站怎麼決定名次。", "slugs": ["f1-101-tyres", "f1-101-pit-stop-strategy"]},
+    {"id": "data", "title": "看懂數據", "blurb": "轉播畫面上的計時塔、間隔與顏色怎麼讀。", "slugs": ["f1-101-timing-tower"]}
+  ]
+}

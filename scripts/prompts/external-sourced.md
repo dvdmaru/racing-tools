@@ -184,3 +184,45 @@
 站名一律不連分站頁（寧漏勿錯連；發布日期推年份已實測會錯：科普文的 2022 摩納哥、
 歷史文的 1980 年代義大利）。已發布文章 sha256 凍結後**補不了欄位**，
 rules-guide 就因此永久放棄了三條互鏈——發布前寫好，發布後就來不及了。
+
+## 示意圖（SVG）（2026-09-25）
+
+正文可直接內嵌 SVG 示意圖，build 原樣通過（已實跑驗證：`markdown` 的 extra＋sane_lists 對
+`<figure>` 區塊不改一個字元，連內部有空行也沒壞；仍列「不得有空行」是保險）。互鏈器
+（車手／分站／車隊）不進 `figure`／`svg`，圖內 `<text>` 的名字不會被連成 `<a>`。
+
+**模板**（整塊頂格、前後各空一行、內部不留空行）：
+
+```html
+<figure class="diagram">
+<svg viewBox="0 0 640 260" role="img" aria-label="一句話說明這張圖">
+<title>圖名</title>
+<desc>給螢幕閱讀器與搜尋引擎的完整文字描述：圖裡有什麼、關係是什麼</desc>
+<rect class="d-surface d-line-s" x="10" y="10" width="620" height="240" rx="12"/>
+<text class="d-fg" x="30" y="60" font-size="18">標籤</text>
+</svg>
+<figcaption>圖：說明文字（含資料來源或「本站示意，非依比例」）</figcaption>
+</figure>
+```
+
+規則：
+
+1. **viewBox 必寫、`<svg>` 不寫死 width／height**（CSS 給 `max-width:100%; height:auto`，手機才不會橫向捲動）。
+   ☠️ **含文字的圖，viewBox 寬度一律 ≤ 420，字級 ≥ 14**（2026-09-25 實渲染：寬 640 縮到手機 390px 只剩 0.6 倍，
+   14px 字變 8px 讀不了；寬 420 縮到 390 約 0.93 倍，字約 13px）。內容放不下就改直向排列、拆成兩張圖或把說明句折成兩行，
+   不要靠加寬。純圖形（無文字或只有大標籤）才可到 640。
+2. **必帶 `<title>`、`<desc>`、`role="img"`、`aria-label`**（無障礙＋GEO：文字描述是引擎讀圖的唯一入口）。
+   圖上有的資訊，`<desc>` 或正文要用文字再說一次；圖不能是唯一載體。
+3. **內部不得有空行**（Markdown 區塊邊界；也不要縮排 4 格，會被當程式碼）。
+4. **色彩一律用 CSS 類別，不寫死 hex／rgb**：`d-fg d-dim d-line d-accent d-surface`＝fill；
+   加 `-s` 後綴＝stroke（如 `d-accent-s`）；`d-none`＝fill:none。它們全是站上 CSS 變數，會跟 5 個主題一起變。
+   對比度：文字用 `d-fg`；`d-dim` 只給次要標籤與輔助線；`d-accent` 在 midnight 主題對背景僅約 2.2:1，
+   **不要單靠 accent 色傳達資訊，也不要用 accent 色寫小字**（旁邊要有 `d-fg` 文字標籤或外框）；
+   `d-line` 是裝飾級（約 1.5:1），不承載資訊。
+   **例外：旗號這類「圖案本身就是那個顏色」的示意圖**可用固定色類別 `d-flag-yellow／red／blue／green／white／black／orange`
+   （fill），並一律加 `d-flag-s` 外框（白旗與淺色旗才不會在淺色主題消失）；仍不得在 SVG 內寫死 hex。
+5. **不放進 `## 常見問題` 區塊**（FAQ 答案是抽純文字進 schema 的，SVG 文字會漏進去），
+   也不要當全文第一段（摘要取第一個非標題段落；build 已略過 `<figure`，但別依賴它）。
+6. 圖內出現的車手／賽站／車隊名要與正文譯名一致（走 `driver-zh.json`／`team-zh.json`）；圖不算「第一次出現」，
+   正文仍會在段落裡連結。
+7. 圖只畫機制與關係，**圖上任何數字照舊受「寫手不做算術」與 facts pack 約束**。
