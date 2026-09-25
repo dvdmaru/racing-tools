@@ -1,6 +1,6 @@
 {
   "_comment": "F1 新手村 /guide/ 入口頁設定（單一資料源）。published 非 true 一律全暗（入口頁不生成、導覽/首頁磚/llms.txt/sitemap 都不出現）。levels[].slugs 依閱讀順序排；入口頁只列「approved 且已 build 出來」的 slug，沒過簽核的自動略過（不出死連結），空層級不渲染。文章 URL 仍是 /articles/<slug>/，不搬家。",
-  "published": false,
+  "published": true,
   "title": "F1 新手村",
   "intro": "第一次看 F1、想搞懂比賽在比什麼？這裡把入門文章依「看懂比賽、看懂賽車、看懂策略、看懂數據」四個層級排好，從最上面往下讀就不會迷路。",
   "levels": [

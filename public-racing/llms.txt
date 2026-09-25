@@ -11,6 +11,7 @@
 - [賽曆 · 台北時間](https://racing.twtools.cc/calendar/)：全季各站正賽/排位/衝刺賽時刻換算台北時間（UTC+8）。
 - [各站賽果](https://racing.twtools.cc/results/)：已完賽站完整官方分類（含衝刺賽）。
 - [文章總覽](https://racing.twtools.cc/articles/)：規則解析與對照表長文，逐項標註來源。
+- [F1 新手村](https://racing.twtools.cc/guide/)：依看懂比賽、看懂賽車、看懂策略、看懂數據四個層級排好的入門文章。
 
 ## 最新文章
 

@@ -240,7 +240,8 @@ class GuideNavOnArticleTests(unittest.TestCase):
         without = ba.render_article(a["meta"], "<p>內文</p>", "a-one", a["excerpt"], [],
                                     prev_nav=ARTICLES[1], next_nav=None)
         self.assertNotIn("guide-nav", without.replace(".guide-nav", ""))
-        self.assertNotIn("新手村", without)
+        # 「新手村」三字會出現在全站導覽列（published＝true 時），所以只驗文末導覽區塊獨有的字串
+        self.assertNotIn("新手村 · 回入口頁", without)
 
 
 class PublishedGateTests(unittest.TestCase):
