@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>車隊無線電與遙測：車手在講話，工程師在看什麼 | 賽車數據誌</title>
+<meta name="description" content="轉播裡的無線電，是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路。另一條聽不到的線路，把賽車上的資料單向傳回維修區，FIA 也收得到。規章寫清楚了資料怎麼傳、誰能收，工程師怎麼用這些資料，公開的說明卻很少。">
+<meta property="og:title" content="車隊無線電與遙測：車手在講話，工程師在看什麼">
+<meta property="og:description" content="轉播裡的無線電，是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路。另一條聽不到的線路，把賽車上的資料單向傳回維修區，FIA 也收得到。規章寫清楚了資料怎麼傳、誰能收，工程師怎麼用這些資料，公開的說明卻很少。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/#article","headline":"車隊無線電與遙測：車手在講話，工程師在看什麼","description":"轉播裡的無線電，是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路。另一條聽不到的線路，把賽車上的資料單向傳回維修區，FIA 也收得到。規章寫清楚了資料怎麼傳、誰能收，工程師怎麼用這些資料，公開的說明卻很少。","datePublished":"2026-09-25","dateModified":"2026-09-25","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"車隊無線電與遙測：車手在講話，工程師在看什麼","item":"https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/#faq","mainEntity":[{"@type":"Question","name":"車隊可以從維修區遠端調整賽車嗎？","acceptedAnswer":{"@type":"Answer","text":"不行。2026 年技術規章 C8.5.3 禁止車隊對賽車的遙測，例外只有 FIA 的賽道旗號系統，以及遙測系統運作所需的握手訊號。賽車在賽道上跑的時候，工程師要改什麼，得用無線電請車手自己操作。"}},{"@type":"Question","name":"FIA 聽得到車隊的無線電嗎？","acceptedAnswer":{"@type":"Answer","text":"規章 C8.8.2 要求賽車與維修區之間的語音無線電，必須對 FIA 與轉播單位開放。規章寫的是「開放」；公開文件裡查不到 FIA 說明自己即時監聽每一段通話。"}},{"@type":"Question","name":"每台 F1 賽車有幾個感測器？","acceptedAnswer":{"@type":"Answer","text":"規章沒有總數。「超過 300 個」出自 formula1.com 2020 年 7 月的文章，是當時的說法，不是 2026 年的規章數字。規章規定的是必裝項目，例如標準 ECU、燃油感測器與輪胎壓力溫度感測器，隊伍可以另外加裝。"}},{"@type":"Question","name":"規章有規定無線電不能講什麼嗎？","acceptedAnswer":{"@type":"Answer","text":"2026 年的 F1 規章裡，找不到逐項列出「可說、不可說」的條款。能確定的是：除了經授權接到標準 ECU 的連線，賽車與維修區之間的語音無線電必須是獨立系統、不得收發其他資料，並對 FIA 與轉播開放（C8.8.2）；車手必須獨自、不受協助地駕駛（B1.8.1）；自動換檔屬於駕駛輔助，不准使用（C9.8.1）。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-7012104e50.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+
+<div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav">
+      <a href="/">首頁</a>
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">賽曆</a>
+      <a href="/results/">賽果</a>
+      <a href="/seasons/">歷年</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active">文章</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">車隊無線電與遙測：車手在講話，工程師在看什麼</h1>
+  <div class="art-meta"><span>2026 年 9 月 25 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">轉播裡插進一段車手的無線電，字幕打在畫面下方。這段話播出之前，已經被 F1 的無線電團隊從同時進行的多路通話裡挑過一次，依 2025 年報導當時的車數是 20 路。聽得到的是語音；聽不到的是另一條線路，賽車上的資料正沿著它單向傳回車隊，FIA 也收得到。</p>
+  <article class="prose">
+<p>轉播裡突然插進一段車手的無線電，字幕打在畫面下方，幾秒後畫面又回到賽道。新手很容易以為，這就是車隊和車手在比賽中的全部對話。</p>
+<p>電視播出的只是被挑出來的一小段。同一時間，賽車和維修區之間還有另一條線路在跑，它不傳語音，只傳資料。這條資料線有一套標準化的系統，規章規定它怎麼傳、誰能收。但工程師實際盯著哪些數字、看到什麼才開口，這篇找不到可以引用的一手說明。</p>
+<h2>電視上的無線電，是從同時進行的多路通話裡挑出來的</h2>
+<p>The Race 在 2025 年 11 月報導了 F1 的媒體與科技中心（M&amp;TC）。這個中心位於倫敦 Bromley 區的 Biggin Hill，負責做出全世界看到的轉播訊號。</p>
+<p>報導裡的無線電團隊由八個人組成，包括無線電製作人、剪輯、監聽與逐字稿人員。2026 年<a href="/constructors/cadillac/">凱迪拉克</a>加入之後，團隊增為九人。他們要把 20 路同時進行、麥克風設定各不相同的通話，整理成清楚好懂的片段，交給國際訊號的導播選用。這裡的「20 路」，是那篇報導撰寫時場上 20 台車的數字。</p>
+<p>播出也有時間目標。一段無線電的目標是在 15 秒內，或在同一圈之內播出。例外有三種：重播、超車，以及比較不急迫的通話。</p>
+<p>所以轉播裡聽到的車手抱怨或工程師指令，是一個團隊從同時進行的各路通話裡挑出來、剪乾淨、盡量趕在當圈送上畫面的結果。沒被挑中的通話，就不會出現在國際訊號上。</p>
+<p>挑選之外還有刪除。RaceFans 在 2024 年 9 月報導，從 2023 年起，負責製作 F1 轉播的 FOM 會審查 F1 TV 車載鏡頭頻道上的部分無線電。這些訊息不是被「嗶」掉，而是整段抹除，觀眾無從知道自己漏聽了什麼。同一篇報導也寫到，世界訊號播出的髒話一律用嗶聲蓋過。2026 年是否仍這樣處理，目前沒有確認。</p>
+<h2>規章要求車手無線電對 FIA 和轉播單位開放</h2>
+<p>轉播能播車手無線電，是因為規章要它開放。2026 年 F1 技術規章 C8.8.1 要求每台車裝設語音無線電系統，由 FIA（國際汽車運動總會）指定的供應商製造。C8.8.2 接著規定，除了經授權接到標準 ECU 的連線，賽車與維修區之間的語音無線電必須是獨立系統，不得收發其他資料。所有這類通話，都必須對 FIA 與轉播單位開放。</p>
+<p>C8.6.1 從另一邊補上一句：除了語音無線電，與車手資訊及車手輸入裝置相關的訊號，都必須由 FIA 標準 ECU 產生。ECU 是電子控制單元，也就是車上的主電腦，後面會再講。所以車手收到的資訊裡，只有語音不必由標準 ECU 產生。</p>
+<p>開放到什麼程度？formula1.com 在 2020 年 2 月的一篇維修區牆導覽裡，引述一位車隊主管的話：「我們有所有的遙測、GPS 資料、每一隊的無線電通話，甚至氣象雷達。」他接著說，從中挑出需要的資訊，是讓工作有效率的一部分。這是 2020 年的現場描述，車隊今天是否仍聽得到每一隊的通話，還需要更新的資料確認。</p>
+<h2>2021 年以前，轉播通常只播車隊和車手之間的對話</h2>
+<p>無線電不只有車隊和車手這一條線。車隊和賽事總監之間也有通話，只是過去通常不播。</p>
+<p>2021 年西班牙站，<a href="/constructors/mercedes/">賓士</a>領隊沃爾夫對賽事總監 Masi 說的兩段話出現在世界訊號裡。畫面上還配了一張新的圖卡，標明這是車隊與 FIA 之間的通話。The Race 當天報導，這是車隊與 FIA 的無線電第一次上轉播；在那之前，轉播通常只播車隊和車手的對話。Masi 在同一篇報導裡說，這個構想來自前一年的 F1 委員會會議。</p>
+<p>同年 6 月，Masi 接受 Autosport 訪問時說：「這個無線電已經存在很多年了，只是現在被播出來。」他還說，車隊知道會被播出之後，賽事控制的無線電量「可能反而減少了」。</p>
+<p>頻道一直都在，改變的只有觀眾聽不聽得到。車隊和車手之間的無線電也是同一個道理：播出來的，是從一直在跑的通話裡挑出的片段。</p>
+<h2>遙測在規章裡的定義只有一句：無線傳輸遠端資料</h2>
+<p>聽得到的講完，接下來是聽不到的那一條。</p>
+<p>遙測（telemetry）在 2026 年技術規章 C 章附錄 C1 的定義只有一句：從遠端來源無線傳輸資料。放到賽道上，遠端來源就是那台正在跑的車。</p>
+<p>C8.5.1 規定，每台 F1 賽車都必須裝有「賽車對車隊」的遙測系統。系統由 FIA 指定的供應商製造，規格也由 FIA 決定。這套必裝的系統，所有隊伍用的是同一個供應商、同一份規格。規章並沒有禁止車隊另外加裝自己的遙測或資料系統，但加裝的設備原則上必須和控制電子隔離，另有少數列明的連線例外（C8.4.2，後文再談）。</p>
+<p>連賽車被封存的時候，這套設備也歸供應商管：停車柵（Parc Fermé）期間，只要 FIA 指定供應商提出要求，遙測與語音無線電的元件就可以拆下檢查或更換（運動規章附錄 B2）。</p>
+<h2>車隊收得到資料，但不能從維修區反向改車</h2>
+<p>遙測是單向的。C8.5.3 寫得很直接：車隊對賽車的遙測被禁止。例外只有兩個，一個是 FIA 的賽道旗號系統（marshalling system），另一個是遙測系統本身運作所需的「握手」訊號。旗號系統怎麼把黃旗、藍旗送進座艙，可以看<a href="/articles/f1-tech-timing-positioning-race-control/">計時、定位與賽事控制那篇</a>。</p>
+<p>依這條規定推下去，賽車在賽道上跑的時候，工程師在維修區看到數據，不能按一個鍵就改變賽車的設定。要改什麼，得開口請車手自己動手。</p>
+<p>規章對車手駕駛還有一條最基本的要求。運動規章 B1.8.1 寫的是：車手必須獨自、不受協助地駕駛賽車。技術規章 C9.8.1 另外把自動換檔列為駕駛輔助（driver aid），不准使用。</p>
+<p>那工程師在無線電裡可以說什麼、不可以說什麼？2026 年規章的 B、C、F 章裡，找不到逐項列出的條款。能確定的是四件事：除了經授權接到標準 ECU 的連線，無線電必須是獨立系統、不得收發其他資料；它要對 FIA 與轉播開放；而車手必須自己開車。</p>
+<h2>規章列明的控制系統，由 FIA 標準 ECU 控制</h2>
+<p>資料從哪裡來？核心是標準 ECU。</p>
+<p>C8.2.1 列出了一份清單，不是把車上所有電子設備都算進去：動力單元、燃油系統、傳動系統、煞車系統、輪胎壓力監測系統與可動車體，連同相關的致動器，都必須由 FIA 標準 ECU 控制。ECU 只能跑 FIA 核准的軟體。動力單元是引擎、馬達與電池的組合，細節見<a href="/articles/f1-101-power-unit/">F1 動力單元是什麼</a>。</p>
+<p>標準 ECU 也負責記錄資料。C8.4.1 要求，在正賽或衝刺賽之前，ECU 的資料記錄器要設定成能記錄至少兩小時十五分鐘，而且不超出記憶體容量。</p>
+<p>車隊還可以裝自己的東西。C8.4.2 允許隊伍在標準 ECU 與 FIA 事故資料記錄器（ADR）之外，另加資料擷取系統、遙測系統與感測器。條件是這些設備必須和控制電子在實體上分開、在電氣上隔離，只有條文列出的幾種連線例外，例如主電源、接地，以及接到標準 ECU、遙測單元與 ADR 的通訊連線。</p>
+<p>控制賽車的電腦，所有隊伍用同一款、跑同一套核准軟體。車隊想多量什麼，可以自己加感測器，但加上去的東西原則上要和控制電子實體分開、電氣隔離，只保留規章准許的那幾種連線。</p>
+<h2>FIA 在每個賽段前、中、後，都能取得 ECU 資料</h2>
+<p>遙測資料不只車隊看得到。C8.4.1 規定，FIA 在任何賽道時段之前、之中與之後，都可以無限制取得標準 ECU 的參數設定、記錄資料與事件，以及即時遙測資料與事件。隊伍應依 FIA 的要求與格式，把即時遙測傳到 FIA 的網路。</p>
+<p>燃油是一個具體的例子。燃油流量計的讀數會在標準 ECU 裡換算，用來檢查有沒有超過規章的上限（C5.2.6）；噴油嘴端也有經過認證的感測器，訊號要送進 FIA 的資料記錄器（C5.9.4）。</p>
+<p>這些資料，車隊用來看自己的車，FIA 至少用它們來查燃油有沒有超標。把前面幾節串起來，資料的路線大致是這樣：</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 484" role="img" aria-label="標準 ECU 的資料經遙測單向傳回維修區，FIA 也能即時取得。圖只畫標準 ECU 這一路；車隊自加系統的路線未在本圖呈現。反方向遙測禁止，僅旗號系統與握手訊號例外；工程師用語音無線電跟車手說話">
+<title>賽車資料與無線電的流向</title>
+<desc>由上到下五格。第一格：接到標準 ECU 的感測器，例如胎壓胎溫、燃油、動力單元。第二格：FIA 標準 ECU。圖只畫標準 ECU 這一路；車隊自己加裝的資料擷取系統、遙測系統與感測器，原則上須和控制電子實體分開、電氣隔離，但規章列有特定連線例外，其路線未在本圖呈現。第二格往下的箭頭標示遙測只從賽車傳往車隊。第三格：維修區與車隊，FIA 也能即時取得標準 ECU 的資料。右側一條往上的虛線箭頭打叉，表示車隊往賽車的反方向遙測被禁止，僅 FIA 旗號系統與握手訊號例外。第四格：工程師看數據，用無線電開口。第五格：語音無線電除了經授權接到標準 ECU 的連線，是獨立系統、只傳語音，並對 FIA 與轉播開放。</desc>
+<rect class="d-surface d-line-s" x="6" y="6" width="408" height="470" rx="12"/>
+<rect class="d-surface d-fg-s" x="24" y="20" width="260" height="64" rx="8" stroke-width="1.5"/>
+<text class="d-fg" x="40" y="46" font-size="16">接到 ECU 的感測器</text>
+<text class="d-fg" x="40" y="70" font-size="15">胎壓胎溫、燃油、動力單元等</text>
+<line class="d-fg-s" x1="154" y1="86" x2="154" y2="102" stroke-width="2"/>
+<polygon class="d-fg" points="146,100 162,100 154,110"/>
+<rect class="d-surface d-fg-s" x="24" y="112" width="260" height="64" rx="8" stroke-width="1.5"/>
+<text class="d-fg" x="40" y="138" font-size="16">FIA 標準 ECU</text>
+<text class="d-fg" x="40" y="162" font-size="15">車隊自加設備未畫入本圖</text>
+<line class="d-fg-s" x1="154" y1="178" x2="154" y2="214" stroke-width="2"/>
+<polygon class="d-fg" points="146,212 162,212 154,222"/>
+<text class="d-fg" x="166" y="205" font-size="15">遙測：車 → 車隊</text>
+<rect class="d-surface d-fg-s" x="24" y="224" width="260" height="64" rx="8" stroke-width="1.5"/>
+<text class="d-fg" x="40" y="250" font-size="16">維修區與車隊</text>
+<text class="d-fg" x="40" y="274" font-size="15">FIA 也能即時取得 ECU 資料</text>
+<line class="d-dim-s" x1="304" y1="276" x2="304" y2="132" stroke-width="2" stroke-dasharray="6 5"/>
+<polygon class="d-dim" points="296,134 312,134 304,122"/>
+<line class="d-fg-s" x1="295" y1="191" x2="313" y2="209" stroke-width="3"/>
+<line class="d-fg-s" x1="313" y1="191" x2="295" y2="209" stroke-width="3"/>
+<text class="d-fg" x="322" y="196" font-size="15">反方向</text>
+<text class="d-fg" x="322" y="218" font-size="15">遙測禁止</text>
+<line class="d-fg-s" x1="154" y1="290" x2="154" y2="306" stroke-width="2"/>
+<polygon class="d-fg" points="146,304 162,304 154,314"/>
+<rect class="d-surface d-fg-s" x="24" y="316" width="260" height="64" rx="8" stroke-width="1.5"/>
+<text class="d-fg" x="40" y="342" font-size="16">工程師</text>
+<text class="d-fg" x="40" y="366" font-size="15">看數據，用無線電開口</text>
+<line class="d-fg-s" x1="154" y1="382" x2="154" y2="402" stroke-width="2"/>
+<rect class="d-surface d-fg-s" x="24" y="404" width="372" height="60" rx="8" stroke-width="1.5"/>
+<text class="d-fg" x="40" y="428" font-size="16">語音無線電：對 FIA 與轉播開放</text>
+<text class="d-fg" x="40" y="452" font-size="15">除經授權接 ECU 的連線，只傳語音</text>
+</svg>
+<figcaption>圖：本站示意圖，非依比例、非實測。依 2026 年 F1 技術規章 C8.2.1、C8.4、C8.5、C8.8；反方向遙測僅 FIA 旗號系統與握手訊號例外。圖中只畫標準 ECU 這一路，未呈現車隊自加設備及其連線（C8.4.2 列有特定連線例外）。</figcaption>
+</figure>
+
+<p>接到標準 ECU 的感測器，訊號進到 ECU；車隊自己加裝的感測器與資料系統，原則上要和控制電子隔離，只保留規章准許的幾種連線，圖上沒有畫出它們的路線。標準 ECU 的資料經由遙測單向傳回維修區，FIA 也能即時取得。反方向的遙測除了旗號系統與握手訊號都被禁止，所以工程師看完數據，要靠語音無線電跟車手說話，而這條無線電對 FIA 與轉播開放。</p>
+<h2>「每台車超過 300 個感測器」是 F1 官方 2020 年的說法</h2>
+<p>網路上常看到「一台 F1 賽車有 300 個感測器」。出處可以追到 formula1.com 在 2020 年 7 月的一篇文章。當時場上有 20 台車，文章寫道：每台車有超過 300 個感測器，每秒產生 110 萬個遙測資料點。</p>
+<p>這是 F1 官方 2020 年的說法，不是規章數字，也不代表 2026 年的車。規章規定的是必須裝哪些東西，例如標準 ECU、燃油感測器，以及 C10.7.4 要求的輪胎壓力與溫度監測感測器（TPMS），後者同樣由 FIA 指定的供應商製造。隊伍另加多少感測器，規章沒有給總數。</p>
+<p>輪胎感測器有比較具體的描述。formula1.com 在 2022 年 7 月刊出一段 F1 TV 技術節目，技術評論員 Craig Scarborough 在節目裡說明，車隊在四顆輪胎內裝感測器，量橡膠溫度、胎內空氣溫度、胎壓等資料，有時每顆輪胎會裝到三個感測器。他也解釋，車隊努力讓輪胎維持在恰當的溫度，避免失去抓地力或快速劣化。輪胎為什麼會劣化，可以看<a href="/articles/f1-101-tyres/">F1 輪胎為什麼分軟中硬</a>。</p>
+<p>資料最後也會流到觀眾眼前。The Race 2025 年那篇報導寫到，媒體與科技中心要把每台車的 110 萬個資料點轉成螢幕上的圖表。轉播畫面上那些數字怎麼讀，見<a href="/articles/f1-101-timing-tower/">看懂轉播畫面</a>。</p>
+<h2>工程師怎麼用這些數據下指令，公開資料很少</h2>
+<p>資料怎麼傳、誰能收，規章寫得很細。工程師盯著哪幾條曲線、看到什麼數字才按下通話鍵，官方公開的說明就少得多。</p>
+<p>找得到的只有方向性的描述：車隊要讓輪胎維持在恰當溫度；維修區牆前的資料很多，挑出需要的資訊是工作的一環。「工程師比車手更早知道輪胎和引擎的狀態」這類說法，找不到官方或車隊的直接陳述，只能當推論看。</p>
+<p>下次轉播插進一段無線電，可以多想一層。這段話是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路；話的背後，是一條單向傳回、必裝系統各隊同規格、FIA 也收得到的資料線。工程師到底看了什麼才開口，畫面上看不到。</p>
+<h2>常見問題</h2>
+<h3>車隊可以從維修區遠端調整賽車嗎？</h3>
+<p>不行。2026 年技術規章 C8.5.3 禁止車隊對賽車的遙測，例外只有 FIA 的賽道旗號系統，以及遙測系統運作所需的握手訊號。賽車在賽道上跑的時候，工程師要改什麼，得用無線電請車手自己操作。</p>
+<h3>FIA 聽得到車隊的無線電嗎？</h3>
+<p>規章 C8.8.2 要求賽車與維修區之間的語音無線電，必須對 FIA 與轉播單位開放。規章寫的是「開放」；公開文件裡查不到 FIA 說明自己即時監聽每一段通話。</p>
+<h3>每台 F1 賽車有幾個感測器？</h3>
+<p>規章沒有總數。「超過 300 個」出自 formula1.com 2020 年 7 月的文章，是當時的說法，不是 2026 年的規章數字。規章規定的是必裝項目，例如標準 ECU、燃油感測器與輪胎壓力溫度感測器，隊伍可以另外加裝。</p>
+<h3>規章有規定無線電不能講什麼嗎？</h3>
+<p>2026 年的 F1 規章裡，找不到逐項列出「可說、不可說」的條款。能確定的是：除了經授權接到標準 ECU 的連線，賽車與維修區之間的語音無線電必須是獨立系統、不得收發其他資料，並對 FIA 與轉播開放（C8.8.2）；車手必須獨自、不受協助地駕駛（B1.8.1）；自動換檔屬於駕駛輔助，不准使用（C9.8.1）。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-tech-timing-positioning-race-control/">F1 怎麼知道場上每一台車在哪裡：計時、定位與賽事控制的科技</a></li>
+<li><a href="/articles/f1-101-team-roles/">賽道旁那排螢幕後面是誰：一支 F1 車隊怎麼分工</a></li>
+<li><a href="/articles/f1-101-timing-tower/">看懂轉播畫面：計時塔、間隔、扇區顏色與那些縮寫</a></li>
+</ul>
+<h2>資料來源</h2>
+<p>一手文件：
+- <a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf">FIA 2026 F1 Regulations Section C Technical，Issue 20（2026-08-05）</a>：附錄 C1 遙測定義、C5.2.6 燃油能量流量、C5.9.4 燃油感測器、C8.2.1 標準 ECU、C8.4.1 與 C8.4.2 資料存取與車隊自加系統、C8.5.1 與 C8.5.3 遙測、C8.6.1 車手資訊、C8.8.1 與 C8.8.2 語音無線電、C9.8.1 駕駛輔助、C10.7.4 TPMS
+- <a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf">FIA 2026 F1 Sporting Regulations Section B，Issue 08（2026-08-05）</a>：B1.8.1 車手獨自駕駛、附錄 B2 第 5.1 點停車柵允許作業</p>
+<p>官方說明：
+- <a href="https://www.formula1.com/en/latest/article/rob-smedley-on-car-performance-scores-and-the-data-behind-the-latest-f1.5QoyFi4KL63EULKM4u5mGL">formula1.com：Rob Smedley 談賽車表現評分與轉播圖表背後的資料（2020-07-01）</a>：超過 300 個感測器、每秒 110 萬資料點
+- <a href="https://www.formula1.com/en/latest/article/the-insiders-guide-to-the-pit-wall.CFwHwjTcLNO5Gf4B3Dy4o">formula1.com：The insider's guide to the pit wall（2020-02-04）</a>：維修區牆前的資料與無線電
+- <a href="https://www.formula1.com/en/latest/article/watch-why-are-sensors-crucial-to-tyre-management-tech-expert-craig.5x56jGmF0SJGmwfYPmvByj">formula1.com：Why are sensors crucial to tyre management（2022-07-18）</a>：Craig Scarborough 談輪胎感測器</p>
+<p>媒體報導：
+- <a href="https://www.the-race.com/formula-1/behind-the-scenes-most-advanced-sport-broadcast-hq-f1/">The Race：F1 轉播中心幕後（2025-11-16）</a>：無線電團隊、20 路通話、15 秒內或當圈播出、每台車 110 萬資料點
+- <a href="https://www.the-race.com/formula-1/wolffs-mazepin-frustration-is-first-team-fia-radio-broadcast/">The Race：車隊與 FIA 無線電首次上轉播（2021-05-09）</a>：2021 年西班牙站
+- <a href="https://www.autosport.com/f1/news/fia-radio-traffic-has-reduced-since-f1-started-broadcasting-them/6622788/">Autosport：FIA radio traffic has reduced since F1 started broadcasting them（2021-06-30）</a>：Masi 談賽事控制無線電
+- <a href="https://www.racefans.net/2024/09/20/less-swearing-fia-wants-f1-to-reverse-its-usual-team-radio-priorities/">RaceFans：FIA 希望 F1 調整車隊無線電的播出取向（2024-09-20，Keith Collantine）</a>：車載頻道無線電整段刪除</p>
+<p>查證日：2026-09-25。2026 年規章查不到無線電「可說、不可說」的逐項條款；工程師如何用遙測判讀並下指令、2025 年之後的感測器數量與資料量、F1 TV 車載頻道 2026 年的處理方式，都沒有找到可引用的官方或車隊資料，所以正文沒有寫。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂數據 第 2 / 2 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-timing-tower/"><span class="lbl">← 新手村上一篇</span>F1 轉播左邊那一欄怎麼讀：紫色、綠色、間隔與三個英文字母縮寫</a></div></div><div class="art-nav"><a href="/articles/f1-101-safety-car/"><span class="lbl">← 前一篇</span>安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止</a><a href="/articles/f1-101-team-roles/" style="text-align:right"><span class="lbl">後一篇 →</span>賽道旁那排螢幕後面是誰：一支 F1 車隊怎麼分工</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+</script>
+</body>
+</html>

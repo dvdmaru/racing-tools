@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>下雨的 F1 怎麼跑：雨胎、安全車起跑，還有比賽被叫停的時候</title>
+    <link>https://racing.twtools.cc/articles/f1-101-wet-weather/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-wet-weather/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>下雨時，F1 不是只把乾胎換成雨胎。規章為潮濕的賽道準備了一套程序：安全車帶隊起跑時可以強制全雨胎，強制期間不准換規格。另有一個叫 Rain Hazard 的宣告，但它管的只是封閉管制期間能做哪些工作。</description>
+  </item>
+  <item>
     <title>F1 輪胎為什麼分軟中硬：同一款 C3，在澳洲站是硬胎，在日本站是軟胎</title>
     <link>https://racing.twtools.cc/articles/f1-101-tyres/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-tyres/</guid>
@@ -20,6 +27,27 @@
     <description>計時塔不是單純的名次表。扇區顏色只跟自己或全場比，間隔只量跟前車的差，輪胎與縮寫背後也各有固定意思。</description>
   </item>
   <item>
+    <title>賽道旁那排螢幕後面是誰：一支 F1 車隊怎麼分工</title>
+    <link>https://racing.twtools.cc/articles/f1-101-team-roles/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-team-roles/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>規章寫下了現場最多 60 名營運人員、信號區 12 人，也要求一份至少 4 位的資深代表名單。維修牆坐誰、機械師怎麼分工，官方說得最清楚的是 F1 官網 2020 年的幾篇職位導覽。</description>
+  </item>
+  <item>
+    <title>車隊無線電與遙測：車手在講話，工程師在看什麼</title>
+    <link>https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>轉播裡的無線電，是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路。另一條聽不到的線路，把賽車上的資料單向傳回維修區，FIA 也收得到。規章寫清楚了資料怎麼傳、誰能收，工程師怎麼用這些資料，公開的說明卻很少。</description>
+  </item>
+  <item>
+    <title>安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止</title>
+    <link>https://racing.twtools.cc/articles/f1-101-safety-car/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-safety-car/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>賽道出事時，賽事總監手上有三種強度不同的應變方式：虛擬安全車讓每台車自己減速，安全車讓全場排成一列跟車，這兩種期間比賽照跑；紅旗才中止賽程，讓所有車開回維修區。這篇講三種應變各自怎麼開始、怎麼結束，以及紅旗之後比賽怎麼接回來。</description>
+  </item>
+  <item>
     <title>F1 大獎賽週末怎麼過：三天、五場考試、一場正賽</title>
     <link>https://racing.twtools.cc/articles/f1-101-race-weekend/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-race-weekend/</guid>
@@ -27,11 +55,25 @@
     <description>週日正賽的發車順序，其實在週六排位賽就排好了。從週五第一場練習賽開始，把一般週末與衝刺週末的每一場比賽排成時間表，看哪一場決定了什麼。</description>
   </item>
   <item>
+    <title>F1 正賽怎麼起跑：暖胎圈、五盞紅燈與搶跑罰則</title>
+    <link>https://racing.twtools.cc/articles/f1-101-race-start/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-race-start/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>綠燈亮起時，賽車出發去繞的是暖胎圈；五盞紅燈全部熄滅，比賽才開始。這篇照時間順序走一遍起跑流程，從偵察圈、倒數、暖胎圈到五盞紅燈，再講搶跑怎麼認定、裁判有哪四種罰則可選。</description>
+  </item>
+  <item>
     <title>F1 排位賽怎麼淘汰：三節、兩次砍人、一個發車位置</title>
     <link>https://racing.twtools.cc/articles/f1-101-qualifying/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-qualifying/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>週六的排位賽看的是每節最快的單圈，卻會在 18 分鐘內淘汰 6 位車手。從 Q1 的 22 輛車到 Q3 的 10 輛車，把三節的時長、淘汰人數與排位名次一次排清楚。</description>
+  </item>
+  <item>
+    <title>F1 動力單元是什麼：引擎、馬達與電池怎麼分工，決定車手何時有力氣</title>
+    <link>https://racing.twtools.cc/articles/f1-101-power-unit/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-power-unit/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>F1 賽車裡那顆「引擎」，在規章裡是一整套動力單元：1600cc V6 內燃機、渦輪、350 kW 電動馬達、電池與控制電子。電池一次只能動用 4 MJ，馬達的力氣還會隨車速變小，這套分工決定了車手在一圈裡什麼時候有電可用。</description>
   </item>
   <item>
     <title>F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人</title>
@@ -55,6 +97,13 @@
     <description>先衝線的人，名次可能被往後挪；各類罰則的執行方式依條文規定，時間罰則的秒數固定，但同一個犯規落在哪一級，由賽會幹事裁量，規章沒有公開量刑表。本文用 2026 年 FIA 規章，把加時、通過維修區、罰退格位到取消資格與停賽排成一張新手看得懂的階梯。</description>
   </item>
   <item>
+    <title>F1 為什麼很難超車：髒空氣，以及 2026 年新增的幫手</title>
+    <link>https://racing.twtools.cc/articles/f1-101-overtaking/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-overtaking/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>前車開過之後留下一團亂流，後車一貼近，翼片就吃不到乾淨空氣。從 2011 年的 DRS、2022 年的新車到 2026 年的 Overtake 模式，F1 的規則一直在替後車找回一點優勢。</description>
+  </item>
+  <item>
     <title>F1 賽道旁的旗子與燈號：每一面代表什麼、車手該怎麼做</title>
     <link>https://racing.twtools.cc/articles/f1-101-flags/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-flags/</guid>
@@ -69,81 +118,32 @@
     <description>天花板的說法只查到一句「據稱」，但下壓力本身有數字可查：它跟車速的平方成正比，車隊自己說 150 km/h 時就等於車重。這篇拆解下壓力從哪來、有多大、要付出什麼代價。</description>
   </item>
   <item>
+    <title>F1 預算上限是什麼：車隊不能無限花錢，超支會怎樣</title>
+    <link>https://racing.twtools.cc/articles/f1-101-cost-cap/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-cost-cap/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年的條文寫的上限基準是 2.15 億美元，但車手薪水、行銷和薪酬最高的三個人都不算在裡面。超出上限不到 2% 與超出達 2% 或以上，是兩種不同的罰法。</description>
+  </item>
+  <item>
+    <title>轉向不足與轉向過度：車手嘴裡的『車頭推』和『車尾滑』是什麼意思</title>
+    <link>https://racing.twtools.cc/articles/f1-101-car-balance/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-car-balance/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>車手在無線電裡抱怨車子難開，常會用到這兩個詞。差別在哪一端的輪胎先失去抓地：前輪先滑，車頭推向彎外；後輪先滑，車尾往外甩。</description>
+  </item>
+  <item>
+    <title>一輛 F1 賽車由什麼組成：從車鼻到尾翼，一張零件地圖</title>
+    <link>https://racing.twtools.cc/articles/f1-101-car-anatomy/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-car-anatomy/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>轉播裡看起來是一整塊的賽車，在 FIA 技術規章裡被拆成好幾區：包住車手的生存艙、頭頂的 Halo、1600cc 引擎加馬達的動力單元、會變角度的前後翼，還有前窄後寬的四個輪子。</description>
+  </item>
+  <item>
     <title>F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑</title>
     <link>https://racing.twtools.cc/articles/f1-101-apex-racing-line/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-apex-racing-line/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>外進、內切、外出，路線比較長，卻是多數情況下的標準走法。這篇從公式 a = v²/r 推出原因，再講晚彎心、早彎心、連續彎，以及 FIA 規章怎麼定義賽道邊界。</description>
-  </item>
-  <item>
-    <title>維特爾保持超過 15 年的最年輕世界冠軍紀錄，安東內利最快這站就能打破</title>
-    <link>https://racing.twtools.cc/articles/f1-youngest-world-champions-vettel-antonelli/</link>
-    <guid>https://racing.twtools.cc/articles/f1-youngest-world-champions-vettel-antonelli/</guid>
-    <pubDate>Tue, 22 Sep 2026 00:00:00 +0800</pubDate>
-    <description>封王站不管落在哪裡，年齡都比維特爾當年年輕超過 3 年</description>
-  </item>
-  <item>
-    <title>安東內利最快在新加坡封王，前提是三個週末對羅素淨賺 70 分</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/</guid>
-    <pubDate>Mon, 21 Sep 2026 00:00:00 +0800</pubDate>
-    <description>他今年任何連續三個週末，最多淨賺過 59 分；新加坡的門檻比它高 11 分。</description>
-  </item>
-  <item>
-    <title>勒克萊爾在 205 km/h 就踩下全油門，比自己上一圈早了 18 km/h</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-r13-leclerc-parabolica-telemetry/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-r13-leclerc-parabolica-telemetry/</guid>
-    <pubDate>Fri, 11 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年義大利大獎賽第 2 圈，勒克萊爾（Charles Leclerc）出 Curva Alboreto 時，油門踏板在 205 km/h 就到 99% 以上，比自己第 1 圈早 18 km/h，也比另外五位對手的第 2 圈都早。退油一次、228 km/h 再全開之後，車速停在 233 km/h、轉速卻跳了 4%，油門還在 100%，0.3 秒後才鬆開。排水蓋、跑太出去、慢漏氣三種說法，公開資料都看不見；第 1 圈與漢米爾頓（Lewis Hamilton）的接觸，第 2 圈前段的數據沒有出現可辨識的後遺症。</description>
-  </item>
-  <item>
-    <title>安東內利從第 19 位贏了蒙札，上一個在這裡奪冠的義大利人是 1966 年</title>
-    <link>https://racing.twtools.cc/articles/f1-monza-italian-drought-60-years/</link>
-    <guid>https://racing.twtools.cc/articles/f1-monza-italian-drought-60-years/</guid>
-    <pubDate>Sun, 06 Sep 2026 00:00:00 +0800</pubDate>
-    <description>義大利大獎賽從 1950 年辦到 2025 年，一屆沒缺，76 屆裡義大利籍車手只贏過 4 次，最後一次是 1966 年的 Ludovico Scarfiotti——他生涯 10 場起跑，就只贏過那一場。之後的 59 屆，42 位義大利籍車手起跑 182 次，0 勝，4 座頒獎台，其中 12 屆的發車格上連一個義大利人都沒有。60 年又 2 天之後，安東內利（Andrea Kimi Antonelli）從第 19 位發車奪冠；蒙札此前的冠軍發車位最差紀錄，是 1971 年 Peter Gethin 的第 11 位。</description>
-  </item>
-  <item>
-    <title>F1 打算把 2027 年正賽距離門檻從 305 公里降到 290 公里：摩納哥縮不縮，六篇報導各執一詞</title>
-    <link>https://racing.twtools.cc/articles/f1-2027-race-distance-290km/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2027-race-distance-290km/</guid>
-    <pubDate>Fri, 04 Sep 2026 00:00:00 +0800</pubDate>
-    <description>六篇媒體在 2026 年 9 月 3 日至 4 日報導，F1 車隊已透過電子郵件同意把 2027 年正賽距離的門檻從 305 公里降到 290 公里，但這件事還沒定案——2027 年的運動規則根本還沒發布，F1 Commission 與世界汽車運動理事會都還沒批准。原本的方案只打算縮短少數幾站，後來改成全部一起縮：兩家媒體說是怕比賽變成省油賽，另一家說是想避免不同賽事長度變成反覆出現的話題。因果其實是反過來的——為了讓引擎更有力、提高燃油流量，才需要縮短里程。摩納哥到底縮不縮，六篇報導分成不對等的兩派，本站不選邊。</description>
-  </item>
-  <item>
-    <title>諾里斯續約麥拉倫至 2030 年：他在車隊的年資有兩種算法，出賽場次也有兩種</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-norris-mclaren-2030-extension/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-norris-mclaren-2030-extension/</guid>
-    <pubDate>Mon, 31 Aug 2026 00:00:00 +0800</pubDate>
-    <description>麥拉倫官方新聞稿說諾里斯（Lando Norris）加入車隊 9 年；F1 官方網站說合約走完他會在麥拉倫待滿 12 年。同一天發布的還有第二組雙口徑：官方寫他為麥拉倫出賽 163 場，本站車手頁寫 164 站。F1 官方網站把這份合約的長度，拿去對照漢米爾頓（Lewis Hamilton）在賓士（Mercedes）待滿的 12 個賽季——同樣是 12 年，內容完全不同。本文把兩組口徑、163 場在麥拉倫史上出賽榜的位置，以及官方沒有公布的部分，逐條放回可查證的資料裡。</description>
-  </item>
-  <item>
-    <title>荷蘭站戰報：諾里斯第 1 位發車奪冠，全場領先易主 6 次</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-r12-dutch-report/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-r12-dutch-report/</guid>
-    <pubDate>Sun, 23 Aug 2026 00:00:00 +0800</pubDate>
-    <description>荷蘭籍的維斯塔潘第 0 圈退賽，羅素與漢米爾頓積分同為 183 分。</description>
-  </item>
-  <item>
-    <title>F1 夏季停工期是怎麼運作的：14 天、每隊自己挑日子，法源不在比賽規則裡</title>
-    <link>https://racing.twtools.cc/articles/f1-summer-shutdown-guide/</link>
-    <guid>https://racing.twtools.cc/articles/f1-summer-shutdown-guide/</guid>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 +0800</pubDate>
-    <description>夏季停工 14 天，起訖日各隊自己挑；本站未取得 FIA 公開的各隊日期。</description>
-  </item>
-  <item>
-    <title>2026 上半季盤點：領先者後 5 站少拿 68 分，分站冠軍從 2 人變成 5 人</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-half-season-review/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-half-season-review/</guid>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 +0800</pubDate>
-    <description>分站冠軍前 5 站 2 人、後 5 站 5 人，領先者仍領先 50 分。</description>
-  </item>
-  <item>
-    <title>大獎賽的名字，不是地名：F1 名實脫鉤的三種方式</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-bahrain-gp-in-malaysia/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-bahrain-gp-in-malaysia/</guid>
-    <pubDate>Sat, 01 Aug 2026 00:00:00 +0800</pubDate>
-    <description>2026 年 10 月，巴林大獎賽（Bahrain Grand Prix）將移師馬來西亞的雪邦國際賽道（Sepang International Circuit）舉行，官方全稱寫成「Formula 1 Gulf Air Bahrain Grand Prix in Malaysia」。這聽起來像個特例，其實不是。一場比賽的名字，從來就不等於它辦在哪裡。F1 史上至少有三種讓兩者脫鉤的方式，各自有各自的原因。雪邦這條賽道離開賽曆 9 年，這次用另一個名字回來。</description>
   </item>
 </channel>
 </rss>

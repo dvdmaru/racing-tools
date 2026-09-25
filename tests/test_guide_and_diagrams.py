@@ -148,12 +148,12 @@ class GuideLevelsTests(unittest.TestCase):
         self.assertEqual(ba.guide_levels([], FIXTURE), [])
 
     def test_shipped_config_structure_and_slugs_resolve(self):
-        """出貨設定：四個層級固定；每個 slug 必須對到真實存在的 articles/<slug>/index.md，且全庫不重複。
+        """出貨設定：五個層級固定；每個 slug 必須對到真實存在的 articles/<slug>/index.md，且全庫不重複。
         （published 開關是上線決定，不在這裡釘死；入口頁本身只列 approved 且已 build 的 slug。）"""
         g = rc.load_guide_config()
-        self.assertEqual([lv["id"] for lv in g["levels"]], ["race", "car", "strategy", "data"])
+        self.assertEqual([lv["id"] for lv in g["levels"]], ["race", "car", "strategy", "data", "team"])
         self.assertEqual([lv["title"] for lv in g["levels"]],
-                         ["看懂比賽", "看懂賽車", "看懂策略", "看懂數據"])
+                         ["看懂比賽", "看懂賽車", "看懂策略", "看懂數據", "看懂車隊"])
         slugs = [s for lv in g["levels"] for s in lv["slugs"]]
         self.assertEqual(len(slugs), len(set(slugs)), "同一篇不可出現在兩個層級或重複")
         for s in slugs:

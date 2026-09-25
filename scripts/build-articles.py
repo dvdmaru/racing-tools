@@ -250,6 +250,17 @@ def guide_levels(articles, guide=None):
     return out
 
 
+def guide_level_phrase(guide=None):
+    """「看懂比賽、看懂賽車…五個層級」——描述文字從 guide.json 的層級標題組出，不寫死層級數與名稱
+    （2026-09-25 第二批新增「看懂車隊」，寫死的「四個層級」會讓 meta description 與 llms.txt 與頁面內容不符）。"""
+    guide = rc.GUIDE if guide is None else guide
+    titles = [lv.get("title", "") for lv in guide.get("levels", []) if lv.get("title")]
+    zh = "零一二三四五六七八九十"
+    n = len(titles)
+    count = zh[n] if 0 < n <= 10 else str(n)
+    return "、".join(titles) + f"{count}個層級"
+
+
 def guide_nav_html(slug, articles, guide=None):
     """文章頁文末的「新手村 · 回入口頁」＋同層級上一篇／下一篇。slug 不在 guide 內回空字串。
 
@@ -624,7 +635,7 @@ def render_guide_index(articles, guide=None):
                           rc.breadcrumb_node([("首頁", f"{BASE}/"), (title, url)])])
     body = (f'<h1 class="idx-h1">{html_lib.escape(title)}</h1>'
             f'<div class="idx-intro">{html_lib.escape(intro)}</div>{secs}')
-    desc = (f"{title}：給第一次看 F1 的台灣讀者，依看懂比賽、看懂賽車、看懂策略、看懂數據四個層級"
+    desc = (f"{title}：給第一次看 F1 的台灣讀者，依{guide_level_phrase(guide)}"
             f"整理的入門文章，共 {len(flat)} 篇。")
     return rc.page_shell(title, desc, url, jsonld, body, "guide", extra_css=INDEX_CSS + GUIDE_CSS)
 
@@ -748,7 +759,7 @@ def render_llms_txt(articles):
     enc = render_encyclopedia_llms()
     enc_blocks = f"{enc}\n" if enc else ""
     # 新手村入口：綁 guide.json published 開關（未公開整行不輸出，llms.txt 不列 404）
-    guide_line = (f"\n- [F1 新手村]({BASE}/guide/)：依看懂比賽、看懂賽車、看懂策略、看懂數據四個層級排好的入門文章。"
+    guide_line = (f"\n- [F1 新手村]({BASE}/guide/)：依{guide_level_phrase()}排好的入門文章。"
                   if rc.GUIDE_PUBLISHED else "")
     return f"""# 賽車數據誌（racing.twtools.cc）— F1 積分榜・台北時間賽曆・各站賽果
 
