@@ -11,20 +11,20 @@
 - [賽曆 · 台北時間](https://racing.twtools.cc/calendar/)：全季各站正賽/排位/衝刺賽時刻換算台北時間（UTC+8）。
 - [各站賽果](https://racing.twtools.cc/results/)：已完賽站完整官方分類（含衝刺賽）。
 - [文章總覽](https://racing.twtools.cc/articles/)：規則解析與對照表長文，逐項標註來源。
-- [F1 新手村](https://racing.twtools.cc/guide/)：依看懂比賽、看懂賽車、看懂策略、看懂數據四個層級排好的入門文章。
+- [F1 新手村](https://racing.twtools.cc/guide/)：依看懂比賽、看懂賽車、看懂策略、看懂數據、看懂車隊五個層級排好的入門文章。
 
 ## 最新文章
 
+- [下雨的 F1 怎麼跑：雨胎、安全車起跑，還有比賽被叫停的時候](https://racing.twtools.cc/articles/f1-101-wet-weather/)（2026-09-25）
 - [F1 輪胎為什麼分軟中硬：同一款 C3，在澳洲站是硬胎，在日本站是軟胎](https://racing.twtools.cc/articles/f1-101-tyres/)（2026-09-25）
 - [F1 轉播左邊那一欄怎麼讀：紫色、綠色、間隔與三個英文字母縮寫](https://racing.twtools.cc/articles/f1-101-timing-tower/)（2026-09-25）
+- [賽道旁那排螢幕後面是誰：一支 F1 車隊怎麼分工](https://racing.twtools.cc/articles/f1-101-team-roles/)（2026-09-25）
+- [車隊無線電與遙測：車手在講話，工程師在看什麼](https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/)（2026-09-25）
+- [安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止](https://racing.twtools.cc/articles/f1-101-safety-car/)（2026-09-25）
 - [F1 大獎賽週末怎麼過：三天、五場考試、一場正賽](https://racing.twtools.cc/articles/f1-101-race-weekend/)（2026-09-25）
+- [F1 正賽怎麼起跑：暖胎圈、五盞紅燈與搶跑罰則](https://racing.twtools.cc/articles/f1-101-race-start/)（2026-09-25）
 - [F1 排位賽怎麼淘汰：三節、兩次砍人、一個發車位置](https://racing.twtools.cc/articles/f1-101-qualifying/)（2026-09-25）
-- [F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人](https://racing.twtools.cc/articles/f1-101-points-championship/)（2026-09-25）
-- [先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut](https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/)（2026-09-25）
-- [F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績](https://racing.twtools.cc/articles/f1-101-penalties/)（2026-09-25）
-- [F1 賽道旁的旗子與燈號：每一面代表什麼、車手該怎麼做](https://racing.twtools.cc/articles/f1-101-flags/)（2026-09-25）
-- [F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地](https://racing.twtools.cc/articles/f1-101-downforce/)（2026-09-25）
-- [F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑](https://racing.twtools.cc/articles/f1-101-apex-racing-line/)（2026-09-25）
+- [F1 動力單元是什麼：引擎、馬達與電池怎麼分工，決定車手何時有力氣](https://racing.twtools.cc/articles/f1-101-power-unit/)（2026-09-25）
 
 ## 文章與更新
 

@@ -694,6 +694,96 @@
       "approved_by": "charlie",
       "approved_at": "2026-09-25T18:00:00+08:00",
       "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-race-start",
+      "article_sha256": "d196f6c8960eabe61edf7ed6b08eccad5383ca55313dc2d3b5741dce58fb7e9b",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-safety-car",
+      "article_sha256": "660901d4056bcb5781ee27a5bd762dd281a6d098f8db15c402c4807cb18517b7",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-car-anatomy",
+      "article_sha256": "2fe73862b1580569520042528f7566624bd09ee8f30f264ce7fdced8817be00e",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-power-unit",
+      "article_sha256": "8e120b3bcba1fe40e4473734bd8ea07f8cad1d9c63c05e18a5c9d78eb27b06ca",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-overtaking",
+      "article_sha256": "d8924d6ac8e74e5f8bec4a1baf19a5d493ccb1c2600bb5efc96e573405d533c8",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-car-balance",
+      "article_sha256": "e0b82144c91b1609e2f53d1ffd117cde700c63b266d20e47f2772148808fa1af",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-wet-weather",
+      "article_sha256": "3fc73992c35f4a5717deb00f03f1f45cb1a5c02068f8fe0a78a1ab4d8f8bc954",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-team-radio-telemetry",
+      "article_sha256": "57a4fd3117adcae6d7aed46b2c770aa6fc429cde42f167e1dcf933a882cf3310",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-cost-cap",
+      "article_sha256": "cdf1f521f0a845a6be69084bf7ad2666c6c3e8e01092517467191086c83b5c29",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+    },
+    {
+      "slug": "f1-101-team-roles",
+      "article_sha256": "473308d6e68227e64907aebb9cda876cae87b154662f3994c2929dfbdbf202e4",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
     }
   ]
 }
