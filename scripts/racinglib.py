@@ -50,6 +50,23 @@ CURRENT_SEASON = int(ENCYCLOPEDIA.get("current_season", SEASON))
 TAIPEI = ZoneInfo("Asia/Taipei") if ZoneInfo else None
 
 
+# ---------- 新手村 /guide/ 單一設定源 config/guide.json ----------
+# published 開關比照百科線 default-deny：非 True 一律視為未公開＝入口頁、導覽列、首頁磚、
+# llms.txt、sitemap 全暗（slugs 還是空的時候就掛導覽，等於全站每頁多一條通往空頁的連結）。
+# 入口頁另外只列「approved 且已 build 出來」的 slug（見 build-articles.guide_levels）。
+def load_guide_config() -> dict:
+    p = ROOT / "config" / "guide.json"
+    try:
+        g = json.loads(p.read_text(encoding="utf-8"))
+        return g if isinstance(g, dict) else {}
+    except (OSError, ValueError):  # 缺檔／壞檔 fail-safe＝未公開
+        return {}
+
+
+GUIDE = load_guide_config()
+GUIDE_PUBLISHED = GUIDE.get("published", False) is True
+
+
 # ---------- GA4（未開通前 site.json 無 ga_id → 空字串，開通後填 id 即全站生效） ----------
 
 def ga_snippet(site: dict = None) -> str:
@@ -333,7 +350,12 @@ def nav_item_visible(item: dict) -> bool:
     ——導覽列補了新入口、頁尾忘了補 gate，未公開時全站每一頁就多一條 404，而站不會壞、
     測試不會紅。同一條規則只能有一份實作。
     """
-    return not (item.get("requires") == "encyclopedia" and not ENCYCLOPEDIA_PUBLISHED)
+    req = item.get("requires")
+    if req == "encyclopedia":
+        return ENCYCLOPEDIA_PUBLISHED
+    if req == "guide":
+        return GUIDE_PUBLISHED
+    return True
 
 
 def site_header_html(active: str, site: dict = None) -> str:
@@ -490,7 +512,8 @@ def parse_faq(body: str):
 def extract_excerpt(body: str, length: int = 120) -> str:
     for para in body.split("\n\n"):
         p = _strip_inline_md(re.sub(r"\s+", " ", para)).strip()
-        if p and not p.startswith("#") and not p.startswith("|") and not p.startswith("---"):
+        if (p and not p.startswith("#") and not p.startswith("|") and not p.startswith("---")
+                and not p.startswith("<figure")):   # 內嵌 SVG 示意圖不當摘要
             return p[:length]
     return ""
 
@@ -819,6 +842,35 @@ ARTICLE_CSS = """
 .prose th, .prose td { padding: 8px 8px; border-bottom: 1px solid var(--line); text-align: left; }
 .prose th { color: var(--dim); font-weight: 600; font-size: 12.5px; white-space: nowrap; }
 .prose .tbl-scroll, .prose-tblwrap { overflow-x: auto; }
+
+/* ---- 示意圖（內嵌 SVG，2026-09-25）----
+   作者規則見 scripts/prompts/external-sourced.md「示意圖（SVG）」。
+   色彩一律走下列類別（全部是站上既有 CSS 變數）＝跟 5 個主題一起變；SVG 內不寫死 hex。
+   類別命名：.d-<色> ＝ fill；.d-<色>-s ＝ stroke；.d-none ＝ fill:none。
+   d-line 用 --line-2（--line 只有 12% 不透明，當線條幾乎看不見；它留給 .d-surface 的邊框級裝飾）。 */
+.prose figure.diagram { margin: 26px auto; max-width: 100%; text-align: center; }
+.prose figure.diagram svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.prose figure.diagram figcaption { font-size: 12.5px; line-height: 1.6; color: var(--dim); margin-top: 10px; }
+:where(.prose figure.diagram svg text) { font-family: inherit; fill: var(--fg); }  /* :where＝零權重，.d-dim 等類別才蓋得過 */
+.d-fg { fill: var(--fg); }      .d-fg-s { stroke: var(--fg); }
+.d-dim { fill: var(--dim); }    .d-dim-s { stroke: var(--dim); }
+.d-line { fill: var(--line-2); } .d-line-s { stroke: var(--line-2); }
+.d-accent { fill: var(--accent); } .d-accent-s { stroke: var(--accent); }
+.d-surface { fill: var(--surface); } .d-surface-s { stroke: var(--surface); }
+.d-none { fill: none; }
+/* 旗色語意類別（固定色）：只給「旗號」這類圖案本身就是那個顏色的示意圖用（黃／紅／藍／綠／白／黑／橘）。
+   固定色不跟主題變；5 個主題底色都偏淺，所以一律再加 .d-flag-s 外框（--fg），白旗與淺色旗才不會消失。 */
+.d-flag-yellow { fill: #f2c200; } .d-flag-red { fill: #d3202a; } .d-flag-blue { fill: #4aa3df; }
+.d-flag-green { fill: #1f9d55; }  .d-flag-white { fill: #ffffff; } .d-flag-black { fill: #111111; }
+.d-flag-orange { fill: #f28c1c; } .d-flag-purple { fill: #8a3ffc; }  /* purple＝計時畫面的「全場最快」扇區色 */
+.d-flag-s { stroke: var(--fg); stroke-width: 1.5; }
+
+/* ---- 新手村文末導覽（文章屬於 config/guide.json 時才輸出）---- */
+.guide-nav { margin-top: 44px; }
+.guide-nav .gn-head { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 14px; align-items:baseline;
+  font-size: 13px; color: var(--dim); }
+.guide-nav .gn-head a { color: var(--accent); font-weight: 700; text-decoration: none; }
+.guide-nav .art-nav { margin-top: 10px; }
 .art-nav { display:flex; gap:12px; margin-top: 44px; }
 .art-nav a { flex:1; border:1px solid var(--line); border-radius: 12px; padding: 12px 16px;
   text-decoration:none; color: var(--fg-soft); font-size: 13.5px; background: var(--surface); }

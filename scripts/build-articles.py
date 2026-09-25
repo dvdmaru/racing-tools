@@ -227,7 +227,60 @@ def _nav_title(title: str, limit: int = 40) -> str:
     return cut.rstrip(JUNK) + "…"
 
 
-def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=None):
+# ---------- 新手村 /guide/（config/guide.json；文章 URL 不動，仍是 /articles/<slug>/） ----------
+
+def guide_levels(articles, guide=None):
+    """依 guide.json 的層級與 slug 順序，回 [(level, [article, ...])]。
+
+    只收「approved 且已 build 出來」的文章（articles 本身就是過了簽核 gate 的清單）：
+    guide.json 列了但沒過簽核／被下架的 slug 靜默略過＝入口頁零死連結。空層級不回傳。
+    同一 slug 在同層重複只算一次。
+    """
+    guide = rc.GUIDE if guide is None else guide
+    by_slug = {a["slug"]: a for a in articles}
+    out = []
+    for lv in guide.get("levels", []):
+        items, seen = [], set()
+        for s in lv.get("slugs", []):
+            if s in by_slug and s not in seen:
+                seen.add(s)
+                items.append(by_slug[s])
+        if items:
+            out.append((lv, items))
+    return out
+
+
+def guide_nav_html(slug, articles, guide=None):
+    """文章頁文末的「新手村 · 回入口頁」＋同層級上一篇／下一篇。slug 不在 guide 內回空字串。
+
+    放在既有 .art-nav（時間軸前後篇）**之前**：兩組導覽語意不同（層級閱讀順序 vs 發布時間），
+    分開兩塊、標籤明寫「新手村」，讀者不會把兩種上一篇混在一起。
+    """
+    guide = rc.GUIDE if guide is None else guide
+    for lv, items in guide_levels(articles, guide):
+        slugs = [a["slug"] for a in items]
+        if slug not in slugs:
+            continue
+        i = slugs.index(slug)
+        parts = []
+        if i > 0:
+            a = items[i - 1]
+            parts.append(f'<a href="/articles/{a["slug"]}/"><span class="lbl">← 新手村上一篇</span>'
+                         f'{html_lib.escape(_nav_title(a["meta"].get("title", "")))}</a>')
+        if i + 1 < len(items):
+            a = items[i + 1]
+            parts.append(f'<a href="/articles/{a["slug"]}/" style="text-align:right">'
+                         f'<span class="lbl">新手村下一篇 →</span>'
+                         f'{html_lib.escape(_nav_title(a["meta"].get("title", "")))}</a>')
+        head = (f'<div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a>'
+                f'<span>{html_lib.escape(lv.get("title", ""))} 第 {i + 1} / {len(items)} 篇</span></div>')
+        pager = f'<div class="art-nav gn-pager">{"".join(parts)}</div>' if parts else ""
+        return f'<div class="guide-nav">{head}{pager}</div>'
+    return ""
+
+
+def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=None,
+                   guide_nav=""):
     _st, _stmod = _stability(meta, slug)
     status_html = _stmod.status_line_html(_st)
     stability_html = _stmod.block_html(_st)
@@ -247,6 +300,7 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
         nav_parts.append(f'<a href="/articles/{next_nav["slug"]}/" style="text-align:right"><span class="lbl">後一篇 →</span>'
                          f'{html_lib.escape(_nav_title(next_nav["meta"].get("title", "")))}</a>')
     nav_html = f'<div class="art-nav">{"".join(nav_parts)}</div>' if nav_parts else ""
+    nav_html = guide_nav + nav_html   # 新手村導覽在前；不動 template，非新手村文章 byte 不變
 
     art_node = {
         "@type": "Article", "@id": f"{url}#article",
@@ -465,6 +519,15 @@ def render_home(articles):
                   '<a class="tile" href="/circuits/"><span class="ic">📍</span>'
                   f'<span><span class="tt">賽道</span><span class="ds">{_circuit_tile_gist()}</span></span><span class="go">→</span></a>'
                   '</div>')
+    # 新手村入口磚：綁 guide.json 的 published 開關（未公開整段不輸出，避免首頁掛 404）
+    if rc.GUIDE_PUBLISHED:
+        tiles += ('<div class="rc-sec"><h2>新手入門</h2><span class="ln"></span></div>'
+                  '<div class="tiles">'
+                  '<a class="tile" href="/guide/"><span class="ic">🎓</span>'
+                  '<span><span class="tt">F1 新手村</span>'
+                  '<span class="ds">看懂比賽 · 賽車 · 策略 · 數據，循序入門</span></span>'
+                  '<span class="go">→</span></a>'
+                  '</div>')
     art_sec = ""
     if articles:
         cards = "".join(_idx_card(a) for a in articles[:6])
@@ -518,6 +581,52 @@ def render_articles_index(articles):
             f'<div class="idx-grid">{cards}</div>')
     return rc.page_shell("深度文章", f"賽車數據誌深度文章共 {len(articles)} 篇：F1 規則解析、譯名對照、賽站專題。",
                          url, jsonld, body, "articles", extra_css=INDEX_CSS)
+
+
+GUIDE_CSS = """
+.gd-level { margin: 34px 0 6px; }
+.gd-level h2 { font-family: var(--font-display); font-size: 22px; font-style: italic; margin-bottom: 4px; }
+.gd-level .gd-no { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 2px; }
+.gd-blurb { color: var(--dim); font-size: 13.5px; margin-bottom: 14px; }
+.gd-empty { color: var(--dim); font-size: 14px; border:1px dashed var(--line-2); border-radius: 12px; padding: 18px 20px; }
+"""
+
+
+def render_guide_index(articles, guide=None):
+    """/guide/ 新手村入口頁。只列 approved 且已 build 的 slug；空層級不渲染。
+
+    版型比照 render_articles_index（同一組 idx-card／CollectionPage／麵包屑）。
+    kicker 沿用文章 type=guide 既有的「長青指南」標籤，不新增 type。
+    """
+    guide = rc.GUIDE if guide is None else guide
+    url = f"{BASE}/guide/"
+    title = guide.get("title") or "F1 新手村"
+    intro = guide.get("intro", "")
+    levels = guide_levels(articles, guide)
+    flat = [a for _lv, items in levels for a in items]
+    if levels:
+        secs = ""
+        for n, (lv, items) in enumerate(levels, 1):
+            blurb = (f'<p class="gd-blurb">{html_lib.escape(lv["blurb"])}</p>' if lv.get("blurb") else "")
+            secs += (f'<section class="gd-level" id="lv-{html_lib.escape(str(lv.get("id", n)))}">'
+                     f'<div class="gd-no">LEVEL {n}</div>'
+                     f'<h2>{html_lib.escape(lv.get("title", ""))}</h2>{blurb}'
+                     f'<div class="idx-grid">{"".join(_idx_card(a) for a in items)}</div></section>')
+    else:
+        secs = '<p class="gd-empty">新手村整理中，文章通過查證後會依層級陸續上架。</p>'
+    item_list = {"@type": "ItemList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "url": f"{BASE}/articles/{a['slug']}/",
+         "name": a["meta"].get("title", a["slug"])} for i, a in enumerate(flat)]}
+    coll = {"@type": "CollectionPage", "@id": url, "url": url,
+            "name": f"{SITE['org_name']} {title}", "inLanguage": "zh-Hant",
+            "isPartOf": {"@id": f"{BASE}/#website"}, "mainEntity": item_list}
+    jsonld = rc.graph_ld([rc.org_node(), rc.website_node(), coll,
+                          rc.breadcrumb_node([("首頁", f"{BASE}/"), (title, url)])])
+    body = (f'<h1 class="idx-h1">{html_lib.escape(title)}</h1>'
+            f'<div class="idx-intro">{html_lib.escape(intro)}</div>{secs}')
+    desc = (f"{title}：給第一次看 F1 的台灣讀者，依看懂比賽、看懂賽車、看懂策略、看懂數據四個層級"
+            f"整理的入門文章，共 {len(flat)} 篇。")
+    return rc.page_shell(title, desc, url, jsonld, body, "guide", extra_css=INDEX_CSS + GUIDE_CSS)
 
 
 # ---------- RSS ----------
@@ -638,6 +747,9 @@ def render_llms_txt(articles):
         for a in articles[:10])
     enc = render_encyclopedia_llms()
     enc_blocks = f"{enc}\n" if enc else ""
+    # 新手村入口：綁 guide.json published 開關（未公開整行不輸出，llms.txt 不列 404）
+    guide_line = (f"\n- [F1 新手村]({BASE}/guide/)：依看懂比賽、看懂賽車、看懂策略、看懂數據四個層級排好的入門文章。"
+                  if rc.GUIDE_PUBLISHED else "")
     return f"""# 賽車數據誌（racing.twtools.cc）— F1 積分榜・台北時間賽曆・各站賽果
 
 > 非官方的繁體中文一級方程式（F1）數據與內容站。提供車手/車隊積分榜、全季賽曆台北時間對照、各站官方分類賽果三個每週自動更新的資料頁，以及規則解析、譯名對照等長青專題。內容以繁體中文撰寫、台灣慣用譯名、台北時間標示，面向台灣讀者。
@@ -650,7 +762,7 @@ def render_llms_txt(articles):
 - [積分榜]({BASE}/standings/)：車手與車隊年度積分，台灣慣用譯名＋原文對照。
 - [賽曆 · 台北時間]({BASE}/calendar/)：全季各站正賽/排位/衝刺賽時刻換算台北時間（UTC+8）。
 - [各站賽果]({BASE}/results/)：已完賽站完整官方分類（含衝刺賽）。
-- [文章總覽]({BASE}/articles/)：規則解析與對照表長文，逐項標註來源。
+- [文章總覽]({BASE}/articles/)：規則解析與對照表長文，逐項標註來源。{guide_line}
 
 ## 最新文章
 
@@ -842,7 +954,9 @@ def build():
         prev_nav = articles[i + 1] if i + 1 < len(articles) else None  # 較舊
         next_nav = articles[i - 1] if i > 0 else None                  # 較新
         html_out = render_article(a["meta"], a["body_html"], a["slug"], a["excerpt"], a["faq"],
-                                  prev_nav=prev_nav, next_nav=next_nav)
+                                  prev_nav=prev_nav, next_nav=next_nav,
+                                  guide_nav=(guide_nav_html(a["slug"], articles)
+                                             if rc.GUIDE_PUBLISHED else ""))
         (a["out_dir"] / "index.html").write_text(html_out, encoding="utf-8")
         lk = a["links"]
         rlk = a["round_links"]
@@ -858,6 +972,14 @@ def build():
     (PUB / "feed.xml").write_text(render_feed(articles), encoding="utf-8")
     (PUB / "errata").mkdir(parents=True, exist_ok=True)
     (PUB / "errata" / "index.html").write_text(render_errata_page(articles), encoding="utf-8")
+    # /guide/：未公開＝不生成且清掉舊產物（比照百科 default-deny；不留一個沒人連的空頁）
+    guide_dir = PUB / "guide"
+    if rc.GUIDE_PUBLISHED:
+        guide_dir.mkdir(parents=True, exist_ok=True)
+        (guide_dir / "index.html").write_text(render_guide_index(articles), encoding="utf-8")
+    elif guide_dir.exists():
+        shutil.rmtree(guide_dir)
+        print("🗑  removed unpublished /guide/ output")
     (PUB / "llms.txt").write_text(render_llms_txt(articles), encoding="utf-8")
     (PUB / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
@@ -869,7 +991,8 @@ def build():
     # 靜默吞掉 374 頁百科（見 build-sitemap.py 的事故註解）。少一份要同步的名單少一個坑。
     urls = ([f"{BASE}/", f"{BASE}/articles/"]
             + [f"{BASE}/articles/{a['slug']}/" for a in articles]
-            + [f"{BASE}/errata/"])
+            + [f"{BASE}/errata/"]
+            + ([f"{BASE}/guide/"] if rc.GUIDE_PUBLISHED else []))   # 同 /errata/：掛 articles owner
     rc.write_sitemap_part("articles", urls)
     print(f"🏠 index + articles index + feed + errata + llms.txt + sitemap part "
           f"({len(articles)} articles) → {PUB}/")

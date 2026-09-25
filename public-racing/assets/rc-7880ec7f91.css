@@ -269,6 +269,35 @@ a { color: var(--accent); } a:hover { color: var(--accent-bright); }
 .prose th, .prose td { padding: 8px 8px; border-bottom: 1px solid var(--line); text-align: left; }
 .prose th { color: var(--dim); font-weight: 600; font-size: 12.5px; white-space: nowrap; }
 .prose .tbl-scroll, .prose-tblwrap { overflow-x: auto; }
+
+/* ---- 示意圖（內嵌 SVG，2026-09-25）----
+   作者規則見 scripts/prompts/external-sourced.md「示意圖（SVG）」。
+   色彩一律走下列類別（全部是站上既有 CSS 變數）＝跟 5 個主題一起變；SVG 內不寫死 hex。
+   類別命名：.d-<色> ＝ fill；.d-<色>-s ＝ stroke；.d-none ＝ fill:none。
+   d-line 用 --line-2（--line 只有 12% 不透明，當線條幾乎看不見；它留給 .d-surface 的邊框級裝飾）。 */
+.prose figure.diagram { margin: 26px auto; max-width: 100%; text-align: center; }
+.prose figure.diagram svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.prose figure.diagram figcaption { font-size: 12.5px; line-height: 1.6; color: var(--dim); margin-top: 10px; }
+:where(.prose figure.diagram svg text) { font-family: inherit; fill: var(--fg); }  /* :where＝零權重，.d-dim 等類別才蓋得過 */
+.d-fg { fill: var(--fg); }      .d-fg-s { stroke: var(--fg); }
+.d-dim { fill: var(--dim); }    .d-dim-s { stroke: var(--dim); }
+.d-line { fill: var(--line-2); } .d-line-s { stroke: var(--line-2); }
+.d-accent { fill: var(--accent); } .d-accent-s { stroke: var(--accent); }
+.d-surface { fill: var(--surface); } .d-surface-s { stroke: var(--surface); }
+.d-none { fill: none; }
+/* 旗色語意類別（固定色）：只給「旗號」這類圖案本身就是那個顏色的示意圖用（黃／紅／藍／綠／白／黑／橘）。
+   固定色不跟主題變；5 個主題底色都偏淺，所以一律再加 .d-flag-s 外框（--fg），白旗與淺色旗才不會消失。 */
+.d-flag-yellow { fill: #f2c200; } .d-flag-red { fill: #d3202a; } .d-flag-blue { fill: #4aa3df; }
+.d-flag-green { fill: #1f9d55; }  .d-flag-white { fill: #ffffff; } .d-flag-black { fill: #111111; }
+.d-flag-orange { fill: #f28c1c; }
+.d-flag-s { stroke: var(--fg); stroke-width: 1.5; }
+
+/* ---- 新手村文末導覽（文章屬於 config/guide.json 時才輸出）---- */
+.guide-nav { margin-top: 44px; }
+.guide-nav .gn-head { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 14px; align-items:baseline;
+  font-size: 13px; color: var(--dim); }
+.guide-nav .gn-head a { color: var(--accent); font-weight: 700; text-decoration: none; }
+.guide-nav .art-nav { margin-top: 10px; }
 .art-nav { display:flex; gap:12px; margin-top: 44px; }
 .art-nav a { flex:1; border:1px solid var(--line); border-radius: 12px; padding: 12px 16px;
   text-decoration:none; color: var(--fg-soft); font-size: 13.5px; background: var(--surface); }

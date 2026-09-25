@@ -604,6 +604,96 @@
       "approved_by": "charlie",
       "approved_at": "2026-09-22T12:00:00+08:00",
       "note": "選題台 2026-09-22 R1（18 分，F1 歷代最年輕世界冠軍排行，查核等級＝查核桌，過期日 2026-10-06）。Charlie 指示 Conductor 模式、優先用 agy（Terra 週用量緊，隔日下午才重置，本輪未派）。歷代 10 位冠軍的生日與封王站比賽日期，指揮位直接以 WebFetch 逐一讀 Wikipedia 一手條目核實（Sebastian Vettel、Max Verstappen、Lewis Hamilton、Fernando Alonso、Emerson Fittipaldi、Michael Schumacher、Lando Norris、Niki Lauda、Jacques Villeneuve、Jim Clark），年齡（年＋天）由指揮位以 Python 逐日計算，不採信 F1.com／Motorsport Magazine 兩篇既有排行文章預先算好的天數；抓到並記錄 3 處二手來源分歧：Vettel（F1.com 133 天 vs 自算 134 天，與 Motorsport Magazine、金氏世界紀錄一致）、Verstappen（F1.com 同篇文章內導言 66 天與表格 73 天自相矛盾，自算 73 天與表格及 Motorsport Magazine 一致）、Jim Clark（Motorsport Magazine 174 天 vs 自算 188 天，差 14 天來源不明，採自算值）。agy 研究席初查時提出『GPblog 152 分推算數學上不可能』的反駁，指揮位覆核發現 agy 漏算雪邦站（第 16 站），與本站已發布、經多輪查核的 f1-2026-antonelli-clinch-arithmetic 一文矛盾，不採用 agy 該段推論，改直接引用既有文章『新加坡是算術上最早封王站』的結論（登記於 facts pack 的 checked_not_used）。Antonelli 現有積分（西班牙站後領先羅素 81 分）、2026 官方賽曆（新加坡 10/11、墨西哥城 11/1、阿布達比 12/6）取自本站 jolpica-f1 落地資料，2026-09-22 讀取。agy 查核桌對成稿逐項複驗（10 位冠軍生日/封王日/年齡、4 處二手來源分歧敘述、Antonelli 三情境年齡與比維特爾年輕天數的獨立重算、確定語氣掃描、無名歸因掃描、『本站』出現次數、GPblog 段落是否誤入正文），7 項全數通過。verify-sources／verify-numbers／check-links（24 條連結全 200）／check-zh／`python3 -m unittest discover -s tests`（917+ 項）全綠。Charlie 以合併 PR 為核准發布的授權行為。 2026-09-22 修正：全文測試套件抓到標題層缺盤古之白（title/description/og:title 的「16年」「3年」數字緊貼中文），已改為「16 年」「3 年」並重簽 article_sha256；facts_sha256 不變（facts pack 未動）。 另補：build-articles.py 對本文偵測到 12 位車手互鏈後，跑 regen-encyclopedia.py --full --publish 同步百科車手頁「相關報導」區塊（vettel/hamilton/alonso/max_verstappen/emerson_fittipaldi/michael_schumacher/norris/lauda/villeneuve/clark/antonelli/russell 共 12 頁），僅新增一行連結，其餘內容 byte 級不變（tests.test_drivers_gen 的 determinism gate 驗證過）；同步 data/f1/page-fingerprints.json 12 筆。 2026-09-23 Terra 第二席異源複核（Charlie 指示「Terra 只給你用應該夠，需要就派 Terra」後派）：查出 1 個本站算術 BLOCKER——「維特爾保持16年」用年份直接相減（2026-2010），未做週年日比較，封王日 2010-11-14 到查證日 2026-09-22 尚未滿 16 週年（要到 2026-11-14 才滿），正確是 15 年又 312 天；已全文改為「保持超過 15 年」（標題／副標／H1／內文／封面皆改），facts pack 補記錯誤根因。另指出 H2①開場把四處數字出入全部歸因成「兩篇文章互相不同」不準確——Verstappen 那筆其實是 F1.com 自己文章內部前後矛盾（非兩刊之間）、Jim Clark 那筆是 Motorsport Magazine 與本站重算的落差（F1.com 未列此人，該篇只列前 5 名），F1.com／Motorsport Magazine 之間真正互相矛盾的只有 Vettel 與 Alonso 兩筆；已重寫該節開場段精確區分四種不同性質的落差。其餘各項（10 位冠軍生日封王日年齡自算、Antonelli 三情境天數差、GPblog 段落未誤入正文、must_not_claim 全數未踩、與既有封王算術文的重疊已交代）Terra 逐項複核全數通過。article／facts sha256 重簽。"
+    },
+    {
+      "slug": "f1-101-apex-racing-line",
+      "article_sha256": "2e7db8d63e48d8a2f11517d477e90af1ea891f67f81c730307f1c909a6d474c2",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-downforce",
+      "article_sha256": "705bc7367bdce57f80ec2cf9812b7928fdb17b2ae834069a4d9ec9a3c52f3868",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-flags",
+      "article_sha256": "a590cc2170d58e4503ec3222654389c4661d0660b244f30d1431eda28dc18053",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-penalties",
+      "article_sha256": "9ac658745bc49ff70ef2585994556555de05f3c1ab84a02b484710fb832de27c",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-pit-stop-strategy",
+      "article_sha256": "dad74d217f66282a76aeaffdc05057392ce7929573b7f6a4287dd1ad013f47d4",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-points-championship",
+      "article_sha256": "ebc7c0620cb7083a28bb7c3c6f64d2fb08adff71e67be9a1e47f295c1ea72aa2",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-qualifying",
+      "article_sha256": "eed5e9d1358f72c4093baaad05ae3aa3e3bac547e41d7eec97b9f8384e64284b",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-race-weekend",
+      "article_sha256": "377c8812dc57c14d5fb6f972e7fb0ff7ee9d31864f41c399a779ec88f3753faf",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-timing-tower",
+      "article_sha256": "719519ce5810c5e14a6af8671e590bcf0d66c51274d92913520e0c93f91c034e",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+    },
+    {
+      "slug": "f1-101-tyres",
+      "article_sha256": "412af304a5e12a9303d197192e4db92e1fe78c0b6c27b915b7974aea9ac92b3d",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-25T18:00:00+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
     }
   ]
 }

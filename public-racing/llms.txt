@@ -14,16 +14,16 @@
 
 ## 最新文章
 
-- [維特爾保持超過 15 年的最年輕世界冠軍紀錄，安東內利最快這站就能打破](https://racing.twtools.cc/articles/f1-youngest-world-champions-vettel-antonelli/)（2026-09-22）
-- [安東內利最快在新加坡封王，前提是三個週末對羅素淨賺 70 分](https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/)（2026-09-21）
-- [勒克萊爾在 205 km/h 就踩下全油門，比自己上一圈早了 18 km/h](https://racing.twtools.cc/articles/f1-2026-r13-leclerc-parabolica-telemetry/)（2026-09-11）
-- [安東內利從第 19 位贏了蒙札，上一個在這裡奪冠的義大利人是 1966 年](https://racing.twtools.cc/articles/f1-monza-italian-drought-60-years/)（2026-09-06）
-- [F1 打算把 2027 年正賽距離門檻從 305 公里降到 290 公里：摩納哥縮不縮，六篇報導各執一詞](https://racing.twtools.cc/articles/f1-2027-race-distance-290km/)（2026-09-04）
-- [諾里斯續約麥拉倫至 2030 年：他在車隊的年資有兩種算法，出賽場次也有兩種](https://racing.twtools.cc/articles/f1-2026-norris-mclaren-2030-extension/)（2026-08-31）
-- [荷蘭站戰報：諾里斯第 1 位發車奪冠，全場領先易主 6 次](https://racing.twtools.cc/articles/f1-2026-r12-dutch-report/)（2026-08-23）
-- [F1 夏季停工期是怎麼運作的：14 天、每隊自己挑日子，法源不在比賽規則裡](https://racing.twtools.cc/articles/f1-summer-shutdown-guide/)（2026-08-11）
-- [2026 上半季盤點：領先者後 5 站少拿 68 分，分站冠軍從 2 人變成 5 人](https://racing.twtools.cc/articles/f1-2026-half-season-review/)（2026-08-11）
-- [大獎賽的名字，不是地名：F1 名實脫鉤的三種方式](https://racing.twtools.cc/articles/f1-2026-bahrain-gp-in-malaysia/)（2026-08-01）
+- [F1 輪胎為什麼分軟中硬：同一款 C3，在澳洲站是硬胎，在日本站是軟胎](https://racing.twtools.cc/articles/f1-101-tyres/)（2026-09-25）
+- [F1 轉播左邊那一欄怎麼讀：紫色、綠色、間隔與三個英文字母縮寫](https://racing.twtools.cc/articles/f1-101-timing-tower/)（2026-09-25）
+- [F1 大獎賽週末怎麼過：三天、五場考試、一場正賽](https://racing.twtools.cc/articles/f1-101-race-weekend/)（2026-09-25）
+- [F1 排位賽怎麼淘汰：三節、兩次砍人、一個發車位置](https://racing.twtools.cc/articles/f1-101-qualifying/)（2026-09-25）
+- [F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人](https://racing.twtools.cc/articles/f1-101-points-championship/)（2026-09-25）
+- [先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut](https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/)（2026-09-25）
+- [F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績](https://racing.twtools.cc/articles/f1-101-penalties/)（2026-09-25）
+- [F1 賽道旁的旗子與燈號：每一面代表什麼、車手該怎麼做](https://racing.twtools.cc/articles/f1-101-flags/)（2026-09-25）
+- [F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地](https://racing.twtools.cc/articles/f1-101-downforce/)（2026-09-25）
+- [F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑](https://racing.twtools.cc/articles/f1-101-apex-racing-line/)（2026-09-25）
 
 ## 文章與更新
 

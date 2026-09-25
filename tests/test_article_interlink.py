@@ -199,6 +199,39 @@ class LinkifyTests(unittest.TestCase):
         self.assertEqual([d for d, _s, _t in links], ["norris"])
         self.assertIn('<p><a href="/drivers/norris/">諾里斯</a>拿下', out)
 
+    # --- 示意圖（內嵌 SVG）保護 ---
+
+    DIAGRAM = ('<figure class="diagram"><svg viewBox="0 0 200 100" role="img" aria-label="示意">'
+               "<title>示意</title><desc>維斯塔潘</desc>"
+               '<g><rect x="1" y="1" width="9" height="9"/>'
+               '<text x="5" y="5" class="d-fg">維斯塔潘</text></g></svg>'
+               "<figcaption>圖：維斯塔潘的位置</figcaption></figure>")
+
+    def test_svg_figure_text_is_not_linked(self):
+        """陽性：figure／svg 內的車手名（<text>、<title>、<desc>、figcaption）一個都不連。"""
+        out, links = il.linkify(self.DIAGRAM)
+        self.assertEqual(links, [])
+        self.assertEqual(out, self.DIAGRAM)
+
+    def test_svg_does_not_consume_first_occurrence(self):
+        """陰性對照：同名出現在正文段落仍要連；圖裡的那次不佔「每篇只連第一次」的名額。"""
+        out, links = il.linkify(self.DIAGRAM + "<p>維斯塔潘在最後一圈追上了諾里斯。</p>")
+        self.assertEqual([d for d, _s, _t in links], ["max_verstappen", "norris"])
+        self.assertEqual(self._link_hrefs(out), ["/drivers/max-verstappen/", "/drivers/norris/"])
+        fig = out.split("</figure>")[0]
+        self.assertNotIn("<a ", fig)
+        self.assertIn("<p><a ", out.split("</figure>")[1])
+
+    def test_svg_protected_for_team_linker_too(self):
+        """車手／分站／車隊三支互鏈器共用 PROTECTED_TAGS，圖內一律不連；圖外同名仍連（陰性對照）。"""
+        fig = ('<figure class="diagram"><svg viewBox="0 0 10 10"><text>法拉利</text></svg>'
+               "<figcaption>法拉利</figcaption></figure>")
+        out, tl = il.linkify_teams(fig)
+        self.assertEqual((out, tl), (fig, []))
+        out2, tl2 = il.linkify_teams(fig + "<p>法拉利拿下勝利。</p>")
+        self.assertEqual(out2.split("</figure>")[0] + "</figure>", fig)
+        self.assertTrue(tl2, "圖外的車隊名仍須被連（否則這條測的是別的東西）")
+
     def test_ambiguous_string_is_not_linked(self):
         out, links = il.linkify("<p>希爾與羅斯堡都拿過冠軍。</p>")
         self.assertEqual(links, [])
