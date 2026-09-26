@@ -20,6 +20,13 @@
     <description>F1 輪胎沒有最好的一款，只有此刻最划算的一款。Pirelli 自己的說法是，最硬的胎耐熱、能跑很長一段，代價是峰值表現較低。再加上一條乾地正賽必須用過兩種乾胎規格的規則，賽事策略就是在快與久之間做交易。</description>
   </item>
   <item>
+    <title>賽道界線：四輪出了白線會怎樣，為什麼裁判會盯著那條線</title>
+    <link>https://racing.twtools.cc/articles/f1-101-track-limits/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-track-limits/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>壓在白線上還算在賽道內，整輛車都沒碰到賽道才算離開。離開之後若賺到好處，賽事總監可以給車手機會把它還回去，賽會幹事也可能加罰。</description>
+  </item>
+  <item>
     <title>F1 轉播左邊那一欄怎麼讀：紫色、綠色、間隔與三個英文字母縮寫</title>
     <link>https://racing.twtools.cc/articles/f1-101-timing-tower/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-timing-tower/</guid>
@@ -39,6 +46,27 @@
     <guid>https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>轉播裡的無線電，是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路。另一條聽不到的線路，把賽車上的資料單向傳回維修區，FIA 也收得到。規章寫清楚了資料怎麼傳、誰能收，工程師怎麼用這些資料，公開的說明卻很少。</description>
+  </item>
+  <item>
+    <title>超級執照是什麼：想開 F1 要先拿到哪張通行證</title>
+    <link>https://racing.twtools.cc/articles/f1-101-super-licence/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-super-licence/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>有錢、有車隊願意簽約都還不夠：車手要先持有 FIA 核發的超級執照，而且執照本身附帶一套罰分制，累積到 12 點會被停賽一站。</description>
+  </item>
+  <item>
+    <title>賽道邊是誰在判：賽事總監管比賽進行，賽會幹事管誰該被罰</title>
+    <link>https://racing.twtools.cc/articles/f1-101-stewards/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-stewards/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年邁阿密站，賽事總監送出一份報告，賽會幹事開了聽證，結論是不採取進一步行動。總監通報、幹事裁決，兩個角色各有權限，也互相牽制。車隊想推翻判決的路很窄：複審要有重大且相關的新要素，5 秒罰時這類常見處罰也不能申訴。這篇用 FIA 規章與決定書，把轉播裡常聽到的裁判分工講清楚。</description>
+  </item>
+  <item>
+    <title>F1 衝刺賽週末怎麼跑：多一場短賽，其他環節怎麼跟著變</title>
+    <link>https://racing.twtools.cc/articles/f1-101-sprint-weekend/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-sprint-weekend/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>衝刺週末的第一天只有一場練習賽，練習結束後 2.5 到 3.5 小時就要排位；第二天排一場衝刺賽與一場正賽排位賽。罰退、封閉管制與換車手的截止時間，也都跟著分成兩段。</description>
   </item>
   <item>
     <title>安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止</title>
@@ -69,6 +97,13 @@
     <description>週六的排位賽看的是每節最快的單圈，卻會在 18 分鐘內淘汰 6 位車手。從 Q1 的 22 輛車到 Q3 的 10 輛車，把三節的時長、淘汰人數與排位名次一次排清楚。</description>
   </item>
   <item>
+    <title>動力單元配額：一季能用幾個元件，超過會被罰退多少</title>
+    <link>https://racing.twtools.cc/articles/f1-101-pu-allocation/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-pu-allocation/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>一般情況下，2026 年每位車手一季最多用 4 具內燃機（替多於一支車隊出賽的車手，B8.2.2 另有例外），超過的第一次退 10 格，之後每次退 5 格。同一站換了幾類元件，罰退格數是加總起來算的，過去 12 個月內判下、尚未執行的罰退累積超過 15 格，就排在所有已分級車手之後。</description>
+  </item>
+  <item>
     <title>F1 動力單元是什麼：引擎、馬達與電池怎麼分工，決定車手何時有力氣</title>
     <link>https://racing.twtools.cc/articles/f1-101-power-unit/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-power-unit/</guid>
@@ -97,53 +132,18 @@
     <description>先衝線的人，名次可能被往後挪；各類罰則的執行方式依條文規定，時間罰則的秒數固定，但同一個犯規落在哪一級，由賽會幹事裁量，規章沒有公開量刑表。本文用 2026 年 FIA 規章，把加時、通過維修區、罰退格位到取消資格與停賽排成一張新手看得懂的階梯。</description>
   </item>
   <item>
+    <title>封閉管制是什麼：排位一開跑，車隊為什麼就不能隨便改車</title>
+    <link>https://racing.twtools.cc/articles/f1-101-parc-ferme/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-parc-ferme/</guid>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
+    <description>從排位賽第一次開出維修區起，賽車的零件與設定就被鎖住，一路鎖到正賽起跑。這篇講鎖住什麼、哪些工作例外，以及違規的代價為什麼是從維修區起跑。</description>
+  </item>
+  <item>
     <title>F1 為什麼很難超車：髒空氣，以及 2026 年新增的幫手</title>
     <link>https://racing.twtools.cc/articles/f1-101-overtaking/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-overtaking/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>前車開過之後留下一團亂流，後車一貼近，翼片就吃不到乾淨空氣。從 2011 年的 DRS、2022 年的新車到 2026 年的 Overtake 模式，F1 的規則一直在替後車找回一點優勢。</description>
-  </item>
-  <item>
-    <title>F1 賽道旁的旗子與燈號：每一面代表什麼、車手該怎麼做</title>
-    <link>https://racing.twtools.cc/articles/f1-101-flags/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-flags/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>排位賽裡經過一面雙黃旗，那一圈的成績會直接被刪掉。旗號是賽事官方對車手講話的方式，每種顏色都有明確含義，仍要看出示的情境。這篇從黃、紅、綠、藍、白到三種黑色系旗子與方格旗，逐面講清楚車手該做什麼。</description>
-  </item>
-  <item>
-    <title>F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地</title>
-    <link>https://racing.twtools.cc/articles/f1-101-downforce/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-downforce/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>天花板的說法只查到一句「據稱」，但下壓力本身有數字可查：它跟車速的平方成正比，車隊自己說 150 km/h 時就等於車重。這篇拆解下壓力從哪來、有多大、要付出什麼代價。</description>
-  </item>
-  <item>
-    <title>F1 預算上限是什麼：車隊不能無限花錢，超支會怎樣</title>
-    <link>https://racing.twtools.cc/articles/f1-101-cost-cap/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-cost-cap/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年的條文寫的上限基準是 2.15 億美元，但車手薪水、行銷和薪酬最高的三個人都不算在裡面。超出上限不到 2% 與超出達 2% 或以上，是兩種不同的罰法。</description>
-  </item>
-  <item>
-    <title>轉向不足與轉向過度：車手嘴裡的『車頭推』和『車尾滑』是什麼意思</title>
-    <link>https://racing.twtools.cc/articles/f1-101-car-balance/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-car-balance/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>車手在無線電裡抱怨車子難開，常會用到這兩個詞。差別在哪一端的輪胎先失去抓地：前輪先滑，車頭推向彎外；後輪先滑，車尾往外甩。</description>
-  </item>
-  <item>
-    <title>一輛 F1 賽車由什麼組成：從車鼻到尾翼，一張零件地圖</title>
-    <link>https://racing.twtools.cc/articles/f1-101-car-anatomy/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-car-anatomy/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>轉播裡看起來是一整塊的賽車，在 FIA 技術規章裡被拆成好幾區：包住車手的生存艙、頭頂的 Halo、1600cc 引擎加馬達的動力單元、會變角度的前後翼，還有前窄後寬的四個輪子。</description>
-  </item>
-  <item>
-    <title>F1 車手為什麼不走彎道最短的路？擦過彎心（Apex）是為了拉大半徑</title>
-    <link>https://racing.twtools.cc/articles/f1-101-apex-racing-line/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-apex-racing-line/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>外進、內切、外出，路線比較長，卻是多數情況下的標準走法。這篇從公式 a = v²/r 推出原因，再講晚彎心、早彎心、連續彎，以及 FIA 規章怎麼定義賽道邊界。</description>
   </item>
 </channel>
 </rss>
