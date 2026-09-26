@@ -4,21 +4,21 @@
   "approved": [
     {
       "slug": "f1-2026-names-glossary",
-      "article_sha256": "b124991754a930e0b63672cce4c9730b936a7cfcd43cd5a3811bae2c4d3a52ee",
+      "article_sha256": "c46289bca1697fa4a8a392f23a15cdb7647fcc0e5ae07e91891fe79c000174f9",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-07-20T15:40:00+08:00",
-      "note": "建站長青文，補記既有核准"
+      "approved_at": "2026-09-26T12:16:35+08:00",
+      "note": "建站長青文，補記既有核准　2026-09-26 修正（Charlie 2026-09-26 授權「另開 PR 修」）：parc fermé 一列改『封閉管制』並修正起算點（B3.5.1b，排位賽第一次駛離維修區）與賽後停放區（B3.6）的區別、補『原則上』與例外；Boost 分開歸因 ESPN 說法與規章定義並補低抓地限定（B7.2.1 g）；Straight／Corner Mode 舊名依 RaceFans 原頁改 Y-mode／Z-mode；副標『逐一標註依據來源』改『列出參考來源』；資料來源補 Section B／C 連結並拆分譯名查證日與規章複核日。逐條回 FIA 2026 規章本機純文字與原頁（curl）核對後改；Terra 異源複核 0 BLOCKER，複核後的小修（見下）未再複審。"
     },
     {
       "slug": "f1-2026-rules-guide",
-      "article_sha256": "2c6298357828d5c7398ff754ab38f94b57ebaf33f218cfda4ada595acfad6783",
+      "article_sha256": "c4965d8efe307b2bdebcf41a7c139996c47cf551a64f270e6a19bc166b05afc1",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-08-01T11:26:52+08:00",
-      "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。　2026-08-01 勘誤重新核准（Charlie：「勘誤 OK」）：賽曆段落與 FAQ 由 22 站更新為 23 站——巴林站移師馬來西亞雪邦、10 月 2 至 4 日舉行並沿用原名稱，沙烏地站未再排入。另修三處：①官方公告標題用字是「不會在 4 月舉行」，原文的「取消」是本站轉述時的加強，已改回官方用字 ②文末「賽季剩下的 13 站」由舊總數推算而來（22 減已跑 9 站），改為不帶推算數字的寫法——**這一句用 grep「22 站」掃不到，是新增 check-site-facts.py 的直接由來** ③出處標籤「Sky Sports（22 站賽曆確認）」改為描述該報導當時的內容。規則與技術規格部分未更動；勘誤已記入 data/errata.json，會出現在頁面的本頁勘誤區塊。　sha256 7d23f22f… → 2c629835…"
+      "approved_at": "2026-09-26T12:16:35+08:00",
+      "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。　2026-08-01 勘誤重新核准（Charlie：「勘誤 OK」）：賽曆段落與 FAQ 由 22 站更新為 23 站——巴林站移師馬來西亞雪邦、10 月 2 至 4 日舉行並沿用原名稱，沙烏地站未再排入。另修三處：①官方公告標題用字是「不會在 4 月舉行」，原文的「取消」是本站轉述時的加強，已改回官方用字 ②文末「賽季剩下的 13 站」由舊總數推算而來（22 減已跑 9 站），改為不帶推算數字的寫法——**這一句用 grep「22 站」掃不到，是新增 check-site-facts.py 的直接由來** ③出處標籤「Sky Sports（22 站賽曆確認）」改為描述該報導當時的內容。規則與技術規格部分未更動；勘誤已記入 data/errata.json，會出現在頁面的本頁勘誤區塊。　sha256 7d23f22f… → 2c629835…　2026-09-26 修正（Charlie 2026-09-26 授權「另開 PR 修」）：最低重量改與規章 C4.1（724 kg＋標稱輪胎重量）並列、車寬改與規章 C2.3.1 及 formula1.com 兩篇不一致的說法並列、內燃機 400 kW 明確歸因 formula1.com 並註明規章未規定、刪除無出處的「53% 比 47%」與「突破 1000 匹馬力」、回充 8→7 MJ 補『排位賽項下』限定並與規章 C5.2.10 基準 8.5 MJ 並列、補直線模式／Overtake／Boost／積分（含連續兩圈條件）的規章限定、刪 subtitle 與 lede 找不到出處的最高級說法、H2 改『2026 年這一輪改規的特點』、資料來源補 Section A／B／C 三條 PDF 並更新查證日。逐條回 FIA 2026 規章本機純文字與原頁（curl）核對後改；Terra 異源複核 0 BLOCKER，複核後的小修（見下）未再複審。"
     },
     {
       "slug": "season-intro-2002",
@@ -634,12 +634,12 @@
     },
     {
       "slug": "f1-101-penalties",
-      "article_sha256": "9ac658745bc49ff70ef2585994556555de05f3c1ab84a02b484710fb832de27c",
+      "article_sha256": "b9e97c2ed28c9eea5e92cf06915522415e567a0b08591721c15810ce7e657ae0",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-09-25T18:00:00+08:00",
-      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+      "approved_at": "2026-09-26T12:16:35+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。　2026-09-26 修正（Charlie 2026-09-26 授權「另開 PR 修」）：第 130 行改為『規章本身沒寫 5 秒或 10 秒的基準；FIA 另有公布無規範效力的《2026 F1 Penalty Guidelines》』並連 stewards 篇；同一誤導的 subtitle、限制句同步；補 B2.5.5.a 例外、B1.6.3.a.ii 練習賽超速可另罰、超級執照罰分補『依 ISC 等規定』限定、來源清單補 B1.9.3 與指引一手來源。逐條回 FIA 2026 規章本機純文字與原頁（curl）核對後改；Terra 異源複核 0 BLOCKER，複核後的小修（見下）未再複審。"
     },
     {
       "slug": "f1-101-pit-stop-strategy",
@@ -652,12 +652,12 @@
     },
     {
       "slug": "f1-101-points-championship",
-      "article_sha256": "ebc7c0620cb7083a28bb7c3c6f64d2fb08adff71e67be9a1e47f295c1ea72aa2",
+      "article_sha256": "e3242255b18448c31ed70920b4bc2ff0147bbd1065ec699ebf26e247c4dbb9e7",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-09-25T18:00:00+08:00",
-      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+      "approved_at": "2026-09-26T12:16:35+08:00",
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。　2026-09-26 修正（Charlie 2026-09-26 授權「另開 PR 修」）：資料來源 Section A 由 Issue 01 改 Issue 03（2026-06-25），引用條文逐行對 Issue 03 核過未變；衝刺賽發分條件補『連續完整』兩圈；FAQ 名額說法改與積分表各欄一致；同分比法第一步改引 A2.1.4c 原文『in a race』並寫明規章未說明衝刺賽勝場是否計入。逐條回 FIA 2026 規章本機純文字與原頁（curl）核對後改；Terra 異源複核 0 BLOCKER，複核後的小修（見下）未再複審。"
     },
     {
       "slug": "f1-101-qualifying",
