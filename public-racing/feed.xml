@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>巴庫今年在週六開賽：因為週日 9 月 27 日是亞塞拜然的國殤紀念日</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-baku-saturday-race/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-baku-saturday-race/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>整個亞塞拜然週末往前挪了一天：排位賽在週五，正賽在週六。台北時間排位賽是週五 20:00，正賽是週六 19:00。</description>
+  </item>
+  <item>
     <title>下雨的 F1 怎麼跑：雨胎、安全車起跑，還有比賽被叫停的時候</title>
     <link>https://racing.twtools.cc/articles/f1-101-wet-weather/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-wet-weather/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-parc-ferme/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>從排位賽第一次開出維修區起，賽車的零件與設定就被鎖住，一路鎖到正賽起跑。這篇講鎖住什麼、哪些工作例外，以及違規的代價為什麼是從維修區起跑。</description>
-  </item>
-  <item>
-    <title>F1 為什麼很難超車：髒空氣，以及 2026 年新增的幫手</title>
-    <link>https://racing.twtools.cc/articles/f1-101-overtaking/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-overtaking/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>前車開過之後留下一團亂流，後車一貼近，翼片就吃不到乾淨空氣。從 2011 年的 DRS、2022 年的新車到 2026 年的 Overtake 模式，F1 的規則一直在替後車找回一點優勢。</description>
   </item>
 </channel>
 </rss>
