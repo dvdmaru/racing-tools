@@ -3,7 +3,7 @@ slug: f1-2026-names-glossary
 type: "reference"
 date: "2026-07-19"
 title: "2026 F1 車手、車隊繁中譯名對照表：台灣慣用版（含港陸差異與術語表）"
-subtitle: "漢米爾頓還是漢密爾頓？麥拉倫還是邁凱倫？F1 的中文譯名有台、港、陸三套系統，混著用會讓讀者錯亂、也不利搜尋。本表整理 2026 年全部 22 位車手與 11 支車隊的台灣慣用譯名，逐一標註依據來源，並列出港陸差異、常用術語與最容易寫錯的雷區。本站全站採用此表定版。"
+subtitle: "漢米爾頓還是漢密爾頓？麥拉倫還是邁凱倫？F1 的中文譯名有台、港、陸三套系統，混著用會讓讀者錯亂、也不利搜尋。本表整理 2026 年全部 22 位車手與 11 支車隊的台灣慣用譯名，列出參考來源，並列出港陸差異、常用術語與最容易寫錯的雷區。本站全站採用此表定版。"
 lede: "F1 在中文圈的譯名混亂是有結構性原因的：台灣媒體有一套音譯慣例，香港走粵語音譯，中國大陸另有官方式的標準譯名，三套系統對同一個人可以給出完全不同的名字。Lewis Hamilton 在台灣是漢米爾頓、在香港是咸美頓、在大陸是漢密爾頓——一字之差，搜尋結果就是兩個世界。這張表是本站的定版依據，也希望對每一個寫 F1 的繁中創作者有用。"
 ---
 
@@ -75,8 +75,8 @@ lede: "F1 在中文圈的譯名混亂是有結構性原因的：台灣媒體有�
 | formation lap | 暖胎圈 | — |
 | DRS | 可變尾翼（減阻系統） | 2026 年起廢除，行文須當歷史用語 |
 | Overtake Mode | 超車模式 | 舊名 Manual Override Mode 已被官方棄用 |
-| Boost | 加速模式 | 2026 新術語，車手自主釋放最大功率 |
-| Straight／Corner Mode | 直線模式／彎道模式 | 2026 主動空力兩態，舊名 X-mode／Z-mode |
+| Boost | 加速模式 | 2026 新術語，由車手啟用。ESPN 的解說是取用引擎加電池的最大合併功率；規章 Section C 的定義是「維持或提高 ERS-K 功率需求」的模式；低抓地條件下，規章只允許 Boost 抑制車手最大功率需求下降、不得提高最大功率需求（B7.2.1 g） |
+| Straight／Corner Mode | 直線模式／彎道模式 | 2026 主動空力兩態（規章 B7.1）；RaceFans 寫的舊稱是 Y-mode（直線）／Z-mode（彎道） |
 | sprint | 衝刺賽 | 三地一致 |
 | qualifying（Q1/Q2/Q3） | 排位賽 | Q1、Q2、Q3 沿用原文 |
 | drivers' championship | 車手冠軍（世界冠軍） | — |
@@ -85,7 +85,7 @@ lede: "F1 在中文圈的譯名混亂是有結構性原因的：台灣媒體有�
 | fastest lap | 最快單圈 | 2025 年起不再加分 |
 | stint | Stint | 保留原文，指兩次進站之間的行程 |
 | box | 「Box, box」 | 進站無線電指令，保留原文 |
-| parc fermé | Parc fermé（賽後封存） | 排位後至正賽前禁止調校 |
+| parc fermé | 封閉管制（parc fermé） | 標準週末從該車在排位賽第一次駛離維修區起，到正賽起跑，原則上零件不能換、設定不能改，規章列有允許作業與核准例外（B3.5）；衝刺週末另有一段。賽後車輛停放區也叫 parc fermé，是另一件事（B3.6）。詳見[封閉管制是什麼](/articles/f1-101-parc-ferme/) |
 | power unit | 動力單元 | 三地一致 |
 
 ## 最容易寫錯的六個雷區
@@ -115,4 +115,4 @@ lede: "F1 在中文圈的譯名混亂是有結構性原因的：台灣媒體有�
 
 ## 資料來源
 
-台灣用例：Yahoo 奇摩運動、自由體育、ETtoday、聯合新聞網、TVBS、運動視界、大紀元台灣版、繁體中文維基百科（zh-tw 變體）；香港用例：HK01、星島日報；大陸用例：騰訊新聞、新浪體育、百度百科。術語定名：[RaceFans（FIA 2026 術語更名）](https://www.racefans.net/2025/12/17/forget-the-manual-override-mode-f1-renames-its-new-2026-technologies/)、[ESPN（2026 術語解說）](https://www.espn.com/f1/story/_/id/47333501/)。查證日 2026-07-19；本表為本站編輯定版，非任何官方譯名。
+台灣用例：Yahoo 奇摩運動、自由體育、ETtoday、聯合新聞網、TVBS、運動視界、大紀元台灣版、繁體中文維基百科（zh-tw 變體）；香港用例：HK01、星島日報；大陸用例：騰訊新聞、新浪體育、百度百科。術語定名：[RaceFans（FIA 2026 術語更名）](https://www.racefans.net/2025/12/17/forget-the-manual-override-mode-f1-renames-its-new-2026-technologies/)、[ESPN（2026 術語解說）](https://www.espn.com/f1/story/_/id/47333501/)；規章：[FIA 2026 F1 Section B Sporting Issue 08](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf)（B3.5 封閉管制、B3.6 賽後停放區、B7.1 主動空力）、[FIA 2026 F1 Section C Technical Issue 20](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf)（Boost、Overtake 定義）。譯名用例查證於 2026-07-19；術語表規章相關列複核，查證日：2026-09-26。本表為本站編輯定版，非任何官方譯名。
