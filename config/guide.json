@@ -4,10 +4,10 @@
   "title": "F1 新手村",
   "intro": "第一次看 F1、想搞懂比賽在比什麼？這裡把入門文章依「看懂比賽、看懂賽車、看懂策略、看懂數據、看懂車隊」五個層級排好，從最上面往下讀就不會迷路。",
   "levels": [
-    {"id": "race", "title": "看懂比賽", "blurb": "週末怎麼進行、發車順序怎麼排、怎麼起跑、積分怎麼算、旗號、安全車、處罰、衝刺賽週末、賽道界線，以及誰在判決。", "slugs": ["f1-101-race-weekend", "f1-101-qualifying", "f1-101-race-start", "f1-101-points-championship", "f1-101-flags", "f1-101-safety-car", "f1-101-penalties", "f1-101-sprint-weekend", "f1-101-track-limits", "f1-101-stewards"]},
-    {"id": "car", "title": "看懂賽車", "blurb": "賽車由哪些零件組成、動力從哪裡來、怎麼抓住地面、為什麼難超車、煞車怎麼運作、封閉管制、車手怎麼被保護，以及車手怎麼把它開過去。", "slugs": ["f1-101-car-anatomy", "f1-101-power-unit", "f1-101-downforce", "f1-101-car-balance", "f1-101-apex-racing-line", "f1-101-overtaking", "f1-101-parc-ferme", "f1-101-brakes", "f1-101-driver-safety"]},
+    {"id": "race", "title": "看懂比賽", "blurb": "週末怎麼進行、練習賽在做什麼、發車順序怎麼排、怎麼起跑、積分怎麼算、旗號、安全車、處罰、衝刺賽週末、賽道界線、維修區的規矩，以及誰在判決。", "slugs": ["f1-101-race-weekend", "f1-101-practice-sessions", "f1-101-qualifying", "f1-101-race-start", "f1-101-points-championship", "f1-101-flags", "f1-101-safety-car", "f1-101-penalties", "f1-101-sprint-weekend", "f1-101-track-limits", "f1-101-pit-lane", "f1-101-stewards"]},
+    {"id": "car", "title": "看懂賽車", "blurb": "賽車由哪些零件組成、動力從哪裡來、怎麼抓住地面、主動空力怎麼切換、燃料怎麼限、最低車重怎麼量、為什麼難超車、煞車怎麼運作、封閉管制、車手怎麼被保護，以及車手怎麼把它開過去。", "slugs": ["f1-101-car-anatomy", "f1-101-power-unit", "f1-101-fuel", "f1-101-minimum-weight", "f1-101-downforce", "f1-101-active-aero", "f1-101-car-balance", "f1-101-apex-racing-line", "f1-101-overtaking", "f1-101-parc-ferme", "f1-101-brakes", "f1-101-driver-safety"]},
     {"id": "strategy", "title": "看懂策略", "blurb": "輪胎、進站、雨天與動力單元配額怎麼影響名次。", "slugs": ["f1-101-tyres", "f1-101-pit-stop-strategy", "f1-101-wet-weather", "f1-101-pu-allocation"]},
     {"id": "data", "title": "看懂數據", "blurb": "轉播畫面上的計時塔、間隔與顏色怎麼讀，無線電與遙測，以及成績表怎麼讀。", "slugs": ["f1-101-timing-tower", "f1-101-team-radio-telemetry", "f1-101-classification"]},
-    {"id": "team", "title": "看懂車隊", "blurb": "一支車隊裡有哪些人、規章怎麼限制車隊花錢、哪些零件能自己造或買，以及車手要先拿到什麼執照。", "slugs": ["f1-101-team-roles", "f1-101-cost-cap", "f1-101-listed-parts", "f1-101-super-licence"]}
+    {"id": "team", "title": "看懂車隊", "blurb": "一支車隊裡有哪些人、規章怎麼限制車隊花錢、風洞與 CFD 怎麼記帳、賽車在賽道上能怎麼測試、誰在造動力單元、哪些零件能自己造或買，以及車手要先拿到什麼執照。", "slugs": ["f1-101-team-roles", "f1-101-cost-cap", "f1-101-aero-testing-restrictions", "f1-101-testing", "f1-101-pu-manufacturers", "f1-101-listed-parts", "f1-101-super-licence"]}
   ]
 }
