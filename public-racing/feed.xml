@@ -13,6 +13,62 @@
     <description>整個亞塞拜然週末往前挪了一天：排位賽在週五，正賽在週六。台北時間排位賽是週五 20:00，正賽是週六 19:00。</description>
   </item>
   <item>
+    <title>F1 現役賽車想上賽道測試，規章只給五種機會</title>
+    <link>https://racing.twtools.cc/articles/f1-101-testing/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-testing/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>冬測 5 天窗口，每隊只能跑 3 天；賽季後一天兩輛車；平常想多練，車隊靠的是舊規則造的賽車，每年 20 天。以 2026 年版運動規章與財務規章，把 F1 的測試規矩讀一遍。</description>
+  </item>
+  <item>
+    <title>Alpine 的車尾是賓士：F1 的 5 家動力單元廠商怎麼供應 11 支車隊</title>
+    <link>https://racing.twtools.cc/articles/f1-101-pu-manufacturers/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-pu-manufacturers/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年 5 家廠商供應 11 支車隊。規章把車隊分成原廠隊與客戶車隊，再用供應義務、最高供應價和廠商自己的成本上限規範供應，落後的廠商另有一套叫 ADUO 的追趕機制。</description>
+  </item>
+  <item>
+    <title>F1 練習賽怎麼看：排第 21 名的斯托爾，只跑了 3 圈</title>
+    <link>https://racing.twtools.cc/articles/f1-101-practice-sessions/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-practice-sessions/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>練習賽的名次只看單圈最快，圈數、油量和測試計畫都不同；標準週末有三場，衝刺週末只有一場，輪胎、額外車手和賽後小規則也各有一套。用 2026 年澳洲站的成績表把練習賽讀一遍。</description>
+  </item>
+  <item>
+    <title>F1 維修區的規矩：一般情況下技師在內側車道動手，出站要看綠燈</title>
+    <link>https://racing.twtools.cc/articles/f1-101-pit-lane/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-pit-lane/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>維修區把 80 km/h 的限速、分成兩條的車道、出口的燈號疊在同一塊空間。從超速怎麼罰，到放車太早怎麼罰，逐項讀 2026 年 FIA 運動規章 Section B 的維修區條款。</description>
+  </item>
+  <item>
+    <title>F1 賽車的最低重量：車手算進去，燃料不算，賽後磅不夠可能被取消成績</title>
+    <link>https://racing.twtools.cc/articles/f1-101-minimum-weight/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-minimum-weight/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>官方網站寫 768 公斤，規章寫 724 公斤加輪胎。車重的量法、壓載的規定、排位賽與高溫時的加重，到賽後過磅，照 2026 年條文講一遍。</description>
+  </item>
+  <item>
+    <title>F1 燃料是什麼：正賽不能加油，規章限制的是每小時流進引擎的能量</title>
+    <link>https://racing.twtools.cc/articles/f1-101-fuel/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-fuel/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年的 F1 規章允許車手坐在車上加油，前提是引擎熄火，而且加油只能在車庫裡。正賽開始後，燃料就不能補了，所以規章管的是流進引擎的速度：每小時 3,000 MJ。燃料本身是先進永續燃料，要先過 FIA 核准，比賽期間還會被取樣檢驗。</description>
+  </item>
+  <item>
+    <title>F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少</title>
+    <link>https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年規章把一年切成 6 個空力測試期，每期給風洞與 CFD 一組額度，再乘上依車隊積分榜名次決定的係數：第 1 名 70%，第 10 名以下 115%。這篇把風洞怎麼算、CFD 怎麼算、超用會怎樣一次講完。</description>
+  </item>
+  <item>
+    <title>F1 主動空力：翼片只有兩個位置，被通知才能用，低抓地時只准前翼動</title>
+    <link>https://racing.twtools.cc/articles/f1-101-active-aero/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-active-aero/</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
+    <description>官方入門文寫新系統「所有車、所有時間都可用」，規章的條件窄得多：要被通知已啟用、翼片要完全在啟動區內，宣告低抓地條件後只准前翼部分啟用。這篇把 2026 年主動空力的條文拆開來讀。</description>
+  </item>
+  <item>
     <title>下雨的 F1 怎麼跑：雨胎、安全車起跑，還有比賽被叫停的時候</title>
     <link>https://racing.twtools.cc/articles/f1-101-wet-weather/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-wet-weather/</guid>
@@ -88,62 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-race-weekend/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>週日正賽的發車順序，其實在週六排位賽就排好了。從週五第一場練習賽開始，把一般週末與衝刺週末的每一場比賽排成時間表，看哪一場決定了什麼。</description>
-  </item>
-  <item>
-    <title>F1 正賽怎麼起跑：暖胎圈、五盞紅燈與搶跑罰則</title>
-    <link>https://racing.twtools.cc/articles/f1-101-race-start/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-race-start/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>綠燈亮起時，賽車出發去繞的是暖胎圈；五盞紅燈全部熄滅，比賽才開始。這篇照時間順序走一遍起跑流程，從偵察圈、倒數、暖胎圈到五盞紅燈，再講搶跑怎麼認定、裁判有哪四種罰則可選。</description>
-  </item>
-  <item>
-    <title>F1 排位賽怎麼淘汰：三節、兩次砍人、一個發車位置</title>
-    <link>https://racing.twtools.cc/articles/f1-101-qualifying/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-qualifying/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>週六的排位賽看的是每節最快的單圈，卻會在 18 分鐘內淘汰 6 位車手。從 Q1 的 22 輛車到 Q3 的 10 輛車，把三節的時長、淘汰人數與排位名次一次排清楚。</description>
-  </item>
-  <item>
-    <title>動力單元配額：一季能用幾個元件，超過會被罰退多少</title>
-    <link>https://racing.twtools.cc/articles/f1-101-pu-allocation/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-pu-allocation/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>一般情況下，2026 年每位車手一季最多用 4 具內燃機（替多於一支車隊出賽的車手，B8.2.2 另有例外），超過的第一次退 10 格，之後每次退 5 格。同一站換了幾類元件，罰退格數是加總起來算的，過去 12 個月內判下、尚未執行的罰退累積超過 15 格，就排在所有已分級車手之後。</description>
-  </item>
-  <item>
-    <title>F1 動力單元是什麼：引擎、馬達與電池怎麼分工，決定車手何時有力氣</title>
-    <link>https://racing.twtools.cc/articles/f1-101-power-unit/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-power-unit/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>F1 賽車裡那顆「引擎」，在規章裡是一整套動力單元：1600cc V6 內燃機、渦輪、350 kW 電動馬達、電池與控制電子。電池一次只能動用 4 MJ，馬達的力氣還會隨車速變小，這套分工決定了車手在一圈裡什麼時候有電可用。</description>
-  </item>
-  <item>
-    <title>F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人</title>
-    <link>https://racing.twtools.cc/articles/f1-101-points-championship/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-points-championship/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2008 年贏 6 場的車手輸給贏 5 場的車手，差 1 分。從正賽 25 到 1 分的階梯、衝刺賽的 8 到 1 分，一路看到跑不完時換欄給分與同分時怎麼比。</description>
-  </item>
-  <item>
-    <title>先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut</title>
-    <link>https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-pit-stop-strategy/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>進站要付出時間代價，車隊卻常主動把車叫進去。看懂 undercut 與 overcut，就看懂轉播裡那些名次突然翻轉的時刻。</description>
-  </item>
-  <item>
-    <title>F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績</title>
-    <link>https://racing.twtools.cc/articles/f1-101-penalties/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-penalties/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>先衝線的人，名次可能被往後挪；各類罰則的執行方式依條文規定，時間罰則的秒數固定，但同一個犯規落在哪一級，由賽會幹事裁量，規章本身沒有量刑表，FIA 另公布的處罰指引也沒有規範效力。本文用 2026 年 FIA 規章，把加時、通過維修區、罰退格位到取消資格與停賽排成一張新手看得懂的階梯。</description>
-  </item>
-  <item>
-    <title>封閉管制是什麼：排位一開跑，車隊為什麼就不能隨便改車</title>
-    <link>https://racing.twtools.cc/articles/f1-101-parc-ferme/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-parc-ferme/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>從排位賽第一次開出維修區起，賽車的零件與設定就被鎖住，一路鎖到正賽起跑。這篇講鎖住什麼、哪些工作例外，以及違規的代價為什麼是從維修區起跑。</description>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少 | 賽車數據誌</title>
+<meta name="description" content="2026 年規章把一年切成 6 個空力測試期，每期給風洞與 CFD 一組額度，再乘上依車隊積分榜名次決定的係數：第 1 名 70%，第 10 名以下 115%。這篇把風洞怎麼算、CFD 怎麼算、超用會怎樣一次講完。">
+<meta property="og:title" content="F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少">
+<meta property="og:description" content="2026 年規章把一年切成 6 個空力測試期，每期給風洞與 CFD 一組額度，再乘上依車隊積分榜名次決定的係數：第 1 名 70%，第 10 名以下 115%。這篇把風洞怎麼算、CFD 怎麼算、超用會怎樣一次講完。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/#article","headline":"F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少","description":"2026 年規章把一年切成 6 個空力測試期，每期給風洞與 CFD 一組額度，再乘上依車隊積分榜名次決定的係數：第 1 名 70%，第 10 名以下 115%。這篇把風洞怎麼算、CFD 怎麼算、超用會怎樣一次講完。","datePublished":"2026-09-26","dateModified":"2026-09-26","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少","item":"https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/#faq","mainEntity":[{"@type":"Question","name":"積分榜第 1 名的車隊，額度真的比較少嗎？","acceptedAnswer":{"@type":"Answer","text":"是。2026 年規章的係數 C，第 1 名是 70%，第 2 名 75%，每低一名多 5 個百分點，第 9 名 110%，第 10 名以下與新車隊 115%（F4.6.1）。規章寫明的目的是控制成本、限制車隊為開發空力而擴張活動的規模。"}},{"@type":"Question","name":"CFD 是電腦模擬，也有限額嗎？","acceptedAnswer":{"@type":"Answer","text":"有。除了動力單元內部流動的模擬（歸類為動力單元模擬）以外，只要模擬揭露了 F1 賽車上氣體流動的資訊，就是受限 CFD，縮尺或非氣體流體也算，後處理裡的 AI 應用也在定義內。額度用新 RATG 的數量與 MAUh 計。不算受限的類別另有列出，例如 FIA 要求做的模擬，都有各自條件（F4.4、F4.4.5）。"}},{"@type":"Question","name":"比賽週末在賽道上試空力，會用掉風洞額度嗎？","acceptedAnswer":{"@type":"Answer","text":"不會。F1 賽車在任何賽事或在 B11 定義的賽道測試中做的空力試驗，不算受限空力測試（F4.5.1）。這條只涵蓋賽車在賽事與賽道測試中的試驗，不包括在風洞裡做的。"}},{"@type":"Question","name":"超過額度會怎樣？","acceptedAnswer":{"@type":"Answer","text":"之後的 ATP 額度會被縮減，至少是超出量的 10 倍。條文範例是一個 ATP 跑 325 次、上限 320 次，下一個 ATP 只准跑 270 次；FIA 可依絕對裁量縮減更多，也不損及進一步的適當行動（F4.6.10）。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-7012104e50.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+
+<div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav">
+      <a href="/">首頁</a>
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">賽曆</a>
+      <a href="/results/">賽果</a>
+      <a href="/seasons/">歷年</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active">文章</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少</h1>
+  <div class="art-meta"><span>2026 年 9 月 26 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">F1 車隊在積分榜排得越前面，2026 年拿到的風洞與 CFD 額度越少；超用的話，後續測試期的額度至少被扣超出量的 10 倍，實際扣多少由 FIA 裁量。第 1 名拿到的最少，第 10 名以下與新車隊拿到的最多，這是 2026 年 FIA 規章 Section F 第 4 條寫明的。這篇講清楚一支車隊一年能吹多少風洞、跑多少 CFD，以及超用的代價。</p>
+  <article class="prose">
+<p>F1 車隊積分榜的第 1 名，風洞與 CFD 的額度是全場最少的。整篇的主線就一句：名次越前，額度越少；超用的代價，是後續測試期的額度至少被扣超出量的 10 倍，實際扣多少由 FIA 裁量。</p>
+<p>這不是誤植。2026 年規章有一條「空氣動力測試限制」（Aerodynamic Testing Restrictions，簡稱 ATR），把每支車隊能吹的風洞次數、能跑的 CFD 運算量，乘上一個依積分榜名次決定的係數。積分榜第 1 名的係數是 70%，第 10 名以下與新車隊是 115%（F4.6.1）。</p>
+<p>跑得越前面，能拿來開發空力的時間反而越少。看 F1 新聞裡的「升級包」「開發競賽」時，這條規則是背景：空力開發不只拚錢，還有規章配給的時間。</p>
+<h2>空力開發曾經沒有上限，現在風洞和 CFD 都要記帳</h2>
+<p>風洞是把車的縮小模型放進去，吹出氣流，量氣流對模型造成的力。CFD 是用電腦模擬氣流。兩者都是車隊開發下壓力的工具，下壓力是什麼見<a href="/articles/f1-101-downforce/">F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地</a>。</p>
+<p>規章把這兩種做法合稱「受限空力測試」，意思是：只要是為了弄清楚氣流對賽車造成什麼影響，不管用實體模型還是電腦模擬，都算在額度裡。範圍抓得很寬，做的人是車隊、車隊的關係企業、承包方，或代車隊工作的外部單位都一樣；在試驗環境或數值模擬中，對 F1 賽車或次組件的實體或數位表示物，測量、觀察或推斷氣流造成的力、位移、壓力或氣流方向，都在內（F4.1.2）。</p>
+<p>規章自己寫明，設這條限制的目的是控制成本，並限制車隊為了開發空力而擴張活動的規模（Appendix F1）。</p>
+<p>以前不是這樣。formula1.com 2020 年的解說寫，過去空力開發不設上限，有些車隊的風洞一週七天、一天 24 小時運轉。後來才逐步加限制，並在成本上限引進的同時，第一次改成依賽場表現決定每隊的額度。該文寫的是 2021 年上路的制度，細節和 2026 年不同；不過它列的 2022 至 2025 年係數表，從 70% 到 115%，與 2026 年的表逐格相同。</p>
+<p>2026 年規章的 Appendix F2 對 2027、2028、2029 年這條規定的核准修改，都寫「None」。所以下面講的數字，是 2026 年現行版本（Section F，Issue 10，2026-08-05）。</p>
+<h2>一年切成 6 個測試期，額度以「期」為單位評估</h2>
+<p>規章把一年切成 6 個空力測試期（Aerodynamic Testing Period，簡稱 ATP）。一期結束，下一期立刻開始，中間沒有空檔（F4.1.4）。週從星期一起算。</p>
+<p>各期長度是這樣：</p>
+<ul>
+<li>第 1 期：從 1 月 1 日到第 9 週結束。</li>
+<li>第 2、3、5 期：各剛好 8 週。</li>
+<li>第 4 期：10 週，包含夏季工廠停工。</li>
+<li>第 6 期：到 12 月 31 日結束。</li>
+</ul>
+<p>FIA 在特殊情況下，可以依絕對裁量修改 ATP（F4.1.4）。</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 322" role="img" aria-label="2026 年一年 6 個空力測試期的長度示意：第 1 期到第 9 週結束，第 2、3、5 期各 8 週，第 4 期 10 週含夏季停工，第 6 期到 12 月 31 日">
+<title>一年 6 個空力測試期</title>
+<desc>由上到下六條長條，各代表一個空力測試期。第 1 期從 1 月 1 日到第 9 週結束；第 2 期 8 週；第 3 期 8 週；第 4 期 10 週，包含夏季工廠停工；第 5 期 8 週；第 6 期到 12 月 31 日。第 1 至 3 期用上一年車隊積分榜最終名次決定係數，第 4 至 6 期用第 3 期最後一天的當年車隊積分榜名次。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="314" rx="10"/>
+<text class="d-fg" x="16" y="30" font-size="15">2026 年的 6 個空力測試期</text>
+<rect class="d-surface d-line-s" x="16" y="42" width="198" height="26" rx="4"/>
+<text class="d-fg" x="26" y="60" font-size="14">第 1 期　到第 9 週結束</text>
+<rect class="d-surface d-line-s" x="16" y="76" width="176" height="26" rx="4"/>
+<text class="d-fg" x="26" y="94" font-size="14">第 2 期　8 週</text>
+<rect class="d-surface d-line-s" x="16" y="110" width="176" height="26" rx="4"/>
+<text class="d-fg" x="26" y="128" font-size="14">第 3 期　8 週</text>
+<rect class="d-surface d-accent-s" x="16" y="144" width="220" height="26" rx="4" stroke-width="2"/>
+<text class="d-fg" x="26" y="162" font-size="14">第 4 期　10 週　含夏季停工</text>
+<rect class="d-surface d-line-s" x="16" y="178" width="176" height="26" rx="4"/>
+<text class="d-fg" x="26" y="196" font-size="14">第 5 期　8 週</text>
+<rect class="d-surface d-line-s" x="16" y="212" width="198" height="26" rx="4"/>
+<text class="d-fg" x="26" y="230" font-size="14">第 6 期　到 12 月 31 日</text>
+<text class="d-fg" x="16" y="262" font-size="14">第 1 至 3 期：用上一年車隊榜最終名次</text>
+<text class="d-fg" x="16" y="282" font-size="14">第 4 至 6 期：用第 3 期最後一天的名次</text>
+<text class="d-fg" x="16" y="302" font-size="14">長條長度僅示意週數，第 6 期規章未寫週數</text>
+</svg>
+<figcaption>圖：2026 年一年 6 個空力測試期。各期週數與名次基準出自 FIA 2026 年 Section F 的 F4.1.4 與 F4.6.1。本站示意圖，非依比例、非實測。</figcaption>
+</figure>
+
+<p>規章寫明，ATP 就是用來評估這些限額的期間（F4.1.4）。所以額度的算法是「每個 ATP 給一組」；名次決定係數、超用扣額度，也都以期為單位。風洞方面有一項補償：若經證實風洞故障或遇不可抗力，FIA 可依絕對裁量，考慮准許額外的占用時數，補償因此損失的部分（F4.2.5）。</p>
+<p>第 3 期約在 6 月下旬結束，日期是依週數規則推算的，規章沒有寫。這一天很重要，因為下半年的係數看的就是那天的名次，後面的段落會講。</p>
+<p>第 4 期為什麼包著夏季停工、停工的 14 天裡什麼不能做，見<a href="/articles/f1-summer-shutdown-guide/">F1 夏季停工期是怎麼運作的：14 天、每隊自己挑日子，法源不在比賽規則裡</a>。</p>
+<h2>每隊只能提名一座風洞，風速超過 5 m/s 才算一次 run</h2>
+<p>風洞的規則從「用哪一座」開始。</p>
+<p>每支車隊只能提名 1 座風洞，供受限風洞測試（Restricted Wind Tunnel Testing，簡稱 RWTT）使用，12 個月內不得重新提名。外部單位代車隊做的風洞測試，也必須在這座風洞進行（F4.2.1）。所以「借別人的風洞來吹」不是繞過限額的路。</p>
+<p>例外有：新進車隊要在正式成為車隊後 7 天內提名；FIA 可依絕對裁量考慮提前或暫時提名，例如原本的風洞長期故障。改用不同設施，或既有風洞變更、升級（例行維護與更換除外），須在一個月內或下次測試期報告時（以較早者為準）向 FIA 提交新申報（F4.2.1）。</p>
+<p>車隊之間可以互相提供風洞、測功機等設施。規則另外綁了幾道：在共用設施上做出的成果，只能由發起者使用；共用方要建立嚴謹流程，防止共用人員造成智慧財產移轉，並確保所有資料只有發起者能存取；共用還要向 FIA 申報（C17.1.8）。受限空力測試取得的資料，也只能給用自己額度取得它的那支車隊（F4.1.5）。</p>
+<p>這些規則最後都變成三個要記帳的量，超過就是超用：</p>
+<ol>
+<li><strong>runs（吹風次數）</strong>：風洞風速超過 5 m/s 算一次 run 開始，降到 5 m/s 以下結束（F4.2.2 a）。</li>
+<li><strong>吹風時數（wind-on time）</strong>：只計風速超過 15 m/s 的時間，整個 ATP 加總（F4.2.3）。</li>
+<li><strong>占用時數（occupancy）</strong>：從當天風速首次高於 5 m/s 起算「第一班」，結束時間由車隊申報；每個曆日最多只能有兩班。班只是用來界定起訖，額度單位仍是小時（F4.2.4）。</li>
+</ol>
+<p>規章還限制了吹什麼。風洞模型與被測的幾何體，不得大於全尺寸的 60%，風速不得超過 50 m/s（F4.3.2）。一次 run 只能用一個模型、一個被測幾何體；每隊 24 小時內最多用兩個模型，而且只能換一次模型（F4.3.3）。</p>
+<p>run 進行中，模型能動的自由度由規章逐項列舉，例如輪子轉動、車高與側傾、轉向、偏航角、前翼可調區域的襟翼角度與後翼襟翼的攻角，列舉以外的不准動（F4.3.4 a–j）。翼片怎麼切換，見<a href="/articles/f1-101-active-aero/">F1 主動空力：翼片只有兩個位置，被通知才能用，低抓地時只准前翼動</a>。</p>
+<h2>CFD 也算：只要揭露了氣流資訊，就用額度</h2>
+<p>「CFD 是電腦模擬，不算測試」是常見的誤會。規章的寫法正好相反：只要一個 CFD 模擬揭露了 F1 賽車上氣體流動的資訊，就是受限 CFD（Restricted CFD，簡稱 RCFD）。縮尺的模擬算，用非氣體流體的模擬也算（F4.4）。動力單元內部從進氣道到排氣管尾端的流動，歸類為動力單元模擬，不算在內。</p>
+<p>範圍不是無限寬。規章另列了「不算受限 CFD」的類別，都有各自條件，例如 FIA 要求做的模擬、用超過 30 個月前模擬過的幾何體來最佳化 CFD 方法、用 FIA 提供的公共 CAD 幾何體，以及僅為未來規章做的開發（F4.4.5）。</p>
+<p>RCFD 的定義涵蓋前處理、求解、後處理三段。後處理明文包含依模擬結果所做的任何機器學習、深度學習或 AI 應用（F4.4.1 c）。</p>
+<p>CFD 的額度用兩個量計：</p>
+<ul>
+<li><strong>新 RATG 的數量</strong>：RATG 是受限空力測試幾何體，也就是被拿去模擬的那個車體形狀。進行前或進行中，只准改車的姿態（車高、側傾、偏航、轉向與相關的輪胎形狀或接地面），以及前翼可調區域的襟翼角度、後翼襟翼的攻角；其他幾何改動，每改一次就多算一個新 RATG，只有少數例外，例如僅為冷卻開發的部分零件（F4.4.1）。在一個 ATP 用過的 RATG，之後的 ATP 繼續用，不重複計數（F4.6.6）。</li>
+<li><strong>運算量（MAUh，百萬配置單位小時）</strong>：1 個配置單位小時，等同一個實體 CPU 核心跑一小時，公式是（核心數 × 求解秒數 × 時脈 GHz）÷ 3,600；1 MAUh 等於 1,000,000 個配置單位小時（F4.4.4）。</li>
+</ul>
+<p>運算資源本身也被框住。求解只能用車隊向 FIA 申報的同質處理器資源，只能跑在 CPU 核心上，不得卸載到其他處理器；所申報的規格，還須以非獨家方式供所有車隊取得（F4.4.1、F4.4.2）。</p>
+<p>條文預告 2028 年 1 月 1 日起會另訂規章開放 GPU。這只是預告，Appendix F2 的 2028 年欄是「None」，不是已核准的條款。規章另寫明，RCFD 的限額會定期修訂，以反映 CFD 模擬的進步（F4.4.8）。</p>
+<p>CFD 的額度和風洞一樣，是拿基準額度乘上依名次決定的係數（F4.6.1），下一節就講這個。</p>
+<h2>名次越前額度越少：第 1 名 70%，第 10 名以下與新車隊 115%</h2>
+<p>這一節是整篇的主軸：額度由名次決定，名次越前，係數越小。額度本身在 F4.6.1 的表裡，先給基準：<strong>係數 C＝100%</strong> 時，每個 ATP 的上限如下。</p>
+<div class="prose-tblwrap"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>C＝100% 時，每個 ATP 的上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>風洞 runs</td>
+<td>320 次</td>
+</tr>
+<tr>
+<td>風洞吹風時數</td>
+<td>80 小時</td>
+</tr>
+<tr>
+<td>風洞占用時數</td>
+<td>400 小時</td>
+</tr>
+<tr>
+<td>CFD 新 RATG</td>
+<td>2,000 個</td>
+</tr>
+<tr>
+<td>CFD 運算量</td>
+<td>6 MAUh</td>
+</tr>
+</tbody>
+</table></div>
+<p>每隊實際的額度＝C 值 × 基準額度。C 值看車隊在車隊積分榜（Constructors’ Championship）的名次（F4.6.1）：</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 362" role="img" aria-label="車隊積分榜名次與額度係數 C 的長條圖：第 1 名 70%，每低一名加 5 個百分點，第 9 名 110%，第 10 名以下與新車隊 115%，100% 為基準">
+<title>車隊積分榜名次與額度係數 C</title>
+<desc>橫向長條圖，由上到下是車隊積分榜第 1 名到第 9 名，以及第 10 名以下。係數 C 依序為 70%、75%、80%、85%、90%、95%、100%、105%、110%、115%。名次越前，長條越短，額度越少。虛線標出 C＝100% 的基準。新車隊與第 10 名以下同為 115%。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="354" rx="10"/>
+<text class="d-fg" x="16" y="30" font-size="15">名次越前，額度係數 C 越小</text>
+<rect class="d-accent d-line-s" x="108" y="46" width="140" height="18" rx="3"/>
+<text class="d-fg" x="16" y="60" font-size="14">第 1 名</text>
+<text class="d-fg" x="256" y="60" font-size="14">70%</text>
+<rect class="d-accent d-line-s" x="108" y="72" width="150" height="18" rx="3"/>
+<text class="d-fg" x="16" y="86" font-size="14">第 2 名</text>
+<text class="d-fg" x="266" y="86" font-size="14">75%</text>
+<rect class="d-accent d-line-s" x="108" y="98" width="160" height="18" rx="3"/>
+<text class="d-fg" x="16" y="112" font-size="14">第 3 名</text>
+<text class="d-fg" x="276" y="112" font-size="14">80%</text>
+<rect class="d-accent d-line-s" x="108" y="124" width="170" height="18" rx="3"/>
+<text class="d-fg" x="16" y="138" font-size="14">第 4 名</text>
+<text class="d-fg" x="286" y="138" font-size="14">85%</text>
+<rect class="d-accent d-line-s" x="108" y="150" width="180" height="18" rx="3"/>
+<text class="d-fg" x="16" y="164" font-size="14">第 5 名</text>
+<text class="d-fg" x="296" y="164" font-size="14">90%</text>
+<rect class="d-accent d-line-s" x="108" y="176" width="190" height="18" rx="3"/>
+<text class="d-fg" x="16" y="190" font-size="14">第 6 名</text>
+<text class="d-fg" x="306" y="190" font-size="14">95%</text>
+<rect class="d-accent d-line-s" x="108" y="202" width="200" height="18" rx="3"/>
+<text class="d-fg" x="16" y="216" font-size="14">第 7 名</text>
+<text class="d-fg" x="316" y="216" font-size="14">100%</text>
+<rect class="d-accent d-line-s" x="108" y="228" width="210" height="18" rx="3"/>
+<text class="d-fg" x="16" y="242" font-size="14">第 8 名</text>
+<text class="d-fg" x="326" y="242" font-size="14">105%</text>
+<rect class="d-accent d-line-s" x="108" y="254" width="220" height="18" rx="3"/>
+<text class="d-fg" x="16" y="268" font-size="14">第 9 名</text>
+<text class="d-fg" x="336" y="268" font-size="14">110%</text>
+<rect class="d-accent d-line-s" x="108" y="280" width="230" height="18" rx="3"/>
+<text class="d-fg" x="16" y="294" font-size="14">第 10 名以下</text>
+<text class="d-fg" x="346" y="294" font-size="14">115%</text>
+<line class="d-fg d-line-s" x1="308" y1="40" x2="308" y2="304" stroke-width="2" stroke-dasharray="6 4"/>
+<text class="d-fg" x="16" y="326" font-size="14">虛線：C＝100%，即基準額度。</text>
+<text class="d-fg" x="16" y="346" font-size="14">新車隊與第 10 名以下同為 115%。</text>
+</svg>
+<figcaption>圖：車隊積分榜名次與額度係數 C。數字出自 FIA 2026 年 Section F 的 F4.6.1。本站示意圖，非依比例、非實測。</figcaption>
+</figure>
+
+<p>C 值只在兩個時點看名次，不是名次一變額度就變：</p>
+<ul>
+<li><strong>第 1 至 3 期</strong>：用上一年車隊積分榜的最終名次。</li>
+<li><strong>第 4 至 6 期</strong>：用第 3 期最後一天時，當年車隊積分榜的名次（F4.6.1 a）。</li>
+</ul>
+<p>所以一支車隊賽季初的額度，取決於去年的成績；下半年的額度，取決於約 6 月下旬那一天的排名。之後名次再怎麼跳，額度不動；例外是第 3 期最後一天的名次日後因成績修正而改變，見下一段。</p>
+<p>第 3 期最後一天的名次，若之後因成績修正而改變，FIA 會要求車隊從下一個 ATP 起，按修正後的額度調整（F4.6.3）。若某隊的限額在某個 ATP 開始後才變動，變動會按該期剩餘時間的比例套用；車隊提出請求時，FIA 可依絕對裁量，允許該期發生的超用或少用攤到下一個 ATP（F4.6.2）。</p>
+<p>乘出來的 runs 與 RATG 數，若不是整數，一律無條件進位（F4.6.1 b）。表格只有一組基準數字，沒有按各期週數另訂；8 週的期與 10 週的期，用的是同一組。</p>
+<p>新進車隊也受同一套規則管。新車隊在首次參賽的年份之前，要先遵守這條空力測試限制，包括第 N-1 年整年（A3.5.1 d）；C 值是 115%（F4.6.1）。</p>
+<h2>超用風洞額度，後續的 ATP 至少扣超出量的 10 倍</h2>
+<p>額度不是宣示，有記錄、有稽核，也有明文的處罰。</p>
+<p>記錄方面，車隊要在每個 ATP 結束後 14 天內，用指定格式向 FIA 回報該期的風洞與 CFD 使用（F4.6.4）。風洞每個 run 的開始，都要有彩色數位影像與時間戳記，讓 FIA 查驗，例如前後翼有沒有裝上（F4.6.5）。CFD 的網格與相關資料，要保存至少 24 個月（F4.6.7）。FIA 另會不時安排獨立的基準檢查（F4.6.9）。</p>
+<p>超過限額的處罰，是縮減之後 ATP 的額度，縮減幅度至少是超出量的 10 倍。條文的範例：某隊在一個 ATP 跑了 325 次受限風洞 run，上限是 320 次，超出 5 次，下一個 ATP 就只准跑 270 次（F4.6.10）。10 倍是最低值，縮減多少由 FIA 依絕對裁量決定，也不損及進一步的適當行動。</p>
+<p>空力測試的限額還連到成本上限。規章對成本上限違規的輕微運動處罰與重大運動處罰，清單裡都列有「限制進行空氣動力等測試的能力」（D12.1.1 b v；D12.1.1 c iv）。<a href="/constructors/red-bull/">紅牛</a> 2021 年的成本上限案，處罰之一就是調降風洞與 CFD 額度，見<a href="/articles/f1-101-cost-cap/">F1 預算上限是什麼：車隊不能無限花錢，超支會怎樣</a>。那是成本上限違規，不是空力額度超用。</p>
+<p>也有些空力試驗不用扣額度。F1 賽車在任何賽事（Competition）或在 B11 定義的賽道測試中做的空力試驗，不算受限空力測試（F4.5.1）。此外還有幾類例外，都帶前提：</p>
+<ul>
+<li>風洞測試僅為開發向空氣排熱的動力單元熱交換器，且沒有直接或間接的空力量測（F4.5.2）。</li>
+<li>引擎測功機作業，須符合無前後翼等四項條件（F4.5.3）。</li>
+<li>僅為開發煞車、輪胎輪圈或壓力探針，且不提供車身性能的附帶資料（F4.5.4）。</li>
+<li>僅為風洞設施的調校或開發，並符合「移除前後翼或裝 FIA 核准護罩」，或「使用超過 12 個月的舊幾何體或 FIA 核准的 CAD 幾何體，且不做修改」其中之一，這類不計入 runs、吹風時數與占用時數（F4.5.5）。</li>
+</ul>
+<p>F4.5.5 的末段把門關上：為了開發車身零件而吹風，即使沒有量測氣動力，也仍在受限空力測試的定義之內。</p>
+<p>回到開頭那句：名次越前，風洞與 CFD 額度越少；超用的話，後續 ATP 的額度至少被扣超出量的 10 倍，實際扣多少由 FIA 裁量。</p>
+<h2>常見問題</h2>
+<h3>積分榜第 1 名的車隊，額度真的比較少嗎？</h3>
+<p>是。2026 年規章的係數 C，第 1 名是 70%，第 2 名 75%，每低一名多 5 個百分點，第 9 名 110%，第 10 名以下與新車隊 115%（F4.6.1）。規章寫明的目的是控制成本、限制車隊為開發空力而擴張活動的規模。</p>
+<h3>CFD 是電腦模擬，也有限額嗎？</h3>
+<p>有。除了動力單元內部流動的模擬（歸類為動力單元模擬）以外，只要模擬揭露了 F1 賽車上氣體流動的資訊，就是受限 CFD，縮尺或非氣體流體也算，後處理裡的 AI 應用也在定義內。額度用新 RATG 的數量與 MAUh 計。不算受限的類別另有列出，例如 FIA 要求做的模擬，都有各自條件（F4.4、F4.4.5）。</p>
+<h3>比賽週末在賽道上試空力，會用掉風洞額度嗎？</h3>
+<p>不會。F1 賽車在任何賽事或在 B11 定義的賽道測試中做的空力試驗，不算受限空力測試（F4.5.1）。這條只涵蓋賽車在賽事與賽道測試中的試驗，不包括在風洞裡做的。</p>
+<h3>超過額度會怎樣？</h3>
+<p>之後的 ATP 額度會被縮減，至少是超出量的 10 倍。條文範例是一個 ATP 跑 325 次、上限 320 次，下一個 ATP 只准跑 270 次；FIA 可依絕對裁量縮減更多，也不損及進一步的適當行動（F4.6.10）。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-101-cost-cap/">F1 預算上限是什麼：車隊不能無限花錢，超支會怎樣</a></li>
+<li><a href="/articles/f1-summer-shutdown-guide/">F1 夏季停工期是怎麼運作的：14 天、每隊自己挑日子，法源不在比賽規則裡</a></li>
+<li><a href="/articles/f1-101-downforce/">F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地</a></li>
+<li><a href="/articles/f1-101-points-championship/">F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人</a></li>
+</ul>
+<h2>資料來源</h2>
+<p>一手來源（FIA 規章）：</p>
+<ul>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_f_operational_-_iss_10_-_2026-08-05.pdf">FIA 2026 F1 Regulations, Section F [Operational], Issue 10（2026-08-05）</a>：F4 空氣動力測試限制全條（F4.1 至 F4.6）、Appendix F1 定義、Appendix F2 核准修改</li>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_a_general_provisions_-_iss_03_-_2026-06-25.pdf">FIA 2026 F1 Regulations, Section A [General Regulatory Provisions], Issue 03（2026-06-25）</a>：A3.5.1 d 新車隊適用範圍</li>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf">FIA 2026 F1 Regulations, Section C [Technical], Issue 20（2026-08-05）</a>：C17.1.8 車隊間設施共用</li>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_d_financial_-_f1_teams_-_iss_07_-_2026-06-25.pdf">FIA 2026 F1 Regulations, Section D [Financial - F1 Teams], Issue 07（2026-06-25）</a>：D12.1.1 成本上限違規的運動處罰</li>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf">FIA 2026 F1 Regulations, Section B [Sporting], Issue 08（2026-08-05）</a>：B11 賽道測試（F4.5.1 引用）</li>
+</ul>
+<p>官方說明：</p>
+<ul>
+<li><a href="https://www.formula1.com/en/latest/article/how-f1s-new-sliding-scale-aero-testing-rules-work-and-what-impact-they-will.pn0sG8N4A0cjbNRbdYx8a">formula1.com，How F1’s new sliding scale aero testing rules work（2020）</a>：歷史背景與 2022 至 2025 年係數表；這是寫給 2021 年制度的文章，其中每週 run 數與 6 月 30 日重設等舊制細節，與 2026 年現行規則不同</li>
+</ul>
+<p>二手來源：本文未使用媒體報導作為事實依據。</p>
+<p>查證日：2026-09-26。限制：ATP 各期的實際日期規章沒有寫，文中「6 月下旬」是依週數規則推算；各隊 2026 年實際的係數與用量沒有公開；FIA 稽核的頻率與程序、2026 年是否有車隊因超用被罰，均未查到。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂車隊 第 3 / 7 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-cost-cap/"><span class="lbl">← 新手村上一篇</span>F1 預算上限是什麼：車隊不能無限花錢，超支會怎樣</a><a href="/articles/f1-101-testing/" style="text-align:right"><span class="lbl">新手村下一篇 →</span>F1 現役賽車想上賽道測試，規章只給五種機會</a></div></div><div class="art-nav"><a href="/articles/f1-101-active-aero/"><span class="lbl">← 前一篇</span>F1 主動空力：翼片只有兩個位置，被通知才能用，低抓地時只准前翼動</a><a href="/articles/f1-101-fuel/" style="text-align:right"><span class="lbl">後一篇 →</span>F1 燃料是什麼：正賽不能加油，規章限制的是每小時流進引擎的能量</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+</script>
+</body>
+</html>
