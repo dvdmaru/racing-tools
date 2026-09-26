@@ -589,12 +589,12 @@
     },
     {
       "slug": "f1-2026-antonelli-clinch-arithmetic",
-      "article_sha256": "b06a1f1364f36228ed7d739dd0b82df5cc35566d622654668bd036954bdeeaf8",
+      "article_sha256": "4b9fc60377cc87387e48ee78f629273407003845ae8623f921adfdb2736c3a4f",
       "facts_sha256": "8d74710555f7e18a79beda907d2f9b45fbcf58427ecb8f2639dc4b37393c7baa",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-21T12:00:00+08:00",
-      "note": "選題台 2026-09-20 R1（安東內利逐站封王算術），Charlie 2026-09-21 指定「Conductor 模式、優先 Agy／Terra」。積分由 jolpica-f1 第 1–14 站正賽＋衝刺賽逐站重算，與 jolpica 積分榜、F1 官網車手積分榜逐人核對；封王算術由指揮位腳本產出，Terra clean-room 席以獨立腳本重算逐格一致，R1／R1b（Terra＋agy）再各自重算，tests/test_clinch_arithmetic.py 以第三套逐站模擬實作對帳（含 6 個突變陰性對照全轉紅）。寫手 Terra（第 1 版 1,900 字過短→改稿單→第 2 版），指揮位校訂；R1 論點第 1 版被兩席擋下（『不是預期』機率判斷、『兩種問法』假算法），第 2 版兩席 GO；R2 agy 抓到『領先差超過封王線』差一分（源頭是指揮位自己的改稿單）與兩處漏前提，R2b agy 再抓兩處殘渣『跨過』，全數修正。**Terra R2 撞 Codex 用量上限（2:32 PM 重置）未完成，缺口＝稿件層只有 agy 兩輪異源審＋DeepSeek 冷讀兩輪；重置後補跑指令在桌檔 README。**外部引文 3 句逐字對來源快照命中（verify-quotes）；verify-sources／verify-numbers／check-links（9 條 200）／check-zh／check-covers 全綠。PlanetF1、Grande Prêmio 已有同口徑算術，正文不宣稱首創。Charlie 以合併 PR 為核准發布的授權行為。 ／ 2026-09-21 Terra R2c 補審（Codex 額度重置後補跑，補上稿件層缺口）：11 條 OK、2 條 BLOCKER，全數採納並走勘誤流程——①資料來源段誤把 153 分保證線同時歸給 PlanetF1 與 Grande Prêmio（後者沒有）；②限制聲明多出一句事實表沒有的『追溯改判』情境，整句刪除。已登記 data/errata.json 公開勘誤，facts JSON 同句一併改正，article／facts sha256 重簽。算術與表格數字無變動。"
+      "note": "選題台 2026-09-20 R1（安東內利逐站封王算術），Charlie 2026-09-21 指定「Conductor 模式、優先 Agy／Terra」。積分由 jolpica-f1 第 1–14 站正賽＋衝刺賽逐站重算，與 jolpica 積分榜、F1 官網車手積分榜逐人核對；封王算術由指揮位腳本產出，Terra clean-room 席以獨立腳本重算逐格一致，R1／R1b（Terra＋agy）再各自重算，tests/test_clinch_arithmetic.py 以第三套逐站模擬實作對帳（含 6 個突變陰性對照全轉紅）。寫手 Terra（第 1 版 1,900 字過短→改稿單→第 2 版），指揮位校訂；R1 論點第 1 版被兩席擋下（『不是預期』機率判斷、『兩種問法』假算法），第 2 版兩席 GO；R2 agy 抓到『領先差超過封王線』差一分（源頭是指揮位自己的改稿單）與兩處漏前提，R2b agy 再抓兩處殘渣『跨過』，全數修正。**Terra R2 撞 Codex 用量上限（2:32 PM 重置）未完成，缺口＝稿件層只有 agy 兩輪異源審＋DeepSeek 冷讀兩輪；重置後補跑指令在桌檔 README。**外部引文 3 句逐字對來源快照命中（verify-quotes）；verify-sources／verify-numbers／check-links（9 條 200）／check-zh／check-covers 全綠。PlanetF1、Grande Prêmio 已有同口徑算術，正文不宣稱首創。Charlie 以合併 PR 為核准發布的授權行為。 ／ 2026-09-21 Terra R2c 補審（Codex 額度重置後補跑，補上稿件層缺口）：11 條 OK、2 條 BLOCKER，全數採納並走勘誤流程——①資料來源段誤把 153 分保證線同時歸給 PlanetF1 與 Grande Prêmio（後者沒有）；②限制聲明多出一句事實表沒有的『追溯改判』情境，整句刪除。已登記 data/errata.json 公開勘誤，facts JSON 同句一併改正，article／facts sha256 重簽。算術與表格數字無變動。 【2026-09-27 修正】巴庫站賽果進資料後，站內事實表算出的當季剩餘站數由 9 變 8，與文中「剩下 9 站」不一致，部署閘門（check site facts）擋下 racing-weekly 部署。依閘門建議把該句改成不帶數字的說法（「賽曆上還沒跑的站」），其餘內容不動；文章仍是截至 2026 年 9 月 21 日、涵蓋前 14 站的快照，巴庫站後的領先差與封王線沒有重算。本次修改需 Charlie 授權合併（PR #90）。"
     },
     {
       "slug": "f1-youngest-world-champions-vettel-antonelli",
@@ -882,7 +882,7 @@
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-26T19:11:46+08:00",
-      "note": "2026-09-26 Charlie 提議「這個事情我們寫一篇短文」（他以為週六晚上是排位賽、結果是正賽）。單人單輪短文，未走 Conductor／agy／Terra 異源審稿。事實來源：五篇外部報導（Motorsport.com、PlanetF1、ESPN、Crash.net、F1 官網排位賽報導標題），每個主張至少兩家一致才寫進正文（撞期原因、2025 年 6 月公布、依主辦方與政府單位請求、2020-09-27 起 44 天、2024 巴林與沙烏地週六、拉斯維加斯自 2023 起週六夜間），單一來源的細節不採（ESPN 稱週六讓車隊多一天飛馬來西亞的說法與本季新加坡站矛盾，整段不用；PlanetF1 的陣亡人數、Motorsport.com 的英國站歷史說法、F1 官網的單圈時間與發車位置皆單一來源，未採）。節次台北時間由 data/f1/raw/season-2026-schedule.json（jolpica-f1）換算；當地時間與 PlanetF1、F1 官網一致。巴庫 2016 起 9 場皆週日、2024 巴林與沙烏地為週六，出自 data/f1/db.sqlite。未取得 F1 當初的原始公告，已在文末註明。verify-sources、全形標點、台灣用語、check-links 皆通過。核准者為 Charlie（PR 合併前需他本人授權）；本欄由指揮位登錄，先例同 f1-101 各批。"
+      "note": "2026-09-26 Charlie 提議「這個事情我們寫一篇短文」（他以為週六晚上是排位賽、結果是正賽）。單人單輪短文，未走 Conductor／agy／Terra 異源審稿。事實來源：五篇外部報導（Motorsport.com、PlanetF1、ESPN、Crash.net、F1 官網排位賽報導標題），每個主張至少兩家一致才寫進正文（撞期原因、2025 年 6 月公布、依主辦方與政府單位請求、2020-09-27 起 44 天、2024 巴林與沙烏地週六、拉斯維加斯自 2023 起週六夜間），單一來源的細節不採（ESPN 稱週六讓車隊多一天飛馬來西亞的說法與本季新加坡站矛盾，整段不用；PlanetF1 的陣亡人數、Motorsport.com 的英國站歷史說法、F1 官網的單圈時間與發車位置皆單一來源，未採）。節次台北時間由 data/f1/raw/season-2026-schedule.json（jolpica-f1）換算；當地時間與 PlanetF1、F1 官網一致。巴庫 2016 起 9 場皆週日、2024 巴林與沙烏地為週六，出自 data/f1/db.sqlite。未取得 F1 當初的原始公告，已在文末註明。verify-sources、全形標點、台灣用語、check-links 皆通過。核准者為 Charlie（PR 合併前需他本人授權）；本欄由指揮位登錄，先例同 f1-101 各批。 【2026-09-27 更正】上文說 ESPN「週六讓車隊多一天飛馬來西亞」與本季新加坡站矛盾，是誤判：2026 賽曆第 16 站就是巴林站（馬來西亞雪邦）10/04，新加坡是第 17 站，ESPN 的說法與賽曆吻合。該段仍未採用（單一來源、且與本文主題只是旁支），已上線的文章正文沒有受影響。"
     },
     {
       "slug": "f1-101-practice-sessions",
