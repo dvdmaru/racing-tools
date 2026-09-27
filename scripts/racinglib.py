@@ -191,27 +191,28 @@ a { color: var(--accent); } a:hover { color: var(--accent-bright); }
 """ + _theme_tokens_css()
 
 THEME_SWITCH_CSS = """
+/* 配色切換器住在 sticky header 右側（2026-09-27 起；先前是 position:fixed 浮在右上角，
+   桌機會蓋住導覽列最後一顆、手機會切出畫面外並疊在品牌字上）。 */
 .theme-switch {
-  position: fixed; top: 14px; right: 16px; z-index: 150;
-  display: flex; align-items: center; gap: 11px;
+  display: flex; align-items: center; gap: 10px; flex: none;
   background: color-mix(in srgb, var(--surface) 86%, transparent);
   border: 1px solid var(--line); border-radius: 99px;
-  padding: 7px 13px 7px 14px; box-shadow: 0 6px 22px rgba(70,70,90,0.16);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: 6px 11px 6px 12px;
 }
 .ts-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; color: var(--dim); text-transform: uppercase; }
 .ts-dots { display: flex; gap: 8px; }
 .ts-dot {
-  width: 19px; height: 19px; border-radius: 50%; padding: 0; cursor: pointer;
+  width: 18px; height: 18px; border-radius: 50%; padding: 0; cursor: pointer;
   background: var(--sw); border: 2px solid var(--surface);
   box-shadow: 0 0 0 1px var(--line-2);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .ts-dot:hover { transform: scale(1.14); }
 .ts-dot.active { box-shadow: 0 0 0 2px var(--sw); transform: scale(1.05); }
-@media (max-width: 520px) {
-  .theme-switch { top: 10px; right: 10px; padding: 6px 11px; gap: 9px; }
+@media (max-width: 719px) {
+  .theme-switch { padding: 5px 9px; gap: 7px; }
   .ts-label { display: none; }
+  .ts-dot { width: 16px; height: 16px; }
 }
 """
 
@@ -236,6 +237,47 @@ function setTheme(t) {{
   setTheme(t);
 }})();
 """
+
+# 導覽列的行為增強（沒有它 <details> 分組與平鋪 nav 照樣能用）：桌機開一組就關其他組、
+# 點外面／Esc／焦點離開就關；手機把 nav 收進「選單」鈕，開啟時把各組一次展開。
+# `has-js` 只在 JS 跑到時才加，所以 CSS 的「手機預設收起」不會在無 JS 環境把導覽藏死。
+NAV_JS = """
+(function initNav() {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  h.classList.add('has-js');
+  var btn = h.querySelector('.nav-toggle');
+  var groups = [].slice.call(h.querySelectorAll('.nav-group'));
+  var mq = window.matchMedia('(max-width: 719px)');
+  function closeAll(except) { groups.forEach(function (g) { if (g !== except) g.open = false; }); }
+  function setDrawer(open) {
+    h.classList.toggle('nav-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) groups.forEach(function (g) { g.open = true; });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('toggle', function () { if (g.open && !mq.matches) closeAll(g); });
+    g.addEventListener('focusout', function (e) {
+      if (!mq.matches && e.relatedTarget && !g.contains(e.relatedTarget)) g.open = false;
+    });
+  });
+  if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
+  document.addEventListener('click', function (e) { if (!mq.matches && !h.contains(e.target)) closeAll(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
+    var a = document.activeElement, g = a && a.closest ? a.closest('.nav-group') : null;
+    var back = g ? g.querySelector('summary') : (h.classList.contains('nav-open') ? btn : null);
+    closeAll(); setDrawer(false);
+    if (back) back.focus();
+  });
+  var onChange = function () { closeAll(); setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
+})();
+"""
+
+# body 尾的那一個 <script>：兩個 shell（page_shell 與 build-articles 的文章頁）都注入這一份。
+PAGE_JS = THEME_SWITCH_JS + NAV_JS
 
 
 # ---------- 站頭/站尾 ----------
@@ -265,15 +307,74 @@ SITE_HEADER_CSS = """
   font-family: var(--font-mono); font-size: 10.5px;
   letter-spacing: 2.5px; color: var(--dim); text-transform: uppercase;
 }
+/* 導覽列（2026-09-27 改版）：平鋪 10 顆 pill → 4 顆（本季▾／百科▾／新手村／文章）。
+   分組用 <details>：沒有 JS 也能點開、鍵盤可達；JS 只做「開一個關其他、點外面／Esc 關、
+   手機收成選單鈕」。手機（≤719px）整條 nav 收進「選單」鈕，沒有 JS 時退回平鋪不壞。 */
 .site-nav {
-  display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+  display: flex; gap: 4px; align-items: center; flex-wrap: wrap; margin-left: auto;
   font-family: var(--font-ui); font-size: 13px;
 }
-.site-nav a { color: var(--dim); text-decoration: none; letter-spacing: 1px; font-size: 13px;
-  padding: 6px 13px; border-radius: 999px; transition: color 0.15s ease, background 0.15s ease; }
-.site-nav a:hover { color: var(--accent); background: var(--accent-soft); }
-.site-nav a.active { color: var(--accent-ink); background: var(--accent); font-weight: 700; }
-@media (max-width: 580px) { .brand-mark { font-size: 21px; } }
+.site-nav > a, .nav-group > summary {
+  display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  color: var(--dim); text-decoration: none; letter-spacing: 1px; font-size: 13px;
+  padding: 7px 13px; border-radius: 999px; cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.site-nav > a:hover, .nav-group > summary:hover, .nav-group[open] > summary { color: var(--accent); background: var(--accent-soft); }
+.site-nav > a.active, .nav-group > summary.active { color: var(--accent-ink); background: var(--accent); font-weight: 700; }
+.nav-group { position: relative; }
+.nav-group > summary { list-style: none; }
+.nav-group > summary::-webkit-details-marker { display: none; }
+.nav-group > summary::after { /* 自繪 chevron，開啟時翻轉 */
+  content: ''; width: 6px; height: 6px; margin: -3px 0 0 2px; opacity: 0.8;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); transition: transform 0.15s ease, margin 0.15s ease;
+}
+.nav-group[open] > summary::after { transform: rotate(225deg); margin-top: 3px; }
+.nav-menu {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: 40;
+  min-width: 228px; padding: 6px; display: grid; gap: 2px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 14px 38px rgba(20,20,30,0.18);
+}
+.nav-menu a { display: block; padding: 9px 12px; border-radius: 10px; text-decoration: none;
+  color: var(--fg); font-size: 13.5px; line-height: 1.35; }
+.nav-menu a small { display: block; color: var(--dim); font-size: 11.5px; margin-top: 2px; }
+.nav-menu a:hover { color: var(--accent); background: var(--accent-soft); }
+.nav-menu a.active { color: var(--accent-ink); background: var(--accent); font-weight: 700; }
+.nav-menu a.active small { color: inherit; opacity: 0.8; font-weight: 400; }
+.nav-toggle { display: none; }
+@media (max-width: 719px) {
+  .site-header { gap: 8px 10px; padding: 10px 0; margin-bottom: 26px; }
+  .brand-mark { font-size: 21px; }
+  .brand-block { gap: 3px; }
+  .theme-switch { order: 2; margin-left: auto; }
+  .nav-toggle {
+    order: 3; display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+    font-family: var(--font-ui); font-size: 13px; letter-spacing: 1px; color: var(--dim);
+    background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px 6px 10px;
+  }
+  .nav-toggle .nt-icon { width: 14px; height: 2px; background: currentColor; border-radius: 2px;
+    box-shadow: 0 -4.5px 0 currentColor, 0 4.5px 0 currentColor; }
+  .nav-toggle[aria-expanded="true"] { color: var(--accent); border-color: var(--accent-line); }
+  .site-nav { order: 4; flex-basis: 100%; margin-left: 0; flex-direction: column; align-items: stretch;
+    gap: 2px; padding: 8px 0 2px; border-top: 1px solid var(--line); }
+  .site-header.has-js:not(.nav-open) .site-nav { display: none; }
+  .site-nav > a, .nav-group > summary { display: flex; justify-content: space-between;
+    padding: 11px 12px; border-radius: 10px; font-size: 14px; }
+  .nav-group { position: static; }
+  .nav-group[open] > summary { border-radius: 10px 10px 0 0; }
+  /* 面板裡群組標題與作用中子項不要同時整塊上色：標題只加粗，紅底留給子項 */
+  .nav-group > summary.active { background: transparent; color: var(--accent); }
+  .nav-menu { position: static; min-width: 0; padding: 2px 0 8px 10px; border: 0; box-shadow: none;
+    background: transparent; border-radius: 0; }
+}
+@media (max-width: 419px) {
+  .nav-toggle { padding: 7px 9px; }
+  .nav-toggle .nt-text { display: none; }
+  .theme-switch { padding: 5px 8px; gap: 6px; }
+  .ts-dots { gap: 6px; }
+}
 .site-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.7; text-align: center; max-width: 640px; margin: 18px auto 0; }
 .site-disclaimer span { opacity: 0.75; }
 .article-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
@@ -368,12 +469,38 @@ def site_header_html(active: str, site: dict = None) -> str:
     站內零連入，等於把同一個錯誤在自己站內再犯一次。
     """
     site = site or SITE
-    parts = []
-    for n in site.get("nav", []):
-        if not nav_item_visible(n):
+    visible = [n for n in site.get("nav", []) if nav_item_visible(n)]
+    group_labels = {g["key"]: g["label"] for g in site.get("nav_groups", [])}
+
+    def link(n: dict, child: bool = False) -> str:
+        attrs = ' class="active" aria-current="page"' if n.get("key") == active else ""
+        label = n["label"]
+        if child and n.get("desc"):
+            label += f'<small>{n["desc"]}</small>'
+        return f'<a href="{n["href"]}"{attrs}>{label}</a>'
+
+    # 平鋪設定 → 站頭分組：同 group 的項目收成一個 <details>，放在該組第一個項目的位置；
+    # 一組裡沒有任何可見項目（例如百科未公開）就整組不出現，不留空下拉。
+    parts, emitted = [], set()
+    for n in visible:
+        g = n.get("group")
+        if not g:
+            parts.append(link(n))
             continue
-        cls = ' class="active"' if n.get("key") == active else ""
-        parts.append(f'<a href="{n["href"]}"{cls}>{n["label"]}</a>')
+        if g in emitted:
+            continue
+        emitted.add(g)
+        members = [m for m in visible if m.get("group") == g]
+        is_active = any(m.get("key") == active for m in members)
+        cls = ' class="active"' if is_active else ""
+        items = "\n          ".join(link(m, child=True) for m in members)
+        parts.append(
+            f'<details class="nav-group">\n'
+            f'        <summary{cls}>{group_labels.get(g, g)}</summary>\n'
+            f'        <div class="nav-menu">\n'
+            f'          {items}\n'
+            f'        </div>\n'
+            f'      </details>')
     links = "\n      ".join(parts)
     return f"""
   <header class="site-header">
@@ -381,9 +508,11 @@ def site_header_html(active: str, site: dict = None) -> str:
       <a href="/" class="brand-mark">{site["brand_mark"]}</a>
       <div class="brand-tag">{site["brand_tag"]}</div>
     </div>
-    <nav class="site-nav">
+    <nav class="site-nav" id="site-nav" aria-label="主導覽">
       {links}
     </nav>
+    {THEME_SWITCH_HTML.strip()}
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="選單"><span class="nt-icon" aria-hidden="true"></span><span class="nt-text">選單</span></button>
   </header>
 """
 
@@ -885,13 +1014,24 @@ DARK_ANCHOR_CSS = """
 .site-header{background:var(--ink);border-bottom:1px solid rgba(255,255,255,.12)}
 .brand-mark{color:#fff}
 .brand-tag{color:rgba(255,255,255,.55)}
-.site-nav a{color:rgba(255,255,255,.68)}
-.site-nav a:hover{color:#fff;background:rgba(255,255,255,.12)}
-.site-nav a.active{color:var(--accent-ink);background:var(--accent)}
+.site-nav > a,.nav-group > summary{color:rgba(255,255,255,.68)}
+.site-nav > a:hover,.nav-group > summary:hover,.nav-group[open] > summary{color:#fff;background:rgba(255,255,255,.12)}
+.site-nav > a.active,.nav-group > summary.active{color:var(--accent-ink);background:var(--accent)}
+.nav-toggle{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.22)}
+.nav-toggle[aria-expanded="true"]{color:#fff;border-color:rgba(255,255,255,.5)}
 .std-table thead th{background:var(--ink);color:rgba(255,255,255,.72);border-bottom-color:var(--ink)}
-.theme-switch{background:var(--ink);border-color:rgba(255,255,255,.16)}
+.theme-switch{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
 .ts-label{color:rgba(255,255,255,.6)}
 .ts-dot{border-color:var(--ink)}
+@media (max-width:719px){
+.site-nav{border-top-color:rgba(255,255,255,.12)}
+.nav-group > summary.active{background:transparent;color:#fff}
+.nav-menu a{color:rgba(255,255,255,.82)}
+.nav-menu a small{color:rgba(255,255,255,.5)}
+.nav-menu a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-menu a.active{color:var(--accent-ink);background:var(--accent)}
+.nav-menu a.active small{color:inherit}
+}
 """
 
 # ---------- M0 地基重構：單一外部 CSS 檔（選擇器稽核零衝突，見交接稽核附錄） ----------
@@ -989,12 +1129,11 @@ def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
 {f"<style>{extra_css}</style>" if extra_css else ""}
 </head>
 <body>
-{THEME_SWITCH_HTML}
 <div class="container">{site_header_html(active)}
 {body}
 {site_footer_html()}
 </div>
-<script>{THEME_SWITCH_JS}</script>
+<script>{PAGE_JS}</script>
 </body>
 </html>
 """

@@ -374,7 +374,7 @@ def place_ld(summary, url):
 def write_page(path_parts, title, desc, jsonld, body):
     canonical = f"{BASE}/{'/'.join(path_parts)}/"
     html = rc.page_shell(title, desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + CIRCUIT_CSS)
+                         active="circuits", extra_css=p0.ENTITY_CSS + CIRCUIT_CSS)
     out = PUB
     for part in path_parts:
         out = out / part

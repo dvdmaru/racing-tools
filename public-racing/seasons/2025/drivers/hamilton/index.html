@@ -24,7 +24,7 @@
   gtag('js', new Date());
   gtag('config', 'G-DN5FKJNCVQ');
 </script>
-<link rel="stylesheet" href="/assets/rc-7012104e50.css">
+<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
 .ent-hero{padding:8px 0 20px;border-bottom:1px solid var(--line-2);margin-bottom:22px}
@@ -137,8 +137,34 @@ tr.brk td{padding-top:0;padding-bottom:9px;border-top:none}
 </style>
 </head>
 <body>
-
-<div class="theme-switch">
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="主導覽">
+      <details class="nav-group">
+        <summary>本季</summary>
+        <div class="nav-menu">
+          <a href="/standings/">積分榜<small>車手與車隊年度積分</small></a>
+          <a href="/calendar/">賽曆<small>全季賽程，換算台北時間</small></a>
+          <a href="/results/">賽果<small>各站正賽完整名次</small></a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="active">百科</summary>
+        <div class="nav-menu">
+          <a href="/seasons/" class="active" aria-current="page">歷年<small>1950 年起的歷屆賽季</small></a>
+          <a href="/drivers/">車手<small>歷代世界冠軍與現役車手</small></a>
+          <a href="/constructors/">車隊<small>現役車隊名錄</small></a>
+          <a href="/circuits/">賽道<small>歷年賽道名錄</small></a>
+        </div>
+      </details>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/">文章</a>
+    </nav>
+    <div class="theme-switch">
   <span class="ts-label">配色</span>
   <div class="ts-dots">
     <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
@@ -148,25 +174,7 @@ tr.brk td{padding-top:0;padding-bottom:9px;border-top:none}
     <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
   </div>
 </div>
-
-<div class="container">
-  <header class="site-header">
-    <div class="brand-block">
-      <a href="/" class="brand-mark">@RACING</a>
-      <div class="brand-tag">賽車數據 · 台北時間</div>
-    </div>
-    <nav class="site-nav">
-      <a href="/">首頁</a>
-      <a href="/standings/">積分榜</a>
-      <a href="/calendar/">賽曆</a>
-      <a href="/results/">賽果</a>
-      <a href="/seasons/">歷年</a>
-      <a href="/drivers/">車手</a>
-      <a href="/constructors/">車隊</a>
-      <a href="/circuits/">賽道</a>
-      <a href="/guide/">新手村</a>
-      <a href="/articles/">文章</a>
-    </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="選單"><span class="nt-icon" aria-hidden="true"></span><span class="nt-text">選單</span></button>
   </header>
 
 <nav class="crumbs" aria-label="breadcrumb"><a href="/">首頁</a><span>›</span><a href="/seasons/">賽季</a><span>›</span><a href="/seasons/2025/">2025</a><span>›</span><span class="cur">路易斯・漢米爾頓（Lewis Hamilton）</span></nav>
@@ -236,6 +244,39 @@ function setTheme(t) {
   let t = 'carbon';
   try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
   setTheme(t);
+})();
+
+(function initNav() {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  h.classList.add('has-js');
+  var btn = h.querySelector('.nav-toggle');
+  var groups = [].slice.call(h.querySelectorAll('.nav-group'));
+  var mq = window.matchMedia('(max-width: 719px)');
+  function closeAll(except) { groups.forEach(function (g) { if (g !== except) g.open = false; }); }
+  function setDrawer(open) {
+    h.classList.toggle('nav-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) groups.forEach(function (g) { g.open = true; });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('toggle', function () { if (g.open && !mq.matches) closeAll(g); });
+    g.addEventListener('focusout', function (e) {
+      if (!mq.matches && e.relatedTarget && !g.contains(e.relatedTarget)) g.open = false;
+    });
+  });
+  if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
+  document.addEventListener('click', function (e) { if (!mq.matches && !h.contains(e.target)) closeAll(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
+    var a = document.activeElement, g = a && a.closest ? a.closest('.nav-group') : null;
+    var back = g ? g.querySelector('summary') : (h.classList.contains('nav-open') ? btn : null);
+    closeAll(); setDrawer(false);
+    if (back) back.focus();
+  });
+  var onChange = function () { closeAll(); setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
 })();
 </script>
 </body>
