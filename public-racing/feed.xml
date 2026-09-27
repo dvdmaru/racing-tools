@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>科拉平托要負全部或主要責任：賽會判決書、他自己的話、下一站處罰，三個來源指向同一個答案</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-r15-baku-colapinto-fault-ruling/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-r15-baku-colapinto-fault-ruling/</guid>
+    <pubDate>Sun, 27 Sep 2026 00:00:00 +0800</pubDate>
+    <description>亞塞拜然大獎賽安全車重啟後的第一彎，科拉平托煞車太晚、以無法控制的速度切進內線，擦撞蓋斯利，諾里斯的賽車也捲入同一起事故，三車全數退賽（本站資料庫反推發生在第 36 圈）。同一次連鎖反應裡還有一起碰撞——林布拉德撞上勞森——賽會判無責，兩案並排看，才看得出這不是各打五十大板。</description>
+  </item>
+  <item>
     <title>美國站是安東內利最早能封王的一站，前提是三個週末對羅素淨賺 60 分</title>
     <link>https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-sprint-weekend/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>衝刺週末的第一天只有一場練習賽，練習結束後 2.5 到 3.5 小時就要排位；第二天排一場衝刺賽與一場正賽排位賽。罰退、封閉管制與換車手的截止時間，也都跟著分成兩段。</description>
-  </item>
-  <item>
-    <title>安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止</title>
-    <link>https://racing.twtools.cc/articles/f1-101-safety-car/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-safety-car/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>賽道出事時，賽事總監手上有三種強度不同的應變方式：虛擬安全車讓每台車自己減速，安全車讓全場排成一列跟車，這兩種期間比賽照跑；紅旗才中止賽程，讓所有車開回維修區。這篇講三種應變各自怎麼開始、怎麼結束，以及紅旗之後比賽怎麼接回來。</description>
   </item>
 </channel>
 </rss>
