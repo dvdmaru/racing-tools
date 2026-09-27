@@ -244,7 +244,8 @@ function setTheme(t) {
     });
   });
   if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
-  document.addEventListener('click', function (e) { if (!mq.matches && !h.contains(e.target)) closeAll(); });
+  // 點 header 外面：任何寬度都收——桌機收下拉，手機連抽屜一起收（觸控沒有 Esc，少了這條手機只能再按一次選單鈕）
+  document.addEventListener('click', function (e) { if (!h.contains(e.target)) { closeAll(); setDrawer(false); } });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
