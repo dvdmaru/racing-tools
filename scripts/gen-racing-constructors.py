@@ -185,7 +185,7 @@ def sports_team_ld(summary, url):
 def write_page(path_parts, title, desc, jsonld, body):
     canonical = f"{BASE}/{'/'.join(path_parts)}/"
     html = rc.page_shell(title, desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS)
+                         active="constructors", extra_css=p0.ENTITY_CSS)
     out = PUB
     for part in path_parts:
         out = out / part

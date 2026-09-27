@@ -360,7 +360,6 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
 {rc.THEME_PRELOAD_JS}
 </head>
 <body>
-{rc.THEME_SWITCH_HTML}
 <div class="container">{rc.site_header_html('articles')}
   <main>
   <div class="art-kicker">{_kicker(meta)}</div>
@@ -377,7 +376,7 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
   </main>
 {rc.site_footer_html()}
 </div>
-<script>{rc.THEME_SWITCH_JS}</script>
+<script>{rc.PAGE_JS}</script>
 </body>
 </html>
 """

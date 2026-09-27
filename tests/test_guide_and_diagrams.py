@@ -206,7 +206,8 @@ class GuideIndexPageTests(unittest.TestCase):
     def test_active_nav_key_is_guide(self):
         with mock.patch.object(rc, "GUIDE_PUBLISHED", True):
             html = ba.render_guide_index(ARTICLES, FIXTURE)
-        self.assertRegex(html, r'<a href="/guide/" class="active">新手村</a>')
+        # 2026-09-27 站頭改版起 active 連結多帶 aria-current="page"，屬性順序固定：href、class、aria-current
+        self.assertRegex(html, r'<a href="/guide/" class="active"( aria-current="page")?>新手村</a>')
 
 
 class GuideNavOnArticleTests(unittest.TestCase):

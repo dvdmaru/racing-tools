@@ -13,50 +13,70 @@
   "feed_channel_title": "賽車數據誌 — 數據頁與深度專題",
   "feed_channel_desc": "一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。",
   "default_theme": "carbon",
-  "nav": [
+  "_nav_comment": "nav 維持平鋪（測試與 published gate 都按平鋪數項目）；帶 group 的項目會在站頭收成同一個下拉（label 取 nav_groups），沒帶的維持單獨 pill。desc 是下拉裡的一行短說明，只寫穩定的描述、不寫會隨賽季變的數字。首頁不列：品牌字本身連回首頁。",
+  "nav_groups": [
     {
-      "label": "首頁",
-      "href": "/",
-      "key": "home"
+      "key": "season",
+      "label": "本季"
     },
+    {
+      "key": "encyclopedia",
+      "label": "百科"
+    }
+  ],
+  "nav": [
     {
       "label": "積分榜",
       "href": "/standings/",
-      "key": "standings"
+      "key": "standings",
+      "group": "season",
+      "desc": "車手與車隊年度積分"
     },
     {
       "label": "賽曆",
       "href": "/calendar/",
-      "key": "calendar"
+      "key": "calendar",
+      "group": "season",
+      "desc": "全季賽程，換算台北時間"
     },
     {
       "label": "賽果",
       "href": "/results/",
-      "key": "results"
+      "key": "results",
+      "group": "season",
+      "desc": "各站正賽完整名次"
     },
     {
       "label": "歷年",
       "href": "/seasons/",
       "key": "seasons",
-      "requires": "encyclopedia"
+      "requires": "encyclopedia",
+      "group": "encyclopedia",
+      "desc": "1950 年起的歷屆賽季"
     },
     {
       "label": "車手",
       "href": "/drivers/",
       "key": "drivers",
-      "requires": "encyclopedia"
+      "requires": "encyclopedia",
+      "group": "encyclopedia",
+      "desc": "歷代世界冠軍與現役車手"
     },
     {
       "label": "車隊",
       "href": "/constructors/",
       "key": "constructors",
-      "requires": "encyclopedia"
+      "requires": "encyclopedia",
+      "group": "encyclopedia",
+      "desc": "現役車隊名錄"
     },
     {
       "label": "賽道",
       "href": "/circuits/",
       "key": "circuits",
-      "requires": "encyclopedia"
+      "requires": "encyclopedia",
+      "group": "encyclopedia",
+      "desc": "歷年賽道名錄"
     },
     {
       "label": "新手村",

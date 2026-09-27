@@ -1069,7 +1069,7 @@ def render_index(built_years=None):
     desc = (f"一級方程式 {FIRST_YEAR}–{LAST_YEAR} 歷屆賽季車手與車隊世界冠軍、分站數索引，"
             "台灣慣用繁中譯名＋原文對照。")
     html = rc.page_shell("歷屆一級方程式賽季總覽", desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS + RETIREMENT_ERAS_CSS)
+                         active="seasons", extra_css=p0.ENTITY_CSS + SEASON_CSS + RETIREMENT_ERAS_CSS)
     out = PUB / "seasons"
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
@@ -1514,7 +1514,7 @@ def render_season(year, round_paths=None):
     desc = (f"{year} 一級方程式賽季總覽：車手" + ("與車隊" if has_cons else "") + "積分榜、前三名"
             f"累計積分對決、{gap_txt}與全季退賽圖鑑，每個數字可回溯官方來源。")
     html = rc.page_shell(f"{year} 一級方程式賽季總覽", desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS)
+                         active="seasons", extra_css=p0.ENTITY_CSS + SEASON_CSS)
     out = PUB / "seasons" / str(year)
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
@@ -1671,7 +1671,7 @@ def render_driver_subpage(year, did, round_paths=None):
     desc = (f"{name_txt} 在 {year} 一級方程式賽季的逐站成績（發車位、完賽名次、積分）、"
             f"季末數據（{n_wins} 勝、{n_pod} 頒獎台）與退賽紀錄，每個數字可回溯官方賽果。")
     html = rc.page_shell(f"{name_txt}｜{year} 賽季成績", desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS)
+                         active="seasons", extra_css=p0.ENTITY_CSS + SEASON_CSS)
     out = PUB / "seasons" / str(year) / "drivers" / slug
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
@@ -1821,7 +1821,7 @@ def render_team_subpage(year, cid, round_paths=None):
     desc = (f"{name_txt} 在 {year} 一級方程式賽季的車手貢獻拆解（Σ 恰等官方車隊積分 {_fmt(official)} 分）、"
             f"逐站積分與退賽紀錄，每個數字可回溯官方賽果。")
     html = rc.page_shell(f"{name_txt}｜{year} 賽季", desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS)
+                         active="seasons", extra_css=p0.ENTITY_CSS + SEASON_CSS)
     out = PUB / "seasons" / str(year) / "teams" / slug
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
@@ -2058,7 +2058,7 @@ def render_round(year, rnd, round_paths=None, sub_paths=None):
             f"{'衝刺賽、' if sprint_html else ''}退賽名單與賽況速寫，{win_txt}每個數字可回溯官方賽果。")
     html = rc.page_shell(f"{year} {rc.race_zh(race_name)}｜第 {rnd} 站賽果",
                          desc, canonical, jsonld, body,
-                         active="", extra_css=p0.ENTITY_CSS + SEASON_CSS)
+                         active="seasons", extra_css=p0.ENTITY_CSS + SEASON_CSS)
     out = PUB / "seasons" / str(year) / "rounds" / str(rnd)
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")

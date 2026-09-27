@@ -24,7 +24,7 @@
   gtag('js', new Date());
   gtag('config', 'G-DN5FKJNCVQ');
 </script>
-<link rel="stylesheet" href="/assets/rc-7012104e50.css">
+<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
 .cal-card { border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px;
@@ -49,8 +49,34 @@
 </style>
 </head>
 <body>
-
-<div class="theme-switch">
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="主導覽">
+      <details class="nav-group">
+        <summary class="active">本季</summary>
+        <div class="nav-menu">
+          <a href="/standings/">積分榜<small>車手與車隊年度積分</small></a>
+          <a href="/calendar/" class="active" aria-current="page">賽曆<small>全季賽程，換算台北時間</small></a>
+          <a href="/results/">賽果<small>各站正賽完整名次</small></a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary>百科</summary>
+        <div class="nav-menu">
+          <a href="/seasons/">歷年<small>1950 年起的歷屆賽季</small></a>
+          <a href="/drivers/">車手<small>歷代世界冠軍與現役車手</small></a>
+          <a href="/constructors/">車隊<small>現役車隊名錄</small></a>
+          <a href="/circuits/">賽道<small>歷年賽道名錄</small></a>
+        </div>
+      </details>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/">文章</a>
+    </nav>
+    <div class="theme-switch">
   <span class="ts-label">配色</span>
   <div class="ts-dots">
     <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
@@ -60,25 +86,7 @@
     <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
   </div>
 </div>
-
-<div class="container">
-  <header class="site-header">
-    <div class="brand-block">
-      <a href="/" class="brand-mark">@RACING</a>
-      <div class="brand-tag">賽車數據 · 台北時間</div>
-    </div>
-    <nav class="site-nav">
-      <a href="/">首頁</a>
-      <a href="/standings/">積分榜</a>
-      <a href="/calendar/" class="active">賽曆</a>
-      <a href="/results/">賽果</a>
-      <a href="/seasons/">歷年</a>
-      <a href="/drivers/">車手</a>
-      <a href="/constructors/">車隊</a>
-      <a href="/circuits/">賽道</a>
-      <a href="/guide/">新手村</a>
-      <a href="/articles/">文章</a>
-    </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="選單"><span class="nt-icon" aria-hidden="true"></span><span class="nt-text">選單</span></button>
   </header>
 
 <h1 class="pg-h1">F1 2026 賽曆 · 台北時間</h1><div class="pg-sub">2026 賽季全部 <b>23</b> 站，正賽/排位/衝刺賽時刻均已換算為<b>台北時間（UTC+8）</b>；已完賽 15 站標分站冠軍。</div><div class="cal-legend">🏁 場次時刻依官方公布，如遇改期以主辦方最新公告為準。</div><div class="cal-card done"><div class="cal-rnd">Rd<b>1</b></div><div><div class="cal-name">澳洲站<span class="en">Australian Grand Prix</span><span class="badge win">冠軍 羅素<span class="zh-en">　Russell</span>｜賓士<span class="zh-en">　Mercedes</span></span></div><div class="cal-circuit">亞伯特公園賽道（墨爾本）<span class="zh-en">　Albert Park Grand Prix Circuit</span> · Melbourne, Australia</div></div><div class="cal-race"><span class="d">正賽（台北時間）</span><b>3/8（日）12:00</b></div><div class="cal-sessions"><b>練習一</b> 3/6（五）09:30　·　<b>練習二</b> 3/6（五）13:00　·　<b>練習三</b> 3/7（六）09:30　·　<b>排位賽</b> 3/7（六）13:00</div></div>
@@ -132,6 +140,39 @@ function setTheme(t) {
   let t = 'carbon';
   try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
   setTheme(t);
+})();
+
+(function initNav() {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  h.classList.add('has-js');
+  var btn = h.querySelector('.nav-toggle');
+  var groups = [].slice.call(h.querySelectorAll('.nav-group'));
+  var mq = window.matchMedia('(max-width: 719px)');
+  function closeAll(except) { groups.forEach(function (g) { if (g !== except) g.open = false; }); }
+  function setDrawer(open) {
+    h.classList.toggle('nav-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) groups.forEach(function (g) { g.open = true; });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('toggle', function () { if (g.open && !mq.matches) closeAll(g); });
+    g.addEventListener('focusout', function (e) {
+      if (!mq.matches && e.relatedTarget && !g.contains(e.relatedTarget)) g.open = false;
+    });
+  });
+  if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
+  document.addEventListener('click', function (e) { if (!mq.matches && !h.contains(e.target)) closeAll(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
+    var a = document.activeElement, g = a && a.closest ? a.closest('.nav-group') : null;
+    var back = g ? g.querySelector('summary') : (h.classList.contains('nav-open') ? btn : null);
+    closeAll(); setDrawer(false);
+    if (back) back.focus();
+  });
+  var onChange = function () { closeAll(); setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
 })();
 </script>
 </body>

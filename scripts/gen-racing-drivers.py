@@ -299,7 +299,7 @@ def driver_constructors(did, con):
 
 def write_page(path_parts, title, desc, jsonld, body):
     canonical = f"{BASE}/{'/'.join(path_parts)}/"
-    html = rc.page_shell(title, desc, canonical, jsonld, body, active="", extra_css=p0.ENTITY_CSS)
+    html = rc.page_shell(title, desc, canonical, jsonld, body, active="drivers", extra_css=p0.ENTITY_CSS)
     out = PUB
     for p in path_parts:
         out = out / p
