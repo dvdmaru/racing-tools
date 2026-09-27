@@ -955,6 +955,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-09-27T04:24:16+08:00",
       "note": "F1 新手村第四批（8 篇之一；原擬 10 篇，撤掉與站內既有內容重疊的正賽距離與停工期兩題）。Charlie 2026-09-26 指示「下一批，照 Conductor 模式」（篇目由指揮位擬定並標為猜的，見桌檔），並於 PR #89 開出後指示「先補一輪 Terra」。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁；研究棒的錯：claim 比引句廣、漏但書、條號行號偏移、自創譯名，皆已更正）→寫手只准用標 ✅／✏️改 的條目→Terra 異源審稿（R1／R2；額度用盡期間由 agy 接手）→Claude 修正棒逐條回原文驗證再改（全文主動掃描同型）→DeepSeek 冷讀席（只讀公開成品）→可讀性修正棒→agy R3 聚焦複審可讀性改動→Terra R4 最終版複核（2026-09-27 額度重置後）。agy R3 抓到的 3 處在可讀性修正時被刪掉的限定條件與 1 處誤譯，由指揮位對規章原文核實後補回（主動空力、燃料、最低車重），Terra R4 已確認這些補丁正確。SVG 已用 headless Chrome 以 390px 寬實渲染目視。最後一版未經 Terra 複審的範圍：僅 testing 在 Terra R5 之後改的 3 個詞（辦了→排了、實際的日程→公布的日程，為 R5 唯一 MAJOR 的同型修正）。桌檔與事實包：CoWork/roundtable/2026-09-26-racing-newbie-village-4/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同前三批。審稿履歷：Terra 額度用盡期間由 agy R1（1 MAJOR＋3 MINOR，對原文核實後大致採納）→修正並可讀性修正（9 段）→agy R3（PASS，1 個可選 MINOR，已採）→Terra R4（PASS，僅 1 個可選 MINOR：圖 2 區間邊界未寫含不含等號，未採）。哪隊用哪家動力單元的完整對應只有 formula1.com 一個出版者（查證日 2026-09-26），FIA 頁面無此欄，文中已標明。"
+    },
+    {
+      "slug": "f1-2026-r15-baku-colapinto-fault-ruling",
+      "article_sha256": "3517d6651074dc1de0846224aa699375fc54b02325dc4eee01a9e7d626b9045c",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-09-27T17:35:25+08:00",
+      "note": "Charlie 2026-09-27 於對話中回「合 racing #96」授權發布（PR #96）。非 facts 管線產出（feature 型，外部來源文），故 facts/check_report sha256 為 null。查證流程：事實查證 subagent 建 facts-pack 落盤 → 對抗查核 subagent（fresh context，逐句對 facts-pack，抓到 8 個問題含 2 個自創事實：接觸方位細節、安全車觸發原因未經證實）→ Codex 異源查核（獨立連網重查，抓到 3 個 BLOCKER：Norris 禁賽說法原稿低估、Briatore 引語轉述不精確、積分算術把 P7 名次分數與兩車合計分數搞混）→ 逐條重新查證後修正，修正紀錄見 CoWork job b14498e9 tmp facts-pack 附錄。已過 verify-sources gate 與 check-links（11/12 連結 200，1 條 429 疑似 bot 擋非死鏈）。"
     }
   ]
 }
