@@ -11,7 +11,7 @@ lede: "如果你今年才回頭看 F1，會發現轉播裡少了熟悉的 DRS �
 
 ## 2026 年這一輪改規的特點
 
-F1 的技術規則每隔幾年就會翻新一次，但 2026 年這一輪的特別之處在於：底盤與動力單元**同時**重寫。動力單元的電動輸出比例大幅提高、燃料全面換成 100% 永續燃料、空力套件從固定翼面改成可動翼面、車體縮小減重，再加上凱迪拉克（Cadillac）以第 11 支車隊的身分加入。每一項單獨拿出來都是大新聞，2026 年把它們全部疊在同一季。
+F1 的技術規則每隔幾年就會翻新一次，但 2026 年這一輪的特別之處在於：底盤與動力單元**同時**重寫。動力單元的電動輸出比例大幅提高、燃料全面換成先進永續燃料（規章要求只由先進永續成分組成，僅容許微量添加劑與雜質例外）、空力套件從固定翼面改成可動翼面、車體縮小減重，再加上凱迪拉克（Cadillac）以第 11 支車隊的身分加入。每一項單獨拿出來都是大新聞，2026 年把它們全部疊在同一季。
 
 （**本站的對照觀點**：上一次規模相近的改版是 2014 年導入混合動力動力單元那次。至於「這是不是 F1 史上改動最大的一次」，本站沒有可引用的一手依據，所以不下這個判斷。）
 
@@ -26,14 +26,14 @@ F1 的技術規則每隔幾年就會翻新一次，但 2026 年這一輪的特�
 | 內燃機輸出（formula1.com 說法，規章未規定） | 550-560 kW | 400 kW |
 | 電動馬達（MGU-K）輸出 | 120 kW | 350 kW |
 | MGU-H（熱能回收） | 有 | 取消 |
-| 燃料 | E10（10% 生質乙醇） | 100% 永續燃料 |
+| 燃料 | E10（10% 生質乙醇） | 先進永續燃料（僅由先進永續成分組成，另有微量添加劑與雜質例外） |
 | 每圈回充能量上限 | 約 4 MJ（依 formula1.com「新制加倍」推算） | 8.5 MJ（規章基準，特定場次可降到 7 MJ） |
 
 formula1.com 的說法是內燃機從約 550 kW 降到 400 kW；規章本身沒有規定內燃機輸出功率，管的是燃油能量流量（Section C 第 C5.2.3 條）。電動馬達從 120 kW 提高到 350 kW（350 kW 是規章 C5.2.7 條的上限），官方把這個配置稱為「接近 50/50 的能量分配」。formula1.com 也說合計輸出比舊世代更高。
 
-兩個配套變化值得展開。第一，結構複雜、成本高昂又難以移植到市售車的 MGU-H 正式取消，這是說服新車廠進場的關鍵讓步之一。第二，燃料改為 100% 永續燃料，碳源來自碳捕捉、都市廢棄物與非糧食生質原料，這是 F1 對「淨零」承諾的核心技術路徑。
+兩個配套變化值得展開。第一，結構複雜、成本高昂又難以移植到市售車的 MGU-H 正式取消，這是說服新車廠進場的關鍵讓步之一。第二，燃料改為先進永續燃料。規章寫明燃料要由先進永續成分組成（C16.1.2），成分來源限於非生物來源的再生原料（如 RFNBO）、都市廢棄物與非糧食生質原料，食用作物只有已完成食用用途者（例如廢食用油）才算；formula1.com 的說法另提到碳捕捉。但非永續來源的添加劑與變性劑合計可占混合燃料最多 1.0% m/m（C16.3.5），規章另容許定義以外的低度雜質合計最多 1% m/m（C16.3.3），所以不能說成「一滴石化成分都沒有」。這是 F1 對「淨零」承諾的核心技術路徑。
 
-引擎供應商版圖也重新洗牌，2026 年共 5 家：賓士（Mercedes）供應自家車隊與麥拉倫、Alpine、威廉斯；法拉利供應自家、哈斯與凱迪拉克；紅牛與 Racing Bulls 使用自家與福特合作的 Red Bull Ford Powertrains；本田（Honda）獨家供應奧斯頓馬丁；奧迪（Audi）供應自家車隊。
+引擎供應商版圖也重新洗牌，2026 年共 5 家：賓士（Mercedes）供應自家車隊與麥拉倫、Alpine、威廉斯；法拉利供應自家、哈斯與凱迪拉克；紅牛與 Racing Bulls 使用自家與福特合作的 Red Bull Ford；本田（Honda）獨家供應奧斯頓馬丁；奧迪（Audi）供應自家車隊。
 
 ## 主動空力：Straight Mode 與 Corner Mode
 
@@ -110,7 +110,7 @@ Overtake Mode 在正賽中需要在偵測點距前車 1 秒內（formula1.com �
 
 ## 資料來源
 
-規格與制度事實對照下列官方與權威來源查證（查證日：2026-09-26）：
+規格與制度事實對照下列官方與權威來源查證（查證日：2026-09-26；燃料成分與 2026 規則各項說法，2026-09-27 對 Section C Issue 20 補查）：
 
 - Formula1.com：[2026 規則入門指南](https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-2026-regulations.6j0tS0hrHG2T01tpmK6XYz)、[2026 動力單元規則解說](https://www.formula1.com/en/latest/article/explained-2026-power-unit-regulations-fia.68izKQ2tn1voQPWvgLVMXN)、[2026 新術語解說](https://www.formula1.com/en/latest/article/explained-the-new-key-terms-for-formula-1s-new-for-2026-rules.3T5BU6TC9quGcIpGzoWkY0)、[2026 空力規則解說](https://www.formula1.com/en/latest/article/explained-2026-aerodynamic-regulations-fia-x-mode-z-mode-.26c1CtOzCmN3GfLMywrgb2)、[巴林與沙烏地站不在 4 月舉行公告](https://www.formula1.com/en/latest/article/bahrain-and-saudi-arabian-grands-prix-will-not-take-place-in-april.1hnqllVG85RSt8pbFc5Ivx)、[巴林站移師馬來西亞公告](https://www.formula1.com/en/latest/article/formula-1-and-fia-confirm-malaysia-will-join-2026-calendar-as-host-venue-for-bahrain-grand-prix.6lL7vjFEM2VVynRHvg1TCf)、[2026 衝刺賽賽曆公告](https://www.formula1.com/en/latest/article/formula-1-and-fia-announce-2026-sprint-calendar.3PyLPAazrBNe8kQIS3wOfY)、[Cadillac 車隊介紹](https://www.formula1.com/en/latest/article/explained-everything-you-need-to-know-about-cadillacs-2026-entry-into.7h3SiUnYcbpjoRUJ9VsL2H)
 - FIA：[2026 規章 Section A（Issue 03，積分制度）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_a_general_provisions_-_iss_03_-_2026-06-25.pdf)、[2026 規章 Section B（Issue 08，主動空力與 Overtake）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf)、[2026 規章 Section C（Issue 20，尺寸、重量與動力單元）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf)、[2026 動力單元技術規則](https://www.fia.com/file/186874/download)、[2026 規則季中修正公告](https://www.fia.com/news/refinements-2026-fia-formula-1-regulations-agreed-all-stakeholders)

@@ -13,12 +13,12 @@
     },
     {
       "slug": "f1-2026-rules-guide",
-      "article_sha256": "c4965d8efe307b2bdebcf41a7c139996c47cf551a64f270e6a19bc166b05afc1",
+      "article_sha256": "d0ba1175c33d11fe720823414c43f398e373b3601186d3cf2bf59bc363da4701",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-26T12:16:35+08:00",
-      "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。　2026-08-01 勘誤重新核准（Charlie：「勘誤 OK」）：賽曆段落與 FAQ 由 22 站更新為 23 站——巴林站移師馬來西亞雪邦、10 月 2 至 4 日舉行並沿用原名稱，沙烏地站未再排入。另修三處：①官方公告標題用字是「不會在 4 月舉行」，原文的「取消」是本站轉述時的加強，已改回官方用字 ②文末「賽季剩下的 13 站」由舊總數推算而來（22 減已跑 9 站），改為不帶推算數字的寫法——**這一句用 grep「22 站」掃不到，是新增 check-site-facts.py 的直接由來** ③出處標籤「Sky Sports（22 站賽曆確認）」改為描述該報導當時的內容。規則與技術規格部分未更動；勘誤已記入 data/errata.json，會出現在頁面的本頁勘誤區塊。　sha256 7d23f22f… → 2c629835…　2026-09-26 修正（Charlie 2026-09-26 授權「另開 PR 修」）：最低重量改與規章 C4.1（724 kg＋標稱輪胎重量）並列、車寬改與規章 C2.3.1 及 formula1.com 兩篇不一致的說法並列、內燃機 400 kW 明確歸因 formula1.com 並註明規章未規定、刪除無出處的「53% 比 47%」與「突破 1000 匹馬力」、回充 8→7 MJ 補『排位賽項下』限定並與規章 C5.2.10 基準 8.5 MJ 並列、補直線模式／Overtake／Boost／積分（含連續兩圈條件）的規章限定、刪 subtitle 與 lede 找不到出處的最高級說法、H2 改『2026 年這一輪改規的特點』、資料來源補 Section A／B／C 三條 PDF 並更新查證日。逐條回 FIA 2026 規章本機純文字與原頁（curl）核對後改；Terra 異源複核 0 BLOCKER，複核後的小修（見下）未再複審。"
+      "note": "建站長青文，補記既有核准　2026-07-30 勘誤：刪除兩處無名歸因（「改動規模被普遍拿來與 2014 年相比」、「甚至有一種說法是：這是 F1 史上第一次把兩者同時全面重寫」）。兩者都是無法追查的歸因，後者還是未經證實的最高級表述；新增的 verify-sources gate 命中它們，Charlie 於當日裁決「改一下」。2014 年的對照改為明示『本站的對照觀點』並明白拒答「史上改動最大」這個判斷。本篇為建站長青文，非 facts 管線產出，故 facts/check_report sha256 維持 null。　2026-08-01 勘誤重新核准（Charlie：「勘誤 OK」）：賽曆段落與 FAQ 由 22 站更新為 23 站——巴林站移師馬來西亞雪邦、10 月 2 至 4 日舉行並沿用原名稱，沙烏地站未再排入。另修三處：①官方公告標題用字是「不會在 4 月舉行」，原文的「取消」是本站轉述時的加強，已改回官方用字 ②文末「賽季剩下的 13 站」由舊總數推算而來（22 減已跑 9 站），改為不帶推算數字的寫法——**這一句用 grep「22 站」掃不到，是新增 check-site-facts.py 的直接由來** ③出處標籤「Sky Sports（22 站賽曆確認）」改為描述該報導當時的內容。規則與技術規格部分未更動；勘誤已記入 data/errata.json，會出現在頁面的本頁勘誤區塊。　sha256 7d23f22f… → 2c629835…　2026-09-26 修正（Charlie 2026-09-26 授權「另開 PR 修」）：最低重量改與規章 C4.1（724 kg＋標稱輪胎重量）並列、車寬改與規章 C2.3.1 及 formula1.com 兩篇不一致的說法並列、內燃機 400 kW 明確歸因 formula1.com 並註明規章未規定、刪除無出處的「53% 比 47%」與「突破 1000 匹馬力」、回充 8→7 MJ 補『排位賽項下』限定並與規章 C5.2.10 基準 8.5 MJ 並列、補直線模式／Overtake／Boost／積分（含連續兩圈條件）的規章限定、刪 subtitle 與 lede 找不到出處的最高級說法、H2 改『2026 年這一輪改規的特點』、資料來源補 Section A／B／C 三條 PDF 並更新查證日。逐條回 FIA 2026 規章本機純文字與原頁（curl）核對後改；Terra 異源複核 0 BLOCKER，複核後的小修（見下）未再複審。 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。「100% 永續燃料」3 處改為「先進永續燃料」並帶規章限定（燃料須只由先進永續成分組成，另有微量非永續添加劑與變性劑、與獨立雜質上限，兩個 1% 不相加）；第 36 行「Red Bull Ford Powertrains」改為官方寫法「Red Bull Ford」（指揮位補改）；補 Section C 2026-09-27 補查日。Terra R1 PASS。"
     },
     {
       "slug": "season-intro-2002",
@@ -103,12 +103,12 @@
     },
     {
       "slug": "f1-summer-shutdown-guide",
-      "article_sha256": "34919c9026124547e8fa5d6b91c90d98e1f99dbbce60541f7f854930c41549d7",
+      "article_sha256": "61b66b8ae3ac911413a5e54c4cbc1eb46f8470366861a24285a9481ecd9be54d",
       "facts_sha256": "b25bbf6a069f0f2f8c9b0c42a77a4448c06fc385fedba9b98138cef5e5ac992c",
       "check_report_sha256": "0e8f5f589b66842ce9f3e2cee61a66f08d98c90b70de8f2e7d33e48f7fb11a1f",
       "approved_by": "Charlie",
       "approved_at": "2026-08-11",
-      "note": "查核桌 2026-08-11（Sol 四輪，R3 主動簽字 GO）後核准；一手條文=Section F Issue 10 ARTICLE F3"
+      "note": "查核桌 2026-08-11（Sol 四輪，R3 主動簽字 GO）後核准；一手條文=Section F Issue 10 ARTICLE F3 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。①「28 天是全季最長的空白」改為第二長（日本站到邁阿密站 35 天為最長，自賽曆檔重算）；②「多數期間是 8 週」改為與 F4.1.4 各期相符的說法；③Restricted Period 罰則依 B9.5 重寫，並補 B9.5.1 第三段的延長條件（衝刺賽制基準為 formation lap 排定開始）；④只斷言已取得的賓士日期落在該空白、其餘車隊「本站未取得」；補 2026-09-27 補查日。Terra R1 抓到修正棒在同型掃描引進的 3 處（第三段基準與延長條件、11 隊同落空白的斷言）已改，R2 PASS。"
     },
     {
       "slug": "season-intro-1958",
@@ -562,12 +562,12 @@
     },
     {
       "slug": "f1-2027-race-distance-290km",
-      "article_sha256": "50718ba59db6f7e6149798cd1a485a2933b6d85908afbb991747e04244723fcd",
+      "article_sha256": "c0da2b7d24eda69968341ffff085ef2ed00a00fd2df71aa7cea643191a13f1f9",
       "facts_sha256": "99d7f2759cfd6c33eb04c594be8ac8056ed2f0c9bedcc26fc3b79b80883e66d5",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-04T19:51:35+08:00",
-      "note": "2026-09-04 Charlie 指定題目（2027 年正賽里程縮 5%），Conductor 模式產出。一手＝FIA 2026 運動規則 Issue 08 的 B2.5.2／B2.5.3 本文（本機 pdftotext 抽取），外加 FIA 規則頁面實查（截至 2026-09-04 尚無 2027 年運動規則）。媒體層 9 篇原文抓成本地快照存 CoWork/roundtable/2026-09-04-racing-2027-race-distance/evidence/，全文引文以新增的 scripts/verify-quotes.py 逐字比對，82 句全數命中。兩席對抗式查核回報後修正：①三句 The Race 引文為網頁摘要改寫、原文不存在（整段刪除換成 grep 命中的真實理由）②B2.5.3 引的是 Issue 07 文字卻掛 Issue 08 出處（兩版確有差異，Issue 08 多一款三小時上限）③『只有 The Race 提到只談定 2027 一年』為假，RacingNews365 亦有 ④Tombazis 職稱掛錯出處（來源寫 boss，正式頭銜改引 FIA 2023 任命公告）⑤維斯塔潘兩句引語順序與原文相反 ⑥Permane 引文的 maybe hedge 被吃掉 ⑦『其餘六篇都只提到摩納哥』母體含 5 月兩篇，GPFans 正文未談摩納哥。⚠️ 題目原句『所有分站賽的正賽里程將會縮短』的語氣經查核後降級：此案尚未經 F1 Commission 與 WMSC，2027 年運動規則尚未發布，全文改用「打算／提案／若通過」。gate：verify-sources／verify-numbers／check-links（19 條 200）／check-zh／check-covers／verify-quotes 全綠。Charlie 以合併 PR 為核准發布的授權行為。 ／ 2026-09-04 勘誤重新核准：World Motor Sport Council 中譯「摩托」→「汽車」（正文漏改的第二處），已登記 data/errata.json 公開勘誤。"
+      "note": "2026-09-04 Charlie 指定題目（2027 年正賽里程縮 5%），Conductor 模式產出。一手＝FIA 2026 運動規則 Issue 08 的 B2.5.2／B2.5.3 本文（本機 pdftotext 抽取），外加 FIA 規則頁面實查（截至 2026-09-04 尚無 2027 年運動規則）。媒體層 9 篇原文抓成本地快照存 CoWork/roundtable/2026-09-04-racing-2027-race-distance/evidence/，全文引文以新增的 scripts/verify-quotes.py 逐字比對，82 句全數命中。兩席對抗式查核回報後修正：①三句 The Race 引文為網頁摘要改寫、原文不存在（整段刪除換成 grep 命中的真實理由）②B2.5.3 引的是 Issue 07 文字卻掛 Issue 08 出處（兩版確有差異，Issue 08 多一款三小時上限）③『只有 The Race 提到只談定 2027 一年』為假，RacingNews365 亦有 ④Tombazis 職稱掛錯出處（來源寫 boss，正式頭銜改引 FIA 2023 任命公告）⑤維斯塔潘兩句引語順序與原文相反 ⑥Permane 引文的 maybe hedge 被吃掉 ⑦『其餘六篇都只提到摩納哥』母體含 5 月兩篇，GPFans 正文未談摩納哥。⚠️ 題目原句『所有分站賽的正賽里程將會縮短』的語氣經查核後降級：此案尚未經 F1 Commission 與 WMSC，2027 年運動規則尚未發布，全文改用「打算／提案／若通過」。gate：verify-sources／verify-numbers／check-links（19 條 200）／check-zh／check-covers／verify-quotes 全綠。Charlie 以合併 PR 為核准發布的授權行為。 ／ 2026-09-04 勘誤重新核准：World Motor Sport Council 中譯「摩托」→「汽車」（正文漏改的第二處），已登記 data/errata.json 公開勘誤。 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。「2027 年運動規則根本還沒發布」改為「尚未以獨立文件發布，Issue 08 附錄 B5『Changes for 2027』已有 2027 年變更段落，其中 B2.5.2 仍為 305 公里、無 290 公里字樣，另多一項 FIA 可裁量最多減 4 圈的例外」（並補 (a)(i) 暫定資訊與 (a)(ii) 四週前向所有參賽方確認時長的條件）；H2 改為「規章裡還看不到 290 公里」；三家媒體計數一致；查證日補註 9/27 補查（舊 9/4 查證日不為新說法背書），核心論點與媒體報導層不動。Terra R1／R2／R3，最終 PASS。 另補 frontmatter `topic_ref: \"manual\"`（本篇是 Charlie 2026-09-04 指定的題目，不是選題台來的；PR 護欄 guard-crosscheck-desk 要求標明來源，只動 metadata、不動內文）。"
     },
     {
       "slug": "f1-monza-italian-drought-60-years",
@@ -715,21 +715,21 @@
     },
     {
       "slug": "f1-101-car-anatomy",
-      "article_sha256": "2fe73862b1580569520042528f7566624bd09ee8f30f264ce7fdced8817be00e",
+      "article_sha256": "1c9149450a4ff9859392511544528cb95bbd9427d5df1374bef92c00baa6be06",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-25T18:00:00+08:00",
-      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。第 171 行車手最低重量：時段由「比賽期間」改為整個賽事（Competition）、「車手本人」改為含座椅與駕駛裝備的車手基準重量加壓載（C4.5.2、Appendix C1）；FAQ 同步；H2 補「加標稱輪胎重量」（Terra R1 抓到修正棒同型掃描把 H2 寫成 724 公斤）；補 2026-09-27 查證日。Terra R2 PASS。"
     },
     {
       "slug": "f1-101-power-unit",
-      "article_sha256": "8e120b3bcba1fe40e4473734bd8ea07f8cad1d9c63c05e18a5c9d78eb27b06ca",
+      "article_sha256": "cf6ff20551c60ce6a2b6fa735324ed4fbaefb74543df74a2711d977a92938376",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-25T18:00:00+08:00",
-      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。"
+      "note": "F1 新手村第二批（10 篇之一）。Charlie 2026-09-25 指示「第二批，使用 Conductor模式」（篇目由指揮位擬定，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號舊編號、引文被改寫、把 2027 條款當現行，皆已更正）→缺口補查（引文以腳本對本機規章逐字比對）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者）→DeepSeek 冷讀席（只讀公開成品）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）三輪：R1 對全 10 篇（race-start、car-anatomy、overtaking 三篇 PASS，其餘有修正，含 team-roles 與 telemetry 各 1 個 BLOCKER）→R2 對被修過的 7 篇（cost-cap、safety-car PASS；telemetry、team-roles、wet-weather 仍有新引進的過廣說法，含 3 個 BLOCKER）→R3 對這 3 篇（無 BLOCKER，剩精確度小修）。R3 之後的小修（telemetry、team-roles、wet-weather）與 R2 對 car-balance、power-unit 的小修未再經 Terra 複審。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一批。 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。表格「Red Bull Powertrains」改為官方車隊頁寫法「Red Bull Ford」；The Race 來源說明改為標明是該媒體的用詞、本站表格依 formula1.com 車隊頁；補 2026-09-27 對 formula1.com 各車隊頁的補查日。Terra R1 PASS。"
     },
     {
       "slug": "f1-101-overtaking",
