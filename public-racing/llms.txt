@@ -15,6 +15,7 @@
 
 ## 最新文章
 
+- [美國站是安東內利最早能封王的一站，前提是三個週末對羅素淨賺 60 分](https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/)（2026-09-27）
 - [巴庫今年在週六開賽：因為週日 9 月 27 日是亞塞拜然的國殤紀念日](https://racing.twtools.cc/articles/f1-2026-baku-saturday-race/)（2026-09-26）
 - [F1 現役賽車想上賽道測試，規章只給五種機會](https://racing.twtools.cc/articles/f1-101-testing/)（2026-09-26）
 - [Alpine 的車尾是賓士：F1 的 5 家動力單元廠商怎麼供應 11 支車隊](https://racing.twtools.cc/articles/f1-101-pu-manufacturers/)（2026-09-26）
@@ -24,7 +25,6 @@
 - [F1 燃料是什麼：正賽不能加油，規章限制的是每小時流進引擎的能量](https://racing.twtools.cc/articles/f1-101-fuel/)（2026-09-26）
 - [F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少](https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/)（2026-09-26）
 - [F1 主動空力：翼片只有兩個位置，被通知才能用，低抓地時只准前翼動](https://racing.twtools.cc/articles/f1-101-active-aero/)（2026-09-26）
-- [下雨的 F1 怎麼跑：雨胎、安全車起跑，還有比賽被叫停的時候](https://racing.twtools.cc/articles/f1-101-wet-weather/)（2026-09-25）
 
 ## 文章與更新
 
@@ -38,7 +38,7 @@
 
 ## 歷年賽季（百科）
 
-- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 417 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
+- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 418 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
 - https://racing.twtools.cc/seasons/2026/
 - https://racing.twtools.cc/seasons/2026/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2026/drivers/max-verstappen/
@@ -67,6 +67,7 @@
 - https://racing.twtools.cc/seasons/2026/rounds/12/
 - https://racing.twtools.cc/seasons/2026/rounds/13/
 - https://racing.twtools.cc/seasons/2026/rounds/14/
+- https://racing.twtools.cc/seasons/2026/rounds/15/
 - https://racing.twtools.cc/seasons/2025/
 - https://racing.twtools.cc/seasons/2025/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2025/drivers/max-verstappen/
