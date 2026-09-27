@@ -158,7 +158,7 @@ FIA 會替相關的動力單元元件上封條，比賽期間只能使用已經�
 | --- | --- |
 | 賓士 | 賓士、威廉斯、Alpine、麥拉倫 |
 | 法拉利 | 法拉利、哈斯、凱迪拉克 |
-| Red Bull Powertrains（紅牛與福特合作） | 紅牛（Red Bull Racing）、Racing Bulls |
+| Red Bull Ford（紅牛與福特合作） | 紅牛（Red Bull Racing）、Racing Bulls |
 | 本田（Honda） | 奧斯頓馬丁 |
 | 奧迪 | 奧迪 |
 
@@ -204,6 +204,6 @@ MGU-H 是舊制從排氣回收能量的系統。F1 官方說它被視為多餘�
 
 二手來源（媒體）：
 
-- [The Race，《2026 F1 team engines》](https://www.the-race.com/formula-1/2026-f1-team-engines/) （Racing Bulls 使用 Red Bull Powertrains 動力單元）
+- [The Race，《2026 F1 team engines》](https://www.the-race.com/formula-1/2026-f1-team-engines/) （該頁把 Racing Bulls 的動力單元寫成 Red Bull Powertrains，這是該媒體的用詞；F1 官方車隊頁的供應商欄寫 Red Bull Ford，本站表格依官方頁）
 
-查證日：2026-09-25。規章數字以 Section C Issue 20 與 Section B Issue 08（皆為 2026-08-05 版）為準。限制：電池容量、電壓與重量沒有查到一手數字，內燃機的功率在規章裡也沒有數字，所以文中都沒有寫；一圈之中具體在哪些彎回充、在哪些直線放電，也沒有找到官方圖，因此沒有舉賽道實例。
+查證日：2026-09-25；動力單元廠商名稱另於 2026-09-27 對 formula1.com 各車隊頁補查。規章數字以 Section C Issue 20 與 Section B Issue 08（皆為 2026-08-05 版）為準。限制：電池容量、電壓與重量沒有查到一手數字，內燃機的功率在規章裡也沒有數字，所以文中都沒有寫；一圈之中具體在哪些彎回充、在哪些直線放電，也沒有找到官方圖，因此沒有舉賽道實例。

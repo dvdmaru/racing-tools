@@ -4,7 +4,7 @@ type: "feature"
 date: "2026-09-04"
 season: 2026
 title: "F1 打算把 2027 年正賽距離門檻從 305 公里降到 290 公里：摩納哥縮不縮，六篇報導各執一詞"
-subtitle: "六篇媒體在 2026 年 9 月 3 日至 4 日報導，F1 車隊已透過電子郵件同意把 2027 年正賽距離的門檻從 305 公里降到 290 公里，但這件事還沒定案——2027 年的運動規則根本還沒發布，F1 Commission 與世界汽車運動理事會都還沒批准。原本的方案只打算縮短少數幾站，後來改成全部一起縮：兩家媒體說是怕比賽變成省油賽，另一家說是想避免不同賽事長度變成反覆出現的話題。因果其實是反過來的——為了讓引擎更有力、提高燃油流量，才需要縮短里程。摩納哥到底縮不縮，六篇報導分成不對等的兩派，本站不選邊。"
+subtitle: "六篇媒體在 2026 年 9 月 3 日至 4 日報導，F1 車隊已透過電子郵件同意把 2027 年正賽距離的門檻從 305 公里降到 290 公里，但這件事還沒定案——2027 年的運動規則尚未以獨立文件發布，Issue 08 附錄裡的 2027 年變更段落，正賽距離也仍寫 305 公里，F1 Commission 與世界汽車運動理事會都還沒批准。原本的方案只打算縮短少數幾站，後來改成全部一起縮：兩家媒體說是怕比賽變成省油賽，另一家說是想避免不同賽事長度變成反覆出現的話題。因果其實是反過來的——為了讓引擎更有力、提高燃油流量，才需要縮短里程。摩納哥到底縮不縮，六篇報導分成不對等的兩派，本站不選邊。"
 lede: "本站資料庫顯示，摩納哥是 2026 年目前為止圈數最多的一站，78 圈，比第二多的荷蘭站多 6 圈，卻是跑最短距離的一站——因為 305 公里那道門檻，從來沒有適用過它。"
 ---
 
@@ -22,7 +22,7 @@ FIA《2026 年 F1 運動規則》（Section B）第 B2.5.2 條原文：「The di
 
 翻成中文：正賽距離，從 B5.7.2 條所指的起跑訊號，到 B5.16.1 條所指的賽段結束訊號，應等於超過 305 公里的最少完整圈數，以下兩種情形除外。
 
-這句話的意思是，賽會先算出跑滿多少完整圈會超過 305 公里，那個圈數就是排定的正賽圈數。所以正賽實際跑的里程，一定略多於 305 公里，不會剛好是 305。這道門檻本身沒有變：Issue 07（2026 年 6 月 25 日）與 Issue 08（2026 年 8 月 5 日）的 B2.5.2 條逐字相同，305 公里沒有變動。
+這句話的意思是，賽會先算出跑滿多少完整圈會超過 305 公里，那個圈數就是排定的正賽圈數。所以正賽實際跑的里程，一定略多於 305 公里，不會剛好是 305。這道門檻本身沒有變：Issue 07（2026 年 6 月 25 日）與 Issue 08（2026 年 8 月 5 日）的 B2.5.2 條逐字相同，305 公里沒有變動；Issue 08 附錄裡 2027 年變更段落的 B2.5.2，門檻也仍是 305 公里（見下文）。
 
 車隊老闆講到這件事的時候，用的是另一個數字。Racing Bulls 車隊領隊（team boss）Alan Permane 今年 5 月談到 2027 年車身沿用問題時，提到的是「the 310km race」——310 公里的正賽，不是 305。他講的是實際跑的里程，規則條文講的是那道門檻，兩者本來就不是同一件事。
 
@@ -100,9 +100,9 @@ Grandprix.com（2026 年 9 月 3 日）給的是另一個理由，講的是觀�
 
 還有一件事，The Race 與 RacingNews365 都提到：這次縮短目前只談定 2027 一年，不是永久改變。The Race 的原文是：「It is understood that the reduction in race distance is currently only agreed for next season because of the compromise caused by the change of power unit rules at such a late stage. However, teams may decide to keep it at that level for longer if it is found that the additional fuel-flow changes planned for 2028 cause further trouble.」翻成中文：該報導掌握到的情況是，縮短里程目前只談定用在下一個賽季，因為動力單元規則變動來得太晚而需要妥協；但如果 2028 年追加的燃油流量變動也造成問題，車隊可能決定把這個距離維持更久。
 
-## 它還沒定案：2027 年的運動規則根本還沒發布
+## 它還沒定案：規章裡還看不到 290 公里
 
-截至 2026 年 9 月 4 日，FIA 規則頁面上沒有任何 2027 年的《運動規則》文件，2027 年目前只有技術規則（Section C，Issue 2，2026 年 8 月 5 日發布）。現行仍在生效的 B2.5.2 條，寫的還是 305 公里。
+截至 2026 年 9 月 4 日，FIA 規則頁面上沒有獨立的 2027 年《運動規則》文件，2027 年目前只有技術規則（Section C，Issue 2，2026 年 8 月 5 日發布）；2026 年 9 月 27 日補查，頁面上仍是同樣的狀況。不過 2026 年《運動規則》Issue 08（2026 年 8 月 5 日）的附錄 B5「APPROVED CHANGES TO SECTION B FOR SUBSEQUENT YEARS」有一段標明適用 2027 年的「Changes for 2027」，其中 B2.5.2 條寫的仍是超過 305 公里的最少完整圈數，沒有 290 公里這個數字。這段 2027 年條文比現行條文多一項例外：FIA 可依裁量把正賽圈數最多減 4 圈，並須在賽曆首次核准日或前一年 6 月 30 日（取較晚者）前，向所有參賽方提供全季各站正賽時長的暫定資訊，再於各站開賽至少 4 週前，向所有參賽方（Competitors）確認該站正賽的時長（Race session duration）；安全車帶領起跑與摩納哥 260 公里兩項則照舊。所以六篇報導說的 290 公里，目前在本站查得到的規章裡看不到；現行仍在生效的 B2.5.2 條，寫的也還是 305 公里。
 
 六篇報導的消息都來自匿名管道——例如 Autosport 寫的是「Autosport understands」，Motorsport.com 寫的是「Motorsport.com understands」——沒有一篇報導引用具名人士談這次提案，也沒有一篇是 FIA 或 F1 的官方公告。
 
@@ -136,17 +136,17 @@ Grandprix.com（2026 年 9 月 3 日）加了保留：「It could also be shorte
 
 帳面上是三比三，但兩邊不對等。寫「不受影響」的 Crash.net、RacingNews365、The Race，是三家不同的 publisher。寫「也可能縮」的 Autosport 與 Motorsport.com 同屬 Motorsport Network，「capped at 260km because of its unique layout, is also likely to be shortened」這句逐字相同，應該算同一個信源，不是兩份獨立證據；Grandprix.com 自己也對這件事加了保留。
 
-## 少跑幾圈，本站算不出來，但兩家媒體算了
+## 少跑幾圈，本站算不出來，但三家媒體算了
 
 如果 2027 年正賽距離門檻真的從 305 公里降到 290 公里，兩個門檻相差 15 公里，約 4.9%。那大概會少跑幾圈？
 
 本站資料庫只有圈數，沒有單圈長度，換算不出公里數；何況各站圈長不同，答案本來就因站而異。
 
-但兩家媒體算了，給的答案也不完全一樣。The Race 自己算過，附了一張換算表，寫的是：「will pull the events back by around three laps」——大概會讓賽事縮短約三圈。RacingNews365 寫的是：「The move would see most races trimmed by roughly two to three laps」——大部分賽事大概會縮減二到三圈。Crash.net 給的又是第三個數字：「For most races, this means that lap counts will be cut by between two and four laps」——大部分賽事會少跑二到四圈。三家自己算，算出三個不完全一樣的區間。兩個都是媒體自己的估算，不是官方數字，也不是本站算出來的。
+但三家媒體算了，給的答案也不完全一樣。The Race 自己算過，附了一張換算表，寫的是：「will pull the events back by around three laps」——大概會讓賽事縮短約三圈。RacingNews365 寫的是：「The move would see most races trimmed by roughly two to three laps」——大部分賽事大概會縮減二到三圈。Crash.net 給的又是第三個數字：「For most races, this means that lap counts will be cut by between two and four laps」——大部分賽事會少跑二到四圈。三家自己算，算出三個不完全一樣的區間。這些都是媒體自己的估算，不是官方數字，也不是本站算出來的。
 
 ## 資料來源
 
-一手文件：[FIA 2026 Formula 1 Sporting Regulations, Section B, Issue 08（2026-08-05）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf)（B2.5.2、B2.5.3 條）；FIA 規則發布頁 [https://www.fia.com/regulation/category/110](https://www.fia.com/regulation/category/110)（截至 2026-09-04 尚無 2027 年運動規則）；[同一份規則的 Issue 07（2026-06-25）](https://api.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_07_-_2026-06-25.pdf)（用於比對 B2.5.3 的版本差異）；[FIA 任命公告：Nikolas Tombazis appointed Single Seater Director（2023-01-18）](https://www.fia.com/news/fia-details-new-structure-formula-1-following-transitional-period)（職稱出處）。
+一手文件：[FIA 2026 Formula 1 Sporting Regulations, Section B, Issue 08（2026-08-05）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf)（B2.5.2、B2.5.3 條，以及附錄 B5「Changes for 2027」的 B2.5.2 條）；FIA 規則發布頁 [https://www.fia.com/regulation/category/110](https://www.fia.com/regulation/category/110)（截至 2026-09-04 尚無獨立的 2027 年運動規則文件，2026-09-27 補查仍同）；[同一份規則的 Issue 07（2026-06-25）](https://api.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_07_-_2026-06-25.pdf)（用於比對 B2.5.3 的版本差異）；[FIA 任命公告：Nikolas Tombazis appointed Single Seater Director（2023-01-18）](https://www.fia.com/news/fia-details-new-structure-formula-1-following-transitional-period)（職稱出處）。
 
 媒體報導：
 - The Race，2026-09-03，[F1 teams agree plan to cut race distances for 2027](https://www.the-race.com/formula-1/f1-teams-agree-plan-to-cut-race-distances-2027/)
@@ -167,4 +167,4 @@ Grandprix.com（2026 年 9 月 3 日）加了保留：「It could also be shorte
 
 本站自有資料：本站 [各站賽果](/results/)（jolpica-f1，涵蓋一級方程式世界錦標賽 1950 年起）。
 
-查證日 2026-09-04。本站資料庫存的是圈數，沒有存單圈長度，因此本文無法把公里數換算成圈數；2027 年正賽距離的變動是否定案，以 FIA 屆時發布的正式運動規則為準。
+查證日 2026-09-04；其中 FIA 規則頁與 Issue 08 附錄 B5「Changes for 2027」的內容，於 2026-09-27 補查。本站資料庫存的是圈數，沒有存單圈長度，因此本文無法把公里數換算成圈數；2027 年正賽距離的變動是否定案，以 FIA 屆時發布的正式運動規則為準。
