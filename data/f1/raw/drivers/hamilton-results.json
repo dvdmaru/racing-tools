@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 394,
+  "total": 395,
   "Races": [
     {
       "season": "2007",
@@ -23596,11 +23596,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "15",
+      "url": "https://en.wikipedia.org/wiki/2026_Azerbaijan_Grand_Prix",
+      "raceName": "Azerbaijan Grand Prix",
+      "Circuit": {
+        "circuitId": "baku",
+        "url": "https://en.wikipedia.org/wiki/Baku_City_Circuit",
+        "circuitName": "Baku City Circuit",
+        "Location": {
+          "lat": "40.3725",
+          "long": "49.8533",
+          "locality": "Baku",
+          "country": "Azerbaijan"
+        }
+      },
+      "date": "2026-09-26",
+      "time": "11:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "6",
+          "positionText": "6",
+          "points": "8",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": "6",
+          "laps": "51",
+          "status": "Finished",
+          "Time": {
+            "millis": "5904525",
+            "time": "+22.382"
+          },
+          "FastestLap": {
+            "rank": "6",
+            "lap": "49",
+            "Time": {
+              "time": "1:46.170"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-09-21T03:25:57.293480+00:00",
+    "fetched_at": "2026-09-27T00:16:47.172639+00:00",
     "backfill": true
   }
 }

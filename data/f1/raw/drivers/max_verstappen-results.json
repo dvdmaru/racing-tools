@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 247,
+  "total": 248,
   "Races": [
     {
       "season": "2015",
@@ -14620,11 +14620,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "15",
+      "url": "https://en.wikipedia.org/wiki/2026_Azerbaijan_Grand_Prix",
+      "raceName": "Azerbaijan Grand Prix",
+      "Circuit": {
+        "circuitId": "baku",
+        "url": "https://en.wikipedia.org/wiki/Baku_City_Circuit",
+        "circuitName": "Baku City Circuit",
+        "Location": {
+          "lat": "40.3725",
+          "long": "49.8533",
+          "locality": "Baku",
+          "country": "Azerbaijan"
+        }
+      },
+      "date": "2026-09-26",
+      "time": "11:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "2",
+          "positionText": "2",
+          "points": "18",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": "8",
+          "laps": "51",
+          "status": "Finished",
+          "Time": {
+            "millis": "5882339",
+            "time": "+0.196"
+          },
+          "FastestLap": {
+            "rank": "2",
+            "lap": "48",
+            "Time": {
+              "time": "1:44.993"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-09-21T03:25:59.141565+00:00",
+    "fetched_at": "2026-09-27T00:16:51.714929+00:00",
     "backfill": true
   }
 }
