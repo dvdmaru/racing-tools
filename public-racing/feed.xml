@@ -6,6 +6,41 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 曾經明文禁止「team orders」，2011 年就被拿掉了</title>
+    <link>https://racing.twtools.cc/articles/f1-101-team-orders/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-team-orders/</guid>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2003 年生效的專門條文，俗稱 Article 39.1，因為 2010 年德國站的爭議在同年底被 FIA 刪除。車隊指令的紅線退回國際運動規則（ISC）的一般性誠信條款，用 2002 年奧地利站、2010 年德國站兩個案例對照著看。</description>
+  </item>
+  <item>
+    <title>FIA 規章的名詞表，候補車手一欄還沒填</title>
+    <link>https://racing.twtools.cc/articles/f1-101-reserve-driver/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-reserve-driver/</guid>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
+    <description>規章沒有「候補車手」這個正式身分，只有一套換人程序：一個賽季，一支車隊最多能用 4 位車手，新上場的車手都可以得分，動力單元的用量不論哪一種換人都接著原車手算，不會重新歸零；原提名車手如果「無法駕駛」，車隊申請換人並經幹事同意後，接手車手的輪胎用量也接著原車手算。</description>
+  </item>
+  <item>
+    <title>F1 車號怎麼分：維特爾的 5 號跟著他換了兩支車隊</title>
+    <link>https://racing.twtools.cc/articles/f1-101-racing-number/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-racing-number/</guid>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
+    <description>F1 車號發給車手本人，不是發給車隊：先到先得、終身跟著人走，只有書面放棄或連續兩季缺賽才會釋出。1 到 99 裡少一個 17，5 號從來不是除役，只是剛好空了兩個賽季。</description>
+  </item>
+  <item>
+    <title>諾里斯這 10 圈四人之中最快，名次卻只有第 7</title>
+    <link>https://racing.twtools.cc/articles/f1-101-race-pace-reading/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-race-pace-reading/</guid>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
+    <description>名次表只排先後，不排配速快慢。用 2026 年比利時大獎賽的逐圈時間與進站紀錄，示範怎麼把胎齡和圈速放在一起看，才看得出誰真的快。</description>
+  </item>
+  <item>
+    <title>上海賽車場停辦 F1 的四年：執照到期、疫情延誤與整修交疊的時間線</title>
+    <link>https://racing.twtools.cc/articles/f1-101-circuit-grade/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-circuit-grade/</guid>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
+    <description>F1 分站賽事只能辦在 FIA 核發的 Grade 1 執照賽道上，這張執照要先經巡查員查驗合格，最長 3 年就要換照，F1 每次分站賽前 FIA 還會再單獨查一次。用上海國際賽車場與土耳其伊斯坦堡公園兩個真實案例，把這套認證制度讀一遍。</description>
+  </item>
+  <item>
     <title>科拉平托要負全部或主要責任：賽會判決書、他自己的話、下一站處罰，三個來源指向同一個答案</title>
     <link>https://racing.twtools.cc/articles/f1-2026-r15-baku-colapinto-fault-ruling/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-r15-baku-colapinto-fault-ruling/</guid>
@@ -109,41 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-timing-tower/</guid>
     <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
     <description>計時塔不是單純的名次表。扇區顏色只跟自己或全場比，間隔只量跟前車的差，輪胎與縮寫背後也各有固定意思。</description>
-  </item>
-  <item>
-    <title>賽道旁那排螢幕後面是誰：一支 F1 車隊怎麼分工</title>
-    <link>https://racing.twtools.cc/articles/f1-101-team-roles/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-team-roles/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>規章寫下了現場最多 60 名營運人員、信號區 12 人，也要求一份至少 4 位的資深代表名單。維修牆坐誰、機械師怎麼分工，官方說得最清楚的是 F1 官網 2020 年的幾篇職位導覽。</description>
-  </item>
-  <item>
-    <title>車隊無線電與遙測：車手在講話，工程師在看什麼</title>
-    <link>https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-team-radio-telemetry/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>轉播裡的無線電，是從同時進行的多路通話裡挑出來的，依 2025 年報導當時的車數是 20 路。另一條聽不到的線路，把賽車上的資料單向傳回維修區，FIA 也收得到。規章寫清楚了資料怎麼傳、誰能收，工程師怎麼用這些資料，公開的說明卻很少。</description>
-  </item>
-  <item>
-    <title>超級執照是什麼：想開 F1 要先拿到哪張通行證</title>
-    <link>https://racing.twtools.cc/articles/f1-101-super-licence/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-super-licence/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>有錢、有車隊願意簽約都還不夠：車手要先持有 FIA 核發的超級執照，而且執照本身附帶一套罰分制，累積到 12 點會被停賽一站。</description>
-  </item>
-  <item>
-    <title>賽道邊是誰在判：賽事總監管比賽進行，賽會幹事管誰該被罰</title>
-    <link>https://racing.twtools.cc/articles/f1-101-stewards/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-stewards/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年邁阿密站，賽事總監送出一份報告，賽會幹事開了聽證，結論是不採取進一步行動。總監通報、幹事裁決，兩個角色各有權限，也互相牽制。車隊想推翻判決的路很窄：複審要有重大且相關的新要素，5 秒罰時這類常見處罰也不能申訴。這篇用 FIA 規章與決定書，把轉播裡常聽到的裁判分工講清楚。</description>
-  </item>
-  <item>
-    <title>F1 衝刺賽週末怎麼跑：多一場短賽，其他環節怎麼跟著變</title>
-    <link>https://racing.twtools.cc/articles/f1-101-sprint-weekend/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-sprint-weekend/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>衝刺週末的第一天只有一場練習賽，練習結束後 2.5 到 3.5 小時就要排位；第二天排一場衝刺賽與一場正賽排位賽。罰退、封閉管制與換車手的截止時間，也都跟著分成兩段。</description>
   </item>
 </channel>
 </rss>

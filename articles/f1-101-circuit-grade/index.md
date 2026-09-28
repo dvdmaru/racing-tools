@@ -12,9 +12,9 @@ lede: "2019 年底，上海國際賽車場那張三年期的 FIA Grade One 執�
 
 2019 年底，上海國際賽車場那張三年期的 FIA Grade One 執照到期了。
 
-接下來四年，中國沒有再辦過一場 F1 分站賽事。賽道還在，跑道也沒拆；執照到期後，疫情一度讓 FIA 去不了現場查驗，賽道同時也在整修。直到 2023 年 5 月，賽道完成跑道鋪面、輪胎牆、隧道、看台等整修，重新拿到另一張三年期 FIA Grade One 執照，F1 才排進了 2024 年的賽历。
+接下來四年，中國沒有再辦過一場 F1 分站賽事。賽道還在，跑道也沒拆；執照到期後，疫情一度讓 FIA 去不了現場查驗，賽道同時也在整修。直到 2023 年 5 月，賽道完成跑道鋪面、輪胎牆、隧道、看台等整修，重新拿到另一張三年期 FIA Grade One 執照，F1 才排進了 2024 年的賽曆。
 
-一條辦過十幾年 F1 的賽道，執照一旦過期、又遇上疫情與整修交疊，也可能好幾年缺席賽历。這篇文章講的就是這張證書：誰核發、分級標準涵蓋什麼、多久要重新認證一次，再用上海與土耳其伊斯坦堡公園兩個真實案例，把整套制度走一遍。
+一條辦過十幾年 F1 的賽道，執照一旦過期、又遇上疫情與整修交疊，也可能好幾年缺席賽曆。這篇文章講的就是這張證書：誰核發、分級標準涵蓋什麼、多久要重新認證一次，再用上海與土耳其伊斯坦堡公園兩個真實案例，把整套制度走一遍。
 
 ## 賽道辦不辦得成 F1，那張執照是 FIA 發的，不是當地賽車總會發的
 
@@ -47,23 +47,23 @@ FIA 賽道執照最長效期 3 年。正常情況下，執照到期前完成一�
 如果是全新蓋的永久賽道要辦國際賽事，時程更早鎖死：跑道鋪面、永久設施與安全設施，最晚要在賽事開跑前 60 天完成到 FIA 滿意的程度，F1 世界錦標賽最晚要提前 90 天；最終查驗最晚在開跑前 30 天完成，F1 同樣最晚要提前 60 天（Article 3.4）。這組天數是給新建或重大改建賽道的首次查驗用的，跟前面說的「既有 Grade 1 賽道每年例行的分站前查核」是兩件事，不要混在一起算。
 
 <figure class="diagram">
-<svg viewBox="0 0 400 320" role="img" aria-label="F1賽道要通過的三道認證關卡：分級、效期、F1加簽">
-<title>賽道拿到F1資格要過的三關</title>
-<desc>由上到下三張卡片。第一關分級：FIA把賽道執照分成Grade 1到Grade 6，1為最高等級，涵蓋現役一級方程式賽車。第二關效期：一張執照最長效期3年，到期前3到6個月要由當地賽車總會申請換照查驗。第三關F1加簽：即使賽道整體執照仍在3年效期內，每一場F1世界錦標賽分站賽前，FIA仍會單獨再做一次查核性檢驗。</desc>
+<svg viewBox="0 0 400 320" role="img" aria-label="F1 賽道要通過的三道認證關卡：分級、效期、F1 加簽">
+<title>賽道拿到 F1 資格要過的三關</title>
+<desc>由上到下三張卡片。第一關分級：FIA 把賽道執照分成 Grade 1 到 Grade 6，1 為最高等級，涵蓋現役一級方程式賽車。第二關效期：一張執照最長效期 3 年，到期前 3 到 6 個月要由當地賽車總會申請換照查驗。第三關 F1 加簽：即使賽道整體執照仍在 3 年效期內，每一場 F1 世界錦標賽分站賽前，FIA 仍會單獨再做一次查核性檢驗。</desc>
 <rect class="d-surface d-line-s" x="4" y="4" width="392" height="312" rx="10"/>
-<text class="d-fg" x="20" y="30" font-size="15">賽道要拿到F1資格，得過三關</text>
+<text class="d-fg" x="20" y="30" font-size="15">賽道要拿到 F1 資格，得過三關</text>
 <rect class="d-surface d-line-s" x="14" y="46" width="372" height="76" rx="8"/>
 <text class="d-fg" x="28" y="70" font-size="15">① 分級</text>
-<text class="d-dim" x="28" y="92" font-size="14">Grade 1到Grade 6，1為最高</text>
-<text class="d-dim" x="28" y="110" font-size="14">等級，涵蓋現役F1賽車</text>
+<text class="d-dim" x="28" y="92" font-size="14">Grade 1 到 Grade 6，1 為最高</text>
+<text class="d-dim" x="28" y="110" font-size="14">等級，涵蓋現役 F1 賽車</text>
 <rect class="d-surface d-line-s" x="14" y="130" width="372" height="76" rx="8"/>
 <text class="d-fg" x="28" y="154" font-size="15">② 效期</text>
-<text class="d-dim" x="28" y="176" font-size="14">最長3年，到期前3到6個月</text>
+<text class="d-dim" x="28" y="176" font-size="14">最長 3 年，到期前 3 到 6 個月</text>
 <text class="d-dim" x="28" y="194" font-size="14">要申請換照查驗</text>
 <rect class="d-surface d-line-s" x="14" y="214" width="372" height="94" rx="8"/>
-<text class="d-fg" x="28" y="238" font-size="15">③ F1加簽</text>
+<text class="d-fg" x="28" y="238" font-size="15">③ F1 加簽</text>
 <text class="d-dim" x="28" y="260" font-size="14">整體執照仍在效期內，</text>
-<text class="d-dim" x="28" y="278" font-size="14">每場F1分站賽前FIA仍</text>
+<text class="d-dim" x="28" y="278" font-size="14">每場 F1 分站賽前 FIA 仍</text>
 <text class="d-dim" x="28" y="296" font-size="14">會再查一次</text>
 </svg>
 <figcaption>圖：賽道拿到 F1 資格要過的三關。規則出自 2026 年版國際運動法規附錄 O 第 3.2、4.1、4.2、6.1 條。本站示意圖，非依比例、非實測。</figcaption>
@@ -91,31 +91,31 @@ FIA 賽道執照最長效期 3 年。正常情況下，執照到期前完成一�
 
 ## 執照過期不是紙上談兵：上海與伊斯坦堡公園的兩堂課
 
-上海國際賽車場的故事已經在文章開頭講過一半：三年期 Grade One 執照 2019 年底到期，疫情讓 FIA 一時去不了現場查驗，直到 2023 年 5 月，賽道完成跑道鋪面、輪胎牆、隧道、看台等整修，才重新拿到另一張三年期 FIA Grade One 執照，中國大獎賽也才排進 2024 年賽历。報導裡還有一句：即使拿到了新執照，只要 2024 年真的辦賽，FIA 巡查員仍會在開跑前一個月回到現場做最終查驗。
+上海國際賽車場的故事已經在文章開頭講過一半：三年期 Grade One 執照 2019 年底到期，疫情讓 FIA 一時去不了現場查驗，直到 2023 年 5 月，賽道完成跑道鋪面、輪胎牆、隧道、看台等整修，才重新拿到另一張三年期 FIA Grade One 執照，中國大獎賽也才排進 2024 年賽曆。報導裡還有一句：即使拿到了新執照，只要 2024 年真的辦賽，FIA 巡查員仍會在開跑前一個月回到現場做最終查驗。
 
 <figure class="diagram">
-<svg viewBox="0 0 400 340" role="img" aria-label="上海國際賽車場FIA Grade One執照時間軸：2019年底到期、疫情延誤、2023年5月換發新照、2024年F1回歸">
+<svg viewBox="0 0 400 340" role="img" aria-label="上海國際賽車場 FIA Grade One 執照時間軸：2019 年底到期、疫情延誤、2023 年 5 月換發新照、2024 年 F1 回歸">
 <title>上海賽車場執照時間軸</title>
-<desc>由上到下四個時間點。2019年底：三年期FIA Grade One執照到期。接下來：疫情期間FIA一時無法赴現場查驗。2023年5月：賽道完成跑道鋪面、輪胎牆、隧道與看台整修，重新拿到另一張三年期FIA Grade One執照。2024年：中國大獎賽重返F1賽历，FIA巡查員仍在賽前一個月回到現場做最終查驗。</desc>
+<desc>由上到下四個時間點。2019 年底：三年期 FIA Grade One 執照到期。接下來：疫情期間 FIA 一時無法赴現場查驗。2023 年 5 月：賽道完成跑道鋪面、輪胎牆、隧道與看台整修，重新拿到另一張三年期 FIA Grade One 執照。2024 年：中國大獎賽重返 F1 賽曆，FIA 巡查員仍在賽前一個月回到現場做最終查驗。</desc>
 <rect class="d-surface d-line-s" x="4" y="4" width="392" height="332" rx="10"/>
 <text class="d-fg" x="20" y="30" font-size="15">上海賽車場的執照，中間空了四年</text>
 <line class="d-fg d-line-s" x1="34" y1="50" x2="34" y2="310" stroke-width="2" stroke-dasharray="6 4"/>
 <circle class="d-accent" cx="34" cy="58" r="5"/>
-<text class="d-fg" x="52" y="63" font-size="14">2019年底　三年期執照到期</text>
+<text class="d-fg" x="52" y="63" font-size="14">2019 年底　三年期執照到期</text>
 <circle class="d-accent" cx="34" cy="128" r="5"/>
-<text class="d-fg" x="52" y="123" font-size="14">疫情期間　FIA一時無法</text>
+<text class="d-fg" x="52" y="123" font-size="14">疫情期間　FIA 一時無法</text>
 <text class="d-fg" x="52" y="141" font-size="14">赴現場查驗</text>
 <circle class="d-accent" cx="34" cy="198" r="5"/>
-<text class="d-fg" x="52" y="193" font-size="14">2023年5月　整修完成，</text>
+<text class="d-fg" x="52" y="193" font-size="14">2023 年 5 月　整修完成，</text>
 <text class="d-fg" x="52" y="211" font-size="14">重新拿到三年期新執照</text>
 <circle class="d-accent" cx="34" cy="268" r="5"/>
-<text class="d-fg" x="52" y="263" font-size="14">2024年　中國站重返賽历，</text>
+<text class="d-fg" x="52" y="263" font-size="14">2024 年　中國站重返賽曆，</text>
 <text class="d-fg" x="52" y="281" font-size="14">賽前一個月仍再查一次</text>
 </svg>
 <figcaption>圖：上海國際賽車場 FIA Grade One 執照的時間軸。出自 Autosport，2023-05-10 報導。本站示意圖，非依比例、非實測。</figcaption>
 </figure>
 
-土耳其伊斯坦堡公園走的是另一條路。賽道 2020 年 11 月拿到三年期 FIA Grade 1 安全執照，經營商 Intercity 的執行長公開說，這是「給最頂級賽道的等級」。這張執照 2023 年到期，伊斯坦堡公園也跟著淡出 F1 賽历，直到 2026 年 4 月，FIA 與 F1 官方宣布五年新約，2027 年球季重返賽历。FIA 那篇官方新聞稿只公布合作關係與合約年期，完全沒提執照或查驗進度；依附錄 O「超過 3 年沒換照、視同新案重審」的規則反推，2027 年回歸前理應要重新走一次認證，但目前沒有查到官方或具名媒體證實已經查驗或排期，這裡只能寫成推論。
+土耳其伊斯坦堡公園走的是另一條路。賽道 2020 年 11 月拿到三年期 FIA Grade 1 安全執照，經營商 Intercity 的執行長公開說，這是「給最頂級賽道的等級」。這張執照 2023 年到期，伊斯坦堡公園也跟著淡出 F1 賽曆，直到 2026 年 4 月，FIA 與 F1 官方宣布五年新約，2027 年球季重返賽曆。FIA 那篇官方新聞稿只公布合作關係與合約年期，完全沒提執照或查驗進度；依附錄 O「超過 3 年沒換照、視同新案重審」的規則反推，2027 年回歸前理應要重新走一次認證，但目前沒有查到官方或具名媒體證實已經查驗或排期，這裡只能寫成推論。
 
 兩個案例合起來看：Grade 1 不是辦過一次就終身有效的資格，執照會過期，過期就得重新走流程——疫情這類查驗延誤，或賽道整修這類工程問題，都可能讓這個流程拖上好幾年。
 
