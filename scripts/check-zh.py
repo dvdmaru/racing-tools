@@ -15,7 +15,9 @@
 的漢/韓兩譯，兩者皆 approved-live 不可逕改）→ 規則①降級為 warning 並列出。新衝突不得靠加清單繞過。
 
 附帶掃描（report-only，不 exit 1，供 Charlie 知悉）：
-  - approved 值含簡體字（常見簡繁差異字抽查）。
+  - approved 值含簡體字（常見簡繁差異字抽查）。⚠️ 範圍只有四張譯名表的 approved 值，**不掃文章內文**：
+    「0 簡體命中」只代表譯名表乾淨，對文章沒有資訊量（2026-09-28 文章內的「賽历」就是這樣漏網）。
+    文章內文的簡體專用字由 tests/test_articles_no_simplified_chars.py 把關。
   - approved 值含港式用詞 watchlist（「冼拿」曾為 phase0 核准值，2026-08-04 已裁決改『塞納』）。
 
 用法：
