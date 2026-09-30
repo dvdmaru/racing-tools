@@ -6,6 +6,48 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 的輪螺帽只有一顆，鬆了還得留在車上</title>
+    <link>https://racing.twtools.cc/articles/f1-101-wheel-nut/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-wheel-nut/</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年規章 C10.9 只有五款：固定件的大小上限、拆裝工具的動力、鬆脫時的第二道保持、車隊要交的測試結果，以及裝錯要看得出來。</description>
+  </item>
+  <item>
+    <title>F1 一季從 7 站變成 24 站，但這條線不是一路往上</title>
+    <link>https://racing.twtools.cc/articles/f1-101-season-length/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-season-length/</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
+    <description>1950 年 7 站，2024、2025 年各 24 站，2026 年賽程表列 23 站。逐季看下來，1977 年 17 站、1980 年 14 站，2013 到 2015 年退回 19 站，2020 年只有 17 站。</description>
+  </item>
+  <item>
+    <title>F1 前三名站上頒獎台之後，還得留 1.5 小時給媒體</title>
+    <link>https://racing.twtools.cc/articles/f1-101-podium-ceremony/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-podium-ceremony/</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年運動規章把頒獎台寫得很細：誰要上台、穿什麼、台上放幾座獎杯。但摩納哥的例外、沒積分的比賽、國歌的依據，條文各留了一個缺口。</description>
+  </item>
+  <item>
+    <title>新車隊尚未參賽，規章就先管了它整整一年</title>
+    <link>https://racing.twtools.cc/articles/f1-101-new-entrant/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-new-entrant/</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
+    <description>已獲接受的新車隊，要在首次參賽年之前的 N-1 年，先遵守 Section A、B11、D 與部分 Section F，並證明自己做到。入場費、評選流程、適任人選測試的內容，規章本文沒寫。</description>
+  </item>
+  <item>
+    <title>F1 塗裝條文要求車上有三樣標示，廣告能放哪裡卻沒寫</title>
+    <link>https://racing.twtools.cc/articles/f1-101-livery/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-livery/</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
+    <description>2026 年規章要求同隊兩台車塗裝大致相同，賽季中的重大變更須 FIA 與商業權利持有人同意。廣告的面積與位置，A2.3 沒有列，也不能因此讀成不限。同一節另有螢光黃相機的規定，相機位則在 C8.16。</description>
+  </item>
+  <item>
+    <title>F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘</title>
+    <link>https://racing.twtools.cc/articles/f1-101-ers-shutdown/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-ers-shutdown/</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
+    <description>規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。</description>
+  </item>
+  <item>
     <title>F1 曾經明文禁止「team orders」，2011 年就被拿掉了</title>
     <link>https://racing.twtools.cc/articles/f1-101-team-orders/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-team-orders/</guid>
@@ -102,48 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-fuel/</guid>
     <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
     <description>2026 年的 F1 規章允許車手坐在車上加油，前提是引擎熄火，而且加油只能在車庫裡。正賽開始後，燃料就不能補了，所以規章管的是流進引擎的速度：每小時 3,000 MJ。燃料本身是先進永續燃料，要先過 FIA 核准，比賽期間還會被取樣檢驗。</description>
-  </item>
-  <item>
-    <title>F1 風洞與 CFD 限額：積分榜第 1 名的車隊，額度反而最少</title>
-    <link>https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-aero-testing-restrictions/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年規章把一年切成 6 個空力測試期，每期給風洞與 CFD 一組額度，再乘上依車隊積分榜名次決定的係數：第 1 名 70%，第 10 名以下 115%。這篇把風洞怎麼算、CFD 怎麼算、超用會怎樣一次講完。</description>
-  </item>
-  <item>
-    <title>F1 主動空力：翼片只有兩個位置，被通知才能用，低抓地時只准前翼動</title>
-    <link>https://racing.twtools.cc/articles/f1-101-active-aero/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-active-aero/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>官方入門文寫新系統「所有車、所有時間都可用」，規章的條件窄得多：要被通知已啟用、翼片要完全在啟動區內，宣告低抓地條件後只准前翼部分啟用。這篇把 2026 年主動空力的條文拆開來讀。</description>
-  </item>
-  <item>
-    <title>下雨的 F1 怎麼跑：雨胎、安全車起跑，還有比賽被叫停的時候</title>
-    <link>https://racing.twtools.cc/articles/f1-101-wet-weather/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-wet-weather/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>下雨時，F1 不是只把乾胎換成雨胎。規章為潮濕的賽道準備了一套程序：安全車帶隊起跑時可以強制全雨胎，強制期間不准換規格。另有一個叫 Rain Hazard 的宣告，但它管的只是封閉管制期間能做哪些工作。</description>
-  </item>
-  <item>
-    <title>F1 輪胎為什麼分軟中硬：同一款 C3，在澳洲站是硬胎，在日本站是軟胎</title>
-    <link>https://racing.twtools.cc/articles/f1-101-tyres/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-tyres/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>F1 輪胎沒有最好的一款，只有此刻最划算的一款。Pirelli 自己的說法是，最硬的胎耐熱、能跑很長一段，代價是峰值表現較低。再加上一條乾地正賽必須用過兩種乾胎規格的規則，賽事策略就是在快與久之間做交易。</description>
-  </item>
-  <item>
-    <title>賽道界線：四輪出了白線會怎樣，為什麼裁判會盯著那條線</title>
-    <link>https://racing.twtools.cc/articles/f1-101-track-limits/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-track-limits/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>壓在白線上還算在賽道內，整輛車都沒碰到賽道才算離開。離開之後若賺到好處，賽事總監可以給車手機會把它還回去，賽會幹事也可能加罰。</description>
-  </item>
-  <item>
-    <title>F1 轉播左邊那一欄怎麼讀：紫色、綠色、間隔與三個英文字母縮寫</title>
-    <link>https://racing.twtools.cc/articles/f1-101-timing-tower/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-timing-tower/</guid>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 +0800</pubDate>
-    <description>計時塔不是單純的名次表。扇區顏色只跟自己或全場比，間隔只量跟前車的差，輪胎與縮寫背後也各有固定意思。</description>
   </item>
 </channel>
 </rss>

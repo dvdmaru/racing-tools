@@ -1009,6 +1009,60 @@
       "approved_by": "charlie",
       "approved_at": "2026-09-28T15:34:56+08:00",
       "note": "F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇不是規章題，主要來源是本站資料庫（2026 比利時大獎賽 Spa，round 10）：教讀者從單圈時間判讀比賽走勢，示範諾里斯賽末 10 圈配速在四人樣本中最快（起跑第 13、比安東內利晚 12 位），但正式名次僅第 7。這篇在修正過程中三次出現「修掉一個過度斷言、又不小心寫出另一個過度斷言」的教訓：agy/Terra 逐輪抓到標題與 FAQ 的「全場最快」全稱詞過廣（樣本只驗證 4 位車手）、把晚進站/起跑位置寫成確定的名次落後原因、把第 18/20/21 圈五位車手同步變慢的現象升格為「存在共同成因」、以及把「全場」這個詞在全文多處誤用成比抽樣範圍更廣的說法（第四輪一次性修正 10 處同型殘留）。審稿履歷：agy R1（2 BLOCKER：標題/FAQ「全場最快」過廣；1 MAJOR：晚進站因果無依據；1 MINOR：人數矛盾，已修）→Terra R1（1 MAJOR：「胎況無關」排他性因果，已修）→Terra R2（1 MAJOR：起跑位置擴張成「第一個原因/決定大半」，已修）→Terra R3（FAIL，1 BLOCKER＋1 MAJOR：「全場」範圍持續比抽樣範圍廣、因果語氣未收斂，第四輪修正棒逐字掃描全文修正 10 處同型殘留）→Terra R4（1 MAJOR：四人排序斷言超出數字支持——Leclerc 胎齡較新但均速比 Antonelli 慢，已修）→Terra R5（PASS，零 finding）。"
+    },
+    {
+      "slug": "f1-101-wheel-nut",
+      "article_sha256": "c04461d7e155460748332c7555748b23d26316c40c28503bd62af7fca68b8e40",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-01T06:57:43+08:00",
+      "note": "F1 新手村第六批（6 篇；Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-30-racing-newbie-village-6/TOPICS.md 與 CANDIDATES.md）。前五批已覆蓋 43 篇，本批先做缺口分析（規章條文目錄對照全站 grep），原列 7 題、取消 f1-101-dnf-causes（站內 /seasons/ 頁已有同資料同口徑的退賽年代圖，增量有限），實際產出 6 篇。流程：Claude 研究棒建事實包→獨立 Claude 查核棒逐條核對（多處修正研究棒：條號引用錯、筆誤日期、口徑過寬）→寫手只用 ✅／✏️改 條目→agy 七點審稿→Claude 修正棒→DeepSeek 冷讀席→SVG 390px 手機寬實渲染→Terra（codex）兩輪異源複核。另：agy 這批偏寬鬆（new-entrant 判 PASS 零 finding，但 Terra R1 抓到 MAJOR），Terra 抓到 agy 沒抓到的型，故不以 agy 判定為放行依據。PR #98 開出後，Charlie 於對話中回「合 racing #98」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：輪子固定件規章 C10.9 五款（單一固定件與 105mm／75mm 上限、四類時段的工具動力限制與手動扭力扳手例外、雙段防脫、車隊提供的 20kN／300Nm 測試結果、目視辨認），與輪子沒鎖好沒有專屬罰則（只有通用 B1.6.2 b）。進站秒數未寫（查核判 ❓）。審稿履歷：agy R1（1 MINOR：lede 對罰則的期待落差，已改）→Terra R1（PASS，零 finding）→Terra R2（PASS，零 finding）。"
+    },
+    {
+      "slug": "f1-101-livery",
+      "article_sha256": "f95ba871db7bcf20687d1de0c1fc6993e6e4ecbbbebacecffbd366bae26b7326",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-01T06:57:43+08:00",
+      "note": "F1 新手村第六批（6 篇；Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-30-racing-newbie-village-6/TOPICS.md 與 CANDIDATES.md）。前五批已覆蓋 43 篇，本批先做缺口分析（規章條文目錄對照全站 grep），原列 7 題、取消 f1-101-dnf-causes（站內 /seasons/ 頁已有同資料同口徑的退賽年代圖，增量有限），實際產出 6 篇。流程：Claude 研究棒建事實包→獨立 Claude 查核棒逐條核對（多處修正研究棒：條號引用錯、筆誤日期、口徑過寬）→寫手只用 ✅／✏️改 條目→agy 七點審稿→Claude 修正棒→DeepSeek 冷讀席→SVG 390px 手機寬實渲染→Terra（codex）兩輪異源複核。另：agy 這批偏寬鬆（new-entrant 判 PASS 零 finding，但 Terra R1 抓到 MAJOR），Terra 抓到 agy 沒抓到的型，故不以 agy 判定為放行依據。PR #98 開出後，Charlie 於對話中回「合 racing #98」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：塗裝規章 A2.3（兩台車大致相同與重大變更須 FIA 及商業權利持有人同意、必須出現的標誌與車手名字、廣告條款）與車載相機位 C8.16（6 個位置、必裝 4 個、位置 3 未被點名），A2.3 與 ISC 廣告自由條款的關係規章沒寫，故不可讀成廣告位置不限。審稿履歷：agy R1（2 MINOR：「整場比賽期間」窄化、「車型標誌」漏「名稱或」，已改）→DeepSeek 冷讀（說不出主張＝地圖句病，骨架重寫：標題／lede／結構、相機圖移位、ISC 段縮短）→Terra R1（1 MINOR：兩條獨立要求被寫成因果，已改；並刪除未核對的站內引用歸屬）→Terra R2（PASS，零 finding，整篇重審）。"
+    },
+    {
+      "slug": "f1-101-ers-shutdown",
+      "article_sha256": "357d6bba050d8e060a831c96eabcf98aeed80709acaae440c5b171e9c6c8dd28",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-01T06:57:43+08:00",
+      "note": "F1 新手村第六批（6 篇；Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-30-racing-newbie-village-6/TOPICS.md 與 CANDIDATES.md）。前五批已覆蓋 43 篇，本批先做缺口分析（規章條文目錄對照全站 grep），原列 7 題、取消 f1-101-dnf-causes（站內 /seasons/ 頁已有同資料同口徑的退賽年代圖，增量有限），實際產出 6 篇。流程：Claude 研究棒建事實包→獨立 Claude 查核棒逐條核對（多處修正研究棒：條號引用錯、筆誤日期、口徑過寬）→寫手只用 ✅／✏️改 條目→agy 七點審稿→Claude 修正棒→DeepSeek 冷讀席→SVG 390px 手機寬實渲染→Terra（codex）兩輪異源複核。另：agy 這批偏寬鬆（new-entrant 判 PASS 零 finding，但 Terra R1 抓到 MAJOR），Terra 抓到 agy 沒抓到的型，故不以 agy 判定為放行依據。PR #98 開出後，Charlie 於對話中回「合 racing #98」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：高壓系統關閉規章（C5.17.1 三個入口與 2 秒上限、「關閉完成」三處定義、三個不同的 15 分鐘、C5.16 熄火防止系統「若裝了」、橘色高壓標示）。狀態燈顏色語意在 DOC-043、本機沒有，文章明寫查無、不寫顏色含義；C9.5／C5.23.4 為原檔引用錯，文章一律不引。審稿履歷：agy R1（2 MINOR：CDS 動詞、把手顏色，已改）→Terra R1（1 MAJOR：把狀態燈語意歸屬到 DOC-043 內容，已降到「依 DOC-043 安裝」；1 MINOR：把手顏色不補選色邏輯，已改）→Terra R2（PASS，零 finding）。"
+    },
+    {
+      "slug": "f1-101-podium-ceremony",
+      "article_sha256": "8e99e8391198a86cf051fe822c33a2abc91525d030a7ecec569125a246b101e3",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-01T06:57:43+08:00",
+      "note": "F1 新手村第六批（6 篇；Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-30-racing-newbie-village-6/TOPICS.md 與 CANDIDATES.md）。前五批已覆蓋 43 篇，本批先做缺口分析（規章條文目錄對照全站 grep），原列 7 題、取消 f1-101-dnf-causes（站內 /seasons/ 頁已有同資料同口徑的退賽年代圖，增量有限），實際產出 6 篇。流程：Claude 研究棒建事實包→獨立 Claude 查核棒逐條核對（多處修正研究棒：條號引用錯、筆誤日期、口徑過寬）→寫手只用 ✅／✏️改 條目→agy 七點審稿→Claude 修正棒→DeepSeek 冷讀席→SVG 390px 手機寬實渲染→Terra（codex）兩輪異源複核。另：agy 這批偏寬鬆（new-entrant 判 PASS 零 finding，但 Terra R1 抓到 MAJOR），Terra 抓到 agy 沒抓到的型，故不以 agy 判定為放行依據。PR #98 開出後，Charlie 於對話中回「合 racing #98」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：分站領獎台規章（B10.2.1 出席與 1.5 小時、B10.2.2／B10.2.3 服裝、B10.2.4 沒積分不辦典禮、附錄 B4 獎杯與流程），摩納哥兩處「除外」範圍與原因規章沒寫，國歌依據的 ISC 條號本機對不上；€250,000 只屬 A2.6.1 年度典禮，不混進分站。審稿履歷：agy R1（2 MINOR：漏列頒獎人遞補但書、獎杯設計搬運限定，已補）→Terra R1（PASS，零 finding）→修正棒（摩納哥句降強度、縮寫 2 處）→Terra R2（PASS，零 finding）。"
+    },
+    {
+      "slug": "f1-101-new-entrant",
+      "article_sha256": "0f3f76aed8ba90ab15476935539f7f7a52dc181f6dc9fe580a8c043a8a908414",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-01T06:57:43+08:00",
+      "note": "F1 新手村第六批（6 篇；Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-30-racing-newbie-village-6/TOPICS.md 與 CANDIDATES.md）。前五批已覆蓋 43 篇，本批先做缺口分析（規章條文目錄對照全站 grep），原列 7 題、取消 f1-101-dnf-causes（站內 /seasons/ 頁已有同資料同口徑的退賽年代圖，增量有限），實際產出 6 篇。流程：Claude 研究棒建事實包→獨立 Claude 查核棒逐條核對（多處修正研究棒：條號引用錯、筆誤日期、口徑過寬）→寫手只用 ✅／✏️改 條目→agy 七點審稿→Claude 修正棒→DeepSeek 冷讀席→SVG 390px 手機寬實渲染→Terra（codex）兩輪異源複核。另：agy 這批偏寬鬆（new-entrant 判 PASS 零 finding，但 Terra R1 抓到 MAJOR），Terra 抓到 agy 沒抓到的型，故不以 agy 判定為放行依據。PR #98 開出後，Charlie 於對話中回「合 racing #98」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：新車隊規章（A3.5.1 首次參賽前 N-1 年須遵守的章節與特別協議例外、A3.5.2／A4.1 適任人選測試受測的是人不是公司、D14.1.1 財報期 2026 正文一期對 Appendix D2 自 2027-01-01 起兩期且規章沒寫如何銜接、Section F 版本差）；入場費、Concorde、Appendix F 內容本機查無、文章明寫。審稿履歷：agy R1（PASS，零 finding；注意這是 agy 沒抓到的型）→Terra R1（1 MAJOR：替 ISC Appendix F 列舉內容類別，已降到原文只說指向，並同型修 4 處）→Terra R2（PASS，零 finding）。"
+    },
+    {
+      "slug": "f1-101-season-length",
+      "article_sha256": "8576d9cab45a38ce79acf3d86eb9bc017927137286f9be33cb846304835e363b",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-01T06:57:43+08:00",
+      "note": "F1 新手村第六批（6 篇；Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-30-racing-newbie-village-6/TOPICS.md 與 CANDIDATES.md）。前五批已覆蓋 43 篇，本批先做缺口分析（規章條文目錄對照全站 grep），原列 7 題、取消 f1-101-dnf-causes（站內 /seasons/ 頁已有同資料同口徑的退賽年代圖，增量有限），實際產出 6 篇。流程：Claude 研究棒建事實包→獨立 Claude 查核棒逐條核對（多處修正研究棒：條號引用錯、筆誤日期、口徑過寬）→寫手只用 ✅／✏️改 條目→agy 七點審稿→Claude 修正棒→DeepSeek 冷讀席→SVG 390px 手機寬實渲染→Terra（codex）兩輪異源複核。另：agy 這批偏寬鬆（new-entrant 判 PASS 零 finding，但 Terra R1 抓到 MAJOR），Terra 抓到 agy 沒抓到的型，故不以 agy 判定為放行依據。PR #98 開出後，Charlie 於對話中回「合 racing #98」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇不是規章題，來源是本站資料庫（data/f1/db.sqlite races 表，jolpica-f1，賽果快照 9/27、2026 賽程抓取 9/21）與 data/2026/schedule.json：賽季站數從 1950 年 7 站到 2024／2025 年 24 站，非單調上升；2026 只寫「賽程表列 23 站、已賽 15 站」；印地 500 在資料庫被算為錦標賽站（1950–1960 共 11 季）。不寫站數變多的原因。審稿履歷：agy R1（1 BLOCKER：印地 500 年代歸屬，已改）→Terra R1（FAIL：1 BLOCKER 成本上限 24 場觸發條件被擴寫，整句刪除；1 MAJOR 十年平均把未完成的 2020 年代當完成趨勢，已降為「到目前」）→Terra R2b（PASS-WITH-FIXES：1 MINOR 三處站內連結文字未對齊 frontmatter title，已改；此項修正後未再送 Terra 第三輪，僅改連結文字、未動事實）。"
     }
   ]
 }
