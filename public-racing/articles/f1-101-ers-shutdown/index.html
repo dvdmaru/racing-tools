@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘 | 賽車數據誌</title>
+<meta name="description" content="規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。">
+<meta property="og:title" content="F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘">
+<meta property="og:description" content="規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-ers-shutdown/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-ers-shutdown/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/#article","headline":"F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘","description":"規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。","datePublished":"2026-09-30","dateModified":"2026-09-30","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘","item":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/#faq","mainEntity":[{"@type":"Question","name":"撞車之後，F1 賽車的高壓系統會自動關掉嗎？","acceptedAnswer":{"@type":"Answer","text":"規章沒有把撞擊寫成 ERS 關閉的觸發。規章要求的關閉手段是車手主開關（C8.7.1）、車外把手（C8.7.2）與 CDS 按鈕（C9.3）。FIA 標準 ECU 啟動熄火防止停機時，ERS 也必須關閉（C5.17.2）。撞擊警示燈（C8.13）回報事故嚴重程度，不是關閉高壓的機制。"}},{"@type":"Question","name":"ERS 關閉之後，車上就完全沒電了嗎？","acceptedAnswer":{"@type":"Answer","text":"規章沒有這樣寫。「關閉完成」只指 CU-K 側的高壓直流母線、CU-K 的電容與 RV-PU-ERS 之外三處沒有高壓（C5.17.1）。兩顆狀態燈在關閉程序開始後，至少還要供電 15 分鐘（C5.17.3）。電池組由接觸器與 CU-K 隔開（C5.20.5）。"}},{"@type":"Question","name":"規章有寫狀態燈的顏色代表什麼嗎？","acceptedAnswer":{"@type":"Answer","text":"2026 年 Section C，Issue 20 沒有。條文只寫燈要依 FIA-F1-DOC-043 安裝，旁邊要有「HIGH VOLTAGE」符號（C5.17.3）。DOC-043 這次沒有取得，所以燈號的意思查無。"}},{"@type":"Question","name":"2 秒與 15 分鐘，是實際救援所用的時間嗎？","acceptedAnswer":{"@type":"Answer","text":"不是。2 秒是關閉程序的時限上限（C5.17.1），15 分鐘是三種「保持通電或脫開」的最短要求（C9.3、C5.17.3、C5.17.5）。它們都是規章對設計的要求。撞擊之後現場救援的官方流程與時間軸，已查的官方文字裡找不到。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="主導覽">
+      <details class="nav-group">
+        <summary>本季</summary>
+        <div class="nav-menu">
+          <a href="/standings/">積分榜<small>車手與車隊年度積分</small></a>
+          <a href="/calendar/">賽曆<small>全季賽程，換算台北時間</small></a>
+          <a href="/results/">賽果<small>各站正賽完整名次</small></a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary>百科</summary>
+        <div class="nav-menu">
+          <a href="/seasons/">歷年<small>1950 年起的歷屆賽季</small></a>
+          <a href="/drivers/">車手<small>歷代世界冠軍與現役車手</small></a>
+          <a href="/constructors/">車隊<small>現役車隊名錄</small></a>
+          <a href="/circuits/">賽道<small>歷年賽道名錄</small></a>
+        </div>
+      </details>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active" aria-current="page">文章</a>
+    </nav>
+    <div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="選單"><span class="nt-icon" aria-hidden="true"></span><span class="nt-text">選單</span></button>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘</h1>
+  <div class="art-meta"><span>2026 年 9 月 30 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">2026 年的 F1 技術規章要求，車上兩顆 ERS 狀態燈在關閉程序開始後，至少要維持供電 15 分鐘。高壓系統關掉了，燈卻還得亮著。這篇文章讀規章，講高壓系統的三個關閉入口、2 秒的程序上限、「關閉完成」到底指哪三處，以及三個互不相同的 15 分鐘。</p>
+  <article class="prose">
+<p>2026 年的 F1 技術規章有一個怪要求：高壓系統關閉之後，車上兩顆狀態燈還得繼續供電。</p>
+<p>規章寫的是關閉程序開始後至少 15 分鐘。系統關掉之後，燈由 FIA 事故資料記錄器（ADR）的內部電池供電（C5.17.3）。</p>
+<p>關掉，卻還要通電。這兩件事並不矛盾，答案藏在規章怎麼定義「關閉」。</p>
+<p>先講範圍。本文依據 2026 年 FIA F1 技術規章 Section C，Issue 20（2026-08-05）。文中的 2 秒、5 秒、10 秒、15 分鐘與 1000 伏特，全是規章對設計的要求、時限或上限。它們不是實測，也不是現場救援的時間。</p>
+<h2>規章要求三個入口，每一個都要能關掉高壓系統</h2>
+<p>車上的高壓系統，規章稱為 ERS。規章要求它必須能用三種手段關閉（C5.17.1）。</p>
+<p>第一個是車手主開關。車手坐正、繫好安全帶、裝上方向盤之後，必須能用一個防火花斷路開關，切斷點火電路、所有燃油泵與尾燈。開關在儀表板上，標示是白邊藍色三角形裡的一個紅色火花（C8.7.1）。</p>
+<p>這個開關的字面很窄。條文只寫點火、燃油泵與尾燈，沒有寫高壓。高壓系統會跟著關，是因為 C5.17.1 把這個開關列為關閉手段之一。</p>
+<p>第二個是車外的兩個把手。規章要求它們是水平把手，能用鉤子從一段距離外操作，位在主翻滾結構（main roll over structure）底部、車的兩側，功能與儀表板開關相同（C8.7.2）。</p>
+<p>把手的外觀也有規定。它們要圍成直徑 40mm 的圓，顏色寫的是紅色或黃色。上面標紅色字母 E，字高至少 80mm，放在白色圓盤裡。規章沒有寫由誰來操作把手。</p>
+<p>第三個是 CDS 按鈕。CDS 是離合器脫離系統，規章要求它在脫開離合器的同時，也關閉 ERS（C9.3）。</p>
+<p>按鈕朝上，凹嵌在生存艙頂部。規章還寫，為了讓車手或賽道管理員（marshal）能在不到 5 秒內啟動，按鈕必須符合這些位置條件（C9.3）。5 秒是按鈕設計的前提，不是操作時限。</p>
+<p>三個入口不是 ERS 關閉的全部觸發。FIA 標準 ECU 啟動熄火防止停機時，ERS 也必須關閉（C5.17.2）。</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 376" role="img" aria-label="F1 高壓系統關閉示意：車手主開關、車外把手、CDS 按鈕三個入口，匯入不得超過 2 秒的關閉程序，完成的定義是三處沒有高壓">
+<title>三個入口，一個關閉程序，三處沒有高壓</title>
+<desc>由上到下三層。最上層是三個入口：車手主開關（C8.7.1）、車外把手（C8.7.2）、CDS 按鈕（C9.3）。中間層是關閉程序，規章要求不得超過 2 秒（C5.17.1）。最下層是關閉完成的定義：CU-K 側的高壓直流母線、CU-K 的電容、RV-PU-ERS 之外，三處都沒有高壓。圖底另有一行：關閉程序開始後，狀態燈至少供電 15 分鐘（C5.17.3）。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="368" rx="10"/>
+<text class="d-fg" x="20" y="30" font-size="15">三個入口，一個關閉程序</text>
+<rect class="d-surface d-line-s" x="14" y="44" width="124" height="74" rx="8"/>
+<text class="d-fg" x="26" y="76" font-size="14">車手主開關</text>
+<text class="d-fg" x="26" y="100" font-size="14">（C8.7.1）</text>
+<rect class="d-surface d-line-s" x="148" y="44" width="124" height="74" rx="8"/>
+<text class="d-fg" x="160" y="76" font-size="14">車外把手</text>
+<text class="d-fg" x="160" y="100" font-size="14">（C8.7.2）</text>
+<rect class="d-surface d-line-s" x="282" y="44" width="124" height="74" rx="8"/>
+<text class="d-fg" x="294" y="76" font-size="14">CDS 按鈕</text>
+<text class="d-fg" x="294" y="100" font-size="14">（C9.3）</text>
+<line class="d-fg d-line-s" x1="76" y1="118" x2="76" y2="150" stroke-width="2"/>
+<line class="d-fg d-line-s" x1="210" y1="118" x2="210" y2="150" stroke-width="2"/>
+<line class="d-fg d-line-s" x1="344" y1="118" x2="344" y2="150" stroke-width="2"/>
+<rect class="d-surface d-accent-s" x="14" y="150" width="392" height="62" rx="8" stroke-width="2"/>
+<text class="d-fg" x="28" y="178" font-size="15">關閉程序：規章要求不得超過 2 秒</text>
+<text class="d-fg" x="28" y="200" font-size="14">（C5.17.1，設計上限，非實測）</text>
+<line class="d-fg d-line-s" x1="210" y1="212" x2="210" y2="240" stroke-width="2"/>
+<rect class="d-surface d-line-s" x="14" y="240" width="392" height="100" rx="8"/>
+<text class="d-fg" x="28" y="264" font-size="15">關閉完成：三處沒有高壓</text>
+<text class="d-fg" x="28" y="288" font-size="14">1. CU-K 側的高壓直流母線</text>
+<text class="d-fg" x="28" y="308" font-size="14">2. CU-K 的電容</text>
+<text class="d-fg" x="28" y="326" font-size="14">3. RV-PU-ERS 之外</text>
+<text class="d-fg" x="20" y="362" font-size="14">程序開始後，狀態燈至少供電 15 分鐘（C5.17.3）</text>
+</svg>
+<figcaption>圖：三個關閉入口、2 秒程序上限與「關閉完成」的三處定義。數字與條號出自 2026 年 FIA F1 技術規章 Section C，Issue 20。本站示意圖，非依比例、非實測。</figcaption>
+</figure>
+
+<h2>關閉程序最多 2 秒，但「關閉完成」只管三個地方</h2>
+<p>時間的規定是一句話：關閉程序從啟動起，不得超過 2 秒（C5.17.1）。</p>
+<p>2 秒是上限，不是典型值。點火電路被開關或把手切斷，或 CDS 啟動時，程序立即開始。</p>
+<p>規章也定義了什麼叫「關閉完成」。電池組（ES）主接觸器靠 CU-K 那一側的高壓直流母線、CU-K 的任何電容，以及 RV-PU-ERS 的外面，三處都沒有高壓，才算完成（C5.17.1）。</p>
+<p>這個定義只點名三處。它沒有說整顆電池組內部沒電，也沒有說整輛車沒電。</p>
+<p>電池組這一頭，規章用接觸器來隔。ES 至少要有兩個接觸器，正負極各一個。關閉程序完成之後，它們必須把 CU-K 與 ES 的高壓部分隔開。接觸器一旦被命令打開，必須能保持高壓電路斷開（C5.20.5）。</p>
+<p>RV-PU-ERS 之外的限制也有例外。規章說高壓不得出現在它之外，但升壓器功率盒內最多可有 80V DC，車外充電器連接時也不在此限（C5.20.2）。</p>
+<p>所以「2 秒關閉」的意思很具體：程序在 2 秒內要把三個指定的地方清乾淨。電池組本身，由接觸器負責隔開。</p>
+<h2>系統關了，兩顆狀態燈還要再供電</h2>
+<p>規章要求所有車都裝兩顆 ERS 狀態燈（C5.17.3）。</p>
+<p>燈由 FIA 指定的製造商供應，依 FIA-F1-DOC-043 安裝，整場賽事都要運作正常。旁邊要有 ISO3864 的「HIGH VOLTAGE」符號，三角形邊長至少 30mm，距燈不超過 50mm。</p>
+<p>供電才是重點。關閉程序開始之後，燈至少要維持供電 15 分鐘。ERS 關閉後，由 ADR 的內部電池負責。</p>
+<p>15 分鐘從程序開始算起，不是從關閉完成算起。它是「至少」，規章沒有寫 15 分鐘之後燈會怎樣。</p>
+<p>燈號的意思，規章本文沒有寫。條文只說燈要依 DOC-043 安裝，DOC-043 這次沒有取得，所以亮什麼顏色、閃幾下代表什麼，這篇查無，也就不講燈號怎麼看。</p>
+<p>這組燈容易和另一組混淆。生存艙頂部的撞擊警示燈（C8.13）回報的是事故嚴重程度，屬於另一組規章，見<a href="/articles/f1-101-driver-safety/">F1 車手怎麼被保護：Halo 只是其中一層，撞擊的力量先被車身吃掉</a>。</p>
+<p>狀態燈的訊號來源，規章也有要求。車必須把目前的運作安全狀態送給 ADR，用來控制燈。狀態至少依據絕緣量測、電芯電壓、電芯溫度與接觸器（C5.17.5）。</p>
+<h2>三個 15 分鐘，三條條文，三種對象</h2>
+<p>「15 分鐘」在規章裡出現三次。三次的起算點不同，保持通電或動作的對象也不同。</p>
+<div class="prose-tblwrap"><table>
+<thead>
+<tr>
+<th>條文</th>
+<th>15 分鐘指什麼</th>
+<th>起算點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C9.3</td>
+<td>離合器保持脫開，最少 15 分鐘</td>
+<td>車停下且引擎熄火</td>
+</tr>
+<tr>
+<td>C5.17.3</td>
+<td>兩顆狀態燈保持供電，至少 15 分鐘；關閉後由 ADR 內部電池供電</td>
+<td>關閉程序開始</td>
+</tr>
+<tr>
+<td>C5.17.5</td>
+<td>產生安全狀態訊號的 BMS 系統保持供電與運作，15 分鐘</td>
+<td>關閉程序開始</td>
+</tr>
+</tbody>
+</table></div>
+<p>C5.17.5 還要求這些系統接到獨立於 ES 的能源。C5.17.3 的供電者是 ADR 內部電池，C5.17.5 的是獨立能源，兩條條文沒有寫成同一個。</p>
+<p>三個數字各自要求「保持什麼」。沒有一條寫「15 分鐘後就安全」。</p>
+<h2>熄火防止系統：若有裝，啟動後 10 秒內要讓引擎停</h2>
+<p>另一條和關閉有關的規定，講的是引擎。</p>
+<p>規章說，若車配有熄火防止系統，而且為了避免事故中的車留著引擎運轉，這類系統都必須設定成啟動後不超過 10 秒讓引擎停機（C5.16）。</p>
+<p>「若車配有」這個限定詞很重要。規章沒有要求每輛車都裝。</p>
+<p>這類系統的唯一目的，是防止車手失控時引擎熄火。每次啟動時，離合器必須完全脫開，直到車手把離合器操作到行程的 95% 以上才解除（C5.16）。</p>
+<p>條文沒有寫撞擊會觸發它。能確定的只有一句：系統啟動之後，10 秒內引擎要停。</p>
+<p>它和 ERS 有一條連結。FIA 標準 ECU 啟動熄火防止停機時，ERS 也必須關閉（C5.17.2）。這是 ERS 關閉的另一個觸發，不屬於三個入口。</p>
+<h2>橘色線束與 70% 橘色外殼：規章要高壓看得出來</h2>
+<p>關閉之外，規章還要求高壓部件「看得出來」。</p>
+<p>第一條是設計原則。電氣系統或 ERS 的單點故障，不得讓人暴露在帶電部件（Live Part）之下（C5.21.1）。</p>
+<p>第二條是顏色。含有高壓線的線束段，必須是橘色（C5.21.2）。</p>
+<p>第三條管外殼。ES 主外殼、MGU-K 與外置高壓盒，要標 ISO 7010 的「Danger High Voltage」符號。ES 主外殼的外表面至少 70% 是橘色，色號範圍是 RAL 2003 到 2011，RAL 2007 除外（C5.21.3）。</p>
+<p>橘色是線束與外殼的要求，和狀態燈無關。</p>
+<p>最後是電壓。規章把最大工作電壓大於 60V DC 或 30V AC rms 的電氣元件或電路，定義為高壓。車上的最大工作電壓不得超過 1000V（C5.17.6）。</p>
+<p>1000V 是正常運作條件下的設計上限，依製造商規格計算，忽略短於 100µs 的殘餘變動。它不是實測值，也不是標稱值。</p>
+<h2>常見問題</h2>
+<h3>撞車之後，F1 賽車的高壓系統會自動關掉嗎？</h3>
+<p>規章沒有把撞擊寫成 ERS 關閉的觸發。規章要求的關閉手段是車手主開關（C8.7.1）、車外把手（C8.7.2）與 CDS 按鈕（C9.3）。FIA 標準 ECU 啟動熄火防止停機時，ERS 也必須關閉（C5.17.2）。撞擊警示燈（C8.13）回報事故嚴重程度，不是關閉高壓的機制。</p>
+<h3>ERS 關閉之後，車上就完全沒電了嗎？</h3>
+<p>規章沒有這樣寫。「關閉完成」只指 CU-K 側的高壓直流母線、CU-K 的電容與 RV-PU-ERS 之外三處沒有高壓（C5.17.1）。兩顆狀態燈在關閉程序開始後，至少還要供電 15 分鐘（C5.17.3）。電池組由接觸器與 CU-K 隔開（C5.20.5）。</p>
+<h3>規章有寫狀態燈的顏色代表什麼嗎？</h3>
+<p>2026 年 Section C，Issue 20 沒有。條文只寫燈要依 FIA-F1-DOC-043 安裝，旁邊要有「HIGH VOLTAGE」符號（C5.17.3）。DOC-043 這次沒有取得，所以燈號的意思查無。</p>
+<h3>2 秒與 15 分鐘，是實際救援所用的時間嗎？</h3>
+<p>不是。2 秒是關閉程序的時限上限（C5.17.1），15 分鐘是三種「保持通電或脫開」的最短要求（C9.3、C5.17.3、C5.17.5）。它們都是規章對設計的要求。撞擊之後現場救援的官方流程與時間軸，已查的官方文字裡找不到。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-101-driver-safety/">F1 車手怎麼被保護：Halo 只是其中一層，撞擊的力量先被車身吃掉</a></li>
+<li><a href="/articles/f1-101-power-unit/">F1 動力單元是什麼：引擎、馬達與電池怎麼分工，決定車手何時有力氣</a></li>
+<li><a href="/articles/f1-101-safety-car/">安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止</a></li>
+</ul>
+<h2>資料來源</h2>
+<p>一手來源（FIA 規章）：</p>
+<ul>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf">FIA 2026 F1 Regulations, Section C [Technical], Issue 20（2026-08-05）</a>：C5.16 熄火防止、C5.17.1 至 C5.17.3、C5.17.5、C5.17.6 ERS 關閉與狀態燈、C5.20.2 與 C5.20.5、C5.21.1 至 C5.21.3、C8.7.1 與 C8.7.2、C8.13、C9.3</li>
+</ul>
+<p>官方說明：本文未使用。</p>
+<p>二手來源：本文未使用媒體報導作為事實依據。</p>
+<p>查證日 2026-09-30。限制：FIA-F1-DOC-043 沒有取得，狀態燈的顏色語意與位置查無，文中不寫；規章 C5.17.1 末句與 C5.17.5 各有一處引用條號和內文對不上，文中 CDS 一律引 C9.3，也不引 C5.17.5 所指的條號；C5.17.4 是 2027 年預先核准的空白佔位條款，內容未知，文中不寫；本文各條款在 Issue 20 中沒有「自 2027 起」的限定，但哪些字是相對前一版新改的，查無；2 秒、5 秒、10 秒、15 分鐘、1000V 全是規章要求或上限，查無任何實測值；撞擊之後現場救援的流程與時間軸，已查的官方文字裡找不到，文中不寫。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂賽車 第 13 / 13 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-driver-safety/"><span class="lbl">← 新手村上一篇</span>F1 車手怎麼被保護：Halo 只是其中一層，撞擊的力量先被車身吃掉</a></div></div><div class="art-nav"><a href="/articles/f1-101-team-orders/"><span class="lbl">← 前一篇</span>F1 曾經明文禁止「team orders」，2011 年就被拿掉了</a><a href="/articles/f1-101-livery/" style="text-align:right"><span class="lbl">後一篇 →</span>F1 塗裝條文要求車上有三樣標示，廣告能放哪裡卻沒寫</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+
+(function initNav() {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  h.classList.add('has-js');
+  var btn = h.querySelector('.nav-toggle');
+  var groups = [].slice.call(h.querySelectorAll('.nav-group'));
+  var mq = window.matchMedia('(max-width: 719px)');
+  function closeAll(except) { groups.forEach(function (g) { if (g !== except) g.open = false; }); }
+  function setDrawer(open) {
+    h.classList.toggle('nav-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) groups.forEach(function (g) { g.open = true; });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('toggle', function () { if (g.open && !mq.matches) closeAll(g); });
+    g.addEventListener('focusout', function (e) {
+      if (!mq.matches && e.relatedTarget && !g.contains(e.relatedTarget)) g.open = false;
+    });
+  });
+  if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
+  // 點 header 外面：任何寬度都收——桌機收下拉，手機連抽屜一起收（觸控沒有 Esc，少了這條手機只能再按一次選單鈕）
+  document.addEventListener('click', function (e) { if (!h.contains(e.target)) { closeAll(); setDrawer(false); } });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
+    var a = document.activeElement, g = a && a.closest ? a.closest('.nav-group') : null;
+    var back = g ? g.querySelector('summary') : (h.classList.contains('nav-open') ? btn : null);
+    closeAll(); setDrawer(false);
+    if (back) back.focus();
+  });
+  var onChange = function () { closeAll(); setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
+})();
+</script>
+</body>
+</html>
