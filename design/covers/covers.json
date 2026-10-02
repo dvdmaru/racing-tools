@@ -113,6 +113,12 @@
       "html": "cover-sepang-nine-years.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-singapore-marina-bay-safety-car-pole",
+      "html": "cover-singapore-marina-bay.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

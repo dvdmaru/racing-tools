@@ -1,0 +1,689 @@
+{
+ "_meta": {
+  "slug": "f1-singapore-marina-bay-safety-car-pole",
+  "type": "feature",
+  "built_by": "conductor",
+  "built_at": "2026-10-02",
+  "topic_ref": "manual（選題台 2026-10-02 候補 W-20261002-1「新加坡大獎賽賽道百科」，Charlie 以「R1 新加坡站賽道百科」指派遞補；候補不在當日 candidates 陣列，gate 無法以日期：id 登記，故以 manual 宣告）",
+  "note": "自有資料＝jolpica-f1 落地 DB（2008–2025；基準線 2008–2025 全賽道）；外部事實三棒分工：棒 A 維基逐屆（原始 wikitext，WebFetch 摘要會編圈數已作廢）、棒 B 非維基獨立來源、棒 C 賽道／週末／合約。承重條（全稱「14 屆都有」與「四屆被截短」）兩邊獨立來源一致。桌檔 CoWork/roundtable/2026-10-02-racing-singapore-circuit/packs/。",
+  "as_of": "資料庫基準＝第 15 站（巴庫）落地；第 16 站雪邦 2026-10-04。本文不引任何 2026 積分或賽果。"
+ },
+ "thesis": "新加坡站出名的是安全車：2008 到 2023 年 14 屆全都出過，還有 4 屆被兩小時上限截在預定圈數之前；但 2024 年第一次沒有安全車（官網統計句），2025 年據車隊賽後說法與第三方報導也沒有；另一組數字則一直躺在資料庫裡：16 屆有 11 屆桿位贏下正賽，在辦過至少 8 場的 20 條賽道裡排第 2（樣本只有 16 屆，只能說名次靠前，不是賽道偏袒桿位）。2026 年這條賽道第一次辦衝刺賽。",
+ "section_claims": [
+  "開頭：2008 年首辦就是 F1 第一場夜賽，之後 14 屆每屆都出安全車，formula1.com 2023 年賽前資料欄甚至把安全車機率寫成 100%；2024 年這個紀錄破了。",
+  "H2①：安全車——2008–2023 共 14 屆全有（四個獨立來源）；2024 第一次沒有（formula1.com 官方統計句）；2025 又沒有（證據較弱，掛來源類型）。這節只撐住「14 屆全有的紀錄在 2024 年被打破，2025 年據車隊說法與外媒報導也沒有」；⛔ 不寫「名聲過時」「神話破滅」（沒有量尺，兩屆也推不出穩定改變）。",
+  "H2②：兩小時上限——16 屆有 4 屆（四分之一）在預定圈數前收旗（2012、2014、2017、2022，預定 61 圈只跑 58 至 60 圈），其餘 12 屆跑滿預定圈數；規章 B2.5.3 怎麼寫；2023 改版後預定 62 圈、三屆都跑滿；Williams 說 5 屆本文只找到 4 屆。這節撐住的是「新加坡的比賽有四分之一是被時鐘而不是圈數結束的」；⛔ 不得寫成「時鐘比圈數更常是終點」或「往往跑不完」（12／16 屆跑滿）。",
+  "H2③：桿位——16 屆 11 屆贏（68.8%）、在 20 條賽道排第 2、全庫基準 52.2%；2024、2025 兩屆沒有安全車，這兩屆桿位都贏；14 屆有安全車的裡面桿位贏 9 屆（純描述，兩組樣本差太多，不比較、不寫「沒有因此怎樣」）；沒有桿位贏的 5 屆是誰從哪格贏；樣本只有 16 屆（機率約 14%）。這節撐住的是「新加坡的桿位轉勝率名次靠前，但 16 屆分不出它和一般賽道的差別」。逐屆表放這一節。",
+  "H2④：2026 週末——第一次衝刺賽、台北時間（與新加坡相同）五個時段、62 圈或 120 分鐘；合約到 2028。這節撐住的是「帶著前三節的數字進週末，哪幾個數字會被衝刺賽動到不能預測，所以只列時間」——不預測。"
+ ],
+ "required_sections": [
+  "開頭（具體事實切入，不從「新加坡站是…的賽道」切入）",
+  "H2①安全車（14 屆、2024、2025）",
+  "H2②兩小時上限（4 屆被截短表或句＋規章＋2023 改版）",
+  "H2③桿位（排名表前 4 名＋新加坡＋全庫基準；逐屆表 16 列：年、桿位、冠軍、冠軍起跑格、安全車、跑完圈數／預定圈數）",
+  "H2④2026 週末（台北時間五列表＋首次衝刺賽＋合約到 2028＋連到站內衝刺週末篇、封王算術篇）",
+  "## 資料來源（一手／官方／媒體分級，每條可點擊，查證日 2026-10-02，本站限制聲明）"
+ ],
+ "own_data": {
+  "file": "packs/own-data.json",
+  "window": "2008–2025",
+  "note": "DB 無 2020、2021 新加坡；新加坡 2026 尚未開賽，不入 16 屆"
+ },
+ "derived_values": {
+  "n_races": 16,
+  "pole_wins": 11,
+  "pole_pct": 68.8,
+  "all_circuits_baseline": {
+   "pole_wins": 190,
+   "races": 364,
+   "pct": 52.2
+  },
+  "binomial_p_ge_11_of_16_vs_all_rate": 0.1409,
+  "rank_table_top": [
+   {
+    "rank": 1,
+    "circuit_id": "yas_marina",
+    "circuit_name": "Yas Marina Circuit",
+    "pole_wins": 12,
+    "races": 17,
+    "pct": 70.6
+   },
+   {
+    "rank": 2,
+    "circuit_id": "marina_bay",
+    "circuit_name": "Marina Bay Street Circuit",
+    "pole_wins": 11,
+    "races": 16,
+    "pct": 68.8
+   },
+   {
+    "rank": 3,
+    "circuit_id": "suzuka",
+    "circuit_name": "Suzuka Circuit",
+    "pole_wins": 10,
+    "races": 15,
+    "pct": 66.7
+   },
+   {
+    "rank": 4,
+    "circuit_id": "shanghai",
+    "circuit_name": "Shanghai International Circuit",
+    "pole_wins": 9,
+    "races": 14,
+    "pct": 64.3
+   },
+   {
+    "rank": 5,
+    "circuit_id": "catalunya",
+    "circuit_name": "Circuit de Barcelona-Catalunya",
+    "pole_wins": 11,
+    "races": 18,
+    "pct": 61.1
+   }
+  ],
+  "n_circuits_min8": 20,
+  "marina_bay_rank": 2,
+  "winner_start_slots": {
+   "1": 11,
+   "2": 1,
+   "3": 2,
+   "5": 1,
+   "15": 1
+  },
+  "winners_from_top5": 15,
+  "pole_won_with_sc": [
+   9,
+   14
+  ],
+  "pole_won_without_sc": [
+   2,
+   2
+  ],
+  "pole_lost_races": [
+   {
+    "year": 2008,
+    "pole": "massa",
+    "winner": "alonso",
+    "winner_grid": 15
+   },
+   {
+    "year": 2012,
+    "pole": "hamilton",
+    "winner": "vettel",
+    "winner_grid": 3
+   },
+   {
+    "year": 2017,
+    "pole": "vettel",
+    "winner": "hamilton",
+    "winner_grid": 5
+   },
+   {
+    "year": 2019,
+    "pole": "leclerc",
+    "winner": "vettel",
+    "winner_grid": 3
+   },
+   {
+    "year": 2022,
+    "pole": "leclerc",
+    "winner": "perez",
+    "winner_grid": 2
+   }
+  ],
+  "wins_by_driver": [
+   [
+    "Sebastian Vettel",
+    5
+   ],
+   [
+    "Lewis Hamilton",
+    4
+   ],
+   [
+    "Fernando Alonso",
+    2
+   ],
+   [
+    "Nico Rosberg",
+    1
+   ],
+   [
+    "Sergio Pérez",
+    1
+   ],
+   [
+    "Carlos Sainz",
+    1
+   ],
+   [
+    "Lando Norris",
+    1
+   ],
+   [
+    "George Russell",
+    1
+   ]
+  ],
+  "wins_by_constructor": [
+   [
+    "Mercedes",
+    5
+   ],
+   [
+    "Ferrari",
+    4
+   ],
+   [
+    "Red Bull",
+    4
+   ],
+   [
+    "McLaren",
+    2
+   ],
+   [
+    "Renault",
+    1
+   ]
+  ],
+  "cut_races": [
+   {
+    "year": 2012,
+    "scheduled": 61,
+    "completed": 59
+   },
+   {
+    "year": 2014,
+    "scheduled": 61,
+    "completed": 60
+   },
+   {
+    "year": 2017,
+    "scheduled": 61,
+    "completed": 58
+   },
+   {
+    "year": 2022,
+    "scheduled": 61,
+    "completed": 59
+   }
+  ],
+  "race_table": [
+   {
+    "year": 2008,
+    "pole": "massa",
+    "pole_zh": "（站上無核准譯名，寫英文 Felipe Massa）",
+    "winner": "alonso",
+    "winner_zh": "阿隆索",
+    "winner_grid": 15,
+    "pole_won": false,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2009,
+    "pole": "hamilton",
+    "pole_zh": "漢米爾頓",
+    "winner": "hamilton",
+    "winner_zh": "漢米爾頓",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2010,
+    "pole": "alonso",
+    "pole_zh": "阿隆索",
+    "winner": "alonso",
+    "winner_zh": "阿隆索",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2011,
+    "pole": "vettel",
+    "pole_zh": "賽巴斯蒂安・維特爾",
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2012,
+    "pole": "hamilton",
+    "pole_zh": "漢米爾頓",
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_grid": 3,
+    "pole_won": false,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 59,
+    "cut_by_two_hour_limit": true
+   },
+   {
+    "year": 2013,
+    "pole": "vettel",
+    "pole_zh": "賽巴斯蒂安・維特爾",
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2014,
+    "pole": "hamilton",
+    "pole_zh": "漢米爾頓",
+    "winner": "hamilton",
+    "winner_zh": "漢米爾頓",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 60,
+    "cut_by_two_hour_limit": true
+   },
+   {
+    "year": 2015,
+    "pole": "vettel",
+    "pole_zh": "賽巴斯蒂安・維特爾",
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2016,
+    "pole": "rosberg",
+    "pole_zh": "尼可・羅斯堡",
+    "winner": "rosberg",
+    "winner_zh": "尼可・羅斯堡",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2017,
+    "pole": "vettel",
+    "pole_zh": "賽巴斯蒂安・維特爾",
+    "winner": "hamilton",
+    "winner_zh": "漢米爾頓",
+    "winner_grid": 5,
+    "pole_won": false,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 58,
+    "cut_by_two_hour_limit": true
+   },
+   {
+    "year": 2018,
+    "pole": "hamilton",
+    "pole_zh": "漢米爾頓",
+    "winner": "hamilton",
+    "winner_zh": "漢米爾頓",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2019,
+    "pole": "leclerc",
+    "pole_zh": "勒克萊爾",
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_grid": 3,
+    "pole_won": false,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 61,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2022,
+    "pole": "leclerc",
+    "pole_zh": "勒克萊爾",
+    "winner": "perez",
+    "winner_zh": "培瑞茲",
+    "winner_grid": 2,
+    "pole_won": false,
+    "safety_car": "有",
+    "scheduled_laps": 61,
+    "winner_laps": 59,
+    "cut_by_two_hour_limit": true
+   },
+   {
+    "year": 2023,
+    "pole": "sainz",
+    "pole_zh": "塞恩斯",
+    "winner": "sainz",
+    "winner_zh": "塞恩斯",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "有",
+    "scheduled_laps": 62,
+    "winner_laps": 62,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2024,
+    "pole": "norris",
+    "pole_zh": "諾里斯",
+    "winner": "norris",
+    "winner_zh": "諾里斯",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "無",
+    "scheduled_laps": 62,
+    "winner_laps": 62,
+    "cut_by_two_hour_limit": false
+   },
+   {
+    "year": 2025,
+    "pole": "russell",
+    "pole_zh": "羅素",
+    "winner": "russell",
+    "winner_zh": "羅素",
+    "winner_grid": 1,
+    "pole_won": true,
+    "safety_car": "無",
+    "scheduled_laps": 62,
+    "winner_laps": 62,
+    "cut_by_two_hour_limit": false
+   }
+  ],
+  "weekend_2026_R17_taipei_equals_singapore_time": {
+   "FirstPractice": {
+    "utc": "2026-10-09 08:30:00Z",
+    "taipei": "2026-10-09 16:30"
+   },
+   "SprintQualifying": {
+    "utc": "2026-10-09 12:30:00Z",
+    "taipei": "2026-10-09 20:30"
+   },
+   "Sprint": {
+    "utc": "2026-10-10 09:00:00Z",
+    "taipei": "2026-10-10 17:00"
+   },
+   "Qualifying": {
+    "utc": "2026-10-10 13:00:00Z",
+    "taipei": "2026-10-10 21:00"
+   },
+   "Race": {
+    "utc": "2026-10-11 12:00:00Z",
+    "taipei": "2026-10-11 20:00"
+   }
+  },
+  "sprint_rows_at_marina_bay_db": 0,
+  "sprint_seasons_in_db": [
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ]
+ },
+ "verified_facts": [
+  {
+   "id": "F-01",
+   "kind": "own",
+   "text": "2008–2025 共 16 屆新加坡站（2020、2021 取消）；桿位＝排位賽第 1 名；16 屆桿位車手與維基資訊框一致；16 屆「排位第 1」與「正賽起跑格第 1」是同一人。",
+   "source": "own-data.json；棒 A 對帳"
+  },
+  {
+   "id": "F-02",
+   "kind": "own",
+   "text": "桿位贏下正賽 11 屆（68.8%）；其餘賽道合計與全庫 2008–2025 基準 190／364（52.2%）；在辦過至少 8 場的 20 條賽道中新加坡排第 2（第 1 亞斯碼頭 12／17、第 3 鈴鹿 10／15、第 4 上海 9／14）。",
+   "source": "own-data.json circuit_rank_min8_races"
+  },
+  {
+   "id": "F-03",
+   "kind": "own",
+   "text": "二項檢定：若新加坡桿位轉勝率等於全庫 52.2%，16 屆出現 ≥11 次的機率 0.141（約 14%）。結論：樣本太小，只能寫「排名靠前」，不能寫「特別偏袒桿位」或「顯著」。",
+   "source": "own-data.json binom_p_ge_observed_vs_all_circuits_rate"
+  },
+  {
+   "id": "F-04",
+   "kind": "own",
+   "text": "冠軍起跑格分布：第 1 格 11 屆、第 2 格 1 屆（2022 培瑞茲）、第 3 格 2 屆（2012、2019 維特爾）、第 5 格 1 屆（2017 漢米爾頓）、第 15 格 1 屆（2008 阿隆索）；15／16 屆冠軍從前五格起跑。",
+   "source": "own-data.json winner_start_slots"
+  },
+  {
+   "id": "F-05",
+   "kind": "ext",
+   "text": "2008–2023 共 14 屆每屆至少出過一次（實體）安全車。涵蓋 14 屆的來源：Sky Sports 2024 賽後「all 14 of them having had at least one Safety Car interruption」；維基 14 屆逐屆條目各載 ≥1 次（棒 A）；獨立的逐屆清單 Lights Out blog 14 屆逐一列出（棒 B，抽取條列）。涵蓋較短、只能當「名聲」引述的來源：formula1.com 2019 賽後報導「always featured at least one Safety Car」（當時只涵蓋到 2019）；Williams F1 2023 年賽前稿「100% Safety Car appearance rate in its 14 years」（賽前稿，不涵蓋 2023 正賽）。正文的「14 屆全有」引 Sky Sports 與逐屆核對，另兩條只當名聲例子且標年份。",
+   "source": "棒 A §1-1、棒 B U1（agy R1 MAJOR 後改寫）"
+  },
+  {
+   "id": "F-06",
+   "kind": "ext",
+   "text": "2024 是新加坡站第一場沒有安全車、也沒有黃旗：formula1.com 賽後統計「first-ever Safety Car-free Singapore Grand Prix, and the first without a yellow flag」。「第一場沒有安全車」另有 Sky Sports、Autosport、維基交叉支持；「也是第一場沒有黃旗」只有 formula1.com 明載（維基用「safety car or yellow flag」合併措辭），寫黃旗時主詞必須是 formula1.com。",
+   "source": "棒 A、棒 B U1 ✅（Terra R1 MAJOR 後改寫）"
+  },
+  {
+   "id": "F-07",
+   "kind": "ext",
+   "text": "2025 同樣沒有安全車，但證據層級較低：formula1.com「What the teams said」刊出 Aston Martin 的說法「this evening there were no Safety Cars」；Dive-bomb、The Race、Stroll 官網亦同；formula1.com 2025 賽後報導全文沒提安全車；VSC 有無沒查到。寫法：只寫「沒有安全車」並標明來源類型，不寫「沒有 VSC」、不寫「連續兩屆全場無黃旗」。",
+   "source": "棒 B U2；棒 A 2025 條目未載"
+  },
+  {
+   "id": "F-08",
+   "kind": "ext",
+   "text": "formula1.com 2023 賽前資料欄寫「Safety Car probability – 100%」，註明依據最近六屆新加坡站。官方賽前統計句，單源，只能當「名聲」的例子，不能當逐屆證明。",
+   "source": "棒 C C-19"
+  },
+  {
+   "id": "F-09",
+   "kind": "ext",
+   "text": "2012（59／61 圈）、2014（60／61）、2017（58／61）、2022（59／61）四屆因兩小時上限在預定圈數前收旗，各有 ≥2 個獨立來源（維基＋formula1.com／RaceFans 等）；DB 冠軍跑完圈數與之 16／16 吻合。",
+   "source": "棒 A §1-2、棒 B U3 ✅"
+  },
+  {
+   "id": "F-10",
+   "kind": "ext",
+   "text": "Williams F1 的賽前數據稿寫「five races here that have hit F1's two-hour limit … 2022 being the most recent」；兩個棒只找到明寫的 4 屆。第 5 屆沒有任何來源指名（兩棒都不替它指名）。正文可寫「Williams 的數據稿說 5 屆，本文只找到明寫的 4 屆」，不得指名第 5 屆。",
+   "source": "棒 B U3'"
+  },
+  {
+   "id": "F-11",
+   "kind": "reg",
+   "text": "FIA 2026 運動規章 Section B Issue 08（2026-08-05）B2.5.3(a)：自起跑訊號起滿兩小時而預定距離未完成，領先者在兩小時期滿那圈的下一圈過線時收旗，前提是不超過預定圈數；(b) 正賽中止時，中止時間加進這兩小時，整場最長三小時。B2.5.2：正賽距離是「超過 305 公里的最少整圈」。",
+   "source": "本機 sporting.txt 第 1022–1041 行（B2.5.2 在 1022–1029、B2.5.3 在 1030–1041；現行條文，不在 Changes for 2027 段）"
+  },
+  {
+   "id": "F-12",
+   "kind": "ext",
+   "text": "2023 起新版賽道：2022 版第 16 至 19 彎併成一段 397.9 公尺直線，總彎數由 23 減為 19（singaporegp.sg 新聞稿 2022-10-19；formula1.com 同日報導）；預定圈數由 61 增為 62（formula1.com 2023 賽前資料與賽事頁）。圈長：舊版（2018–2022）官方 5.063 公里，新版官方頁 2023–2024 寫 4.94、2025–2026 寫 4.927；來源沒寫原因，兩者都約 4.9 公里。正文只寫「約 5.1 → 約 4.9 公里」。2023 賽前曾有「4.928 公里、63 圈」的預報（formula1.com，字句為 expected／likely），實際賽後是 62 圈，不寫 63。",
+   "source": "棒 C C-04、C-05、C-06、C-07、C-08"
+  },
+  {
+   "id": "F-13",
+   "kind": "ext",
+   "text": "2008 是 F1 史上第一場夜賽：formula1.com「the first night-time race in F1 history」；RaceFans「the first to be held at night under floodlights」。多源。",
+   "source": "棒 C C-10"
+  },
+  {
+   "id": "F-14",
+   "kind": "ext",
+   "text": "2026 週末（formula1.com 官方時間表，標當地 UTC+8，文末註明可能調整）：FP1 週五 10/9 16:30、衝刺排位 10/9 20:30、衝刺賽 10/10 17:00（21 圈或 60 分鐘）、排位賽 10/10 21:00、正賽 10/11 20:00（62 圈或 120 分鐘）。與本站賽曆快照 5 個時段 0 差異；台北與新加坡同為 UTC+8，時間相同。",
+   "source": "棒 C C-15、C-09；own-data weekend_2026_R17"
+  },
+  {
+   "id": "F-15",
+   "kind": "ext",
+   "text": "2026 是新加坡第一次辦衝刺賽週末：F1 與 FIA 聯合公告（2025-09-16）「Singapore are all set to host their first ever Sprint weekend」；本站 DB 2021–2025 的衝刺賽沒有任何一場在新加坡（側證）。外部直接證據只有這一份官方公告（單源），正文寫「F1 與 FIA 2025 年 9 月公布 2026 衝刺賽曆時說，新加坡將首次舉辦衝刺賽週末」，不寫成無歸屬的歷史全稱。",
+   "source": "棒 C C-16；own-data sprint_seasons_in_db（Terra R1 MINOR 後改寫）"
+  },
+  {
+   "id": "F-16",
+   "kind": "ext",
+   "text": "新加坡大獎賽合約：formula1.com 官方公告（2022-01-27）「F1 will therefore continue to visit the city of Singapore from 2022 to 2028 inclusive」；簽約三方 Singapore GP Pte Ltd、Singapore Tourism Board、Formula 1（不列部長，ESPN 引句不採用）。2028 以後有無延長：搜尋範圍內查無公告，寫「到 2028 年」，不寫「之後不辦」。",
+   "source": "棒 C C-17、C-18"
+  }
+ ],
+ "external_statements": [
+  {
+   "id": "E-01",
+   "who": "Sky Sports（2024 賽後）",
+   "says": "all 14 of them having had at least one Safety Car interruption",
+   "url": "https://www.skysports.com/f1/news/12433/13219784/singapore-gp-lando-norris-claims-dominant-win-to-reduce-max-verstappens-world-championship-lead"
+  },
+  {
+   "id": "E-02",
+   "who": "formula1.com（2024 賽後統計）",
+   "says": "Today's was the first-ever Safety Car-free Singapore Grand Prix, and the first without a yellow flag.",
+   "url": "https://www.formula1.com/en/latest/article/facts-and-stats-norris-becomes-fifth-winner-in-five-years-at-first-safety.5mUfDxYMC0wzslttHeAY9f"
+  },
+  {
+   "id": "E-03",
+   "who": "formula1.com（2019 賽後報導）",
+   "says": "The Singapore Grand Prix has always featured at least one Safety Car",
+   "url": "https://www.formula1.com/en/latest/article/race-report-highlight-singapore-grand-prix-2019.6dwF1Ea7RzSbwtt8jwKzyZ"
+  },
+  {
+   "id": "E-04",
+   "who": "Williams F1（2023 賽前數據稿）",
+   "says": "The Marina Bay Street Circuit is the only track F1 visits to boast a 100% Safety Car appearance rate in its 14 years.／We've had five races here that have hit F1's two-hour limit for a Grand Prix, with 2022 being the most recent example.",
+   "url": "https://www.williamsf1.com/posts/d6581f24-0a23-46da-be98-a79ed0710299/in-numbers-10-singapore-statistics"
+  },
+  {
+   "id": "E-05",
+   "who": "formula1.com（2023 賽前 Need to know）",
+   "says": "Safety Car probability – 100%（註：based on data from the last six races in Singapore）",
+   "url": "https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2023-singapore.361ZHWFD1aZr8opUZr70yJ"
+  },
+  {
+   "id": "E-06",
+   "who": "formula1.com（2025 What the teams said，Aston Martin）",
+   "says": "Singapore is known for its Safety Cars and lack of overtaking, but this evening there were no Safety Cars.",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-singapore-2025.68kVSFy7LPRy7yQsTpOuja"
+  },
+  {
+   "id": "E-07",
+   "who": "F1 與 FIA 聯合公告（2025-09-16）",
+   "says": "Singapore are all set to host their first ever Sprint weekend.",
+   "url": "https://www.formula1.com/en/latest/article/formula-1-and-fia-announce-2026-sprint-calendar.3PyLPAazrBNe8kQIS3wOfY"
+  },
+  {
+   "id": "E-08",
+   "who": "formula1.com 官方公告（2022-01-27）",
+   "says": "F1 will therefore continue to visit the city of Singapore from 2022 to 2028 inclusive",
+   "url": "https://www.formula1.com/en/latest/article/formula-1-announces-seven-year-singapore-grand-prix-extension.rhAyCx0iHLvIIWaC7F7Iz"
+  },
+  {
+   "id": "E-09",
+   "who": "formula1.com 2026 週末時間表文",
+   "says": "Grand Prix (62 Laps or 120 Mins)／Sprint (21 Laps or 60 Mins)／Local Time - Singapore UTC+8",
+   "url": "https://www.formula1.com/en/latest/article/formula-1-singapore-airlines-singapore-grand-prix-2026.1OXwlTH5jrpTiZX2Dvg7qE"
+  },
+  {
+   "id": "E-10",
+   "who": "singaporegp.sg 新聞稿（2022-10-19）",
+   "says": "Turns 16 to 19 of the previous layout will now be re-aligned into a 397.9m long straight",
+   "url": "https://singaporegp.sg/en/news/2022/2022-updates-to-the-marina-bay-street-circuit/"
+  },
+  {
+   "id": "E-11",
+   "who": "FIA 2026 Section B Issue 08（2026-08-05）",
+   "says": "B2.5.2／B2.5.3(a)(b)（見 F-11）",
+   "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf"
+  }
+ ],
+ "checked_not_used": [
+  "各屆安全車出動圈數（來源差 1–2 圈）",
+  "燈光規格（各源數量級矛盾）",
+  "賽道紀錄圈（Hamilton 1:33.808 正賽最快圈 vs Russell 1:29.158 排位；口徑不同）",
+  "2008 Crashgate 細節（單源二手，不展開）",
+  "Little Big Red Dot 的衝刺週末日程（與官方不符，低可信）",
+  "ESPN 對合約簽約方的轉述（與官方稿不符）",
+  "2023 賽前「4.928 公里／63 圈」預報（字句為 expected／likely，賽後實際 62 圈）",
+  "2027 距離門檻 305→290 公里的提案（站內已有專文，未定案；本文不寫新加坡 2027 圈數）"
+ ],
+ "must_not_claim": [
+  "⛔ 不寫「新加坡每年都有安全車」「從來沒有一年缺席」——2024 起打破；只寫「2008–2023 共 14 屆全有，2024 第一次沒有」。",
+  "⛔ 不寫任何一屆的安全車「出動圈數」或「次數」（來源之間差 1–2 圈，2023 官方與其他三源差 2 圈）；只寫「有／無」。",
+  "⛔ 不寫 2025「全場沒有黃旗」「沒有 VSC」（查無）；2025 的「無安全車」要掛來源類型（車隊賽後說法與第三方報導）。",
+  "⛔ 不寫哪一屆「因為安全車而被截短」「因為下雨而被截短」之類的因果（兩小時上限只講事實：預定 N 圈、實際跑完 M 圈、規章怎麼寫）；不指名 Williams 提到的第 5 屆（不要寫 2015）。",
+  "⛔ 不寫「桿位在新加坡特別重要／特別有利」這類歸因於賽道特性的因果（沒有來源）；不寫「因為超車難所以桿位贏」。只能寫「16 屆裡 11 屆桿位贏、排第 2」並附樣本與機率限制；「為什麼」寫成「資料沒有回答」或不寫。",
+  "⛔ 不寫「顯著」「統計上高於」；14% 那句只能寫成「樣本太小」的依據。",
+  "⛔ 不寫 2026 新加坡站的預測（誰會贏、會不會出安全車、會不會被兩小時截短）；不寫衝刺賽「會改變桿位價值」。",
+  "⛔ 不寫積分榜、封王算術、「安東內利能不能在新加坡封王」（本文基準是第 15 站資料，第 16 站雪邦 10/4 之後數字會變）；只連到站內算術文，不引任何數字。",
+  "⛔ 不寫 2008 年 Crashgate／皮奎特故意撞牆（本文不展開，避免單源二手歸因）；2008 只寫「阿隆索從第 15 格起跑贏下比賽」＋該屆有安全車。",
+  "⛔ 不寫燈光規格（投光器數量、電纜長度、照度，各來源數量級矛盾）、不寫賽道紀錄圈（口徑不同）、不寫圈長精確到小數點第三位。",
+  "⛔ 不寫「新加坡是安全車之王／最混亂」等全站最高級；Williams 說的是「F1 到訪賽道中唯一 14 年 100% 出安全車」是它自己的話，要寫就帶主詞與年份（2023 年稿）。",
+  "⛔ 不用無名歸因（專家認為／業界人士／外界普遍認為／一般認為）；不用「我」；「本站」全文 ≤3 次。",
+  "⛔ 不自創譯名：站上沒有核准譯名的車手（Felipe Massa）一律寫英文。"
+ ],
+ "voice": {
+  "_instruction": "⚠️ 下面 spec_verbatim 是站上文風規格的原文整段，派寫作 agent 時要整段複製進派工單的風格節，不要節錄、不要改寫、不要只挑幾條。",
+  "spec_verbatim": "## 📋 派工單貼文＝寫手單（派寫作 agent 時整段複製到 §風格，不要節錄）\n\n### 標竿\n小 Lin 說＋張泉靈（硅谷101 只補「明寫查證工作量」，取代不了標竿）：①從具體的怪事切進去，不從分類切進去 ②短句，一句話一件事 ③方法論留在文外。連不確定都直接說，條文／日期／前例敢斷，走向與動機明說不知道。\n\n### 一　文章層（W32）：動筆前先寫一句話論點\n稿子最上方先寫（交稿前刪掉，或交指揮位放進 `05-thesis.md`）：\n①**這篇在主張什麼**——一句話，讀者可以不同意的判斷（「本文介紹／整理了 X」不算）。\n②**每一節要撐的主張**——一節一句，說出那一節的「所以呢」。\n> **⭐ 節形狀選單（接在 W32 ② 之後；Cole harvest 判 ✅ 的五種，分類見 [[hub_writing_framing]] Cole 附錄）**\n>\n> **適用範圍＝承載主張的節**；收尾節（時效提醒、不給建議的收尾）與結構節（來源／FAQ）不判。\n> **用法**：每一節先寫一句主張（W32 ②），再從下面五種裡挑一種形狀撐那句主張；挑得出形狀就照那個形狀排材料，\n> **挑不出形狀的節＝資料堆候選，回報指揮位**（縮節、併節或換主張）。一節一種形狀就夠；✅ 例句取自三篇試行文的真實段落（❌ 對照在記憶檔 `hub_writing_framing` 附錄與回顧檔）。\n>\n> **① 數據**＝用一組先有出處的數字撐這一節的主張，數字之間要能互相對照。\n> ✅ article-racing…leclerc-parabolica.md `## 勒克萊爾在 205 km/h 就全油門，比自己與另外五人的第 2 圈全開都早`——六個對照排成一張表（210–223 對 205），每一筆都指回同一份公開存檔。\n>\n> **② 理由**＝用「往支持／往反對」兩個方向的材料撐一個判斷，連信賴度一起講。\n> ✅ article-racing…leclerc-parabolica.md `## 第二次全開之後，車速不動，轉速卻跳了 4%`——同一個比值 48.3，往支持給自己出彎 8 筆與漢米爾頓兩圈的取樣，往反對給第 1 圈那筆換檔瞬態，並標信賴度中。\n>\n> **③ 犯錯**＝把讀者最容易踩的那一個坑講明白，用自家材料拆開它（守 W19：坑是內容，不是彈藥）。\n> ✅ article-baseball-brock.md `## 這是統一隊史紀錄，不是中職聯盟紀錄`——坑＝把隊史紀錄當成聯盟紀錄；用柏格中職 58 勝、勇壯 108 勝拆開，全程沒有寫誰報錯。\n>\n> **④ 範例**＝用能串成一條過程的具體材料撐主張，每件材料帶日期、原話或代價（W26 材料計數）。\n> ✅ article-baseball-brock.md `## 布雷克這 7 個球季，撐過背傷也撐過了洋將大限`——背傷下二軍、季末註銷、2 年保障合約、羅力條款四件材料各有日期與原話，串成「留得夠久」。\n>\n> **⑤ 問題**＝H2 自己就是讀者會追問的那個反轉，節內當場回答（W30 已接受過的形狀①）。\n> ✅ article-baseball-brock.md `## 防禦率全聯盟第 2，勝場卻只有 7 勝 7 敗`——反轉在 H2，節內用 7 場敗投的比分表與 5 月 16 日那場 0 比 1 回答。\n>\n> ⚠️ 建議型文型另有三種（訣竅／步驟／好處），健檢站與賽事分析不套。\n>\n> **「數據」形狀的順序是先有出處、再有句子**：拿著出處找句子，句子撐得住；拿著句子找數據，會長出查無出處的數字\n> （☠️「給我一個數據支撐這個說法」這個 prompt 不收，理由見 [[hub_writing_framing]] Cole 附錄與 [[feedback_llm_fetch_fabricates_unhappened_events]]）。\n自檢：每一節讀完，讀者知道的是「事情放在哪裡」還是「那代表什麼」？前者＝地圖句，整節重寫。\n⚠️ 寫不出站得住的論點＝回報指揮位縮題或換角度。張力來自事實；絕對詞（最／唯一／完全沒有／只可能）一律換成可查的數字或條文。\n\n### 二　句子層（W29）：唸得完的句子\n每一句與每個標題都要唸得完：一個主詞、一個主要動詞；兩半的關係用連接詞明說（之後／因為／但是／雖然），逗號並排讓讀者自己接的一律改寫。\n❌「台鋼雄鷹連 33 局沒有得分，起點是一場勝利」→ ✅「台鋼雄鷹 8 月 29 日贏球之後，連續 33 局沒有得分」\n自檢：唸給人聽，對方反問「所以呢？」「這兩件事有什麼關係？」＝並置病。\n\n### 三　標題（W30）：先問「有沒有人想讀」\n紀律全過的標題仍可能沒有人想讀。原標題通常已有鉤子：先問「鉤子在哪個詞上」，查證推翻某個詞就只換那個詞，非鉤子則整句保留。\n四種被接受過的形狀（起手處，非套版）：問句＋反轉／具體人事時地物／反直覺的具體事實／**描述＋反轉**（前半是人地事的直述，後半接一個反轉）。\n自檢：唸給一個不看足球的人聽，他問「然後呢？」＝有鉤子，點頭說「喔」＝重寫。\n\n⭐ **動筆時的第一個動作：把自己的 lede 第一句抄下來，跟標題並排看。**\nCharlie 退標題時的固定做法就是拿同篇 lede 當正確版對照組——已發生在 2026-08-11（足球站與 aire 同日兩站）\n與 2026-09-16（他直接把 lede 首句貼回來當標題提案）。**lede 裡通常已經有人事時地物，標題缺的就是那些。**\n⛔ 但 **lede 首句不能整句搬進標題**：它是為「交代清楚」寫的，含全名括號與完整子句，\n長度通常是標題的三到四倍，塞不進封面版位（見下）。**抄的是它的元素，不是它的句子。**\n\n📏 **長度帶（foootball 實測，2026-09-16）**：站上 94 篇非 daily 標題**中位 33 字、P90 42、最長 55**；\n而 **feature 封面版位（2400×1260，標題固定兩行）的限制是每行寬度，不是總字數**：\n實測 126 字會吃掉四行、把頁尾擠出版面；**31 字（第 1 行 14＋第 2 行 15）沒溢出，第 2 行只用約 75% 寬**（2026-09-19 巴薩篇，封面已實看）。\n⚠️ 本節舊版寫「實際容量約 24–30 字」——**過保守，2026-09-19 實測推翻**；但長標題仍**超過 30 字就先渲染確認**，別用猜的。\n\n⚠️ **本庫的慣性是「在標題層過度壓縮」**：2026-09-16 那篇初版 24 字，比站上 91% 的標題都短，被 Charlie 退「拗口」。\n⇒ **短不是優點**。標題太短時，兩件事會被壓成逗號並排、關係消失（＝W29 的並置病搬到標題層）。\n\n### 六個漂移症狀（①④⑤ 同病根＝成品在展示工序；測試：這句在告訴讀者「一件事」，還是「我怎麼知道這件事」？後者一律改寫）\n\n**① gate 語言長進正文（最主要病灶）**\n❌「這是媒體估值，不是官方公布的確定數字，本文照原樣寫成區間，不換算成新台幣，也不取整成單一數字，那樣做只會製造一個看起來精確、實際上查無出處的假數字。」\n✅「這是媒體估的區間，不是官方數字。」\n判準：標可靠度＝留（媒體估／官方公告照標，講完就走），解釋本站紀律＝移到文末來源區塊；「誠實說／照實說」這類框架詞一律刪掉，誠實是預設。\n\n**② 標籤式標題**\n❌ `## 機制一：同一國辦兩場，第二場得換名字` → ✅ `## 聖馬利諾大獎賽，從來沒在聖馬利諾辦過`\n標題自己就要是一個事實，邏輯關係靠內文轉場句承接。\n\n**③ 指代不具體**\n❌「那家真公司一定也是演習的一部分」→ ✅「它攻的是一家真公司，而且知道那是真的」\n要讀者往回翻的詞（這件事／那家公司／後者／前面講的）一律換成具體名詞或改寫成不需指代的句子；H2 內出現指代詞＝FAIL。查不到名字時的正解＝改寫成事實句，而非硬補一個名字。\n\n**④ 第一人稱主詞「我」浮濫**\n❌「我把 84 場全部拉出來排了一次」→ ✅「把 84 場全部拉出來、逐場看場地欄，結果是：」\n中文可省主詞：工作量要寫，動作者不出場。改法＝主題句（硬刪「我」留半殘句不算，「我們」一樣多餘）；收尾前 grep「我」，拿掉會不通才留。\n\n**⑤ 標題塞證據鏈**\n❌「中職一週內 4 場雨延：8 月 8 日兩場補在 10 月 4 日，8 月 9 日兩場只寫「補賽週」」→ ✅「中職延賽的兩種補法：給日期，或只寫「補賽週」」\n標題放結論，日期／場次／數量降到副標；太抽象（機制一二三）與太具體（整條證據鏈）是同軸兩端（與②合讀），修完一端盪到另一端同樣重寫。自檢＝唸進封面兩行。\n\n**⑥ 廢話文學＝形狀正確但零資訊的句子（最典型＝同義反覆）**\n❌「開球時間就是手機上的時間，下午 3 點 30 分就是下午 3 點 30 分」→ ✅「一個換算都不用做——星期日吃完午餐出門，趕得上下午 3 點 30 分那場」\n判準＝讀完這句，知道的事情比讀之前多了什麼；答不出來就是廢話。高發位置＝系列文／系列卡的共同軸句位。\n\n### 材料（W26）\n非虛構稿 ≥1,200 字：五件具體材料（動作／數字／原話／代價／結果，各註來路）串成一條實際過程；數不夠就回報指揮位縮篇幅，補解釋、補用途意義風險未來一律不算材料。\n\n### 交稿前最後一關（W31）\n紀律規則都是負面閘門，是地板，不是量尺；這一關排在紀律檢查之後，有權推翻紀律產生的寫法（事實紅線除外）。三個動作，答案寫進交稿回報：\n1. 從頭到尾真讀一次；掃描、grep、只看改過的地方都不算讀。\n2. 標出自己讀到會想跳過的段落——至少一段，寫出段號與第一句；標不出來＝重讀。\n3. 逐個 H2 問：讀者讀完這節為什麼要繼續往下讀？答不出來的那節先問該搬位置還是併掉。\n產物＝指名的段號與句子；「已檢查，通過」是一句自述，任何人都檢查不了，不算交件。",
+  "headline_style": "標題放結論與前提，不塞證據鏈；細節（四屆截短、機率）降到副標與內文。不要編號、不要分類標籤。自檢：唸進封面兩行。",
+  "forbidden_meta": "gate 語言不進正文，「本站」全文 ≤3 次，不得有任何 H2 在講我們怎麼算。❌「本站以 jolpica 資料逐站重算，並由兩席獨立驗證後得出封王線 151」→ ✅「封王線在新加坡降到 151」｜❌「這張表看的是每一站結束後現有領先還要補多少」→ ✅「最右欄是：安東內利全勝時，羅素從巴庫到該站合計最多能拿幾分」｜❌「這不是預報，而是一條放在同一張算盤上的線」→ 整句刪掉。",
+  "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+  "tone": "小 Lin 說＋張泉靈。從具體的數字切進去、短句、不在正文解釋方法論。",
+  "length": "正文（不含表格與資料來源）2,800–3,800 字含標點，字數是下限導向：事實表撐不住就不灌水。"
+ },
+ "interlinks": {
+  "note": "frontmatter 必須有 season: 2026；不寫 round:。連結前確認 articles/<slug>/ 與 /circuits/<slug>/ 存在。",
+  "candidates": [
+   "/circuits/marina-bay/",
+   "/circuits/yas-marina/",
+   "/circuits/suzuka/",
+   "/circuits/shanghai/",
+   "/articles/f1-101-safety-car/",
+   "/articles/f1-101-sprint-weekend/",
+   "/articles/f1-101-race-weekend/",
+   "/articles/f1-2026-antonelli-clinch-arithmetic/"
+  ]
+ },
+ "zh_names": {
+  "drivers": {
+   "alonso": "阿隆索",
+   "hamilton": "漢米爾頓",
+   "vettel": "賽巴斯蒂安・維特爾",
+   "rosberg": "尼可・羅斯堡",
+   "leclerc": "勒克萊爾",
+   "perez": "培瑞茲",
+   "sainz": "塞恩斯",
+   "norris": "諾里斯",
+   "russell": "羅素"
+  },
+  "no_approved_zh": [
+   "massa（Felipe Massa，寫英文）"
+  ],
+  "circuits": {
+   "marina_bay": "濱海灣街道賽道（新加坡）",
+   "yas_marina": "亞斯碼頭賽道（阿布達比）",
+   "suzuka": "鈴鹿賽道",
+   "shanghai": "上海國際賽車場"
+  }
+ }
+}
