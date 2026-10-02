@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 上半部是 22 位車手中雪邦正賽出賽次數最多的 4 位，下半部是三個數字：有雪邦正賽紀錄的人數、
+ * 19 屆起跑第 1 格贏的屆數、來源明寫中斷或重來的屆數。
+ * 數字全部取自 facts/analysis-f1-sepang-nine-years-guide.json 的 derived_values。
+ * 顏色不對應任何車隊塗裝（站規：不用官方素材）。 */
+h1 { font-size: 88px; margin-top: 36px; line-height: 1.16; }
+.sub { margin-top: 22px; font-size: 38px; }
+table { margin-top: 32px; width: 100%; border-collapse: collapse; font-size: 32px; }
+th { font-family: 'Chakra Petch'; font-size: 24px; letter-spacing: 4px; color: rgba(255,255,255,.8); text-align: left;
+  background: #191114; padding: 10px 24px; }
+td { padding: 12px 24px; border-bottom: 1.5px solid rgba(238,240,244,.12); }
+td.nm { font-weight: 700; color: #241a1c; }
+td.n { font-family: 'Chakra Petch'; font-weight: 700; color: #493c40; }
+.viz { margin-top: 26px; }
+.lbl { margin-bottom: 10px; }
+.stats { margin-top: 14px; gap: 40px; }
+.stat { padding-left: 22px; }
+.stat b { font-size: 48px; }
+.stat b i { font-size: 28px; }
+.stat span { font-size: 22px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 賽道百科</div>
+  <h1>雪邦隔了<span class="y">9年</span>回到F1<br>22位車手有12位沒在這裡跑過正賽</h1>
+  <div class="sub">只算正賽出賽紀錄：22人裡10人來過、12人沒來過</div>
+  <table>
+    <tr><th>車手</th><th>雪邦正賽出賽次數</th><th>第一次</th><th>最後一次</th></tr>
+    <tr><td class="nm">阿隆索</td><td class="n">16</td><td class="n">2001</td><td class="n">2017</td></tr>
+    <tr><td class="nm">漢米爾頓</td><td class="n">11</td><td class="n">2007</td><td class="n">2017</td></tr>
+    <tr><td class="nm">霍肯伯格</td><td class="n">7</td><td class="n">2010</td><td class="n">2017</td></tr>
+    <tr><td class="nm">培瑞茲</td><td class="n">7</td><td class="n">2011</td><td class="n">2017</td></tr>
+  </table>
+  <div class="viz">
+    <div class="lbl">雪邦 1999 到 2017 年共 19 屆</div>
+    <div class="stats">
+      <div class="stat"><b>9<i>屆</i></b><span>起跑第 1 格贏（47.4%）</span></div>
+      <div class="stat"><b>49.7<i>%</i></b><span>同期全賽道平均</span></div>
+      <div class="stat"><b>3<i>屆</i></b><span>來源明寫中斷或重來</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc · 資料庫基準第 15 站落地，不含 2026 年賽果</div>
+</div>
+</body>
+</html>
