@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>雪邦自 2017 年後首度回到 F1，22 位車手有 12 位沒在這裡跑過正賽</title>
+    <link>https://racing.twtools.cc/articles/f1-sepang-nine-years-guide/</link>
+    <guid>https://racing.twtools.cc/articles/f1-sepang-nine-years-guide/</guid>
+    <pubDate>Fri, 02 Oct 2026 00:00:00 +0800</pubDate>
+    <description>維斯塔潘（Max Verstappen）贏下了 2017 年最後一屆雪邦。Pirelli 與 RaceFans 都說這次隔了 9 年。過去 19 屆，起跑第 1 格贏了 9 屆；來源明寫中斷或重來的有 3 屆；Pirelli 說午後雷雨可能影響這個週末的任何一節。</description>
+  </item>
+  <item>
     <title>F1 的輪螺帽只有一顆，鬆了還得留在車上</title>
     <link>https://racing.twtools.cc/articles/f1-101-wheel-nut/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-wheel-nut/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-minimum-weight/</guid>
     <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
     <description>官方網站寫 768 公斤，規章寫 724 公斤加輪胎。車重的量法、壓載的規定、排位賽與高溫時的加重，到賽後過磅，照 2026 年條文講一遍。</description>
-  </item>
-  <item>
-    <title>F1 燃料是什麼：正賽不能加油，規章限制的是每小時流進引擎的能量</title>
-    <link>https://racing.twtools.cc/articles/f1-101-fuel/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-fuel/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年的 F1 規章允許車手坐在車上加油，前提是引擎熄火，而且加油只能在車庫裡。正賽開始後，燃料就不能補了，所以規章管的是流進引擎的速度：每小時 3,000 MJ。燃料本身是先進永續燃料，要先過 FIA 核准，比賽期間還會被取樣檢驗。</description>
   </item>
 </channel>
 </rss>
