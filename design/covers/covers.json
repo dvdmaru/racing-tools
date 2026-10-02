@@ -107,6 +107,12 @@
       "html": "cover-youngest-champions.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-sepang-nine-years-guide",
+      "html": "cover-sepang-nine-years.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

@@ -1,0 +1,788 @@
+{
+ "_meta": {
+  "slug": "f1-sepang-nine-years-guide",
+  "type": "feature",
+  "built_by": "conductor",
+  "built_at": "2026-10-02",
+  "topic_ref": "manual（Charlie 2026-10-02 對話指派「這禮拜的雪邦賽道也來一篇？」；非選題台題目）",
+  "note": "站上 f1-2026-bahrain-gp-in-malaysia（2026-08-01）已明寫「賽道的彎角配置、氣候條件、2026 年新規則對它的影響，留給賽前的前瞻文章」，本文就是那篇前瞻；不重講移師、名稱、合約、成本。自有資料＝jolpica-f1 DB（1999–2017 共 19 屆）；外部事實三棒：A 維基原始 wikitext 逐屆、B 非維基獨立來源與 2026 週末、C 賽道本體。承重條（2009 31 圈、2012 阿隆索第 8 格、2026 名單與時程）≥2 個獨立來源；2001 的 55 圈原因單源，已限制寫法。桌檔 CoWork/roundtable/2026-10-02-racing-sepang-circuit/packs/。",
+  "as_of": "資料庫基準＝第 15 站落地；2026 這一站（第 16 站）2026-10-02～04 進行中，本文不引任何 2026 賽果、積分或 FP 成績。"
+ },
+ "thesis": "雪邦隔了 9 年才回到 F1：2026 年 22 位車手裡只有 10 位在這裡正賽出賽過（阿隆索 16 次、漢米爾頓 11 次），另外 12 位沒有雪邦的正賽出賽紀錄（RaceFans 把 Leclerc 2017 年 FP1 也算有經驗，所以寫「一半」）。過去 19 屆的資料裡，起跑第 1 格贏 9 屆（47%），和同期全賽道的 50% 差不多；起跑第 1 格仍是勝場最多的格子，前三格合計贏 15 屆，最遠贏到第 8 格。查得到明寫中斷或重來的有 3 屆（其餘 16 屆來源沒有寫到這類紀錄，查無不等於沒發生）：2001 起跑中止重來（冠軍跑 55 圈，雨在開賽後才下）、2009 暴雨中止（冠軍跑 31 圈、給半分）、2012 雷雨紅旗（仍跑滿 56 圈）；Pirelli 說這個週末午後雷雨可能影響任何一節。",
+ "section_claims": [
+  "開頭：2017 年 Verstappen 是雪邦最後一位冠軍（F1 官網公告圖說）；Pirelli、RaceFans 都說這次隔了 9 年；2026 年這個週末，22 位車手有 12 位沒有雪邦的正賽出賽紀錄（⛔ 不寫「多數人是第一次跑雪邦」：RaceFans 算練習賽，是一半）。",
+  "H2①：22 位車手中 10 位有雪邦正賽紀錄（表：車手、出賽屆數、第一次與最後一次、在雪邦贏幾場）；阿隆索 16 次 3 勝、漢米爾頓 11 次 1 勝、維斯塔潘 3 次 1 勝；RaceFans 說一半，本表 12／22 是正賽口徑，差在 Leclerc 2017 年 FP1。這節撐住的是「這個週末超過一半的車手沒有雪邦的正賽紀錄」，不寫成成績預測、不寫「新人吃虧」。",
+  "H2②：19 屆起跑第 1 格贏 9 屆（47.4%）與同期全賽道 49.7% 沒有差別，並列第 7；冠軍起跑格最遠第 8 格（2012 阿隆索）；19 屆逐屆表。這節撐住的是「雪邦的起跑第 1 格贏率和全賽道平均差不多；第 1 格仍是勝場最多的格子（9 屆），前三格合計 15 屆」；⛔ 不寫「排位不重要」「後方逆轉機會大」「容易超車」。",
+  "H2③：中斷與雨——查得到明寫中斷或重來的有 3 屆（其餘 16 屆來源未載，⛔ 不寫「19 屆只有 3 屆」「其餘都沒有中斷」）：2001（起跑中止重來、冠軍跑 55 圈；⛔ 縮圈原因是起跑中止，不是雨——雨在開賽後第 3 圈左右才下並出安全車，兩件分開寫）、2009（暴雨中止、冠軍跑 31 圈、給半分）、2012（雷雨、紅旗、重啟後仍跑滿 56 圈，阿隆索第 8 格贏）；Pirelli 的 2026 說法與 RaceFans 的歷史（10 月辦的 1999、2000、2016 乾地、2017 正賽前仍有雨水；早季 3–4 月雷雨風險略高）兩邊並陳。這節撐住的是「查得到的來源裡，有 3 屆明寫中斷或重來，天氣是這站要看的變數之一」；不預測這個週末；⛔ 不寫「10 月辦的 4 屆都沒有被中斷」（紅旗欄 16 屆是❓條目未載，不是「沒有」）。",
+  "H2④：賽道與輪胎——5.543 公里、15 彎、56 圈、約 310 公里；賽事圈速紀錄；Pirelli 選 C2／C3／C4；路面兩種說法並陳。這節撐住的是「輪胎與路面是 2026 年真正未知的部分，連 Pirelli 與媒體的解讀都不一致」。",
+  "H2⑤：2026 週末時程（台北與雪邦同為 UTC+8）。只列時間，不預測。"
+ ],
+ "required_sections": [
+  "開頭（具體事實切入：2017 年最後一位冠軍是維斯塔潘；2026 年 22 位車手有 12 位沒在雪邦出過正賽；不從「雪邦回來了」切入）",
+  "H2①有雪邦經驗的 10 位車手（表）",
+  "H2②19 屆起跑第 1 格與冠軍起跑格（排名一句＋19 屆逐屆表）",
+  "H2③雨與中斷（查得到明寫中斷或重來的 2001／2009／2012＋Pirelli 與 RaceFans 的氣候說法；不寫窮盡式的「只有 3 屆」）",
+  "H2④賽道、輪胎與路面（數字＋Pirelli／媒體分歧並陳）",
+  "H2⑤2026 週末時程（5 列表）",
+  "## 資料來源（一手／官方／媒體分級，每條可點擊，查證日 2026-10-02，本站限制聲明）"
+ ],
+ "own_data": {
+  "file": "packs/own-data.json",
+  "window": "1999–2017（19 屆）",
+  "note": "DB 無 2018 之後的雪邦；2026 尚未開賽"
+ },
+ "derived_values": {
+  "n_races": 19,
+  "years": "1999–2017",
+  "grid1_won": 9,
+  "grid1_pct": 47.4,
+  "baseline_1999_2017_all_circuits": {
+   "wins": 172,
+   "races": 346,
+   "pct": 49.7
+  },
+  "binom_p_le_9_of_19_vs_all_rate": 0.5102,
+  "sepang_rank_note": "21 條在 1999–2017 辦過至少 8 場的賽道中，雪邦 9／19（47.4%）與匈牙利賽道並列第 7；第 1 名 Catalunya 15／19（78.9%）、最低 Nürburgring 3／12（25.0%）",
+  "winner_start_slots": {
+   "1": 9,
+   "2": 4,
+   "3": 2,
+   "4": 2,
+   "7": 1,
+   "8": 1
+  },
+  "winners_from_outside_top3": 4,
+  "wins_by_driver": [
+   [
+    "vettel",
+    4
+   ],
+   [
+    "michael_schumacher",
+    3
+   ],
+   [
+    "alonso",
+    3
+   ],
+   [
+    "raikkonen",
+    2
+   ],
+   [
+    "irvine",
+    1
+   ],
+   [
+    "ralf_schumacher",
+    1
+   ],
+   [
+    "fisichella",
+    1
+   ],
+   [
+    "button",
+    1
+   ],
+   [
+    "hamilton",
+    1
+   ],
+   [
+    "ricciardo",
+    1
+   ],
+   [
+    "max_verstappen",
+    1
+   ]
+  ],
+  "wins_by_constructor": [
+   [
+    "Ferrari",
+    7
+   ],
+   [
+    "Red Bull",
+    5
+   ],
+   [
+    "McLaren",
+    2
+   ],
+   [
+    "Renault",
+    2
+   ],
+   [
+    "Williams",
+    1
+   ],
+   [
+    "Brawn",
+    1
+   ],
+   [
+    "Mercedes",
+    1
+   ]
+  ],
+  "race_table": [
+   {
+    "year": 1999,
+    "winner": "irvine",
+    "winner_zh": "（站上無核准譯名，寫英文 Eddie Irvine）",
+    "winner_name_en": "Eddie Irvine",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 2,
+    "grid1": "michael_schumacher",
+    "grid1_zh": "麥可・舒馬克",
+    "grid1_name_en": "Michael Schumacher",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2000,
+    "winner": "michael_schumacher",
+    "winner_zh": "麥可・舒馬克",
+    "winner_name_en": "Michael Schumacher",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 1,
+    "grid1": "michael_schumacher",
+    "grid1_zh": "麥可・舒馬克",
+    "grid1_name_en": "Michael Schumacher",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2001,
+    "winner": "michael_schumacher",
+    "winner_zh": "麥可・舒馬克",
+    "winner_name_en": "Michael Schumacher",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 1,
+    "grid1": "michael_schumacher",
+    "grid1_zh": "麥可・舒馬克",
+    "grid1_name_en": "Michael Schumacher",
+    "grid1_won": true,
+    "winner_laps": 55,
+    "note": "起跑中止後重來，雨戰，冠軍跑 55 圈"
+   },
+   {
+    "year": 2002,
+    "winner": "ralf_schumacher",
+    "winner_zh": "（站上無核准譯名，寫英文 Ralf Schumacher）",
+    "winner_name_en": "Ralf Schumacher",
+    "winner_constructor": "Williams",
+    "winner_grid": 4,
+    "grid1": "michael_schumacher",
+    "grid1_zh": "麥可・舒馬克",
+    "grid1_name_en": "Michael Schumacher",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2003,
+    "winner": "raikkonen",
+    "winner_zh": "奇米・雷克南",
+    "winner_name_en": "Kimi Räikkönen",
+    "winner_constructor": "McLaren",
+    "winner_grid": 7,
+    "grid1": "alonso",
+    "grid1_zh": "阿隆索",
+    "grid1_name_en": "Fernando Alonso",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2004,
+    "winner": "michael_schumacher",
+    "winner_zh": "麥可・舒馬克",
+    "winner_name_en": "Michael Schumacher",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 1,
+    "grid1": "michael_schumacher",
+    "grid1_zh": "麥可・舒馬克",
+    "grid1_name_en": "Michael Schumacher",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2005,
+    "winner": "alonso",
+    "winner_zh": "阿隆索",
+    "winner_name_en": "Fernando Alonso",
+    "winner_constructor": "Renault",
+    "winner_grid": 1,
+    "grid1": "alonso",
+    "grid1_zh": "阿隆索",
+    "grid1_name_en": "Fernando Alonso",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2006,
+    "winner": "fisichella",
+    "winner_zh": "（站上無核准譯名，寫英文 Giancarlo Fisichella）",
+    "winner_name_en": "Giancarlo Fisichella",
+    "winner_constructor": "Renault",
+    "winner_grid": 1,
+    "grid1": "fisichella",
+    "grid1_zh": "（站上無核准譯名，寫英文 Giancarlo Fisichella）",
+    "grid1_name_en": "Giancarlo Fisichella",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2007,
+    "winner": "alonso",
+    "winner_zh": "阿隆索",
+    "winner_name_en": "Fernando Alonso",
+    "winner_constructor": "McLaren",
+    "winner_grid": 2,
+    "grid1": "massa",
+    "grid1_zh": "（站上無核准譯名，寫英文 Felipe Massa）",
+    "grid1_name_en": "Felipe Massa",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2008,
+    "winner": "raikkonen",
+    "winner_zh": "奇米・雷克南",
+    "winner_name_en": "Kimi Räikkönen",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 2,
+    "grid1": "massa",
+    "grid1_zh": "（站上無核准譯名，寫英文 Felipe Massa）",
+    "grid1_name_en": "Felipe Massa",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2009,
+    "winner": "button",
+    "winner_zh": "詹森・巴頓",
+    "winner_name_en": "Jenson Button",
+    "winner_constructor": "Brawn",
+    "winner_grid": 1,
+    "grid1": "button",
+    "grid1_zh": "詹森・巴頓",
+    "grid1_name_en": "Jenson Button",
+    "grid1_won": true,
+    "winner_laps": 31,
+    "note": "暴雨，冠軍跑 31 圈，給半分"
+   },
+   {
+    "year": 2010,
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_name_en": "Sebastian Vettel",
+    "winner_constructor": "Red Bull",
+    "winner_grid": 3,
+    "grid1": "webber",
+    "grid1_zh": "（站上無核准譯名，寫英文 Mark Webber）",
+    "grid1_name_en": "Mark Webber",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2011,
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_name_en": "Sebastian Vettel",
+    "winner_constructor": "Red Bull",
+    "winner_grid": 1,
+    "grid1": "vettel",
+    "grid1_zh": "賽巴斯蒂安・維特爾",
+    "grid1_name_en": "Sebastian Vettel",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2012,
+    "winner": "alonso",
+    "winner_zh": "阿隆索",
+    "winner_name_en": "Fernando Alonso",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 8,
+    "grid1": "hamilton",
+    "grid1_zh": "漢米爾頓",
+    "grid1_name_en": "Lewis Hamilton",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": "紅旗中斷，仍跑滿 56 圈，冠軍從第 8 格起跑"
+   },
+   {
+    "year": 2013,
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_name_en": "Sebastian Vettel",
+    "winner_constructor": "Red Bull",
+    "winner_grid": 1,
+    "grid1": "vettel",
+    "grid1_zh": "賽巴斯蒂安・維特爾",
+    "grid1_name_en": "Sebastian Vettel",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2014,
+    "winner": "hamilton",
+    "winner_zh": "漢米爾頓",
+    "winner_name_en": "Lewis Hamilton",
+    "winner_constructor": "Mercedes",
+    "winner_grid": 1,
+    "grid1": "hamilton",
+    "grid1_zh": "漢米爾頓",
+    "grid1_name_en": "Lewis Hamilton",
+    "grid1_won": true,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2015,
+    "winner": "vettel",
+    "winner_zh": "賽巴斯蒂安・維特爾",
+    "winner_name_en": "Sebastian Vettel",
+    "winner_constructor": "Ferrari",
+    "winner_grid": 2,
+    "grid1": "hamilton",
+    "grid1_zh": "漢米爾頓",
+    "grid1_name_en": "Lewis Hamilton",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2016,
+    "winner": "ricciardo",
+    "winner_zh": "（站上無核准譯名，寫英文 Daniel Ricciardo）",
+    "winner_name_en": "Daniel Ricciardo",
+    "winner_constructor": "Red Bull",
+    "winner_grid": 4,
+    "grid1": "hamilton",
+    "grid1_zh": "漢米爾頓",
+    "grid1_name_en": "Lewis Hamilton",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   },
+   {
+    "year": 2017,
+    "winner": "max_verstappen",
+    "winner_zh": "維斯塔潘",
+    "winner_name_en": "Max Verstappen",
+    "winner_constructor": "Red Bull",
+    "winner_grid": 3,
+    "grid1": "hamilton",
+    "grid1_zh": "漢米爾頓",
+    "grid1_name_en": "Lewis Hamilton",
+    "grid1_won": false,
+    "winner_laps": 56,
+    "note": ""
+   }
+  ],
+  "grid_2026_22": [
+   "piastri",
+   "norris",
+   "russell",
+   "antonelli",
+   "max_verstappen",
+   "hadjar",
+   "leclerc",
+   "hamilton",
+   "albon",
+   "sainz",
+   "lindblad",
+   "lawson",
+   "stroll",
+   "alonso",
+   "ocon",
+   "bearman",
+   "hulkenberg",
+   "bortoleto",
+   "gasly",
+   "colapinto",
+   "perez",
+   "bottas"
+  ],
+  "with_sepang_race_entries_10": [
+   {
+    "driver": "alonso",
+    "zh": "阿隆索",
+    "name_en": "Fernando Alonso",
+    "entries": 16,
+    "first": 2001,
+    "last": 2017,
+    "wins_at_sepang": 3
+   },
+   {
+    "driver": "hamilton",
+    "zh": "漢米爾頓",
+    "name_en": "Lewis Hamilton",
+    "entries": 11,
+    "first": 2007,
+    "last": 2017,
+    "wins_at_sepang": 1
+   },
+   {
+    "driver": "hulkenberg",
+    "zh": "霍肯伯格",
+    "name_en": "Nico Hülkenberg",
+    "entries": 7,
+    "first": 2010,
+    "last": 2017,
+    "wins_at_sepang": 0
+   },
+   {
+    "driver": "perez",
+    "zh": "培瑞茲",
+    "name_en": "Sergio Pérez",
+    "entries": 7,
+    "first": 2011,
+    "last": 2017,
+    "wins_at_sepang": 0
+   },
+   {
+    "driver": "bottas",
+    "zh": "博塔斯",
+    "name_en": "Valtteri Bottas",
+    "entries": 5,
+    "first": 2013,
+    "last": 2017,
+    "wins_at_sepang": 0
+   },
+   {
+    "driver": "max_verstappen",
+    "zh": "維斯塔潘",
+    "name_en": "Max Verstappen",
+    "entries": 3,
+    "first": 2015,
+    "last": 2017,
+    "wins_at_sepang": 1
+   },
+   {
+    "driver": "sainz",
+    "zh": "塞恩斯",
+    "name_en": "Carlos Sainz",
+    "entries": 3,
+    "first": 2015,
+    "last": 2017,
+    "wins_at_sepang": 0
+   },
+   {
+    "driver": "ocon",
+    "zh": "奧康",
+    "name_en": "Esteban Ocon",
+    "entries": 2,
+    "first": 2016,
+    "last": 2017,
+    "wins_at_sepang": 0
+   },
+   {
+    "driver": "gasly",
+    "zh": "蓋斯利",
+    "name_en": "Pierre Gasly",
+    "entries": 1,
+    "first": 2017,
+    "last": 2017,
+    "wins_at_sepang": 0
+   },
+   {
+    "driver": "stroll",
+    "zh": "斯托爾",
+    "name_en": "Lance Stroll",
+    "entries": 1,
+    "first": 2017,
+    "last": 2017,
+    "wins_at_sepang": 0
+   }
+  ],
+  "without_sepang_race_entries_12": [
+   "piastri",
+   "norris",
+   "russell",
+   "antonelli",
+   "hadjar",
+   "leclerc",
+   "albon",
+   "lindblad",
+   "lawson",
+   "bearman",
+   "bortoleto",
+   "colapinto"
+  ],
+  "weekend_2026_R16_taipei_equals_malaysia_time": {
+   "FirstPractice": {
+    "utc": "2026-10-02 04:30:00Z",
+    "taipei": "2026-10-02 Fri 12:30"
+   },
+   "SecondPractice": {
+    "utc": "2026-10-02 08:00:00Z",
+    "taipei": "2026-10-02 Fri 16:00"
+   },
+   "ThirdPractice": {
+    "utc": "2026-10-03 04:30:00Z",
+    "taipei": "2026-10-03 Sat 12:30"
+   },
+   "Qualifying": {
+    "utc": "2026-10-03 08:00:00Z",
+    "taipei": "2026-10-03 Sat 16:00"
+   },
+   "Race": {
+    "utc": "2026-10-04 07:00:00Z",
+    "taipei": "2026-10-04 Sun 15:00"
+   }
+  }
+ },
+ "verified_facts": [
+  {
+   "id": "F-01",
+   "kind": "own",
+   "text": "1999–2017 共 19 屆馬來西亞大獎賽（本站資料庫）；2026 是第 20 場（Pirelli 賽前稿：twentieth Grand Prix held at Sepang）。標準圈數 56，只有 2001（55）與 2009（31）冠軍沒跑 56 圈。",
+   "source": "own-data；B-30、B-40（Pirelli 一手）"
+  },
+  {
+   "id": "F-02",
+   "kind": "own",
+   "text": "起跑第 1 格贏正賽 9／19 屆（47.4%）；同期（1999–2017）全賽道 172／346（49.7%）；雪邦在 21 條至少辦過 8 場的賽道中並列第 7。用「起跑第 1 格」是因為 1999–2001 的排位表缺列；2002–2017 逐屆核對，排位第 1 與起跑第 1 格是同一人。二項檢定：若雪邦等於全賽道比率，19 屆裡 ≤9 屆的機率 0.51。結論：資料分不出雪邦與一般賽道的差別，寫「和平均差不多」，不寫「偏袒」或「不偏袒」的機制。",
+   "source": "own-data；腳本斷言"
+  },
+  {
+   "id": "F-03",
+   "kind": "own",
+   "text": "冠軍起跑格分布：第 1 格 9 屆、第 2 格 4 屆、第 3 格 2 屆、第 4 格 2 屆、第 7 格 1 屆（2003 Räikkönen）、第 8 格 1 屆（2012 阿隆索）；19 屆有 15 屆冠軍從前三格起跑。",
+   "source": "own-data winner_start_slots"
+  },
+  {
+   "id": "F-04",
+   "kind": "own",
+   "text": "勝場：Vettel 4、Michael Schumacher 3、Alonso 3、Räikkönen 2，其餘 Irvine、Ralf Schumacher、Fisichella、Button、Hamilton、Ricciardo、Max Verstappen 各 1；車隊 Ferrari 7 勝（Pirelli 賽前稿亦寫 Ferrari 紀錄 7 勝、Vettel 4 勝比 Schumacher 與 Alonso 多 1 勝）。2026 參賽車手中雪邦的冠軍：阿隆索 3（2005、2007、2012）、漢米爾頓 1（2014）、維斯塔潘 1（2017）。",
+   "source": "own-data；B-30"
+  },
+  {
+   "id": "F-05",
+   "kind": "own+ext",
+   "text": "2026 這一站的 22 位車手（FIA Doc 11 參賽名單 2026-10-02；F1.com 車手頁、FP1 計時同 22 人）；其中 10 位在雪邦有正賽出賽紀錄（本站資料庫）：阿隆索 16（2001–2017）、漢米爾頓 11（2007–2017）、霍肯伯格 7、培瑞茲 7、博塔斯 5、維斯塔潘 3、塞恩斯 3、奧康 2、蓋斯利 1、斯托爾 1；其餘 12 位沒有。RaceFans 賽前稿寫「Exactly half the grid has no prior F1 experience at this track」，它把 Leclerc 2017 年 FP1 算作有經驗＝11 人，與本表差 1 人是口徑（練習賽 vs 正賽出賽）；角田裕毅在資料庫的 23 人名單內但不在本站名單（回到替補）。",
+   "source": "B-25、B-26、B-28；own-data"
+  },
+  {
+   "id": "F-06",
+   "kind": "ext",
+   "text": "雪邦自 2017 年後第一次辦 F1：F1.com 公告圖說「Max Verstappen was the last driver to win a Formula 1 Grand Prix at Sepang, back in 2017」（只證「2017 最後一位冠軍」，沒有「9 年」字樣）；Pirelli「the last race at Sepang was held in 2017」；RaceFans「for the first time in nine years」；Mercedes「Nine years after F1 last raced in Malaysia」。「隔了 9 年」要掛 Pirelli／RaceFans／Mercedes，不能掛給 F1 公告圖說。站上另有一篇專文講移師與名稱，本文不重講。",
+   "source": "B-39"
+  },
+  {
+   "id": "F-07",
+   "kind": "ext",
+   "text": "2001：冠軍 55 圈（F1.com 成績頁、grandprix.com、crash.net）；起跑時 Fisichella 位置錯誤造成起跑中止、重來（grandprix.com、crash.net、AtlasF1、Jones on F1）；雨是開賽後才下：暴雨出安全車、約第 7 圈風雨過去後安全車又多跑 3 圈（crash.net、grandprix.com；重啟圈數 10 或 11 兩說）；「縮短成 55 圈」與新規則連在一起的句子只有 grandprix.com 一源——正文只能寫「grandprix.com 稱…」，不寫預定 56 圈的明文（無來源，只能寫「雪邦的標準圈數是 56」由本站資料庫標準圈數支撐）。",
+   "source": "B-01～B-04；A 棒 2001 承重條"
+  },
+  {
+   "id": "F-08",
+   "kind": "ext",
+   "text": "2009：冠軍 31 圈、半分（F1.com 成績頁、Irish Times、grandprix.com）；半分依據是未跑完 75%（Irish Times、grandprix.com）；最終分類取 31 圈（三家都同意）；乾地起跑、約第 22–23 圈降雨（grandprix.com、Irish Times）。紅旗是第 31／32／33 圈的說法各家不同，為何不重賽（天黑、兩小時時鐘、光線不足）也各家不同——正文不寫紅旗圈數、不寫不重賽的原因，只寫「暴雨中止」。",
+   "source": "B-05～B-10"
+  },
+  {
+   "id": "F-09",
+   "kind": "ext",
+   "text": "2012：阿隆索冠軍，起跑格第 8（F1.com 起跑格、RaceFans、ESPN）；排位其實是第 9，Räikkönen 因換變速箱被罰退五格而讓出一格（F1.com 排位頁、RaceFans）——寫「第 8 格起跑」，不寫「排位第 8」；比賽紅旗中斷、重啟後仍跑滿 56 圈（RaceFans；F1.com 成績 56 圈）。",
+   "source": "B-11～B-13"
+  },
+  {
+   "id": "F-10",
+   "kind": "ext",
+   "text": "天氣：Pirelli 賽前稿（2026-09-29）「Afternoon thunderstorms are a regular feature of the region in early October and could affect any session during the weekend」——主詞是「the region in early October」、動詞 could，不是「雪邦每天下午下雨」（F1.com 轉引同句）。RaceFans 2017：早季（3–4 月）時段雷雨風險略高；「1999、2000 與 2016 三屆乾地」；RaceFans 2016：對流雷雨多發生在上午晚段到下午早段；RaceFans 2017 賽評：正賽前雨水還在蒸發（單源）。10 月辦過的屆數：1999、2000、2016、2017（本站資料庫日期）。",
+   "source": "B-14、B-16、B-17、B-19；own-data 日期"
+  },
+  {
+   "id": "F-11",
+   "kind": "ext",
+   "text": "賽道：每圈 5.543 公里、預定 56 圈、Hermann Tilke 設計、1999 年啟用（F1.com 賽道頁；官網與維基啟用日差兩天，故不寫日期）；15 彎（右彎 10、左彎 5）出自賽道技術資料（C-02），F1.com 賽道頁該欄是空的，正文不要把左右彎細節掛給 F1.com；全程距離 F1.com 寫 310.417 公里、另一來源 310.408，正文寫「約 310 公里」；賽事圈速紀錄：維特爾 2017 年 1:34.080（F1.com 兩處）；2017 年之前是 Montoya 2004 年 1:34.223（FIA 賽前資料）。排位圈（Hamilton 2017 年 1:30.076）與賽事紀錄口徑不同，不並列成「紀錄」。",
+   "source": "C-01、C-02、C-05、C-07、C-14、C-15、B-31、B-32"
+  },
+  {
+   "id": "F-12",
+   "kind": "ext",
+   "text": "輪胎與路面：Pirelli 指定 C2 硬、C3 中、C4 軟（Pirelli 一手；RacingNews365、GrandPrix247 轉述）；Pirelli：輪胎受力「medium energy levels … comparable to Spa-Francorchamps and Shanghai」。路面：Pirelli 稱 2023 年重鋪過（彎 6 到 12 之間，The Race 寫 7 到 12），9 月做了整平（Pirelli 稿原句只寫 additional surface levelling work，沒有「清潔」）；RacingNews365 另稱 2017 年以來沒重鋪；與 2017 年相比，Pirelli 說特性「remain very similar」、The Race 引同一份分析寫「roughness has increased」。兩邊都寫、不裁決。Piastri 說「It looks like sandpaper out there」（The Race，單源，限引為車手的說法）。選胎不寫「與 2017 相同」（RacingNews365 說相同，F1.com 2017 稿與 Pirelli 2026 稿未支持）。",
+   "source": "B-33～B-37；C-21、C-22"
+  },
+  {
+   "id": "F-13",
+   "kind": "ext",
+   "text": "2026 週末（formula1.com 時間表文為單一官方來源，本站賽曆快照與之逐項相同；雪邦與台北同為 UTC+8）：FP1 10/2（五）12:30、FP2 16:00、FP3 10/3（六）12:30、排位 16:00、正賽 10/4（日）15:00；正賽 56 圈或 120 分鐘（F1.com）。賽事全名 Formula 1 Gulf Air Bahrain Grand Prix in Malaysia，第 16 站（站上既有文章）。",
+   "source": "B-22、B-23、B-24、B-31、C-39；own-data weekend_2026_R16"
+  }
+ ],
+ "external_statements": [
+  {
+   "id": "E-01",
+   "who": "Pirelli 賽前稿（2026-09-29）",
+   "says": "Afternoon thunderstorms are a regular feature of the region in early October and could affect any session during the weekend.／The upcoming event will be the twentieth Grand Prix held at Sepang／Pirelli has selected the C2, C3 and C4 compounds, designated respectively as Hard, Medium and Soft.／the overall characteristics of the surface … remain very similar to those recorded in 2017",
+   "url": "https://press.pirelli.com/sepang-reopens-its-doors-to-formula-1-after-nine-years/"
+  },
+  {
+   "id": "E-02",
+   "who": "RaceFans（2026 賽前，六個談話點）",
+   "says": "Exactly half the grid has no prior F1 experience at this track.",
+   "url": "https://www.racefans.net/2026/09/30/a-new-track-for-half-the-field-six-bahrain-grand-prix-in-malaysia-talking-points/"
+  },
+  {
+   "id": "E-03",
+   "who": "RaceFans 2017 氣候文",
+   "says": "Last year's race, like the two held in its original calendar slot in 1999 and 2000, was dry.",
+   "url": "https://www.racefans.net/?p=350747"
+  },
+  {
+   "id": "E-04",
+   "who": "RaceFans 2016 氣候文",
+   "says": "These convective thunderstorms tend to occur in the late morning and early afternoon.",
+   "url": "https://www.racefans.net/?p=329185"
+  },
+  {
+   "id": "E-05",
+   "who": "RaceFans 2017 賽評",
+   "says": "The remnants of another Sepang downpour were still evaporating from the track surface as the drivers assembled on the grid.",
+   "url": "https://www.racefans.net/2017/10/01/2017-malaysian-grand-prix-review/"
+  },
+  {
+   "id": "E-06",
+   "who": "Irish Times（2009）",
+   "says": "half points have been awarded, a scoring system employed when less than 75 per cent of the race has been completed",
+   "url": "https://www.irishtimes.com/sport/button-wins-as-rain-forces-race-to-be-abandoned-1.738963"
+  },
+  {
+   "id": "E-07",
+   "who": "grandprix.com（2001 賽報）",
+   "says": "so he was cleared to go for the reduced 55-lap race thanks to a new rule introduced last year.",
+   "url": "https://www.grandprix.com/gpe/rr665.html"
+  },
+  {
+   "id": "E-08",
+   "who": "F1.com 2012 起跑格",
+   "says": "8 5 Fernando Alonso ALO Ferrari 1:37.566",
+   "url": "https://www.formula1.com/en/results/2012/races/11/malaysia/starting-grid"
+  },
+  {
+   "id": "E-09",
+   "who": "RaceFans（2012 賽報）",
+   "says": "Race control summoned the safety car, and the red flag followed shortly afterwards.／The race was eventually restarted behind the safety car on lap ten",
+   "url": "https://www.racefans.net/2012/03/25/2012-malaysian-grand-prix-report/"
+  },
+  {
+   "id": "E-10",
+   "who": "The Race（2026）",
+   "says": "It looks like sandpaper out there.（Piastri）／roughness has increased compared to F1's last visit in 2017",
+   "url": "https://www.the-race.com/formula-1/the-major-unknown-as-f1-braces-for-sandpaper-rough-sepang-track/"
+  },
+  {
+   "id": "E-11",
+   "who": "FIA Doc 11 參賽名單（2026-10-02）",
+   "says": "22 筆（見 F-05）",
+   "url": "https://www.fia.com/system/files/decision-document/2026_bahrain_grand_prix_in_malaysia_-_entry_list.pdf"
+  },
+  {
+   "id": "E-12",
+   "who": "F1.com 賽事頁（2026）",
+   "says": "5.543km／Number of Laps 56／Fastest lap time 1:34.080 Sebastian Vettel (2017)／Hermann Tilke／opened in 1999",
+   "url": "https://www.formula1.com/en/racing/2026/bahrain"
+  },
+  {
+   "id": "E-13",
+   "who": "formula1.com 2026 賽前 Need to know（Pirelli weekend preview 轉引、時間表）",
+   "says": "（Need to know 內的「Hamilton 在雪邦贏五次」那句不採用，見 must_not_claim）",
+   "url": "https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2026-bahrain-grand-prix-in-malaysia.7q5fTKLLQ5TrEcsNerl406"
+  }
+ ],
+ "checked_not_used": [
+  "各屆安全車次數（維基只有 2000、2001、2012、2015 有文字；2016、2017 全文無 safety car 字樣，不能補 0）",
+  "出席人數（2016／2017 各源互相矛盾）",
+  "看台容量、啟用日期、動工年、直線長度（各源互相矛盾）",
+  "F1.com Need to Know「Hamilton 在雪邦贏五次」",
+  "2017 年 DRS 配置、2026 年四個 straight mode 區（單源）",
+  "賽道重鋪歷史（The Race 兩篇互相矛盾）",
+  "FP1 成績（Verstappen 領先；會過期）",
+  "2026 週末天氣預報（Crash.net 轉引 BBC；會過期）",
+  "2001 預定 56 圈明文（無來源）",
+  "2009 紅旗圈數與不重賽原因（各源不同）"
+ ],
+ "must_not_claim": [
+  "⛔ 不寫「有雪邦經驗的車手占優勢」「新人吃虧」——資料庫只有出賽屆數，沒有任何成績對照；10 位有經驗、12 位沒有只是事實，不推論成績。",
+  "⛔ 不寫「雪邦排位決定比賽」「超車難／易」「賽道偏袒排位第一」「排位不重要」「後方起跑逆轉機會大」——9／19 與平均分不出差別，第 1 格仍是勝場最多的格子（9 屆）、前三格合計 15 屆、最遠第 8 格，也沒有賽道機制的來源。",
+  "⛔ 不寫「多數人第一次跑雪邦」「超過半數沒有雪邦經驗」——只有「12 位沒有雪邦正賽出賽紀錄」；RaceFans 把 Leclerc 2017 FP1 算進去，是「一半」。",
+  "⛔ 不寫「19 屆只有 3 屆被中斷」「其餘 16 屆都沒有中斷」「10 月辦的 4 屆都沒被中斷」——棒 A 對 16 屆的紅旗欄是❓條目未載，只能寫「查得到明寫的有 3 屆」。冠軍沒跑滿 56 圈的只有 2001、2009 兩屆這句可寫（本站資料庫的冠軍跑完圈數）。",
+  "⛔ 不寫 2001 年「大雨迫使縮減為 55 圈」——縮圈原因是起跑中止；雨在開賽後才下。",
+  "⛔ 不寫「全新重鋪」「2026 年重鋪」「路面如砂紙所以輪胎磨耗最大」——只寫 Pirelli 的說法與 The Race 的說法並陳，Piastri 的 sandpaper 限引為他的說法。",
+  "⛔ 不寫漢米爾頓在雪邦「贏過五次」（F1.com Need to Know 那句與本站資料 1 勝、Pirelli 的桿位 5 次互相矛盾，疑為把桿位寫成勝場）；不寫任何車手的桿位次數。",
+  "⛔ 不寫 2001 年的「預定 56 圈」當有來源的事實；55 圈的原因只能寫「grandprix.com 稱…」。",
+  "⛔ 不寫 2009 年紅旗是第幾圈、也不寫為何沒有重賽（天黑／兩小時鐘各說各話）；只寫暴雨中止、冠軍 31 圈、最終分類取 31 圈、給半分與其門檻（未跑完 75%）。",
+  "⛔ 不寫「排位第 8」（2012 阿隆索排位第 9、起跑第 8）。",
+  "⛔ 不寫「雪邦每天下午都下雨」；天氣句的主詞必須是 Pirelli 說的「the region in early October」、情態是 could。不寫天氣預報、不預測這個週末會不會下雨、不寫 FP1 成績（會過期）。",
+  "⛔ 不寫路面「更粗糙」或「與 2017 一樣」單邊結論；不寫「2026 年重鋪」；不寫「與 2017 年選胎完全相同」。",
+  "⛔ 不寫出席人數、舉辦成本、離開賽曆原因、移師合約（站上 f1-2026-bahrain-gp-in-malaysia 已寫；來源互相矛盾的數字不重引）。",
+  "⛔ 不寫 straight mode 區數、DRS 區數、賽道寬度、直線長度、看台容量、啟用日期（單源或各源互相矛盾）。",
+  "⛔ 不寫 Colapinto 罰退、Russell 動力單元預測等賽前傳聞；不寫積分榜或封王算術。",
+  "⛔ 不用無名歸因（專家認為／業界人士／外界普遍認為／一般認為）；不用「我」；「本站」全文 ≤3 次。",
+  "⛔ 不自創譯名：站上沒有核准譯名者（Eddie Irvine、Ralf Schumacher、Giancarlo Fisichella、Daniel Ricciardo、Felipe Massa、Mark Webber 等）一律寫英文。"
+ ],
+ "voice": {
+  "_instruction": "⚠️ 下面 spec_verbatim 是站上文風規格的原文整段，派寫作 agent 時要整段複製進派工單的風格節，不要節錄、不要改寫、不要只挑幾條。",
+  "spec_verbatim": "## 📋 派工單貼文＝寫手單（派寫作 agent 時整段複製到 §風格，不要節錄）\n\n### 標竿\n小 Lin 說＋張泉靈（硅谷101 只補「明寫查證工作量」，取代不了標竿）：①從具體的怪事切進去，不從分類切進去 ②短句，一句話一件事 ③方法論留在文外。連不確定都直接說，條文／日期／前例敢斷，走向與動機明說不知道。\n\n### 一　文章層（W32）：動筆前先寫一句話論點\n稿子最上方先寫（交稿前刪掉，或交指揮位放進 `05-thesis.md`）：\n①**這篇在主張什麼**——一句話，讀者可以不同意的判斷（「本文介紹／整理了 X」不算）。\n②**每一節要撐的主張**——一節一句，說出那一節的「所以呢」。\n> **⭐ 節形狀選單（接在 W32 ② 之後；Cole harvest 判 ✅ 的五種，分類見 [[hub_writing_framing]] Cole 附錄）**\n>\n> **適用範圍＝承載主張的節**；收尾節（時效提醒、不給建議的收尾）與結構節（來源／FAQ）不判。\n> **用法**：每一節先寫一句主張（W32 ②），再從下面五種裡挑一種形狀撐那句主張；挑得出形狀就照那個形狀排材料，\n> **挑不出形狀的節＝資料堆候選，回報指揮位**（縮節、併節或換主張）。一節一種形狀就夠；✅ 例句取自三篇試行文的真實段落（❌ 對照在記憶檔 `hub_writing_framing` 附錄與回顧檔）。\n>\n> **① 數據**＝用一組先有出處的數字撐這一節的主張，數字之間要能互相對照。\n> ✅ article-racing…leclerc-parabolica.md `## 勒克萊爾在 205 km/h 就全油門，比自己與另外五人的第 2 圈全開都早`——六個對照排成一張表（210–223 對 205），每一筆都指回同一份公開存檔。\n>\n> **② 理由**＝用「往支持／往反對」兩個方向的材料撐一個判斷，連信賴度一起講。\n> ✅ article-racing…leclerc-parabolica.md `## 第二次全開之後，車速不動，轉速卻跳了 4%`——同一個比值 48.3，往支持給自己出彎 8 筆與漢米爾頓兩圈的取樣，往反對給第 1 圈那筆換檔瞬態，並標信賴度中。\n>\n> **③ 犯錯**＝把讀者最容易踩的那一個坑講明白，用自家材料拆開它（守 W19：坑是內容，不是彈藥）。\n> ✅ article-baseball-brock.md `## 這是統一隊史紀錄，不是中職聯盟紀錄`——坑＝把隊史紀錄當成聯盟紀錄；用柏格中職 58 勝、勇壯 108 勝拆開，全程沒有寫誰報錯。\n>\n> **④ 範例**＝用能串成一條過程的具體材料撐主張，每件材料帶日期、原話或代價（W26 材料計數）。\n> ✅ article-baseball-brock.md `## 布雷克這 7 個球季，撐過背傷也撐過了洋將大限`——背傷下二軍、季末註銷、2 年保障合約、羅力條款四件材料各有日期與原話，串成「留得夠久」。\n>\n> **⑤ 問題**＝H2 自己就是讀者會追問的那個反轉，節內當場回答（W30 已接受過的形狀①）。\n> ✅ article-baseball-brock.md `## 防禦率全聯盟第 2，勝場卻只有 7 勝 7 敗`——反轉在 H2，節內用 7 場敗投的比分表與 5 月 16 日那場 0 比 1 回答。\n>\n> ⚠️ 建議型文型另有三種（訣竅／步驟／好處），健檢站與賽事分析不套。\n>\n> **「數據」形狀的順序是先有出處、再有句子**：拿著出處找句子，句子撐得住；拿著句子找數據，會長出查無出處的數字\n> （☠️「給我一個數據支撐這個說法」這個 prompt 不收，理由見 [[hub_writing_framing]] Cole 附錄與 [[feedback_llm_fetch_fabricates_unhappened_events]]）。\n自檢：每一節讀完，讀者知道的是「事情放在哪裡」還是「那代表什麼」？前者＝地圖句，整節重寫。\n⚠️ 寫不出站得住的論點＝回報指揮位縮題或換角度。張力來自事實；絕對詞（最／唯一／完全沒有／只可能）一律換成可查的數字或條文。\n\n### 二　句子層（W29）：唸得完的句子\n每一句與每個標題都要唸得完：一個主詞、一個主要動詞；兩半的關係用連接詞明說（之後／因為／但是／雖然），逗號並排讓讀者自己接的一律改寫。\n❌「台鋼雄鷹連 33 局沒有得分，起點是一場勝利」→ ✅「台鋼雄鷹 8 月 29 日贏球之後，連續 33 局沒有得分」\n自檢：唸給人聽，對方反問「所以呢？」「這兩件事有什麼關係？」＝並置病。\n\n### 三　標題（W30）：先問「有沒有人想讀」\n紀律全過的標題仍可能沒有人想讀。原標題通常已有鉤子：先問「鉤子在哪個詞上」，查證推翻某個詞就只換那個詞，非鉤子則整句保留。\n四種被接受過的形狀（起手處，非套版）：問句＋反轉／具體人事時地物／反直覺的具體事實／**描述＋反轉**（前半是人地事的直述，後半接一個反轉）。\n自檢：唸給一個不看足球的人聽，他問「然後呢？」＝有鉤子，點頭說「喔」＝重寫。\n\n⭐ **動筆時的第一個動作：把自己的 lede 第一句抄下來，跟標題並排看。**\nCharlie 退標題時的固定做法就是拿同篇 lede 當正確版對照組——已發生在 2026-08-11（足球站與 aire 同日兩站）\n與 2026-09-16（他直接把 lede 首句貼回來當標題提案）。**lede 裡通常已經有人事時地物，標題缺的就是那些。**\n⛔ 但 **lede 首句不能整句搬進標題**：它是為「交代清楚」寫的，含全名括號與完整子句，\n長度通常是標題的三到四倍，塞不進封面版位（見下）。**抄的是它的元素，不是它的句子。**\n\n📏 **長度帶（foootball 實測，2026-09-16）**：站上 94 篇非 daily 標題**中位 33 字、P90 42、最長 55**；\n而 **feature 封面版位（2400×1260，標題固定兩行）的限制是每行寬度，不是總字數**：\n實測 126 字會吃掉四行、把頁尾擠出版面；**31 字（第 1 行 14＋第 2 行 15）沒溢出，第 2 行只用約 75% 寬**（2026-09-19 巴薩篇，封面已實看）。\n⚠️ 本節舊版寫「實際容量約 24–30 字」——**過保守，2026-09-19 實測推翻**；但長標題仍**超過 30 字就先渲染確認**，別用猜的。\n\n⚠️ **本庫的慣性是「在標題層過度壓縮」**：2026-09-16 那篇初版 24 字，比站上 91% 的標題都短，被 Charlie 退「拗口」。\n⇒ **短不是優點**。標題太短時，兩件事會被壓成逗號並排、關係消失（＝W29 的並置病搬到標題層）。\n\n### 六個漂移症狀（①④⑤ 同病根＝成品在展示工序；測試：這句在告訴讀者「一件事」，還是「我怎麼知道這件事」？後者一律改寫）\n\n**① gate 語言長進正文（最主要病灶）**\n❌「這是媒體估值，不是官方公布的確定數字，本文照原樣寫成區間，不換算成新台幣，也不取整成單一數字，那樣做只會製造一個看起來精確、實際上查無出處的假數字。」\n✅「這是媒體估的區間，不是官方數字。」\n判準：標可靠度＝留（媒體估／官方公告照標，講完就走），解釋本站紀律＝移到文末來源區塊；「誠實說／照實說」這類框架詞一律刪掉，誠實是預設。\n\n**② 標籤式標題**\n❌ `## 機制一：同一國辦兩場，第二場得換名字` → ✅ `## 聖馬利諾大獎賽，從來沒在聖馬利諾辦過`\n標題自己就要是一個事實，邏輯關係靠內文轉場句承接。\n\n**③ 指代不具體**\n❌「那家真公司一定也是演習的一部分」→ ✅「它攻的是一家真公司，而且知道那是真的」\n要讀者往回翻的詞（這件事／那家公司／後者／前面講的）一律換成具體名詞或改寫成不需指代的句子；H2 內出現指代詞＝FAIL。查不到名字時的正解＝改寫成事實句，而非硬補一個名字。\n\n**④ 第一人稱主詞「我」浮濫**\n❌「我把 84 場全部拉出來排了一次」→ ✅「把 84 場全部拉出來、逐場看場地欄，結果是：」\n中文可省主詞：工作量要寫，動作者不出場。改法＝主題句（硬刪「我」留半殘句不算，「我們」一樣多餘）；收尾前 grep「我」，拿掉會不通才留。\n\n**⑤ 標題塞證據鏈**\n❌「中職一週內 4 場雨延：8 月 8 日兩場補在 10 月 4 日，8 月 9 日兩場只寫「補賽週」」→ ✅「中職延賽的兩種補法：給日期，或只寫「補賽週」」\n標題放結論，日期／場次／數量降到副標；太抽象（機制一二三）與太具體（整條證據鏈）是同軸兩端（與②合讀），修完一端盪到另一端同樣重寫。自檢＝唸進封面兩行。\n\n**⑥ 廢話文學＝形狀正確但零資訊的句子（最典型＝同義反覆）**\n❌「開球時間就是手機上的時間，下午 3 點 30 分就是下午 3 點 30 分」→ ✅「一個換算都不用做——星期日吃完午餐出門，趕得上下午 3 點 30 分那場」\n判準＝讀完這句，知道的事情比讀之前多了什麼；答不出來就是廢話。高發位置＝系列文／系列卡的共同軸句位。\n\n### 材料（W26）\n非虛構稿 ≥1,200 字：五件具體材料（動作／數字／原話／代價／結果，各註來路）串成一條實際過程；數不夠就回報指揮位縮篇幅，補解釋、補用途意義風險未來一律不算材料。\n\n### 交稿前最後一關（W31）\n紀律規則都是負面閘門，是地板，不是量尺；這一關排在紀律檢查之後，有權推翻紀律產生的寫法（事實紅線除外）。三個動作，答案寫進交稿回報：\n1. 從頭到尾真讀一次；掃描、grep、只看改過的地方都不算讀。\n2. 標出自己讀到會想跳過的段落——至少一段，寫出段號與第一句；標不出來＝重讀。\n3. 逐個 H2 問：讀者讀完這節為什麼要繼續往下讀？答不出來的那節先問該搬位置還是併掉。\n產物＝指名的段號與句子；「已檢查，通過」是一句自述，任何人都檢查不了，不算交件。",
+  "headline_style": "標題放結論與前提，不塞證據鏈；細節降到副標與內文。不要編號、不要分類標籤。自檢：唸進封面兩行。",
+  "forbidden_meta": "gate 語言不進正文，「本站」全文 ≤3 次，不得有任何 H2 在講我們怎麼算。❌「本站以 jolpica 資料逐站重算，並由兩席獨立驗證後得出封王線 151」→ ✅「封王線在新加坡降到 151」｜❌「這張表看的是每一站結束後現有領先還要補多少」→ ✅「最右欄是：安東內利全勝時，羅素從巴庫到該站合計最多能拿幾分」｜❌「這不是預報，而是一條放在同一張算盤上的線」→ 整句刪掉。",
+  "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+  "tone": "小 Lin 說＋張泉靈。從具體的數字切進去、短句、不在正文解釋方法論。",
+  "length": "正文（不含表格與資料來源）2,600–3,600 字含標點，字數是下限導向：事實表撐不住就不灌水。"
+ },
+ "interlinks": {
+  "note": "frontmatter 必須有 season: 2026；不寫 round:。連結前確認 articles/<slug>/ 與 /circuits/<slug>/ 存在。",
+  "candidates": [
+   "/circuits/sepang/",
+   "/articles/f1-2026-bahrain-gp-in-malaysia/",
+   "/articles/f1-101-wet-weather/",
+   "/articles/f1-101-tyres/",
+   "/articles/f1-101-race-weekend/",
+   "/articles/f1-101-safety-car/"
+  ]
+ },
+ "zh_names": {
+  "drivers_in_tables": {
+   "irvine": "（站上無核准譯名，寫英文 Eddie Irvine）",
+   "michael_schumacher": "麥可・舒馬克",
+   "ralf_schumacher": "（站上無核准譯名，寫英文 Ralf Schumacher）",
+   "raikkonen": "奇米・雷克南",
+   "alonso": "阿隆索",
+   "fisichella": "（站上無核准譯名，寫英文 Giancarlo Fisichella）",
+   "button": "詹森・巴頓",
+   "vettel": "賽巴斯蒂安・維特爾",
+   "hamilton": "漢米爾頓",
+   "ricciardo": "（站上無核准譯名，寫英文 Daniel Ricciardo）",
+   "max_verstappen": "維斯塔潘",
+   "massa": "（站上無核准譯名，寫英文 Felipe Massa）",
+   "webber": "（站上無核准譯名，寫英文 Mark Webber）",
+   "hulkenberg": "霍肯伯格",
+   "perez": "培瑞茲",
+   "bottas": "博塔斯",
+   "sainz": "塞恩斯",
+   "ocon": "奧康",
+   "gasly": "蓋斯利",
+   "stroll": "斯托爾"
+  },
+  "rule": "站上沒有核准譯名者（欄位值以「（站上無核准譯名」開頭）一律寫英文原名"
+ }
+}
