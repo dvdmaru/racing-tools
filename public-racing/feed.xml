@@ -6,6 +6,48 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 轉隊一定要冷靜期嗎？規章只在「有合作的兩隊」之間寫了這一條</title>
+    <link>https://racing.twtools.cc/articles/f1-101-personnel-movement/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-personnel-movement/</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
+    <description>F1 規章 A5.7.3 把冷靜期限定在兩隊有合作關係時，只寫給原東家，還排除車手；借調另有一款，要求的是 Restricted Duties，用 must。每支 F1 車隊都要做的，是採取合理措施防止洩密、用附錄 A6 向 FIA 通報相關人員流動，以及確保新人到職時被告知別帶前東家的資料。</description>
+  </item>
+  <item>
+    <title>技術指令「僅供參考」？FIA 文件有沒有約束力，規章這樣分</title>
+    <link>https://racing.twtools.cc/articles/f1-101-fia-documents/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-fia-documents/</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
+    <description>規章把 FIA 另發的文件分成兩邊：有約束力的限於四類，還要規章條款明文授權；技術指令與賽事指令被列為無約束力的例子。但規章正文也把部分定義交給文件。個別文件站哪一邊，要看文件自己的標示；標為有約束力的，還要有規章條款明文授權並標出依據條號，而且只限四類。這些文件在查證範圍內一份也讀不到。</description>
+  </item>
+  <item>
+    <title>F1 超級執照的條文沒有寫體檢，車手的健康關卡在另一張執照</title>
+    <link>https://racing.twtools.cc/articles/f1-101-driver-medical/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-driver-medical/</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
+    <description>超級執照要先有 FIA 國際 A 級駕照，視力、色覺、心血管的門檻就寫在那張駕照的醫療規章裡。附則 L 替 F1 等多個系列共用的特別措施（賽事中六項、賽事外四項），是出事之後的通報與共同重返檢查。</description>
+  </item>
+  <item>
+    <title>F1 技術規章只寫過一次「driver aid」，而且是在講換檔</title>
+    <link>https://racing.twtools.cc/articles/f1-101-driver-aids/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-driver-aids/</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
+    <description>運動規章只有一句「獨自、不受協助地駕駛」，沒有說什麼算協助。在查過的 10 份 2026 年版規章文件裡，「driver aid」只出現一次。循跡、離合器、換檔、起跑各有各的條文，有的禁功能，有的明列例外。</description>
+  </item>
+  <item>
+    <title>F1 撞車之後的救援：人車配置有底線，到場時間規章沒寫</title>
+    <link>https://racing.twtools.cc/articles/f1-101-crash-rescue/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-crash-rescue/</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
+    <description>附則 H 整份自稱建議，醫療服務那一章卻對有醫療代表的錦標賽寫明 strictly mandatory。賽道管理員那一段沒有 F1 專屬條款，而且全文查不到人員或車輛的到場時限。</description>
+  </item>
+  <item>
+    <title>看得見翼片在動，算不算違規？F1 規章用載重測試回答</title>
+    <link>https://racing.twtools.cc/articles/f1-101-aero-legality-checks/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-aero-legality-checks/</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
+    <description>規章要求空力件剛性、相對參考框架不動；有對應載重測試的部件，通過測試只就受測的那項變形視為合規，FIA 還能對疑似在動的車身加測。</description>
+  </item>
+  <item>
     <title>新加坡站 14 屆都有安全車，2024 年第一次沒有</title>
     <link>https://racing.twtools.cc/articles/f1-singapore-marina-bay-safety-car-pole/</link>
     <guid>https://racing.twtools.cc/articles/f1-singapore-marina-bay-safety-car-pole/</guid>
@@ -102,48 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-2026-r15-baku-colapinto-fault-ruling/</guid>
     <pubDate>Sun, 27 Sep 2026 00:00:00 +0800</pubDate>
     <description>亞塞拜然大獎賽安全車重啟後的第一彎，科拉平托煞車太晚、以無法控制的速度切進內線，擦撞蓋斯利，諾里斯的賽車也捲入同一起事故，三車全數退賽（本站資料庫反推發生在第 36 圈）。同一次連鎖反應裡還有一起碰撞——林布拉德撞上勞森——賽會判無責，兩案並排看，才看得出這不是各打五十大板。</description>
-  </item>
-  <item>
-    <title>美國站是安東內利最早能封王的一站，前提是三個週末對羅素淨賺 60 分</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-antonelli-clinch-arithmetic/</guid>
-    <pubDate>Sun, 27 Sep 2026 00:00:00 +0800</pubDate>
-    <description>他今年任何連續三個週末最多淨賺過 59 分；巴庫一個週末，把最早的封王站從新加坡往後推了一站。</description>
-  </item>
-  <item>
-    <title>巴庫今年在週六開賽：因為週日 9 月 27 日是亞塞拜然的國殤紀念日</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-baku-saturday-race/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-baku-saturday-race/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>整個亞塞拜然週末往前挪了一天：排位賽在週五，正賽在週六。台北時間排位賽是週五 20:00，正賽是週六 19:00。</description>
-  </item>
-  <item>
-    <title>F1 現役賽車想上賽道測試，規章只給五種機會</title>
-    <link>https://racing.twtools.cc/articles/f1-101-testing/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-testing/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>冬測 5 天窗口，每隊只能跑 3 天；賽季後一天兩輛車；平常想多練，車隊靠的是舊規則造的賽車，每年 20 天。以 2026 年版運動規章與財務規章，把 F1 的測試規矩讀一遍。</description>
-  </item>
-  <item>
-    <title>Alpine 的車尾是賓士：F1 的 5 家動力單元廠商怎麼供應 11 支車隊</title>
-    <link>https://racing.twtools.cc/articles/f1-101-pu-manufacturers/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-pu-manufacturers/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年 5 家廠商供應 11 支車隊。規章把車隊分成原廠隊與客戶車隊，再用供應義務、最高供應價和廠商自己的成本上限規範供應，落後的廠商另有一套叫 ADUO 的追趕機制。</description>
-  </item>
-  <item>
-    <title>F1 練習賽怎麼看：排第 21 名的斯托爾，只跑了 3 圈</title>
-    <link>https://racing.twtools.cc/articles/f1-101-practice-sessions/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-practice-sessions/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>練習賽的名次只看單圈最快，圈數、油量和測試計畫都不同；標準週末有三場，衝刺週末只有一場，輪胎、額外車手和賽後小規則也各有一套。用 2026 年澳洲站的成績表把練習賽讀一遍。</description>
-  </item>
-  <item>
-    <title>F1 維修區的規矩：一般情況下技師在內側車道動手，出站要看綠燈</title>
-    <link>https://racing.twtools.cc/articles/f1-101-pit-lane/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-pit-lane/</guid>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 +0800</pubDate>
-    <description>維修區把 80 km/h 的限速、分成兩條的車道、出口的燈號疊在同一塊空間。從超速怎麼罰，到放車太早怎麼罰，逐項讀 2026 年 FIA 運動規章 Section B 的維修區條款。</description>
   </item>
 </channel>
 </rss>
