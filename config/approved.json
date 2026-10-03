@@ -1066,21 +1066,21 @@
     },
     {
       "slug": "f1-sepang-nine-years-guide",
-      "article_sha256": "28969add9b3fa3a11d9f863adeb81873a06866199cbc5987da6ced155c32be8d",
+      "article_sha256": "f61db20efe4a01be2640cd5c0cc981f66af09979e516df7a372da92d320a359a",
       "facts_sha256": "b71c75f9c444f2b824a6fc015d1ea9c850395922e8d025399769696859aacf7d",
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-10-02T14:48:21+08:00",
-      "note": "雪邦賽道賽前百科（Charlie 2026-10-02 對話指派「這禮拜的雪邦賽道也來一篇？」；站上既有 f1-2026-bahrain-gp-in-malaysia 明寫賽道與氣候留給賽前前瞻，本文即該前瞻）。自有資料＝jolpica-f1 DB 1999–2017 共 19 屆；外部事實三棒：維基原始 wikitext 逐屆、非維基獨立來源與 2026 週末、賽道本體。審稿履歷：R1 審表 agy（BLOCKER：2001 縮圈是起跑中止不是雨；MAJOR：「多數人第一次」須限定正賽；皆已改）＋Terra（乾淨室重算全一致；MINOR：「與清潔」比引文廣，已刪）；指揮位自抓：事實表論點「19 屆有 3 屆被中斷」是窮盡式、16 屆紅旗欄只是條目未載，改成來源明寫的 3 屆；R2 agy 零 finding（偏寬鬆，不作放行依據）、Claude 乾淨室數字席（抓到 2 MAJOR＋9 MINOR：2009 下雨圈數單源、2001 Fisichella 說法只有 grandprix.com、2012 罰退出處等，已全改）、DeepSeek 冷讀（參考頁「沒有單一主張」，保留）。⚠️ Terra 用量上限（17:08 恢復）：R1 的 C 項未完成、R2 未跑；上線時未經 Terra 異源 R2，補審結果會補在 PR #100 留言。topic_ref＝manual。PR #100 開出後，Charlie 於對話中回「合 racing #100」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄。"
+      "approved_at": "2026-10-03T09:30:38+08:00",
+      "note": "雪邦賽道賽前百科（Charlie 2026-10-02 對話指派「這禮拜的雪邦賽道也來一篇？」；站上既有 f1-2026-bahrain-gp-in-malaysia 明寫賽道與氣候留給賽前前瞻，本文即該前瞻）。自有資料＝jolpica-f1 DB 1999–2017 共 19 屆；外部事實三棒：維基原始 wikitext 逐屆、非維基獨立來源與 2026 週末、賽道本體。審稿履歷：R1 審表 agy（BLOCKER：2001 縮圈是起跑中止不是雨；MAJOR：「多數人第一次」須限定正賽；皆已改）＋Terra（乾淨室重算全一致；MINOR：「與清潔」比引文廣，已刪）；指揮位自抓：事實表論點「19 屆有 3 屆被中斷」是窮盡式、16 屆紅旗欄只是條目未載，改成來源明寫的 3 屆；R2 agy 零 finding（偏寬鬆，不作放行依據）、Claude 乾淨室數字席（抓到 2 MAJOR＋9 MINOR：2009 下雨圈數單源、2001 Fisichella 說法只有 grandprix.com、2012 罰退出處等，已全改）、DeepSeek 冷讀（參考頁「沒有單一主張」，保留）。⚠️ Terra 用量上限（17:08 恢復）：R1 的 C 項未完成、R2 未跑；上線時未經 Terra 異源 R2，補審結果會補在 PR #100 留言。topic_ref＝manual。PR #100 開出後，Charlie 於對話中回「合 racing #100」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄。 【2026-10-03 重簽（PR #102）】Terra R2 補審：PASS-WITH-FIXES、無 BLOCKER；重算 OK=13 DIFF=0、13 段英文引句與 27 個來源網址皆對得上。已改：1 MAJOR（路面段把「整體特性相近」與「粗糙度增加」寫成解讀對不上，兩者量測層次不同可並存→H2 改為『有沒有重鋪過』，粗糙度改寫為不同層次）；3 MINOR 中 2 項已改（午後 vs 上午晚段改『時間範圍重疊』、『經驗集中在兩個人』改『出賽次數最多的兩位』），2001 縮圈單源邊界 Terra 要求保留、已有具名歸因與限制聲明。PR #102 開出後，Charlie 於對話中回「合 racing #102」——PR 內文與 PENDING.md 皆已事先寫明此話同時授權重簽；本欄由指揮位依此明確、指名 PR 編號的原話代為更新。"
     },
     {
       "slug": "f1-singapore-marina-bay-safety-car-pole",
-      "article_sha256": "ac99063abeff2cc0f1772f5009422f4d0854e59a61d8174b87b99a0d763aa2aa",
+      "article_sha256": "a99f479b5a6f97d2e7724f0f19f820822eb0356711fa330ff1fb24914c256605",
       "facts_sha256": "38e8046354f4b1aab2fdbfddd342a848478820da59f6b342addde28aa19c3135",
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-10-02T15:07:22+08:00",
-      "note": "新加坡站賽道百科（選題台 2026-10-02 候補 W-20261002-1，Charlie 以「R1 新加坡站賽道百科」指派；topic_ref＝manual，因候補不在當日 candidates 陣列、gate 無法以日期：id 登記）。自有資料＝jolpica-f1 DB 2008–2025 共 16 屆；外部事實三棒：維基原始 wikitext 逐屆、非維基獨立來源、賽道與週末與合約。審稿履歷：R1 審表 agy（MAJOR：「14 屆全有」四源涵蓋範圍不同；BLOCKER 級：H2② 骨架句「時鐘比圈數更常是終點」寫反，實為 4／16；皆已改）＋Terra（乾淨室重算 7 項全一致；MAJOR：「沒有黃旗」只能歸 formula1.com；MINOR：「首次衝刺賽」保留 F1／FIA 公告歸屬；已改）；R2 agy（4 MINOR 已改）、Claude 乾淨室數字席（45 項重算全一致；另抓 52.2% 括號歧義、維基連結網址不在證據檔、衝刺賽缺歸屬、Sky 說法比證據強，已全改）、DeepSeek 冷讀（四面向賽道百科「沒有單一主張」，壓縮規章段並補『來源沒解釋、不猜』，其餘保留）。指揮位拿掉指向封王算術文的連結（標題含數字，R16 後恐過期）。⚠️ Terra 用量上限（17:08 恢復）：R2 未跑；上線時未經 Terra 異源 R2，補審結果補在 PR #101 留言。PR #101 開出後，Charlie 於對話中回「合 racing #101」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄。"
+      "approved_at": "2026-10-03T09:30:38+08:00",
+      "note": "新加坡站賽道百科（選題台 2026-10-02 候補 W-20261002-1，Charlie 以「R1 新加坡站賽道百科」指派；topic_ref＝manual，因候補不在當日 candidates 陣列、gate 無法以日期：id 登記）。自有資料＝jolpica-f1 DB 2008–2025 共 16 屆；外部事實三棒：維基原始 wikitext 逐屆、非維基獨立來源、賽道與週末與合約。審稿履歷：R1 審表 agy（MAJOR：「14 屆全有」四源涵蓋範圍不同；BLOCKER 級：H2② 骨架句「時鐘比圈數更常是終點」寫反，實為 4／16；皆已改）＋Terra（乾淨室重算 7 項全一致；MAJOR：「沒有黃旗」只能歸 formula1.com；MINOR：「首次衝刺賽」保留 F1／FIA 公告歸屬；已改）；R2 agy（4 MINOR 已改）、Claude 乾淨室數字席（45 項重算全一致；另抓 52.2% 括號歧義、維基連結網址不在證據檔、衝刺賽缺歸屬、Sky 說法比證據強，已全改）、DeepSeek 冷讀（四面向賽道百科「沒有單一主張」，壓縮規章段並補『來源沒解釋、不猜』，其餘保留）。指揮位拿掉指向封王算術文的連結（標題含數字，R16 後恐過期）。⚠️ Terra 用量上限（17:08 恢復）：R2 未跑；上線時未經 Terra 異源 R2，補審結果補在 PR #101 留言。PR #101 開出後，Charlie 於對話中回「合 racing #101」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄。 【2026-10-03 重簽（PR #102）】Terra R2 補審：PASS-WITH-FIXES、無 BLOCKER；16 屆逐列、11／16、190／364、14%、衝刺賽 0 列重算一致，引句與 16 個網址皆對得上，三個承重主張成立。已改：1 MINOR（『賽果資料庫裡還有另一組數字』後台語言→『還有另一組數字』）。PR #102 開出後，Charlie 於對話中回「合 racing #102」——PR 內文與 PENDING.md 皆已事先寫明此話同時授權重簽；本欄由指揮位依此明確、指名 PR 編號的原話代為更新。"
     }
   ]
 }
