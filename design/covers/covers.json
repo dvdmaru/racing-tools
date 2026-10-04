@@ -119,6 +119,12 @@
       "html": "cover-singapore-marina-bay.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2026-r16-sepang-qualifying-gaps",
+      "html": "cover-sepang-qualifying-gaps.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
