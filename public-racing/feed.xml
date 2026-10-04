@@ -6,6 +6,41 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>保溫毯條文沒寫幾度，寫的是 96 小時紀錄</title>
+    <link>https://racing.twtools.cc/articles/f1-101-tyre-handling/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-tyre-handling/</guid>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
+    <description>技術規章 C10.8.3 管輪胎的加熱與冷卻途徑，C10.8.4 管保溫毯的結構、紀錄與認證，運動規章再管使用保溫毯的時間與地點。這些條文都沒寫保溫毯該加熱到幾度。</description>
+  </item>
+  <item>
+    <title>F1 車手在賽道上棄車後要走到碎片圍網後面，運動規章 10 月才寫明</title>
+    <link>https://racing.twtools.cc/articles/f1-101-stopped-car/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-stopped-car/</guid>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
+    <description>停下不等於退出：棄車和外力協助各由不同條文管，在賽道上棄車之後車手要去哪裡，10 月的新版才寫明。</description>
+  </item>
+  <item>
+    <title>F1 車隊冠軍獎盃只能保管一段時間，期滿原件要還給 FIA</title>
+    <link>https://racing.twtools.cc/articles/f1-101-season-framework/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-season-framework/</guid>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
+    <description>保管期間，冠軍車隊要替車隊冠軍獎盃買保險、付運費，只有 FIA 調回時由 FIA 付合理運費。同一份規章也替一季畫好外框：8 到 24 站、整季最多 24 輛車，可用賽車少於 12 輛時比賽可以延期或取消。</description>
+  </item>
+  <item>
+    <title>F1 新規通過了，哪天開始算數？最早生效日分三層</title>
+    <link>https://racing.twtools.cc/articles/f1-101-rule-changes/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-rule-changes/</guid>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
+    <description>國際賽車運動規章第 18.2 條給改動配了最早生效日：FIA 因安全理由對規章做的改動可以立即生效，技術與運動等規則原則上最早在公布後隔年；一般改動想縮短通知期，預設得為該錦標賽正式報名的全體車隊一致同意。F1 Commission 受治理協議與 WMSC 批准約束，它內部的表決門檻，FIA 公布的規章裡查無明文。</description>
+  </item>
+  <item>
+    <title>F1 車體材料白名單：不在清單、不屬例外的不能用，在清單上不等於能用</title>
+    <link>https://racing.twtools.cc/articles/f1-101-materials/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-materials/</guid>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
+    <description>2026 年技術規章 C15 的准用清單裡，列著亞麻、竹這類天然補強纖維，也列著巴沙木夾層核心。碳纖維的強度、模量、密度各有一道上限，全車金屬零件另有一道比模量上限。</description>
+  </item>
+  <item>
     <title>雪邦排位前八名：維斯塔潘領先 0.298 秒，第 2 到第 8 名七台只差 0.443 秒</title>
     <link>https://racing.twtools.cc/articles/f1-2026-r16-sepang-qualifying-gaps/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-r16-sepang-qualifying-gaps/</guid>
@@ -109,41 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-ers-shutdown/</guid>
     <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
     <description>規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。</description>
-  </item>
-  <item>
-    <title>F1 曾經明文禁止「team orders」，2011 年就被拿掉了</title>
-    <link>https://racing.twtools.cc/articles/f1-101-team-orders/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-team-orders/</guid>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2003 年生效的專門條文，俗稱 Article 39.1，因為 2010 年德國站的爭議在同年底被 FIA 刪除。車隊指令的紅線退回國際運動規則（ISC）的一般性誠信條款，用 2002 年奧地利站、2010 年德國站兩個案例對照著看。</description>
-  </item>
-  <item>
-    <title>FIA 規章的名詞表，候補車手一欄還沒填</title>
-    <link>https://racing.twtools.cc/articles/f1-101-reserve-driver/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-reserve-driver/</guid>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
-    <description>規章沒有「候補車手」這個正式身分，只有一套換人程序：一個賽季，一支車隊最多能用 4 位車手，新上場的車手都可以得分，動力單元的用量不論哪一種換人都接著原車手算，不會重新歸零；原提名車手如果「無法駕駛」，車隊申請換人並經幹事同意後，接手車手的輪胎用量也接著原車手算。</description>
-  </item>
-  <item>
-    <title>F1 車號怎麼分：維特爾的 5 號跟著他換了兩支車隊</title>
-    <link>https://racing.twtools.cc/articles/f1-101-racing-number/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-racing-number/</guid>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
-    <description>F1 車號發給車手本人，不是發給車隊：先到先得、終身跟著人走，只有書面放棄或連續兩季缺賽才會釋出。1 到 99 裡少一個 17，5 號從來不是除役，只是剛好空了兩個賽季。</description>
-  </item>
-  <item>
-    <title>諾里斯這 10 圈四人之中最快，名次卻只有第 7</title>
-    <link>https://racing.twtools.cc/articles/f1-101-race-pace-reading/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-race-pace-reading/</guid>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
-    <description>名次表只排先後，不排配速快慢。用 2026 年比利時大獎賽的逐圈時間與進站紀錄，示範怎麼把胎齡和圈速放在一起看，才看得出誰真的快。</description>
-  </item>
-  <item>
-    <title>上海賽車場停辦 F1 的四年：執照到期、疫情延誤與整修交疊的時間線</title>
-    <link>https://racing.twtools.cc/articles/f1-101-circuit-grade/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-circuit-grade/</guid>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0800</pubDate>
-    <description>F1 分站賽事只能辦在 FIA 核發的 Grade 1 執照賽道上，這張執照要先經巡查員查驗合格，最長 3 年就要換照，F1 每次分站賽前 FIA 還會再單獨查一次。用上海國際賽車場與土耳其伊斯坦堡公園兩個真實案例，把這套認證制度讀一遍。</description>
   </item>
 </channel>
 </rss>
