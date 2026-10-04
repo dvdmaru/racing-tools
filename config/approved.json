@@ -1144,6 +1144,51 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-04T10:33:17+08:00",
       "note": "雪邦排位賽四大車隊分析（2026 第 16 站，10/3 排位）。Charlie 2026-10-04 對話指派「寫一篇分析的文章上站」，並回「合 racing #104」授權簽核、build、合併、部署（PR 內文與 PENDING 帳本皆已事先寫明此話即授權）。純計時數字文，沒有媒體或車手說法：F1 官方即時計時公開存檔（FastF1 3.8.3）＋Jolpica 名次與 Q1／Q2／Q3 時間逐項比對 0 差異。流程（指揮規則第 7、8 條）：Opus 論點與來源歸屬棒（事實表 F-01～F-14：10 PASS／5 WEAKEN／0 FAIL）→R1 異源審骨架 Terra FAIL＋agy PASS-WITH-FIXES（抓到：哈賈爾與安東內利『中間隔著漢米爾頓』名次錯、Gasly 被取消圈賽段 Q2 應為 Q3、尾流與電能部署／F1 不公開無證據、實質並列評價詞）→R1b Terra（抓到『紅牛領先主要來自維斯塔潘一台』比資料強，兩台都領先賓士）→骨架與事實表同步改後交 Sonnet 寫手→R2 Terra PASS-WITH-FIXES（1 MAJOR：來源血緣斷言無證據，已刪；三表逐格重算全一致）＋agy 3 MINOR（已改）→DeepSeek 冷讀（想停分段表，已壓縮）→Terra 終審 PASS 零 finding；簽核 sha256 與 Terra 終審快照逐位元組一致。封面 check-covers 通過；全套測試 953 個通過。"
+    },
+    {
+      "slug": "f1-101-materials",
+      "article_sha256": "cab0b2de00694cee5bed109fa7f1846ddc9eace6e2b90d4c9206b6aa86d5064b",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-05T07:04:57+08:00",
+      "note": "F1 新手村第八批（5 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-04-racing-newbie-village-8/TOPICS.md 與 LEDGER.md）。主題：車身材料白名單。Charlie 2026-10-05 回「合 racing #105」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（寫手單一併送審）→第二輪替代審查席 Opus→寫手 Sonnet→agy R2→冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R2 判 PASS）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-materials.60.md）逐位元組一致。Terra 額度兩度用完，R1 缺席期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C Issue 20、運動規章 Issue 09（2026-10-01）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。全套測試 953 個通過。"
+    },
+    {
+      "slug": "f1-101-season-framework",
+      "article_sha256": "04a395cf94f1ebb88a9fbef340dc6128c7697dcbdab1f9fa975ad3ec90ba4a59",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-05T07:04:57+08:00",
+      "note": "F1 新手村第八批（5 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-04-racing-newbie-village-8/TOPICS.md 與 LEDGER.md）。主題：一季框架與冠軍獎盃交接。Charlie 2026-10-05 回「合 racing #105」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（寫手單一併送審）→第二輪替代審查席 Opus→寫手 Sonnet→agy R2→冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R3 判 PASS）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-season-framework.70.md）逐位元組一致。Terra 額度兩度用完，R1 缺席期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C Issue 20、運動規章 Issue 09（2026-10-01）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。全套測試 953 個通過。"
+    },
+    {
+      "slug": "f1-101-rule-changes",
+      "article_sha256": "5b3025d845e38dae41d16e0e0f0bd2b717864681d718bdd6c777de8ba78241cd",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-05T07:04:57+08:00",
+      "note": "F1 新手村第八批（5 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-04-racing-newbie-village-8/TOPICS.md 與 LEDGER.md）。主題：規章修訂與生效時程。Charlie 2026-10-05 回「合 racing #105」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（寫手單一併送審）→第二輪替代審查席 Opus→寫手 Sonnet→agy R2→冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R5 判 PASS）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-rule-changes.100.md）逐位元組一致。Terra 額度兩度用完，R1 缺席期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C Issue 20、運動規章 Issue 09（2026-10-01）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。全套測試 953 個通過。"
+    },
+    {
+      "slug": "f1-101-tyre-handling",
+      "article_sha256": "4c0d528fa8099c504ba6f623f9dae27fc257c7bff0a3d69dbdc8887020113854",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-05T07:04:57+08:00",
+      "note": "F1 新手村第八批（5 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-04-racing-newbie-village-8/TOPICS.md 與 LEDGER.md）。主題：輪胎處理與保溫毯。Charlie 2026-10-05 回「合 racing #105」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（寫手單一併送審）→第二輪替代審查席 Opus→寫手 Sonnet→agy R2→冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R5 判 PASS）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-tyre-handling.100.md）逐位元組一致。Terra 額度兩度用完，R1 缺席期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C Issue 20、運動規章 Issue 09（2026-10-01）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。全套測試 953 個通過。"
+    },
+    {
+      "slug": "f1-101-stopped-car",
+      "article_sha256": "49321e5534c460aaf113cb6eb4632dd8494b2cd6923963c55e4d53d41d50c58d",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-05T07:04:57+08:00",
+      "note": "F1 新手村第八批（5 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-04-racing-newbie-village-8/TOPICS.md 與 LEDGER.md）。主題：車停在賽道上與棄車。Charlie 2026-10-05 回「合 racing #105」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（寫手單一併送審）→第二輪替代審查席 Opus→寫手 Sonnet→agy R2→冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R7 判 PASS）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-stopped-car.120.md）逐位元組一致。Terra 額度兩度用完，R1 缺席期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C Issue 20、運動規章 Issue 09（2026-10-01）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。全套測試 953 個通過。"
     }
   ]
 }
