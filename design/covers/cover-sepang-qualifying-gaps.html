@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 前八名 Q3 最佳圈距維斯塔潘排位第 1 圈（1:35.130）的秒數，一列一隊，橫軸線性：x = 380 + 1700 × 距離 ÷ 0.741。
+ * 資料＝facts/analysis-f1-2026-r16-sepang-qualifying-gaps.json 的 derived_values.drivers[*].gap_to_pole
+ * （F1 官方即時計時公開存檔，FastF1 解析；名次與時間另與 Jolpica 比對 0 差異）。座標由 tmp/gen_cover.py 算出，不手調。
+ * 只標兩段跨距（紅 0.298、灰 0.443），不畫座標刻度——封面 gate 逐個數字比對正文。
+ * 諾里斯與皮亞斯特里只差 0.005 秒（12 px），標籤一左一右；顏色不對應任何車隊塗裝（站規：不用官方素材）。 */
+.chart { width: 100%; height: 470px; display: block; overflow: visible; }
+.chart .nm { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 36px; fill: #493c40; }
+.chart .dn { font-family: 'Noto Sans TC'; font-weight: 500; font-size: 34px; fill: #493c40; }
+.chart .sp { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700; font-size: 44px; fill: #493c40; }
+.chart .sp.hi { fill: #d63a2f; }
+h1 { font-size: 100px; margin-top: 44px; }
+.sub { margin-top: 26px; margin-bottom: 70px; }
+.stats { margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 排位賽</div>
+  <h1>第 1 名和第 2 名之間的 <span class="y">0.298 秒</span><br>第 2 到第 8 名七台車擠在 <span class="y">0.443 秒</span>內</h1>
+  <div class="sub">紅牛兩台都排在賓士兩台前面，但第二台只比賓士最快的一台快 0.073 秒</div>
+  <div class="viz">
+    <div class="lbl">雪邦排位賽 Q3：四隊八台，距維斯塔潘的排位最佳圈的秒數（一列一隊）</div>
+    <svg class="chart" viewBox="0 -90 2160 506" preserveAspectRatio="xMidYMid meet">
+      <line x1="380.0" y1="-20" x2="380.0" y2="392" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/>
+      <line x1="1063.7" y1="-20" x2="1063.7" y2="392" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/>
+      <line x1="2080.0" y1="-20" x2="2080.0" y2="392" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/>
+      <line x1="380.0" y1="-34" x2="1063.7" y2="-34" stroke="#d63a2f" stroke-width="10" stroke-linecap="round"/>
+      <text x="721.9" y="-56" text-anchor="middle" class="sp hi">0.298 秒</text>
+      <line x1="1063.7" y1="-34" x2="2080.0" y2="-34" stroke="#493c40" stroke-width="10" stroke-linecap="round"/>
+      <text x="1571.8" y="-56" text-anchor="middle" class="sp">0.443 秒</text>
+      <line x1="0" y1="116" x2="2160" y2="116" stroke="#e3d6d8" stroke-width="2"/>
+      <text x="0" y="82" text-anchor="start" class="nm">紅牛</text>
+      <circle cx="380.0" cy="70" r="26" fill="#d63a2f"/>
+      <text x="416.0" y="82" text-anchor="start" class="dn">維斯塔潘</text>
+      <circle cx="1361.9" cy="70" r="20" fill="#786a6e"/>
+      <text x="1397.9" y="82" text-anchor="start" class="dn">哈賈爾</text>
+      <line x1="0" y1="208" x2="2160" y2="208" stroke="#e3d6d8" stroke-width="2"/>
+      <text x="0" y="174" text-anchor="start" class="nm">法拉利</text>
+      <circle cx="1063.7" cy="162" r="20" fill="#786a6e"/>
+      <text x="1099.7" y="174" text-anchor="start" class="dn">漢米爾頓</text>
+      <circle cx="1609.7" cy="162" r="20" fill="#786a6e"/>
+      <text x="1645.7" y="174" text-anchor="start" class="dn">勒克萊爾</text>
+      <line x1="0" y1="300" x2="2160" y2="300" stroke="#e3d6d8" stroke-width="2"/>
+      <text x="0" y="266" text-anchor="start" class="nm">賓士</text>
+      <circle cx="1529.4" cy="254" r="20" fill="#786a6e"/>
+      <text x="1565.4" y="266" text-anchor="start" class="dn">安東內利</text>
+      <circle cx="2080.0" cy="254" r="20" fill="#786a6e"/>
+      <text x="2044.0" y="266" text-anchor="end" class="dn">羅素</text>
+      <line x1="0" y1="392" x2="2160" y2="392" stroke="#e3d6d8" stroke-width="2"/>
+      <text x="0" y="358" text-anchor="start" class="nm">麥拉倫</text>
+      <circle cx="1818.5" cy="346" r="20" fill="#786a6e"/>
+      <text x="1782.5" y="358" text-anchor="end" class="dn">諾里斯</text>
+      <circle cx="1829.9" cy="346" r="20" fill="#786a6e"/>
+      <text x="1865.9" y="358" text-anchor="start" class="dn">皮亞斯特里</text>
+    </svg>
+  </div>
+  <div class="foot">racing.twtools.cc · 資料截至第 16 站排位賽</div>
+</div>
+</body>
+</html>
