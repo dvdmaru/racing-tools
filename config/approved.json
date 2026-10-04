@@ -1135,6 +1135,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-03T20:02:45+08:00",
       "note": "F1 新手村第七批（6 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus。」篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-03-racing-newbie-village-7/TOPICS.md 與 CANDIDATES.md）。流程：Sonnet 研究棒建事實包→Opus 查核棒逐條核對→Opus 論點與來源歸屬棒（指揮規則第 7 條）→R1 異源審骨架（Terra＋agy）→Sonnet 寫手→R2 審稿（Terra＋agy）→修正棒→DeepSeek 冷讀席→SVG 390px 實渲染→Terra 複審／終審。六篇 Terra 最終判決皆 PASS（規則第 8 條），簽核的 sha256 與 Terra 最後審過的快照逐位元組一致。運動規章一律引 2026-10-01 Issue 09。Terra 額度 15:30–19:39 用完期間只推進非 Terra 步驟、未合併；crash-rescue 的 R1b 由 Opus 子代頂替，其後 R2 與終審仍為 Terra。PR #103 開出後，Charlie 於對話中回「合 racing #103」——PR 內文與 PENDING.md 皆已事先寫明此話同時視為 approved.json 簽核授權；本欄由指揮位依此明確、指名 PR 編號的原話代為登錄。審稿履歷：PDF 核對 7 處承重句皆現行 → R1 Terra FAIL（3 BLOCKER：最近站先動、一定到場、每項都有減免）→ 骨架與事實包同步修 → R1b（Opus 頂替）6 MAJOR → agy R2 1 BLOCKER → fix1（併 R1b、冷讀）→ Terra R2 3 BLOCKER（明確命令擴到脫困小組、醫師加入條件、paramedic 譯法）→ fix2 → Terra 複審 PASS。用語「附則 H」「賽道管理員」。"
+    },
+    {
+      "slug": "f1-2026-r16-sepang-qualifying-gaps",
+      "article_sha256": "744f27c67de60f4d7696b9c35bd064224efb6543ab4823951ed03647b13b6224",
+      "facts_sha256": "7062a9b7e4a5cde7c98b96fee303bdee98899a61274499120c03bdde192a9371",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-04T10:33:17+08:00",
+      "note": "雪邦排位賽四大車隊分析（2026 第 16 站，10/3 排位）。Charlie 2026-10-04 對話指派「寫一篇分析的文章上站」，並回「合 racing #104」授權簽核、build、合併、部署（PR 內文與 PENDING 帳本皆已事先寫明此話即授權）。純計時數字文，沒有媒體或車手說法：F1 官方即時計時公開存檔（FastF1 3.8.3）＋Jolpica 名次與 Q1／Q2／Q3 時間逐項比對 0 差異。流程（指揮規則第 7、8 條）：Opus 論點與來源歸屬棒（事實表 F-01～F-14：10 PASS／5 WEAKEN／0 FAIL）→R1 異源審骨架 Terra FAIL＋agy PASS-WITH-FIXES（抓到：哈賈爾與安東內利『中間隔著漢米爾頓』名次錯、Gasly 被取消圈賽段 Q2 應為 Q3、尾流與電能部署／F1 不公開無證據、實質並列評價詞）→R1b Terra（抓到『紅牛領先主要來自維斯塔潘一台』比資料強，兩台都領先賓士）→骨架與事實表同步改後交 Sonnet 寫手→R2 Terra PASS-WITH-FIXES（1 MAJOR：來源血緣斷言無證據，已刪；三表逐格重算全一致）＋agy 3 MINOR（已改）→DeepSeek 冷讀（想停分段表，已壓縮）→Terra 終審 PASS 零 finding；簽核 sha256 與 Terra 終審快照逐位元組一致。封面 check-covers 通過；全套測試 953 個通過。"
     }
   ]
 }
