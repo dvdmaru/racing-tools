@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>雪邦正賽：第 8 圈結束時，漢米爾頓比最先過線的安東內利晚 83 秒，終點拿到第 3 名</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/</guid>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
+    <description>2026 年 10 月 4 日巴林大獎賽在馬來西亞（Bahrain Grand Prix in Malaysia）第 16 站，全場 22 位車手、55 圈（計時圈號）。第 8 圈結束時，漢米爾頓（Lewis Hamilton）的過線時刻比該圈最先過線的安東內利（Kimi Antonelli）晚 83.133 秒，這是計時過線差，不是官方車距；官方賽果是第 3 名，落後維斯塔潘（Max Verstappen）4.919 秒。計時資料能把中間拆成四段可量的時序，每一段的原因分不出來。</description>
+  </item>
+  <item>
     <title>保溫毯條文沒寫幾度，寫的是 96 小時紀錄</title>
     <link>https://racing.twtools.cc/articles/f1-101-tyre-handling/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-tyre-handling/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-livery/</guid>
     <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
     <description>2026 年規章要求同隊兩台車塗裝大致相同，賽季中的重大變更須 FIA 與商業權利持有人同意。廣告的面積與位置，A2.3 沒有列，也不能因此讀成不限。同一節另有螢光黃相機的規定，相機位則在 C8.16。</description>
-  </item>
-  <item>
-    <title>F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘</title>
-    <link>https://racing.twtools.cc/articles/f1-101-ers-shutdown/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-ers-shutdown/</guid>
-    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
-    <description>規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。</description>
   </item>
 </channel>
 </rss>

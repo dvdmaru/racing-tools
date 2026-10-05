@@ -125,6 +125,12 @@
       "html": "cover-sepang-qualifying-gaps.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2026-r16-sepang-hamilton-podium-ledger",
+      "html": "cover-sepang-hamilton-podium-ledger.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
