@@ -1192,12 +1192,12 @@
     },
     {
       "slug": "f1-2026-r16-sepang-hamilton-podium-ledger",
-      "article_sha256": "094c76bc2b9ec872948184a5ac68e01720034da3b940e52deb4017001cbe83a3",
-      "facts_sha256": "c2f5b3e5cdf6fc00cbfd4d310a79365b9d2c391dee7b91f1d7c66d7b3ae463f3",
+      "article_sha256": "a98fea88567c4251f1be7ef01c2848c5e4eb745667801c26c8f851886d13d05e",
+      "facts_sha256": "a81331f0164211c8a187e785939b4cb44f12c25a8b77af728471cef0bff94554",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-10-05T11:44:21+08:00",
-      "note": "雪邦正賽（2026 第 16 站，10/4）漢米爾頓第 3 名分析。Charlie 2026-10-05 對話指派「拉一下遙測數據跟新聞，分析一下昨天的巴林大獎賽正賽，主旨和來源核對照規則交給 Opus」，並回「合 racing #107」授權簽核、build、合併、部署（PR 內文與 PENDING 帳本皆已事先寫明此話即授權）。資料：F1 官方即時計時公開存檔（FastF1 3.8.3，含 car_data 五通道）＋Jolpica 賽果與進站；新聞 17 篇原文存檔、22 句外語引文 verify-quotes 逐字命中。流程（指揮規則第 7、8、9 條）：Sonnet 研究席抓新聞原文→Opus 資料查核席（34 項：14 PASS／14 WEAKEN／6 FAIL，抓到勒克萊爾計時偏移約 19.5 秒與起跑順序）、Opus 論點席、Opus 新聞歸屬席（102 條：77 PASS／22 WEAKEN／3 FAIL，抓到 The Star 乾胎起跑與最快圈加分兩處錯誤）→R1 Terra FAIL＋agy PASS-WITH-FIXES→Opus 修正棒（論點降因果、拿掉未校正名次、兩句不連續引文）→Sonnet 寫手（初稿凍結 40）→R2 Terra PASS-WITH-FIXES（1 MAJOR：哈賈爾『查不到一手』錯寫）＋agy PASS→DeepSeek 冷讀→Opus 總編輯輪→R3 Terra（1 MINOR）→終審兩次 Terra PASS。簽核 sha256 與 Terra 終審快照逐位元組一致；封面 check-covers 通過。"
+      "note": "雪邦正賽（2026 第 16 站，10/4）漢米爾頓第 3 名分析。Charlie 2026-10-05 對話指派「拉一下遙測數據跟新聞，分析一下昨天的巴林大獎賽正賽，主旨和來源核對照規則交給 Opus」，並回「合 racing #107」授權簽核、build、合併、部署（PR 內文與 PENDING 帳本皆已事先寫明此話即授權）。資料：F1 官方即時計時公開存檔（FastF1 3.8.3，含 car_data 五通道）＋Jolpica 賽果與進站；新聞 17 篇原文存檔、22 句外語引文 verify-quotes 逐字命中。流程（指揮規則第 7、8、9 條）：Sonnet 研究席抓新聞原文→Opus 資料查核席（34 項：14 PASS／14 WEAKEN／6 FAIL，抓到勒克萊爾計時偏移約 19.5 秒與起跑順序）、Opus 論點席、Opus 新聞歸屬席（102 條：77 PASS／22 WEAKEN／3 FAIL，抓到 The Star 乾胎起跑與最快圈加分兩處錯誤）→R1 Terra FAIL＋agy PASS-WITH-FIXES→Opus 修正棒（論點降因果、拿掉未校正名次、兩句不連續引文）→Sonnet 寫手（初稿凍結 40）→R2 Terra PASS-WITH-FIXES（1 MAJOR：哈賈爾『查不到一手』錯寫）＋agy PASS→DeepSeek 冷讀→Opus 總編輯輪→R3 Terra（1 MINOR）→終審兩次 Terra PASS。簽核 sha256 與 Terra 終審快照逐位元組一致；封面 check-covers 通過。｜2026-10-05 改版重簽：Charlie 看過 v1 後回「A」（原文改版，新增「Vasseur 承認起跑選胎判斷錯；當事人怎麼說」一節，標題與 lede 同步改），並回「合 racing #108」授權重簽核、build、合併、部署。具名來源因果與車隊／車手說法補進來（Vasseur 自承發車格選胎判斷錯、漢米爾頓賽後說法、Sky／Reuters 報導者寫安全車作用），不寫整場策略失誤。流程：Opus 論點／修正席重驗並改事實包（新增 32 條引文，共 53 條 verify-quotes 逐字全命中）→R1 Terra FAIL（1 BLOCKER 引句首字母大小寫、3 MAJOR）＋agy PASS-WITH-FIXES→Opus 修正棒→Sonnet 寫手改版（初稿凍結 v2-40）→R2 Terra PASS-WITH-FIXES（5 MAJOR：83 秒口徑、字數、引文密度）→Opus 總編輯輪→R3 Terra（1 MAJOR 引文 7 段要 ≤6）→終審 Terra PASS 零 finding。簽核 sha256 與 Terra 終審快照 v2-70 逐位元組一致。"
     }
   ]
 }
