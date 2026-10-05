@@ -562,12 +562,12 @@
     },
     {
       "slug": "f1-2027-race-distance-290km",
-      "article_sha256": "c0da2b7d24eda69968341ffff085ef2ed00a00fd2df71aa7cea643191a13f1f9",
-      "facts_sha256": "99d7f2759cfd6c33eb04c594be8ac8056ed2f0c9bedcc26fc3b79b80883e66d5",
+      "article_sha256": "8ccbc079acaf3c284177e2d6f534427bdef67320028252dd1a89b798dee9edcb",
+      "facts_sha256": "ccce05ce14ea55d595e3a8ddf10bb383e0c89072c8d42b01743ebdcb17daae1e",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-04T19:51:35+08:00",
-      "note": "2026-09-04 Charlie 指定題目（2027 年正賽里程縮 5%），Conductor 模式產出。一手＝FIA 2026 運動規則 Issue 08 的 B2.5.2／B2.5.3 本文（本機 pdftotext 抽取），外加 FIA 規則頁面實查（截至 2026-09-04 尚無 2027 年運動規則）。媒體層 9 篇原文抓成本地快照存 CoWork/roundtable/2026-09-04-racing-2027-race-distance/evidence/，全文引文以新增的 scripts/verify-quotes.py 逐字比對，82 句全數命中。兩席對抗式查核回報後修正：①三句 The Race 引文為網頁摘要改寫、原文不存在（整段刪除換成 grep 命中的真實理由）②B2.5.3 引的是 Issue 07 文字卻掛 Issue 08 出處（兩版確有差異，Issue 08 多一款三小時上限）③『只有 The Race 提到只談定 2027 一年』為假，RacingNews365 亦有 ④Tombazis 職稱掛錯出處（來源寫 boss，正式頭銜改引 FIA 2023 任命公告）⑤維斯塔潘兩句引語順序與原文相反 ⑥Permane 引文的 maybe hedge 被吃掉 ⑦『其餘六篇都只提到摩納哥』母體含 5 月兩篇，GPFans 正文未談摩納哥。⚠️ 題目原句『所有分站賽的正賽里程將會縮短』的語氣經查核後降級：此案尚未經 F1 Commission 與 WMSC，2027 年運動規則尚未發布，全文改用「打算／提案／若通過」。gate：verify-sources／verify-numbers／check-links（19 條 200）／check-zh／check-covers／verify-quotes 全綠。Charlie 以合併 PR 為核准發布的授權行為。 ／ 2026-09-04 勘誤重新核准：World Motor Sport Council 中譯「摩托」→「汽車」（正文漏改的第二處），已登記 data/errata.json 公開勘誤。 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。「2027 年運動規則根本還沒發布」改為「尚未以獨立文件發布，Issue 08 附錄 B5『Changes for 2027』已有 2027 年變更段落，其中 B2.5.2 仍為 305 公里、無 290 公里字樣，另多一項 FIA 可裁量最多減 4 圈的例外」（並補 (a)(i) 暫定資訊與 (a)(ii) 四週前向所有參賽方確認時長的條件）；H2 改為「規章裡還看不到 290 公里」；三家媒體計數一致；查證日補註 9/27 補查（舊 9/4 查證日不為新說法背書），核心論點與媒體報導層不動。Terra R1／R2／R3，最終 PASS。 另補 frontmatter `topic_ref: \"manual\"`（本篇是 Charlie 2026-09-04 指定的題目，不是選題台來的；PR 護欄 guard-crosscheck-desk 要求標明來源，只動 metadata、不動內文）。"
+      "note": "2026-09-04 Charlie 指定題目（2027 年正賽里程縮 5%），Conductor 模式產出。一手＝FIA 2026 運動規則 Issue 08 的 B2.5.2／B2.5.3 本文（本機 pdftotext 抽取），外加 FIA 規則頁面實查（截至 2026-09-04 尚無 2027 年運動規則）。媒體層 9 篇原文抓成本地快照存 CoWork/roundtable/2026-09-04-racing-2027-race-distance/evidence/，全文引文以新增的 scripts/verify-quotes.py 逐字比對，82 句全數命中。兩席對抗式查核回報後修正：①三句 The Race 引文為網頁摘要改寫、原文不存在（整段刪除換成 grep 命中的真實理由）②B2.5.3 引的是 Issue 07 文字卻掛 Issue 08 出處（兩版確有差異，Issue 08 多一款三小時上限）③『只有 The Race 提到只談定 2027 一年』為假，RacingNews365 亦有 ④Tombazis 職稱掛錯出處（來源寫 boss，正式頭銜改引 FIA 2023 任命公告）⑤維斯塔潘兩句引語順序與原文相反 ⑥Permane 引文的 maybe hedge 被吃掉 ⑦『其餘六篇都只提到摩納哥』母體含 5 月兩篇，GPFans 正文未談摩納哥。⚠️ 題目原句『所有分站賽的正賽里程將會縮短』的語氣經查核後降級：此案尚未經 F1 Commission 與 WMSC，2027 年運動規則尚未發布，全文改用「打算／提案／若通過」。gate：verify-sources／verify-numbers／check-links（19 條 200）／check-zh／check-covers／verify-quotes 全綠。Charlie 以合併 PR 為核准發布的授權行為。 ／ 2026-09-04 勘誤重新核准：World Motor Sport Council 中譯「摩托」→「汽車」（正文漏改的第二處），已登記 data/errata.json 公開勘誤。 【2026-09-27 修正】新手村第四批查核時發現的既有問題，Charlie 2026-09-27 指示「修站內既有文章 5 處問題」。流程：Claude 修正棒先對規章原文或官方頁驗證再改（不成立就不改），紀錄與證據在 CoWork/roundtable/2026-09-27-racing-existing-articles-fix/reviews/<slug>.fix.md；Terra 異源複審（diff 對帳＋逐句核對），最終版皆為 Terra PASS 版本。本次修改需 Charlie 授權合併（PR）。「2027 年運動規則根本還沒發布」改為「尚未以獨立文件發布，Issue 08 附錄 B5『Changes for 2027』已有 2027 年變更段落，其中 B2.5.2 仍為 305 公里、無 290 公里字樣，另多一項 FIA 可裁量最多減 4 圈的例外」（並補 (a)(i) 暫定資訊與 (a)(ii) 四週前向所有參賽方確認時長的條件）；H2 改為「規章裡還看不到 290 公里」；三家媒體計數一致；查證日補註 9/27 補查（舊 9/4 查證日不為新說法背書），核心論點與媒體報導層不動。Terra R1／R2／R3，最終 PASS。 另補 frontmatter `topic_ref: \"manual\"`（本篇是 Charlie 2026-09-04 指定的題目，不是選題台來的；PR 護欄 guard-crosscheck-desk 要求標明來源，只動 metadata、不動內文）。 ｜2026-10-05 修正（Charlie 同日回「修」授權）：運動規章 Issue 09（2026-10-01 發布、WMSC 2026-09-30 批准）已把 2027 年 B2.5.2 正賽距離門檻改為 290 公里並保留摩納哥 260 公里，原稿「Issue 08 仍 305、尚未批准、看不到 290」過期；改正 title／subtitle／lede／H2／來源與限制說明，媒體 9/3–4 報導改標為歷史敘事，Section C「Issue 2」更正為 Issue 20，事實包 rev5、封面統計列同步。F1 Commission 表決不在文件中、2027 年內精確生效日未載，兩點照實不推論。Terra 查證 reviews/terra-290km.md、修正稿複驗 PASS 零 finding（桌目錄 CoWork/roundtable/2026-10-04-racing-newbie-village-8/reviews/terra-fix290-review.md）。approved_at 不動。"
     },
     {
       "slug": "f1-monza-italian-drought-60-years",
@@ -688,12 +688,12 @@
     },
     {
       "slug": "f1-101-tyres",
-      "article_sha256": "412af304a5e12a9303d197192e4db92e1fe78c0b6c27b915b7974aea9ac92b3d",
+      "article_sha256": "fb943629b1645a0a04fab931742b67e0efeca61d8c86d87122d526623154594e",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-25T18:00:00+08:00",
-      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。 ｜2026-10-05 修正（Charlie 同日回「修」授權）：第 184 行限制聲明「保溫毯官方條文查不到」改為保溫毯結構與紀錄規格查得到（Section C Issue 20 C10.8.3、C10.8.4），溫度數值 Section B 與 C 條文沒寫；連到 f1-101-tyre-handling。Terra 複驗 PASS。approved_at 不動。"
     },
     {
       "slug": "f1-101-race-start",
@@ -823,12 +823,12 @@
     },
     {
       "slug": "f1-101-brakes",
-      "article_sha256": "3a95c7d71997b4f679913f5f531f72c2f79acecdba7f6569b9bca002bcaa6b3b",
+      "article_sha256": "4f31d6a2b6345547f42f9fab9583644fb374bce4f31721aa498342736f108a09",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-26T11:46:36+08:00",
-      "note": "F1 新手村第三批（10 篇之一）。Charlie 2026-09-26 指示「第三批，Conductor 模式」（篇目由指揮位擬定並標為猜的，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號、引文被改寫、把 2027 條款當現行、PDF 連字使 grep 漏抓，皆已更正）→缺口補查→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）＋Terra 異源審稿（R1）＋DeepSeek 冷讀席（只讀公開成品）→Claude 合併修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者，全文主動掃描同型過強說法）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）：R1 全 10 篇（3 篇判 FAIL）、R2 全 10 篇（僅 sprint-weekend 有 2 個 BLOCKER，為修正輪自己引進）、R3 對其後修正過的 9 篇（僅 pu-allocation 有 2 個 BLOCKER，為規章原有限定詞漏寫）、R4 對 pu-allocation、classification、listed-parts 三篇，R4 零 BLOCKER。最後一版未再經 Terra 複審的範圍：sprint-weekend、parc-ferme、brakes、super-licence 的 R3 意見修正；以及 R4 之後的小修（pu-allocation 12 個月限定措辭與圖、classification 的 NC 說明與保證金、listed-parts 的 FOSCL 條件、sprint-weekend 副標、parc-ferme H2）；stewards、track-limits、driver-safety 的最終版即為被 Terra 判 PASS 的版本。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一、二批。"
+      "note": "F1 新手村第三批（10 篇之一）。Charlie 2026-09-26 指示「第三批，Conductor 模式」（篇目由指揮位擬定並標為猜的，見桌檔）。流程：Claude 研究席（讀本機 FIA 2026 規章純文字＋官方頁）建事實包→Claude 查核棒逐條回原文核對（網頁引文用 curl 抓原頁、不經摘要模型；研究席有錯：條號、引文被改寫、把 2027 條款當現行、PDF 連字使 grep 漏抓，皆已更正）→缺口補查→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）＋Terra 異源審稿（R1）＋DeepSeek 冷讀席（只讀公開成品）→Claude 合併修正棒逐條回原文驗證再改（審稿席建議有被駁回或改寫者，全文主動掃描同型過強說法）→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）：R1 全 10 篇（3 篇判 FAIL）、R2 全 10 篇（僅 sprint-weekend 有 2 個 BLOCKER，為修正輪自己引進）、R3 對其後修正過的 9 篇（僅 pu-allocation 有 2 個 BLOCKER，為規章原有限定詞漏寫）、R4 對 pu-allocation、classification、listed-parts 三篇，R4 零 BLOCKER。最後一版未再經 Terra 複審的範圍：sprint-weekend、parc-ferme、brakes、super-licence 的 R3 意見修正；以及 R4 之後的小修（pu-allocation 12 個月限定措辭與圖、classification 的 NC 說明與保證金、listed-parts 的 FOSCL 條件、sprint-weekend 副標、parc-ferme H2）；stewards、track-limits、driver-safety 的最終版即為被 Terra 判 PASS 的版本。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄，先例同第一、二批。 ｜2026-10-05 修正（Charlie 同日回「修」授權）：第 57 行「輪胎電熱毯」改「輪胎保溫毯」，與 f1-101-tyre-handling 譯名統一。Terra 複驗 PASS。approved_at 不動。"
     },
     {
       "slug": "f1-101-driver-safety",
