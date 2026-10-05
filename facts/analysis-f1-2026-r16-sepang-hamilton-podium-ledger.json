@@ -9,28 +9,36 @@
    "R1 已處理：漢米爾頓賽中最低名次本文不寫任何計時資料名次，只引媒體並各自歸屬（F1.com 第 15／Sky、Reuters 第 18／FIA 提問者第 17）；本站不放勒克萊爾偏移校正後的序列。",
    "R1 已處理：第 1 節 H2 限定第 4–8 圈；第 3 圈只放圈速表格格（含起步），不放 car_data。",
    "R1 新增（兩位審查席都沒抓到）：舊 H2③「第 14 到第 30 圈…從第 15 升到第 5」時間窗錯置——第 15 名是第 12 圈、第 14 圈他已是第 11；名次上升窗改為第 12–22 圈，中位圈速窗仍為第 14–30 圈，兩窗不得在同一句混用。",
-   "譯名：佔位譯名已改為站上核定譯名（斯托爾、博托萊托、培瑞茲、林德布拉德）；BOT 站上定版為「博塔斯」（COMMON.md 寫的「波塔斯」不是站上寫法，以 zh_names 為準）。"
+   "譯名：佔位譯名已改為站上核定譯名（斯托爾、博托萊托、培瑞茲、林德布拉德）；BOT 站上定版為「博塔斯」（COMMON.md 寫的「波塔斯」不是站上寫法，以 zh_names 為準）。",
+   "v2：新聞包與指揮位初查把 Motorsport Week 的 \"Ferrari's tyre gamble failed at the start\" 標成「標題」——實為賽報導言（正文第一段），該篇標題是 \"Max Verstappen edges Mercedes out by winning wet-dry thriller at Sepang\"；本檔一律標「報導者敘述（導言）」。",
+   "v2：\"We stop\"（FIA 逐字稿）與 \"Should we stop?\"（Reuters 記法）是同一段對話的兩種記法，一個像指示、一個是提問；本檔兩種都收、不裁決，正文寫「車隊提出進站」（兩種記法都涵蓋），不寫「車隊命令他進站」也不寫「車隊只是問問」。"
   ],
-  "r1_fix": "2026-10-05 R1 修正棒（Opus）：依 Terra R1（FAIL）與 agy R1（PASS-WITH-FIXES）逐條落地；thesis 降因果並縮為 3 個獨立主張；H2 去因果與排他詞並帶齊限定；R2 第 4–9 圈與第 49 圈第 6 名標不得引用；A14-1、A8-7 的省略號拼接已拆除；must_not_claim 補 9 句；字數統一 3,000–3,800。回報見桌 reviews/r1fix-report.md。"
+  "r1_fix": "2026-10-05 R1 修正棒（Opus）：依 Terra R1（FAIL）與 agy R1（PASS-WITH-FIXES）逐條落地；thesis 降因果並縮為 3 個獨立主張；H2 去因果與排他詞並帶齊限定；R2 第 4–9 圈與第 49 圈第 6 名標不得引用；A14-1、A8-7 的省略號拼接已拆除；must_not_claim 補 9 句；字數統一 3,000–3,800。回報見桌 reviews/r1fix-report.md。",
+  "v2_revision": "2026-10-05 v2 改版（Opus 論點／修正席，依 Charlie 裁定 A：新增「當事人與車隊自己怎麼說」一節，標題與 lede 同步改）。改動：thesis 改為三主張（具名來源：起跑選胎判斷錯／具名來源＋資料：留在軟胎上是車隊提出進站、漢米爾頓說等／資料＋具名媒體敘述：83.1 秒到第 3 的四段，各占多少分不出）；新增 section_claims 第 0 節（新 H2，放在 H2① 之前）；A15-4、A7-6、A10-2、A1-gamble、B7-sky-wait、A2-2 的 use_in_section 改為第 0 節；第 1–5 節補具名來源；news_quotes 新增 32 條（全部 verify-quotes 逐字命中）；verified_facts 新增 F-17（13 台乾胎起跑的去向）；derived_values 新增 R3 加總與 R10；must_not_claim 改寫 4 條、新增 11 條（理由見桌 reviews/v2-thesis-report.md）；字數放寬到 3,600–4,600。",
+  "r1v2_fix": "2026-10-05 v2 R1 修正棒（Opus）：依 Terra R1v2（FAIL）與 agy R1v2（PASS-WITH-FIXES）落地；V2-S1 verbatim 改為 Sky 原文小寫 a 起的連續片段（Terra C-1／D-3）；全部 53 條 verbatim 已逐條做「保留大小寫」比對，只有 V2-S1 不一致；must_not_claim 新增「所有人都以為賽道會很快乾」禁句（Terra A-1／agy 2）。回報見桌 reviews/r1fixv2-report.md。",
+  "quote_normalisation_rule": "驗證器（scripts/verify-quotes.py）正規化規則：HTML 實體、標籤、彎引號（’‘“” 折成直引號）、破折號（—–‑ 與連續 - 折成單一 -）、連續空白、大小寫。本檔 verbatim 的引號／撇號字形可能與快照不同（A10-2/Q4、A10-3、A7-6、A15-4(FIA 版)、A1-gamble 五條為直引號、快照為彎引號），屬上述規則內的排版差異，不改字形；大小寫則另以保留大小寫的比對逐條核過（v2 R1 修正棒）。"
  },
- "thesis": "漢米爾頓第 8 圈結束時落後該圈最先過線者 83.133 秒，終點拿到第 3；計時資料能把中間拆成四段可量的時序，但分不出每一段的原因。",
+ "thesis": "法拉利自己承認錯在起跑選胎（Vasseur：判斷錯了）；落後之後留在軟胎上，是車隊提出進站、漢米爾頓說要等賽道變乾；從第 8 圈結束時落後 83.1 秒到終點第 3，計時資料量得到他的綠旗配速、兩次安全車前後的差距與最後兩個名次，量不出各占多少。",
  "section_claims": [
-  "第 1 節：第 4 到第 8 圈，漢米爾頓每圈輸維斯塔潘的時間從 24 秒縮到 1 秒，但全油門占比每圈仍是四台裡最低｜主張（可量事實，三件並列，不寫哪件造成哪件）：①圈速：第 4 圈漢米爾頓（軟胎）比維斯塔潘（半雨胎）慢 24.044 秒，第 8 圈慢 0.989 秒、比安東內利與羅素各慢 0.253 秒（兩人第 8 圈同為 112.623）；第 3 圈慢 26.982 秒，但第 3 圈含起步（兩邊都含），只放表格、不進標題。②car_data（第 4–8 圈）：四台有 car_data 的車（漢米爾頓一台軟胎；維斯塔潘、安東內利、羅素三台半雨胎）裡，漢米爾頓的全油門占比每圈最低、煞車占比每圈最高（煞車占比至少高 0.112，第 8 圈 0.336 對羅素 0.224）。③累計：第 8 圈結束時他的過線時刻比該圈最先過線者（安東內利）晚 83.133 秒。｜支撐：R3_lap_times_s_laps_3_to_8、R3_ham_minus_ver_s_arith、R3_lap8_ham_minus_ant_and_rus_s_arith、R3_headline_rounding、R6_car_data_laps_4_to_8、R6_min_ham_brake_lead_over_others_arith、R1 第 8 圈。｜窮舉：telemetry_laps.csv 只收 VER／HAM／ANT／RUS，HAM 是其中唯一軟胎＝一台對三台，不是乾胎組對雨胎組；第 4–8 圈逐圈 HAM 全油門＝四台最小、煞車＝四台最大，皆成立（Terra R1 C 節重算一致）。｜表前句必帶（四個限定，缺一不可）：第 4–8 圈；一台軟胎對三台半雨胎；占比按時間算，不是按距離；只是特徵，不是抓地力、牽引力或電能的量測。｜反例：第 8 圈圈速差已只剩 0.253–0.989 秒，占比仍明顯不同——資料不告訴我們為什麼，正文只陳列、不解釋。｜新聞（背景，非因果）：A10-2/Q4（漢米爾頓轉述車隊判斷）；A10-3（可選）；Q6（科拉平托講自己的乾胎經驗，可選，不寫成漢米爾頓的原因）。｜通道限制（正文必寫一句）：公開 car_data 只有車速、轉速、檔位、油門 %、煞車開關五個通道，取樣間隔中位數約 0.24 秒；電能部署與主動空力 F1 不公開。｜不寫：第 3 圈的油門／煞車占比（切窗含起步前停在發車格上的資料）；「前 8 圈每一圈」；「第 8 圈乾胎已經比較快」「交叉點在第 8 圈」；「起跑軟胎讓他落後 83 秒」。",
-  "第 2 節：第 8 到第 10 圈仍在跑的 21 台車裡，只有漢米爾頓沒進站；完賽的 19 台裡，只有他整場只停 2 次｜主張（可量事實，三件並列）：①第 8–10 圈，仍在跑的 21 台（博塔斯第 7 圈退賽不計）中 20 台進站（霍肯伯格第 8 圈 16:51:07、貝爾曼第 10 圈 16:56:58、其餘 18 台第 9 圈），漢米爾頓沒有進站；他從第 1 圈起就在軟胎上。②他距該圈最先過線者的時間：第 8 圈 83.133 秒、第 12 圈（安全車隊列中）6.482 秒、第 14 圈（重新起跑後第一個完整綠旗圈）13.743 秒；第 12 圈過線順序第 15。③整場只進站 2 次（第 31、43 圈），完賽 19 台裡只有他是 2 次（其餘 3–7 次）。83.133→13.743 的縮小同時包含安全車讓隊伍收攏與前面各車都進站一次，不拆分、不說哪個占多少，也不寫成「沒進站讓他追回」。｜支撐：R4_results_and_pit_laps、R4_pit_stops_laps_8_to_10_local_time、R4_pit_in_laps_8_to_10_count（cars_still_running 21、cars_pitted 20、hamilton_pitted false）、F-12（SAFETY CAR DEPLOYED 16:52:16）、R1、R2 第 12 圈。｜窮舉：F-10、F-11。｜反例：霍肯伯格在安全車出動前約 1 分鐘進站（16:51:07 對 16:52:16），所以不寫「安全車期間只有漢米爾頓沒進站」。｜名次（本文不寫任何「計時資料最低第 N 名」）：勒克萊爾計時偏移使第 4–9 圈的計時名次不可用；漢米爾頓賽中低位只引媒體並各自歸屬——F1.com 報導者寫第一次安全車後他排第 15（A1-15th）；Sky 報導者寫 dropping to 18th（A3-18th/A15-1）、Reuters 報導者寫 falling as low as 18th（A15-1(Reuters)）；FIA 記者會提問者說 Running 17th（A7-8(提問者)，提問者陳述，不是漢米爾頓的話）。各家可能是不同時點，兩邊都寫、不裁決。第 12 圈第 15 的計時名次不受偏移影響，可與 F1.com 並寫。｜新聞（具名）：A7-6（起跑前在維修區出口的描述）；A15-4(FIA 版)「as everyone's overtaken me, they're like, \"We stop,\" because I know we've already made another 26 seconds. What's the difference from that with one minute 40 or whatever I was down?」（FIA 逐字稿，車手的話；\"26 seconds\" 指什麼原文沒說，照引不解讀；不用 Reuters 版）；A1-gamble、B7-sky-wait（報導者敘述，佐證他決定等）；A2-2/Q5 Vasseur（指發車格選胎，與之後要不要進站不衝突）。｜不寫：「少停一站讓他贏回 X 秒」「靠第一次安全車少進一次站淨賺近 70 秒」「拒絕進站是正確決定」「安全車只解釋其中一段」「安全車救了他」。",
-  "第 3 節：第 12 到第 22 圈，漢米爾頓的過線名次從第 15 升到第 5｜主張（三件並列，不接成因果）：①名次：過線順序第 12 圈第 15、第 22 圈第 5（第 22–31 圈維持第 5）；其間上一圈在他前面、這一圈在他後面的車共 10 台次（R9），其中博托萊托第 15 圈那一格是博托萊托進站，不是場上超車。②配速：以第 14–30 圈、綠旗（TrackStatus=1）、非進出站圈計，漢米爾頓的中位圈速 102.386 秒，在 21 台（博塔斯已退賽）中排第 3，只輸維斯塔潘（101.481）與安東內利（101.936），比第 4 名羅素（102.544）快約 0.16 秒；維斯塔潘的中位圈速比他快 0.905 秒（兩個中位數相減，不是每圈差距）。③差距：他距維斯塔潘第 14 圈 13.743 秒、第 30 圈 29.005 秒。｜支撐：R2、R9、R4（BOR 第 15 圈進站）、R5、R5_ver_minus_ham_median_s_arith、R5_rus_minus_ham_median_s_arith、R1。｜窮舉：R5 21 人全列；R9：第 13 圈 ALB／PER／SAI、第 14 圈 STR、第 15 圈 BOR（進站）、第 16 圈 HUL、第 19 圈 LIN／PIA、第 20 圈 OCO、第 22 圈 LAW；其餘 9 台在該圈沒有進站紀錄（ALB 第 16 圈、PER 第 18 圈進站，在被超之後）。另一種篩選（再加 IsAccurate==True）21 人的樣本、排序、中位數不變（Terra R1 重算）。｜時間窗：名次上升的窗是第 12–22 圈，中位圈速與差距擴大的窗是第 14–30 圈；兩個窗不同，不得在同一句混用。中位圈速名次若要進 H2、表前句或結尾，必須帶齊「第 14–30 圈、綠旗、非進出站圈、21 台」，否則不放（本節 H2 預設不放）。｜反例：各人樣本 11–16 圈（HAM 16）；胎種胎齡不同（HAM 軟胎第 1–31 圈，其他人多在第 9 圈換新胎）→ 不寫「軟胎比較好」「明顯比其他人快」。｜新聞：A1-moves（F1.com 報導者敘述：超林德布拉德、奧康、勞森升第 5，與 R9 第 19／20／22 圈相容）；A3-blistering（可選，掛 Sky，緊接寫維斯塔潘、安東內利的中位圈速比他快）。｜不寫：「中位圈速把他帶到第 5」「第 14–30 圈跑出全場最頂級配速」；不混用 T7 口徑。",
-  "第 4 節：虛擬安全車出動前漢米爾頓排第 5、落後 29.4 秒；終點第 3 的兩格，一格是羅素停車退賽，一格是第 53 圈超過哈賈爾｜主張：第 42 圈（虛擬安全車前最後一個完整綠旗圈）過線第 5、落後維斯塔潘 29.442 秒；第 43 圈在虛擬安全車期間進站（17:54:26，介於 VSC DEPLOYED 17:53:01 與第二次 SAFETY CAR DEPLOYED 17:58:26 之間；整場第 2 次也是最後一次）；第 49 圈安全車隊列中落後 3.598 秒、仍第 5；羅素完成 49 圈後退賽（列入分類第 20），他第 50 圈起第 4；第 52 圈哈賈爾在前、第 53 圈他在前，第 53–55 圈第 3；終點落後維斯塔潘 4.919 秒（Jolpica）。29.442→3.598 只寫前後兩個數字，不寫成「第二次安全車讓他追回」。｜支撐：R1、R2（第 42–43 圈第 5、第 44 圈第 6 為進站週期、第 45–49 圈第 5、第 50–52 圈第 4、第 53–55 圈第 3）、R2_lap49_top5_order、R4_pit_stops_laps_41_to_45_local_time、F-12、F-02、Jolpica。｜窮舉：第 49 圈過線前五＝VER、ANT、RUS、HAD、HAM（勒克萊爾計時偏移校正前後都成立）；HAM 前面只有這四台，所以兩格＝RUS＋HAD。第 49 圈第 6 名不寫。｜同段背景（可一句）：維斯塔潘對安東內利第 42 圈 11.916 秒、第 49 圈 0.550 秒、終點 2.307 秒。｜羅素：原因只掛沃爾夫——轉述「沃爾夫對 Sky Sports F1 說是動力單元故障（PU failure）」（不加引號）＋引句 A14-1/Q7 verbatim；必寫「尚未檢查」；不寫根本原因與停車位置細節。｜哈賈爾被超原因兩說並陳、不裁決：哈賈爾本人說重新起跑後兩圈沒有動力（A2-8/Q9）；F1.com 編輯說他在最後一次重新起跑時為轉向不足所苦（A2-9）；沒有可用資料判定哪個原因成立、各占多少；Motorsport Week 的 battery 推論不入文。｜超車時點：計時資料第 52→53 圈；F1.com 報導者 A1-pass-HAD（第 1 彎）；Motorsport Week 只能轉述（第 53 圈、主直道；A8-7 不得以引號照抄）。主直道接第 1 彎，兩者相容，不裁決位置。｜可加一句（R8）：最快圈前 4 名＝終點前 4 名，都在最後一次重新起跑之後；只陳列，不推誰的車最快。｜不寫：「若沒有第二次安全車他不可能上頒獎台」「若羅素沒退賽漢米爾頓只會第 4」「哈賈爾沒電」「哈賈爾因故障無力抵抗被刷過」；「羅素因動力單元故障退賽」不得以本站事實口吻寫。",
-  "第 5 節（同隊對照，短節）：勒克萊爾也是軟胎起跑，第 3 圈就換半雨胎、全場進站 4 次，終點落後漢米爾頓 2.339 秒｜主張：兩台法拉利起跑都是軟胎（F-04）；勒克萊爾第 3 圈換半雨胎、第 9 圈換回乾胎，進站 4 次（第 3、9、28、43 圈）；漢米爾頓不換、停 2 次；終點勒克萊爾 +7.258、漢米爾頓 +4.919，相差 2.339 秒（Jolpica）。｜支撐：R4、F-05、R1_leclerc_minus_hamilton_final_s_arith。｜新聞：A1-ditch（報導者敘述）；A15-5（勒克萊爾本人的假設語氣，整句照引 verbatim＋verbatim2，標「他認為」）；勒克萊爾第 1 圈碰撞與前翼更換：news_quotes 沒有逐字句，只能轉述並掛 F1.com 報導，不加引號。｜作用：反例——留在乾胎上不是靠近頒獎台的唯一路線，第 2 節不能寫成「漢米爾頓的決定比較對」。｜資料限制：勒克萊爾的計時過線資料整場偏約 19.5 秒，本節不放任何勒克萊爾計時差距或計時名次，也不放校正後序列；第 29–43 圈胎種缺值不寫。｜不寫：「兩種策略結果一樣」「法拉利若兩台都不進站有望雙雙上台」。"
+  "第 0 節（v2 新增，放在 H2① 之前）：Vasseur 承認起跑選胎判斷錯；落後之後車隊提出進站，漢米爾頓說要等賽道變乾｜主張（具名來源，四件依時間排）：①起跑前：發車格上 13 台乾胎（F-04、F-17；不是只有法拉利），兩台法拉利都是軟胎。漢米爾頓賽後轉述，他看了地面、告訴維修牆「還是濕的」（V2-H2），車隊認為等了這麼久會很快變乾、「也許已經到了交叉點」（A10-2/Q4），最後「as a team」選了軟胎（V2-H3）；到維修區出口看到「這兩台」穿半雨胎，「我們有麻煩了」（A7-6）。以上是他單方轉述，車隊沒有公開同一段對話的說法（unanswerable）。②認錯：Vasseur 說發車格上的選胎很難判斷、對賽道沒有完整掌握、最後判斷錯了（V2-V1＋A2-2/Q5，原文連續兩句）；漢米爾頓在賽道訪談說一開始就做錯決定、看著大家拉開（V2-H1），車隊聲明裡說一開始就因選胎陷入被動（V2-H8）；勒克萊爾說選哪種胎是一個很接近的判斷（V2-L2，可選）。同一天押乾胎的不只法拉利：Haas 的 Komatsu 說他們以為賽道會乾得快很多（V2-K），科拉平托說賽道那麼久才乾讓他和其他人意外（V2-C）——只當範圍說明，一句帶過，不展開別隊。③落後之後：漢米爾頓說決定做了就得承受（V2-H4）；大家超過他時，車隊提出進站——FIA 逐字稿記作 \"We stop\"（A15-4(FIA 版)），Reuters 記作 \"Should we stop?\"（V2-R2）；他說「等賽道變乾」（V2-H5）。FIA 記者會提問者說在無線電聽到他說 \"No, let's take the gamble.\"（V2-Q-radio，提問者陳述），他回了一句玩笑（V2-H6，可不用、不解讀）。F1.com 編輯：雙方來回之後決定堅持「賭注」（A1-gamble）、他「用他自己的話說」選擇賭一把（V2-E1，二選一即可）；Sky：他告訴維修站等一等（B7-sky-wait，可選）；Reuters 報導者：法拉利叫他回維修區換胎，他仍留在原策略（V2-R1，報導者框架，建議轉述，可選）。④之後：Vasseur 在同一份聲明說從那之後決定都對、策略照計畫奏效（V2-V2）；漢米爾頓也說進站與之後的策略都好（V2-H7）。｜歸屬：①③的對話內容全部掛漢米爾頓（FIA 逐字稿）或報導者；②的認錯掛 Vasseur／漢米爾頓本人。｜支撐：F-04、F-17、R10、上列 news_quotes id。｜反例／限定：Vasseur 認錯的範圍是發車格選胎，不是整場策略（V2-V2 同一份聲明肯定之後的決定）；漢米爾頓說「as a team」，選胎是共同決定，不寫成「策略組的錯」或「漢米爾頓的錯」；第 3–8 圈留在乾胎上的不只他（F-17：7 台），第 8–10 圈不進站的才只有他（第 2 節）。｜不寫：「法拉利策略組整體失誤」「法拉利沒有叫他進站」「漢米爾頓抗命」「車隊命令他進站被拒」「錯判積水」（本站措辭）；「如果選半雨胎他會贏／會跟維斯塔潘一戰」（反事實）；\"26 seconds\" 的解讀；「留在場上是對的／錯的」。",
+  "第 1 節：第 4 到第 8 圈，漢米爾頓每圈輸維斯塔潘的時間從 24 秒縮到 1 秒，但全油門占比每圈仍是四台裡最低｜主張（可量事實，三件並列，不寫哪件造成哪件）：①圈速：第 4 圈漢米爾頓（軟胎）比維斯塔潘（半雨胎）慢 24.044 秒，第 8 圈慢 0.989 秒、比安東內利與羅素各慢 0.253 秒（兩人第 8 圈同為 112.623）；第 3 圈慢 26.982 秒，但第 3 圈含起步（兩邊都含），只放表格、不進標題。②car_data（第 4–8 圈）：四台有 car_data 的車（漢米爾頓一台軟胎；維斯塔潘、安東內利、羅素三台半雨胎）裡，漢米爾頓的全油門占比每圈最低、煞車占比每圈最高（煞車占比至少高 0.112，第 8 圈 0.336 對羅素 0.224）。③累計：第 8 圈結束時他的過線時刻比該圈最先過線者（安東內利）晚 83.133 秒。｜支撐：R3_lap_times_s_laps_3_to_8、R3_ham_minus_ver_s_arith、R3_lap8_ham_minus_ant_and_rus_s_arith、R3_headline_rounding、R6_car_data_laps_4_to_8、R6_min_ham_brake_lead_over_others_arith、R1 第 8 圈。｜窮舉：telemetry_laps.csv 只收 VER／HAM／ANT／RUS，HAM 是其中唯一軟胎＝一台對三台，不是乾胎組對雨胎組；第 4–8 圈逐圈 HAM 全油門＝四台最小、煞車＝四台最大，皆成立（Terra R1 C 節重算一致）。｜表前句必帶（四個限定，缺一不可）：第 4–8 圈；一台軟胎對三台半雨胎；占比按時間算，不是按距離；只是特徵，不是抓地力、牽引力或電能的量測。｜反例：第 8 圈圈速差已只剩 0.253–0.989 秒，占比仍明顯不同——資料不告訴我們為什麼，正文只陳列、不解釋。｜新聞（背景，非因果）：A10-2/Q4 已移到第 0 節；A10-3（可選）；Q6（科拉平托講自己的乾胎經驗，可選，不寫成漢米爾頓的原因；與 V2-C 同段，全文只用一句）。｜v2 可加一句（資料，算術）：第 3–8 圈六圈的「漢米爾頓減維斯塔潘」加起來 82.485 秒（含第 3 圈起步；不含第 3 圈的第 4–8 圈為 55.503 秒），見 R3_sum_ham_minus_ver_laps_3_to_8_arith；只是加總，不寫成「胎種造成 82 秒」；漢米爾頓把選錯與被拉開連在一起的那句（V2-H1）放在第 0 節，本節不重引。｜通道限制（正文必寫一句）：公開 car_data 只有車速、轉速、檔位、油門 %、煞車開關五個通道，取樣間隔中位數約 0.24 秒；電能部署與主動空力 F1 不公開。｜不寫：第 3 圈的油門／煞車占比（切窗含起步前停在發車格上的資料）；「前 8 圈每一圈」；「第 8 圈乾胎已經比較快」「交叉點在第 8 圈」；「起跑軟胎讓他落後 83 秒」。",
+  "第 2 節：第 8 到第 10 圈仍在跑的 21 台車裡，只有漢米爾頓沒進站；完賽的 19 台裡，只有他整場只停 2 次｜主張（可量事實，三件並列）：①第 8–10 圈，仍在跑的 21 台（博塔斯第 7 圈退賽不計）中 20 台進站（霍肯伯格第 8 圈 16:51:07、貝爾曼第 10 圈 16:56:58、其餘 18 台第 9 圈），漢米爾頓沒有進站；他從第 1 圈起就在軟胎上。②他距該圈最先過線者的時間：第 8 圈 83.133 秒、第 12 圈（安全車隊列中）6.482 秒、第 14 圈（重新起跑後第一個完整綠旗圈）13.743 秒；第 12 圈過線順序第 15。③整場只進站 2 次（第 31、43 圈），完賽 19 台裡只有他是 2 次（其餘 3–7 次）。83.133→13.743 的縮小同時包含安全車讓隊伍收攏與前面各車都進站一次，不拆分、不說哪個占多少，也不寫成「沒進站讓他追回」。｜支撐：R4_results_and_pit_laps、R4_pit_stops_laps_8_to_10_local_time、R4_pit_in_laps_8_to_10_count（cars_still_running 21、cars_pitted 20、hamilton_pitted false）、F-12（SAFETY CAR DEPLOYED 16:52:16）、R1、R2 第 12 圈。｜窮舉：F-10、F-11。｜反例：霍肯伯格在安全車出動前約 1 分鐘進站（16:51:07 對 16:52:16），所以不寫「安全車期間只有漢米爾頓沒進站」。｜名次（本文不寫任何「計時資料最低第 N 名」）：勒克萊爾計時偏移使第 4–9 圈的計時名次不可用；漢米爾頓賽中低位只引媒體並各自歸屬——F1.com 報導者寫第一次安全車後他排第 15（A1-15th）；Sky 報導者寫 dropping to 18th（A3-18th/A15-1）、Reuters 報導者寫 falling as low as 18th（A15-1(Reuters)）；FIA 記者會提問者說 Running 17th（A7-8(提問者)，提問者陳述，不是漢米爾頓的話）。各家可能是不同時點，兩邊都寫、不裁決。第 12 圈第 15 的計時名次不受偏移影響，可與 F1.com 並寫。｜新聞（具名，v2）：A7-6、A15-4(FIA 版)、A1-gamble、B7-sky-wait、A2-2/Q5 都移到第 0 節，本節不重引。本節新增：第一次安全車那幾圈不進站——Motorsport Week 報導者寫「法拉利選擇不在安全車期間讓他進站」（V2-MW2，報導者框架；沒有任何當事人說法講安全車期間為什麼不進站，unanswerable），不得與第 0 節「大家超過他時車隊提出進站」那段對話接成同一件事（F1.com 把來回對話放在安全車之前）。安全車的作用：Sky 報導者寫第 9 圈的安全車讓隊伍重新收攏（V2-S1）、Reuters 報導者寫安全車也幫了他（V2-R3 或 V2-R4，擇一）——掛名照引；F1.com 編輯寫那段安全車是半雨胎起跑者換乾胎的理想時機（V2-F1R，可選，作為另一面）；緊接寫資料 83.133→6.482→13.743，並寫明各占多少拆不開。可選一句：第 3–8 圈留在乾胎上的有 7 台（F-17／V2-FIA1），所以「前 8 圈不換胎」不是他獨有，獨有的是第 8–10 圈不進站。｜不寫：「安全車救了他」寫成本站結論（Reuters 原句 \"came to his rescue\" 可掛名照引）；「法拉利在安全車期間不讓他進站是失誤」；「少停一站讓他贏回 X 秒」「靠第一次安全車少進一次站淨賺近 70 秒」「拒絕進站是正確決定」「安全車只解釋其中一段」「安全車救了他」。",
+  "第 3 節：第 12 到第 22 圈，漢米爾頓的過線名次從第 15 升到第 5｜主張（三件並列，不接成因果）：①名次：過線順序第 12 圈第 15、第 22 圈第 5（第 22–31 圈維持第 5）；其間上一圈在他前面、這一圈在他後面的車共 10 台次（R9），其中博托萊托第 15 圈那一格是博托萊托進站，不是場上超車。②配速：以第 14–30 圈、綠旗（TrackStatus=1）、非進出站圈計，漢米爾頓的中位圈速 102.386 秒，在 21 台（博塔斯已退賽）中排第 3，只輸維斯塔潘（101.481）與安東內利（101.936），比第 4 名羅素（102.544）快約 0.16 秒；維斯塔潘的中位圈速比他快 0.905 秒（兩個中位數相減，不是每圈差距）。③差距：他距維斯塔潘第 14 圈 13.743 秒、第 30 圈 29.005 秒。｜支撐：R2、R9、R4（BOR 第 15 圈進站）、R5、R5_ver_minus_ham_median_s_arith、R5_rus_minus_ham_median_s_arith、R1。｜窮舉：R5 21 人全列；R9：第 13 圈 ALB／PER／SAI、第 14 圈 STR、第 15 圈 BOR（進站）、第 16 圈 HUL、第 19 圈 LIN／PIA、第 20 圈 OCO、第 22 圈 LAW；其餘 9 台在該圈沒有進站紀錄（ALB 第 16 圈、PER 第 18 圈進站，在被超之後）。另一種篩選（再加 IsAccurate==True）21 人的樣本、排序、中位數不變（Terra R1 重算）。｜時間窗：名次上升的窗是第 12–22 圈，中位圈速與差距擴大的窗是第 14–30 圈；兩個窗不同，不得在同一句混用。中位圈速名次若要進 H2、表前句或結尾，必須帶齊「第 14–30 圈、綠旗、非進出站圈、21 台」，否則不放（本節 H2 預設不放）。｜反例：各人樣本 11–16 圈（HAM 16）；胎種胎齡不同（HAM 軟胎第 1–31 圈，其他人多在第 9 圈換新胎）→ 不寫「軟胎比較好」「明顯比其他人快」。｜新聞：A1-moves（F1.com 報導者敘述：超林德布拉德、奧康、勞森升第 5，與 R9 第 19／20／22 圈相容）；A3-blistering（可選，掛 Sky，緊接寫維斯塔潘、安東內利的中位圈速比他快）。v2 新增具名「有速度」：勒克萊爾說漢米爾頓的速度相當好（V2-L3，Reuters 引）、Vasseur 說「our pace was strong」（V2-V2 後半，車隊自評）——擇一或兩句，都要緊接 R5 的限定與「維斯塔潘、安東內利比他快」。｜不寫：「中位圈速把他帶到第 5」「第 14–30 圈跑出全場最頂級配速」；不混用 T7 口徑。",
+  "第 4 節：虛擬安全車出動前漢米爾頓排第 5、落後 29.4 秒；終點第 3 的兩格，一格是羅素停車退賽，一格是第 53 圈超過哈賈爾｜主張：第 42 圈（虛擬安全車前最後一個完整綠旗圈）過線第 5、落後維斯塔潘 29.442 秒；第 43 圈在虛擬安全車期間進站（17:54:26，介於 VSC DEPLOYED 17:53:01 與第二次 SAFETY CAR DEPLOYED 17:58:26 之間；整場第 2 次也是最後一次）；第 49 圈安全車隊列中落後 3.598 秒、仍第 5；羅素完成 49 圈後退賽（列入分類第 20），他第 50 圈起第 4；第 52 圈哈賈爾在前、第 53 圈他在前，第 53–55 圈第 3；終點落後維斯塔潘 4.919 秒（Jolpica）。29.442→3.598 只寫前後兩個數字，不寫成「第二次安全車讓他追回」。｜支撐：R1、R2（第 42–43 圈第 5、第 44 圈第 6 為進站週期、第 45–49 圈第 5、第 50–52 圈第 4、第 53–55 圈第 3）、R2_lap49_top5_order、R4_pit_stops_laps_41_to_45_local_time、F-12、F-02、Jolpica。｜窮舉：第 49 圈過線前五＝VER、ANT、RUS、HAD、HAM（勒克萊爾計時偏移校正前後都成立）；HAM 前面只有這四台，所以兩格＝RUS＋HAD。第 49 圈第 6 名不寫。｜同段背景（可一句）：維斯塔潘對安東內利第 42 圈 11.916 秒、第 49 圈 0.550 秒、終點 2.307 秒。｜羅素：原因只掛沃爾夫——轉述「沃爾夫對 Sky Sports F1 說是動力單元故障（PU failure）」（不加引號）＋引句 A14-1/Q7 verbatim；必寫「尚未檢查」；不寫根本原因與停車位置細節。｜哈賈爾被超原因兩說並陳、不裁決：哈賈爾本人說重新起跑後兩圈沒有動力（A2-8/Q9）；F1.com 編輯說他在最後一次重新起跑時為轉向不足所苦（A2-9）；沒有可用資料判定哪個原因成立、各占多少；Motorsport Week 的 battery 推論不入文。｜超車時點：計時資料第 52→53 圈；F1.com 報導者 A1-pass-HAD（第 1 彎）；Motorsport Week 只能轉述（第 53 圈、主直道；A8-7 不得以引號照抄）。主直道接第 1 彎，兩者相容，不裁決位置。｜v2 新增（媒體敘述，可選）：Reuters 報導者寫羅素退賽讓他有了上頒獎台的機會（V2-R5），與資料「兩格＝羅素＋哈賈爾」相容；掛名照引，不改寫成本站結論。｜可加一句（R8）：最快圈前 4 名＝終點前 4 名，都在最後一次重新起跑之後；只陳列，不推誰的車最快。｜不寫：「若沒有第二次安全車他不可能上頒獎台」「若羅素沒退賽漢米爾頓只會第 4」「哈賈爾沒電」「哈賈爾因故障無力抵抗被刷過」；「羅素因動力單元故障退賽」不得以本站事實口吻寫。",
+  "第 5 節（同隊對照，短節）：勒克萊爾也是軟胎起跑，第 3 圈就換半雨胎、全場進站 4 次，終點落後漢米爾頓 2.339 秒｜主張：兩台法拉利起跑都是軟胎（F-04）；勒克萊爾第 3 圈換半雨胎、第 9 圈換回乾胎，進站 4 次（第 3、9、28、43 圈）；漢米爾頓不換、停 2 次；終點勒克萊爾 +7.258、漢米爾頓 +4.919，相差 2.339 秒（Jolpica）。｜支撐：R4、F-05、R1_leclerc_minus_hamilton_final_s_arith。｜新聞：A1-ditch（報導者敘述）；A15-5（勒克萊爾本人的假設語氣，整句照引 verbatim＋verbatim2，標「他認為」）；勒克萊爾起跑後第一圈碰撞與前翼更換（v2 有逐字句）：勒克萊爾本人說因為穿乾胎而賽道仍很濕，第一圈和霍肯伯格碰撞（V2-L1）；Vasseur 說他第一圈後必須進站換前翼（V2-V3）；FIA 網站寫碰撞迫使他提早進站換前翼並改穿半雨胎（V2-FIA2）；F1.com 車隊頁編輯寫他「被叫進」換半雨胎（V2-E2），F1.com 賽報寫他「決定」換（A1-ditch）——兩種措辭說的是同一次進站，不是矛盾，不裁決誰做的決定。⚠️ 勒克萊爾與 Vasseur 說的「lap 1／first lap」是比賽第一圈，不是計時圈號；計時與 Jolpica 是第 3 圈進站，正文寫「起跑後第一圈（計時第 3 圈）」。｜作用：反例——留在乾胎上不是靠近頒獎台的唯一路線，第 0／2 節不能寫成「漢米爾頓的決定比較對」；勒克萊爾第 3 圈那次進站同時換前翼，也不能寫成單純的「換胎判斷」。｜資料限制：勒克萊爾的計時過線資料整場偏約 19.5 秒，本節不放任何勒克萊爾計時差距或計時名次，也不放校正後序列；第 29–43 圈胎種缺值不寫。｜不寫：「兩種策略結果一樣」「法拉利若兩台都不進站有望雙雙上台」。"
  ],
- "_structure_hint": "H2 用 required_sections 的文字（R1 修正版）。可由寫手縮短，但不得增刪限定（第 4–8 圈、第 8–10 圈仍在跑的 21 台、完賽 19 台、第 12–22 圈等），不得加入因果詞（讓他／帶他／把他帶到／救了）或排他詞（只解釋／唯一原因）；標題放結論不放推導、不得含指代詞。每節回答一個問題；第 5 節是短節、當反例用。論點句與骨架句的比較項、母集、反例檢查都在 section_claims；「本站」全文 ≤8 次（voice.forbidden_meta）。",
+ "_structure_hint": "v2：H2 用 required_sections 的文字，第 0 節是新 H2，放在原 H2① 之前（讀者先知道「錯在哪一步、誰說的」，再看資料怎麼量）。可由寫手縮短，但不得增刪限定（第 4–8 圈、第 8–10 圈仍在跑的 21 台、完賽 19 台、第 12–22 圈、Vasseur 具名、起跑選胎範圍等），不得加入本站因果詞（讓他／帶他／把他帶到／救了）或排他詞（只解釋／唯一原因）；具名來源自己說的因果可以掛名照引。標題放結論不放推導、不得含指代詞。每節回答一個問題；第 5 節是短節、當反例用。「本站」全文 ≤8 次（voice.forbidden_meta）。",
  "required_sections": [
-  "開頭：從具體數字切入——第 8 圈結束時，漢米爾頓的過線時刻比該圈最先過線者（安東內利）晚 83.1 秒（計時過線差，限定同段交代）；終點第 3（官方差距：落後維斯塔潘 4.919 秒）；一句話交代這一站是 Bahrain Grand Prix in Malaysia、2026 年 10 月 4 日辦在雪邦（不重講移師，可連 /articles/f1-2026-bahrain-gp-in-malaysia/）；開頭若提「只有他沒進站」「只停 2 次」，必須帶齊「第 8 到第 10 圈仍在跑的 21 台」「完賽的 19 台」，否則不提",
-  "資料來源段（正文前段，一個短段落，不開 H2）：數字來自 F1 官方即時計時公開存檔，賽果與進站取 Jolpica；車手與車隊的說法掛具名出處；本文不引積分",
+  "開頭（v2）：從「法拉利自己認的錯」切入——Vasseur 在車隊聲明說發車格上的選胎判斷錯了（具名，範圍＝起跑選胎）；接著給數字：第 8 圈結束時，漢米爾頓的過線時刻比該圈最先過線者（安東內利）晚 83.1 秒（計時過線差，限定同段交代）；終點第 3（官方差距：落後維斯塔潘 4.919 秒）；一句話交代這一站是 Bahrain Grand Prix in Malaysia、2026 年 10 月 4 日辦在雪邦（可連 /articles/f1-2026-bahrain-gp-in-malaysia/）；開頭若提「只有他沒進站」「只停 2 次」，必須帶齊「第 8 到第 10 圈仍在跑的 21 台」「完賽的 19 台」，否則不提；開頭不寫「策略失誤」作本站結論。",
+  "資料來源段（正文前段，一個短段落，不開 H2）：數字來自 F1 官方即時計時公開存檔，賽果與進站取 Jolpica；車手與車隊的說法來自 FIA 賽後記者會逐字稿、F1.com 車隊聲明彙編與具名媒體報導，各句掛出處；無線電只引記者會上提問者的轉述；本文不引積分",
+  "H2⓪（v2 新增；v2 R1 修正改為後半主題式）Vasseur 承認起跑選胎判斷錯；落後之後留在軟胎上，當事人怎麼說（Vasseur 具名＋「起跑選胎」範圍必帶；H2 不陳述「車隊提出進站、他說等」——那是發現型主張，只在內文寫並帶齊 \"We stop\"／\"Should we stop?\" 兩種記法；不寫「策略組失誤」「沒有召回」。本節第 4 段的 V2-V2 只用來界定 Vasseur 認錯止於發車格選胎，不展開後續賽程評價；節末以一句銜接進第 1 節：落後有多大、怎麼收攏，要回到逐圈計時看——不寫成賽後總結）",
   "H2① 第 4 到第 8 圈，漢米爾頓每圈輸維斯塔潘的時間從 24 秒縮到 1 秒，但全油門占比每圈仍是四台裡最低（表前句必帶：一台軟胎對三台半雨胎、占比按時間算、只是特徵）",
   "H2② 第 8 到第 10 圈仍在跑的 21 台車裡，只有漢米爾頓沒進站；完賽的 19 台裡，只有他整場只停 2 次",
   "H2③ 第 12 到第 22 圈，漢米爾頓的過線名次從第 15 升到第 5（中位圈速名次不進 H2；正文陳述時帶齊第 14–30 圈、綠旗、非進出站圈、21 台）",
   "H2④ 虛擬安全車出動前漢米爾頓排第 5、落後 29.4 秒；終點第 3 的兩格，一格是羅素停車退賽，一格是第 53 圈超過哈賈爾",
   "H2⑤（同隊對照，短節）勒克萊爾也是軟胎起跑，第 3 圈就換半雨胎、全場進站 4 次，終點落後漢米爾頓 2.339 秒",
-  "## 資料來源（分「本站自有資料」「官方文件與官方說明」「新聞與媒體報導」，每條可點擊；查證日 2026 年 10 月 5 日；**本站限制聲明**）"
+  "結尾（v2）：回到三件事——法拉利自己認的錯是起跑選胎（Vasseur 具名）；落後之後留在軟胎上是車隊提出進站、他說等（具名；帶 FIA \"We stop\"／Reuters \"Should we stop?\" 兩種記法，或改成不陳述該發現的寫法）；從第 8 圈結束時 83.1 秒到終點第 3，資料量得到配速、兩次安全車前後的差距與最後兩格（羅素退賽、第 53 圈超哈賈爾），各占多少與「沒有安全車會怎樣」查不到。不下「策略失誤」或「決定正確」的本站評價。",
+  "## 資料來源（分「本站自有資料」「官方文件與官方說明」「新聞與媒體報導」，每條可點擊；v2 新增 FIA 網站賽報（若用 V2-FIA1／V2-FIA2）；只列正文實際引用的來源；查證日 2026 年 10 月 5 日；**本站限制聲明**）"
  ],
  "data_sources": {
   "_rule": "URL 只准用這幾個；正文用到的每個數字都能回到 derived_values 或 verified_facts，每個引句都在 news_quotes。站內連結放 interlinks。",
@@ -44,7 +52,8 @@
   "skysports_race_report": "https://www.skysports.com/f1/news/13594860/bahrain-gp-in-malaysia-max-verstappen-wins-first-race-of-2026-f1-season-in-wild-rain-hit-grand-prix-as-lewis-hamilton-surges-back （Sky Sports 賽後報導）",
   "motorsportweek_race_report": "https://www.motorsportweek.com/2026/10/04/max-verstappen-wins-sepang/ （Motorsport Week 賽報；敘述內有記者推論，只引超車時點）",
   "reuters_via_thestar_hamilton": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery （Reuters Rohith Nair 稿，經 The Star 轉載）",
-  "copyright_note": "依 F1 公開計時資料自行計算；個別數字與引句在編輯內容裡附帶使用並掛出處，不提供資料下載、不使用官方 logo 與轉播截圖。"
+  "copyright_note": "依 F1 公開計時資料自行計算；個別數字與引句在編輯內容裡附帶使用並掛出處，不提供資料下載、不使用官方 logo 與轉播截圖。",
+  "fia_race_report": "https://www.fia.com/news/f1-verstappen-wins-dramatic-bahrain-grand-prix-malaysia-ahead-antonelli-and-hamilton （FIA 官方網站賽報，官方網站編輯敘述；v2 只引 V2-FIA1、V2-FIA2）"
  },
  "limits_statement_points": [
   "資料基準：F1 官方即時計時公開存檔（FastF1 3.8.3 解析）；賽果與進站取 Jolpica，抓取時間 2026-10-05，賽後若有罰秒名次可能改；Jolpica 的 time 欄是當地時間（台北＝雪邦＝UTC+8）。",
@@ -57,15 +66,16 @@
   "賽後調查三件（阿爾本 16:53:01 駕駛不穩定、霍肯伯格 17:35:56 不安全放行、諾里斯 18:08:52 第 1 彎駕駛不穩定）在證據裡都只有「賽後調查」，沒有裁決結果；本文不寫結論，也不寫成「未受罰」。",
   "羅素退賽但列入分類第 20 名（完成 49 圈）；第 50 圈是 FastF1 補的幽靈圈，不放任何羅素第 50 圈數字；退賽原因只掛沃爾夫的話。",
   "只收這一場；站上積分榜只到第 15 站，本文不寫積分、不寫積分榜推論；原定 56 圈變 55 圈的原因所有來源都沒寫，查不到。",
-  "新聞分級：賽會訊息與 FIA 賽後記者會逐字稿為一手；F1.com 賽報為官方網站敘述，車隊聲明為自我陳述；Reuters、Sky Sports、Motorsport Week 為媒體轉述；引句歸屬以 news_quotes 的 attribution_type 為準；兩說措辭不同不等於矛盾，並陳時要先確認說的是同一個量。"
+  "新聞分級：賽會訊息與 FIA 賽後記者會逐字稿為一手；F1.com 賽報為官方網站敘述，車隊聲明為自我陳述；Reuters、Sky Sports、Motorsport Week 為媒體轉述；引句歸屬以 news_quotes 的 attribution_type 為準；兩說措辭不同不等於矛盾，並陳時要先確認說的是同一個量。",
+  "v2 新增：車手與車隊的說法分級——FIA 賽後記者會逐字稿（含賽道訪談）為一手；F1.com「What the teams said」引言為車隊與車手的自我陳述、編輯摘要為官方網站敘述；FIA 網站賽報為官方網站敘述；Reuters、Sky Sports、Motorsport Week 為媒體轉述，其中「安全車幫了他」「法拉利叫他回維修區」等是報導者的敘述框架。起跑前車隊與漢米爾頓的對話只有漢米爾頓單方轉述。無線電不引音檔；記者會提問者轉述的無線電句只以「提問者說」呈現。同一段對話兩家記法不同（FIA 逐字稿 \"We stop\"、Reuters \"Should we stop?\"），兩種都寫、不裁決。"
  ],
  "must_not_claim": [
-  "「沒有安全車，漢米爾頓不可能上頒獎台」或「安全車救了他」作為因果結論——反事實。只能寫差距數字的前後變化（83.1→13.7、29.4→3.6）。",
+  "「沒有安全車，漢米爾頓不可能上頒獎台」或「安全車救了他」作為本站因果結論——反事實。只能寫差距數字的前後變化（83.1→13.7、29.4→3.6）。【v2 調整】報導者自己寫的因果可以掛名照引（Reuters \"safety cars also came to his rescue\"、Sky \"a timely first Safety Car on lap nine closed the pack back up\"），引完緊接資料與「各占多少拆不開」，不得改寫成本站敘述。",
   "「第一次安全車期間只有漢米爾頓沒進站」——HUL 在安全車出動前約 1 分鐘進站；要寫「第 8 到第 10 圈」。",
   "「漢米爾頓是全場唯一只停 2 次的車手」——母集要寫「完賽 19 台」（BOT 0 次）。",
   "「漢米爾頓是全場最快」「他的速度是全場最好的」——R5 VER、ANT 比他快。",
   "「軟胎在乾掉的賽道上比中性胎／硬胎快」「舊軟胎還比新胎快」——胎種、胎齡、車流都不同。",
-  "「漢米爾頓不進站的決定是對的／勒克萊爾的決定是錯的」——評價句；LEC 終點只差 2.339 秒，且有前翼更換。",
+  "「漢米爾頓不進站的決定是對的／勒克萊爾的決定是錯的」——評價句；LEC 終點只差 2.339 秒，且有前翼更換。【v2 補】也不寫「法拉利在安全車期間不讓他進站是失誤／是神來一筆」。",
   "「少停一站讓他多賺 X 秒」——沒有可分離的算術。",
   "「交叉點在第 8 圈」「第 8 圈乾胎已經比較快」——第 8 圈他仍比 VER 慢 0.989 秒，且只有四台可比。",
   "「漢米爾頓抓地不足所以油門踩不下去」「電能／主動空力影響他前段速度」——car_data 只當特徵；電能與主動空力不公開。",
@@ -78,9 +88,9 @@
   "「Ferrari 結束五站頒獎台荒」——只有 Sky 一家（B10），要嘛掛 Sky，要嘛不寫；本站未自行驗證前幾站。",
   "「法拉利整車／新規讓 Ferrari 在雨地或乾地占優」「Ferrari 低潮結束」——一場比賽，無資料。",
   "「漢米爾頓起跑慢是因為軟體故障」——FIA 聲明（A11）講的是編隊圈動力中斷，與正賽起跑表現之間沒有資料連結；漢米爾頓說的 \"my power didn't come back\" 是編隊圈（A7-5）。",
-  "「Ferrari 軟胎賭注失敗」的「失敗」寫成本站判斷——可引 Vasseur \"we got the call wrong\" 與 Motorsport Week 標題措辭（標明是媒體標題）。",
+  "「Ferrari 軟胎賭注失敗」的「失敗」寫成本站判斷——可引 Vasseur \"we got the call wrong\"（範圍：發車格選胎）與 Motorsport Week 報導者導言措辭 \"Ferrari's tyre gamble failed at the start\"（【v2 更正】是賽報導言，不是標題；標「報導者敘述」）。",
   "任何積分榜推論（本文不需要；若要寫，按 COMMON 走 Jolpica 並列待查核）。",
-  "「起跑軟胎讓他落後 83 秒」「軟胎讓他第 8 圈結束時落後 83.1 秒」——資料只量到第 8 圈結束時的過線時刻差，不能把差距歸給胎種（起步、路面乾燥、車流都混在一起）。",
+  "「起跑軟胎讓他落後 83 秒」「軟胎讓他第 8 圈結束時落後 83.1 秒」作為本站因果——資料只量到第 8 圈結束時的過線時刻差與每圈差，不能把差距歸給胎種（起步、路面乾燥、車流都混在一起）。【v2 調整】可以掛名照引漢米爾頓本人把兩者連在一起的那句（V2-H1 整句），也可以並列寫「Vasseur 承認選胎錯」與「第 3–8 圈每圈落後（加總 82.485 秒，含起步）」兩件事，但不用「所以／因此」把兩者接成本站因果。",
   "「安全車只解釋其中一段」「第一次安全車只解釋其中一段」「安全車救了他」——排他性與因果判斷；83.1→13.7 無法拆分。",
   "「中位圈速把他帶到第 5」「配速讓他升到第 5」——名次上升（第 12–22 圈，含博托萊托第 15 圈進站）與中位圈速第 3（第 14–30 圈）是兩個並列事實，窗也不同。",
   "「漢米爾頓靠第一次安全車少進一次站淨賺近 70 秒」——83.1→13.7 的縮小不是少停一站的算術。",
@@ -88,7 +98,19 @@
   "「法拉利若兩台都不進站，有望雙雙站上頒獎台」——延伸勒克萊爾的假設語氣；他的原話只能照引並標「他認為」。",
   "「漢米爾頓第 14–30 圈跑出全場最頂級的配速」——維斯塔潘、安東內利的中位圈速比他快，與羅素只差約 0.16 秒。",
   "「計時資料最低第 17 名」「計時資料最低第 18 名」——見上條，本文不寫任何計時資料最低名次。",
-  "「哈賈爾因故障無力抵抗被刷過」——加入未證實的因果與評價；只能兩說並陳。"
+  "「哈賈爾因故障無力抵抗被刷過」——加入未證實的因果與評價；只能兩說並陳。",
+  "【v2】「法拉利策略組整體失誤」「法拉利整場策略失誤」「法拉利策略一錯再錯」寫成本站結論——Vasseur 認錯的範圍是發車格選胎，同一份聲明說「From that moment on, we stayed calm, executed well and made the right decisions. The strategy worked as intended」；漢米爾頓也說 \"good strategy\"。可寫「法拉利自己承認起跑選胎判斷錯（Vasseur）」，不可寫成本站對整場策略的判決。",
+  "【v2】「法拉利沒有叫他進站」「車隊遲遲沒有召回」——與來源衝突：FIA 逐字稿裡漢米爾頓說大家超他時車隊說 \"We stop\"，Reuters 記作 \"Should we stop?\"；Reuters 報導者寫 \"despite Ferrari calling him back into the pits\"。正文寫「車隊提出進站，他說等」。",
+  "【v2】「漢米爾頓抗命」「拒絕車隊命令」「車隊命令他進站被他拒絕」——\"We stop\" 是指示還是提問，兩家記法不同（Reuters 是問句）；F1.com 寫的是「A bit of back-and-forth followed … before they settled」。只寫「車隊提出進站，他說等」。",
+  "【v2】「車隊只是問問，決定全在漢米爾頓」——同樣過度解讀；FIA 逐字稿 \"We stop\" 不是問句，漢米爾頓也說 \"as a team, we ended up taking that soft\"、\"we've made the decision and live with it\"。",
+  "【v2】「法拉利錯判積水」「誤判雨量」「誤判降雨」作為本站措辭——來源沒有這些詞；Vasseur 的話是 \"We did not have the full picture of the track\"，漢米爾頓轉述車隊的判斷是 \"it's definitely going to dry up real quick and maybe we're already in the crossover\"。要寫就照這兩句掛名，標明後者是漢米爾頓單方轉述。",
+  "【v2】「只有法拉利押乾胎」「法拉利獨排眾議押乾胎」——發車格上 13 台乾胎（9 軟胎＋4 中性胎）；F-04、F-17。",
+  "【v2】「前 8 圈只有漢米爾頓不換胎」——第 3–8 圈留在乾胎上的有 7 台（F-17）；只有他的是「第 8–10 圈仍在跑的 21 台裡沒進站」。",
+  "【v2】把 \"We stop\" 那段對話寫成發生在第一次安全車期間——漢米爾頓說的是「as everyone's overtaken me」，F1.com 把來回對話放在安全車之前；Motorsport Week 只寫「Ferrari opted not to pit Hamilton under the Safety Car」，沒有當事人說法講安全車期間為什麼不進站。兩件事分開寫。",
+  "【v2】「漢米爾頓在無線電說 \"No, let's take the gamble\"」寫成已查證的無線電內容——這是 FIA 記者會提問者的轉述；只能寫「提問者說聽到他在無線電上說…」。",
+  "【v2】「如果法拉利選半雨胎，漢米爾頓會贏／能和維斯塔潘一戰」——反事實；Sky \"felt he could have challenged Verstappen for the win had Ferrari not made the decision to start on slick tyres\" 是報導者轉述的反事實，Motorsport Week 標題 \"major Ferrari error that prevented Max Verstappen Sepang battle\" 也是反事實，兩者都不引。",
+  "【v2】「Vasseur 承認策略錯誤」——他說的是 \"we got the call wrong\"，對象是發車格選胎（前一句 \"The tyre choice on the grid was a difficult one\"）；寫「Vasseur 承認起跑選胎判斷錯」。",
+  "【v2 R1 修正】「所有人／所有車隊／場上所有人（全場、大家、整個圍場、各隊）都以為賽道會很快乾」及任何同義改寫——Komatsu 原文 \"We thought\" 只代表 Haas 團隊（V2-K），科拉平托原文 \"It surprised me, and some others\" 只代表他和其他一些人（V2-C）；兩句只作範圍說明（預期速乾的不只法拉利），不得擴及全場。發車格上 9 台半雨胎（F-04）可作對照事實，但不得寫成「半數車隊判斷對了」「另一半判斷錯了」或任何把胎種選擇換算成「判斷對錯的車隊數」的句子（F-17：正文只寫台數、不寫隊數）。"
  ],
  "verified_facts": {
   "F-01": "第 16 站 Bahrain Grand Prix in Malaysia，辦在雪邦國際賽道；正賽預定 2026-10-04 07:00Z（台北 15:00）；實際在 16:33（台北）由安全車領跑起跑，約 16:39 改為原地起跑；預定時間到 RACE START（16:33:00）差 93 分 0 秒，到 STANDING START 訊息（16:36:37）差 96 分 37 秒。來源：Jolpica 預定時間、賽會訊息（F1 存檔）、verify-data T8。賽會訊息不寫圈號。",
@@ -106,7 +128,8 @@
   "F-13": "第 14–30 圈綠旗（TrackStatus=1）、非進出站圈的中位圈速（秒）全場第 3：VER 101.481、ANT 101.936、HAM 102.386、RUS 102.544、HAD 102.643，其後 LEC 103.167 起至 PER 104.520（21 台，BOT 已退賽；各人樣本 11–16 圈；HAM 16 圈）。HAM 與第 4 名 RUS 只差 0.158 秒；VER 的中位比 HAM 快 0.905 秒（兩個中位數之差）。來源：R5 輸出。R5。",
   "F-14": "漢米爾頓過線順序第 13–22 圈由第 12 升到第 5；其間上一圈在他前面、這一圈在他後面的車共 10 台次：第 13 圈 ALB／PER／SAI、第 14 圈 STR、第 15 圈 BOR、第 16 圈 HUL、第 19 圈 LIN／PIA、第 20 圈 OCO、第 22 圈 LAW。BOR 第 15 圈是進站造成（Jolpica 第 15 圈進站），其餘 9 台該圈沒有進站紀錄（ALB 第 16 圈、PER 第 18 圈進站，都在被超之後）。來源：R9、R4 輸出。",
   "F-15": "本場最快圈（Jolpica）：VER 1:38.220（第 55 圈）、ANT 1:38.589（第 52 圈）、HAM 1:38.610（第 53 圈）、LEC 1:39.336（第 54 圈）；最快圈前 4 名＝終點前 4 名，且都出現在最後重新起跑之後。不寫最快圈加分（Jolpica 給維斯塔潘 25 分）。來源：R8 輸出。R8。",
-  "F-16": "car_data 第 4–8 圈（HAM 軟胎；VER、ANT、RUS 半雨胎）：HAM 全油門占比每圈都是四台最低、煞車占比每圈都是四台最高（第 4–8 圈 HAM 煞車占比高出另外三台至少 0.112，第 8 圈 0.336 對 RUS 0.224）。逐圈數值見 derived_values.R6。公開 car_data 只有車速、轉速、檔位、油門 %、煞車開關五個通道，取樣間隔中位數約 0.24 秒；占比按時間算，不是按距離；電能部署與主動空力 F1 不公開。來源：FastF1 car_data，thesis_recalc.py --car 輸出；verify-data T6 對 215 圈 0 差異。R6。"
+  "F-16": "car_data 第 4–8 圈（HAM 軟胎；VER、ANT、RUS 半雨胎）：HAM 全油門占比每圈都是四台最低、煞車占比每圈都是四台最高（第 4–8 圈 HAM 煞車占比高出另外三台至少 0.112，第 8 圈 0.336 對 RUS 0.224）。逐圈數值見 derived_values.R6。公開 car_data 只有車速、轉速、檔位、油門 %、煞車開關五個通道，取樣間隔中位數約 0.24 秒；占比按時間算，不是按距離；電能部署與主動空力 F1 不公開。來源：FastF1 car_data，thesis_recalc.py --car 輸出；verify-data T6 對 215 圈 0 差異。R6。",
+  "F-17": "v2：發車格上的 13 台乾胎（軟胎 9：HAM、LEC、GAS、BOR、HUL、BEA、BOT、PER、COL；中性胎 4：NOR、PIA、ALO、STR）去向——5 台在原地起跑前換半雨胎（PER 第 1 圈；PIA、BOR、STR、HUL 第 2 圈）；LEC 第 3 圈（起跑後第一圈）進站換半雨胎；其餘 7 台（HAM、ALO、BEA、BOT、COL、GAS、NOR）在第一次安全車之前都沒換半雨胎（BOT 第 7 圈退賽）。第 8–10 圈 ALO、COL、GAS、NOR（第 9 圈）、BEA（第 10 圈）換另一套乾胎；HAM 第 8–10 圈不進站、軟胎跑到第 31 圈。正文只寫「13 台」，不寫隊數。來源：laps.csv Compound 欄第 1–12 圈逐圈、Jolpica 進站（R4），v2 論點席重算（桌 reviews/v2-thesis-report.md 自查②）。"
  },
  "derived_values": {
   "_rule": "寫手不做算術：正文出現的每個數字都要能在本表或 verified_facts 找到。口徑：22 位車手、55 圈、圈號一律為計時圈號；過線順序＝同一圈各車過線時刻先後（FastF1 Time 欄）；距領先者＝該圈過線時刻減最先過線者；官方終點差一律用 Jolpica。第 1–2 圈、勒克萊爾的計時資料、羅素第 50 圈一律不用。標「算術」的值是兩個已列數字相減，公式寫在欄位旁。",
@@ -1161,6 +1184,31 @@
    "scheduled_race_start": "2026-10-04 15:00",
    "race_start_behind_safety_car": "2026-10-04 16:33",
    "standing_start_approx": "約 16:39（不寫到秒）"
+  },
+  "R3_sum_ham_minus_ver_laps_3_to_8_arith": "82.485（第 3–8 圈 R3_ham_minus_ver_s_arith 六個值相加：26.982＋24.044＋14.617＋10.760＋5.093＋0.989；含第 3 圈起步）；不含第 3 圈的第 4–8 圈為 55.503。是圈速差加總，不是原因；v2 論點席以 laps.csv 重算一致（另：第 8 圈結束時 HAM 對 VER 的過線時刻差 83.055，與加總差 0.570＝第 2 圈結束時兩人的過線差；第 2 圈資料不用，這兩個數字不進正文）。",
+  "R10_slick_starters_by_lap8": {
+   "slick_starters": 13,
+   "to_inters_before_standing_start": [
+    "PER",
+    "PIA",
+    "BOR",
+    "STR",
+    "HUL"
+   ],
+   "to_inters_lap3": [
+    "LEC"
+   ],
+   "stayed_on_slicks_until_first_sc_or_dnf": [
+    "HAM",
+    "ALO",
+    "BEA",
+    "BOT",
+    "COL",
+    "GAS",
+    "NOR"
+   ],
+   "stayed_on_slicks_count": 7,
+   "note": "BOT 第 7 圈退賽；ALO、COL、GAS、NOR 第 9 圈、BEA 第 10 圈換另一套乾胎；HAM 第 8–10 圈不進站（R4）。"
   }
  },
  "unanswerable": [
@@ -1176,7 +1224,12 @@
   "漢米爾頓編隊圈的動力中斷、FIA 軟體更新與正賽起跑表現之間有沒有連結（資料端量不到）",
   "漢米爾頓賽中最低名次（第 4–9 圈計時名次受勒克萊爾偏移影響不可用；媒體有第 17、第 18 兩種說法，只引媒體並各自歸屬）",
   "漢米爾頓全油門占比較低的原因（可能是車流、路線、取樣切圈，資料只描述，不解釋）；電能部署與主動空力",
-  "勒克萊爾第 29–43 圈的輪胎胎種（FastF1 缺值）"
+  "勒克萊爾第 29–43 圈的輪胎胎種（FastF1 缺值）",
+  "v2：法拉利維修牆在發車前的判斷依據（只有漢米爾頓單方轉述車隊說「會很快變乾、也許已到交叉點」；Vasseur 只說對賽道沒有完整掌握）",
+  "v2：\"We stop\"（FIA 逐字稿）與 \"Should we stop?\"（Reuters）哪個記法對、那是指示還是提問；那段對話發生在第幾圈",
+  "v2：第一次安全車期間為什麼沒讓他進站、是誰決定的（Motorsport Week 只寫 \"Ferrari opted not to pit Hamilton\"，沒有當事人說法）",
+  "v2：選胎與留場兩個決定在車隊內部由誰拍板、各占多少責任（漢米爾頓說 \"as a team\"）",
+  "v2：若法拉利起跑選半雨胎、或第 3–8 圈就換半雨胎，結果會怎樣（反事實）"
  ],
  "zh_names": {
   "_rule": "站規：文章用全形括號中英對照，首次出現時對照，之後可只用中文。譯名唯一資料源是 scripts/driver-zh.json／team-zh.json；沒有核定譯名的人名一律保留英文，不自創。",
@@ -1221,7 +1274,9 @@
    "Toto Wolff": "沃爾夫（Toto Wolff）",
    "Frédéric Vasseur": "English only，不自創譯名",
    "Laurent Mekies": "English only，不自創譯名",
-   "Nikolas Tombazis": "English only，不自創譯名"
+   "Nikolas Tombazis": "English only，不自創譯名",
+   "Andrew Shovlin": "English only，不自創譯名（Mercedes 賽道工程總監）",
+   "Ayao Komatsu": "English only，不自創譯名（Haas 領隊）"
   },
   "tyres": "軟胎（soft）、中性胎（medium）、硬胎（hard）、半雨胎（intermediate）、全雨胎（wet）；intermediate 一律寫半雨胎，不得寫中性胎（新聞包曾誤寫，verify-news 已更正）。",
   "other_terms": "「排位最佳圈」；「安全車」（SC）、「虛擬安全車」（VSC）；賽會訊息的起跑程序中止寫「起跑程序中止」，不寫「紅旗」。",
@@ -1250,7 +1305,7 @@
   "forbidden_meta": "gate 語言不進正文，「本站」全文 ≤8 次，不得有任何 H2 在講我們怎麼取材。❌「本站從公開存檔解析出的資料顯示，他在 205 km/h 踩到全油門」→ ✅「他在 205 km/h 踩到全油門」｜❌「兩家說法互相矛盾，本站兩邊都寫，不裁決：A 說…；B 說…」→ ✅「A 說…；B 說…。兩家說法不一樣。」｜❌「分析席 E 與指揮位兩套腳本重算一致」→ 這句只准出現在資料來源區塊。",
   "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』『那個彎』『這條線』『這一刻』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
   "tone": "小 Lin 說＋張泉靈。從具體的怪事切進去、短句、不在正文解釋方法論。",
-  "length": "正文（不含表格與資料來源）3,000–3,800 字（含標點）。"
+  "length": "正文（不含表格與資料來源）3,600–4,600 字（含標點）。v2 放寬理由：線上版正文約 3,690 字（去空白、含英文引句）；新增第 0 節 600–800 字、第 1–5 節具名補句合計 ≤300 字，扣掉搬到第 0 節的兩段（約 250 字），約 4,350–4,550；原五節既有限定一個都不刪。超過 4,600 先砍第 0 節的範圍句與標「可選」的引句。"
  },
  "checked_not_used": [
   "(b) 安全車把維斯塔潘 11.9 秒領先壓到 0.55 秒、終點 2.307 秒：數字成立，但屬賽果複述，降為第 4 節一句背景（THESIS ⑦）",
@@ -1271,10 +1326,17 @@
   "Motorsport Week 的 \"battery-starved\"：記者推論，電能部署 F1 不公開（verify-news A8-7）",
   "FIA 記者會提問者的「309 天」（實為 301 天）與「29 laps on the soft」；Al Jazeera 單一來源的「美以伊戰爭是移地原因」（A4-5 WEAKEN）",
   "可入文清單中與五節無關的引句：Q1（FIA 聲明，動力中斷）、Q2（Tombazis）、Q3（維斯塔潘起步）、Q8（諾里斯，須連賽後調查一起寫）、Q10（Mekies 首勝）、Q11（Pirelli 半雨胎）、備用安東內利句",
-  "Reuters 版漢米爾頓句 \"my heart just sank\"、\"I said, No…\"：與 FIA 逐字稿措辭不同（verify-news A15-3、A15-4），以 FIA 版為準",
   "R2 第 4–9 圈漢米爾頓計時名次、勒克萊爾偏移校正後的任何序列（R1 修：Terra B-01；本站不放校正後序列）",
   "R2 第 49 圈第 6 名（校正前後不同；只留前五，Terra B-02）",
-  "Motorsport Week 超車句的逐字引用（原句中段含 battery-starved，無法取得不含推論的連續片段；改為轉述，Terra C-02）"
+  "Motorsport Week 超車句的逐字引用（原句中段含 battery-starved，無法取得不含推論的連續片段；改為轉述，Terra C-02）",
+  "Reuters 版漢米爾頓句 \"my heart just sank\"、\"I said, No…\"：與 FIA 逐字稿措辭不同，以 FIA 版為準；【v2】只把 \"As everyone was overtaking me, they (Ferrari) said, 'Should we stop?'\" 收進 V2-R2，作為與 FIA \"We stop\" 並列的另一種記法，不單獨當主引。",
+  "【v2】Sky \"felt he could have challenged Verstappen for the win had Ferrari not made the decision to start on slick tyres\"：報導者轉述的反事實。",
+  "【v2】Motorsport Week 標題 \"Lewis Hamilton details major Ferrari error that prevented Max Verstappen Sepang battle\"：\"prevented … battle\" 是反事實；該篇的漢米爾頓引句與 FIA 逐字稿相同，以 FIA 為準。",
+  "【v2】F1.com 賽報轉錄的無線電（\"It's so slippery, guys\"、\"This tyre feels terrible\" 等）：派工單規定無線電不用；起跑前路面狀況改用 FIA 逐字稿裡他自己的轉述（V2-H2）。",
+  "【v2】McLaren 諾里斯 \"it was a collective decision, and in hindsight, it was the wrong one\"、Alpine 蓋斯利 \"It was a gamble which did not pay off\"、Briatore：同類自承，已用 Komatsu、科拉平托兩句說明範圍，不再堆。",
+  "【v2】F1.com 賽報 \"That aided Hamilton's recovery towards the points, as he inherited 10th\"（博托萊托與塞恩斯碰撞）：與第 3 節計時名次的對應要另核，v2 不用。",
+  "【v2】Motorsport Week 賽報「第 32 圈哈賈爾與漢米爾頓同時進站」、\"56-lap race\"：與 Jolpica（兩人第 31 圈）與實際 55 圈不符，不用。",
+  "【v2】Reuters 導言 \"Hamilton was one of the few drivers who switched from intermediate tyres to slicks\"：與 13 台乾胎起跑（F-04）不合，不用。"
  ],
  "news_quotes": [
   {
@@ -1285,7 +1347,7 @@
    "speaker": "漢米爾頓（Lewis Hamilton）轉述車隊說法",
    "verbatim": "Yeah, but because it's been so long, it's definitely going to dry up real quick and maybe we're already in the crossover.",
    "zh_gloss": "車隊認為等了這麼久，賽道一定很快變乾，「也許已經到了換胎交叉點」。",
-   "use_in_section": 1,
+   "use_in_section": 0,
    "qualifiers": "是漢米爾頓賽後轉述車隊在維修區的說法，不是車隊原話；不寫「交叉點在第 8 圈」「第 8 圈乾胎已經比較快」（must_not_claim 8）。"
   },
   {
@@ -1318,7 +1380,7 @@
    "speaker": "漢米爾頓（Lewis Hamilton）",
    "verbatim": "these two took off their blankets and they're on inters, we were in trouble.",
    "zh_gloss": "「這兩台」脫下輪胎保暖毯、穿的是半雨胎，「我們有麻煩了」。",
-   "use_in_section": 2,
+   "use_in_section": 0,
    "qualifiers": "\"these two\" 原句沒有點名，不補主詞；前一句是「在維修區出口尾端」。這是起跑前在維修區的描述。"
   },
   {
@@ -1329,8 +1391,8 @@
    "speaker": "漢米爾頓（Lewis Hamilton）",
    "verbatim": "as everyone's overtaken me, they're like, \"We stop,\" because I know we've already made another 26 seconds. What's the difference from that with one minute 40 or whatever I was down?",
    "zh_gloss": "大家都超過他的時候，車隊說「進站」；他說，他知道已經又花掉 26 秒，和落後一分四十秒左右相比有什麼差別。",
-   "use_in_section": 2,
-   "qualifiers": "以 FIA 逐字稿版本為準（verify-news A15-4）；不用 Reuters 版的 \"No, we've already waited another 26 seconds\"。\"26 seconds\" 指什麼原文沒說，照引不解讀；\"one minute 40\" 是他自己的概數。"
+   "use_in_section": 0,
+   "qualifiers": "以 FIA 逐字稿版本為準（verify-news A15-4）；不用 Reuters 版的 \"No, we've already waited another 26 seconds\"。\"26 seconds\" 指什麼原文沒說，照引不解讀；\"one minute 40\" 是他自己的概數。【v2】\"We stop\" 是車隊提出進站的 FIA 記法；Reuters 記作 \"Should we stop?\"（V2-R2），兩種都寫、不裁決；正文寫「車隊提出進站」。"
   },
   {
    "id": "A1-gamble",
@@ -1340,7 +1402,7 @@
    "speaker": "F1.com 編輯",
    "verbatim": "A bit of back-and-forth followed between Hamilton and the Ferrari pit wall, before they settled on sticking with their \"gamble\".",
    "zh_gloss": "漢米爾頓與法拉利維修站之間有一陣來回，之後雙方決定堅持他們的「賭注」。",
-   "use_in_section": 2,
+   "use_in_section": 0,
    "qualifiers": "報導者敘述；「gamble」是 F1.com 用的引號詞；不寫成「拒絕進站是正確決定」（must_not_claim 6）。"
   },
   {
@@ -1351,7 +1413,7 @@
    "speaker": "Sky Sports 記者",
    "verbatim": "having crucially told the Ferrari pit wall to wait for conditions to come back towards them on the drying track",
    "zh_gloss": "關鍵的是，他（漢米爾頓）告訴法拉利維修站等一等，等賽道變乾、狀況回到對他們有利。",
-   "use_in_section": 2,
+   "use_in_section": 0,
    "qualifiers": "報導者敘述，佐證漢米爾頓決定等；同句裡的 \"rather than cutting their loses by pitting for intermediates - as team-mate Leclerc had done\" 是 Sky 的敘述，引用要保留對照勒克萊爾的做法而不評價。"
   },
   {
@@ -1362,8 +1424,8 @@
    "speaker": "Fred Vasseur（Ferrari 領隊）",
    "verbatim": "We did not have the full picture of the track and, in the end, we got the call wrong.",
    "zh_gloss": "對賽道狀況沒有完整的掌握，最後判斷錯了。",
-   "use_in_section": 2,
-   "qualifiers": "指發車格上的選胎（前一句「The tyre choice on the grid was a difficult one」），不是漢米爾頓之後要不要進站；兩者不衝突。"
+   "use_in_section": 0,
+   "qualifiers": "指發車格上的選胎（前一句 V2-V1「The tyre choice on the grid was a difficult one」），不是漢米爾頓之後要不要進站；【v2 重驗】Vasseur 下一段（V2-V2）明說之後的決定都對、策略照計畫奏效，所以認錯範圍只到起跑選胎，不得擴寫成整場策略。"
   },
   {
    "id": "A1-15th",
@@ -1509,7 +1571,360 @@
    "use_in_section": 5,
    "qualifiers": "他本人的假設語氣，原句照引並標「他認為」；不替他補「正常」的定義；不寫成兩種策略結果一樣。完整句為 \"I honestly think that with a normal race we would have finished P3 and P4.\"（原文連續一句，中間沒有別人的敘述）（下一欄 verbatim2）；Reuters 轉載頁在 \"have\" 與 \"finished\" 之間夾一個零寬字元，所以逐字比對拆成兩段。",
    "verbatim2": "finished P3 and P4."
+  },
+  {
+   "id": "V2-H1",
+   "source": "FIA 賽後記者會逐字稿（賽道訪談段，Coulthard 主持）",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "Obviously, we had the wrong call at the beginning, which was so difficult, and I could see everyone just pulling away.",
+   "zh_gloss": "他說，一開始就做了錯的決定，很難熬，看著大家一個個拉開。",
+   "use_in_section": 0,
+   "qualifiers": "他用 \"we\"；把「做錯決定」和「大家拉開」連在一起的是他本人，不是本站；整句照引，不得截短放進標題當本站結論。"
+  },
+  {
+   "id": "V2-H2",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話（轉述起跑前對話）",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "I went into the pit lane, I looked at the ground, I was like, “It’s still wet.” I went to the pit wall and I was like, “It’s still wet.”",
+   "zh_gloss": "他說，他走進維修區看地面，說「還是濕的」；又走到維修牆說「還是濕的」。",
+   "use_in_section": 0,
+   "qualifiers": "漢米爾頓單方轉述起跑前的對話；車隊沒有公開同一段對話的說法。"
+  },
+  {
+   "id": "V2-H3",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "So, anyways, as a team, we ended up taking that soft",
+   "zh_gloss": "總之，整個團隊最後選了軟胎。",
+   "use_in_section": 0,
+   "qualifiers": "\"as a team\"——選胎是共同決定；不寫成「策略組的錯」或「漢米爾頓的錯」。"
+  },
+  {
+   "id": "V2-H4",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "so then we just had to stick with it. Like, we’ve made the decision and live with it.",
+   "zh_gloss": "所以只能堅持下去；決定做了，就得承受。",
+   "use_in_section": 0,
+   "qualifiers": "前半句 \"he didn't make it around on the formation lap\" 的 \"he\" 指誰原文不清，不引那半句。"
+  },
+  {
+   "id": "V2-H5",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "So I was just, “Let’s just wait it out for the track to dry.”",
+   "zh_gloss": "所以他就說：「等賽道變乾吧。」",
+   "use_in_section": 0,
+   "qualifiers": "緊接 A15-4(FIA 版)；是他回應車隊提出進站時的說法（他自述）。"
+  },
+  {
+   "id": "V2-Q-radio",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "提問者陳述（非車手的話）",
+   "speaker": "記者會提問者",
+   "verbatim": "We heard you on the radio saying, “No, let’s take the gamble.”",
+   "zh_gloss": "提問者說，在無線電上聽到他說：「不，我們賭一把。」",
+   "use_in_section": 0,
+   "qualifiers": "是提問者對無線電的轉述，沒有用音檔核對；正文寫「記者會上有提問者說…」，不寫成已查證的無線電內容。"
+  },
+  {
+   "id": "V2-H6",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "Yeah, not going to go to the casino with the guys.",
+   "zh_gloss": "他回答：「是啊，不會跟大家去賭場的。」",
+   "use_in_section": 0,
+   "qualifiers": "玩笑；不解讀成承認或否認（可不用）。"
+  },
+  {
+   "id": "V2-H7",
+   "source": "FIA 賽後記者會逐字稿",
+   "url": "https://www.fia.com/news/f1-2026-bahrain-grand-prix-malaysia-post-race-press-conference-transcript",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "Really good pit stops from my guys in the garage and then good strategy.",
+   "zh_gloss": "車庫的進站非常好，之後的策略也好。",
+   "use_in_section": 0,
+   "qualifiers": "他講的是追回來那段；與 Vasseur V2-V2 同向；不寫成「策略整場都對」的本站結論。"
+  },
+  {
+   "id": "V2-H8",
+   "source": "F1.com「What the teams said」（Ferrari 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車手的話（車隊聲明）",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "We found ourselves on the back foot very early on with the tyre choice",
+   "zh_gloss": "一開始就因為選胎陷入被動。",
+   "use_in_section": 0,
+   "qualifiers": "車隊聲明裡的自我陳述。"
+  },
+  {
+   "id": "V2-V1",
+   "source": "F1.com「What the teams said」（Ferrari 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車隊人員的話（車隊聲明）",
+   "speaker": "Fred Vasseur（Ferrari 領隊）",
+   "verbatim": "The tyre choice on the grid was a difficult one: in those conditions, you can only judge from what you see around you on the grid and in the pit lane.",
+   "zh_gloss": "發車格上的選胎很難：那種狀況下，只能看發車格和維修區周圍的情況來判斷。",
+   "use_in_section": 0,
+   "qualifiers": "與 A2-2/Q5 是原文連續兩句，可接著引（不加省略號、不跳句）。"
+  },
+  {
+   "id": "V2-V2",
+   "source": "F1.com「What the teams said」（Ferrari 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車隊人員的話（車隊聲明）",
+   "speaker": "Fred Vasseur（Ferrari 領隊）",
+   "verbatim": "From that moment on, we stayed calm, executed well and made the right decisions. The strategy worked as intended, our pace was strong",
+   "zh_gloss": "從那之後，我們保持冷靜、執行得好、做了正確的決定；策略照計畫奏效，我們的速度很強。",
+   "use_in_section": 0,
+   "qualifiers": "車隊自評；界定 Vasseur 認錯的範圍只到發車格選胎；後半 \"our pace was strong\" 可在第 3 節用，緊接 R5 限定。"
+  },
+  {
+   "id": "V2-V3",
+   "source": "F1.com「What the teams said」（Ferrari 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車隊人員的話（車隊聲明）",
+   "speaker": "Fred Vasseur（Ferrari 領隊）",
+   "verbatim": "Charles' race was made even more difficult by the need to stop after the first lap to replace the front wing following a collision",
+   "zh_gloss": "勒克萊爾因為碰撞，第一圈後必須進站換前翼，比賽更難。",
+   "use_in_section": 5,
+   "qualifiers": "\"first lap\" 是比賽第一圈，不是計時圈號（計時與 Jolpica 是第 3 圈進站）。"
+  },
+  {
+   "id": "V2-L1",
+   "source": "F1.com「What the teams said」（Ferrari 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車手的話（車隊聲明）",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "I collided with Nico [Hulkenberg] on lap 1 as I started on slicks and the track turned out to still be very wet.",
+   "zh_gloss": "他說，因為穿乾胎起跑而賽道其實還很濕，第一圈和霍肯伯格碰撞。",
+   "use_in_section": 5,
+   "qualifiers": "\"lap 1\" 是比賽第一圈；方括號是 F1.com 原文；賽會訊息有第 9 彎勒克萊爾與霍肯伯格事故紀錄，不寫圈號。"
+  },
+  {
+   "id": "V2-L2",
+   "source": "F1.com「What the teams said」（Ferrari 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車手的話（車隊聲明）",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "It was a close call which tyres to start on, with a mixed grid",
+   "zh_gloss": "發車格上胎種混雜，選哪種胎起跑是很接近的判斷。",
+   "use_in_section": 0,
+   "qualifiers": "可選；放第 0 節或第 5 節擇一。"
+  },
+  {
+   "id": "V2-L3",
+   "source": "Reuters（經 The Star 轉載）",
+   "url": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "Lewis had quite a good pace.",
+   "zh_gloss": "勒克萊爾說，漢米爾頓的速度相當好。",
+   "use_in_section": 3,
+   "qualifiers": "緊接 R5：中位圈速第 3、維斯塔潘與安東內利比他快；不寫成「全場最快」。"
+  },
+  {
+   "id": "V2-E1",
+   "source": "F1.com「What the teams said」（編輯摘要）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "報導者敘述",
+   "speaker": "F1.com 編輯",
+   "verbatim": "Lewis Hamilton opted to “gamble” in his own words and stayed out on the softs.",
+   "zh_gloss": "F1.com 編輯寫，漢米爾頓「用他自己的話說」選擇「賭一把」，留在軟胎上。",
+   "use_in_section": 0,
+   "qualifiers": "報導者敘述；\"in his own words\" 是編輯的說法，FIA 逐字稿裡 gamble 一詞只出現在提問者轉述的無線電句（V2-Q-radio）；與 A1-gamble 二選一即可。"
+  },
+  {
+   "id": "V2-E2",
+   "source": "F1.com「What the teams said」（編輯摘要）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "報導者敘述",
+   "speaker": "F1.com 編輯",
+   "verbatim": "with Charles Leclerc called in for inters",
+   "zh_gloss": "勒克萊爾被叫進維修區換半雨胎。",
+   "use_in_section": 5,
+   "qualifiers": "與 F1.com 賽報 A1-ditch 的「decided」措辭不同，說的是同一次進站，不是矛盾，不裁決誰做的決定。"
+  },
+  {
+   "id": "V2-K",
+   "source": "F1.com「What the teams said」（Haas 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車隊人員的話（車隊聲明）",
+   "speaker": "Ayao Komatsu（Haas 領隊）",
+   "verbatim": "We thought the track was going to dry a lot quicker, and that wasn’t the case.",
+   "zh_gloss": "Haas 的 Komatsu 說，他們以為賽道會乾得快很多，結果不是。",
+   "use_in_section": 0,
+   "qualifiers": "說的是 Haas 自己（貝爾曼軟胎起跑）；只用來說明「以為會很快變乾」不只法拉利，一句帶過，不寫成法拉利的原因。"
+  },
+  {
+   "id": "V2-C",
+   "source": "F1.com「What the teams said」（Alpine 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車手的話（車隊聲明）",
+   "speaker": "科拉平托（Franco Colapinto）",
+   "verbatim": "It surprised me, and some others, that the track took so long to dry.",
+   "zh_gloss": "科拉平托說，賽道那麼久才乾，讓他和其他一些人都意外。",
+   "use_in_section": 0,
+   "qualifiers": "同 V2-K，範圍說明；與 Q6 同一段，全文只用一句。"
+  },
+  {
+   "id": "V2-R1",
+   "source": "Reuters（經 The Star 轉載）",
+   "url": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery",
+   "attribution_type": "報導者敘述",
+   "speaker": "Reuters 記者（Rohith Nair）",
+   "verbatim": "to stick with his strategy despite Ferrari calling him back into the pits for",
+   "zh_gloss": "Reuters 報導者寫，儘管法拉利叫他回維修區換胎，他仍選擇留在原本的策略。",
+   "use_in_section": 0,
+   "qualifiers": "報導者框架（\"calling him back\" 比 FIA 逐字稿更強）；原句 \"he opted\" 與 \"to\" 之間、\"for\" 與 \"a tyre change\" 之間各有零寬字元，逐字比對只收中段；可選。",
+   "quote_policy": "建議轉述、不加引號；若加引號只能包 verbatim 這一段，不得補上 \"he opted\" 或 \"a tyre change\"。【v2 R1 修正】zh_gloss 的「換胎」是轉述用字（對應原文被零寬字元截掉的 a tyre change），正文不得對「換胎」或任何中文轉述加引號。"
+  },
+  {
+   "id": "V2-R2",
+   "source": "Reuters（經 The Star 轉載）",
+   "url": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery",
+   "attribution_type": "車手的話（Reuters 記法）",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "As everyone was overtaking me, they (Ferrari) said, 'Should we stop?'",
+   "zh_gloss": "Reuters 記下的版本是：大家都在超他時，車隊問「要進站嗎？」",
+   "use_in_section": 0,
+   "qualifiers": "與 FIA 逐字稿 A15-4 \"We stop\" 是同一段話的兩種記法；兩種都寫、不裁決；Reuters 版後半 \"No, we've already waited another 26 seconds\" 不引（與 FIA 版不同）。"
+  },
+  {
+   "id": "V2-R3",
+   "source": "Reuters（經 The Star 轉載）",
+   "url": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery",
+   "attribution_type": "報導者敘述",
+   "speaker": "Reuters 記者（Rohith Nair）",
+   "verbatim": "as the track dried up while safety cars also came to his rescue",
+   "zh_gloss": "Reuters 報導者寫，賽道變乾，安全車也幫了他。",
+   "use_in_section": 2,
+   "qualifiers": "報導者的因果框架，掛名照引；緊接資料 83.133→6.482→13.743 與「各占多少拆不開」；與 V2-R4 二選一。"
+  },
+  {
+   "id": "V2-R4",
+   "source": "Reuters（經 The Star 轉載）",
+   "url": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery",
+   "attribution_type": "報導者敘述",
+   "speaker": "Reuters 記者（Rohith Nair）",
+   "verbatim": "But as the track dried and safety car deployments played into his hands",
+   "zh_gloss": "Reuters 報導者寫，隨著賽道變乾、安全車出動對他有利。",
+   "use_in_section": 2,
+   "qualifiers": "同 V2-R3，二選一。"
+  },
+  {
+   "id": "V2-R5",
+   "source": "Reuters（經 The Star 轉載）",
+   "url": "https://www.thestar.com.my/sport/motorsport/2026/10/05/motor-racing-hamilton-says-039heart-sank039-as-tyre-gamble-backfired-before-stunning-sepang-recovery",
+   "attribution_type": "報導者敘述",
+   "speaker": "Reuters 記者（Rohith Nair）",
+   "verbatim": "Russell's retirement gave him a shot at a podium.",
+   "zh_gloss": "Reuters 報導者寫，羅素退賽讓他有了上頒獎台的機會。",
+   "use_in_section": 4,
+   "qualifiers": "報導者敘述，與資料「最後兩格＝羅素退賽＋超哈賈爾」相容；不改寫成本站結論，不寫「若羅素沒退賽」。"
+  },
+  {
+   "id": "V2-S1",
+   "source": "Sky Sports 賽後報導",
+   "url": "https://www.skysports.com/f1/news/13594860/bahrain-gp-in-malaysia-max-verstappen-wins-first-race-of-2026-f1-season-in-wild-rain-hit-grand-prix-as-lewis-hamilton-surges-back",
+   "attribution_type": "報導者敘述",
+   "speaker": "Sky Sports 記者",
+   "verbatim": "a timely first Safety Car on lap nine closed the pack back up",
+   "zh_gloss": "Sky 報導者寫，第 9 圈來得正是時候的第一次安全車，讓隊伍重新收攏。",
+   "use_in_section": 2,
+   "qualifiers": "\"lap nine\" 是報導者的圈數（領先者圈），不改寫成計時圈號；緊接資料與「各占多少拆不開」。【v2 R1 修正】原文是句中片段（skysports.txt:39 以 \"But a timely…\" 起頭），verbatim 已改為原文小寫 a 起的連續片段；正文若引英文，從小寫 a 起照抄，不得自行改成大寫 A。"
+  },
+  {
+   "id": "V2-S2",
+   "source": "Sky Sports 賽後報導",
+   "url": "https://www.skysports.com/f1/news/13594860/bahrain-gp-in-malaysia-max-verstappen-wins-first-race-of-2026-f1-season-in-wild-rain-hit-grand-prix-as-lewis-hamilton-surges-back",
+   "attribution_type": "報導者敘述",
+   "speaker": "Sky Sports 記者",
+   "verbatim": "That decision quickly proved flawed as Hamilton and Leclerc plummeted towards the back of the field",
+   "zh_gloss": "Sky 報導者寫，這個決定很快就證明有問題，漢米爾頓和勒克萊爾雙雙掉到後段。",
+   "use_in_section": 0,
+   "qualifiers": "\"That decision\" 指前一句「法拉利決定用乾胎起跑」；報導者判斷，可選。"
+  },
+  {
+   "id": "V2-MW1",
+   "source": "Motorsport Week 賽報（導言）",
+   "url": "https://www.motorsportweek.com/2026/10/04/max-verstappen-wins-sepang/",
+   "attribution_type": "報導者敘述（導言）",
+   "speaker": "Motorsport Week 記者（Anirban Aly Mandal）",
+   "verbatim": "Lewis Hamilton delivered an inspired comeback after Ferrari’s tyre gamble failed at the start to take the final podium place.",
+   "zh_gloss": "Motorsport Week 導言寫，法拉利的輪胎賭注在起跑時失敗，漢米爾頓之後一路追回最後一個頒獎台位置。",
+   "use_in_section": 0,
+   "qualifiers": "是賽報導言（正文第一段），不是標題；可選。"
+  },
+  {
+   "id": "V2-MW2",
+   "source": "Motorsport Week 賽報",
+   "url": "https://www.motorsportweek.com/2026/10/04/max-verstappen-wins-sepang/",
+   "attribution_type": "報導者敘述",
+   "speaker": "Motorsport Week 記者（Anirban Aly Mandal）",
+   "verbatim": "Ferrari opted not to pit Hamilton under the Safety Car.",
+   "zh_gloss": "Motorsport Week 報導者寫，法拉利選擇不在安全車期間讓漢米爾頓進站。",
+   "use_in_section": 2,
+   "qualifiers": "報導者框架；沒有當事人說法講安全車期間為什麼不進站；不得與「大家超他時車隊提出進站」接成同一件事。"
+  },
+  {
+   "id": "V2-FIA1",
+   "source": "FIA 官方網站賽報",
+   "url": "https://www.fia.com/news/f1-verstappen-wins-dramatic-bahrain-grand-prix-malaysia-ahead-antonelli-and-hamilton",
+   "attribution_type": "官方網站敘述",
+   "speaker": "FIA 網站編輯",
+   "verbatim": "Hamilton, meanwhile, remained committed to his initial strategy, as did several other drivers, including Fernando Alonso, Oliver Bearman and Valtteri Bottas.",
+   "zh_gloss": "FIA 網站寫，漢米爾頓堅持原本的策略，阿隆索、貝爾曼、博塔斯等幾位車手也一樣。",
+   "use_in_section": 2,
+   "qualifiers": "與 F-17（第 3–8 圈留在乾胎上 7 台）相容；可選。"
+  },
+  {
+   "id": "V2-FIA2",
+   "source": "FIA 官方網站賽報",
+   "url": "https://www.fia.com/news/f1-verstappen-wins-dramatic-bahrain-grand-prix-malaysia-ahead-antonelli-and-hamilton",
+   "attribution_type": "官方網站敘述",
+   "speaker": "FIA 網站編輯",
+   "verbatim": "Leclerc also made contact with Nico Hülkenberg’s Audi, forcing an early pit stop for a new front wing and a switch to intermediates.",
+   "zh_gloss": "FIA 網站寫，勒克萊爾和霍肯伯格的 Audi 碰撞，提早進站換新前翼，同時改穿半雨胎。",
+   "use_in_section": 5,
+   "qualifiers": "官方網站敘述；與 V2-L1、V2-V3 一致。"
+  },
+  {
+   "id": "V2-F1R",
+   "source": "F1.com 賽後報導",
+   "url": "https://www.formula1.com/en/latest/article/verstappen-wins-rain-hit-bahrain-gp-in-malaysia-over-antonelli-as-russell-retires-late-on.6qfpIHPch8mIVj2YgfHdCp",
+   "attribution_type": "報導者敘述",
+   "speaker": "F1.com 編輯",
+   "verbatim": "That Safety Car period represented the ideal window for the intermediate starters to switch to slick tyres, with those who lined up on slick compounds getting caught out",
+   "zh_gloss": "F1.com 編輯寫，那段安全車是半雨胎起跑者換乾胎的理想時機，乾胎起跑的人則吃了虧。",
+   "use_in_section": 2,
+   "qualifiers": "可選；作為安全車的另一面（對半雨胎起跑者有利），與 V2-S1／V2-R3 並陳，不裁決。"
+  },
+  {
+   "id": "V2-Shovlin",
+   "source": "F1.com「What the teams said」（Mercedes 車隊聲明）",
+   "url": "https://www.formula1.com/en/latest/article/what-the-teams-said-race-day-in-bahrain-2026.4kwHL7ygJLqVlSMHhAj6ce",
+   "attribution_type": "車隊人員的話（車隊聲明）",
+   "speaker": "Andrew Shovlin（Mercedes 賽道工程總監）",
+   "verbatim": "particularly in the opening stages when we had to make several important decisions around tyre choice and crossover points as the conditions evolved",
+   "zh_gloss": "Mercedes 的 Shovlin 說，尤其開賽階段，隨著狀況變化，得做好幾個關於選胎與交叉點的重要決定。",
+   "use_in_section": 0,
+   "qualifiers": "可選；Mercedes 是半雨胎起跑方，只說明那天每支車隊都在做同一題，不比較誰對。"
   }
  ],
- "thesis_claim_count": "3（①第 8 圈結束時落後 83.133 秒；②終點第 3；③四段可量、原因分不出）。四段內容只在 section_claims，每段只寫可量到的事實。"
+ "thesis_claim_count": "3。①【具名來源】起跑選胎判斷錯：Vasseur（車隊聲明）、漢米爾頓（FIA 記者會／車隊聲明）自承；範圍只到發車格選胎（Vasseur 同一份聲明說之後的決定是對的）。②【具名來源＋資料】留在軟胎上：車隊提出進站（FIA 逐字稿 \"We stop\"／Reuters \"Should we stop?\"），漢米爾頓說等；F1.com：雙方來回後決定堅持「賭注」；資料：第 8–10 圈仍在跑的 21 台裡只有他沒進站，軟胎跑第 1–31 圈。不評價對錯。③【資料＋具名媒體敘述】第 8 圈結束時 83.133 秒→終點第 3（+4.919）：資料＝第 14–30 圈綠旗中位圈速第 3、第 12 圈 6.482、第 49 圈 3.598、最後兩格＝羅素退賽＋第 53 圈超哈賈爾；Sky／Reuters 報導者把安全車寫成助力（掛名）；各段占比本站不拆。【並列事實，不是本站推論】起跑選胎（具名自承）與第 3–8 圈每圈落後（資料）發生在同一段時間；把兩者連在一起的是漢米爾頓本人（V2-H1 整句照引，不得用省略號截短）；本站不另做「胎種造成多少秒」的推論。"
 }
