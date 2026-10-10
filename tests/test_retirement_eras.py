@@ -246,7 +246,8 @@ class RetirementEraRenderTests(unittest.TestCase):
         # 2026-09-11 R13 已賽（義大利站）：db 推進到 R13，樣本同步推進。
         # 2026-09-21 R14 已賽（西班牙站）：db 推進到 R14，樣本同步推進。
         # 2026-09-27 R15 已賽（亞塞拜然站）：db 推進到 R15，樣本同步推進。
-        self.assertIn("2020 年代（截至 2026 R15）", html.unescape(self.section))
+        # 2026-10-10 R16 已賽（巴林站，馬來西亞雪邦）：db 推進到 R16，樣本同步推進。
+        self.assertIn("2020 年代（截至 2026 R16）", html.unescape(self.section))
 
 
 if __name__ == "__main__":

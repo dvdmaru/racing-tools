@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 248,
+  "total": 249,
   "Races": [
     {
       "season": "2015",
@@ -14677,11 +14677,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "16",
+      "url": "https://en.wikipedia.org/wiki/2026_Bahrain_Grand_Prix",
+      "raceName": "Bahrain Grand Prix in Malaysia",
+      "Circuit": {
+        "circuitId": "sepang",
+        "url": "https://en.wikipedia.org/wiki/Sepang_International_Circuit",
+        "circuitName": "Sepang International Circuit",
+        "Location": {
+          "lat": "2.76083",
+          "long": "101.738",
+          "locality": "Kuala Lumpur",
+          "country": "Malaysia"
+        }
+      },
+      "date": "2026-10-04",
+      "time": "07:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "1",
+          "positionText": "1",
+          "points": "25",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": "1",
+          "laps": "55",
+          "status": "Finished",
+          "Time": {
+            "millis": "6434808",
+            "time": "1:47:14.808"
+          },
+          "FastestLap": {
+            "rank": "1",
+            "lap": "55",
+            "Time": {
+              "time": "1:38.220"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-09-27T00:16:51.714929+00:00",
+    "fetched_at": "2026-10-10T08:21:09.523498+00:00",
     "backfill": true
   }
 }
