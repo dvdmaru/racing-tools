@@ -15,16 +15,16 @@
 
 ## 最新文章
 
+- [F1 輪胎歸還表：配到的乾胎，週末會被分批收走](https://racing.twtools.cc/articles/f1-101-tyre-set-returns/)（2026-10-10）
+- [領隊、技術總監要向 FIA 登記？七個職位與罰款對象](https://racing.twtools.cc/articles/f1-101-registered-roles/)（2026-10-10）
+- [賽會幹事能開多少罰款、不能判什麼？F1 處罰的機關分工](https://racing.twtools.cc/articles/f1-101-fines-sanctions/)（2026-10-10）
+- [逐站加總分數最多，卻沒拿冠軍：1964、1988 年的 F1 積分榜](https://racing.twtools.cc/articles/f1-101-dropped-scores/)（2026-10-10）
 - [Vasseur 承認起跑選胎判斷錯的那場雪邦正賽，漢米爾頓怎麼拿到第 3 名？](https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/)（2026-10-05）
 - [保溫毯條文沒寫幾度，寫的是 96 小時紀錄](https://racing.twtools.cc/articles/f1-101-tyre-handling/)（2026-10-05）
 - [F1 車手在賽道上棄車後要走到碎片圍網後面，運動規章 10 月才寫明](https://racing.twtools.cc/articles/f1-101-stopped-car/)（2026-10-05）
 - [F1 車隊冠軍獎盃只能保管一段時間，期滿原件要還給 FIA](https://racing.twtools.cc/articles/f1-101-season-framework/)（2026-10-05）
 - [F1 新規通過了，哪天開始算數？最早生效日分三層](https://racing.twtools.cc/articles/f1-101-rule-changes/)（2026-10-05）
 - [F1 車體材料白名單：不在清單、不屬例外的不能用，在清單上不等於能用](https://racing.twtools.cc/articles/f1-101-materials/)（2026-10-05）
-- [雪邦排位前八名：維斯塔潘領先 0.298 秒，第 2 到第 8 名七台只差 0.443 秒](https://racing.twtools.cc/articles/f1-2026-r16-sepang-qualifying-gaps/)（2026-10-04）
-- [F1 轉隊一定要冷靜期嗎？規章只在「有合作的兩隊」之間寫了這一條](https://racing.twtools.cc/articles/f1-101-personnel-movement/)（2026-10-03）
-- [技術指令「僅供參考」？FIA 文件有沒有約束力，規章這樣分](https://racing.twtools.cc/articles/f1-101-fia-documents/)（2026-10-03）
-- [F1 超級執照的條文沒有寫體檢，車手的健康關卡在另一張執照](https://racing.twtools.cc/articles/f1-101-driver-medical/)（2026-10-03）
 
 ## 文章與更新
 
@@ -38,7 +38,7 @@
 
 ## 歷年賽季（百科）
 
-- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 418 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
+- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 419 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
 - https://racing.twtools.cc/seasons/2026/
 - https://racing.twtools.cc/seasons/2026/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2026/drivers/max-verstappen/
@@ -68,6 +68,7 @@
 - https://racing.twtools.cc/seasons/2026/rounds/13/
 - https://racing.twtools.cc/seasons/2026/rounds/14/
 - https://racing.twtools.cc/seasons/2026/rounds/15/
+- https://racing.twtools.cc/seasons/2026/rounds/16/
 - https://racing.twtools.cc/seasons/2025/
 - https://racing.twtools.cc/seasons/2025/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2025/drivers/max-verstappen/

@@ -1,0 +1,168 @@
+---
+slug: f1-101-registered-roles
+type: "guide"
+date: "2026-10-10"
+topic_ref: "manual"
+title: "領隊、技術總監要向 FIA 登記？七個職位與罰款對象"
+subtitle: "國際運動規則（ISC）2.6.4 列出的登記職位、每年續登與異動更新，以及這份登記名單與個別罰款在規章裡的關係。"
+lede: "ISC 2.6.4.a 規定，在 F1 世界錦標賽中代表參賽者執行領隊、技術總監等職位「全部或一部分」的任何人，都必須向 FIA 登記。條文列了七個具名職位，另有一款授權款可以再增列職位，授權款本身沒有列出是哪些。"
+---
+
+# 領隊、技術總監要向 FIA 登記？七個職位與罰款對象
+
+國際運動規則（ISC）2.6.4.a 替執行長和領隊各寫了一句定義。
+
+執行長是負責「最重要的執行決策」的人。領隊是負責「最重要的決策」的人。兩句只差一個 executive，條文沒有排出誰高誰低。
+
+這兩句出自一份登記名單，不是組織圖。名單要向 FIA 提交，每年續登；參賽者組織變動使名單跟著變動時，要在 7 天內通知 FIA、交出更新名單，並繳回離任者的證書。
+
+## ISC 2.6.4 列出的七個職位與第 viii 款
+
+2.6.4.a 列出的七個職位是：執行長（Chief executive officer）、財務長（Chief financial officer）、領隊（Team principal）、運動總監（Sporting director）、技術總監（Technical director）、車隊經理（Team manager）、比賽工程師（Race engineer）或同等職位。
+
+「全部或一部分」這個寫法，讓一人兼數職成為可能的讀法。ISC 2.6.4 全條沒有「不得兼任」的句子，也沒有逐字寫「可以兼任」。唯一被數字固定的是比賽工程師：每位參賽者兩位。所以七個職位不等於七個人。
+
+第 viii 款是授權款。它寫適用的規章可以規定，其他職位的額外人員也必須登記。這款沒有列出是哪些職位。
+
+## 七個職位的三種定義句型
+
+七句定義的寫法分三種。這是本站的自行歸類，不是條文的分類。
+
+<figure class="diagram">
+<svg viewBox="0 0 420 482" role="img" aria-label="ISC 2.6.4 的車隊職位卡片">
+<title>ISC 2.6.4 的車隊職位卡片</title>
+<desc>八張卡片依 ISC 2.6.4.a 的款次由上到下排列。執行長與領隊屬句型二，定義是最重要的（執行）決策。財務長、運動總監、技術總監屬句型一，定義是確保參賽者遵守財務、運動、技術規章。車隊經理與比賽工程師屬句型三，分別是賽事現場的營運責任與對賽車負責，比賽工程師每隊兩位。第 viii 款畫成虛線框，是授權款，內容本機查無。卡片之間沒有連線，也沒有分層；本機規章文字內查無上下級條文。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="474" rx="10"/>
+<rect class="d-surface d-line-s" x="14" y="18" width="392" height="44" rx="6"/>
+<rect class="d-fg" x="14" y="18" width="8" height="44"/>
+<text class="d-fg" x="32" y="37" font-size="15">i　執行長 Chief executive officer</text>
+<text class="d-dim" x="32" y="55" font-size="14">句型二：最重要的執行決策</text>
+<rect class="d-surface d-line-s" x="14" y="68" width="392" height="44" rx="6"/>
+<rect class="d-accent" x="14" y="68" width="8" height="44"/>
+<text class="d-fg" x="32" y="87" font-size="15">ii　財務長 Chief financial officer</text>
+<text class="d-dim" x="32" y="105" font-size="14">句型一：確保遵守財務規章</text>
+<rect class="d-surface d-line-s" x="14" y="118" width="392" height="44" rx="6"/>
+<rect class="d-fg" x="14" y="118" width="8" height="44"/>
+<text class="d-fg" x="32" y="137" font-size="15">iii　領隊 Team principal</text>
+<text class="d-dim" x="32" y="155" font-size="14">句型二：最重要的決策</text>
+<rect class="d-surface d-line-s" x="14" y="168" width="392" height="44" rx="6"/>
+<rect class="d-accent" x="14" y="168" width="8" height="44"/>
+<text class="d-fg" x="32" y="187" font-size="15">iv　運動總監 Sporting director</text>
+<text class="d-dim" x="32" y="205" font-size="14">句型一：確保遵守運動規章</text>
+<rect class="d-surface d-line-s" x="14" y="218" width="392" height="44" rx="6"/>
+<rect class="d-accent" x="14" y="218" width="8" height="44"/>
+<text class="d-fg" x="32" y="237" font-size="15">v　技術總監 Technical director</text>
+<text class="d-dim" x="32" y="255" font-size="14">句型一：確保遵守技術規章</text>
+<rect class="d-surface d-line-s" x="14" y="268" width="392" height="44" rx="6"/>
+<rect class="d-dim" x="14" y="268" width="8" height="44"/>
+<text class="d-fg" x="32" y="287" font-size="15">vi　車隊經理 Team manager</text>
+<text class="d-dim" x="32" y="305" font-size="14">句型三：賽事現場的營運責任</text>
+<rect class="d-surface d-line-s" x="14" y="318" width="392" height="44" rx="6"/>
+<rect class="d-dim" x="14" y="318" width="8" height="44"/>
+<text class="d-fg" x="32" y="337" font-size="15">vii　比賽工程師 Race engineer（每隊兩位）</text>
+<text class="d-dim" x="32" y="355" font-size="14">句型三：對參賽者的賽車負責</text>
+<rect class="d-surface d-line-s" x="14" y="368" width="392" height="44" rx="6" stroke-dasharray="6 4"/>
+<text class="d-fg" x="32" y="387" font-size="15">viii　授權款</text>
+<text class="d-dim" x="32" y="405" font-size="14">內容本機查無</text>
+<text class="d-fg" x="20" y="436" font-size="14">色條：句型一＝確保遵守規章（自行歸類）</text>
+<text class="d-fg" x="20" y="456" font-size="14">排列依款次，不代表上下級</text>
+</svg>
+<figcaption>圖：依 ISC 2.6.4.a（2026-06-26 版）整理的職位卡片；色條表示定義句型（自行歸類），排列不代表上下級。本站示意圖，非依比例、非實測。</figcaption>
+</figure>
+
+只有財務長、運動總監、技術總監三句，寫成 responsible for ensuring that the Competitor complies with（確保參賽者遵守某部規章）。其餘四句不是這個句型：執行長與領隊是開頭那兩句，車隊經理是賽事現場的營運責任，比賽工程師是對賽車負責。
+
+七句定義都在寫「負責什麼」。在本站取得的 14 份規章文字（ISC 與 Section A 到 F，含 Appendix H、L）裡，查無條文規定這些職位之間誰管誰。Section F 只在人員於受限 F1 人力與受限非 F1 人力之間轉調時，要求新合約寫明該員在組織層級中的位置。所以這份名單讀不出組織圖。
+
+運動規章的媒體活動條款也點過其中三個職稱。Section B 的 B10.1.2 f ii 要求每個參賽者在錦標賽期間，備有至少 4 位資深代表，參與 f 款那段在 FP1 預定結束一小時後舉行的媒體活動；這份可參與的代表名單最少含執行長（有這個職位的車隊才算）、領隊、技術總監。ISC 2.6.4 是另一份文件，把七個職位逐一列出。
+
+## 報名表格、續登與異動更新（2.6.4.d、f、i）
+
+報名時，參賽者要把登記人員的名單，簽署專用表格後交給 FIA（2.6.4.d）。Section A 的附錄 A4B 就是這份車隊關鍵人員登記表。它有 8 個欄位，對應 2.6.4.a 的七個職位，比賽工程師占兩欄。新車隊報名的整體流程見〈[新車隊尚未參賽，規章就先管了它整整一年](/articles/f1-101-new-entrant/)〉。
+
+每位登記者會經由參賽者領到登記證書，證書所有權屬於 FIA（2.6.4.e）。
+
+續登每年一次，條文寫的是「自 1 月 1 日起」（2.6.4.f），沒有寫截止日。
+
+名單異動才是整季都可能要處理的事。組織變動使名單變動時，參賽者要在變動後 7 天內通知 FIA，同一期限內交出更新名單，並繳回已離任者的證書（2.6.4.i）。條文沒有註明 7 天是曆日還是工作日。
+
+違反 ISC 12.2 的人，FIA 可以拒絕或撤銷其登記，但必須說明理由（2.6.4.g）。12.2.1 列出的違規，從 a 款一路列到 q 款；前導句另寫明，先前或後續條文特別提到的違規，也算違反 12.2。
+
+## 登記名單與 Key Individual
+
+Section A 的詞彙表有個詞叫 Key Individual F1 Team Member。定義的原文寫的是：依 Appendix A5 與 ISC 2.6.4 須登記為車隊關鍵人員的人，加上車隊的每位 Declaration Signatory（財務規章聲明簽署人）。
+
+但 A5 是 PU 廠商的表格，車隊用的是 A4B，定義為什麼引 A5、這半句該怎麼讀，條文沒有交代。所以本文只採其中「依 ISC 2.6.4 須登記的人」與 Declaration Signatory 兩部分；這不是定義的全部範圍。
+
+Declaration Signatory 指車隊的領隊、執行長、財務長、技術總監或同等職位，再加上其他代表車隊或車隊的最終控制方（Ultimate Controlling Party）簽財務規章聲明的人。所以光看本文採用的這兩部分，Key Individual 的範圍就比七個職位大，多了其他簽聲明的人。反過來，Declaration Signatory 只點名四個職位，和七個職位不是同一組人。
+
+Section D（Issue 08）把 CEO、CFO、Team Principal、Technical Director 四個職稱，定義成車隊在該財務報告期間向 FIA 提交的人員登記中指定的人，聲明也要由這四人簽署。
+
+所以兩邊接上登記名單的方式不同。對 Key Individual，登記名單是定義的依據之一，但不是唯一依據，另含 Declaration Signatory。對 Section D 的四個職位，條文只看車隊提交的人員登記裡指定的是誰，沒有寫第二個依據。
+
+## 員工違規的車隊責任與個人責任
+
+Section A 的 A1.4.1 寫：車隊、PU 廠商與其他受 F1 規章拘束的實體，對代表其行事者（含 Personnel，以及代表其法律集團（Legal Group）內任何實體行事的人）造成的 F1 規章不合規，負嚴格責任（strictly liable）。同一款開頭標明「與 ISC 9.15 一致」。
+
+ISC 9.15 用的字不一樣。9.15.1 寫參賽者對代表其參與或提供服務者的作為與不作為，是 responsible，點名的人包括員工、車手、機械師、顧問與服務提供者。9.15.2 又寫這些人本身也「同樣」要為違反規定負責（equally responsible）。
+
+個人層面，A1.4.2 先劃界：F1 規章下除非明文規定，沒有個人責任。規章對個人設有具體義務時，個人可能要為違反該義務個別負責，而且是在相關車隊、PU 廠商或其他實體的嚴格責任之外另加。
+
+所以「車隊負責」與「個人不負責」是兩回事。
+
+人員轉隊時的雙層責任，見〈[F1 轉隊一定要冷靜期嗎？規章只在「有合作的兩隊」之間寫了這一條](/articles/f1-101-personnel-movement/)〉。
+
+## 個別罰款開給誰？
+
+A1.4.3 管的是罰款（Financial Penalty）。除了車手，或 F1 車隊／PU 廠商的 Key Individual 以外，個人不會被開 Financial Penalty；Key Individual 的部分，限於與其個人行為有關、涉及 Section A 與 ISC 規定的違規。其他情形下，個人的特定行為若適用 Financial Penalty，罰款開給個人所屬的車隊、PU 廠商或其他組織。
+
+A1.4.3 寫的詞是 Key Individual，詞彙表定義的是 Key Individual F1 Team Member，兩者是否同一詞，條文沒有明說。
+
+這條只管罰款。A7.12.1 寫，ISC 與 FIA 司法紀律規則所列的一般處分適用所有 Covered Person，但受 A1.4.2 的個人責任限制；F1 規章若規定某類違規適用特定處分，則不在此列。這款也寫明受 A7.12.2、A7.12.3 規範：A7.12.2 寫 Covered Person 承認或被認定違反財務規章義務時，適用（shall）財務規章所定的處分。在一般處分之外，Covered Person 承認或被認定違反其 F1 規章義務時，A7.12.3 另列了可在錦標賽範圍內施加的其他處分，例如在指定期間內拒發或取消 FIA 登記；寫法是 may。罰款依 ISC 12.8 繳納（F1 規章另有規定或裁判庭另有決定者除外），上訴期間暫停支付；在這個前提下，遲繳罰款會使當事 Covered Person 自動喪失參賽權直到繳清，並加計利息（A7.12.8）。
+
+公開點名有另一條。A8.2.1 寫 FIA 在預先通知相關個人之後，可以（may）就 F1 規章相關事項公開報導列出的事項，不含機密資訊；列出的事項中，i 款說涉案人員姓名的提及，嚴格限於 Key Individual（F1 車隊與 PU）與車手。a 款明文受 i 款限制，b 到 h 款沒有逐款寫明，A8.2.3 另外保留 ISC 允許或強制的公開。這句話不能反推成「其他人一律不得點名」。
+
+A8.2.1 另受 A8.2.2 限制：Covered Person 是自然人、被指違反財務規章的案件，只能在終局上訴決定作出、上訴權失效，或簽訂違規承認協議（Accepted Breach Agreement，ABA）或和解協議之後公開報導；除 A8.2.8 另有規定外，這類案件不另作其他公開。
+
+車手不在登記名單上，Key Individual 又另含 Declaration Signatory。所以登記名單本身，不足以單獨界定罰款與點名的範圍。
+
+## 常見問題
+
+### 一個人可以同時擔任兩個職位嗎？
+
+ISC 2.6.4.a 的前導句寫代表參賽者執行這些職位「全部或一部分」的人都要登記，ISC 2.6.4 全條沒有禁止兼任的句子。所以兼任是可能的讀法，不是條文原話。比賽工程師條文明寫每位參賽者兩位。
+
+### 換了技術總監要多久內通知 FIA？
+
+組織異動使名單變動後 7 天內，要通知 FIA、交出更新名單，並繳回離任者的證書（2.6.4.i）。條文沒有註明 7 天是曆日還是工作日。
+
+### 領隊和執行長誰比較大？
+
+兩者的定義都是「最重要的」決策，執行長多一個 executive，條文沒有排出高低。在本站取得的 14 份規章文字裡，查無這些職位之間的上下級條文。這不代表各車隊實際怎麼運作。
+
+### 車隊員工違規，罰款開給誰？
+
+A1.4.3：除了車手，或 F1 車隊／PU 廠商的 Key Individual（限與其個人行為有關、涉及 Section A 與 ISC 規定的違規）以外，個人不會被開 Financial Penalty，其他情形下適用的罰款開給個人所屬的車隊、PU 廠商或其他組織。這條只管罰款；Covered Person 承認或被認定違反其 F1 規章義務時，A7.12.3 仍可（may）在一般處分之外，於錦標賽範圍內施加指定期間內拒發或取消 FIA 登記等其他處分。
+
+## 接下來看什麼
+
+- [賽道旁那排螢幕後面是誰：一支 F1 車隊怎麼分工](/articles/f1-101-team-roles/)：車隊現場分工與媒體活動的資深代表
+- [F1 轉隊一定要冷靜期嗎？規章只在「有合作的兩隊」之間寫了這一條](/articles/f1-101-personnel-movement/)：人員轉隊與 A5.7.3 e
+- [新車隊尚未參賽，規章就先管了它整整一年](/articles/f1-101-new-entrant/)：新車隊報名與 FPP 測試
+- [F1 罰則怎麼判：5 秒、10 秒、通過維修區與被取消成績](/articles/f1-101-penalties/)：賽會幹事與罰則
+
+## 資料來源
+
+一手來源（FIA 規章；FIA 官方網站公開文件）：
+
+- FIA《International Sporting Code》（ISC），2026-06-26 起適用，英文欄：2.6.4、9.15、12.2。FIA 官方網站公開文件，無網址。
+- FIA《2026 F1 Regulations》Section A [General Regulatory Provisions]，Issue 03（2026-06-25）：A1.3、A1.4、A3.1.2、A3.4、A5.7.3 e、A5.9、A7.12、A8.2、附錄 A1 詞彙、附錄 A4B。FIA 官方網站公開文件，無網址。
+- [FIA 2026 F1 Regulations, Section B [Sporting], Issue 09（2026-10-01）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf)：B10.1.2 f ii
+- FIA《2026 F1 Regulations》Section D [Financial Regulations, F1 Teams]，Issue 08：職稱定義與聲明簽署。FIA 官方網站公開文件，無網址。
+- FIA《2026 F1 Regulations》Section F，Issue 11：受限 F1 與非 F1 人力之間轉調合約的組織位置規定。FIA 官方網站公開文件，無網址。
+
+官方說明：未使用。
+
+二手來源：本文未使用媒體報導作為事實依據。
+
+查證日：2026-10-10。限制：ISC 只取英文欄；「查無上下級條文」的範圍是本站取得的 14 份規章文字，FIA 章程、司法紀律規則與各 FIA 文件不在其內；第 viii 款授權的內容、ISC 2.6.5 所指的 FIA 登記程序、Competitor Staff Registration Submission 的格式與時程都沒有取得；Key Individual 的詞彙表定義同時引 Appendix A5（PU 廠商的表格）與 ISC 2.6.4，A5 這個交叉引用怎麼讀尚未釐清，本文只採「ISC 2.6.4」與 Declaration Signatory 兩部分，不是定義的全部範圍；定義句型的三種分法為自行歸類；規章文字的中文為本站轉述，條文以 FIA 公布的英文原文為準。
