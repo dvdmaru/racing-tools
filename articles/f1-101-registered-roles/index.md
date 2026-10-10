@@ -90,11 +90,11 @@ lede: "ISC 2.6.4.a 規定，在 F1 世界錦標賽中代表參賽者執行領隊
 
 ## 登記名單與 Key Individual
 
-Section A 的詞彙表有個詞叫 Key Individual F1 Team Member。它的定義是：依 ISC 2.6.4 必須登記的人，加上車隊的每位 Declaration Signatory（財務規章聲明簽署人）。
+Section A 的詞彙表有個詞叫 Key Individual F1 Team Member。定義的原文寫的是：依 Appendix A5 與 ISC 2.6.4 須登記為車隊關鍵人員的人，加上車隊的每位 Declaration Signatory（財務規章聲明簽署人）。
 
-定義另引了 Appendix A5，但 A5 是 PU 廠商的表格，車隊用的是 A4B，所以本文只引「ISC 2.6.4」那半句。
+但 A5 是 PU 廠商的表格，車隊用的是 A4B，定義為什麼引 A5、這半句該怎麼讀，條文沒有交代。所以本文只採其中「依 ISC 2.6.4 須登記的人」與 Declaration Signatory 兩部分；這不是定義的全部範圍。
 
-Declaration Signatory 指車隊的領隊、執行長、財務長、技術總監或同等職位，再加上其他代表車隊或車隊的最終控制方（Ultimate Controlling Party）簽財務規章聲明的人。所以 Key Individual 的範圍比七個職位大，多了其他簽聲明的人。反過來，Declaration Signatory 只點名四個職位，和七個職位不是同一組人。
+Declaration Signatory 指車隊的領隊、執行長、財務長、技術總監或同等職位，再加上其他代表車隊或車隊的最終控制方（Ultimate Controlling Party）簽財務規章聲明的人。所以光看本文採用的這兩部分，Key Individual 的範圍就比七個職位大，多了其他簽聲明的人。反過來，Declaration Signatory 只點名四個職位，和七個職位不是同一組人。
 
 Section D（Issue 08）把 CEO、CFO、Team Principal、Technical Director 四個職稱，定義成車隊在該財務報告期間向 FIA 提交的人員登記中指定的人，聲明也要由這四人簽署。
 
@@ -106,7 +106,7 @@ Section A 的 A1.4.1 寫：車隊、PU 廠商與其他受 F1 規章拘束的實�
 
 ISC 9.15 用的字不一樣。9.15.1 寫參賽者對代表其參與或提供服務者的作為與不作為，是 responsible，點名的人包括員工、車手、機械師、顧問與服務提供者。9.15.2 又寫這些人本身也「同樣」要為違反規定負責（equally responsible）。
 
-個人層面，A1.4.2 先劃界：F1 規章下除非明文規定，沒有個人責任。規章對個人設有具體義務時，個人可能要為違反該義務個別負責，而且是在車隊責任之外另加。
+個人層面，A1.4.2 先劃界：F1 規章下除非明文規定，沒有個人責任。規章對個人設有具體義務時，個人可能要為違反該義務個別負責，而且是在相關車隊、PU 廠商或其他實體的嚴格責任之外另加。
 
 所以「車隊負責」與「個人不負責」是兩回事。
 
@@ -114,15 +114,15 @@ ISC 9.15 用的字不一樣。9.15.1 寫參賽者對代表其參與或提供服�
 
 ## 個別罰款開給誰？
 
-A1.4.3 管的是罰款（Financial Penalty）。除了車手，或 F1 車隊／PU 廠商的 Key Individual 以外，個人不會被開 Financial Penalty；Key Individual 的部分，限於與其個人行為有關、涉及 Section A 與 ISC 規定的違規。其他情形的個人行為罰款，開給個人所屬的車隊或組織。
+A1.4.3 管的是罰款（Financial Penalty）。除了車手，或 F1 車隊／PU 廠商的 Key Individual 以外，個人不會被開 Financial Penalty；Key Individual 的部分，限於與其個人行為有關、涉及 Section A 與 ISC 規定的違規。其他情形下，個人的特定行為若適用 Financial Penalty，罰款開給個人所屬的車隊、PU 廠商或其他組織。
 
 A1.4.3 寫的詞是 Key Individual，詞彙表定義的是 Key Individual F1 Team Member，兩者是否同一詞，條文沒有明說。
 
-這條只管罰款。A7.12.1 的一般處分適用所有 Covered Person，並受 A1.4.2 的個人責任限制。在一般處分之外，Covered Person 承認或被認定違反其 F1 規章義務時，A7.12.3 另列了可在錦標賽範圍內施加的其他處分，例如在指定期間內拒發或取消 FIA 登記；寫法是 may。罰款依 ISC 12.8 繳納（F1 規章另有規定或裁判庭另有決定者除外），上訴期間暫停支付；在這個前提下，遲繳罰款會使當事 Covered Person 自動喪失參賽權直到繳清，並加計利息（A7.12.8）。
+這條只管罰款。A7.12.1 寫，ISC 與 FIA 司法紀律規則所列的一般處分適用所有 Covered Person，但受 A1.4.2 的個人責任限制；F1 規章若規定某類違規適用特定處分，則不在此列。這款也寫明受 A7.12.2、A7.12.3 規範：A7.12.2 寫 Covered Person 承認或被認定違反財務規章義務時，適用（shall）財務規章所定的處分。在一般處分之外，Covered Person 承認或被認定違反其 F1 規章義務時，A7.12.3 另列了可在錦標賽範圍內施加的其他處分，例如在指定期間內拒發或取消 FIA 登記；寫法是 may。罰款依 ISC 12.8 繳納（F1 規章另有規定或裁判庭另有決定者除外），上訴期間暫停支付；在這個前提下，遲繳罰款會使當事 Covered Person 自動喪失參賽權直到繳清，並加計利息（A7.12.8）。
 
 公開點名有另一條。A8.2.1 寫 FIA 在預先通知相關個人之後，可以（may）就 F1 規章相關事項公開報導列出的事項，不含機密資訊；列出的事項中，i 款說涉案人員姓名的提及，嚴格限於 Key Individual（F1 車隊與 PU）與車手。a 款明文受 i 款限制，b 到 h 款沒有逐款寫明，A8.2.3 另外保留 ISC 允許或強制的公開。這句話不能反推成「其他人一律不得點名」。
 
-A8.2.1 另受 A8.2.2 限制：涉及自然人的財務規章案件，只能在終局上訴決定作出、上訴權失效，或簽訂違規承認協議（Accepted Breach Agreement，ABA）或和解協議之後公開報導；除 A8.2.8 另有規定外，這類案件不另作其他公開。
+A8.2.1 另受 A8.2.2 限制：Covered Person 是自然人、被指違反財務規章的案件，只能在終局上訴決定作出、上訴權失效，或簽訂違規承認協議（Accepted Breach Agreement，ABA）或和解協議之後公開報導；除 A8.2.8 另有規定外，這類案件不另作其他公開。
 
 車手不在登記名單上，Key Individual 又另含 Declaration Signatory。所以登記名單本身，不足以單獨界定罰款與點名的範圍。
 
@@ -142,7 +142,7 @@ ISC 2.6.4.a 的前導句寫代表參賽者執行這些職位「全部或一部�
 
 ### 車隊員工違規，罰款開給誰？
 
-A1.4.3：除了車手，或 F1 車隊／PU 廠商的 Key Individual（限與其個人行為有關、涉及 Section A 與 ISC 規定的違規）以外，個人不會被開 Financial Penalty，其他情形開給個人所屬的車隊或組織。這條只管罰款；Covered Person 承認或被認定違反其 F1 規章義務時，A7.12.3 仍可（may）在一般處分之外，施加指定期間內拒發或取消 FIA 登記等其他處分。
+A1.4.3：除了車手，或 F1 車隊／PU 廠商的 Key Individual（限與其個人行為有關、涉及 Section A 與 ISC 規定的違規）以外，個人不會被開 Financial Penalty，其他情形下適用的罰款開給個人所屬的車隊、PU 廠商或其他組織。這條只管罰款；Covered Person 承認或被認定違反其 F1 規章義務時，A7.12.3 仍可（may）在一般處分之外，於錦標賽範圍內施加指定期間內拒發或取消 FIA 登記等其他處分。
 
 ## 接下來看什麼
 
@@ -165,4 +165,4 @@ A1.4.3：除了車手，或 F1 車隊／PU 廠商的 Key Individual（限與其�
 
 二手來源：本文未使用媒體報導作為事實依據。
 
-查證日：2026-10-10。限制：ISC 只取英文欄；「查無上下級條文」的範圍是本站取得的 14 份規章文字，FIA 章程、司法紀律規則與各 FIA 文件不在其內；第 viii 款授權的內容、ISC 2.6.5 所指的 FIA 登記程序、Competitor Staff Registration Submission 的格式與時程都沒有取得；Key Individual 的詞彙表定義另引 Appendix A5（PU 廠商的表格），本文只引「ISC 2.6.4」那半句；定義句型的三種分法為自行歸類；規章文字的中文為本站轉述，條文以 FIA 公布的英文原文為準。
+查證日：2026-10-10。限制：ISC 只取英文欄；「查無上下級條文」的範圍是本站取得的 14 份規章文字，FIA 章程、司法紀律規則與各 FIA 文件不在其內；第 viii 款授權的內容、ISC 2.6.5 所指的 FIA 登記程序、Competitor Staff Registration Submission 的格式與時程都沒有取得；Key Individual 的詞彙表定義同時引 Appendix A5（PU 廠商的表格）與 ISC 2.6.4，A5 這個交叉引用怎麼讀尚未釐清，本文只採「ISC 2.6.4」與 Declaration Signatory 兩部分，不是定義的全部範圍；定義句型的三種分法為自行歸類；規章文字的中文為本站轉述，條文以 FIA 公布的英文原文為準。
