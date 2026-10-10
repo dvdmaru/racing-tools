@@ -6,6 +6,34 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 輪胎歸還表：配到的乾胎，週末會被分批收走</title>
+    <link>https://racing.twtools.cc/articles/f1-101-tyre-set-returns/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-tyre-set-returns/</guid>
+    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
+    <description>標準賽制、衝刺週末、有加測胎的站各有一張歸還表；標準賽制（含加測胎站）另有保留胎條款，部分輪胎不准提前交出。</description>
+  </item>
+  <item>
+    <title>領隊、技術總監要向 FIA 登記？七個職位與罰款對象</title>
+    <link>https://racing.twtools.cc/articles/f1-101-registered-roles/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-registered-roles/</guid>
+    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
+    <description>國際運動規則（ISC）2.6.4 列出的登記職位、每年續登與異動更新，以及這份登記名單與個別罰款在規章裡的關係。</description>
+  </item>
+  <item>
+    <title>賽會幹事能開多少罰款、不能判什麼？F1 處罰的機關分工</title>
+    <link>https://racing.twtools.cc/articles/f1-101-fines-sanctions/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-fines-sanctions/</guid>
+    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
+    <description>罰款上限、停賽（Suspension）、除名（Exclusion）、禁賽（Ban）、誰付、繳納期限：依 ISC（2026 年 6 月 26 日起適用）與 2026 F1 規章 Section A Issue 03、Section B Issue 09、Section D Issue 08、Section E Issue 06 逐條看</description>
+  </item>
+  <item>
+    <title>逐站加總分數最多，卻沒拿冠軍：1964、1988 年的 F1 積分榜</title>
+    <link>https://racing.twtools.cc/articles/f1-101-dropped-scores/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-dropped-scores/</guid>
+    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
+    <description>依 8W 整理，1950–1990 年的車手總分只計最好的幾筆成績，1967–1980 年分前後半季各算。本站可重算的季裡，冠軍的官方積分有 20 季少於逐站加總；本站資料庫把各站得分直接加總比較，加總最高者不是冠軍的只有 1964、1988 兩季。</description>
+  </item>
+  <item>
     <title>Vasseur 承認起跑選胎判斷錯的那場雪邦正賽，漢米爾頓怎麼拿到第 3 名？</title>
     <link>https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/</guid>
@@ -116,34 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-wheel-nut/</guid>
     <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
     <description>2026 年規章 C10.9 只有五款：固定件的大小上限、拆裝工具的動力、鬆脫時的第二道保持、車隊要交的測試結果，以及裝錯要看得出來。</description>
-  </item>
-  <item>
-    <title>F1 一季從 7 站變成 24 站，但這條線不是一路往上</title>
-    <link>https://racing.twtools.cc/articles/f1-101-season-length/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-season-length/</guid>
-    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
-    <description>1950 年 7 站，2024、2025 年各 24 站，2026 年賽程表列 23 站。逐季看下來，1977 年 17 站、1980 年 14 站，2013 到 2015 年退回 19 站，2020 年只有 17 站。</description>
-  </item>
-  <item>
-    <title>F1 前三名站上頒獎台之後，還得留 1.5 小時給媒體</title>
-    <link>https://racing.twtools.cc/articles/f1-101-podium-ceremony/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-podium-ceremony/</guid>
-    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年運動規章把頒獎台寫得很細：誰要上台、穿什麼、台上放幾座獎杯。但摩納哥的例外、沒積分的比賽、國歌的依據，條文各留了一個缺口。</description>
-  </item>
-  <item>
-    <title>新車隊尚未參賽，規章就先管了它整整一年</title>
-    <link>https://racing.twtools.cc/articles/f1-101-new-entrant/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-new-entrant/</guid>
-    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
-    <description>已獲接受的新車隊，要在首次參賽年之前的 N-1 年，先遵守 Section A、B11、D 與部分 Section F，並證明自己做到。入場費、評選流程、適任人選測試的內容，規章本文沒寫。</description>
-  </item>
-  <item>
-    <title>F1 塗裝條文要求車上有三樣標示，廣告能放哪裡卻沒寫</title>
-    <link>https://racing.twtools.cc/articles/f1-101-livery/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-livery/</guid>
-    <pubDate>Wed, 30 Sep 2026 00:00:00 +0800</pubDate>
-    <description>2026 年規章要求同隊兩台車塗裝大致相同，賽季中的重大變更須 FIA 與商業權利持有人同意。廣告的面積與位置，A2.3 沒有列，也不能因此讀成不限。同一節另有螢光黃相機的規定，相機位則在 C8.16。</description>
   </item>
 </channel>
 </rss>
