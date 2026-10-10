@@ -25,6 +25,8 @@ data/f1/raw/**，讓百科的凍結庫能跟上賽季推進。歷史季（1950�
        · status.json：計數不得減少、不得憑空多出歷史沒有的類別、增量不得超過當季本地賽果
          能解釋的量。⚠️ **不**把計數改成本地推算——那會讓 I8 變成自己比自己的恆真式；
          這裡仍以 API 計數為準，只做方向性漂移防線，精確比對留給 I8。
+     例外只有一種：**已裁決的上游純改名**（UPSTREAM_RENAMES，人裁定、old→new 寫死；
+     目前登記 Losail→Lusail）——落地時換回本地原值，其餘差異照擋。見該常數的註解。
   2. 落地格式與 fetch-f1-history.py 完全一致（沿用其 Fetcher / _write / _standings_full）——
      build-f1-db.py 讀得動、跑兩次 byte-identical（既有 round 檔 resumable 跳過；schedule/
      standings 內容不變不重寫）。
@@ -109,6 +111,76 @@ def _read_raw(path):
         return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
+
+
+# 已裁決的上游純改名登記（歷史凍結、不採用上游新名）。比照 fetch_racing.POINTS_EXCEPTIONS 的登記制。
+#
+# 為什麼要有：jolpica 把 4 場歷史卡達站（2021 R20、2023 R17、2024 R23、2025 R23）的
+# Circuit.circuitName 由 Losail 改 Lusail（circuitId／座標／url 不變）。零漂移守衛逐欄比對，
+# 於是每站落地都被擋下，R14、R15、R16 連三次都靠一次性腳本手動換回——腳本放 job tmp、不進 repo。
+#
+# 規則（缺一就不算已裁決，守衛照舊中止）：
+#   · 每筆**同時寫死 old 與 new**：只有「本地值＝old 且上游值＝new」才換回本地原值；
+#     別的欄位、別的新值、別的賽道、本地值不是 old，一律不碰，仍交給零漂移守衛。
+#   · 只套用在**非當季**場次（當季本來就以上游為準）與 entities/circuits.json 的既有成員。
+#   · 新增一筆登記＝人（Charlie）裁定「這個改名不採用」；不是腳本看到漂移就自己放行。
+UPSTREAM_RENAMES = [
+    {"circuitId": "losail", "field": "circuitName",
+     "old": "Losail International Circuit", "new": "Lusail International Circuit",
+     "decided": "2026-10-10（Charlie 裁「治理落地」；R14／R15／R16 三度觸發）"},
+]
+
+
+def _freeze_renamed_circuit(new_c, old_c):
+    """new_c（上游的 Circuit dict）與 old_c（本地）若差的正是一筆已登記改名 → 就地換回原值。
+
+    回 True＝有換。條件嚴格：兩邊 circuitId 相同、本地值＝登記的 old、上游值＝登記的 new。
+    """
+    if not isinstance(new_c, dict) or not isinstance(old_c, dict):
+        return False
+    hit = False
+    for e in UPSTREAM_RENAMES:
+        f = e["field"]
+        if (new_c.get("circuitId") == old_c.get("circuitId") == e["circuitId"]
+                and old_c.get(f) == e["old"] and new_c.get(f) == e["new"]):
+            new_c[f] = e["old"]
+            hit = True
+    return hit
+
+
+def _freeze_registered_renames(old_races, new_races, season):
+    """逐場把上游的已登記改名換回本地原值（就地改 new_races）；回換了幾場。
+
+    只處理本地也有、且不屬當季的場次；本地沒有的場次（＝憑空多出）不碰，留給零漂移守衛擋。
+    """
+    old_by = {}
+    for r in old_races:
+        try:
+            old_by[(int(r["season"]), int(r["round"]))] = r
+        except (KeyError, TypeError, ValueError):
+            continue
+    n = 0
+    for r in new_races:
+        try:
+            k = (int(r["season"]), int(r["round"]))
+        except (KeyError, TypeError, ValueError):
+            continue
+        if k[0] == season or k not in old_by:
+            continue
+        if _freeze_renamed_circuit(r.get("Circuit"), old_by[k].get("Circuit")):
+            n += 1
+    return n
+
+
+def _freeze_registered_renames_circuits(old_items, new_items):
+    """entities/circuits.json：既有成員的已登記改名換回本地原值（就地）；回換了幾筆。"""
+    old = {i.get("circuitId"): i for i in old_items}
+    return sum(1 for i in new_items
+               if i.get("circuitId") in old and _freeze_renamed_circuit(i, old[i["circuitId"]]))
+
+
+def _renames_note(n):
+    return f"；另有 {n} 場已登記的上游改名沿用本地原值" if n else ""
 
 
 def _by_race_key(races):
@@ -236,9 +308,11 @@ def sync_whole_db_files(season, f, raw_dir, new_rounds):
         items, total = f.paged("races", "RaceTable", "Races")
         if len(items) != total:
             raise HistoryDriftError(f"races：抓到 {len(items)} 筆但 total={total}（抓短不落地）")
+        renamed = _freeze_registered_renames(old.get("Races", []), items, season)
         n = _diff_frozen_races(old.get("Races", []), items, season, "entities/races.json")
         if _write_if_changed(p, {"Races": items, "total": total}, f"{fh.BASE}/races.json"):
-            updated.append(f"entities/races.json（歷史 {n} 場逐場比對零漂移 → 全庫 {total} 場）")
+            updated.append(f"entities/races.json（歷史 {n} 場逐場比對零漂移 → 全庫 {total} 場"
+                           f"{_renames_note(renamed)}）")
 
     # ② entities/status.json：I8 的 oracle
     p = raw_dir / "entities" / "status.json"
@@ -264,10 +338,12 @@ def sync_whole_db_files(season, f, raw_dir, new_rounds):
         items, total = f.paged(f"drivers/{did}/results", "RaceTable", "Races")
         if len(items) != total:
             raise HistoryDriftError(f"{did} 生涯檔：抓到 {len(items)} 筆但 total={total}")
+        renamed = _freeze_registered_renames(old.get("Races", []), items, season)
         n = _diff_frozen_races(old.get("Races", []), items, season, f"drivers/{p.name}")
         if _write_if_changed(p, {"driverId": did, "total": total, "Races": items},
                              f"{fh.BASE}/drivers/{did}/results.json"):
-            updated.append(f"drivers/{p.name}（{season} 以外 {n} 場零變動 → 生涯 {total} 場）")
+            updated.append(f"drivers/{p.name}（{season} 以外 {n} 場零變動 → 生涯 {total} 場"
+                           f"{_renames_note(renamed)}）")
 
     # ④ 實體清單缺角補完：當季新賽果可能帶進新車手/新車隊/新賽道，缺了 I11 就會紅。
     #    只在真的偵測到缺角時才抓（平時零請求），且既有成員必須逐欄不變、只准新增。
@@ -284,6 +360,8 @@ def sync_whole_db_files(season, f, raw_dir, new_rounds):
         items, total = f.paged(path, tk, ik)
         if len(items) != total:
             raise HistoryDriftError(f"{path}：抓到 {len(items)} 筆但 total={total}")
+        if kind == "circuits":
+            _freeze_registered_renames_circuits(old.get(ik, []), items)
         added = _diff_additive_entities(old.get(ik, []), items, id_key, f"entities/{fname}")
         still = sorted(set(missing) - set(added) - have)
         if still:

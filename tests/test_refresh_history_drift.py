@@ -16,6 +16,8 @@ drivers/<id>-results.json（I5 發布側生涯檔）。因為被禁止，這支�
   ⑤ 抓短（len != total）→ 中止（不落地半份）
   ⑥ 沒有既有檔可比對 → 略過該檔，不憑空生成全庫單檔
   ⑦ 實體清單缺角（當季新車手不在 drivers.json）→ 補完；既有成員被改 → 中止
+  ⑧ 已登記的上游純改名（UPSTREAM_RENAMES，Losail→Lusail）→ 換回本地原值並落地；
+     未登記的新名／本地值不符／別的賽道／夾帶其他漂移／憑空多出的場次 → 仍中止
 
 跑法：python3 -m unittest discover -s tests
 """
@@ -265,6 +267,156 @@ class WholeDbSyncTests(unittest.TestCase):
         f = FakeWholeDbFetcher()
         self._sync(f)
         self.assertNotIn("drivers", f.calls)
+
+
+LOSAIL, LUSAIL = "Losail International Circuit", "Lusail International Circuit"
+
+
+def _race_at(season, rnd, date, circuit_id, circuit_name):
+    r = _race(season, rnd, date, circuit=circuit_id)
+    r["Circuit"]["circuitName"] = circuit_name
+    return r
+
+
+class RegisteredUpstreamRenameTests(unittest.TestCase):
+    """UPSTREAM_RENAMES：已裁決的上游純改名（Losail→Lusail）換回本地原值；其餘漂移照擋。
+
+    背景：jolpica 改了 4 場歷史卡達站的 circuitName，守衛每站落地都擋，R14／R15／R16 連三次
+    靠 job tmp 的一次性腳本手動換回。登記制＝人裁定「這個改名不採用」之後，守衛自己換回，
+    但**只放行登記的 old→new 這一種差異**；每個「不放行」的邊界各有一個反例，否則全綠的
+    gate 分不出「登記正確」和「登記把守衛整個放寬了」。
+    """
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        self.raw = self.tmp / "raw"
+        for sub in ("results", "entities", "drivers"):
+            (self.raw / sub).mkdir(parents=True)
+        # 本地歷史：2024 R1 是卡達站（Losail），其餘同 HIST；當季 2 場
+        self.local_hist = [_race_at(2024, 1, "2024-03-02", "losail", LOSAIL)] + HIST[1:]
+        self.up_hist = [_race_at(2024, 1, "2024-03-02", "losail", LUSAIL)] + HIST[1:]
+        self._write(self.raw / "entities" / "races.json",
+                    {"Races": self.local_hist + CUR2,
+                     "total": len(self.local_hist + CUR2)})
+        self._write(self.raw / "entities" / "status.json",
+                    {"Status": STATUS_OLD, "total": len(STATUS_OLD)})
+        self._write(self.raw / "results" / f"{SEASON}-01.json", _result_file(1))
+        self._write(self.raw / "results" / f"{SEASON}-02.json",
+                    _result_file(2, ("Finished", "Accident")))
+
+    def _write(self, path, obj):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({**obj, "_meta": {"url": "u", "fetched_at": "t"}},
+                                   ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    def _read(self, rel):
+        return json.loads((self.raw / rel).read_text())
+
+    def _sync(self, f):
+        return rf.sync_whole_db_files(SEASON, f, self.raw, [2])
+
+    def _name_2024_r1(self):
+        return {(int(r["season"]), int(r["round"])): r["Circuit"]["circuitName"]
+                for r in self._read("entities/races.json")["Races"]}[(2024, 1)]
+
+    # ① 登記的改名 → 守衛不再擋、落地時保留本地原名、其餘（當季新增）照常落地
+    def test_registered_rename_is_frozen_and_lands(self):
+        updated, _ = self._sync(FakeWholeDbFetcher(races=self.up_hist + CUR3))
+        self.assertEqual(self._name_2024_r1(), LOSAIL, "歷史凍結：要保留本地原名")
+        self.assertEqual(len(self._read("entities/races.json")["Races"]), len(self.up_hist) + 3)
+        self.assertTrue(any("races.json" in u and "已登記的上游改名" in u for u in updated), updated)
+
+    # ①b 登記生效後第二次跑：內容不變 → 不重寫
+    def test_registered_rename_second_run_is_idempotent(self):
+        self._sync(FakeWholeDbFetcher(races=self.up_hist + CUR3))
+        b1 = (self.raw / "entities" / "races.json").read_bytes()
+        updated, _ = self._sync(FakeWholeDbFetcher(races=self.up_hist + CUR3))
+        self.assertFalse(any("races.json" in u for u in updated))
+        self.assertEqual((self.raw / "entities" / "races.json").read_bytes(), b1)
+
+    # ② 生涯檔同樣適用
+    def test_career_file_registered_rename_is_frozen(self):
+        self._write(self.raw / "drivers" / "hamilton-results.json",
+                    {"driverId": "hamilton", "total": 3, "Races": self.local_hist[:2] + CUR2[:1]})
+        self._sync(FakeWholeDbFetcher(races=self.local_hist + CUR2,
+                                      careers={"hamilton": self.up_hist[:2] + CUR2}))
+        d = self._read("drivers/hamilton-results.json")
+        self.assertEqual(d["Races"][0]["Circuit"]["circuitName"], LOSAIL)
+        self.assertEqual(len(d["Races"]), 4)
+
+    # ③ 邊界反例一：上游改成「沒登記的」新名 → 仍中止，原檔不動
+    def test_unregistered_new_name_still_aborts(self):
+        other = [_race_at(2024, 1, "2024-03-02", "losail", "Lusail Circuit")] + HIST[1:]
+        before = (self.raw / "entities" / "races.json").read_bytes()
+        with self.assertRaises(rf.HistoryDriftError):
+            self._sync(FakeWholeDbFetcher(races=other + CUR3))
+        self.assertEqual((self.raw / "entities" / "races.json").read_bytes(), before)
+
+    # ③b 邊界反例二：本地值不是登記的 old（有人手改過本地）→ 不放行
+    def test_local_value_not_registered_old_still_aborts(self):
+        self._write(self.raw / "entities" / "races.json",
+                    {"Races": [_race_at(2024, 1, "2024-03-02", "losail", "Losail Intl")]
+                     + HIST[1:] + CUR2, "total": len(HIST + CUR2)})
+        with self.assertRaises(rf.HistoryDriftError):
+            self._sync(FakeWholeDbFetcher(races=self.up_hist + CUR3))
+
+    # ③c 邊界反例三：別的賽道出現同一組新舊名 → 不放行（登記綁 circuitId）
+    def test_same_names_on_other_circuit_still_aborts(self):
+        local = [_race_at(2024, 1, "2024-03-02", "other", LOSAIL)] + HIST[1:]
+        up = [_race_at(2024, 1, "2024-03-02", "other", LUSAIL)] + HIST[1:]
+        self._write(self.raw / "entities" / "races.json",
+                    {"Races": local + CUR2, "total": len(local + CUR2)})
+        with self.assertRaises(rf.HistoryDriftError):
+            self._sync(FakeWholeDbFetcher(races=up + CUR3))
+
+    # ③d 邊界反例四：改名同場還夾帶別的漂移（日期）→ 換回名字後仍有差異，仍中止
+    def test_rename_plus_other_drift_still_aborts(self):
+        up = [dict(self.up_hist[0], date="1999-01-01")] + self.up_hist[1:]
+        with self.assertRaises(rf.HistoryDriftError) as ctx:
+            self._sync(FakeWholeDbFetcher(races=up + CUR3))
+        self.assertIn("內容變動", str(ctx.exception))
+
+    # ③e 邊界反例五：場次本地沒有（憑空多出）→ 不因為名字符合就放行
+    def test_rename_on_phantom_race_still_aborts(self):
+        phantom = _race_at(2024, 9, "2024-11-01", "losail", LUSAIL)
+        with self.assertRaises(rf.HistoryDriftError):
+            self._sync(FakeWholeDbFetcher(races=self.up_hist + [phantom] + CUR3))
+
+    # ④ 當季不凍結：當季以上游為準
+    def test_current_season_follows_upstream(self):
+        local_cur = [_race_at(SEASON, 1, "2026-03-08", "losail", LOSAIL), CUR2[1]]
+        up_cur = [_race_at(SEASON, 1, "2026-03-08", "losail", LUSAIL)] + CUR3[1:]
+        self._write(self.raw / "entities" / "races.json",
+                    {"Races": self.local_hist + local_cur,
+                     "total": len(self.local_hist + local_cur)})
+        self._sync(FakeWholeDbFetcher(races=self.up_hist + up_cur))
+        names = {(int(r["season"]), int(r["round"])): r["Circuit"]["circuitName"]
+                 for r in self._read("entities/races.json")["Races"]}
+        self.assertEqual(names[(SEASON, 1)], LUSAIL)
+        self.assertEqual(names[(2024, 1)], LOSAIL)
+
+    # ⑤ entities/circuits.json：缺角補完時，既有成員的已登記改名也換回
+    def test_circuits_entity_registered_rename_is_frozen(self):
+        self._write(self.raw / "results" / f"{SEASON}-02.json",
+                    _result_file(2, ("Finished",), circuit="newtrack"))
+        self._write(self.raw / "entities" / "circuits.json",
+                    {"Circuits": [{"circuitId": "losail", "circuitName": LOSAIL},
+                                  {"circuitId": "circ", "circuitName": "X"}], "total": 2})
+        f = FakeWholeDbFetcher(races=self.local_hist + CUR3, entities={"circuits": [
+            {"circuitId": "losail", "circuitName": LUSAIL},
+            {"circuitId": "circ", "circuitName": "X"},
+            {"circuitId": "newtrack", "circuitName": "New Track"}]})
+        self._sync(f)
+        got = {c["circuitId"]: c["circuitName"] for c in self._read("entities/circuits.json")["Circuits"]}
+        self.assertEqual(got, {"losail": LOSAIL, "circ": "X", "newtrack": "New Track"})
+
+    # ⑥ 登記表本身的形狀：old≠new、欄位齊全（防手滑登記成空轉或缺鍵）
+    def test_registry_entries_are_well_formed(self):
+        self.assertTrue(rf.UPSTREAM_RENAMES)
+        for e in rf.UPSTREAM_RENAMES:
+            self.assertTrue({"circuitId", "field", "old", "new", "decided"} <= set(e), e)
+            self.assertNotEqual(e["old"], e["new"], e)
 
 
 class MainAbortsOnDriftTests(unittest.TestCase):
