@@ -70,11 +70,11 @@ jobs:
       # 預設的淺層 clone（深度 1）拿不到父 commit，update-racing.py 會明講並降級成
       # 只看工作樹髒檔——而內容型 PR 的產物已 commit、工作樹永遠不髒，
       # 那正是 2026-09-04 抓到的洞（文章頁從來沒被 IndexNow 推過）。
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 2
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -82,7 +82,7 @@ jobs:
         # pin 版本：後續步驟帶 CLOUDFLARE_API_TOKEN，防惡意 release 供應鏈
         run: pip install 'markdown==3.10.2' 'pyyaml==6.0.3'
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
 
