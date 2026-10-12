@@ -166,9 +166,10 @@ class RegistryAndStatGateTests(unittest.TestCase):
         # 2026-09-11 R13 已賽：蒙札不再有待賽場次，樣本推進到巴庫（R15 亞塞拜然站，9/26 才跑）。
         # 2026-09-27 R15 已賽：樣本再推進到雪邦（R16 巴林站，馬來西亞，10/4 才跑）。
         # 2026-10-10 R16 已賽：樣本再推進到濱海灣（R17 新加坡站，10/11 才跑）。
-        s = ci.circuit_summary("marina_bay", self.con)
+        # 2026-10-12 R17 已賽：樣本再推進到美洲賽道（R18 美國站，10/25 才跑）。
+        s = ci.circuit_summary("americas", self.con)
         scheduled = self.con.execute(
-            "SELECT count(*) FROM races WHERE circuit_id='marina_bay'").fetchone()[0]
+            "SELECT count(*) FROM races WHERE circuit_id='americas'").fetchone()[0]
         self.assertEqual(len(s["pending"]), 1)
         self.assertEqual(s["hosted"]["value"], scheduled - 1)
 
@@ -259,7 +260,8 @@ class GenerationTests(_Rendered):
         # 2026-09-11 R13 已賽：蒙札頁不再有待賽列，樣本推進到巴庫（R15 待賽）。
         # 2026-09-27 R15 已賽：樣本再推進到雪邦（R16 待賽）。
         # 2026-10-10 R16 已賽：樣本再推進到濱海灣（R17 新加坡站待賽）。
-        html = self.page("marina_bay")
+        # 2026-10-12 R17 已賽：樣本再推進到美洲賽道（R18 美國站待賽）。
+        html = self.page("americas")
         self.assertIn('<span class="pending">尚未舉行</span>', html)
         self.assertIn("不計入", html)
 

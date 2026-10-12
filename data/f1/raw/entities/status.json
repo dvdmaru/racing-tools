@@ -2,7 +2,7 @@
   "Status": [
     {
       "statusId": "1",
-      "count": "8181",
+      "count": "8191",
       "status": "Finished"
     },
     {
@@ -51,14 +51,14 @@
       "status": "Suspension"
     },
     {
+      "statusId": "143",
+      "count": "406",
+      "status": "Lapped"
+    },
+    {
       "statusId": "14",
       "count": "405",
       "status": "+4 Laps"
-    },
-    {
-      "statusId": "143",
-      "count": "398",
-      "status": "Lapped"
     },
     {
       "statusId": "7",
@@ -66,14 +66,14 @@
       "status": "Transmission"
     },
     {
+      "statusId": "31",
+      "count": "319",
+      "status": "Retired"
+    },
+    {
       "statusId": "10",
       "count": "315",
       "status": "Electrical"
-    },
-    {
-      "statusId": "31",
-      "count": "315",
-      "status": "Retired"
     },
     {
       "statusId": "23",
@@ -684,7 +684,7 @@
   "total": 136,
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/status.json",
-    "fetched_at": "2026-10-10T08:21:02.020765+00:00",
+    "fetched_at": "2026-10-12T10:16:12.611249+00:00",
     "backfill": true
   }
 }

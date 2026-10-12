@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 249,
+  "total": 250,
   "Races": [
     {
       "season": "2015",
@@ -14734,11 +14734,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "17",
+      "url": "https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix",
+      "raceName": "Singapore Grand Prix",
+      "Circuit": {
+        "circuitId": "marina_bay",
+        "url": "https://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit",
+        "circuitName": "Marina Bay Street Circuit",
+        "Location": {
+          "lat": "1.2914",
+          "long": "103.864",
+          "locality": "Marina Bay",
+          "country": "Singapore"
+        }
+      },
+      "date": "2026-10-11",
+      "time": "12:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "1",
+          "positionText": "1",
+          "points": "25",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": "1",
+          "laps": "62",
+          "status": "Finished",
+          "Time": {
+            "millis": "6120785",
+            "time": "1:42:00.785"
+          },
+          "FastestLap": {
+            "rank": "5",
+            "lap": "44",
+            "Time": {
+              "time": "1:36.201"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-10-10T08:21:09.523498+00:00",
+    "fetched_at": "2026-10-12T10:16:19.793636+00:00",
     "backfill": true
   }
 }
