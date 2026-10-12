@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 396,
+  "total": 397,
   "Races": [
     {
       "season": "2007",
@@ -23710,11 +23710,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "17",
+      "url": "https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix",
+      "raceName": "Singapore Grand Prix",
+      "Circuit": {
+        "circuitId": "marina_bay",
+        "url": "https://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit",
+        "circuitName": "Marina Bay Street Circuit",
+        "Location": {
+          "lat": "1.2914",
+          "long": "103.864",
+          "locality": "Marina Bay",
+          "country": "Singapore"
+        }
+      },
+      "date": "2026-10-11",
+      "time": "12:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "6",
+          "positionText": "6",
+          "points": "8",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": "3",
+          "laps": "62",
+          "status": "Finished",
+          "Time": {
+            "millis": "6173973",
+            "time": "+53.188"
+          },
+          "FastestLap": {
+            "rank": "8",
+            "lap": "28",
+            "Time": {
+              "time": "1:36.922"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-10-10T08:21:06.358263+00:00",
+    "fetched_at": "2026-10-12T10:16:15.214191+00:00",
     "backfill": true
   }
 }

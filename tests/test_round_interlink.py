@@ -94,12 +94,14 @@ class RoundLinkIndexTests(unittest.TestCase):
         2026-09-21 R14 已賽，樣本再推進：改用 R15 亞塞拜然站（巴庫，9/26 才跑）。
         2026-09-27 R15 已賽，樣本再推進：改用 R16 巴林站（馬來西亞雪邦，10/4 才跑）。
         2026-10-10 R16 已賽，樣本再推進：改用 R17 新加坡站（濱海灣，10/11 才跑）；
-        R16 現在有頁、判定表應收。"""
+        R16 現在有頁、判定表應收。
+        2026-10-12 R17 已賽，樣本再推進：改用 R18 美國站（美洲賽道，10/25 才跑）；
+        R17 新加坡站現在有頁、判定表應收。"""
         idx = il.round_link_index(2026)
-        self.assertNotIn("新加坡站", idx)
-        self.assertEqual(idx.get("巴林站（馬來西亞雪邦）"), (2026, 16))
+        self.assertNotIn("美國站", idx)
+        self.assertEqual(idx.get("新加坡站"), (2026, 17))
         built = set(gs.season_round_numbers(2026))
-        self.assertNotIn(17, built, "前提：R17 要真的還沒有頁，否則這條在測空氣")
+        self.assertNotIn(18, built, "前提：R18 要真的還沒有頁，否則這條在測空氣")
         self.assertTrue(all(r in built for _y, r in idx.values()))
 
     def test_non_round_year_is_empty(self):
@@ -228,19 +230,21 @@ class LinkifyRoundsTests(unittest.TestCase):
         2026-09-21 R14 已賽：西班牙站現在有頁，合成文字改提 R15 亞塞拜然站（9/26 才跑）。
         2026-09-27 R15 已賽：亞塞拜然站現在有頁，合成文字改提 R16 巴林站（馬來西亞雪邦，10/4 才跑）。
         2026-10-10 R16 已賽：巴林站（馬來西亞雪邦）現在有頁 → 改為「應連」；
-        合成文字改提 R17 新加坡站（10/11 才跑）。"""
+        合成文字改提 R17 新加坡站（10/11 才跑）。
+        2026-10-12 R17 已賽：新加坡站現在有頁 → 改為「應連」；
+        合成文字改提 R18 美國站（10/25 才跑）。"""
         art = self.arts[DUTCH_REPORT]
         self.assertIn("義大利站", art["text"], "前提：這篇要真的提到義大利站")
         _src, out, linked = self._render(DUTCH_REPORT)
         self.assertIn("/seasons/2026/rounds/13/", out, "義大利站已賽、有頁 → 應連")
         self.assertEqual([t for _y, _r, t in linked], ["荷蘭站", "義大利站"])
-        raced, linked_raced = il.linkify_rounds("<p>上一站是巴林站（馬來西亞雪邦）。</p>", 2026)
-        self.assertIn("/seasons/2026/rounds/16/", raced, "R16 已賽、有頁 → 應連")
-        self.assertEqual([r for _y, r, _t in linked_raced], [16])
-        src = "<p>下一站是新加坡站。</p>"
+        raced, linked_raced = il.linkify_rounds("<p>上一站是新加坡站。</p>", 2026)
+        self.assertIn("/seasons/2026/rounds/17/", raced, "R17 已賽、有頁 → 應連")
+        self.assertEqual([r for _y, r, _t in linked_raced], [17])
+        src = "<p>下一站是美國站。</p>"
         out26, linked26 = il.linkify_rounds(src, 2026)
-        self.assertNotIn("/seasons/2026/rounds/17/", out26)
-        self.assertNotIn("新加坡站</a>", out26)
+        self.assertNotIn("/seasons/2026/rounds/18/", out26)
+        self.assertNotIn("美國站</a>", out26)
         self.assertEqual(linked26, [])
 
     def test_headings_are_not_linked_using_the_real_title(self):
@@ -611,9 +615,10 @@ class RoundMentionFingerprintTests(unittest.TestCase):
         2026-09-11 R13 已賽，樣本再推進：改用西班牙站（R14，馬德里，9/13 才跑）。
         2026-09-21 R14 已賽，樣本再推進：改用亞塞拜然站（R15，巴庫，9/26 才跑）。
         2026-09-27 R15 已賽，樣本再推進：改用巴林站（R16，馬來西亞雪邦，10/4 才跑）。
-        2026-10-10 R16 已賽，樣本再推進：改用新加坡站（R17，濱海灣，10/11 才跑）。"""
+        2026-10-10 R16 已賽，樣本再推進：改用新加坡站（R17，濱海灣，10/11 才跑）。
+        2026-10-12 R17 已賽，樣本再推進：改用美國站（R18，美洲賽道，10/25 才跑）。"""
         before = self._fp()
-        self.add_article("synthetic-singapore", "下一站新加坡站的看點。", season="2026")
+        self.add_article("synthetic-usa", "下一站美國站的看點。", season="2026")
         self.assertEqual(before["rounds"], self._fp()["rounds"])
 
     def test_unapproved_article_does_not_change_fingerprint(self):
