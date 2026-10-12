@@ -131,6 +131,12 @@
       "html": "cover-sepang-hamilton-podium-ledger.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2026-r17-singapore-ferrari-strategy-ledger",
+      "html": "cover-singapore-ferrari-strategy-ledger.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

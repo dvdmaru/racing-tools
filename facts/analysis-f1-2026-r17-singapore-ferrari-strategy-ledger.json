@@ -1,0 +1,4312 @@
+{
+ "_meta": {
+  "slug": "f1-2026-r17-singapore-ferrari-strategy-ledger",
+  "type": "feature",
+  "built_by": "conductor（Sonnet）；論點 Opus、資料查核 Opus、新聞歸屬 Opus×3",
+  "built_at": "2026-10-12",
+  "note": "事實包。R17 資料層數字由論點席以 FastF1 3.8.3 解析 F1 官方即時計時存檔（evidence/r17_R_laps.csv）與 Jolpica 賽果重算（桌內 tools/thesis_work/th1.py、th2.py、th3.py），建檔時已全部重跑一次，輸出存 packs/_facts_tmp/th1_out.txt、th2_out.txt、th3_out.txt，derived_values 的每個數字由建檔腳本（packs/_facts_tmp/fb_build.py）直接從 r17_R_laps.csv 重算，並與 verified_facts 的數字逐項核對（核對輸出 packs/_facts_tmp/numcheck.txt）。F-15 的數字不在 th1–th3 輸出內，建檔改跑 tools/vd_work/vd3.py（輸出 packs/_facts_tmp/vd3_out.txt）對上。資料查核席判決見 packs/verify-data.md；新聞歸屬判決見 packs/verify-news-sg.md（新加坡，182 條）、packs/verify-news-history-1.md（2022–2023，74 條）、packs/verify-news-history-2.md（2024–2026＋型態說法，169 條）；主張與編號來源是 packs/THESIS.md（唯一的主張來源）。news_quotes 每筆的 verbatim 由建檔腳本依 evidence_file／evidence_line 從 evidence/news 原檔該行以子字串擷取，並由 tools/verify_quotes_facts.py 獨立比對（正規化：彎引號折直引號、破折號折 -、空白折單一、轉小寫；另跑保留大小寫版）。本檔是桌內版，不寫進 repo；第 17 站賽果與進站以 Jolpica 標明為額外來源（站上資料庫只到第 16 站）。",
+  "open_issues": [
+   "2026-10-12 指揮位修正：兩處（兩台只有 Vasseur 說／H2-3 標題），已同步——「車隊叫了進站」有雙方原話（Vasseur 對 Sky 說兩台都叫了；漢米爾頓聲明說車隊叫了他），「兩台」只掛 Vasseur（E-103）；H2-3 標題改為新版『…多掉 45.2 秒，中間被 4 台超過，終點第 6』（不含『從第 2 掉到第 6』），H2-4 標題改為『Vasseur 說兩台都叫了進站，漢米爾頓說他錯過入口後決定留在場上』；section_claims、required_sections、verified_facts H-06、thesis、_structure_hint 皆已依新版 THESIS 重建。",
+   "已知（指揮位判『不用動』）：「第 2」只是對手進站造成的暫居（第 40–45 圈，第 46 圈起被勒克萊爾超過，F-11），新版 H2-3 標題已不寫『從第 2 掉到第 6』；正文若提 P2，須附『因對手虛擬安全車進站』（verify-data T8-14）。",
+   "已知（#3，已改字）：THESIS 原文『2022 年批評多（來源之源）集中』的那個詞，JSON 內一律改成『多條』——verify-news-history-1 §0 風險 3 指出 2022–2023 的模式說幾乎都出自 The Race 一家（P1–P3 同一系列短評），7 條裡 3 條同為 The Race，P5（Sky Morlidge）混了引擎故障（§4 建議移出『策略模式』清單）；已寫進 section_claims 的 H2-5 降強度。",
+   "已知（#4、#5，已補收）：THESIS H-4／H-6／H2-5 提到的 Leclerc 2022 摩納哥、Leclerc 2024 英國、Hamilton 2026 雪邦、Button 澳洲、Speedweek 匈牙利 NH-57 L61、Hamilton 匈牙利 NH-56 L47、Jain 接任兩句，已回原檔取連續逐字句補進 news_quotes（id 為 H4-…／H6-…／H2-5-JAIN-…，原檔行號在 qualifiers 與 evidence_line）；Binotto 2022 摩納哥自承已有 R1-1、R1-2；『漢米爾頓雪邦 NH-59／NH-62 那兩句』實為 Vasseur 的兩句，已有 NH59-L38、NH62-L73，漢米爾頓雪邦自承另補 H4-HAM-SEPANG（NH-60 L51）；Leclerc 2022 的 L195 句只講『整體的錯』，策略指涉在 L197（H4-LEC2022b）。",
+   "已知（#4，保留）：THESIS H2-4 ④ 提到 F1.com 與 The Race 的『之後討論過改兩停、判斷他差幾圈』，⑤ 只有 The Race 的 E-41；E-83（F1.com NS-03 L123）為補入，E-41、E-83 皆標『單一來源／未具名／THESIS H2-4 ④ 可選』。",
+   "已知（#5）：THESIS 引用的「rookie-level」「solely to blame」在原檔 sg-planetf1-strategy-analysis.txt L15，歸屬席 verify-news-sg 的 E-63 行號是 L17（相鄰下一句）；兩行都收（E-63a＝L15、E-63＝L17），行號差異以原檔為準。",
+   "THESIS ⑤ 寫「E-01 系（只到 P2-P3）」沒有行號；verify-news-sg 可入文清單 #6 的原文片段在 NS-19 L165（Autosport 版），F1.com 版（NS-01 L29）後半斷句不同。本檔採 NS-19 L165，id 寫成「E-01系(NS-19 L165)」。",
+   "THESIS H2-5 在 2022 匈牙利只列 R1-7、R1-8，其限定『並陳 Binotto 歸因車速』『Sainz 認為失誤不多』在 verify-news-history-1 §6 #8 對應 NH-07 L261／L283、L273；本檔補收 L283 為 R1-8b、L273 為 R1-8c，L261（原文較長）未收。",
+   "THESIS 以『檔名縮寫＋行號』點名、沒有 Q／R1／E 編號的條目，本檔自取 id：NH01-L233、NH18-L59、NH03-L45（摩納哥 Sainz 那一步兩邊）、NH05-L39（Straw）、NH24-L55（The Race debatable）、NH28-L18（Leclerc 2023 美國）、NH40-L61（RaceFans 2025 加拿大）、NH56-L57（Vasseur 匈牙利辯護）、NH59-L38、NH62-L73（Vasseur 雪邦兩版）。其中 NH-40 L61 在 verify-news-history-2 12-5 被判『方向偏質疑，不是反駁』。",
+   "已知（#7）COMMON.md 與派工單寫賽道頁 `/circuits/marina_bay/`；站上實際路徑（data/f1/slugs.json、public-racing/circuits/）是 `/circuits/marina-bay/`（連字號），interlinks 用後者。",
+   "已知（#8）F-15 的數字（自由空氣前 10／後 10 中位 1:37.250／1:38.610、全部非進站非虛擬安全車圈 1:37.219／1:39.424）不在 th1–th3 輸出內，建檔改跑 vd3.py 對上；全部圈的差重算為 2.205（99.424−97.219），verify-data 與 THESIS 的 F-15 寫 2.206（捨入差 0.001），兩個數字並存；正文用區間『約 1.4–2.2 秒』不受影響。",
+   "已知（#9）Button 的站上核定譯名是「詹森・巴頓」（scripts/driver-zh.json，charlie-2026-07-23），部分站上文章寫「巴頓」，以核定表為準。",
+   "已知（#10）Vasseur、Binotto、Rueda、Jain、Santi、各媒體評論員在站上都沒有核定譯名，zh_names 已標『保留原文』，不自創。",
+   "已知（#6）F-8 提到培瑞茲在第二次虛擬安全車期間進站：laps.csv 裡這一停記在培瑞茲自己的第 38 圈（他落後一圈，與領先者第 39 圈同一時段），THESIS 沒寫培瑞茲圈號；建檔不寫。",
+   "已知（#11）THESIS 末段『需要指揮位決定的事』5 條（『迷之策略』四字要不要出現、H2-5 表格規模、H-6 是否升級成普查、判讀第 4 點本站推論、是否另找量化回答『有沒有模式』）尚未裁決；本檔一律採 THESIS 的預設（猜的），沒有改動任何一條。",
+   "站上互鏈候選 f1-singapore-marina-bay-safety-car-pole（10/2）寫 2024、2025 年新加坡站沒有安全車；R17 的 track_status 也沒有安全車（F-7）。THESIS 沒有『連續三屆沒有安全車』這個主張，本檔不寫；寫手若連結該文，只連賽道背景，不延伸。",
+   "對上篇鍵的增補：news_quotes 每筆多了 evidence_file、evidence_line（原檔與行號，供 verify_quotes_facts.py 逐行比對）；_meta 多了 open_issues 的條目；verified_facts 與 derived_values 多了 _rule 說明鍵。",
+   "2026-10-12 R1 修正（修正棒 Opus；判決 reviews/opus-r1.md、agy-r1.md；指揮位裁定 briefs/FIX-R1.md；逐條紀錄 reviews/r1fix-report.md；原檔備份 packs/_prev/）：以下逐條列改動。",
+   "R1｜歷史節不寫計數與頻率（裁定 1）：H2-5 標題改主題式「2022 到 2026 的法拉利策略爭議，分兩層記」；lede、thesis T3、section_claims 判讀第 3 點、H-03 的「7 條在 2022／跨年只有 2 條／最晚 2025 年／2024 年以後沒有專文」整組撤下；「零星」「集中」「轉成」刪；H-05 去條數；H-06 改逐場列名（不寫「7 場中 6 場」）；D18 加註按年張數不寫進正文；must_not 40、41、46 擋回頭路。#3 條目的『多條』『集中』寫法自此作廢。",
+   "R1｜H-03 重歸類（A1、agy #2）：母集明寫「歷史段來源＋NH-66＋NS-07 兩條」；Anderson 2022（NH-05 L61）改標泛稱；crash.net 2024（NH-33 L3、L15）改列「跨季、談策略決定、方向為改善」；The Race 2026 新加坡評論 Suttill（NS-07 L73–77，以「如果是他推翻車隊」為前提，L69–71）與 Anderson（NS-07 L43）納入；PlanetF1 三條標作者未署名、寫「PlanetF1 分析稿」。原檔行號已由修正棒回 evidence 逐行核對。重查後「2023 年以後跨場說法轉向溝通與信任」不成立（Hughes 2023、PlanetF1 2025、Suttill 2026 仍談策略決定），未保留。",
+   "R1｜判讀第 4 點（歷史本站推論）整條刪除（裁定 2）；判讀第 3 點改為「本篇收錄範圍內批評與稱讚都有、各針對哪些場次與誰說的；不是普查，不下有沒有模式的結論」；THESIS 待決 4 結案。",
+   "R1｜字數（裁定 3、agy #1、opus E3）：voice.length 改「全文含表、不含資料來源節下限 3,000 字，不設上限」；字帳 3,450 標「估計，非上限」；COMMON、WRITER §七同步。",
+   "R1｜標題（裁定 4、opus A4、A7）：THESIS ⑦ 重擬主案與兩備案（34–36 字，只帶 Q1、有連接詞、不並置名次、無做法詞），_structure_hint 同步；原備案 2 問句撤下（本篇不回答有沒有模式）。",
+   "R1｜E1 歷史資料層：derived_values 新增 H_cards（13 筆：A 級 10 場＋2026 表的巴塞隆納、摩納哥、英國），全部由修正棒以 FastF1 3.8.3 離線快取重算（/Users/charlie.chien/.claude/jobs/b14498e9/tmp/r1fix/hcards_recalc.py → hcards_raw.json／.txt）。與 evidence/hist_stints.md 數值 0 不一致；口徑／疏漏 4 處：①2026 英國漏記第 22、39 圈虛擬安全車碼（opus D3）；②2026 澳洲 hist_stints「LEC 第 1–20 圈每個抽樣圈都是 1」——逐圈重算第 2 圈是第 2，不得寫成第 1–20 圈都領先；③2026 雪邦 hist_stints「第 45 圈 SC」取自賽會訊息 LAP 欄，TrackStatus 為第 43–45 圈虛擬安全車碼、第 46 圈起安全車碼；④2022 匈牙利 hist_stints「VSC 第 2、68 圈」是賽會訊息圈號，TrackStatus 為第 1–3、68–69 圈。另與 verify-news-history-2 15-5 差 1 圈：2026 巴塞隆納漢米爾頓第 38 圈起已第 1（非第 39 圈），Q8 qualifiers 已改。",
+   "R1｜A3：must_not 21 括號改「Vasseur 2024 年 10 月說整季犯過錯、但不認為策略丟了很多分」；新增 must_not 37「Vasseur 2024 年承認策略犯錯」；回查 H-04 未列 Vasseur 2024，無同類誤歸。Q6b qualifiers 加註。",
+   "R1｜A5：T2、section_claims、thesis_claim_count、⑥ Q3、FAQ 列改為「漢米爾頓聲明是一條（先錯過、後決定留）；『兩種說法』只指 Vasseur 兩場訪問」。A6：F-10 本站推論從 H2-2 移到判讀第 1 點（依賴表同步）。B1：「約 0.15 秒」→「約 0.14 秒」（修正棒重算 13 圈平均 0.142，r1fix/b1_recalc.py），THESIS、unanswerable、news_quotes E-63 qualifiers 同步（全掃 3 處）。",
+   "R1｜C1 E-105 qualifiers、C2 E-30 zh_gloss（中和→虛擬安全車結束後）、C3 E-26 qualifiers、C4 E-20 qualifiers＋THESIS H2-1 刪「同一提問」、C5 E-47 qualifiers＋判讀第 2 點移除 Mitchell-Malm、C6 must_not 3＋limits 新聞分級＋THESIS H2-4 ③ 補 F1.com rejected／Speedcafe ignoring／GPFans refused／PlanetF1 defy（四處原檔行號已回 evidence 核對）。",
+   "R1｜D1：A／B 定義補「或沒有法拉利人員的說法（EV-12、EV-15）」（H-02、limits 事件分級、THESIS H2-5 節首）。D2：H-06 與 2026 表澳洲改「第一次虛擬安全車兩台都沒進（第二次期間進站口關閉）」，新增 must_not 39。D3：must_not 29 補英國不寫「全場只有一次安全車」，H_cards 記第 22、39 圈虛擬安全車碼。",
+   "R1｜E2 譯名：事實包內文「佩雷茲」→「培瑞茲」、「博塔雷托」→「博托萊托」（依 zh_names 與 scripts/driver-zh.json；verbatim 不動）；COMMON L30 同步；WRITER §三加「事實包內文譯名以 zh_names 為準」。",
+   "R1｜agy #4：新增 must_not 38（豪賭失敗）。agy #5：H6-SPEEDWEEK attribution_type 改「評論員意見」（qualifiers 保留作者未署名）。另依 opus A③ 補 must_not 42–45（無線電錯過進站口、E-105 補主詞、對稱因果句、E-20 誤用到第 39 圈）。"
+  ]
+ },
+ "thesis": "T1｜主題：第 39 圈虛擬安全車前後，勒克萊爾（進站）與漢米爾頓（留在場上）的名次與落後秒數變化，以及第 41 圈到終點對維斯塔潘多掉的 45.192 秒（胎齡與攻防各占多少，資料拆不開）；支撐：F-8、F-9、F-11、F-12、F-13（背景 F-2、F-4、F-10、F-14）。\nT2｜主題：車隊叫進站（雙方原話：Vasseur 對 Sky 說兩台都叫了，漢米爾頓聲明說車隊叫了他；『兩台』只有 Vasseur 說）與漢米爾頓沒進站的原因，具名說法並陳（漢米爾頓書面聲明是一條：先錯過入口、後決定留在場上；Vasseur 在兩場訪問給了兩種說法、媒體會上同一句改口；漢米爾頓賽後無線電；「兩種說法」只指 Vasseur 的兩場訪問；『無視／拒絕指令』是記者用語，沒有當事人說過）；支撐：E-103、E-104、E-13、E-14、E-34、E-26、E-09；verify-news-sg.md §2.3。\nT3｜主題：2022–2026 的法拉利策略爭議，每場分事實層與評價層；本篇收錄範圍內（109 場收錄 20 場、只查英文媒體，不是普查）具名來源的批評與稱讚都有，各自針對哪些場次、誰說的（批評裡有車隊自己人的自承；2024 蒙札與 2026 巴塞隆納有獨立媒體稱讚；2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在安全車／虛擬安全車出現時進不進站，進與不進都被具名質疑過；跨場說法依射程各有人說）；不下『有沒有模式』的結論；歷史節不寫任何計數或頻率（R1 指揮位裁定 1、2）；支撐：H-1～H-6、derived_values.H_cards。",
+ "section_claims": [
+  "lede（重點速答）：維斯塔潘第 1；第 39 圈虛擬安全車，Vasseur 說兩台都被叫進站、漢米爾頓說車隊叫了他，勒克萊爾進站拿第 2，漢米爾頓沒進站、最後 22 圈被 4 台超過拿第 6；沒進站的原因，漢米爾頓的聲明是錯過入口之後決定留在場上，Vasseur 在兩場訪問分別說成「Lewis 決定留」與「他錯過進站口」。回看 2022–2026：具名來源怎麼說（批評與稱讚都有；本篇是收錄樣本，不是普查）。——lede 不寫 45 秒的原因、不寫「失誤」由誰認、不寫任何歷史計數或頻率。",
+  "H2-1｜標題草案：兩台法拉利從不同輪胎起跑，漢米爾頓第 18 圈全場第一個進站｜主張：分流起跑（F-2）；漢米爾頓第 10–17 圈相對勒克萊爾的圈速差變化（F-5）；第 18 圈全場第一個進站（F-3），出站後第 19 圈末第 7；勒克萊爾第 24 圈進站，出站以 0.850 秒領先漢米爾頓，之後 8 圈漢米爾頓在 1.5 秒內，第 33 圈起拉開（F-6）。｜新聞：E-17（Vasseur 媒體會：決定分流、挑戰 Max）與 E-11（漢米爾頓聲明：我選了新中性胎起跑、想做一停）並陳主詞，不寫成矛盾；E-18（媒體會：中性胎兩台都比較差、大家都一樣）＋E-89（維斯塔潘旁證）可選。勒克萊爾出站那段：PlanetF1 分析稿作者認為是「rookie-level」、車隊「solely to blame」（E-63，作者評論，無具名消息來源）並陳 Vasseur 的話：PlanetF1 在敘述漢米爾頓抱怨卡在隊友後面之後，接 Vasseur 的回應「輪胎優勢在 Lewis；Charles 晚六圈進站，所以是對的決定」（E-20，連前句整段，不補主詞；原文沒有印出提問；講的是第一停，不得用在第 39 圈）。｜窮舉：F-3 25 次進站；F-6 第 25–38 圈逐圈。｜反例檢查：「擋住」——第 26–38 圈勒克萊爾平均每圈反而快約 0.14 秒（R1 修正重算：13 圈 HAM−LEC LapTime 平均 0.142，`r1fix/b1_recalc.py`；原寫 0.15），資料沒顯示漢米爾頓有速度被卡住；故正文不寫「擋住」，只並陳 PlanetF1 與 Vasseur。｜降強度：第 25 圈漢米爾頓慢 1.6 秒與無線電「又丟兩秒」量級相近，不寫成同一件事。",
+  "H2-2｜標題草案：第 39 圈虛擬安全車，勒克萊爾、安東內利進站，漢米爾頓留在場上｜主張：第 39 圈前 6 名與胎種（F-9：只有漢米爾頓穿軟胎、胎齡 24）；虛擬安全車約 119 秒（F-7）；期間進站者與沒進者（F-8）；第 40 圈圈末漢米爾頓第 2、勒克萊爾第 3 落後他 9.987 秒（F-11、F-12）。｜新聞（只放事實層，不放原因）：E-103「我們叫了他，兩台車都叫進站」（Vasseur 對 Sky）；E-13「虛擬安全車期間，車隊叫我進站，但我錯過了入口」（漢米爾頓經法拉利發布的聲明）——兩句一致處＝車隊叫了進站。原因留到 H2-4。｜窮舉：22 人逐一對 track_status（F-8）。｜反例檢查：「漢米爾頓是唯一沒進站的前段車手」錯——前 6 名中 VER、NOR、PIA 也沒進（他們第 32–33 圈已換中性胎）。「勒克萊爾換上全新軟胎」錯——胎齡 4。｜降強度：P2 是對手進站造成，不寫「追上來／升到第 2」以外的動詞；引賽會訊息不寫圈號（坑 4）。虛擬安全車進站代價（F-10）是本站推論，R1 移到判讀第 1 點，本節不寫。",
+  "H2-3｜標題草案：漢米爾頓最後 22 圈對維斯塔潘多掉 45.2 秒，中間被 4 台超過，終點第 6｜主張：第 41–62 圈全綠旗、兩人都沒進站，對維斯塔潘多掉 45.192 秒（F-13）；被超車順序與圈號（F-11）；第 40 圈末各車落後他的秒數（F-12）；勒克萊爾第 41 圈全場最快圈（F-14）。可選：軟胎段後段變慢 1.4–2.2 秒（F-15，附方法）。｜新聞：E-92/93（勒克萊爾：最後一段一開始推很兇、衰退多一點、不後悔）可選；E-30（Motorsport.com：後 22 圈對勒克萊爾平均每圈慢 2.5 秒）可用、本站自算 2.538 並註明比較對象；E-121（Speedcafe：最後 8 圈被超）可選；FIA 第 54 圈 Turn 1 不予處分（E-167～E-170／VD-14）可選一句。｜必寫一句限定：45.192 秒裡，漢米爾頓軟胎胎齡 26–47、維斯塔潘中性胎 9–30 同時變化，加上被超車的 4 圈占 16.94 秒，胎齡與攻防各占多少拆不開；也算不出「若進站會怎樣」。｜反例檢查：超車圈號以計時為準——勒克萊爾第 46 圈（不是 The Race 的第 48 圈）、安東內利第 54 圈、皮亞斯特里第 61 圈（不是「最後一圈」）；媒體不同說法照坑 2 只寫計時資料。｜降強度：不寫「沒進站讓他掉了 45 秒／4 個名次」。漢米爾頓聲明「closing laps … lost three places」指第 54、55、61 圈的 3 次，與資料一致，不要「更正」成 4。",
+  "H2-4｜標題草案：Vasseur 說兩台都叫了進站，漢米爾頓說他錯過入口後決定留在場上｜主張（全部具名，依場合排）：\n1. 漢米爾頓（沒有出席媒體區，說法只有無線電與書面聲明，NS-02 L21）：賽後無線電 E-09；聲明 E-13、E-14、E-15（我負全責）。\n2. Vasseur 三個場合：F1 TV E-34「指令是兩台都進站，Lewis 決定留在賽道上」＋E-01 系「整體是個失誤，我們本來能拿第 2、第 3」（只引到這裡）；Sky E-103、E-104「本來會是第 2、第 3…他錯過了進站口」、E-105「無線電上講得非常清楚」（以 Sky \"It was\" 為準）；媒體會 E-26 整句含更正（「我的一位車手說『不，我寧可留在賽道上』。不，他不是這麼說，他說的是『我錯過了進站口』」）。寫明：①②是兩場訪問的兩種說法，不是轉寫差異；③他在同一句裡改口。\n3. 媒體框架（點名、不採為事實）：Sky、ESPN 以「無視（ignored／overridden）」形容，但兩家緊接印出的 Vasseur 原話是「他錯過進站口」（同屬記者框架的還有 F1.com 編輯稿的 rejected、Speedcafe 的 ignoring、GPFans 的 refused、PlanetF1 分析稿的 defy，不當中性敘述照用；正文只點名 Sky、ESPN 即可）；The Race 報導轉播在虛擬安全車期間沒收錄到法拉利與漢米爾頓的無線電（E-36，一家、講的是轉播沒收錄）。\n4. VSC 之後：可選一句「The Race、F1.com 等報導車隊之後討論過改兩停、判斷他差幾圈（未具名，沒有無線電原文）」，「6 圈」只能掛 The Race（E-41）。\n5. 評論（並陳，不裁決）：Schiff「他們在某些情況下已經不太相信對方的判斷」（E-110，她拿雪邦與新加坡兩週對照）對 Button「我不同意是信任問題，他只是想自己做決定」（E-113）；PlanetF1 分析稿「最終責任在漢米爾頓，根本原因是溝通不良」（E-72，作者觀點）；The Race 評論員 Mitchell-Malm「法拉利本可以把分流策略管理得更好」（NS-07 L33，備選；若用，必須連同他那段的主旨一起寫：小標說這是法拉利「（大概）本來就會輸」的一場（L23），他寫法拉利內部「似乎」認定錯在漢米爾頓（L27，原文 seemed），這句只是他列舉的幾個沒發生的假設之一；不放進「對車隊的具名批評」）。｜窮舉：Vasseur 三場合對照表（`verify-news-sg.md` §2.1）全用；不用孤本 E-04、E-08、E-130、E-153。｜反例檢查：「36 篇裡沒有任何當事人說過 ignore／refuse／override」的範圍＝桌內新加坡新聞 36 篇；寫成「本篇讀到的報導中」。｜降強度：「錯過」是不是字面意思，沒有人驗證過（Suttill 看車載畫面說「clearly made no attempt」是評論員觀察，可選、掛名）；不寫「藉口」「故意」。｜銜接：一句帶到雪邦（10/5 本站專文互鏈），只寫「一週前雪邦站，車隊提出進站、漢米爾頓說要等賽道變乾」（沿用 10/5 已查核的寫法），不寫「他本季一直聽車隊的」（E-70 FAIL）。",
+  "H2-5｜標題草案：2022 到 2026 的法拉利策略爭議，分兩層記｜（H2 是主題式，不陳述計數或頻率〔R1 指揮位裁定 1〕；母集與收錄範圍在節首第一段交代。）｜節首必寫的選擇標準（避免挑好笑場次）：①母集：FastF1 賽程表 2022–2026 第 17 站 109 場（H-1）；②收錄方式：英文媒體關鍵字搜尋，正反兩面（失誤、被稱讚、被誇大）都搜，收錄 20 場（H-2）；③每場分兩層：事實層＝FastF1 計時與賽會訊息能驗的進站與名次；評價層＝誰具名說這是失誤或是好決定；④分級：A 兩層都站得住、B 只有一層或評價只有車隊自己人／單一來源，或沒有法拉利人員的說法、C 不列；⑤限制：不是 109 場普查，義大利媒體沒查，所以不算「出錯率」、不下「有沒有模式」的結論。｜事實層數字的唯一來源：事實包 `derived_values.H_cards`（A 級 10 場＋2026 小表的巴塞隆納、摩納哥、英國，共 13 筆；R1 修正棒用 FastF1 3.8.3 重算）。每場事實層句照該筆的 `write_as` 寫或縮短，不加 H_cards 沒有的圈號與名次；H_cards 沒收的場次（B 級的比利時、法國、日本、英國 2024、加拿大等）只寫做了什麼決定與誰怎麼說，不寫圈號、名次數字。｜內容（依年，正反都放）：\n- 2022（A：摩納哥、英國、匈牙利；B：比利時、法國）：A 三場的事實層各一句（照 H_cards）；評價層——Binotto「我們做了幾個糟糕的決定，也付出代價」（R1-1）與更具體的「至少早一圈叫他進站，或乾脆留在全雨胎」（R1-2）、Rueda「犯了兩個錯，第一個是去 cover Perez」（R1-3，二手經 racer.com）；英國 Khorounzhiy「兩台都該進站，沒有藉口」（R1-5）必帶同篇 Straw 認為留一台合理；匈牙利 ESPN Edmondson 硬胎分析（R1-7）、Leclerc「換上硬胎速度就全沒了」（R1-8）並陳 Binotto 歸因車速；Straw「一再犯下重大策略錯誤」（Q1，標明是 2022 年匈牙利站後的評論）；反方 Binotto「策略不是我們的弱點」（Q5）、Sainz「我們沒有外界說的那麼災難」（R1-10）。摩納哥 Sainz 那一步誰決定，兩邊說法都寫（ESPN NH-01 L233、RaceFans NH-18 L59：Sainz 拒絕進站指令；Rueda NH-03 L45：車隊最後一秒叫他留），不算成法拉利策略的成敗。比利時、法國是 B：各一行，只寫做了什麼決定與法拉利說法，不寫圈號、名次數字；法國若寫必帶罰時脈絡（R1-10 qualifiers）。\n- 2023（A：摩納哥、美國；事實層照 H_cards）：Hughes「法拉利由來已久的溝通老問題，可議的策略也屬同一類」（Q2，podcast 口述，跨年、談溝通與策略）；Vasseur「那是賭注，不後悔」（R1-12）必帶 The Race 認為「debatable」；美國站 Vasseur「錯在以為一停兩停五五波」（R1-14）、Leclerc「就是錯的策略」（NH-28 L18）——定性的全是法拉利自己人，要標明。\n- 2024（A：蒙札，事實層照 H_cards；B：日本、英國〔單一來源，不展開〕、Jain 接任〔只有評價層〕）：蒙札 Motorsport.com「策略上的勝利」（Q7，勝差 FastF1 2.664 秒）；Vasseur 2024 奧斯汀後「我不認為我們在策略上丟了那麼多分」（Q6）必連同行「整季確實犯過錯」；Jain 接任只寫「媒體稱在 2022 年一連串失誤之後；Vasseur 說策略不只是維修牆上那個人、換人有多重原因」（不寫「說法不一」）。\n- 2025（B：加拿大，不寫圈號與名次數字；C：奧斯汀不列）：PlanetF1 分析稿「就像之前許多次，又以策略疑問收場」（Q3，作者未署名；跨年、談策略）並陳 RaceFans「處境不同，但進站時機值得檢討」（程度不同，不是結論相反）。\n- 2026（收錄場次全列）：一張小表列 H-6 的各場（站名｜當時的中立化／決定｜名次變化｜具名評價）；「中立化／決定」與「名次變化」兩欄只准取 `derived_values.H_cards`；澳洲寫「第一次虛擬安全車兩台都沒進（第二次期間進站口關閉）」，不寫成兩次都選擇不進；英國只寫第 48 圈安全車那一次決定，不寫「全場只有一次安全車」；表前句交代母集（收錄場次，不是 17 站普查），表後句不寫比數、不寫「多在中立化」。巴塞隆納稱讚（Q8，註明 VSC 前漢米爾頓已領先）；澳洲 formula1.com（Q9，保留「似乎」）並陳 Vasseur「不後悔」（Q10）；英國 Vasseur「現在重來還是會這樣」（Q11，前面交代兩車都進、漢米爾頓第 2 掉第 3）；匈牙利 Vasseur「執行非常差」（Q12）必同時寫他為進站決定辯護（NH-56 L57）；雪邦互鏈 10/5 專文，一句 Vasseur 認錯（NH-59 L38）並陳同場另一版「重來也不確定會怎麼選」（NH-62 L73）；新加坡回指 H2-2～H2-4。｜窮舉：A 10 張全列（不挑）；B 9 張至少一行清單（EV-08、EV-11 寫明「只一層／單一來源」）；C 1 張寫明不列的理由。｜反例檢查（R1 重歸類）：Anderson 2022 那句「always…when it comes to strategy」是泛稱，不是 2022 單季；crash.net 2024 是跨季談策略決定、方向為改善；Suttill 2026 以「如果是他推翻車隊」為前提，連到先前錯誤造成的不信任；Morlidge P5 含引擎故障，若引要註明。｜降強度：不給任何「出錯率」「幾成」；2026 有 7 場不代表 2026 爭議最多（近期報導較多、搜尋偏差）；同理，按年張數（2022 年 5 張、2026 年 7 張等）不能讀成頻率，正文不寫。「零星」「集中」「轉成」「只有」「最晚」不用在歷史段；跨場說法只寫射程（誰、何時、談策略決定還是溝通與信任），例：「2023 年以後收錄到的跨場說法，Hughes、PlanetF1 分析稿、Suttill 談的是策略決定，Straw、Leclerc、PlanetF1 新加坡分析稿談的是執行、情緒或溝通；crash.net 則說策略名聲已改善」（R1 重查後，原「跨場說法轉向溝通與信任」不成立，不用）。｜降強度（指揮位補，R1 改寫）：2022 年的跨場說法裡，P1、P2 出自 The Race 2022 匈牙利短評，Anderson（P3）出自同系列 2022 英國短評且是泛稱，Morlidge（P5）含引擎故障；引用時掛名並說明出處，不寫條數。",
+  "H2-6｜標題草案：判讀｜收所有判斷；三層分開寫。｜1. 新加坡，資料量得到的：第 39 圈法拉利在賽道上第 2、第 3（F-9）；勒克萊爾進站、漢米爾頓沒進（F-8）；之後 22 圈全綠旗多掉 45.192 秒、被 4 台超過（F-11、F-13）。量不到的：45 秒裡胎齡與攻防各占多少、進站的話會怎樣。本站推論，信賴度中（全篇唯一一條本站推論；R1 從 H2-2 移來）：以「進站前一圈末到出站後一圈末、對維斯塔潘的差距變化」算，虛擬安全車期間進站多掉約 12–14 秒、綠旗進站約 24–25 秒（F-10）；含新舊胎圈速差，不是純進站損失。｜2. 新加坡，具名來源說的：車隊叫了進站——Vasseur 與漢米爾頓都這麼說（「兩台」只有 Vasseur 說）；沒進的原因——漢米爾頓聲明是「先錯過入口、之後決定留」，Vasseur 兩場訪問兩種說法；把結果歸給漢米爾頓決定的是 Vasseur 與漢米爾頓本人（E-34、E-01 系、E-09、E-15）；對車隊的批評也有（PlanetF1 分析稿談勒克萊爾第一停時機與溝通；作者未署名，掛 PlanetF1）。本站不把 45 秒歸因給沒進站，也不評這一步誰對。｜3. 五個賽季，本篇收錄範圍內具名來源怎麼說：批評與稱讚都有，各自針對哪些場次、誰說的——批評裡有車隊自己人的自承（H-4，例如 2022 摩納哥 Binotto、Rueda，2023 美國 Vasseur、Leclerc）；2024 蒙札、2026 巴塞隆納有獨立媒體稱讚（H-5）；2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在安全車／虛擬安全車出現時進不進站，沒進與進了都被具名質疑過（H-6）；跨場的說法依射程各有人說（H-3）。本篇不是普查（109 場裡收錄 20 場、只查英文媒體），不下「有沒有模式」的結論。｜4. 結尾一句可用漢米爾頓「不知為何，我們車隊挨的批評比誰都多」（Q14，標明他是當事人）——只當引語收尾，不當結論。"
+ ],
+ "_structure_hint": "H2 標題＝THESIS ② 給的標題草案（required_sections）；寫手可縮短，但不得增刪標題裡的限定（例如『第 39 圈』『22 圈』），不得加入本站因果句（把 45 秒、名次變化或結果歸因給沒進站，見 must_not 6、7、8、44），具名來源自己說的因果可以掛名照引。標題放結論不放推導、不得含指代詞。H2-1～H2-5 只陳述事實與具名說法，所有判斷收進 H2-6；『本站』全文 ≤8 次（voice.forbidden_meta）。結構（THESIS ②）：lede（重點速答，3–4 句）→ 資料來源短段（不開 H2）→ H2-1 → H2-2 → H2-3 → H2-4 → H2-5 → H2-6 判讀 → 資料來源。字數帳：lede 200／H2-1 400／H2-2 450／H2-3 400／H2-4 550／H2-5 1,000（含表）／判讀 450 ≈ 3,450（估計，非上限；全文含表、不含資料來源節下限 3,000 字，不設上限）。歷史節（lede 的歷史句、H2-5、判讀第 3 點）不寫任何計數或頻率、不下『有沒有模式』的結論；歷史各場事實層只用 derived_values.H_cards（R1 指揮位裁定 1、2、5）。標題（THESIS ⑦，R1 重擬）：主案『新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓卻留在場上』；備案 1『漢米爾頓在新加坡第 39 圈虛擬安全車期間留在場上，隊友勒克萊爾則進站』；備案 2『虛擬安全車在新加坡第 39 圈出動，勒克萊爾進站換胎，漢米爾頓則留在場上』；三案 34–36 字，都只帶 Q1、有連接詞、不並置名次、不含做法詞，超過 30 字須先渲染封面兩行版位；終點名次與歷史主題放副標。封面概念（THESIS ⑦）：本站用 FastF1 計時自繪的折線圖——勒克萊爾與漢米爾頓『落後維斯塔潘秒數』第 1–62 圈兩條線，兩次虛擬安全車畫成色帶，第 39 圈兩線分岔處不加結論文字；不用官方 logo、轉播截圖、車隊標誌、車手照片；圖上文字只寫『新加坡 2026｜落後維斯塔潘秒數』與兩次虛擬安全車色帶，不寫結論。重述位置（THESIS ⑥，R1）：標題只陳述 Q1 的動作事實；subtitle 可寫終點名次＋Q2（Vasseur 與漢米爾頓都說車隊叫了進站）＋Q3（沒進站的原因，漢米爾頓聲明與 Vasseur 兩場訪問說法不一）＋主題式歷史句，不寫 Q4 數字與任何歷史計數（『兩台』只有 Vasseur 說，漢米爾頓聲明只說車隊叫了他，見 THESIS T2）；FAQ 若有：『漢米爾頓為什麼沒進站？』→漢米爾頓聲明（先錯過入口、後決定留）與 Vasseur 兩場訪問的兩種說法並陳；『法拉利策略是不是一直有問題？』→只答本篇收錄範圍內批評與稱讚都有、各針對哪些場次，本篇不是普查、不下有沒有模式的結論，不得比正文更確定；結尾 Q14 引語收尾，不加本站評論句。",
+ "required_sections": [
+  "開頭（lede，重點速答，3–4 句，約 200 字）：見 section_claims 的 lede 條；lede 不寫 45 秒的原因、不寫『失誤』由誰認、不寫任何歷史計數或頻率；重述位置依 _structure_hint。",
+  "資料來源段（正文前段，一個短段落，不開 H2）：數字來自 F1 官方即時計時公開存檔，第 17 站賽果與進站取 Jolpica（額外來源，第 17 站尚未進站上資料庫）；車手與車隊的說法來自具名媒體報導與賽後訪問、媒體會，各句掛出處；本文不引積分。",
+  "H2-1（標題草案）兩台法拉利從不同輪胎起跑，漢米爾頓第 18 圈全場第一個進站｜重述位置（THESIS ⑥）：事實句，不涉論點",
+  "H2-2（標題草案）第 39 圈虛擬安全車，勒克萊爾、安東內利進站，漢米爾頓留在場上｜重述位置（THESIS ⑥）：Q1（第 39 圈）＋進站者；不寫原因",
+  "H2-3（標題草案）漢米爾頓最後 22 圈對維斯塔潘多掉 45.2 秒，中間被 4 台超過，終點第 6｜重述位置（THESIS ⑥）：Q4 的數字可進標題（「最後 22 圈對維斯塔潘多掉 45.2 秒」），限定「拆不開」放第一段，不放「因為沒進站」",
+  "H2-4（標題草案）Vasseur 說兩台都叫了進站，漢米爾頓說他錯過入口後決定留在場上｜重述位置（THESIS ⑥）：Q2＋Q3 以「車隊說…，漢米爾頓說…」雙主詞寫；不寫「無視」",
+  "H2-5（標題草案）2022 到 2026 的法拉利策略爭議，分兩層記｜重述位置（THESIS ⑥，R1）：標題主題式，不陳述計數；節首第一段交代母集與收錄範圍；內文不寫條數與頻率詞；各場事實層只用 derived_values.H_cards；2026 表前句交代母集（收錄場次，不是 17 站普查），表後句不寫比數、不寫『多在中立化』",
+  "H2-6（標題草案）判讀｜重述位置（THESIS ⑥）：全部限定帶齊；全篇唯一的本站推論是 F-10（虛擬安全車進站代價），標信賴度中",
+  "結尾（H2-6 判讀之後）：以漢米爾頓新加坡站前對 Sky Sports F1 說的 Q14 引語收尾（標明他是當事人），只當引語、不當結論，不加本站評論句。",
+  "## 資料來源（分『本站自有資料』『官方文件與官方說明』『新聞與媒體報導』，每條可點擊；只列正文實際引用的來源；查證日 2026 年 10 月 12 日；**本站限制聲明**照 limits_statement_points）"
+ ],
+ "data_sources": {
+  "_rule": "URL 只准用這幾個；正文用到的每個數字都能回到 derived_values 或 verified_facts，每個引句都在 news_quotes。站內連結放 interlinks。",
+  "f1_livetiming_archive": "https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/ （F1 官方即時計時公開存檔，賽後免費；FastF1 3.8.3 解析；含逐圈、輪胎段、賽會訊息、track_status）",
+  "jolpica_results": "https://api.jolpi.ca/ergast/f1/2026/17/results.json （賽果與官方差距；額外來源，第 17 站尚未進站上資料庫；桌內另存 evidence/jolpica_r17.json）",
+  "jolpica_pitstops": "https://api.jolpi.ca/ergast/f1/2026/17/pitstops.json （進站圈與當地時刻；額外來源，第 17 站尚未進站上資料庫；桌內另存 evidence/jolpica_r17_pitstops.json）",
+  "sg-planetf1-ferrari-defence": "https://www.planetf1.com/news/ferrari-lewis-hamilton-singapore-gp-pit-strategy-mistake （PlanetF1（Vasseur 賽後媒體會圍訪）；用於：E-17、E-18、E-20pre、E-20）",
+  "sg-f1com-hamilton-painful-lesson": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1 （F1.com（漢米爾頓經法拉利發布的書面聲明）；用於：E-11、E-13、E-14b、E-09、E-14、E-15、E-16）",
+  "sg-f1com-race-report": "https://www.formula1.com/en/latest/article/verstappen-seals-commanding-singapore-grand-prix-victory-from-leclerc-and-antonelli.49wDzysiVqi5cloGjle40A （F1.com 賽報（維斯塔潘賽後 Key quote）；用於：E-89、E-83）",
+  "sg-planetf1-strategy-analysis": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis （PlanetF1 遙測分析稿；用於：E-63a、E-63、E-72）",
+  "sg-sky-hamilton-apologises": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp （Sky Sports（Vasseur 對 Sky Sports F1 的賽後訪問）；用於：E-103、E-104、E-105、E-102、E-102b(NS-21 L57)、E-110、E-113a、E-113）",
+  "sg-motorsport-why-ferrari-caved": "https://www.motorsport.com/f1/news/why-ferrari-caved-in-to-lewis-hamiltons-failed-singapore-f1-gamble/10864417/ （Motorsport.com／Autosport（同稿，算一家）；用於：E-30、E-26）",
+  "sg-f1com-leclerc-dont-regret": "https://www.formula1.com/en/latest/article/i-dont-regret-anything-leclerc-gave-it-all-to-secure-p2-in-singapore.4TemKhORmVtudPgWO2Uiw4 （F1.com（勒克萊爾賽後）；用於：E-92/93）",
+  "sg-speedcafe-ferrari-what-happened": "https://speedcafe.com/f1-news-2026-singapore-grand-prix-ferrari-lewis-hamilton-charles-leclerc-strategy-issue-apology-what-happened/ （Speedcafe；用於：E-121）",
+  "sg-planetf1-fia-hamilton": "https://www.planetf1.com/news/fia-lewis-hamilton-f1-2026-singapore-grand-prix （FIA 裁決書（PlanetF1 轉錄）；用於：E-167、E-170）",
+  "sg-autosport-hamilton-blame": "https://www.autosport.com/f1/news/lewis-hamilton-takes-blame-for-poor-singapore-gp-strategy/10864343/ （Autosport（Vasseur 對 F1 TV 的賽後訪問）；用於：E-34、E-01系(NS-19 L165)）",
+  "sg-therace-hamilton-imploded": "https://www.the-race.com/formula-1/why-lewis-hamilton-singapore-gp-really-imploded/ （The Race（賽報分析）；用於：E-36、E-41）",
+  "sg-espn-hamilton-painful-lesson": "https://www.espn.com/f1/story/_/id/50131357/lewis-hamilton-calls-singapore-gp-strategy-painful-lesson-ferrari-apology-singapore-grand-prix-marina-bay-circuit-formula-1 （ESPN；用於：E-124、E-124b(NS-23 L217)）",
+  "sg-therace-verdict": "https://www.the-race.com/formula-1/our-verdict-on-lewis-hamilton-singapore-strategy-failure/ （The Race（評論員 Scott Mitchell-Malm）；用於：E-47、E-51）",
+  "hist-2022-monaco-espn": "https://www.espn.com/f1/story/_/id/34010141/how-ferrari-threw-away-victory-monaco-grand-prix （ESPN（Nate Saunders 稿，Binotto 2022 摩納哥賽後）；用於：R1-1、R1-2、NH01-L233、H4-LEC2022a、H4-LEC2022b）",
+  "hist-2022-monaco-planetf1-rueda": "https://www.planetf1.com/news/ferrari-strategist-breaks-down-monaco-errors （PlanetF1（轉引 racer.com，Rueda 談 2022 摩納哥）；用於：R1-3、NH03-L45）",
+  "hist-2022-season-racefans-missed-chances": "https://www.racefans.net/2022/11/30/how-ferraris-missed-chances-prompted-difficult-criticism-for-binotto-in-2022/ （RaceFans（Ida Wood 2022 年終盤點）；用於：NH18-L59）",
+  "hist-2022-silverstone-therace-verdict": "https://www.the-race.com/formula-1/our-verdict-on-ferraris-bewildering-leclerc-strategy/ （The Race（2022 英國站短評）；用於：R1-5、NH05-L39）",
+  "hist-2022-hungary-espn": "https://www.espn.com/f1/story/_/id/34327571/how-ferrari-got-strategy-wrong-hungary （ESPN（Laurence Edmondson 2022 匈牙利分析）；用於：R1-7、R1-8、R1-8b、R1-8c）",
+  "hist-2022-hungary-therace-verdict": "https://www.the-race.com/formula-1/was-hungary-ferraris-biggest-f1-2022-mess-yet-our-verdict/ （The Race（Edd Straw，2022 匈牙利站後）；用於：Q1）",
+  "hist-2022-season-planetf1-binotto-not-weak": "https://www.planetf1.com/news/mattia-binotto-ferrari-not-weak-strategy （PlanetF1（轉引 Motorsport.com，Binotto 2022 暑假）；用於：Q5）",
+  "hist-2022-season-therace-sainz-not-disaster": "https://www.the-race.com/formula-1/ferrari-strategy-not-a-disaster-like-people-say-sainz/ （The Race（Sainz 2022 法國站賽後）；用於：R1-10）",
+  "hist-2023-monaco-therace-gamble-dubious": "https://www.the-race.com/formula-1/ferrari-monaco-gp-strategy-gamble-sainz-leclerc/ （The Race（Mark Hughes，The Race F1 Podcast，2023 摩納哥）；用於：Q2、R1-12、NH24-L55）",
+  "hist-2023-usa-racingnews365-vasseur": "https://racingnews365.com/vasseur-explains-mistake-led-to-poor-leclerc-strategy （RacingNews365（Vasseur 2023 美國站賽後、取消資格前）；用於：R1-14）",
+  "hist-2023-usa-f1com-leclerc-wrong-prediction": "https://www.formula1.com/en/latest/article/leclerc-left-ruing-wrong-strategy-prediction-after-slipping-from-first-to.3yPdQSiQ0EEwPkSLM4R5sp （F1.com（Leclerc 2023 美國站賽後）；用於：NH28-L18）",
+  "hist-2024-monza-motorsport-mclaren-backfires": "https://au.motorsport.com/f1/news/f1-italian-gp-leclerc-ferrari-mclaren-strategy/10650231/ （Motorsport.com（2024 蒙札賽報）；用於：Q7）",
+  "hist-2024-season-gpblog-vasseur-we-had-issues": "https://www.gpblog.com/en/news/308257/f1-fred-vasseur-admits-ferrari-made-mistakes-across-2024-season.html （GPblog（Vasseur 2024 年 10 月奧斯汀站後）；用於：Q6、Q6b）",
+  "hist-2025-canada-planetf1-leclerc-validation": "https://www.planetf1.com/news/charles-leclerc-ferrari-canada-gp-strategy-stand-off-data （PlanetF1（2025 加拿大站後遙測分析）；用於：Q3）",
+  "hist-2025-canada-racefans-one-stop-data": "https://www.racefans.net/2025/06/16/would-the-one-stop-strategy-leclerc-wanted-have-paid-off-canadian-gp-data/ （RaceFans（2025 加拿大數據稿）；用於：NH40-L61）",
+  "hist-2026-barcelona-f1com-race-report": "https://www.formula1.com/en/latest/article/hamilton-claims-stellar-maiden-grand-prix-victory-for-ferrari-in-barcelona-as-antonelli-suffers-shock-retirement.4yCXiPLHUdcnl2BwNpqUIa （formula1.com（2026 巴塞隆納賽報）；用於：Q8）",
+  "hist-2026-season-f1com-three-rounds": "https://www.formula1.com/en/latest/article/the-state-of-play-at-ferrari-after-three-rounds-of-the-2026-season.1Mz6eCCYFvJqGtc3wf10al （formula1.com（2026 三站後回顧）；用於：Q9）",
+  "hist-2026-australia-sky-vasseur-no-regrets": "https://www.skysports.com/f1/news/12474/13516647/australian-gp-ferrari-boss-frederic-vasseur-has-no-regrets-over-strategy-choice-after-charles-leclerc-lewis-hamilton-finish-behind-mercedes （Sky Sports（Vasseur 2026 澳洲站後）；用於：Q10、H6-BUTTON-AUS）",
+  "hist-2026-silverstone-f1com-vasseur-pit-hamilton-sc": "https://www.formula1.com/en/latest/article/vasseur-explains-ferrari-reasoning-behind-decision-to-pit-hamilton-under-safety-car.3W4Uo93M7v8ZtqthKoQILg （formula1.com（Vasseur 2026 英國站）；用於：Q11）",
+  "hist-2026-hungary-therace-wasted": "https://www.the-race.com/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/ （The Race（Vasseur 2026 匈牙利）；用於：Q12、NH56-L57、H6-HAM-HUNGARY）",
+  "hist-2026-sepang-pitdebrief-vasseur-wrong": "https://www.pitdebrief.com/post/ferraris-vasseur-admits-wrong-tyre-call-in-f1-race-in-malaysia-as-hamilton-recovers-to-podium/ （Pit Debrief（Vasseur 2026 雪邦站後）；用於：NH59-L38）",
+  "hist-2026-sepang-grandepremio-throw-away-win": "https://grandepremio.com/en/f1/hamilton-recovered-from-a-minute-behind-did-ferrari-throw-away-a-sepang-win/ （GRANDE PRÊMIO（Vasseur 2026 雪邦站後）；用於：NH62-L73）",
+  "hist-2026-sepang-crash-hamilton-hits-back": "https://www.crash.net/f1/news/1106621/1/lewis-hamilton-hits-back-ferrari-critics-after-strategy-blunder-mclaren-made-same （crash.net（漢米爾頓新加坡站前對 Sky Sports F1）；用於：Q14）",
+  "hist-2024-britain-racefans-wet-tyre-call": "https://www.racefans.net/2024/07/09/how-leclerc-blew-another-wet-weather-tyre-call-while-sainz-nailed-it/ （RaceFans（Keith Collantine，2024 英國站）；用於：H4-LEC2024a、H4-LEC2024b）",
+  "hist-2026-sepang-planetf1-hamilton-more-flak": "https://www.planetf1.com/news/lewis-hamilton-ferrari-criticism-bahrain-gp-tyre-strategy （PlanetF1（漢米爾頓雪邦站後對 Sky Sports，經 PlanetF1）；用於：H4-HAM-SEPANG）",
+  "hist-2026-hungary-speedweek-slap": "https://www.speedweek.com/en/a/formula-1/ferrari-slap-in-the-face-vasseur-admits-hamilton-leclerc-podium-spot-squandered （Speedweek（英文版，2026 匈牙利站評論）；用於：H6-SPEEDWEEK）",
+  "hist-2024-usa-f1technical-jain-praised": "https://www.f1technical.net/news/25670 （f1technical.net（2024 奧斯汀站後）；用於：H2-5-JAIN-F1T）",
+  "hist-2023-season-racefans-vasseur-review": "https://www.racefans.net/2023/03/03/personnel-change-is-first-part-of-complete-review-of-ferrari-strategy-vasseur/ （RaceFans（Vasseur 2023 年 3 月談策略組異動）；用於：H2-5-JAIN-VAS）",
+  "copyright_note": "依 F1 公開計時資料自行計算；個別數字與引句在編輯內容裡附帶使用並掛出處，不提供資料下載、不使用官方 logo 與轉播截圖。"
+ },
+ "limits_statement_points": [
+  "資料基準：F1 官方即時計時公開存檔（FastF1 3.8.3 離線載入；laps.csv 與重新載入 1240 列 11 欄 0 差異，verify-data 前置驗證）；第 17 站賽果取 Jolpica 並標明為額外來源（第 17 站尚未進站上資料庫），Jolpica 與 FastF1 兩源 22 人賽果 0 不一致（F-1）。",
+  "母集與口徑：22 位車手、62 圈（計時圈號）；FastF1 補的 ghost 列（例如阿爾本第 60 圈帶著 Position=17）已排除，排除後 laps.csv 為 1236 列；完賽名次與落後秒數一律用 Jolpica；『過線順序』＝同一圈各車過線時刻先後（Time 欄）；退賽 4 人，其中阿爾本仍以第 18 名列入分類（verify-data T1）。",
+  "第 17 站不進站上積分榜：站上資料庫只到第 16 站賽果落地，本篇不寫第 17 站積分、積分榜、冠軍爭奪推論（must_not 32）；第 17 站賽果與進站為 Jolpica 額外來源。",
+  "虛擬安全車進站的判定方法：用 FastF1 track_status 賽道時鐘直接對 PitInTime，不經 UTC 對位；第二次虛擬安全車 VSCDeployed 1:59:38.412、VSCEnding 2:01:37.401、AllClear 2:01:50.574，約 119 秒；賽會訊息時鐘與 laps.csv 時鐘對位誤差小於 1 秒、賽會訊息時間解析度為整秒；羅素是『結束訊息後約 6 秒、恢復綠旗前約 7 秒』進站，不算期間內；引賽會訊息不寫圈號（LAP 欄只對領先者的圈成立）。",
+  "過線時鐘差不是實際車距：Time 欄是過線時刻，與官方計時點最多約 0.1 秒差，圈中差距寫到 0.1 秒即可；『第 N 圈名次』是該圈結束過線時的順序，進站圈的名次是在進站道過線時的名次。",
+  "『乾淨圈』含車流的警示：漢米爾頓第二段軟胎 41 個非進站非虛擬安全車圈裡，有 16 圈與前車差距不到 1.5 秒（含被超的第 54、55、61 圈），所以軟胎段後段變慢只寫區間約 1.4–2.2 秒（只算自由空氣 25 圈 1.36 秒；全部非進站非虛擬安全車圈約 2.2 秒），附方法，不寫純輪胎衰退（F-15 為可選）；各人樣本的車流比例差很多，不比『哪組輪胎好』。",
+  "45.192 秒（第 41–62 圈共 22 圈，全在綠旗、兩人都沒進站，對維斯塔潘）拆不開：漢米爾頓軟胎胎齡 26–47、維斯塔潘中性胎胎齡 9–30 同時變化；其中 16.940 秒落在被超車的 4 圈（第 46、54、55、61 圈）；算不出『若進站會怎樣』；對勒克萊爾同期多掉 55.840 秒是新舊胎不同條件。",
+  "虛擬安全車進站成本（勒克萊爾、安東內利各多掉 12.272、13.623 秒，綠旗進站 23.966–25.300 秒）是本站推論，信賴度中：含新舊胎圈速差，不是純進站損失。",
+  "歷史部分的母集：FastF1 賽程表 2022–2026 第 17 站共 109 場大獎賽正賽（22＋22＋24＋24＋17；賽程表場數，未逐場核是否全數舉行，不含衝刺賽）；研究席收錄 20 場，是英文媒體關鍵字搜尋的樣本，不是 109 場普查；義大利等非英文媒體沒查；沒有用同一標準算其他車隊，所以不寫出錯率、比率或『每次』。",
+  "事件分級：A＝事實層（計時與賽會訊息能驗的進站與名次）與評價層（具名來源說這是失誤或好決定）兩層都站得住；B＝只有一層，或評價只有車隊自己人、單一來源，或沒有法拉利人員的說法（EV-12、EV-15 依這條判 B）；C＝單一來源未驗，不列。20 場分級：A 10／B 9／C 1（歸屬席判決）。",
+  "歷史各場資料層（R1 修正）：FastF1 3.8.3 離線快取重算，收在 derived_values.H_cards；進站圈＝PitInTime 所在圈（媒體常寫換胎後第一圈，同一次進站差 1）；名次＝該圈結束過線順序（進站圈是在進站道過線時的名次）；中立化圈＝領先者該圈 TrackStatus 的安全車／虛擬安全車／紅旗碼；賽會訊息不寫圈號；H_cards 沒收的場次不寫圈號與名次數字。",
+  "新聞分級：賽會訊息與 FIA 裁決書為一手；F1.com 賽報為官方網站敘述；Sky、ESPN、The Race、PlanetF1、Motorsport.com 等為媒體轉述與評論；『無視／拒絕／推翻』是記者用語（Sky、ESPN 的 ignored／overridden，F1.com 編輯稿的 rejected、Speedcafe 的 ignoring、GPFans 的 refused、PlanetF1 分析稿的 defy 皆屬記者框架），記者框架不等於當事人說法；桌內 36 篇新加坡報導中沒有任何當事人說過 ignore／refuse／override（正文寫成『本篇讀到的報導中』）。",
+  "漢米爾頓沒有出席媒體區（法拉利說他身體不適、獲准不到媒體區；The Race 寫他沒有做電視或書面媒體職責），他的說法只有賽後無線電與法拉利發布的書面聲明；Vasseur 的話分三個場合（F1 TV、Sky Sports F1、賽後媒體會），不同場合是不同的句子，同一場合內是同一句的不同轉寫。",
+  "賽後調查結果查無：賽會訊息 11:26:47 把斯托爾（STR）賽前練習起跑違規列為『賽後調查』，證據目錄全域搜尋只命中賽會訊息兩則，結果查無，本篇不寫結論；The Race 說無線電在虛擬安全車期間沒被轉播收錄是一家之言，法拉利沒有具名人證實。"
+ ],
+ "must_not_claim": [
+  "1. 「迷之策略」「法拉利策略一向／總是／年年／又一次出錯」作為描述或結論（任何位置，含標題、FAQ、圖說）。",
+  "2. 「法拉利策略組／維修牆整體失誤」「法拉利策略有模式性問題」作本站陳述；反向的「法拉利策略已經沒問題」「名不副實」也不寫。",
+  "3. 「漢米爾頓抗命／無視／拒絕／推翻車隊指令」作本站陳述或歸給 Vasseur；只能寫「Sky、ESPN 等以『無視』形容」並點名（F1.com 編輯稿的 rejected、Speedcafe 的 ignoring、GPFans 的 refused、PlanetF1 分析稿的 defy 同屬記者框架，不得當中性敘述照用；正文仍只點名 Sky、ESPN 即可）。",
+  "4. 「漢米爾頓沒聽到／沒收到進站指令」「無線電故障讓他沒聽到」（The Race 講的是轉播沒收錄；漢米爾頓自己說車隊有叫他）。",
+  "5. 「錯過入口是藉口」「他故意不進站」「其實是他自己選的」——推論。",
+  "6. 「Vasseur 承認新加坡策略失誤」「法拉利自承失誤」（Vasseur 的「整體是失誤」是把錯歸給漢米爾頓不進站）。",
+  "7. 「如果漢米爾頓進站，法拉利會拿第 2、第 3」作本站陳述——反事實；只能掛 Vasseur 原話。",
+  "8. 「沒進站讓漢米爾頓損失 45 秒／4 個名次／領獎台」——因果；45.192 秒含攻防圈，胎齡與攻防拆不開。",
+  "9. 「漢米爾頓的軟胎衰退了 2.2 秒」作純輪胎衰退（寫 1.4–2.2 秒區間附方法，或不寫）。",
+  "10. 「勒克萊爾出站擋住漢米爾頓」「第一停時機讓漢米爾頓損失 X 秒」作本站陳述（只能並陳 PlanetF1 作者評論與 Vasseur 回應）；「PlanetF1 說車隊犯了新手錯」不得寫成具名消息來源。",
+  "11. 「虛擬安全車進站只要一半時間」不帶「本站推論，信賴度中」與「含新舊胎差」。",
+  "12. 「勒克萊爾／漢米爾頓換上全新軟胎」（兩組都是胎齡 4 的用過軟胎）。",
+  "13. 「漢米爾頓是唯一沒在虛擬安全車進站的前段車手」（VER、NOR、PIA 也沒進）；「只有法拉利兩台被叫進站」（安東內利、培瑞茲也進了）。",
+  "14. 超車圈號照 The Race（第 48 圈）、PlanetF1／Total Motorsport（最後一圈）；寫超車彎角。",
+  "15. 「漢米爾頓賽中回報煞車問題」（是安東內利）。",
+  "16. 「車隊判斷他還差 6 圈」不掛 The Race；「VSC 後車隊多次要他進站」寫成已證實。",
+  "17. 引賽會訊息寫圈號（坑 4）；「Vasseur 在媒體會發火」等單一媒體的情緒描述。",
+  "18. 「漢米爾頓和車隊信任破裂」作事實（Schiff 意見，Button 當場不同意）。",
+  "19. 「漢米爾頓本季一直聽車隊的」（E-70 FAIL，雪邦反例）。",
+  "20. 2022 年 108／140／201 分「損失積分」寫成策略失分或事實；任何「法拉利因策略丟了 X 分」。",
+  "21. 「2024、2025 年法拉利沒有自承過」（2024 英國 Leclerc 有自承；Vasseur 2024 年 10 月說整季犯過錯、但不認為策略丟了很多分）；「2025 年沒有策略爭議」。",
+  "22. 任何頻率或比率：「109 場裡 N 場出錯」「X 成」「2026 爭議最多」「法拉利每次遇到安全車都…」。",
+  "23. 「2026 年法拉利不會處理中立化」「問題出在中立化判斷」——H-6 只是收錄場次的爭點歸類。",
+  "24. 2022 摩納哥「Sainz 抗命救了法拉利」或「那是車隊的好決定」（誰決定，兩邊說法衝突）。",
+  "25. 2023 匈牙利 Vasseur「too many mistakes」、2026 匈牙利「執行很差」寫成承認策略錯。",
+  "26. 2026 澳洲 Sky 的 Collins 批評第一次 VSC 不進站（他講的是第二次，且帶 potentially）。",
+  "27. 「Jain 因失誤取代 Rueda」寫成法拉利說法；「兩方說法不一」。",
+  "28. Alonso「法拉利總是做奇怪策略」（用「又做了奇怪的決定」的轉述版）。",
+  "29. 蒙札勝差 2.884 秒；2026 摩納哥「五位罰退」（是 5 秒罰時）；2026 英國第 48 圈那次寫成「VSC」（是安全車）；2026 英國「全場只有一次安全車／中立化」（第 22、39 圈 TrackStatus 另有虛擬安全車碼，H_cards）。",
+  "30. 「Vasseur 上任後策略變好」「Binotto 時代策略差」——跨任期因果；crash.net 的「在 Vasseur 領導下改變」只能掛名且標「呼應 Vasseur 受訪內容」。",
+  "31. 「DHL 最快進站獎證明法拉利策略進步」（進站作業≠策略）。",
+  "32. 任何積分榜、冠軍爭奪推論（第 17 站未入站上資料庫，本篇不寫積分榜）。",
+  "33. 「漢米爾頓的輪胎是全場最老的」（HAD、ALO 胎齡缺值）；可寫「44 圈是全場最長的輪胎段」「第 39 圈前 6 名中胎齡最大」。",
+  "34. 「羅素為什麼從第 19 位發車」等與本主題無關、資料查無的事。",
+  "35. 預測：「法拉利下一站／明年策略會…」。",
+  "36. 「36 篇報導都沒有當事人說過無視」寫成全稱（要帶「本篇讀到的報導中」）。",
+  "37.【R1 補】「Vasseur 2024 年承認策略犯錯」（他說整季犯過錯，同一句先說不認為策略丟了很多分，Q6／Q6b）。",
+  "38.【R1 補】以本站立場陳述「漢米爾頓豪賭失敗」「這場賭博付出代價」；只能陳述他決定留場、名次與差距變化的事實，或掛名引用外媒評論。",
+  "39.【R1 補】「澳洲站兩次虛擬安全車法拉利都選擇不進站」（第二次期間進站口關閉，Sky NH-45 L87；FastF1 賽會訊息有 PIT LANE ENTRY CLOSED，引用不寫圈號）。",
+  "40.【R1 補】「2023 年以後法拉利策略爭議變少」「2022 年批評最集中」「之後只剩零星爭議」——搜尋樣本不能說頻率（R1 A2：2026 年收錄張數比 2022 年多）。",
+  "41.【R1 補】「跨年專指策略的模式說只有 2 條」「最晚 2025 年」「2024 年以後沒有專文」——歸類有爭議，R1 裁定不寫（H-3 只寫誰說了哪種射程）。",
+  "42.【R1 補】「漢米爾頓在無線電裡說他錯過了進站口」（包內沒有這句無線電逐字；The Race 只是轉述，NS-06 L45；「錯過入口」出自書面聲明 E-13）。",
+  "43.【R1 補】「Vasseur 說他給漢米爾頓的指令在無線電上非常清楚」「Vasseur 說漢米爾頓講得很清楚」（E-105 原文主詞是 It，不補主詞）。",
+  "44.【R1 補】「勒克萊爾靠虛擬安全車進站保住第 2」「漢米爾頓因為沒進站從第 3 掉到第 6」——本站因果（與 must_not 8 同類）。",
+  "45.【R1 補】「Vasseur 說那是對的決定」用在第 39 圈（E-20 講的是第一停）。",
+  "46.【R1 補】「2026 年收錄 7 場中 6 場爭在中立化」寫成比數、比例或「多在中立化」（H-6 只逐場列名）。",
+  "【建檔補】引 Vasseur 對 Sky 的『crystal clear』時用 F1.com 的 \"He was crystal clear on the radio\"——F1.com 那句是孤本（Sky、Crash、GPFans、Grande Prêmio、The Race 都是 \"It was\"），主詞不同語意就不同；要引以 Sky 原文 \"It was crystal clear on the radio.\" 為準（verify-news-sg E-04）。",
+  "【建檔補】把 Vasseur 兩個場合的『true for everybody』合併成一句——Sky 訪問版講賽前 50-50 資訊不足，媒體會版（E-18）講中性胎比軟胎差，不是同一句（verify-news-sg E-18、§3）。",
+  "【建檔補】把 E-20 的『晚六圈』（Vasseur：勒克萊爾比漢米爾頓晚六圈進站，第 24 圈對第 18 圈）與 E-41 的 \"six laps short\"（The Race：車隊判斷他還差六圈撐到終點）寫成同一件事——不同的量（verify-news-sg C14）。",
+  "【建檔補】把勒克萊爾第 24 圈或安東內利第 23 圈的第一次進站寫成『虛擬安全車進站』——兩次都是綠旗進站（TrackStatus=1，距第二次虛擬安全車約 24 分鐘）；第二次虛擬安全車期間進站的是勒克萊爾、安東內利、培瑞茲（羅素在結束訊息後約 6 秒進站）（verify-data T4b FAIL）。",
+  "【建檔補】把 The Race 的 \"Ferrari is adamant that Hamilton was instructed…\" 寫成法拉利具名人士的說法——原文沒有具名人（verify-news-sg E-37）。",
+  "【建檔補】把 Autosport 的『虛擬安全車時兩車差 4.4 秒』『約 41.5 秒』、The Race 的『最後 10 圈每圈都在 1:38.6 以上』當資料事實——第 38 圈末兩車過線差是 2.698 秒、41.5 秒無法重現、第 59 圈 1:38.579 比 1:38.6 快 0.021 秒（verify-news-sg E-31、E-33、E-44）。",
+  "【建檔補】把 RaceFans 2024 英國『Sainz nailed it』寫成稱讚法拉利策略——該文主旨是法拉利給兩位車手的資訊不對等，稱讚的是 Sainz 自己的判斷（verify-news-history-2 §3.4 FAIL）。",
+  "【建檔補】把 SPORTbible、ScuderiaFans、Total Motorsport 等聚合站的無線電或引語，或 Grandprix.com（整頁引語沒有引號）的引語，當逐字引文——SPORTbible 的漢米爾頓無線電與多數版不同；Grandprix.com NS-29 分不出引述或改寫（verify-news-sg §5-5、§6）。"
+ ],
+ "verified_facts": {
+  "_rule": "值＝THESIS ⓪ 表的『事實』＋『必帶限定』＋來源，由建檔腳本逐列解析（不手抄）；R17 數字以建檔時重跑 th1／th2／th3（F-15 為 vd3）的輸出為準，逐項核對結果見 packs/_facts_tmp/numcheck.txt。標【本席新增】的是論點席自己重算新增的事實。",
+  "F-01": "維斯塔潘發車第 1、每圈圈末第 1、終點第 1；勒克萊爾發車第 2、終點第 2（落後 7.335 秒）；漢米爾頓發車第 3、終點第 6（落後 53.188 秒）；安東內利第 3、諾里斯第 4、皮亞斯特里第 5。（VD-1、VD-2）｜必帶限定：第 17 站以 Jolpica 標明為額外來源｜來源：Jolpica results（額外來源）×FastF1 22 人 0 不一致｜重算：th1.py『Jolpica results』區段（packs/_facts_tmp/th1_out.txt）",
+  "F-02": "胎序：漢米爾頓中性胎 1–18（新胎）→軟胎 19–62（起始胎齡 4，用過的）；勒克萊爾軟胎 1–24（胎齡 4）→中性胎 25–39→軟胎 40–62（胎齡 4，用過的）；維斯塔潘軟胎 1–32→中性胎 33–62。｜必帶限定：「換上軟胎」或「較新的軟胎」，不寫「全新」｜來源：laps.csv Stint／Compound／TyreLife／FreshTyre｜重算：th1.py『stints』區段",
+  "F-03": "漢米爾頓第 18 圈進站，是全場 25 次進站中最早的一次；下一個是培瑞茲（第 21 圈）。（VD-3）｜必帶限定：依進站時鐘｜來源：25 筆 PitInTime 排序｜重算：th1.py『pits』區段（25 筆 PitInTime 排序）",
+  "F-04": "漢米爾頓第 19–62 圈的軟胎段 44 圈，是全場 47 個輪胎段中最長的；次長是羅素中性胎 39 圈；其他人最長的軟胎段 35 圈（阿隆索、林德布拉德）。（VD-4）｜必帶限定：寫段長，不寫「胎齡全場最大」（HAD、ALO 胎齡缺值）｜來源：Stint 分組，47 段逐段｜重算：th1.py『stints』（段長排序）與 th3.py（軟胎段排序）",
+  "F-05": "進站前：第 10–13 圈漢米爾頓每圈只比勒克萊爾慢 0.07–0.11 秒，第 14–17 圈擴大到 0.51–1.37 秒；第 17 圈末落後勒克萊爾 6.44 秒。（VD-12）｜必帶限定：只描述圈速，不寫原因｜來源：LapTime、Time｜重算：th1.py『HAM vs VER / LEC gaps』『HAM - LEC laptime laps 10-17』",
+  "F-06": "勒克萊爾第 24 圈進站，第 25 圈末以 0.850 秒領先漢米爾頓過線；第 25–32 圈（8 圈）漢米爾頓都在 0.785–1.488 秒內；第 33 圈起差距逐圈拉開，第 38 圈末 2.698 秒。（VD-8）｜必帶限定：過線時鐘差，不是實際車距；資料不撐「擋住」｜來源：Time 欄過線時鐘差｜重算：th1.py『LEC ahead of HAM laps 25-39』",
+  "F-07": "全場兩次虛擬安全車，沒有安全車與紅旗；第二次約 119 秒。（VD-5）｜必帶限定：—｜來源：race_control 153 則＋track_status 15 筆｜重算：th2.py track_status（packs/_facts_tmp/th2_out.txt）",
+  "F-08": "第二次虛擬安全車期間進站：勒克萊爾、安東內利、培瑞茲；羅素在結束訊息後約 6 秒、恢復綠旗前約 7 秒進站；維斯塔潘、漢米爾頓、諾里斯、皮亞斯特里沒進站。（VD-6）｜必帶限定：對位誤差 <1 秒｜來源：PitInTime 對 track_status（VSCDeployed 1:59:38.412／VSCEnding 2:01:37.401／AllClear 2:01:50.574）｜重算：th1.py『pits』對 th2.py track_status（見 derived_values.D7、D9）",
+  "F-09": "【本席新增】第 39 圈圈末前 6 名：維斯塔潘、勒克萊爾、漢米爾頓、安東內利、諾里斯、皮亞斯特里；6 人中只有漢米爾頓穿軟胎，胎齡 24，其餘 5 人中性胎胎齡 6–16。｜必帶限定：母集＝第 39 圈前 6 名；「法拉利在賽道上第 2、第 3」與 Vasseur 原話一致｜來源：`th3.py`：第 39 圈 Position 前 6＋Compound＋TyreLife｜重算：th3.py 第 38／39 圈前 8 名",
+  "F-10": "以「進站前一圈末到出站後一圈末、對維斯塔潘的差距變化」計：勒克萊爾、安東內利在虛擬安全車期間進站各多掉 12.272、13.623 秒；綠旗進站（漢米爾頓第 18 圈、安東內利第 23 圈、勒克萊爾第 24 圈）多掉 23.966–25.300 秒。（VD-7）｜必帶限定：**本站推論，信賴度中**：含新舊胎圈速差，不是純進站損失｜來源：Time 欄｜重算：th1.py『pit cost vs VER』",
+  "F-11": "漢米爾頓第 40–45 圈圈末暫居第 2，是因為勒克萊爾、安東內利第 39 圈進站；之後依過線順序，第 46 圈被勒克萊爾、第 54 圈被安東內利、第 55 圈被諾里斯、第 61 圈（倒數第二圈）被皮亞斯特里超過。（VD-9）｜必帶限定：「第 N 圈」＝該圈結束過線時順序已變；P2 不寫成「追上來」｜來源：Position×Time 排序 62 圈一致｜重算：th1.py『HAM position by lap』『P2 holder』與 th3.py 超車圈",
+  "F-12": "【本席新增】第 40 圈圈末，落後漢米爾頓的秒數：勒克萊爾 9.987、諾里斯 13.318、安東內利 19.680、皮亞斯特里 20.791。｜必帶限定：過線時鐘差｜來源：`th3.py` Time 欄｜重算：th3.py『gap behind HAM at lap 40 end』",
+  "F-13": "第 41 圈到終點（22 圈），漢米爾頓對維斯塔潘多掉 45.192 秒，兩人 TrackStatus 全為 1、都沒進站；平均每圈 2.05 秒；其中 16.940 秒落在被超車的 4 圈（46、54、55、61）。對勒克萊爾同期多掉 55.840 秒（每圈 2.538 秒）。（VD-10）｜必帶限定：**胎齡與攻防拆不開**（漢米爾頓軟胎胎齡 26–47、維斯塔潘中性胎 9–30）；對勒克萊爾是新舊胎不同條件｜來源：LapTime 累加＝Time 欄差，兩法一致｜重算：th1.py『HAM loss to VER／LEC laps41-62』與 th3.py 分段",
+  "F-14": "全場最快圈：勒克萊爾第 41 圈 1:35.202，是他第 39 圈換軟胎後第一個綠旗圈。（VD-11）｜必帶限定：那組軟胎起始胎齡 4｜來源：22 人最小值｜重算：th1.py『fastest』",
+  "F-15": "漢米爾頓軟胎段後段變慢約 1.4–2.2 秒（只算自由空氣圈：前 10 中位 1:37.250、後 10 中位 1:38.610；全部非進站非 VSC 圈：1:37.219 對 1:39.424）。（VD-15）｜必帶限定：寫區間附方法；不寫純輪胎衰退；**可選**｜來源：laps.csv｜重算：不在 th1–th3 輸出內，改跑 tools/vd_work/vd3.py（packs/_facts_tmp/vd3_out.txt）",
+  "H-01": "【本席新增】2022–2026 第 17 站，FastF1 賽程表列 109 場大獎賽正賽：2022 年 22、2023 年 22、2024 年 24、2025 年 24、2026 年第 1–17 站 17。｜必帶限定：賽程表場數，未逐場核是否全數舉行；不含衝刺賽｜來源：`th2.py`：`fastf1.get_event_schedule` 離線快取｜重算：th2.py 賽程表（packs/_facts_tmp/th2_out.txt）",
+  "H-02": "研究席以「法拉利策略失誤／被稱讚／被誇大」等關鍵字搜尋（英文、WebSearch 限美國），收錄 20 張事件卡；歸屬席分級 A 10（EV-01、02、03、06、07、10、14、18、19、20）／B 9（EV-04、05、08、09、11、12、15、16、17）／C 1（EV-13）。按年：2022 年 5、2023 年 2、2024 年 4、2025 年 2、2026 年 7。｜必帶限定：**搜尋樣本，不是 109 場普查**；A＝事實層與具名評價層都站得住，B＝只有一層、評價只有車隊自己人或單一來源，或沒有法拉利人員的說法（EV-12、EV-15 依這條判 B），C＝單一來源未驗；**按年張數不寫進正文**（搜尋樣本，不能讀成頻率）｜來源：`news-history.md` §2、§4；兩份歸屬判決｜重算：兩份歸屬判決與論點席（見來源欄）",
+  "H-03": "跨場說法（談法拉利策略或作業、不只一場）依射程歸類（R1 修正重歸類）：①跨年或泛稱、談策略決定——Mark Hughes（The Race podcast，2023 摩納哥後，NH-24 L51／L53）、PlanetF1 分析稿（作者未署名，2025 加拿大後，NH-41 L55）、Gary Anderson（The Race 2022 英國短評，「always…when it comes to strategy」是泛稱，NH-05 L61）、Josh Suttill（The Race 2026 新加坡評論，以「如果是漢米爾頓推翻車隊」為前提〔L69–71〕：前任 Sainz 也多次在車上自己決定策略，那是被「put in the wrong position」太多次的結果，先前的錯誤造成的不信任可能讓法拉利在新加坡吃虧，NS-07 L73–77）；②跨年、談溝通、執行或信任——Edd Straw（2023，執行與丟分，NH-24 L45）、PlanetF1 分析稿（作者未署名，2026 新加坡後，無線電溝通，NH-66 L93）、Leclerc（2024，情緒管理、雙重保留，NH-38 L26）；③跨季、談策略決定、方向為改善——crash.net（2024 日本站後，NH-33 L3、L15，同段說在 Vasseur 領導下已改變）；④2022 年單季內跨場——P1、P2、P4–P7（P5 Morlidge 混了引擎故障）；⑤一句式泛稱、沒有論證——Gary Anderson（2026 新加坡，NS-07 L43）、PlanetF1（2026，「in true Ferrari fashion」，NH-47 L37）。｜必帶限定：**母集＝歷史段來源（`evidence/news/hist-*`）＋NH-66＋NS-07 兩條（Suttill、Anderson 2026）**；**正文只寫誰、何時、說了哪種射程，不寫條數、不寫「只有」「最晚」「集中」「零星」**；PlanetF1 三條作者未署名，寫「PlanetF1 分析稿」；Anderson 兩句、Suttill L73–77、crash.net 不在 news_quotes，要用只能中文轉述並掛名，不加引號；crash.net 只能掛名且標「呼應 Vasseur 受訪內容」（must_not 30）；本篇不是普查，不下「有沒有模式」的結論｜來源：`verify-news-history-2.md` §2–§3；R1 審稿 opus-r1 A1、D②；R1 修正棒回原檔核對行號（NH-05 L57–61、NH-33 L3／L15、NS-07 L43／L73–77）｜重算：R1 修正棒回 evidence 原檔核對行號（見來源欄）",
+  "H-04": "具名自承「策略決定」錯：2022 摩納哥 Binotto、Rueda、Leclerc；2023 美國 Vasseur、Leclerc；2024 英國 Leclerc（自己的換胎決定，說是依車內收到的資訊，經 RaceFans，單一來源）；2026 雪邦 Vasseur、漢米爾頓；2026 新加坡漢米爾頓（自己的決定）。**不算自承**：Vasseur 2023 匈牙利（作業類）、2026 匈牙利（執行，同篇為決定辯護）、2026 新加坡（把錯歸給漢米爾頓不進站）。2025 年在蒐集範圍內沒有找到。｜必帶限定：不加總成「自承 N 次」當頻率｜來源：兩份歸屬判決 §2、§3.2｜重算：兩份歸屬判決與論點席（見來源欄）",
+  "H-05": "獨立媒體稱讚單場策略的乾淨條目（正文不寫條數）：2024 蒙札 RaceFans（NH-35 L3）、Motorsport.com（NH-36 L133）；2026 巴塞隆納 formula1.com（NH-50 L15）、PlanetF1（NH-47 L33）。另 crash.net 2024 日本（有條件，呼應 Vasseur 受訪內容）。2022–2023 年在蒐集範圍內沒有獨立媒體稱讚單場策略的句子。｜必帶限定：蒙札勝差寫 FastF1 2.664 秒，不寫 2.884｜來源：`verify-news-history-2.md` §3.4、`-1` 末段｜重算：兩份歸屬判決與論點席（見來源欄）",
+  "H-06": "【本席新增】2026 年收錄場次的爭點（逐場列名）：澳洲（第一次虛擬安全車兩台都沒進；第二次期間進站口關閉，EV-14）、巴塞隆納（虛擬安全車期間漢米爾頓進站、被稱讚，EV-15）、摩納哥（安全車兩台都進，EV-16）、英國（第 48 圈安全車兩台都進、漢米爾頓從第 2 掉到第 3，EV-17）、匈牙利（虛擬安全車兩台都進，EV-18）、新加坡（Vasseur 說兩台都叫進站，EV-20）的爭點都在安全車／虛擬安全車出現時進不進站；雪邦（EV-19）是起跑選胎。「沒進」被具名質疑過（澳洲：formula1.com NH-46 L47「questionable…seemed」、Button NH-45 L83）；「進了」也被具名質疑過（匈牙利：Speedweek 評論作者 NH-57 L61「misjudgement」、漢米爾頓 NH-56 L47「not really sure why we stopped」）。｜必帶限定：**母集＝研究席收錄的 2026 年場次（17 站中），不是 17 站普查**；**正文逐場列名，不寫「7 場中 6 場」這類比數**，不寫比率、「多在」「每次」｜來源：各場資料層見事實包 `derived_values.H_cards`（R1 修正 FastF1 重算）＋上列行號｜重算：derived_values.H_cards（R1 修正棒 FastF1 3.8.3 重算）"
+ },
+ "derived_values": {
+  "_rule": "寫手不做算術：正文出現的每個數字都要能在本表或 verified_facts 找到。口徑：22 位車手、62 圈、圈號一律為計時圈號；過線順序＝同一圈各車過線時刻先後（Time 欄），Position 欄與 Time 欄排序 62 圈一致（verify-data T4c）；『落後』＝該圈過線時刻差（過線時鐘差，不是實際車距）；官方終點差一律用 Jolpica；ghost 列（FastF1 補的幽靈圈）已排除。標『算術』的值是兩個已列數字相減或相加，公式寫在欄位旁。本表由 packs/_facts_tmp/fb_build.py 直接從 evidence/r17_R_laps.csv 與 evidence/jolpica_r17.json 重算，與 th1／th2／th3 輸出逐項核對（numcheck.txt）。",
+  "D0_rows": "laps.csv 原 1240 列，排除 ghost 列後 1236 列（用 Jolpica 各車完成圈數過濾，與 th1.py 同法）",
+  "D1_jolpica_results_22": [
+   {
+    "position": 1,
+    "code": "VER",
+    "grid": 1,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "1:42:00.785"
+   },
+   {
+    "position": 2,
+    "code": "LEC",
+    "grid": 2,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+7.335"
+   },
+   {
+    "position": 3,
+    "code": "ANT",
+    "grid": 4,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+24.573"
+   },
+   {
+    "position": 4,
+    "code": "NOR",
+    "grid": 5,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+40.506"
+   },
+   {
+    "position": 5,
+    "code": "PIA",
+    "grid": 6,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+49.644"
+   },
+   {
+    "position": 6,
+    "code": "HAM",
+    "grid": 3,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+53.188"
+   },
+   {
+    "position": 7,
+    "code": "LAW",
+    "grid": 8,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+1:21.666"
+   },
+   {
+    "position": 8,
+    "code": "HUL",
+    "grid": 10,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+1:23.386"
+   },
+   {
+    "position": 9,
+    "code": "RUS",
+    "grid": 19,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+1:24.677"
+   },
+   {
+    "position": 10,
+    "code": "HAD",
+    "grid": 22,
+    "status": "Finished",
+    "laps": 62,
+    "time_or_gap": "+1:30.862"
+   },
+   {
+    "position": 11,
+    "code": "GAS",
+    "grid": 7,
+    "status": "Lapped",
+    "laps": 61,
+    "time_or_gap": "+2.171"
+   },
+   {
+    "position": 12,
+    "code": "BEA",
+    "grid": 11,
+    "status": "Lapped",
+    "laps": 61,
+    "time_or_gap": "+5.006"
+   },
+   {
+    "position": 13,
+    "code": "OCO",
+    "grid": 12,
+    "status": "Lapped",
+    "laps": 61,
+    "time_or_gap": "+25.647"
+   },
+   {
+    "position": 14,
+    "code": "SAI",
+    "grid": 13,
+    "status": "Lapped",
+    "laps": 61,
+    "time_or_gap": "+58.139"
+   },
+   {
+    "position": 15,
+    "code": "LIN",
+    "grid": 9,
+    "status": "Lapped",
+    "laps": 61,
+    "time_or_gap": "+1:00.950"
+   },
+   {
+    "position": 16,
+    "code": "ALO",
+    "grid": 20,
+    "status": "Lapped",
+    "laps": 61,
+    "time_or_gap": "+1:14.454"
+   },
+   {
+    "position": 17,
+    "code": "PER",
+    "grid": 17,
+    "status": "Lapped",
+    "laps": 60,
+    "time_or_gap": "+20.520"
+   },
+   {
+    "position": 18,
+    "code": "ALB",
+    "grid": 16,
+    "status": "Retired",
+    "laps": 59,
+    "time_or_gap": ""
+   },
+   {
+    "position": 19,
+    "code": "BOT",
+    "grid": 18,
+    "status": "Lapped",
+    "laps": 59,
+    "time_or_gap": "+17.347"
+   },
+   {
+    "position": 20,
+    "code": "STR",
+    "grid": 21,
+    "status": "Retired",
+    "laps": 36,
+    "time_or_gap": "-"
+   },
+   {
+    "position": 21,
+    "code": "COL",
+    "grid": 15,
+    "status": "Retired",
+    "laps": 29,
+    "time_or_gap": "-"
+   },
+   {
+    "position": 22,
+    "code": "BOR",
+    "grid": 14,
+    "status": "Retired",
+    "laps": 7,
+    "time_or_gap": "-"
+   }
+  ],
+  "D2_position_by_lap": {
+   "_how": "laps.csv Position 欄（已排除 ghost 列）；進站圈的名次是進站道過線名次，低點看出站後一圈；第 1 圈起至第 62 圈",
+   "HAM": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    6,
+    7,
+    6,
+    6,
+    6,
+    6,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6
+   ],
+   "LEC": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "VER": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "D3_gap_by_lap_end": {
+   "_how": "同一圈過線時刻（Time 欄）相減；負值＝前者先過線；圈 1–2 與進站圈的差距含進出站，正文只用 THESIS 點名的圈",
+   "1": {
+    "HAM_minus_VER_s": "1.391",
+    "HAM_minus_LEC_s": "0.786",
+    "LEC_minus_VER_s": "0.605"
+   },
+   "2": {
+    "HAM_minus_VER_s": "1.592",
+    "HAM_minus_LEC_s": "0.918",
+    "LEC_minus_VER_s": "0.674"
+   },
+   "3": {
+    "HAM_minus_VER_s": "1.562",
+    "HAM_minus_LEC_s": "0.733",
+    "LEC_minus_VER_s": "0.829"
+   },
+   "4": {
+    "HAM_minus_VER_s": "2.040",
+    "HAM_minus_LEC_s": "1.086",
+    "LEC_minus_VER_s": "0.954"
+   },
+   "5": {
+    "HAM_minus_VER_s": "2.284",
+    "HAM_minus_LEC_s": "1.635",
+    "LEC_minus_VER_s": "0.649"
+   },
+   "6": {
+    "HAM_minus_VER_s": "2.922",
+    "HAM_minus_LEC_s": "1.665",
+    "LEC_minus_VER_s": "1.257"
+   },
+   "7": {
+    "HAM_minus_VER_s": "3.088",
+    "HAM_minus_LEC_s": "2.101",
+    "LEC_minus_VER_s": "0.987"
+   },
+   "8": {
+    "HAM_minus_VER_s": "4.403",
+    "HAM_minus_LEC_s": "2.256",
+    "LEC_minus_VER_s": "2.147"
+   },
+   "9": {
+    "HAM_minus_VER_s": "3.680",
+    "HAM_minus_LEC_s": "2.937",
+    "LEC_minus_VER_s": "0.743"
+   },
+   "10": {
+    "HAM_minus_VER_s": "3.999",
+    "HAM_minus_LEC_s": "3.043",
+    "LEC_minus_VER_s": "0.956"
+   },
+   "11": {
+    "HAM_minus_VER_s": "4.466",
+    "HAM_minus_LEC_s": "3.113",
+    "LEC_minus_VER_s": "1.353"
+   },
+   "12": {
+    "HAM_minus_VER_s": "4.732",
+    "HAM_minus_LEC_s": "3.188",
+    "LEC_minus_VER_s": "1.544"
+   },
+   "13": {
+    "HAM_minus_VER_s": "5.370",
+    "HAM_minus_LEC_s": "3.266",
+    "LEC_minus_VER_s": "2.104"
+   },
+   "14": {
+    "HAM_minus_VER_s": "6.437",
+    "HAM_minus_LEC_s": "3.778",
+    "LEC_minus_VER_s": "2.659"
+   },
+   "15": {
+    "HAM_minus_VER_s": "7.322",
+    "HAM_minus_LEC_s": "4.441",
+    "LEC_minus_VER_s": "2.881"
+   },
+   "16": {
+    "HAM_minus_VER_s": "8.494",
+    "HAM_minus_LEC_s": "5.069",
+    "LEC_minus_VER_s": "3.425"
+   },
+   "17": {
+    "HAM_minus_VER_s": "10.269",
+    "HAM_minus_LEC_s": "6.440",
+    "LEC_minus_VER_s": "3.829"
+   },
+   "18": {
+    "HAM_minus_VER_s": "17.079",
+    "HAM_minus_LEC_s": "12.583",
+    "LEC_minus_VER_s": "4.496"
+   },
+   "19": {
+    "HAM_minus_VER_s": "34.310",
+    "HAM_minus_LEC_s": "28.837",
+    "LEC_minus_VER_s": "5.473"
+   },
+   "20": {
+    "HAM_minus_VER_s": "35.006",
+    "HAM_minus_LEC_s": "28.890",
+    "LEC_minus_VER_s": "6.116"
+   },
+   "21": {
+    "HAM_minus_VER_s": "34.569",
+    "HAM_minus_LEC_s": "27.795",
+    "LEC_minus_VER_s": "6.774"
+   },
+   "22": {
+    "HAM_minus_VER_s": "34.035",
+    "HAM_minus_LEC_s": "26.687",
+    "LEC_minus_VER_s": "7.348"
+   },
+   "23": {
+    "HAM_minus_VER_s": "33.536",
+    "HAM_minus_LEC_s": "25.165",
+    "LEC_minus_VER_s": "8.371"
+   },
+   "24": {
+    "HAM_minus_VER_s": "33.185",
+    "HAM_minus_LEC_s": "18.011",
+    "LEC_minus_VER_s": "15.174"
+   },
+   "25": {
+    "HAM_minus_VER_s": "34.521",
+    "HAM_minus_LEC_s": "0.850",
+    "LEC_minus_VER_s": "33.671"
+   },
+   "26": {
+    "HAM_minus_VER_s": "34.147",
+    "HAM_minus_LEC_s": "0.785",
+    "LEC_minus_VER_s": "33.362"
+   },
+   "27": {
+    "HAM_minus_VER_s": "33.411",
+    "HAM_minus_LEC_s": "1.086",
+    "LEC_minus_VER_s": "32.325"
+   },
+   "28": {
+    "HAM_minus_VER_s": "32.868",
+    "HAM_minus_LEC_s": "1.096",
+    "LEC_minus_VER_s": "31.772"
+   },
+   "29": {
+    "HAM_minus_VER_s": "32.375",
+    "HAM_minus_LEC_s": "1.340",
+    "LEC_minus_VER_s": "31.035"
+   },
+   "30": {
+    "HAM_minus_VER_s": "31.699",
+    "HAM_minus_LEC_s": "1.353",
+    "LEC_minus_VER_s": "30.346"
+   },
+   "31": {
+    "HAM_minus_VER_s": "30.111",
+    "HAM_minus_LEC_s": "1.170",
+    "LEC_minus_VER_s": "28.941"
+   },
+   "32": {
+    "HAM_minus_VER_s": "23.747",
+    "HAM_minus_LEC_s": "1.488",
+    "LEC_minus_VER_s": "22.259"
+   },
+   "33": {
+    "HAM_minus_VER_s": "6.263",
+    "HAM_minus_LEC_s": "1.588",
+    "LEC_minus_VER_s": "4.675"
+   },
+   "34": {
+    "HAM_minus_VER_s": "6.589",
+    "HAM_minus_LEC_s": "1.744",
+    "LEC_minus_VER_s": "4.845"
+   },
+   "35": {
+    "HAM_minus_VER_s": "7.151",
+    "HAM_minus_LEC_s": "2.100",
+    "LEC_minus_VER_s": "5.051"
+   },
+   "36": {
+    "HAM_minus_VER_s": "7.675",
+    "HAM_minus_LEC_s": "2.270",
+    "LEC_minus_VER_s": "5.405"
+   },
+   "37": {
+    "HAM_minus_VER_s": "8.153",
+    "HAM_minus_LEC_s": "2.396",
+    "LEC_minus_VER_s": "5.757"
+   },
+   "38": {
+    "HAM_minus_VER_s": "8.409",
+    "HAM_minus_LEC_s": "2.698",
+    "LEC_minus_VER_s": "5.711"
+   },
+   "39": {
+    "HAM_minus_VER_s": "9.888",
+    "HAM_minus_LEC_s": "1.619",
+    "LEC_minus_VER_s": "8.269"
+   },
+   "40": {
+    "HAM_minus_VER_s": "7.996",
+    "HAM_minus_LEC_s": "-9.987",
+    "LEC_minus_VER_s": "17.983"
+   },
+   "41": {
+    "HAM_minus_VER_s": "8.590",
+    "HAM_minus_LEC_s": "-7.685",
+    "LEC_minus_VER_s": "16.275"
+   },
+   "42": {
+    "HAM_minus_VER_s": "10.204",
+    "HAM_minus_LEC_s": "-5.375",
+    "LEC_minus_VER_s": "15.579"
+   },
+   "43": {
+    "HAM_minus_VER_s": "11.269",
+    "HAM_minus_LEC_s": "-3.655",
+    "LEC_minus_VER_s": "14.924"
+   },
+   "44": {
+    "HAM_minus_VER_s": "12.609",
+    "HAM_minus_LEC_s": "-1.764",
+    "LEC_minus_VER_s": "14.373"
+   },
+   "45": {
+    "HAM_minus_VER_s": "13.915",
+    "HAM_minus_LEC_s": "-0.412",
+    "LEC_minus_VER_s": "14.327"
+   },
+   "46": {
+    "HAM_minus_VER_s": "16.574",
+    "HAM_minus_LEC_s": "1.352",
+    "LEC_minus_VER_s": "15.222"
+   },
+   "47": {
+    "HAM_minus_VER_s": "18.388",
+    "HAM_minus_LEC_s": "3.695",
+    "LEC_minus_VER_s": "14.693"
+   },
+   "48": {
+    "HAM_minus_VER_s": "20.154",
+    "HAM_minus_LEC_s": "5.974",
+    "LEC_minus_VER_s": "14.180"
+   },
+   "49": {
+    "HAM_minus_VER_s": "20.846",
+    "HAM_minus_LEC_s": "7.896",
+    "LEC_minus_VER_s": "12.950"
+   },
+   "50": {
+    "HAM_minus_VER_s": "20.563",
+    "HAM_minus_LEC_s": "9.926",
+    "LEC_minus_VER_s": "10.637"
+   },
+   "51": {
+    "HAM_minus_VER_s": "21.571",
+    "HAM_minus_LEC_s": "11.823",
+    "LEC_minus_VER_s": "9.748"
+   },
+   "52": {
+    "HAM_minus_VER_s": "23.052",
+    "HAM_minus_LEC_s": "13.890",
+    "LEC_minus_VER_s": "9.162"
+   },
+   "53": {
+    "HAM_minus_VER_s": "25.863",
+    "HAM_minus_LEC_s": "17.015",
+    "LEC_minus_VER_s": "8.848"
+   },
+   "54": {
+    "HAM_minus_VER_s": "30.156",
+    "HAM_minus_LEC_s": "21.642",
+    "LEC_minus_VER_s": "8.514"
+   },
+   "55": {
+    "HAM_minus_VER_s": "35.470",
+    "HAM_minus_LEC_s": "26.495",
+    "LEC_minus_VER_s": "8.975"
+   },
+   "56": {
+    "HAM_minus_VER_s": "37.972",
+    "HAM_minus_LEC_s": "29.096",
+    "LEC_minus_VER_s": "8.876"
+   },
+   "57": {
+    "HAM_minus_VER_s": "39.998",
+    "HAM_minus_LEC_s": "30.164",
+    "LEC_minus_VER_s": "9.834"
+   },
+   "58": {
+    "HAM_minus_VER_s": "41.762",
+    "HAM_minus_LEC_s": "32.242",
+    "LEC_minus_VER_s": "9.520"
+   },
+   "59": {
+    "HAM_minus_VER_s": "43.234",
+    "HAM_minus_LEC_s": "34.616",
+    "LEC_minus_VER_s": "8.618"
+   },
+   "60": {
+    "HAM_minus_VER_s": "45.753",
+    "HAM_minus_LEC_s": "37.742",
+    "LEC_minus_VER_s": "8.011"
+   },
+   "61": {
+    "HAM_minus_VER_s": "50.427",
+    "HAM_minus_LEC_s": "42.912",
+    "LEC_minus_VER_s": "7.515"
+   },
+   "62": {
+    "HAM_minus_VER_s": "53.188",
+    "HAM_minus_LEC_s": "45.853",
+    "LEC_minus_VER_s": "7.335"
+   }
+  },
+  "D4_lap40_end": {
+   "_how": "第 40 圈圈末過線順序前 8；『behind_VER_s』＝過線時刻減維斯塔潘；『behind_HAM_s』＝過線時刻減漢米爾頓（th1.py／th3.py）",
+   "order": [
+    {
+     "code": "VER",
+     "position": 1,
+     "behind_VER_s": "0.000",
+     "behind_HAM_s": "-7.996"
+    },
+    {
+     "code": "HAM",
+     "position": 2,
+     "behind_VER_s": "7.996",
+     "behind_HAM_s": "0.000"
+    },
+    {
+     "code": "LEC",
+     "position": 3,
+     "behind_VER_s": "17.983",
+     "behind_HAM_s": "9.987"
+    },
+    {
+     "code": "NOR",
+     "position": 4,
+     "behind_VER_s": "21.314",
+     "behind_HAM_s": "13.318"
+    },
+    {
+     "code": "ANT",
+     "position": 5,
+     "behind_VER_s": "27.676",
+     "behind_HAM_s": "19.680"
+    },
+    {
+     "code": "PIA",
+     "position": 6,
+     "behind_VER_s": "28.787",
+     "behind_HAM_s": "20.791"
+    },
+    {
+     "code": "LAW",
+     "position": 7,
+     "behind_VER_s": "62.080",
+     "behind_HAM_s": "54.084"
+    },
+    {
+     "code": "HUL",
+     "position": 8,
+     "behind_VER_s": "63.841",
+     "behind_HAM_s": "55.845"
+    }
+   ]
+  },
+  "D5_cars_that_passed_HAM_laps_41_62": {
+   "_how": "第 41–62 圈逐圈：該圈過線時刻早於漢米爾頓、且第 40 圈圈末在他後面的車（window 內第一次）；22 人逐一檢查（passers 4 人＋漢米爾頓本人＋其餘 17 人 no_pass）",
+   "passers": {
+    "LEC": {
+     "behind_HAM_at_lap40_end_s": "9.987",
+     "first_lap_end_ahead_of_HAM": 46
+    },
+    "NOR": {
+     "behind_HAM_at_lap40_end_s": "13.318",
+     "first_lap_end_ahead_of_HAM": 55
+    },
+    "ANT": {
+     "behind_HAM_at_lap40_end_s": "19.680",
+     "first_lap_end_ahead_of_HAM": 54
+    },
+    "PIA": {
+     "behind_HAM_at_lap40_end_s": "20.791",
+     "first_lap_end_ahead_of_HAM": 61
+    }
+   },
+   "all_other_drivers_checked_no_pass_incl_VER": [
+    "ALB",
+    "ALO",
+    "BEA",
+    "BOR",
+    "BOT",
+    "COL",
+    "GAS",
+    "HAD",
+    "HUL",
+    "LAW",
+    "LIN",
+    "OCO",
+    "PER",
+    "RUS",
+    "SAI",
+    "STR",
+    "VER"
+   ],
+   "other_drivers_with_pass_events": [],
+   "count_of_passers": 4,
+   "HAM_position_after_lap_62": 6
+  },
+  "D6_last_22_laps": {
+   "_how": "第 41–62 圈共 22 圈；HAM 與 VER 的 TrackStatus 全為 1、兩人都沒進站；45.192＝(第 62 圈圈末 HAM−VER 過線差)−(第 40 圈圈末 HAM−VER 過線差)＝53.188−7.996，與逐圈圈速差總和同值",
+   "ham_lost_to_ver_s": "45.192",
+   "lapsum_ham_minus_ver_s": "45.192",
+   "avg_per_lap_vs_ver_s": "2.054（算術：45.192÷22）",
+   "ham_lost_to_lec_s": "55.840",
+   "avg_per_lap_vs_lec_s": "2.538（算術：55.840÷22）",
+   "segments_vs_ver_s": {
+    "41-45": "5.919",
+    "46-53": "11.948",
+    "54-55": "9.607",
+    "56-62": "17.718"
+   },
+   "four_overtaken_laps_46_54_55_61_sum_vs_ver_s": "16.940",
+   "track_status_41_62": {
+    "HAM": [
+     "1"
+    ],
+    "VER": [
+     "1"
+    ]
+   },
+   "tyre_life_lap41_lap62": {
+    "HAM": [
+     26.0,
+     47.0
+    ],
+    "VER": [
+     9.0,
+     30.0
+    ],
+    "LEC": [
+     5.0,
+     26.0
+    ]
+   },
+   "per_lap": [
+    {
+     "lap": 41,
+     "HAM_minus_VER_laptime_s": "0.594",
+     "HAM_minus_LEC_laptime_s": "2.302"
+    },
+    {
+     "lap": 42,
+     "HAM_minus_VER_laptime_s": "1.614",
+     "HAM_minus_LEC_laptime_s": "2.310"
+    },
+    {
+     "lap": 43,
+     "HAM_minus_VER_laptime_s": "1.065",
+     "HAM_minus_LEC_laptime_s": "1.720"
+    },
+    {
+     "lap": 44,
+     "HAM_minus_VER_laptime_s": "1.340",
+     "HAM_minus_LEC_laptime_s": "1.891"
+    },
+    {
+     "lap": 45,
+     "HAM_minus_VER_laptime_s": "1.306",
+     "HAM_minus_LEC_laptime_s": "1.352"
+    },
+    {
+     "lap": 46,
+     "HAM_minus_VER_laptime_s": "2.659",
+     "HAM_minus_LEC_laptime_s": "1.764"
+    },
+    {
+     "lap": 47,
+     "HAM_minus_VER_laptime_s": "1.814",
+     "HAM_minus_LEC_laptime_s": "2.343"
+    },
+    {
+     "lap": 48,
+     "HAM_minus_VER_laptime_s": "1.766",
+     "HAM_minus_LEC_laptime_s": "2.279"
+    },
+    {
+     "lap": 49,
+     "HAM_minus_VER_laptime_s": "0.692",
+     "HAM_minus_LEC_laptime_s": "1.922"
+    },
+    {
+     "lap": 50,
+     "HAM_minus_VER_laptime_s": "-0.283",
+     "HAM_minus_LEC_laptime_s": "2.030"
+    },
+    {
+     "lap": 51,
+     "HAM_minus_VER_laptime_s": "1.008",
+     "HAM_minus_LEC_laptime_s": "1.897"
+    },
+    {
+     "lap": 52,
+     "HAM_minus_VER_laptime_s": "1.481",
+     "HAM_minus_LEC_laptime_s": "2.067"
+    },
+    {
+     "lap": 53,
+     "HAM_minus_VER_laptime_s": "2.811",
+     "HAM_minus_LEC_laptime_s": "3.125"
+    },
+    {
+     "lap": 54,
+     "HAM_minus_VER_laptime_s": "4.293",
+     "HAM_minus_LEC_laptime_s": "4.627"
+    },
+    {
+     "lap": 55,
+     "HAM_minus_VER_laptime_s": "5.314",
+     "HAM_minus_LEC_laptime_s": "4.853"
+    },
+    {
+     "lap": 56,
+     "HAM_minus_VER_laptime_s": "2.502",
+     "HAM_minus_LEC_laptime_s": "2.601"
+    },
+    {
+     "lap": 57,
+     "HAM_minus_VER_laptime_s": "2.026",
+     "HAM_minus_LEC_laptime_s": "1.068"
+    },
+    {
+     "lap": 58,
+     "HAM_minus_VER_laptime_s": "1.764",
+     "HAM_minus_LEC_laptime_s": "2.078"
+    },
+    {
+     "lap": 59,
+     "HAM_minus_VER_laptime_s": "1.472",
+     "HAM_minus_LEC_laptime_s": "2.374"
+    },
+    {
+     "lap": 60,
+     "HAM_minus_VER_laptime_s": "2.519",
+     "HAM_minus_LEC_laptime_s": "3.126"
+    },
+    {
+     "lap": 61,
+     "HAM_minus_VER_laptime_s": "4.674",
+     "HAM_minus_LEC_laptime_s": "5.170"
+    },
+    {
+     "lap": 62,
+     "HAM_minus_VER_laptime_s": "2.761",
+     "HAM_minus_LEC_laptime_s": "2.941"
+    }
+   ]
+  },
+  "D7_pit_stops_sorted_by_pit_in_time": {
+   "_how": "laps.csv PitInTime（session 時鐘秒）且下一圈有 PitOutTime 者，共 25 筆，依 PitInTime 排序；lap＝該筆進站在該車的哪一圈（培瑞茲這一停記在他自己的第 38 圈）；TrackStatus 為該圈狀態碼",
+   "count": 25,
+   "rows": [
+    {
+     "order": 1,
+     "code": "HAM",
+     "lap": 18,
+     "pit_in_session_s": "5160.443",
+     "track_status_code": "1"
+    },
+    {
+     "order": 2,
+     "code": "PER",
+     "lap": 21,
+     "pit_in_session_s": "5517.102",
+     "track_status_code": "1"
+    },
+    {
+     "order": 3,
+     "code": "ALB",
+     "lap": 22,
+     "pit_in_session_s": "5614.618",
+     "track_status_code": "1"
+    },
+    {
+     "order": 4,
+     "code": "ANT",
+     "lap": 23,
+     "pit_in_session_s": "5650.072",
+     "track_status_code": "1"
+    },
+    {
+     "order": 5,
+     "code": "LEC",
+     "lap": 24,
+     "pit_in_session_s": "5743.787",
+     "track_status_code": "1"
+    },
+    {
+     "order": 6,
+     "code": "LIN",
+     "lap": 26,
+     "pit_in_session_s": "6009.151",
+     "track_status_code": "1"
+    },
+    {
+     "order": 7,
+     "code": "STR",
+     "lap": 26,
+     "pit_in_session_s": "6025.530",
+     "track_status_code": "1"
+    },
+    {
+     "order": 8,
+     "code": "OCO",
+     "lap": 28,
+     "pit_in_session_s": "6186.749",
+     "track_status_code": "1"
+    },
+    {
+     "order": 9,
+     "code": "BOT",
+     "lap": 28,
+     "pit_in_session_s": "6272.104",
+     "track_status_code": "1"
+    },
+    {
+     "order": 10,
+     "code": "GAS",
+     "lap": 29,
+     "pit_in_session_s": "6280.233",
+     "track_status_code": "1"
+    },
+    {
+     "order": 11,
+     "code": "HUL",
+     "lap": 30,
+     "pit_in_session_s": "6377.027",
+     "track_status_code": "12"
+    },
+    {
+     "order": 12,
+     "code": "LAW",
+     "lap": 31,
+     "pit_in_session_s": "6474.313",
+     "track_status_code": "21"
+    },
+    {
+     "order": 13,
+     "code": "SAI",
+     "lap": 31,
+     "pit_in_session_s": "6500.568",
+     "track_status_code": "1"
+    },
+    {
+     "order": 14,
+     "code": "VER",
+     "lap": 32,
+     "pit_in_session_s": "6518.679",
+     "track_status_code": "1"
+    },
+    {
+     "order": 15,
+     "code": "NOR",
+     "lap": 32,
+     "pit_in_session_s": "6538.826",
+     "track_status_code": "1"
+    },
+    {
+     "order": 16,
+     "code": "PIA",
+     "lap": 33,
+     "pit_in_session_s": "6641.361",
+     "track_status_code": "1"
+    },
+    {
+     "order": 17,
+     "code": "BEA",
+     "lap": 33,
+     "pit_in_session_s": "6679.107",
+     "track_status_code": "1"
+    },
+    {
+     "order": 18,
+     "code": "HAD",
+     "lap": 33,
+     "pit_in_session_s": "6701.027",
+     "track_status_code": "1"
+    },
+    {
+     "order": 19,
+     "code": "ALO",
+     "lap": 35,
+     "pit_in_session_s": "6920.590",
+     "track_status_code": "1"
+    },
+    {
+     "order": 20,
+     "code": "ALB",
+     "lap": 37,
+     "pit_in_session_s": "7126.111",
+     "track_status_code": "1"
+    },
+    {
+     "order": 21,
+     "code": "LEC",
+     "lap": 39,
+     "pit_in_session_s": "7243.221",
+     "track_status_code": "126"
+    },
+    {
+     "order": 22,
+     "code": "ANT",
+     "lap": 39,
+     "pit_in_session_s": "7254.512",
+     "track_status_code": "216"
+    },
+    {
+     "order": 23,
+     "code": "PER",
+     "lap": 38,
+     "pit_in_session_s": "7285.804",
+     "track_status_code": "126"
+    },
+    {
+     "order": 24,
+     "code": "RUS",
+     "lap": 39,
+     "pit_in_session_s": "7303.162",
+     "track_status_code": "267"
+    },
+    {
+     "order": 25,
+     "code": "PIA",
+     "lap": 41,
+     "pit_in_session_s": "7481.967",
+     "track_status_code": "1"
+    }
+   ],
+   "earliest": "HAM 第 18 圈",
+   "second": "PER 第 21 圈"
+  },
+  "D8_stop_counts_by_driver": {
+   "_how": "D7 逐筆計數；22 人逐一",
+   "counts": {
+    "ALB": 2,
+    "ALO": 1,
+    "ANT": 2,
+    "BEA": 1,
+    "BOR": 0,
+    "BOT": 1,
+    "COL": 0,
+    "GAS": 1,
+    "HAD": 1,
+    "HAM": 1,
+    "HUL": 1,
+    "LAW": 1,
+    "LEC": 2,
+    "LIN": 1,
+    "NOR": 1,
+    "OCO": 1,
+    "PER": 2,
+    "PIA": 2,
+    "RUS": 1,
+    "SAI": 1,
+    "STR": 1,
+    "VER": 1
+   },
+   "total": 25
+  },
+  "D9_virtual_safety_car_windows": {
+   "_how": "th2.py 輸出的 FastF1 track_status 賽道時鐘（session time），直接對 D7 的 PitInTime，不經 UTC 對位；window＝VSCDeployed 至 VSCEnding；AllClear 為恢復綠旗",
+   "vsc1": {
+    "deployed_s": "4140.051",
+    "ending_s": "4204.507",
+    "allclear_s": "4219.059",
+    "duration_deployed_to_ending_s": "64.456",
+    "pit_in_inside_window": []
+   },
+   "vsc2": {
+    "deployed_s": "7178.412",
+    "ending_s": "7297.401",
+    "allclear_s": "7310.574",
+    "duration_deployed_to_ending_s": "118.989"
+   },
+   "vsc2_pit_ins_within_600s_of_window": [
+    {
+     "code": "PIA",
+     "lap": 33,
+     "pit_in_session_s": "6641.361",
+     "after_deployed_s": "-537.051",
+     "before_ending_s": "656.040",
+     "before_allclear_s": "669.213",
+     "inside_vsc_window": false
+    },
+    {
+     "code": "BEA",
+     "lap": 33,
+     "pit_in_session_s": "6679.107",
+     "after_deployed_s": "-499.305",
+     "before_ending_s": "618.294",
+     "before_allclear_s": "631.467",
+     "inside_vsc_window": false
+    },
+    {
+     "code": "HAD",
+     "lap": 33,
+     "pit_in_session_s": "6701.027",
+     "after_deployed_s": "-477.385",
+     "before_ending_s": "596.374",
+     "before_allclear_s": "609.547",
+     "inside_vsc_window": false
+    },
+    {
+     "code": "ALO",
+     "lap": 35,
+     "pit_in_session_s": "6920.590",
+     "after_deployed_s": "-257.822",
+     "before_ending_s": "376.811",
+     "before_allclear_s": "389.984",
+     "inside_vsc_window": false
+    },
+    {
+     "code": "ALB",
+     "lap": 37,
+     "pit_in_session_s": "7126.111",
+     "after_deployed_s": "-52.301",
+     "before_ending_s": "171.290",
+     "before_allclear_s": "184.463",
+     "inside_vsc_window": false
+    },
+    {
+     "code": "LEC",
+     "lap": 39,
+     "pit_in_session_s": "7243.221",
+     "after_deployed_s": "64.809",
+     "before_ending_s": "54.180",
+     "before_allclear_s": "67.353",
+     "inside_vsc_window": true
+    },
+    {
+     "code": "ANT",
+     "lap": 39,
+     "pit_in_session_s": "7254.512",
+     "after_deployed_s": "76.100",
+     "before_ending_s": "42.889",
+     "before_allclear_s": "56.062",
+     "inside_vsc_window": true
+    },
+    {
+     "code": "PER",
+     "lap": 38,
+     "pit_in_session_s": "7285.804",
+     "after_deployed_s": "107.392",
+     "before_ending_s": "11.597",
+     "before_allclear_s": "24.770",
+     "inside_vsc_window": true
+    },
+    {
+     "code": "RUS",
+     "lap": 39,
+     "pit_in_session_s": "7303.162",
+     "after_deployed_s": "124.750",
+     "before_ending_s": "-5.761",
+     "before_allclear_s": "7.412",
+     "inside_vsc_window": false
+    },
+    {
+     "code": "PIA",
+     "lap": 41,
+     "pit_in_session_s": "7481.967",
+     "after_deployed_s": "303.555",
+     "before_ending_s": "-184.566",
+     "before_allclear_s": "-171.393",
+     "inside_vsc_window": false
+    }
+   ],
+   "vsc2_pit_ins_inside_window": [
+    "LEC",
+    "ANT",
+    "PER"
+   ],
+   "no_safety_car_in_track_status": "th2.py track_status 15 筆狀態碼只有 1、2、6、7，沒有 4（安全車）與 5（紅旗）"
+  },
+  "D10_pit_cost_vs_ver_s": {
+   "_how": "（出站後一圈圈末對維斯塔潘的過線差）−（進站前一圈圈末對維斯塔潘的過線差）；本站推論，信賴度中：含新舊胎圈速差，不是純進站損失；進站圈號為該車自己的圈號（th1.py）",
+   "green_flag": {
+    "HAM_lap18": "24.041",
+    "ANT_lap23": "23.966",
+    "LEC_lap24": "25.300"
+   },
+   "under_vsc2": {
+    "LEC_lap39": "12.272",
+    "ANT_lap39": "13.623"
+   },
+   "other_pits_for_reference": {
+    "RUS_lap39": "17.710",
+    "NOR_lap32": "1.260",
+    "PIA_lap33": "10.013",
+    "PIA_lap41": "23.420"
+   }
+  },
+  "D11_tyre_stints": {
+   "_how": "laps.csv Stint 分組（已排除 ghost 列），共 47 段；tyre_life_at_start＝該段第一圈的 TyreLife（缺值＝None，ALO／HAD／STR 部分段缺值，所以不寫『胎齡全場最大』）",
+   "count": 47,
+   "longest_5": [
+    {
+     "code": "HAM",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 19,
+     "last_lap": 62,
+     "laps": 44,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "RUS",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 39,
+     "laps": 39,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "ALO",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 35,
+     "laps": 35,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "LIN",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 27,
+     "last_lap": 61,
+     "laps": 35,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "BEA",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 33,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    }
+   ],
+   "longest_soft_5": [
+    {
+     "code": "HAM",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 19,
+     "last_lap": 62,
+     "laps": 44,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "ALO",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 35,
+     "laps": 35,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "LIN",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 27,
+     "last_lap": 61,
+     "laps": 35,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "BEA",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 33,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PIA",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 33,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    }
+   ],
+   "ferrari_and_top_drivers": {
+    "HAM": [
+     {
+      "code": "HAM",
+      "stint": 1,
+      "compound": "MEDIUM",
+      "first_lap": 1,
+      "last_lap": 18,
+      "laps": 18,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "HAM",
+      "stint": 2,
+      "compound": "SOFT",
+      "first_lap": 19,
+      "last_lap": 62,
+      "laps": 44,
+      "tyre_life_at_start": 4.0,
+      "fresh_at_start": false
+     }
+    ],
+    "LEC": [
+     {
+      "code": "LEC",
+      "stint": 1,
+      "compound": "SOFT",
+      "first_lap": 1,
+      "last_lap": 24,
+      "laps": 24,
+      "tyre_life_at_start": 4.0,
+      "fresh_at_start": false
+     },
+     {
+      "code": "LEC",
+      "stint": 2,
+      "compound": "MEDIUM",
+      "first_lap": 25,
+      "last_lap": 39,
+      "laps": 15,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "LEC",
+      "stint": 3,
+      "compound": "SOFT",
+      "first_lap": 40,
+      "last_lap": 62,
+      "laps": 23,
+      "tyre_life_at_start": 4.0,
+      "fresh_at_start": false
+     }
+    ],
+    "VER": [
+     {
+      "code": "VER",
+      "stint": 1,
+      "compound": "SOFT",
+      "first_lap": 1,
+      "last_lap": 32,
+      "laps": 32,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "VER",
+      "stint": 2,
+      "compound": "MEDIUM",
+      "first_lap": 33,
+      "last_lap": 62,
+      "laps": 30,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     }
+    ],
+    "ANT": [
+     {
+      "code": "ANT",
+      "stint": 1,
+      "compound": "SOFT",
+      "first_lap": 1,
+      "last_lap": 23,
+      "laps": 23,
+      "tyre_life_at_start": 4.0,
+      "fresh_at_start": false
+     },
+     {
+      "code": "ANT",
+      "stint": 2,
+      "compound": "MEDIUM",
+      "first_lap": 24,
+      "last_lap": 39,
+      "laps": 16,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "ANT",
+      "stint": 3,
+      "compound": "SOFT",
+      "first_lap": 40,
+      "last_lap": 62,
+      "laps": 23,
+      "tyre_life_at_start": 4.0,
+      "fresh_at_start": false
+     }
+    ],
+    "NOR": [
+     {
+      "code": "NOR",
+      "stint": 1,
+      "compound": "SOFT",
+      "first_lap": 1,
+      "last_lap": 32,
+      "laps": 32,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "NOR",
+      "stint": 2,
+      "compound": "MEDIUM",
+      "first_lap": 33,
+      "last_lap": 62,
+      "laps": 30,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     }
+    ],
+    "PIA": [
+     {
+      "code": "PIA",
+      "stint": 1,
+      "compound": "SOFT",
+      "first_lap": 1,
+      "last_lap": 33,
+      "laps": 33,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "PIA",
+      "stint": 2,
+      "compound": "MEDIUM",
+      "first_lap": 34,
+      "last_lap": 41,
+      "laps": 8,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "PIA",
+      "stint": 3,
+      "compound": "SOFT",
+      "first_lap": 42,
+      "last_lap": 62,
+      "laps": 21,
+      "tyre_life_at_start": 4.0,
+      "fresh_at_start": false
+     }
+    ],
+    "RUS": [
+     {
+      "code": "RUS",
+      "stint": 1,
+      "compound": "MEDIUM",
+      "first_lap": 1,
+      "last_lap": 39,
+      "laps": 39,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "RUS",
+      "stint": 2,
+      "compound": "SOFT",
+      "first_lap": 40,
+      "last_lap": 62,
+      "laps": 23,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     }
+    ],
+    "PER": [
+     {
+      "code": "PER",
+      "stint": 1,
+      "compound": "SOFT",
+      "first_lap": 1,
+      "last_lap": 21,
+      "laps": 21,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "PER",
+      "stint": 2,
+      "compound": "MEDIUM",
+      "first_lap": 22,
+      "last_lap": 38,
+      "laps": 17,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     },
+     {
+      "code": "PER",
+      "stint": 3,
+      "compound": "SOFT",
+      "first_lap": 39,
+      "last_lap": 60,
+      "laps": 22,
+      "tyre_life_at_start": 1.0,
+      "fresh_at_start": true
+     }
+    ]
+   },
+   "all": [
+    {
+     "code": "ALB",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 22,
+     "laps": 22,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "ALB",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 23,
+     "last_lap": 37,
+     "laps": 15,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "ALB",
+     "stint": 3,
+     "compound": "SOFT",
+     "first_lap": 38,
+     "last_lap": 59,
+     "laps": 22,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "ALO",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 35,
+     "laps": 35,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "ALO",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 36,
+     "last_lap": 61,
+     "laps": 26,
+     "tyre_life_at_start": null,
+     "fresh_at_start": false
+    },
+    {
+     "code": "ANT",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 23,
+     "laps": 23,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "ANT",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 24,
+     "last_lap": 39,
+     "laps": 16,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "ANT",
+     "stint": 3,
+     "compound": "SOFT",
+     "first_lap": 40,
+     "last_lap": 62,
+     "laps": 23,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "BEA",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 33,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "BEA",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 34,
+     "last_lap": 61,
+     "laps": 28,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "BOR",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 7,
+     "laps": 7,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "BOT",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 28,
+     "laps": 28,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "BOT",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 29,
+     "last_lap": 59,
+     "laps": 31,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "COL",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 29,
+     "laps": 29,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "GAS",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 29,
+     "laps": 29,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "GAS",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 30,
+     "last_lap": 61,
+     "laps": 32,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "HAD",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 33,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "HAD",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 34,
+     "last_lap": 62,
+     "laps": 29,
+     "tyre_life_at_start": null,
+     "fresh_at_start": false
+    },
+    {
+     "code": "HAM",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 18,
+     "laps": 18,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "HAM",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 19,
+     "last_lap": 62,
+     "laps": 44,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "HUL",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 30,
+     "laps": 30,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "HUL",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 31,
+     "last_lap": 62,
+     "laps": 32,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "LAW",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 31,
+     "laps": 31,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "LAW",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 32,
+     "last_lap": 62,
+     "laps": 31,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "LEC",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 24,
+     "laps": 24,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "LEC",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 25,
+     "last_lap": 39,
+     "laps": 15,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "LEC",
+     "stint": 3,
+     "compound": "SOFT",
+     "first_lap": 40,
+     "last_lap": 62,
+     "laps": 23,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "LIN",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 26,
+     "laps": 26,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "LIN",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 27,
+     "last_lap": 61,
+     "laps": 35,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "NOR",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 32,
+     "laps": 32,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "NOR",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 33,
+     "last_lap": 62,
+     "laps": 30,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "OCO",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 28,
+     "laps": 28,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "OCO",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 29,
+     "last_lap": 61,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PER",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 21,
+     "laps": 21,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PER",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 22,
+     "last_lap": 38,
+     "laps": 17,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PER",
+     "stint": 3,
+     "compound": "SOFT",
+     "first_lap": 39,
+     "last_lap": 60,
+     "laps": 22,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PIA",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 33,
+     "laps": 33,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PIA",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 34,
+     "last_lap": 41,
+     "laps": 8,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "PIA",
+     "stint": 3,
+     "compound": "SOFT",
+     "first_lap": 42,
+     "last_lap": 62,
+     "laps": 21,
+     "tyre_life_at_start": 4.0,
+     "fresh_at_start": false
+    },
+    {
+     "code": "RUS",
+     "stint": 1,
+     "compound": "MEDIUM",
+     "first_lap": 1,
+     "last_lap": 39,
+     "laps": 39,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "RUS",
+     "stint": 2,
+     "compound": "SOFT",
+     "first_lap": 40,
+     "last_lap": 62,
+     "laps": 23,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "SAI",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 31,
+     "laps": 31,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "SAI",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 32,
+     "last_lap": 61,
+     "laps": 30,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "STR",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 26,
+     "laps": 26,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "STR",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 27,
+     "last_lap": 36,
+     "laps": 10,
+     "tyre_life_at_start": null,
+     "fresh_at_start": false
+    },
+    {
+     "code": "VER",
+     "stint": 1,
+     "compound": "SOFT",
+     "first_lap": 1,
+     "last_lap": 32,
+     "laps": 32,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    },
+    {
+     "code": "VER",
+     "stint": 2,
+     "compound": "MEDIUM",
+     "first_lap": 33,
+     "last_lap": 62,
+     "laps": 30,
+     "tyre_life_at_start": 1.0,
+     "fresh_at_start": true
+    }
+   ]
+  },
+  "D12_top8_at_lap_end": {
+   "_how": "laps.csv 第 38、39 圈 Position 前 8（th3.py）；第 39 圈前 6 名中只有 HAM 是軟胎、胎齡 24，其餘 5 人中性胎胎齡 6–16",
+   "lap38": [
+    {
+     "code": "VER",
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_life": 6.0
+    },
+    {
+     "code": "LEC",
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_life": 14.0
+    },
+    {
+     "code": "HAM",
+     "position": 3,
+     "compound": "SOFT",
+     "tyre_life": 23.0
+    },
+    {
+     "code": "ANT",
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_life": 15.0
+    },
+    {
+     "code": "NOR",
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_life": 6.0
+    },
+    {
+     "code": "PIA",
+     "position": 6,
+     "compound": "MEDIUM",
+     "tyre_life": 5.0
+    },
+    {
+     "code": "RUS",
+     "position": 7,
+     "compound": "MEDIUM",
+     "tyre_life": 38.0
+    },
+    {
+     "code": "LAW",
+     "position": 8,
+     "compound": "MEDIUM",
+     "tyre_life": 7.0
+    }
+   ],
+   "lap39": [
+    {
+     "code": "VER",
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_life": 7.0
+    },
+    {
+     "code": "LEC",
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_life": 15.0
+    },
+    {
+     "code": "HAM",
+     "position": 3,
+     "compound": "SOFT",
+     "tyre_life": 24.0
+    },
+    {
+     "code": "ANT",
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_life": 16.0
+    },
+    {
+     "code": "NOR",
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_life": 7.0
+    },
+    {
+     "code": "PIA",
+     "position": 6,
+     "compound": "MEDIUM",
+     "tyre_life": 6.0
+    },
+    {
+     "code": "RUS",
+     "position": 7,
+     "compound": "MEDIUM",
+     "tyre_life": 39.0
+    },
+    {
+     "code": "LAW",
+     "position": 8,
+     "compound": "MEDIUM",
+     "tyre_life": 8.0
+    }
+   ]
+  },
+  "D13_before_stop_laps_10_17": {
+   "_how": "HAM 與 LEC 同一圈的 LapTime 差（HAM−LEC）與第 17 圈圈末過線差；只描述圈速，不寫原因（th1.py）",
+   "laptime_diff_ham_minus_lec_s": {
+    "10": "0.106",
+    "11": "0.070",
+    "12": "0.075",
+    "13": "0.078",
+    "14": "0.512",
+    "15": "0.663",
+    "16": "0.628",
+    "17": "1.371"
+   },
+   "gap_ham_minus_lec_lap17_end_s": "6.440",
+   "ham_first_pit": "第 18 圈進站，出站後第 19 圈圈末名次 7（見 D2）"
+  },
+  "D14_after_lec_first_stop_laps_23_39": {
+   "_how": "（HAM 過線時刻）−（LEC 過線時刻），第 23–39 圈；第 25 圈起 LEC 在前（過線時鐘差，不是實際車距）",
+   "ham_minus_lec_s": {
+    "23": "25.165",
+    "24": "18.011",
+    "25": "0.850",
+    "26": "0.785",
+    "27": "1.086",
+    "28": "1.096",
+    "29": "1.340",
+    "30": "1.353",
+    "31": "1.170",
+    "32": "1.488",
+    "33": "1.588",
+    "34": "1.744",
+    "35": "2.100",
+    "36": "2.270",
+    "37": "2.396",
+    "38": "2.698",
+    "39": "1.619"
+   },
+   "laps_25_32_range": [
+    "0.785",
+    "1.488"
+   ]
+  },
+  "D15_fastest_lap": {
+   "_how": "22 人 LapTime 最小值（th1.py）",
+   "code": "LEC",
+   "lap": 41,
+   "laptime": "1:35.202",
+   "tyre_life_that_lap": 5.0
+  },
+  "D16_ham_soft_stint_slowdown_F15": {
+   "_how": "來源 tools/vd_work/vd3.py（建檔重跑，packs/_facts_tmp/vd3_out.txt）：HAM 第二段軟胎（第 19–62 圈）非進站非虛擬安全車圈 41 圈、前 10 圈與後 10 圈 LapTime 中位數；自由空氣＝圈首或圈末與前車差距不到 1.5 秒的圈排除後 25 圈；不是純輪胎衰退，只寫區間並附方法（可選事實）",
+   "all_non_pit_non_vsc_laps_41": {
+    "first10_median_s": "97.219",
+    "last10_median_s": "99.424",
+    "diff_s_arith": "2.205（算術：99.424−97.219）"
+   },
+   "free_air_laps_25": {
+    "first10_median_s": "97.25",
+    "last10_median_s": "98.61",
+    "diff_s_arith": "1.360（算術：98.61−97.25）"
+   },
+   "written_range": "約 1.4–2.2 秒（自由空氣 1.36、全部 2.205；verify-data 與 THESIS 寫 2.206）"
+  },
+  "D17_schedule_counts_H1": {
+   "_how": "th2.py：fastf1.get_event_schedule（離線快取，不含測試賽）；賽程表場數，未逐場核是否全數舉行；第 17 站＝新加坡（2026-10-11）",
+   "2022": 22,
+   "2023": 22,
+   "2024": 24,
+   "2025": 24,
+   "2026_rounds_1_to_17": 17,
+   "2026_total_rounds_in_schedule": 23,
+   "sum_2022_to_2026_round17_arith": "109（算術：22＋22＋24＋24＋17）"
+  },
+  "D18_history_card_counts_H2": {
+   "_how": "取自 THESIS H-2（歸屬席判決 verify-news-history-1／-2）；建檔腳本未重算",
+   "A": 10,
+   "B": 9,
+   "C": 1,
+   "total": 20,
+   "by_year": {
+    "2022": 5,
+    "2023": 2,
+    "2024": 4,
+    "2025": 2,
+    "2026": 7
+   },
+   "A_cards": "EV-01、02、03、06、07、10、14、18、19、20",
+   "B_cards": "EV-04、05、08、09、11、12、15、16、17",
+   "C_card": "EV-13",
+   "_note_R1": "按年張數只供查核，不寫進正文（搜尋樣本，不能讀成頻率；R1 審稿 A2、指揮位裁定 1）。"
+  },
+  "H_cards": {
+   "_how": "R1 修正（2026-10-12）新增。每筆＝THESIS H2-5 內文要寫的一場（A 級 10 場＋2026 小表的 B 級巴塞隆納、摩納哥、英國，共 13 筆）。全部由修正棒以 FastF1 3.8.3 離線快取重算：腳本 /Users/charlie.chien/.claude/jobs/b14498e9/tmp/r1fix/hcards_recalc.py → hcards_raw.json／hcards_raw.txt；本表由 build_hcards.py 從重算輸出建出，write_as 內每個名次與圈號先 assert 對回重算值（56 項斷言全過），再與 evidence/hist_stints.md 逐場比對（數值 0 不一致，口徑與疏漏見各筆 hist_stints_check 與 _meta.open_issues）。口徑：進站圈＝PitInTime 所在圈（媒體常寫換胎後第一圈，差 1）；名次＝該圈結束過線時順序（進站圈＝在進站道過線時的名次）；中立化圈＝領先者該圈 TrackStatus 含 4（安全車）、5（紅旗）、6／7（虛擬安全車）；finish_official＝FastF1 results 官方名次（未完賽或取消資格為 null，看 status）。寫手只准用本表的 write_as 與欄位寫歷史各場事實層，可縮短、不得加本表沒有的數字；賽會訊息不寫圈號。",
+   "cards": [
+    {
+     "id": "HC-01",
+     "ev": "EV-01",
+     "grade": "A",
+     "race": "2022 摩納哥大獎賽（第 7 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 1,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "全雨胎 1–18 → 半雨胎 19–21 → 硬胎 22–30 → 硬胎 31–64",
+       "pit_in_laps": [
+        18,
+        21,
+        30
+       ]
+      },
+      "SAI": {
+       "grid": 2,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "全雨胎 1–21 → 硬胎 22–30 → 硬胎 31–64",
+       "pit_in_laps": [
+        21,
+        30
+       ]
+      },
+      "PER": {
+       "grid": 3,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "全雨胎 1–16 → 半雨胎 17–22 → 硬胎 23–30 → 中性胎 31–64",
+       "pit_in_laps": [
+        16,
+        22,
+        30
+       ]
+      }
+     },
+     "neutralisation": "第 27 圈起虛擬安全車轉安全車，第 30 圈紅旗（領先者 TrackStatus 第 27–30 圈）；勒克萊爾第 18、21 圈兩次進站都在綠旗下；第 30 圈的換胎在紅旗期間",
+     "position_change": "勒克萊爾第 17 圈第 1 → 第 18 圈（進站圈）第 3 → 第 21 圈（第二停）第 4，之後到終點都是第 4",
+     "write_as": "勒克萊爾第 18 圈換半雨胎、第 21 圈再換硬胎，兩次都在綠旗下；第 17 圈他還是第 1，第 21 圈之後掉到第 4，終點第 4。塞恩斯一路用全雨胎到第 21 圈，直接換硬胎，終點第 2。",
+     "notes": "ESPN 寫第 19、22 圈進站＝換胎後第一圈的慣例（差 1），正文用 FastF1 進站圈或不寫圈號；FastF1 載入此場有 tyre stint 修正警告；紅旗期間換胎不算策略決定。",
+     "hist_stints_check": "一致（輪胎段、進站圈、第 15／20／25 圈名次、第 27 圈 SC／VSC、第 30 圈紅旗）"
+    },
+    {
+     "id": "HC-02",
+     "ev": "EV-02",
+     "grade": "A",
+     "race": "2022 英國大獎賽（第 10 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 3,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "中性胎 1–1 → 中性胎 2–25 → 硬胎 26–52",
+       "pit_in_laps": [
+        1,
+        25
+       ]
+      },
+      "SAI": {
+       "grid": 1,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–1 → 中性胎 2–20 → 硬胎 21–39 → 軟胎 40–52",
+       "pit_in_laps": [
+        1,
+        20,
+        39
+       ]
+      },
+      "HAM": {
+       "grid": 5,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "中性胎 1–1 → 中性胎 2–33 → 硬胎 34–39 → 軟胎 40–52",
+       "pit_in_laps": [
+        1,
+        33,
+        39
+       ]
+      },
+      "PER": {
+       "grid": 4,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–1 → 中性胎 2–5 → 中性胎 6–39 → 軟胎 40–52",
+       "pit_in_laps": [
+        1,
+        5,
+        39
+       ]
+      }
+     },
+     "neutralisation": "安全車第 39–42 圈（領先者 TrackStatus）；第 1 圈紅旗（各車第 1 圈的進站是紅旗重啟前換胎）",
+     "position_change": "勒克萊爾第 38 圈第 1 → 第 40 圈第 1 → 第 43 圈第 2 → 第 45 圈第 4 → 終點第 4；塞恩斯終點第 1",
+     "write_as": "第 39 圈安全車出來，塞恩斯、漢米爾頓、培瑞茲進站換軟胎，勒克萊爾留在已經跑了 14 圈的硬胎上；第 40 圈他還是第 1，安全車在第 42 圈之後離場，第 43 圈他掉到第 2、第 45 圈掉到第 4，終點第 4，塞恩斯拿下冠軍。",
+     "notes": "14 圈＝硬胎第 26–39 圈；Sky、Motor Sport Magazine 的「14 圈舊硬胎」對得上。",
+     "hist_stints_check": "一致"
+    },
+    {
+     "id": "HC-03",
+     "ev": "EV-03",
+     "grade": "A",
+     "race": "2022 匈牙利大獎賽（第 13 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 3,
+       "finish_official": 6,
+       "status": "Finished",
+       "stints": "中性胎 1–21 → 中性胎 22–39 → 硬胎 40–54 → 軟胎 55–70",
+       "pit_in_laps": [
+        21,
+        39,
+        54
+       ]
+      },
+      "VER": {
+       "grid": 10,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "軟胎 1–16 → 中性胎 17–38 → 中性胎 39–70",
+       "pit_in_laps": [
+        16,
+        38
+       ]
+      },
+      "SAI": {
+       "grid": 2,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "中性胎 1–17 → 中性胎 18–47 → 軟胎 48–70",
+       "pit_in_laps": [
+        17,
+        47
+       ]
+      }
+     },
+     "neutralisation": "虛擬安全車只在開賽初段與第 68 圈前後（領先者 TrackStatus 第 1–3、68–69 圈），中段沒有；勒克萊爾三次進站都在綠旗下",
+     "position_change": "勒克萊爾第 39 圈第 1 → 第 40 圈第 3 → 第 45 圈第 4 → 第 54 圈（第三停）第 4 → 第 55 圈第 6 → 終點第 6",
+     "write_as": "維斯塔潘第 38 圈進站後，勒克萊爾第 39 圈換上硬胎，跑了 15 圈、第 54 圈再換軟胎；第 39 圈他還是第 1，第 40 圈第 3，第 55 圈第 6，終點第 6。三次進站都在綠旗下。",
+     "notes": "ESPN 寫「15 圈後第三停」對得上。",
+     "hist_stints_check": "數值一致；hist_stints「VSC 只有第 2 圈與第 68 圈」是賽會訊息圈號，TrackStatus 為第 1–3、68–69 圈（同兩次，口徑差）"
+    },
+    {
+     "id": "HC-06",
+     "ev": "EV-06",
+     "grade": "A",
+     "race": "2023 摩納哥大獎賽（第 6 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 6,
+       "finish_official": 6,
+       "status": "Finished",
+       "stints": "硬胎 1–44 → 中性胎 45–55 → 半雨胎 56–78",
+       "pit_in_laps": [
+        44,
+        55
+       ]
+      },
+      "SAI": {
+       "grid": 4,
+       "finish_official": 8,
+       "status": "Finished",
+       "stints": "硬胎 1–33 → 中性胎 34–55 → 半雨胎 56–78",
+       "pit_in_laps": [
+        33,
+        55
+       ]
+      },
+      "HAM": {
+       "grid": 5,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "中性胎 1–31 → 硬胎 32–54 → 半雨胎 55–78",
+       "pit_in_laps": [
+        31,
+        54
+       ]
+      },
+      "VER": {
+       "grid": 1,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–55 → 半雨胎 56–78",
+       "pit_in_laps": [
+        55
+       ]
+      }
+     },
+     "neutralisation": "全場沒有安全車、虛擬安全車或紅旗",
+     "position_change": "塞恩斯第 33 圈進站後第 35 圈第 7（仍在第 8 的漢米爾頓前）；第 54 圈塞恩斯第 3、勒克萊爾第 4 → 第 55 圈換半雨胎後塞恩斯第 8、勒克萊爾第 6 → 終點勒克萊爾第 6、塞恩斯第 8",
+     "write_as": "塞恩斯第 33 圈進站，比勒克萊爾（第 44 圈）早 11 圈；兩台法拉利都到第 55 圈才換上半雨胎，漢米爾頓是第 54 圈。第 54 圈塞恩斯第 3、勒克萊爾第 4，第 55 圈換胎後塞恩斯第 8、勒克萊爾第 6，終點勒克萊爾第 6、塞恩斯第 8。全場沒有安全車或虛擬安全車。",
+     "notes": "第 54 圈的第 3、第 4 有一部分是對手當圈進站造成的；RaceFans「Sainz pitted 11 laps before his team mate」對得上；雨何時開始不在本表，正文不寫。",
+     "hist_stints_check": "一致"
+    },
+    {
+     "id": "HC-07",
+     "ev": "EV-07",
+     "grade": "A",
+     "race": "2023 美國大獎賽（第 18 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 1,
+       "finish_official": null,
+       "status": "Disqualified",
+       "stints": "中性胎 1–23 → 硬胎 24–56",
+       "pit_in_laps": [
+        23
+       ]
+      },
+      "SAI": {
+       "grid": 4,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "中性胎 1–17 → 中性胎 18–35 → 硬胎 36–56",
+       "pit_in_laps": [
+        17,
+        35
+       ]
+      },
+      "VER": {
+       "grid": 6,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–16 → 中性胎 17–35 → 硬胎 36–56",
+       "pit_in_laps": [
+        16,
+        35
+       ]
+      },
+      "NOR": {
+       "grid": 2,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–17 → 硬胎 18–34 → 硬胎 35–56",
+       "pit_in_laps": [
+        17,
+        34
+       ]
+      },
+      "HAM": {
+       "grid": 3,
+       "finish_official": null,
+       "status": "Disqualified",
+       "stints": "中性胎 1–20 → 硬胎 21–38 → 中性胎 39–56",
+       "pit_in_laps": [
+        20,
+        38
+       ]
+      }
+     },
+     "neutralisation": "全場沒有安全車、虛擬安全車或紅旗",
+     "position_change": "勒克萊爾第 23 圈第 1 → 第 24 圈第 6 → 過終點線第 6；賽後取消資格（FastF1 結果欄 Disqualified）",
+     "write_as": "勒克萊爾從桿位出發，第 23 圈換硬胎、一停跑到終點；塞恩斯、維斯塔潘、諾里斯、漢米爾頓都是兩停。第 23 圈他還是第 1，第 24 圈第 6，過終點線時第 6，賽後被取消資格。全場沒有安全車或虛擬安全車。",
+     "notes": "取消資格的原因不在本表，正文若寫原因須另附出處；RacingNews365「第 23 圈換硬胎」＝FastF1 進站圈 23；塞恩斯官方名次因前車取消資格而上升，正文不寫他的名次。",
+     "hist_stints_check": "一致"
+    },
+    {
+     "id": "HC-10",
+     "ev": "EV-10",
+     "grade": "A",
+     "race": "2024 義大利大獎賽／蒙札（第 16 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 4,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–15 → 硬胎 16–53",
+       "pit_in_laps": [
+        15
+       ]
+      },
+      "SAI": {
+       "grid": 5,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "中性胎 1–19 → 硬胎 20–53",
+       "pit_in_laps": [
+        19
+       ]
+      },
+      "PIA": {
+       "grid": 2,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–16 → 硬胎 17–38 → 硬胎 39–53",
+       "pit_in_laps": [
+        16,
+        38
+       ]
+      },
+      "NOR": {
+       "grid": 1,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "中性胎 1–14 → 硬胎 15–32 → 硬胎 33–53",
+       "pit_in_laps": [
+        14,
+        32
+       ]
+      }
+     },
+     "neutralisation": "全場沒有安全車、虛擬安全車或紅旗",
+     "position_change": "勒克萊爾第 15 圈第 3 → 第 16 圈第 7 → 第 39 圈起第 1 → 終點第 1，領先皮亞斯特里 2.664 秒",
+     "write_as": "勒克萊爾第 15 圈換硬胎，一路跑 38 圈到終點；皮亞斯特里、諾里斯都是兩停。第 39 圈起勒克萊爾領先，終點贏皮亞斯特里 2.664 秒。全場沒有安全車或虛擬安全車。",
+     "notes": "勝差用 FastF1 2.664 秒，不用 Motorsport.com 原文的 2.884（must_not 29）。",
+     "hist_stints_check": "一致（hist_stints 抽樣第 40 圈第 1；逐圈重算第 39 圈起第 1）"
+    },
+    {
+     "id": "HC-14",
+     "ev": "EV-14",
+     "grade": "A",
+     "race": "2026 澳洲大獎賽（第 1 站）",
+     "drivers": {
+      "LEC": {
+       "grid": 4,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "中性胎 1–25 → 硬胎 26–58",
+       "pit_in_laps": [
+        25
+       ]
+      },
+      "HAM": {
+       "grid": 7,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "中性胎 1–28 → 硬胎 29–58",
+       "pit_in_laps": [
+        28
+       ]
+      },
+      "RUS": {
+       "grid": 1,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–12 → 硬胎 13–58",
+       "pit_in_laps": [
+        12
+       ]
+      },
+      "ANT": {
+       "grid": 2,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–12 → 硬胎 13–58",
+       "pit_in_laps": [
+        12
+       ]
+      }
+     },
+     "neutralisation": "領先者 TrackStatus 第 12–14 圈（第一次）、第 18–20 圈（第二次）有虛擬安全車碼，第 34 圈也有；第二次期間賽會訊息有 PIT LANE ENTRY CLOSED（引用不寫圈號）",
+     "position_change": "勒克萊爾第 3–24 圈每圈第 1（第 2 圈第 2）→ 第 25 圈（進站圈）第 4 → 第 28 圈起第 3 → 終點第 3；漢米爾頓第 12–24 圈第 2、第 25–27 圈第 1 → 第 28 圈（進站圈）第 4 → 終點第 4",
+     "write_as": "第一次虛擬安全車（第 12–14 圈），賓士兩台第 12 圈進站，法拉利兩台都沒進；勒克萊爾第 25 圈、漢米爾頓第 28 圈才在綠旗下進站。勒克萊爾第 3 到第 24 圈每圈領先，進站後第 25 圈第 4、第 28 圈起第 3，終點第 3；漢米爾頓終點第 4。第二次虛擬安全車期間進站口關閉。",
+     "notes": "媒體寫 VSC 在 Lap 13、Lap 19，FastF1 TrackStatus 為第 12–14、18–20 圈（口徑差）；第二次進站口關閉的出處：Sky NH-45 L87＋FastF1 賽會訊息；不寫「兩次都選擇不進」（must_not 39）。",
+     "hist_stints_check": "數值一致；hist_stints「LEC 第 1–20 圈每個抽樣圈都是 1」只看抽樣圈，逐圈重算第 2 圈是第 2，不寫「第 1–20 圈都領先」"
+    },
+    {
+     "id": "HC-15",
+     "ev": "EV-15",
+     "grade": "B",
+     "race": "2026 巴塞隆納大獎賽（第 7 站）",
+     "drivers": {
+      "HAM": {
+       "grid": 2,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "軟胎 1–11 → 硬胎 12–27 → 中性胎 28–41 → 硬胎 42–66",
+       "pit_in_laps": [
+        11,
+        27,
+        41
+       ]
+      },
+      "RUS": {
+       "grid": 1,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–12 → 硬胎 13–36 → 硬胎 37–66",
+       "pit_in_laps": [
+        12,
+        36
+       ]
+      },
+      "LEC": {
+       "grid": 10,
+       "finish_official": null,
+       "status": "Retired",
+       "stints": "中性胎 1–16 → 硬胎 17–39 → 硬胎 40–62",
+       "pit_in_laps": [
+        16,
+        39,
+        62
+       ]
+      }
+     },
+     "neutralisation": "虛擬安全車第 41–42 圈、第 63–65 圈（領先者 TrackStatus）；漢米爾頓第三停（第 41 圈）在第一次虛擬安全車內",
+     "position_change": "漢米爾頓第 37 圈第 2 → 第 38 圈起第 1（虛擬安全車之前）→ 第 41 圈進站後仍第 1 → 終點第 1",
+     "write_as": "漢米爾頓三停，第三停在第 41 圈虛擬安全車期間；他第 38 圈起已經領先，進站後仍是第 1，終點第 1。",
+     "notes": "2026 小表用；B 級（讚揚場次，沒有法拉利人員的引語）。",
+     "hist_stints_check": "一致（hist_stints 抽樣第 35 圈第 3、第 40 圈第 1）；verify-news-history-2 15-5 寫「第 39 圈已第 1」，逐圈重算為第 38 圈起，以重算為準（Q8 qualifiers 已同步）"
+    },
+    {
+     "id": "HC-16",
+     "ev": "EV-16",
+     "grade": "B",
+     "race": "2026 摩納哥大獎賽（第 6 站）",
+     "drivers": {
+      "HAM": {
+       "grid": 3,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–28 → 硬胎 29–60 → 軟胎 61–61 → 軟胎 62–66 → 軟胎 67–68 → 軟胎 69–78",
+       "pit_in_laps": [
+        28,
+        60,
+        61,
+        66,
+        68
+       ]
+      },
+      "LEC": {
+       "grid": 4,
+       "finish_official": null,
+       "status": "Retired",
+       "stints": "中性胎 1–35 → 硬胎 36–60 → 軟胎 61–61 → 軟胎 62–65",
+       "pit_in_laps": [
+        35,
+        60,
+        61
+       ]
+      },
+      "ANT": {
+       "grid": 1,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–37 → 硬胎 38–61 → 軟胎 62–66 → 軟胎 67–68 → 軟胎 69–78",
+       "pit_in_laps": [
+        37,
+        61,
+        66,
+        68
+       ]
+      }
+     },
+     "neutralisation": "安全車第 60 圈起（領先者 TrackStatus 第 60–70 圈多為安全車碼），第 68 圈紅旗",
+     "position_change": "第 59 圈漢米爾頓第 2、勒克萊爾第 3 → 第 60 圈兩台進站後，第 62 圈仍是漢米爾頓第 2、勒克萊爾第 3；勒克萊爾沒有完賽；漢米爾頓終點第 2",
+     "write_as": "第 60 圈安全車出來，兩台法拉利都進站；漢米爾頓與勒克萊爾進站前後都是第 2、第 3。勒克萊爾沒有完賽，漢米爾頓終點第 2。",
+     "notes": "兩車另有第 61 圈的 PitInTime（hist_stints 記原因未解；verify-news-history-2 §4-8 記第 61 圈全場開過進站道），正文只寫第 60 圈安全車期間兩台都進站；漢米爾頓的罰時是 5 秒（must_not 29）；之後的軟胎段被紅旗與安全車切成多段，正文不寫。",
+     "hist_stints_check": "一致"
+    },
+    {
+     "id": "HC-17",
+     "ev": "EV-17",
+     "grade": "B",
+     "race": "2026 英國大獎賽（第 9 站）",
+     "drivers": {
+      "HAM": {
+       "grid": 3,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "中性胎 1–23 → 硬胎 24–48 → 軟胎 49–52",
+       "pit_in_laps": [
+        23,
+        48
+       ]
+      },
+      "LEC": {
+       "grid": 2,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–25 → 硬胎 26–48 → 軟胎 49–52",
+       "pit_in_laps": [
+        25,
+        48
+       ]
+      },
+      "RUS": {
+       "grid": 4,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–23 → 硬胎 24–34 → 中性胎 35–52",
+       "pit_in_laps": [
+        23,
+        34
+       ]
+      }
+     },
+     "neutralisation": "安全車第 48–52 圈（領先者 TrackStatus 安全車碼）；同場第 22、39 圈 TrackStatus 另有虛擬安全車碼——不寫「全場只有一次安全車／中立化」",
+     "position_change": "漢米爾頓第 47 圈第 2 → 第 49 圈第 3 → 終點第 3；勒克萊爾一路第 1 → 終點第 1；羅素第 47 圈第 3 → 第 49 圈第 2 → 終點第 2",
+     "write_as": "第 48 圈安全車出來，兩台法拉利都進站換軟胎，羅素沒進；漢米爾頓從第 2 掉到第 3，終點第 3；勒克萊爾仍是第 1，終點第 1。",
+     "notes": "Q11 前面要先交代的事實就是這句；PlanetF1 把這次寫成 VSC 是誤植（must_not 29）。",
+     "hist_stints_check": "數值一致；hist_stints 漏記第 22、39 圈的虛擬安全車碼（opus D3）"
+    },
+    {
+     "id": "HC-18",
+     "ev": "EV-18",
+     "grade": "A",
+     "race": "2026 匈牙利大獎賽（第 11 站）",
+     "drivers": {
+      "HAM": {
+       "grid": 5,
+       "finish_official": 5,
+       "status": "Finished",
+       "stints": "軟胎 1–13 → 硬胎 14–30 → 硬胎 31–56 → 軟胎 57–70",
+       "pit_in_laps": [
+        13,
+        30,
+        56
+       ]
+      },
+      "LEC": {
+       "grid": 2,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "軟胎 1–16 → 硬胎 17–36 → 硬胎 37–56 → 軟胎 57–70",
+       "pit_in_laps": [
+        16,
+        36,
+        56
+       ]
+      },
+      "VER": {
+       "grid": 4,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "中性胎 1–14 → 硬胎 15–41 → 軟胎 42–70",
+       "pit_in_laps": [
+        14,
+        41
+       ]
+      },
+      "ANT": {
+       "grid": 7,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "中性胎 1–22 → 硬胎 23–53 → 硬胎 54–70",
+       "pit_in_laps": [
+        22,
+        53
+       ]
+      },
+      "NOR": {
+       "grid": 1,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "中性胎 1–17 → 硬胎 18–39 → 硬胎 40–56 → 軟胎 57–70",
+       "pit_in_laps": [
+        17,
+        39,
+        56
+       ]
+      }
+     },
+     "neutralisation": "虛擬安全車第 56–57 圈（領先者 TrackStatus）",
+     "position_change": "漢米爾頓第 55 圈第 3 → 第 57 圈第 3 → 第 58 圈第 4 → 過終點線第 4，官方完賽第 5；勒克萊爾第 55 圈第 5 → 過終點線第 5，官方完賽第 4",
+     "write_as": "第 56 圈虛擬安全車，兩台法拉利都進站換軟胎，維斯塔潘、安東內利沒進；漢米爾頓第 55 圈第 3，第 58 圈掉到第 4，官方完賽第 5；勒克萊爾官方完賽第 4。",
+     "notes": "漢米爾頓過線第 4、官方第 5，差別來自 5 秒進站道超速罰時（formula1.com hist-2026-hungary-f1com-everything-went-wrong.txt L23、The Race NH-56 L45）；諾里斯也在這次虛擬安全車進站。",
+     "hist_stints_check": "一致"
+    },
+    {
+     "id": "HC-19",
+     "ev": "EV-19",
+     "grade": "A",
+     "race": "2026 雪邦（FastF1 事件名 Bahrain Grand Prix，第 16 站）",
+     "drivers": {
+      "HAM": {
+       "grid": 2,
+       "finish_official": 3,
+       "status": "Finished",
+       "stints": "軟胎 1–31 → 中性胎 32–43 → 軟胎 44–55",
+       "pit_in_laps": [
+        31,
+        43
+       ]
+      },
+      "LEC": {
+       "grid": 4,
+       "finish_official": 4,
+       "status": "Finished",
+       "stints": "軟胎 1–3 → 半雨胎 4–9 → 軟胎 10–28 → None 29–43 → 軟胎 44–55",
+       "pit_in_laps": [
+        3,
+        9,
+        28,
+        43
+       ]
+      }
+     },
+     "neutralisation": "安全車第 9–12 圈；第 43–45 圈虛擬安全車碼、第 46–51 圈安全車碼（領先者 TrackStatus）",
+     "position_change": "漢米爾頓發車第 2 → 第 4–8 圈第 17（全場最低）→ 第 20 圈第 6 → 終點第 3；勒克萊爾發車第 4 → 終點第 4",
+     "write_as": "漢米爾頓發車第 2、用軟胎起跑，第 4 到第 8 圈落到第 17，最後追回第 3；勒克萊爾第 3 圈就進站，終點第 4。",
+     "notes": "爭點是起跑選胎，細節見 10/5 本站專文（互鏈），本篇不重複；hist_stints「第 45 圈 SC」取自賽會訊息 LAP 欄，TrackStatus 為第 43–45 圈虛擬安全車碼、第 46 圈起安全車碼（口徑差，本篇不寫這段）；「13 位乾胎起跑」未在本表重算，不寫。",
+     "hist_stints_check": "數值一致；第 45 圈 SC 為賽會訊息口徑（見 notes）"
+    },
+    {
+     "id": "HC-20",
+     "ev": "EV-20",
+     "grade": "A",
+     "race": "2026 新加坡大獎賽（第 17 站）",
+     "drivers": {
+      "HAM": {
+       "grid": 3,
+       "finish_official": 6,
+       "status": "Finished",
+       "stints": "中性胎 1–18 → 軟胎 19–62",
+       "pit_in_laps": [
+        18
+       ]
+      },
+      "LEC": {
+       "grid": 2,
+       "finish_official": 2,
+       "status": "Finished",
+       "stints": "軟胎 1–24 → 中性胎 25–39 → 軟胎 40–62",
+       "pit_in_laps": [
+        24,
+        39
+       ]
+      },
+      "VER": {
+       "grid": 1,
+       "finish_official": 1,
+       "status": "Finished",
+       "stints": "軟胎 1–32 → 中性胎 33–62",
+       "pit_in_laps": [
+        32
+       ]
+      }
+     },
+     "neutralisation": "虛擬安全車第 8–9 圈、第 39–40 圈（領先者 TrackStatus）",
+     "position_change": "漢米爾頓第 39 圈第 3 → 第 40–45 圈第 2 → 第 46 圈第 3 → 第 54 圈第 4 → 第 55 圈第 5 → 第 61 圈第 6 → 終點第 6；勒克萊爾第 39 圈第 2 → 第 40 圈第 3 → 第 46 圈起第 2 → 終點第 2",
+     "write_as": "2026 表這一列：第 39 圈虛擬安全車，勒克萊爾進站、漢米爾頓沒進；漢米爾頓第 40–45 圈暫居第 2，終點第 6；勒克萊爾終點第 2（細節回指 H2-2～H2-4）。",
+     "notes": "與 verified_facts F-02、F-08、F-11 一致；第 17 站完賽名次以 Jolpica 標明為額外來源。",
+     "hist_stints_check": "不在 hist_stints（R17 由 evidence/r17_R_* 負責）；與 F-02、F-08、F-11 一致"
+    }
+   ]
+  }
+ },
+ "unanswerable": [
+  "新加坡最後 22 圈對維斯塔潘多掉的 45.192 秒裡，胎齡（漢米爾頓軟胎胎齡 26–47、維斯塔潘中性胎 9–30）與攻防（被超的 4 圈占 16.940 秒）各占多少。搜尋範圍：laps.csv 第 41–62 圈全綠旗 22 圈逐圈；公開遙測只有車速、轉速、檔位、油門、煞車五個通道，沒有可分離這兩者的通道。",
+  "漢米爾頓第 39 圈若進站會怎樣（名次、時間）。反事實；資料算不出。",
+  "記者框架『無視／拒絕／推翻指令』有沒有當事人說過。搜尋範圍：桌內 36 篇新加坡報導（verify-news-sg 前三風險 2）——沒有；正文只能寫『本篇讀到的報導中』。",
+  "The Race 說的虛擬安全車期間無線電『沒被轉播收錄』是不是真的、以及法拉利方面的說法。搜尋範圍：桌內 36 篇新加坡報導；只有 The Race 一家、同家評論員（Mitchell-Malm、Suttill）提到，其他 35 篇沒有人提也沒有人否認，法拉利沒有具名人證實。",
+  "漢米爾頓所說『錯過入口』是不是字面意思。搜尋範圍：桌內新加坡報導；沒有人驗證；他沒有出席媒體區，沒有被追問過；Suttill 看車載畫面的觀察只是評論員意見。",
+  "第二次虛擬安全車之後車隊多次要他進站、判斷他差六圈的具名來源與無線電原文。搜尋範圍：The Race、F1.com、SPORTbible、GPFans 的敘述（verify-news-sg §2.5）——都沒具名、沒有無線電原文；『六圈』只有 The Race 一家。",
+  "勒克萊爾第 24 圈出站是否『擋住』漢米爾頓。搜尋範圍：laps.csv 第 25–38 圈——資料沒有顯示漢米爾頓的速度被卡住（第 26–38 圈勒克萊爾平均每圈反而快約 0.14 秒（R1 重算 0.142））；只有 PlanetF1 分析稿作者的評論。",
+  "賽後調查：斯托爾賽前練習起跑違規的結果。搜尋範圍：整個 evidence/（含 news/、hist_raw/），關鍵字 practice start——只命中賽會訊息兩則（11:26:00 NOTED、11:26:47 WILL BE INVESTIGATED AFTER THE RACE）和一篇 2026 摩納哥的無關文章；衝刺賽的斯托爾與培瑞茲相撞判決是另一件事，不要混用。",
+  "博托萊托（Bortoleto）的退賽原因與停車位置。搜尋範圍：賽會訊息搜尋 (BOR)、CAR 5、RacingNumber=5 共 0 則；新聞對停車位置的說法不一（維修區出口附近／起終點直道），賽會訊息只有 YELLOW IN PIT LANE（verify-data T8-12、verify-news-sg C16）。",
+  "羅素為什麼從第 19 位發車、哈賈爾為什麼從第 22 位發車（維修區起跑與否）。搜尋範圍：Jolpica、FastF1、賽會訊息；賽會訊息檔只涵蓋正賽時段，不含排位後的裁決公告（verify-data 第四節）；本篇主題之外，不寫。",
+  "超車發生在哪個彎角。搜尋範圍：桌內新加坡報導——勒克萊爾超漢米爾頓，The Race 寫第 48 圈 Turn 5、SPORTbible 寫 turn four，計時與多數來源只確定是第 46 圈；計時資料只給圈號，不給彎角，正文只寫圈號（must_not 14；verify-news-sg C5）。",
+  "法拉利 2022–2026 策略有沒有『模式性問題』。搜尋範圍：本次蒐集的來源（歷史段來源＋NH-66＋NS-07，只查英文媒體，收錄 20 場不是普查）——具名的跨場說法兩個方向都有（批評方向：Hughes、PlanetF1 分析稿、Anderson、Suttill 等；改善方向：crash.net 2024），都是評論中的個別說法，沒有同標準的量化；本篇不下結論（R1 指揮位裁定 2，H-03）。",
+  "2026 年第 1–17 站全部中立化（安全車、虛擬安全車）出現時，法拉利兩台每次的進站選擇與名次損益。搜尋範圍：FastF1 離線快取目前只有 7 站，補齊需上網；H-6 的母集只是研究席收錄的 7 場（THESIS 待決 3，預設不補）。",
+  "法拉利以外車隊的同標準對照（每隊每場中立化的進站選擇與名次損益）。搜尋範圍：桌內沒有；所以不能回答『法拉利比別隊更常出錯嗎』（THESIS 待決 5）。",
+  "義大利等非英文媒體對法拉利策略的說法。搜尋範圍：本次只查英文媒體（H-2）。",
+  "車隊內部拍板：選胎／留場／叫進站在法拉利內部由誰決定、各占多少責任。搜尋範圍：漢米爾頓說『我選了新中性胎起跑』、Vasseur 說『我們決定分流』（E-11 對 E-17，主詞不同不是矛盾）；沒有當事人談內部決策過程。"
+ ],
+ "zh_names": {
+  "_rule": "站規：文章用全形括號中英對照，首次出現時對照，之後可只用中文。譯名唯一資料源是 scripts/driver-zh.json／team-zh.json／race-zh.json／circuit-zh.json；沒有核定譯名的人名一律保留英文，不自創。",
+  "approved": {
+   "VER": "維斯塔潘（Max Verstappen）",
+   "ANT": "安東內利（Kimi Antonelli）",
+   "HAM": "漢米爾頓（Lewis Hamilton）",
+   "LEC": "勒克萊爾（Charles Leclerc）",
+   "HAD": "哈賈爾（Isack Hadjar）",
+   "PIA": "皮亞斯特里（Oscar Piastri）",
+   "LAW": "勞森（Liam Lawson）",
+   "ALO": "阿隆索（Fernando Alonso）",
+   "NOR": "諾里斯（Lando Norris）",
+   "LIN": "林德布拉德（Arvid Lindblad）",
+   "HUL": "霍肯伯格（Nico Hülkenberg）",
+   "STR": "斯托爾（Lance Stroll）",
+   "COL": "科拉平托（Franco Colapinto）",
+   "BEA": "貝爾曼（Oliver Bearman）",
+   "OCO": "奧康（Esteban Ocon）",
+   "GAS": "蓋斯利（Pierre Gasly）",
+   "SAI": "塞恩斯（Carlos Sainz）",
+   "BOR": "博托萊托（Gabriel Bortoleto）",
+   "PER": "培瑞茲（Sergio Pérez）",
+   "RUS": "羅素（George Russell）",
+   "ALB": "阿爾本（Alexander Albon）",
+   "BOT": "博塔斯（Valtteri Bottas）"
+  },
+  "approved_historical_drivers": {
+   "Jenson Button": "詹森・巴頓（Jenson Button）",
+   "Sebastian Vettel": "賽巴斯蒂安・維特爾（Sebastian Vettel）"
+  },
+  "teams": {
+   "Ferrari": "法拉利（Ferrari）",
+   "Mercedes": "賓士（Mercedes）",
+   "McLaren": "麥拉倫（McLaren）",
+   "Red Bull": "紅牛（Red Bull）",
+   "Haas": "哈斯（Haas）",
+   "Alpine": "Alpine",
+   "Williams": "威廉斯（Williams）",
+   "Aston Martin": "奧斯頓馬丁（Aston Martin）",
+   "Audi": "奧迪（Audi）",
+   "Cadillac": "凱迪拉克（Cadillac）",
+   "Racing Bulls": "Racing Bulls"
+  },
+  "people_without_approved_translation": {
+   "Frédéric Vasseur": "站上寫「Vasseur」不譯（上篇 f1-2026-r16 的 team_staff 同）",
+   "Mattia Binotto": "站上無核定譯名，保留 Binotto",
+   "Iñaki Rueda": "站上無核定譯名，保留 Rueda（時任法拉利賽事策略主管，head of race strategy）",
+   "Ravin Jain": "站上無核定譯名，保留 Jain（THESIS 只寫 Jain；本檔沒有他的 verbatim 條目）",
+   "Santi": "來源只寫 Santi（漢米爾頓無線電的對話者）；站上無核定譯名",
+   "Naomi Schiff": "站上無核定譯名，保留原文（Sky 評論員）",
+   "Edd Straw": "站上無核定譯名，保留原文（The Race）",
+   "Mark Hughes": "站上無核定譯名，保留原文（The Race）",
+   "Scott Mitchell-Malm": "站上無核定譯名，保留原文（The Race）",
+   "Josh Suttill": "站上無核定譯名，保留原文（The Race）",
+   "Valentin Khorounzhiy": "站上無核定譯名，保留原文（The Race）",
+   "Laurence Edmondson": "站上無核定譯名，保留原文（ESPN）",
+   "Ida Wood": "站上無核定譯名，保留原文（RaceFans）",
+   "Keith Collantine": "站上無核定譯名，保留原文（RaceFans）"
+  },
+  "tyres": "軟胎（soft）、中性胎（medium）、硬胎（hard）、半雨胎（intermediate）、全雨胎（wet）；本站事實中的 MEDIUM 一律寫中性胎。",
+  "other_terms": "「排位最佳圈」；「安全車」（SC）、「虛擬安全車」（VSC）；賽會訊息引用不寫圈號。",
+  "circuit": "濱海灣街道賽道（新加坡）｜Marina Bay Street Circuit",
+  "race": "新加坡大獎賽（Singapore Grand Prix）；scripts/race-zh.json 核定名為「新加坡站」（第 17 站，2026-10-11，62 圈）",
+  "note_button": "scripts/driver-zh.json 核定為「詹森・巴頓」（charlie-2026-07-23）；站上部分文章寫「巴頓（Jenson Button）」，以核定表為準。"
+ },
+ "interlinks": {
+  "note": "不寫 round:（第 17 站資料未落地）。以下 articles slug 已確認 articles/<slug>/index.md 存在並讀過 title；賽道頁、車手頁、車隊頁已確認 public-racing/ 下路徑存在（賽道頁是連字號 marina-bay，不是 marina_bay）。重疊判讀：f1-singapore-marina-bay-safety-car-pole（10/2）讀過內文——寫 2008–2025 年新加坡站的安全車紀錄、桿位勝率、兩小時上限與 2026 衝刺賽時間表，沒有 2026 年第 17 站賽果，與本篇不重疊，可連作賽道背景（其『2024、2025 年沒有安全車』與 R17 也沒有安全車不延伸成『連續三屆』，見 _meta.open_issues）；f1-2026-r16-sepang-hamilton-podium-ledger（10/5）是 THESIS H2-4 一句銜接的互鏈（『一週前雪邦站，車隊提出進站、漢米爾頓說要等賽道變乾』，沿用 10/5 已查核的寫法），本篇不重複該文的起跑選胎。",
+  "candidates": [
+   "/articles/f1-2026-r16-sepang-hamilton-podium-ledger/（Vasseur 承認起跑選胎判斷錯的那場雪邦正賽，漢米爾頓怎麼拿到第 3 名？）",
+   "/articles/f1-singapore-marina-bay-safety-car-pole/（新加坡站 14 屆都有安全車，2024 年第一次沒有）",
+   "/articles/f1-101-safety-car/（安全車與紅旗：賽道出事時，比賽怎麼降速、又怎麼中止）",
+   "/articles/f1-101-pit-stop-strategy/（先進站的人為什麼有時反而贏：F1 進站策略的 undercut 與 overcut）",
+   "/articles/f1-101-tyres/（F1 輪胎為什麼分軟中硬：同一款 C3，在澳洲站是硬胎，在日本站是軟胎）",
+   "/circuits/marina-bay/（濱海灣街道賽道（新加坡）｜Marina Bay Street Circuit）",
+   "/constructors/ferrari/（法拉利（Ferrari）車隊頁）",
+   "/drivers/hamilton/（漢米爾頓生涯數據）",
+   "/drivers/leclerc/（勒克萊爾生涯數據）",
+   "/drivers/max-verstappen/（維斯塔潘生涯數據）",
+   "/drivers/antonelli/（安東內利生涯數據）"
+  ]
+ },
+ "voice": {
+  "_instruction": "⚠️ 下面 spec_verbatim 是站上文風規格的原文整段（取自記憶檔 feedback_voice_target_xiaolin_zhangquanling.md 的「派工單貼文」節，行 85–195），派寫作 agent 時要整段複製進派工單的風格節，不要節錄、不要改寫、不要只挑幾條。",
+  "spec_verbatim": "## 📋 派工單貼文＝寫手單（派寫作 agent 時整段複製到 §風格，不要節錄）\n\n### 標竿\n小 Lin 說＋張泉靈（硅谷101 只補「明寫查證工作量」，取代不了標竿）：①從具體的怪事切進去，不從分類切進去 ②短句，一句話一件事 ③方法論留在文外。連不確定都直接說，條文／日期／前例敢斷，走向與動機明說不知道。\n\n### 一　文章層（W32）：動筆前先寫一句話論點\n稿子最上方先寫（交稿前刪掉，或交指揮位放進 `05-thesis.md`）：\n①**這篇在主張什麼**——一句話，讀者可以不同意的判斷（「本文介紹／整理了 X」不算）。\n②**每一節要撐的主張**——一節一句，說出那一節的「所以呢」。\n> **⭐ 節形狀選單（接在 W32 ② 之後；Cole harvest 判 ✅ 的五種，分類見 [[hub_writing_framing]] Cole 附錄）**\n>\n> **適用範圍＝承載主張的節**；收尾節（時效提醒、不給建議的收尾）與結構節（來源／FAQ）不判。\n> **用法**：每一節先寫一句主張（W32 ②），再從下面五種裡挑一種形狀撐那句主張；挑得出形狀就照那個形狀排材料，\n> **挑不出形狀的節＝資料堆候選，回報指揮位**（縮節、併節或換主張）。一節一種形狀就夠；✅ 例句取自三篇試行文的真實段落（❌ 對照在記憶檔 `hub_writing_framing` 附錄與回顧檔）。\n>\n> **① 數據**＝用一組先有出處的數字撐這一節的主張，數字之間要能互相對照。\n> ✅ article-racing…leclerc-parabolica.md `## 勒克萊爾在 205 km/h 就全油門，比自己與另外五人的第 2 圈全開都早`——六個對照排成一張表（210–223 對 205），每一筆都指回同一份公開存檔。\n>\n> **② 理由**＝用「往支持／往反對」兩個方向的材料撐一個判斷，連信賴度一起講。\n> ✅ article-racing…leclerc-parabolica.md `## 第二次全開之後，車速不動，轉速卻跳了 4%`——同一個比值 48.3，往支持給自己出彎 8 筆與漢米爾頓兩圈的取樣，往反對給第 1 圈那筆換檔瞬態，並標信賴度中。\n>\n> **③ 犯錯**＝把讀者最容易踩的那一個坑講明白，用自家材料拆開它（守 W19：坑是內容，不是彈藥）。\n> ✅ article-baseball-brock.md `## 這是統一隊史紀錄，不是中職聯盟紀錄`——坑＝把隊史紀錄當成聯盟紀錄；用柏格中職 58 勝、勇壯 108 勝拆開，全程沒有寫誰報錯。\n>\n> **④ 範例**＝用能串成一條過程的具體材料撐主張，每件材料帶日期、原話或代價（W26 材料計數）。\n> ✅ article-baseball-brock.md `## 布雷克這 7 個球季，撐過背傷也撐過了洋將大限`——背傷下二軍、季末註銷、2 年保障合約、羅力條款四件材料各有日期與原話，串成「留得夠久」。\n>\n> **⑤ 問題**＝H2 自己就是讀者會追問的那個反轉，節內當場回答（W30 已接受過的形狀①）。\n> ✅ article-baseball-brock.md `## 防禦率全聯盟第 2，勝場卻只有 7 勝 7 敗`——反轉在 H2，節內用 7 場敗投的比分表與 5 月 16 日那場 0 比 1 回答。\n>\n> ⚠️ 建議型文型另有三種（訣竅／步驟／好處），健檢站與賽事分析不套。\n>\n> **「數據」形狀的順序是先有出處、再有句子**：拿著出處找句子，句子撐得住；拿著句子找數據，會長出查無出處的數字\n> （☠️「給我一個數據支撐這個說法」這個 prompt 不收，理由見 [[hub_writing_framing]] Cole 附錄與 [[feedback_llm_fetch_fabricates_unhappened_events]]）。\n自檢：每一節讀完，讀者知道的是「事情放在哪裡」還是「那代表什麼」？前者＝地圖句，整節重寫。\n⚠️ 寫不出站得住的論點＝回報指揮位縮題或換角度。張力來自事實；絕對詞（最／唯一／完全沒有／只可能）一律換成可查的數字或條文。\n\n### 二　句子層（W29）：唸得完的句子\n每一句與每個標題都要唸得完：一個主詞、一個主要動詞；兩半的關係用連接詞明說（之後／因為／但是／雖然），逗號並排讓讀者自己接的一律改寫。\n❌「台鋼雄鷹連 33 局沒有得分，起點是一場勝利」→ ✅「台鋼雄鷹 8 月 29 日贏球之後，連續 33 局沒有得分」\n自檢：唸給人聽，對方反問「所以呢？」「這兩件事有什麼關係？」＝並置病。\n\n### 三　標題（W30）：先問「有沒有人想讀」\n紀律全過的標題仍可能沒有人想讀。原標題通常已有鉤子：先問「鉤子在哪個詞上」，查證推翻某個詞就只換那個詞，非鉤子則整句保留。\n四種被接受過的形狀（起手處，非套版）：問句＋反轉／具體人事時地物／反直覺的具體事實／**描述＋反轉**（前半是人地事的直述，後半接一個反轉）。\n自檢：唸給一個不看足球的人聽，他問「然後呢？」＝有鉤子，點頭說「喔」＝重寫。\n\n⭐ **標題與 description 寫發現，不寫做法。** 讀者最想知道的那件事（誰漲價、能不能投、規則停在哪）要進標題或 description，不能埋在第三節。\n❌「Three TrendForce Releases, March to September」「這篇逐一標出每筆訊號的出處」→ ✅「ChatGPT 廣告開到台灣：保健食品、法律服務不能投」\n自檢：把標題和 description 遮起來只看動詞——「並排」「整理」「標出」「列出」「解釋」是在描述你做了什麼，換成那件事本身。\n\n⭐ **動筆時的第一個動作：把自己的 lede 第一句抄下來，跟標題並排看。**\nCharlie 退標題時的固定做法就是拿同篇 lede 當正確版對照組——已發生在 2026-08-11（足球站與 aire 同日兩站）\n與 2026-09-16（他直接把 lede 首句貼回來當標題提案）。**lede 裡通常已經有人事時地物，標題缺的就是那些。**\n⛔ 但 **lede 首句不能整句搬進標題**：它是為「交代清楚」寫的，含全名括號與完整子句，\n長度通常是標題的三到四倍，塞不進封面版位（見下）。**抄的是它的元素，不是它的句子。**\n\n📏 **長度帶（foootball 實測，2026-09-16）**：站上 94 篇非 daily 標題**中位 33 字、P90 42、最長 55**；\n而 **feature 封面版位（2400×1260，標題固定兩行）的限制是每行寬度，不是總字數**：\n實測 126 字會吃掉四行、把頁尾擠出版面；**31 字（第 1 行 14＋第 2 行 15）沒溢出，第 2 行只用約 75% 寬**（2026-09-19 巴薩篇，封面已實看）。\n⚠️ 本節舊版寫「實際容量約 24–30 字」——**過保守，2026-09-19 實測推翻**；但長標題仍**超過 30 字就先渲染確認**，別用猜的。\n\n⚠️ **本庫的慣性是「在標題層過度壓縮」**：2026-09-16 那篇初版 24 字，比站上 91% 的標題都短，被 Charlie 退「拗口」。\n⇒ **短不是優點**。標題太短時，兩件事會被壓成逗號並排、關係消失（＝W29 的並置病搬到標題層）。\n\n### 四　引文與限定：各講一次\n1. **外文一手源：每段最多 1 條逐字外文引文**（同一段並列兩方原句對照時例外），其餘用中文轉述並掛頁名；轉述不得比原文強。\n2. **同一個限定只講一次**：推論、beta／preview、官方沒寫、本文的讀法——第一次出現時講清楚，之後由主詞承載，不逐段重貼；推翻條件與版本限定收進文末一段「範圍與版本」。\n   ❌ 每節開頭都有「以下是推論，官方沒有這樣寫」→ ✅ 第一次寫清楚是推論與根據，後面直接寫「照這個讀法，…」\n3. **事實表與派工單裡的「沒寫／查無／不推論／不換算」是給你的判準，不是給讀者的句子。** 正文要用就講事實本身，一次就好。\n   ❌「稿中沒有」「稿子沒有替讀者接起來」一篇出現幾十次 → ✅「TrendForce 只給了企業級 SSD 的漲幅，沒有給出貨量」\n4. **同一件事只主述一次**：表格列過的數字，正文只講它代表什麼，不再重念；FAQ 的答案比正文那一節短，並指回那一節；結尾不重講開場。\n\n### 六個漂移症狀（①④⑤ 同病根＝成品在展示工序；測試：這句在告訴讀者「一件事」，還是「我怎麼知道這件事」？後者一律改寫）\n\n**① gate 語言長進正文（最主要病灶）**\n❌「這是媒體估值，不是官方公布的確定數字，本文照原樣寫成區間，不換算成新台幣，也不取整成單一數字，那樣做只會製造一個看起來精確、實際上查無出處的假數字。」\n✅「這是媒體估的區間，不是官方數字。」\n判準：標可靠度＝留（媒體估／官方公告照標，講完就走），解釋本站紀律＝移到文末來源區塊；「誠實說／照實說」這類框架詞一律刪掉，誠實是預設。\n\n**② 標籤式標題**\n❌ `## 機制一：同一國辦兩場，第二場得換名字` → ✅ `## 聖馬利諾大獎賽，從來沒在聖馬利諾辦過`\n標題自己就要是一個事實，邏輯關係靠內文轉場句承接。\n\n**③ 指代不具體**\n❌「那家真公司一定也是演習的一部分」→ ✅「它攻的是一家真公司，而且知道那是真的」\n要讀者往回翻的詞（這件事／那家公司／後者／前面講的）一律換成具體名詞或改寫成不需指代的句子；H2 內出現指代詞＝FAIL。查不到名字時的正解＝改寫成事實句，而非硬補一個名字。\n\n**④ 第一人稱主詞「我」浮濫**\n❌「我把 84 場全部拉出來排了一次」→ ✅「把 84 場全部拉出來、逐場看場地欄，結果是：」\n中文可省主詞：工作量要寫，動作者不出場。改法＝主題句（硬刪「我」留半殘句不算，「我們」一樣多餘）；收尾前 grep「我」，拿掉會不通才留。\n\n**⑤ 標題塞證據鏈**\n❌「中職一週內 4 場雨延：8 月 8 日兩場補在 10 月 4 日，8 月 9 日兩場只寫「補賽週」」→ ✅「中職延賽的兩種補法：給日期，或只寫「補賽週」」\n標題放結論，日期／場次／數量降到副標；太抽象（機制一二三）與太具體（整條證據鏈）是同軸兩端（與②合讀），修完一端盪到另一端同樣重寫。自檢＝唸進封面兩行。\n\n**⑥ 廢話文學＝形狀正確但零資訊的句子（最典型＝同義反覆）**\n❌「開球時間就是手機上的時間，下午 3 點 30 分就是下午 3 點 30 分」→ ✅「一個換算都不用做——星期日吃完午餐出門，趕得上下午 3 點 30 分那場」\n判準＝讀完這句，知道的事情比讀之前多了什麼；答不出來就是廢話。高發位置＝系列文／系列卡的共同軸句位。\n\n### 材料（W26）\n非虛構稿 ≥1,200 字：五件具體材料（動作／數字／原話／代價／結果，各註來路）串成一條實際過程；數不夠就回報指揮位縮篇幅，補解釋、補用途意義風險未來一律不算材料。\n\n### 交稿前最後一關（W31）\n紀律規則都是負面閘門，是地板，不是量尺；這一關排在紀律檢查之後，有權推翻紀律產生的寫法（事實紅線除外）。三個動作，答案寫進交稿回報：\n1. 從頭到尾真讀一次；掃描、grep、只看改過的地方都不算讀。\n2. 標出自己讀到會想跳過的段落——至少一段，寫出段號與第一句；標不出來＝重讀。\n3. 逐個 H2 問：讀者讀完這節為什麼要繼續往下讀？答不出來的那節先問該搬位置還是併掉。\n4. 讀結尾那一段：讀者帶走的是一個判斷，還是一句「怎麼讀這組數字／下個月再看」？後者重寫成一個讀者可以不同意的判斷。\n產物＝指名的段號與句子；「已檢查，通過」是一句自述，任何人都檢查不了，不算交件。\n",
+  "w36_event_skeleton": {
+   "lede": "lede＝重點速答（3–4 句，約 200 字）：先給結果與具名說法的並陳，不寫 45 秒的原因，不寫『失誤』由誰認。",
+   "opening": "場景起手照時間講（H2-1 起：起跑分流→第 18 圈第一個進站→第 39 圈虛擬安全車→最後 22 圈），H2-1～H2-5 只陳述事實與具名說法。",
+   "last_section": "最後一節（H2-6 判讀）收所有判斷，三層分開寫：資料量得到的／具名來源說的／本站推論（信賴度中）。",
+   "title_cover": "標題與封面不放查證狀態（不寫『查證』『未證實』『疑似』作標題）；封面只放圖，圖上文字不寫結論。"
+  },
+  "headline_style": "標題自己要是一個事實，而且是結論那一個事實，不是推導過程。原料（時間戳、取樣率、筆數）降到內文。不要編號、不要分類標籤。自檢：把標題唸進封面兩行版面，塞不進去的多半是工序。",
+  "forbidden_meta": "gate 語言不進正文，『本站』全文 ≤8 次，不得有任何 H2 在講我們怎麼取材。❌『本站從公開存檔解析出的資料顯示，他在 205 km/h 踩到全油門』→ ✅『他在 205 km/h 踩到全油門』｜❌『兩家說法互相矛盾，本站兩邊都寫，不裁決：A 說…；B 說…』→ ✅『A 說…；B 說…。兩家說法不一樣。』｜❌『分析席 E 與指揮位兩套腳本重算一致』→ 這句只准出現在資料來源區塊。",
+  "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』『那個彎』『這條線』『這一刻』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+  "tone": "小 Lin 說＋張泉靈。從具體的怪事切進去、短句、不在正文解釋方法論。",
+  "length": "全文（含表格，不含資料來源節）下限 3,000 字，不設上限；不得為湊字數增加 THESIS 沒有的內容（R1 指揮位裁定 3、站規 W15）。THESIS ② 字帳 lede 200／H2-1 400／H2-2 450／H2-3 400／H2-4 550／H2-5 1,000 含表／判讀 450 ≈ 3,450 是估計，非上限；要精簡時優先砍 B 級清單說明文字，不砍 A。"
+ },
+ "checked_not_used": [
+  "【新加坡新聞 FAIL（verify-news-sg）】E-60（The Race 把勒克萊爾超漢米爾頓寫成第 48 圈 Turn 5；計時是第 46 圈，彎角與 SPORTbible 的 turn four 也對不上）、E-70（PlanetF1 分析稿 NS-11 L79 『漢米爾頓一直都聽車隊的』：雪邦站有直接反例）、E-78（PlanetF1 賽報把皮亞斯特里超車寫成最後一圈，計時是第 61 圈）、E-130（GPFans『another interview』沒交代場合）、E-138（Total Motorsport 『final lap』與計時不符）、E-155（ScuderiaFans 聚合站孤本）、E-160（SPORTbible 把煞車問題掛到漢米爾頓，F1.com 與 PlanetF1 掛的是安東內利）、E-179／E-180／NS-15 整篇（Motorsport.com 『entirely Lewis's decision』『mid-race safety car period』等；賽會資料 0 次安全車）、E-181（聚合站改寫的聲明，改引 NS-02 L25）。",
+  "【新加坡新聞 WEAKEN 孤本，THESIS 不用】E-04（F1.com \"He was crystal clear\" 孤本）、E-08（F1.com 少 today 的無線電孤本）、E-153（Grandprix.com 無引號，後半 \"We lost the podium with this\" 孤本）；E-28／NS-21 L79／NS-07 L35 為 verify-news-sg §7 備選，THESIS ⑤ 未點名，未收。",
+  "【歷史新聞不用（THESIS ⑤）】NS-15 整篇；NH-69 的 \"internal telemetry\"（沒有出處）；NH-52 L59 摩納哥『Why the hell are we pitting?』（單一來源）；NH-57 的無說話者引文；EV-13（2025 奧斯汀，單一來源、C 級）。",
+  "【歷史新聞 FAIL（verify-news-history-1/-2）】EV-05 原標『沒有找到明確失誤定性』（Total Motorsport 同篇先說 another crazy strategy、後說 may have made the right decision，沒有一致定性）；08-5 原標『法拉利自述：沒有』（NH-32 L580 有 Leclerc 自承）；10-7 蒙札『2.884 秒』（FastF1 是 2.664 秒）；14-3 Sky Collins 批評（講的是第二次虛擬安全車、帶 potentially，不是第一次不進站）；3.2 的 Vasseur 2026 匈牙利『too many mistakes／execution』（承認的是執行，同篇為進站決定辯護）與 Vasseur 2026 新加坡『mistake overall』（把錯歸給漢米爾頓不進站，不是車隊自承）；C11 Vasseur NH-31 L187（語境與策略無關）；3.4 RaceFans 2024『Sainz nailed it』（主旨是資訊不對等）。",
+  "【資料查核 FAIL／WEAKEN（verify-data）】T4b 的『進站落在虛擬安全車內？』欄把勒克萊爾第 24 圈、安東內利第 23 圈的第一停標成是（FAIL；實為綠旗進站）；T5／T5b／T8-16／T8-17（乾淨圈未排除車流，衰退 +2.206 秒含攻防圈，改用自由空氣區間 1.4–2.2 秒並附方法）；T8-15（第 18 圈 P6 是進站道過線名次，低點是第 19 圈末 P7）；T8-23（『結束訊息之後』單獨寫容易讀成已恢復綠旗）。",
+  "【THESIS ⑧ 淘汰的候選論點】(b) 兩台法拉利分流是本場關鍵（資料撐不住『分流造成結果』）；(c) 單獨寫『法拉利 2022–2026 策略有沒有模式』（正反兩邊在模式層級都只有個別評論、沒有同標準量化，併入 T3，只寫誰針對哪些場次說了什麼，不下結論；R1 修正）；(d) 雪邦＋新加坡『漢米爾頓與車隊對進站的分歧』對照（只有 Schiff 一人的意見，Button 當場反對；降為 H2-4 一句互鏈）；(e1) 『漢米爾頓軟胎跑 44 圈撐不住』作主旨（衰退值依濾法差 1.4–2.2 秒、45 秒含攻防）；(e2) 『法拉利 2026 年不會處理中立化』（H-6 只是收錄場次的爭點歸類）；(e3) 2022 損失積分 108／140／201（三份都假設 Leclerc 本來會贏，混了引擎故障）。",
+  "【新加坡新聞裡不採的數字】verify-news-sg E-31（Autosport 4.4 秒）、E-33 的『約 41.5 秒』、E-44（最後 10 圈每圈 1:38.6 以上）、E-173（Sky nine seconds，約略值，改用本站 8.371 秒）：數字對不上或無法重現，用本站資料。"
+ ],
+ "news_quotes": [
+  {
+   "id": "E-17",
+   "source": "PlanetF1（Vasseur 賽後媒體會圍訪）",
+   "url": "https://www.planetf1.com/news/ferrari-lewis-hamilton-singapore-gp-pit-strategy-mistake",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "We took the decision to split the cars. It was the good approach to try to fight with Max.",
+   "zh_gloss": "我們決定讓兩台車走不同策略，這是挑戰 Max 的好方法。",
+   "use_in_section": "H2-1",
+   "qualifiers": "與 E-11（漢米爾頓聲明：我選了新中性胎起跑）並陳主詞，不寫成矛盾（兩人講的是同一個分流決定的不同主詞；verify-news-sg §3、verify-news-history-2 20-6）；原檔 L19 交代場合＝PlanetF1 與其他認證媒體的賽後媒體會；單一場合。",
+   "evidence_file": "evidence/news/sg-planetf1-ferrari-defence.txt",
+   "evidence_line": 21
+  },
+  {
+   "id": "E-11",
+   "source": "F1.com（漢米爾頓經法拉利發布的書面聲明）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "I chose to start on a new medium tyre, to go long and try to make a one-stop work.",
+   "zh_gloss": "我選擇用一組新的中性胎起跑，想跑長一點，試著讓一停成立。",
+   "use_in_section": "H2-1",
+   "qualifiers": "書面聲明，不是訪問；Sky L43、Motorsport L179、ESPN L205 逐字一致（verify-news-sg E-11）；漢米爾頓沒有出席媒體區（NS-02 L21，見 E-16）；與 E-17 並陳主詞。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 23
+  },
+  {
+   "id": "E-18",
+   "source": "PlanetF1（Vasseur 賽後媒體會圍訪）",
+   "url": "https://www.planetf1.com/news/ferrari-lewis-hamilton-singapore-gp-pit-strategy-mistake",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "The Medium was poor compared to the Soft today. That was true on both cars, but I think it was true for everybody.",
+   "zh_gloss": "今天中性胎比軟胎差。兩台車都是這樣，但我認為對所有人都一樣。",
+   "use_in_section": "H2-1（可選，配 E-89）",
+   "qualifiers": "媒體會版本。Sky 訪問版（Crash L49、Grande Prêmio L41）的「true for everybody」講的是賽前 50-50 資訊不足，不是中性胎差，是不同場合的不同句子，不得合併（verify-news-sg E-18、§3）；兩句連續複製是因為「That」的指涉在前一句。",
+   "evidence_file": "evidence/news/sg-planetf1-ferrari-defence.txt",
+   "evidence_line": 23
+  },
+  {
+   "id": "E-89",
+   "source": "F1.com 賽報（維斯塔潘賽後 Key quote）",
+   "url": "https://www.formula1.com/en/latest/article/verstappen-seals-commanding-singapore-grand-prix-victory-from-leclerc-and-antonelli.49wDzysiVqi5cloGjle40A",
+   "attribution_type": "車手的話",
+   "speaker": "維斯塔潘（Max Verstappen）",
+   "verbatim": "We had pace when we needed to have it on the soft tyre and on the medium, even though I think the medium tyre for everyone was a bit more of a struggle.",
+   "zh_gloss": "我們在需要速度的時候有速度，不論軟胎或中性胎，雖然我覺得對所有人來說中性胎都比較吃力一點。",
+   "use_in_section": "H2-1（可選，配 E-18）",
+   "qualifiers": "第三方旁證，可選；verify-news-sg 判 PASS。",
+   "evidence_file": "evidence/news/sg-f1com-race-report.txt",
+   "evidence_line": 147
+  },
+  {
+   "id": "E-63a",
+   "source": "PlanetF1 遙測分析稿",
+   "url": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 分析稿作者（頁面未標作者）",
+   "verbatim": "Alongside Hamilton’s miscalculation in the second half of the race, another error – one you could call rookie-level – marred Ferrari’s strategy during the Singapore Grand Prix, and for this, the team is solely to blame.",
+   "zh_gloss": "除了漢米爾頓在後半場的誤判之外，另一個錯誤——可以說是新手等級的——也損害了法拉利在新加坡大獎賽的策略，而這個錯誤，責任完全在車隊。",
+   "use_in_section": "H2-1",
+   "qualifiers": "作者評論，沒有具名消息來源（verify-news-sg E-63）；THESIS 引用的「rookie-level」「solely to blame」在原檔 L15（本條），歸屬席 E-63 的行號是 L17（見 E-63，是相鄰的下一句，不是同一句），行號差異以原檔為準；整句含「Hamilton's miscalculation」也是作者評論，只引片語時仍須標「PlanetF1 分析稿作者認為」；不得寫成「PlanetF1 說車隊犯了新手錯」當具名消息（must_not 10）。",
+   "evidence_file": "evidence/news/sg-planetf1-strategy-analysis.txt",
+   "evidence_line": 15
+  },
+  {
+   "id": "E-63",
+   "source": "PlanetF1 遙測分析稿",
+   "url": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 分析稿作者（頁面未標作者）",
+   "verbatim": "The timing of the pit stops meant that after Leclerc completed his first stop, both drivers ended up side-by-side on track, running different tyres and different paces, which hurt both of their races.",
+   "zh_gloss": "進站時機的結果是：勒克萊爾完成第一次進站之後，兩位車手並排在賽道上，穿著不同輪胎、跑著不同步調，兩人的比賽都因此受傷。",
+   "use_in_section": "H2-1",
+   "qualifiers": "歸屬席 E-63 行號 L17；THESIS 引用的「rookie-level」「solely to blame」在原檔 L15（見 E-63a，相鄰上一句），行號差異以原檔為準；作者敘述／評論；「擋住」資料撐不住——第 26–38 圈勒克萊爾平均每圈反而快約 0.14 秒（R1 修正重算 0.142；verify-data 一-4 原寫 0.15），所以只並陳 PlanetF1 作者與 Vasseur 的回應（E-20），不寫「擋住」「損失 X 秒」（must_not 10）。",
+   "evidence_file": "evidence/news/sg-planetf1-strategy-analysis.txt",
+   "evidence_line": 17
+  },
+  {
+   "id": "E-20pre",
+   "source": "PlanetF1（Vasseur 賽後媒體會圍訪）",
+   "url": "https://www.planetf1.com/news/ferrari-lewis-hamilton-singapore-gp-pit-strategy-mistake",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "Within two laps, he was two seconds behind,",
+   "zh_gloss": "兩圈之內，他就落後了兩秒。",
+   "use_in_section": "H2-1（接 E-20）",
+   "qualifiers": "E-20 的前一句；原文只有「he」，沒講是誰，不補主詞（verify-news-sg E-20）。這是 E-20 同一行的前半（引號斷開），因此另列。",
+   "evidence_file": "evidence/news/sg-planetf1-ferrari-defence.txt",
+   "evidence_line": 29
+  },
+  {
+   "id": "E-20",
+   "source": "PlanetF1（Vasseur 賽後媒體會圍訪）",
+   "url": "https://www.planetf1.com/news/ferrari-lewis-hamilton-singapore-gp-pit-strategy-mistake",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "The tyre advantage was for Lewis; for Charles, he pitted six laps later. So it was the right call.",
+   "zh_gloss": "輪胎優勢在 Lewis 那邊；Charles 晚了六圈才進站。所以那是對的決定。",
+   "use_in_section": "H2-1",
+   "qualifiers": "連前句（E-20pre）整段引，不補主詞；「it」「那」指什麼原文沒講。PlanetF1 在敘述漢米爾頓抱怨卡在隊友後面（L27）之後接 Vasseur 的回應（L29「Vasseur countered」），原文沒有印出提問；不是回應 PlanetF1 那篇分析（verify-news-history-2 20-10）；講的是第一停，不得用在第 39 圈（R1 C4）。資料：HAM 第 18 圈、LEC 第 24 圈進站，差 6 圈（th1.py）。「晚六圈」與 The Race（E-41）「six laps short」是不同的量，不混用（verify-news-sg C14）。",
+   "evidence_file": "evidence/news/sg-planetf1-ferrari-defence.txt",
+   "evidence_line": 29
+  },
+  {
+   "id": "E-103",
+   "source": "Sky Sports（Vasseur 對 Sky Sports F1 的賽後訪問）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "We called him, we called them both to pit,",
+   "zh_gloss": "我們叫了他，我們叫了兩台車都進站，",
+   "use_in_section": "H2-2、H2-4",
+   "qualifiers": "Sky 原播出方轉寫；ESPN 版是 \"We called him in\"（NS-23 L219，多一個 in 並插入 [under the VSC]）；H2-2 只取「叫了進站」的事實層，原因留到 H2-4；漢米爾頓聲明（E-13）只說「車隊叫我」，不說兩台，「兩台」只有 Vasseur 這一句。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 59
+  },
+  {
+   "id": "E-13",
+   "source": "F1.com（漢米爾頓經法拉利發布的書面聲明）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "Under the VSC, the team called me in but I missed the entry.",
+   "zh_gloss": "虛擬安全車期間，車隊叫我進站，但我錯過了入口。",
+   "use_in_section": "H2-2、H2-4",
+   "qualifiers": "書面聲明（Sky、Motorsport、ESPN、PlanetF1 五家逐字一致）；「錯過」是不是字面意思沒有人驗證過。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 25
+  },
+  {
+   "id": "E-30",
+   "source": "Motorsport.com／Autosport（同稿，算一家）",
+   "url": "https://www.motorsport.com/f1/news/why-ferrari-caved-in-to-lewis-hamiltons-failed-singapore-f1-gamble/10864417/",
+   "attribution_type": "報導者敘述",
+   "speaker": "Motorsport.com 記者（Ben Vinel／Filip Cleeren）",
+   "verbatim": "Across the last 22 of those, following the neutralisation, Hamilton haemorrhaged 2.5s a lap on average relative to Ferrari team-mate Charles Leclerc.",
+   "zh_gloss": "在虛擬安全車結束後的最後 22 圈，漢米爾頓相對於法拉利隊友勒克萊爾，平均每圈流失 2.5 秒。",
+   "use_in_section": "H2-3",
+   "qualifiers": "報導者自算；本站重算 2.538 秒／圈（第 41–62 圈，HAM 對 LEC 同期 55.840 秒），比較對象是勒克萊爾（他是第 39 圈換上的較新軟胎，不是同條件）；對維斯塔潘是 2.054。引用時註明比較對象（verify-data 附錄）。",
+   "evidence_file": "evidence/news/sg-motorsport-why-ferrari-caved.txt",
+   "evidence_line": 145
+  },
+  {
+   "id": "E-92/93",
+   "source": "F1.com（勒克萊爾賽後）",
+   "url": "https://www.formula1.com/en/latest/article/i-dont-regret-anything-leclerc-gave-it-all-to-secure-p2-in-singapore.4TemKhORmVtudPgWO2Uiw4",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "I pushed a lot at the beginning of that last stint and degraded a bit more than the others. I gave it all and I don’t regret anything.",
+   "zh_gloss": "最後一段剛開始我推得很兇，輪胎衰退比別人多一點。我全力以赴，沒有任何後悔。",
+   "use_in_section": "H2-3（可選）",
+   "qualifiers": "F1.com 沒寫是哪個場合（\"Leclerc explained\"）；寫「勒克萊爾賽後說」。",
+   "evidence_file": "evidence/news/sg-f1com-leclerc-dont-regret.txt",
+   "evidence_line": 23
+  },
+  {
+   "id": "E-121",
+   "source": "Speedcafe",
+   "url": "https://speedcafe.com/f1-news-2026-singapore-grand-prix-ferrari-lewis-hamilton-charles-leclerc-strategy-issue-apology-what-happened/",
+   "attribution_type": "報導者敘述",
+   "speaker": "Speedcafe 記者（Ben Waterworth）",
+   "verbatim": "His struggles became particularly apparent in the closing stages, with Mercedes driver Kimi Antonelli passing him for third on Lap 54 before Lando Norris and Oscar Piastri also found their way ahead in the final eight laps.",
+   "zh_gloss": "他的掙扎在收尾階段特別明顯：賓士車手安東內利在第 54 圈超越他搶下第 3，接著諾里斯與皮亞斯特里也在最後八圈超到前面。",
+   "use_in_section": "H2-3（可選）",
+   "qualifiers": "圈號與計時一致（第 54 圈 ANT；NOR 第 55、PIA 第 61 圈都在最後 8 圈內，verify-news-sg E-121）；超車圈號以計時資料為準。",
+   "evidence_file": "evidence/news/sg-speedcafe-ferrari-what-happened.txt",
+   "evidence_line": 144
+  },
+  {
+   "id": "E-167",
+   "source": "FIA 裁決書（PlanetF1 轉錄）",
+   "url": "https://www.planetf1.com/news/fia-lewis-hamilton-f1-2026-singapore-grand-prix",
+   "attribution_type": "FIA 官方",
+   "speaker": "賽會管理員（裁決書）",
+   "verbatim": "Car 44 left the track in Turn 1 while the driver was defending his position to Car 1.",
+   "zh_gloss": "44 號車在第 1 彎防守 1 號車時離開了賽道。",
+   "use_in_section": "H2-3（可選，配 E-170）",
+   "qualifiers": "PlanetF1 轉錄 FIA 裁決書；Car 44＝漢米爾頓；裁決書文字只寫車號，verify-data 一-6 把這件事讀成他與諾里斯攻防、安東內利同時超過兩車，車號對應以該判決檔為準，正文不補車號以外的細節；賽會訊息 13:36:43 有對應的 NO FURTHER ACTION（VD 一-6）。",
+   "evidence_file": "evidence/news/sg-planetf1-fia-hamilton.txt",
+   "evidence_line": 33
+  },
+  {
+   "id": "E-170",
+   "source": "FIA 裁決書（PlanetF1 轉錄）",
+   "url": "https://www.planetf1.com/news/fia-lewis-hamilton-f1-2026-singapore-grand-prix",
+   "attribution_type": "FIA 官方",
+   "speaker": "賽會管理員（裁決書）",
+   "verbatim": "Given all that, the stewards determine that no further action is warranted in this case.",
+   "zh_gloss": "綜合以上，賽會管理員裁定此案不需進一步處分。",
+   "use_in_section": "H2-3（可選，與 E-167 擇一句即可）",
+   "qualifiers": "賽會訊息 13:36:43 NO FURTHER ACTION 對得上（verify-data 一-6、verify-news-sg E-170）；只寫「第 54 圈 Turn 1 事件不予處分」這一層，引賽會訊息不寫圈號。",
+   "evidence_file": "evidence/news/sg-planetf1-fia-hamilton.txt",
+   "evidence_line": 41
+  },
+  {
+   "id": "E-14b",
+   "source": "F1.com（漢米爾頓經法拉利發布的書面聲明）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "in the closing laps, I was struggling massively with tyre degradation and lost three places, finishing P6",
+   "zh_gloss": "最後幾圈，我的輪胎衰退嚴重到掙扎不已，掉了三個名次，以第 6 名完賽",
+   "use_in_section": "H2-3（可選）",
+   "qualifiers": "「lost three places」指第 54、55、61 圈被超的 3 次，與計時資料一致（F-11），不得「更正」成 4；THESIS H2-3 降強度明載。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 27
+  },
+  {
+   "id": "E-09",
+   "source": "F1.com（漢米爾頓賽後無線電，官方轉播播出）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "Sorry boys. I let you down today with that strategy. My call, and I lost us valuable points.",
+   "zh_gloss": "對不起各位，我今天那個策略讓你們失望了。是我的決定，讓我們丟了寶貴的分數。",
+   "use_in_section": "H2-4",
+   "qualifiers": "無線電（官方轉播播出）；多數版逐字一致（ESPN、Crash、Autosport、Speedcafe、GPFans 句尾多一句 \"Great job with the pit stop though\"）；漢米爾頓沒有出席媒體區，他的說法只有無線電與書面聲明。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 19
+  },
+  {
+   "id": "E-14",
+   "source": "F1.com（漢米爾頓經法拉利發布的書面聲明）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "After that, I decided to stay out and try to hold track position to the end",
+   "zh_gloss": "之後，我決定留在賽道上，試著把位置守到最後",
+   "use_in_section": "H2-4",
+   "qualifiers": "接在 E-13 之後；同一行後半是「closing laps…lost three places」（見 E-14b）。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 27
+  },
+  {
+   "id": "E-15",
+   "source": "F1.com（漢米爾頓經法拉利發布的書面聲明）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "A painful lesson today, but I take full responsibility for the decisions I made.",
+   "zh_gloss": "今天是痛苦的一課，但我為自己做的決定負全責。",
+   "use_in_section": "H2-4",
+   "qualifiers": "書面聲明；他負責的是他自己的決定，不等於「抗命」或承認車隊策略失誤（must_not 3、6）。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 29
+  },
+  {
+   "id": "E-16",
+   "source": "F1.com（引法拉利說法）",
+   "url": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1",
+   "attribution_type": "報導者敘述",
+   "speaker": "F1.com 編輯（引法拉利確認）",
+   "verbatim": "Ferrari confirmed that, having felt unwell after the race, Hamilton was seen by the FIA medical team and received permission to not attend the media pen.",
+   "zh_gloss": "法拉利確認，他賽後身體不適，接受了 FIA 醫療組檢查，並獲准不到媒體區。",
+   "use_in_section": "H2-4（交代漢米爾頓沒有出席媒體區）",
+   "qualifiers": "Sky L41、The Race L39、Grandprix L29 一致；The Race（NS-06 L39）寫的是「did not conduct television or written media duties」。",
+   "evidence_file": "evidence/news/sg-f1com-hamilton-painful-lesson.txt",
+   "evidence_line": 21
+  },
+  {
+   "id": "E-34",
+   "source": "Autosport（Vasseur 對 F1 TV 的賽後訪問）",
+   "url": "https://www.autosport.com/f1/news/lewis-hamilton-takes-blame-for-poor-singapore-gp-strategy/10864343/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "The call was to pit two and Lewis decided to stay on track.",
+   "zh_gloss": "指令是兩台都進站，Lewis 決定留在賽道上。",
+   "use_in_section": "H2-4",
+   "qualifiers": "Vasseur 三個場合之一（F1 TV）；與 E-104（Sky：他錯過了進站口）是兩場訪問的兩種說法，不是轉寫差異（verify-news-sg §2.1）；F1.com 版（NS-01 L27）插入 \"[two drivers at the VSC]\"，Speedcafe 插入 \"[cars]\"；同段後半「We asked him to call and he didn't」各家斷句不同、語意不清，不引後半。",
+   "evidence_file": "evidence/news/sg-autosport-hamilton-blame.txt",
+   "evidence_line": 163
+  },
+  {
+   "id": "E-01系(NS-19 L165)",
+   "source": "Autosport（Vasseur 對 F1 TV 的賽後訪問）",
+   "url": "https://www.autosport.com/f1/news/lewis-hamilton-takes-blame-for-poor-singapore-gp-strategy/10864343/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "I think it was a mistake overall, we would have gone for P2-P3 today",
+   "zh_gloss": "我認為整體來說這是個失誤，我們今天本來能拿第二、第三",
+   "use_in_section": "H2-4（只引到這裡）",
+   "qualifiers": "只引到「today」，後半句三版斷句不同、語意不清，不引（verify-news-sg E-01）；F1.com 版在 NS-01 L29（破折號）。這句的「失誤」是 Vasseur 把結果歸給漢米爾頓不進站，不是車隊自承（must_not 6）；「本來能拿第二、第三」是反事實，只能掛 Vasseur 原話（must_not 7）。",
+   "evidence_file": "evidence/news/sg-autosport-hamilton-blame.txt",
+   "evidence_line": 165
+  },
+  {
+   "id": "E-104",
+   "source": "Sky Sports（Vasseur 對 Sky Sports F1 的賽後訪問）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "It would have been P2-P3 because we were P2-P3 on track, and he missed the pit entry,",
+   "zh_gloss": "本來會是第二、第三，因為我們在賽道上就是第二、第三，而他錯過了進站口，",
+   "use_in_section": "H2-4",
+   "qualifiers": "Sky 原播出方轉寫；與 E-34 並陳＝兩場訪問兩種說法；「本來會是第二、第三」是反事實，只能掛名（must_not 7）。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 61
+  },
+  {
+   "id": "E-105",
+   "source": "Sky Sports（Vasseur 對 Sky Sports F1 的賽後訪問）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "It was crystal clear on the radio.",
+   "zh_gloss": "無線電上講得非常清楚。",
+   "use_in_section": "H2-4",
+   "qualifiers": "以 Sky 原文 \"It was\" 為準；F1.com 把它寫成 \"He was crystal clear\"（NS-01 L37，孤本；主詞不同語意就不同）不用。主詞是 It，不補主詞；正文只用 zh_gloss『無線電上講得非常清楚』，不寫成『指令很清楚』或『他講得很清楚』（Sky 小標與 Grande Prêmio L27 是記者把它讀成指令很清楚；PlanetF1 媒體會版的 clear 也可指漢米爾頓在無線電上的自承，sg-planetf1-ferrari-defence.txt L45、L51）（verify-news-sg E-04、E-22；R1 C1）。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 67
+  },
+  {
+   "id": "E-26",
+   "source": "Motorsport.com／Autosport（Vasseur 賽後媒體會，同稿算一家）",
+   "url": "https://www.motorsport.com/f1/news/why-ferrari-caved-in-to-lewis-hamiltons-failed-singapore-f1-gamble/10864417/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "One of my guys said, ‘No, I prefer to stay on track’. Or he didn’t say – he said, ‘I missed the pit entry’.",
+   "zh_gloss": "我的一位車手說『不，我寧可留在賽道上』。不，他不是這麼說，他說的是『我錯過了進站口』。",
+   "use_in_section": "H2-4（必須整句含更正，不得只引前半）",
+   "qualifiers": "最完整的版本；The Race（NS-06 L41–43）有前後兩句（L41『no, I prefer to stay on track』、L43『He said, 'I missed the pit entry'』），只少了『Or he didn't say』；PlanetF1（NS-10 L55）沒有後半；同一句裡改口的完整紀錄只有 Motorsport.com／Autosport 一家（R1 C3）；只引前半＝把他自己收回的轉述寫成漢米爾頓拒絕進站。原檔 L163：Vasseur 說這些話時還沒跟車手談過。與 E-34（F1 TV）、E-104（Sky）合讀＝同一人三場合：F1 TV「Lewis 決定留」、Sky「他錯過進站口」、媒體會同一句裡由前者改口成後者。",
+   "evidence_file": "evidence/news/sg-motorsport-why-ferrari-caved.txt",
+   "evidence_line": 155
+  },
+  {
+   "id": "E-36",
+   "source": "The Race（賽報分析）",
+   "url": "https://www.the-race.com/formula-1/why-lewis-hamilton-singapore-gp-really-imploded/",
+   "attribution_type": "報導者敘述",
+   "speaker": "The Race 記者（頁面未署名）",
+   "verbatim": "But that was the misleading consequence of an unusual fault that prevented Ferrari’s radio communications with Hamilton through and shortly after the VSC period from being heard.",
+   "zh_gloss": "但那是一個不尋常的故障造成的誤導性結果：這個故障讓法拉利與漢米爾頓在虛擬安全車期間及之後一小段時間的無線電通訊沒有被聽到。",
+   "use_in_section": "H2-4",
+   "qualifiers": "The Race 一家的說法，講的是轉播沒收錄到（L31、L35「not just muted」），不是漢米爾頓沒聽到；法拉利方面沒有具名人證實；不得寫成「他沒收到指令」或「無線電故障」（must_not 4）。",
+   "evidence_file": "evidence/news/sg-therace-hamilton-imploded.txt",
+   "evidence_line": 31
+  },
+  {
+   "id": "E-41",
+   "source": "The Race（賽報分析）",
+   "url": "https://www.the-race.com/formula-1/why-lewis-hamilton-singapore-gp-really-imploded/",
+   "attribution_type": "報導者敘述",
+   "speaker": "The Race 記者（頁面未署名；「Ferrari said」沒有具名人）",
+   "verbatim": "Ferrari said he was six laps short of making a one-stop viable",
+   "zh_gloss": "法拉利說他還差六圈，一停才算可行",
+   "use_in_section": "H2-4（可選，THESIS ④）",
+   "qualifiers": "沒有具名、沒說何時何種場合，也沒有無線電原文；「六圈」只能掛 The Race（只此一家，F1.com 只用 'seemingly'，見 E-83）；與 E-20 的「晚六圈」是不同的量，不混用；單一來源／未具名／THESIS H2-4 ④ 可選（指揮位指示保留）。",
+   "evidence_file": "evidence/news/sg-therace-hamilton-imploded.txt",
+   "evidence_line": 53
+  },
+  {
+   "id": "E-83",
+   "source": "F1.com 賽報",
+   "url": "https://www.formula1.com/en/latest/article/verstappen-seals-commanding-singapore-grand-prix-victory-from-leclerc-and-antonelli.49wDzysiVqi5cloGjle40A",
+   "attribution_type": "報導者敘述",
+   "speaker": "F1.com 編輯（賽報未署名）",
+   "verbatim": "Debate appeared to be continuing at Ferrari over Hamilton’s strategy, with the team seemingly believing that he was a few laps short of making it to the end on his tyres.",
+   "zh_gloss": "法拉利內部對漢米爾頓策略的爭論似乎仍在繼續，車隊似乎認為他的輪胎撐不到終點，還差幾圈。",
+   "use_in_section": "H2-4（可選，THESIS ④ 提到「F1.com 等」）",
+   "qualifiers": "單一來源（只有 F1.com 這一句）／未具名（「the team」沒有具名人）／THESIS H2-4 ④ 可選（指揮位指示保留；THESIS ⑤ 未列此編號，見 _meta.open_issues）；原文帶 \"appeared to\" 與 \"seemingly\"，必須保留「似乎」；沒有無線電原文。",
+   "evidence_file": "evidence/news/sg-f1com-race-report.txt",
+   "evidence_line": 123
+  },
+  {
+   "id": "E-102",
+   "source": "Sky Sports（賽報導言）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "報導者敘述",
+   "speaker": "Sky Sports 記者（未署名）",
+   "verbatim": "Ferrari told Hamilton to follow Leclerc into the pits, but he ignored the call and stayed out",
+   "zh_gloss": "法拉利叫漢米爾頓跟著勒克萊爾進站，但他無視（ignored）了那個呼叫、留在場上",
+   "use_in_section": "H2-4（框架詞，點名但不採為事實）",
+   "qualifiers": "記者框架：只能寫「Sky、ESPN 等以『無視』形容」並點名；同篇 L59–61 印出的 Vasseur 原話是「他錯過進站口」；桌內 36 篇新加坡報導裡沒有任何當事人說過 ignore／refuse／override（verify-news-sg 前三風險 2；寫成「本篇讀到的報導中」，must_not 36）。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 21
+  },
+  {
+   "id": "E-102b(NS-21 L57)",
+   "source": "Sky Sports",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "報導者敘述",
+   "speaker": "Sky Sports 記者（未署名）",
+   "verbatim": "Ferrari team principal Frederic Vasseur confirmed after the race that Hamilton had ignored the pit wall's instructions.",
+   "zh_gloss": "法拉利領隊 Frederic Vasseur 賽後確認，漢米爾頓無視（ignored）了維修牆的指示。",
+   "use_in_section": "H2-4（框架詞，點名但不採為事實）",
+   "qualifiers": "這是 Sky 記者寫成「Vasseur 確認」的內容；緊接著 L59–61 印出的 Vasseur 原話是 \"he missed the pit entry\"，沒有 ignore 一字；不得把「無視」掛到 Vasseur 身上（must_not 3）。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 57
+  },
+  {
+   "id": "E-124",
+   "source": "ESPN",
+   "url": "https://www.espn.com/f1/story/_/id/50131357/lewis-hamilton-calls-singapore-gp-strategy-painful-lesson-ferrari-apology-singapore-grand-prix-marina-bay-circuit-formula-1",
+   "attribution_type": "報導者敘述",
+   "speaker": "ESPN 記者（Laurence Edmondson）",
+   "verbatim": "Speaking on team radio after the checkered flag, Hamilton apologized to his team for ignoring its pit call, which would have provided a time-efficient pit stop under the VSC.",
+   "zh_gloss": "漢米爾頓在格子旗後的車隊無線電裡，為無視（ignoring）進站呼叫向車隊道歉，那次進站在虛擬安全車下本可節省時間。",
+   "use_in_section": "H2-4（框架詞，點名但不採為事實）",
+   "qualifiers": "ESPN 把道歉原因寫成「無視進站指令」，漢米爾頓無線電原話只說 \"My call\"（E-09）；記者框架，不寫成當事人說法。",
+   "evidence_file": "evidence/news/sg-espn-hamilton-painful-lesson.txt",
+   "evidence_line": 193
+  },
+  {
+   "id": "E-124b(NS-23 L217)",
+   "source": "ESPN",
+   "url": "https://www.espn.com/f1/story/_/id/50131357/lewis-hamilton-calls-singapore-gp-strategy-painful-lesson-ferrari-apology-singapore-grand-prix-marina-bay-circuit-formula-1",
+   "attribution_type": "報導者敘述",
+   "speaker": "ESPN 記者（Laurence Edmondson）",
+   "verbatim": "After the race, Ferrari team principal Fred Vasseur confirmed that Hamilton had overridden his engineer's call to pit behind Leclerc, who went on to finish in second place.",
+   "zh_gloss": "賽後，法拉利領隊 Fred Vasseur 確認漢米爾頓推翻（overridden）了工程師要他跟在勒克萊爾後面進站的呼叫，勒克萊爾最後拿下第二。",
+   "use_in_section": "H2-4（框架詞，點名但不採為事實）",
+   "qualifiers": "ESPN 記者寫成「Vasseur confirmed … overridden」，緊接著 L219 印出的 Vasseur 原話是「他錯過進站口」（E-104 同句的 ESPN 版）；不得把「推翻」掛到 Vasseur 身上。",
+   "evidence_file": "evidence/news/sg-espn-hamilton-painful-lesson.txt",
+   "evidence_line": 217
+  },
+  {
+   "id": "E-110",
+   "source": "Sky Sports（評論員 Naomi Schiff）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "評論員意見",
+   "speaker": "Naomi Schiff（Sky 評論員）",
+   "verbatim": "I think that they've sort of lost trust with each other on making the right decisions in certain circumstances.",
+   "zh_gloss": "我覺得他們在某些情況下，已經不太相信對方能做出正確決定。",
+   "use_in_section": "H2-4（與 E-113 並陳，不裁決）",
+   "qualifiers": "評論員意見；她拿雪邦與新加坡兩週對照（L91）；與 Button（E-113a、E-113）當場不同意並陳；不寫「信任破裂」為事實（must_not 18）。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 89
+  },
+  {
+   "id": "E-113a",
+   "source": "Sky Sports（評論員 Jenson Button）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "評論員意見",
+   "speaker": "Jenson Button（Sky 評論員）",
+   "verbatim": "I disagree [that it was an issue of trust],",
+   "zh_gloss": "我不同意［這是信任問題］，",
+   "use_in_section": "H2-4",
+   "qualifiers": "方括號內是 Sky 編輯補的字；Button 反對的是「信任破裂」這個說法，他把責任放在漢米爾頓自己的判斷上，不是替法拉利策略辯護（verify-news-history-2 C5）。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 117
+  },
+  {
+   "id": "E-113",
+   "source": "Sky Sports（評論員 Jenson Button）",
+   "url": "https://www.skysports.com/f1/news/13597653/lewis-hamilton-apologises-to-ferrari-for-costly-decision-to-override-strategy-call-during-singapore-gp",
+   "attribution_type": "評論員意見",
+   "speaker": "Jenson Button（Sky 評論員）",
+   "verbatim": "I think he just wanted to make his call on the race, and he thought it was the right one.",
+   "zh_gloss": "我覺得他只是想自己做比賽上的決定，而且他認為那是對的。",
+   "use_in_section": "H2-4",
+   "qualifiers": "接在 E-113a 之後；評論員意見。",
+   "evidence_file": "evidence/news/sg-sky-hamilton-apologises.txt",
+   "evidence_line": 117
+  },
+  {
+   "id": "E-72",
+   "source": "PlanetF1 遙測分析稿",
+   "url": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 分析稿作者（頁面未標作者）",
+   "verbatim": "While the ultimate responsibility lies with Hamilton, it’s important to identify the root cause: poor communication between team and driver.",
+   "zh_gloss": "最終責任在漢米爾頓，但重要的是找出根本原因：車隊與車手之間溝通不良。",
+   "use_in_section": "H2-4",
+   "qualifiers": "作者觀點，無具名消息來源；不寫成事實。",
+   "evidence_file": "evidence/news/sg-planetf1-strategy-analysis.txt",
+   "evidence_line": 91
+  },
+  {
+   "id": "E-47",
+   "source": "The Race（評論員 Scott Mitchell-Malm）",
+   "url": "https://www.the-race.com/formula-1/our-verdict-on-lewis-hamilton-singapore-strategy-failure/",
+   "attribution_type": "評論員意見",
+   "speaker": "Scott Mitchell-Malm（The Race 評論員）",
+   "verbatim": "Ferrari could have managed the split-strategy better.",
+   "zh_gloss": "法拉利本可以把分流策略管理得更好。",
+   "use_in_section": "H2-4（備選）",
+   "qualifiers": "備選；若入文，必須連同他那段的主旨一起寫：小標「A race Ferrari (probably) was always going to lose」（L23）、他寫法拉利內部似乎認定錯在漢米爾頓（L27，seemed）；這句只是他列舉的幾個沒發生的假設之一（同行最後一句 \"None of that happened!\"），不得放進『對車隊的具名批評』；下一行 L35 的 \"probably would have won out anyway\" 帶「可能」，未收（R1 C5）。",
+   "evidence_file": "evidence/news/sg-therace-verdict.txt",
+   "evidence_line": 33
+  },
+  {
+   "id": "E-51",
+   "source": "The Race（評論員 Josh Suttill）",
+   "url": "https://www.the-race.com/formula-1/our-verdict-on-lewis-hamilton-singapore-strategy-failure/",
+   "attribution_type": "評論員意見",
+   "speaker": "Josh Suttill（The Race 評論員）",
+   "verbatim": "Looking at the onboard, he clearly made no attempt to enter the pits",
+   "zh_gloss": "看車載畫面，他明顯沒有試圖進入維修區",
+   "use_in_section": "H2-4（可選）",
+   "qualifiers": "評論員看車載畫面的觀察，不是當事人說法；「錯過」是不是字面意思沒有人驗證過；不寫「藉口」「故意」（THESIS H2-4 降強度、must_not 5）；同段下一句 L69 是 \"Either he simply forgot, or he overruled Ferrari\"，未收。",
+   "evidence_file": "evidence/news/sg-therace-verdict.txt",
+   "evidence_line": 67
+  },
+  {
+   "id": "R1-1",
+   "source": "ESPN（Nate Saunders 稿，Binotto 2022 摩納哥賽後）",
+   "url": "https://www.espn.com/f1/story/_/id/34010141/how-ferrari-threw-away-victory-monaco-grand-prix",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Mattia Binotto（時任法拉利領隊）",
+   "verbatim": "I think we made a few poor decisions and we paid the price.",
+   "zh_gloss": "我想我們做了幾個糟糕的決定，也付出了代價。",
+   "use_in_section": "H2-5（2022 A：摩納哥）",
+   "qualifiers": "場合寫「賽後」，不寫「記者會」（verify-news-history-1 EV-01）；車隊自承。",
+   "evidence_file": "evidence/news/hist-2022-monaco-espn.txt",
+   "evidence_line": 201
+  },
+  {
+   "id": "R1-2",
+   "source": "ESPN（Nate Saunders 稿，Binotto 2022 摩納哥賽後）",
+   "url": "https://www.espn.com/f1/story/_/id/34010141/how-ferrari-threw-away-victory-monaco-grand-prix",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Mattia Binotto（時任法拉利領隊）",
+   "verbatim": "we should have called [Leclerc] in earlier, at least a lap earlier, or if not, as we did, we should have stayed out and simply stayed on the extreme wet",
+   "zh_gloss": "要嘛至少早一圈叫他進站，要嘛乾脆留在全雨胎上",
+   "use_in_section": "H2-5（2022 A：摩納哥）",
+   "qualifiers": "方括號是 ESPN 補的字；autoevolution 的轉寫略有不同（NH-02 L30）；最具體的自我檢討版。",
+   "evidence_file": "evidence/news/hist-2022-monaco-espn.txt",
+   "evidence_line": 229
+  },
+  {
+   "id": "R1-3",
+   "source": "PlanetF1（轉引 racer.com，Rueda 談 2022 摩納哥）",
+   "url": "https://www.planetf1.com/news/ferrari-strategist-breaks-down-monaco-errors",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Iñaki Rueda（時任法拉利賽事策略主管）",
+   "verbatim": "With Charles, we made two mistakes. The first one was to cover Perez,",
+   "zh_gloss": "勒克萊爾那邊我們犯了兩個錯，第一個是去 cover 培瑞茲，",
+   "use_in_section": "H2-5（2022 A：摩納哥）",
+   "qualifiers": "二手轉引（PlanetF1 轉 racer.com）；職稱用多數來源的「賽事策略主管」（head of race strategy）；車隊自承。",
+   "evidence_file": "evidence/news/hist-2022-monaco-planetf1-rueda.txt",
+   "evidence_line": 17
+  },
+  {
+   "id": "NH01-L233",
+   "source": "ESPN（Nate Saunders 稿）",
+   "url": "https://www.espn.com/f1/story/_/id/34010141/how-ferrari-threw-away-victory-monaco-grand-prix",
+   "attribution_type": "報導者敘述",
+   "speaker": "ESPN 記者（Nate Saunders）",
+   "verbatim": "Sainz had rejected Ferrari's calls to stop for intermediates a lap before Leclerc came in, saying he wanted to wait for dries.",
+   "zh_gloss": "Sainz 拒絕了法拉利在勒克萊爾進站前一圈要他進站換半雨胎的呼叫，說他想等乾胎。",
+   "use_in_section": "H2-5（2022 摩納哥：Sainz 那一步誰決定，兩邊都寫）",
+   "qualifiers": "與 NH03-L45（Rueda：最後一秒車隊叫他留在場上）說法不同，兩邊都寫、不裁決；不算成法拉利策略的成敗（must_not 24）。",
+   "evidence_file": "evidence/news/hist-2022-monaco-espn.txt",
+   "evidence_line": 233
+  },
+  {
+   "id": "NH18-L59",
+   "source": "RaceFans（Ida Wood 2022 年終盤點）",
+   "url": "https://www.racefans.net/2022/11/30/how-ferraris-missed-chances-prompted-difficult-criticism-for-binotto-in-2022/",
+   "attribution_type": "報導者敘述",
+   "speaker": "RaceFans 作者（Ida Wood）",
+   "verbatim": "Sainz stuck to his guns, insisting on switching directly to slick tyres from wet weather rubber.",
+   "zh_gloss": "Sainz 堅持己見，堅持從全雨胎直接換乾胎。",
+   "use_in_section": "H2-5（2022 摩納哥：Sainz 那一步誰決定，兩邊都寫）",
+   "qualifiers": "與 NH01-L233 同向（兩家獨立媒體都寫 Sainz 堅持等乾胎），與 NH03-L45 的 Rueda 說法不同。",
+   "evidence_file": "evidence/news/hist-2022-season-racefans-missed-chances.txt",
+   "evidence_line": 59
+  },
+  {
+   "id": "NH03-L45",
+   "source": "PlanetF1（轉引 racer.com，Rueda）",
+   "url": "https://www.planetf1.com/news/ferrari-strategist-breaks-down-monaco-errors",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Iñaki Rueda（時任法拉利賽事策略主管）",
+   "verbatim": "at the last second we told Carlos to stay out and he duly did so.",
+   "zh_gloss": "最後一秒我們告訴 Carlos 留在場上，他也照做了。",
+   "use_in_section": "H2-5（2022 摩納哥：Sainz 那一步誰決定，兩邊都寫）",
+   "qualifiers": "二手轉引；車隊自評，沒有第三方佐證（verify-news-history-1 EV-01）；與 NH01-L233、NH18-L59 說法不同。",
+   "evidence_file": "evidence/news/hist-2022-monaco-planetf1-rueda.txt",
+   "evidence_line": 45
+  },
+  {
+   "id": "R1-5",
+   "source": "The Race（2022 英國站短評）",
+   "url": "https://www.the-race.com/formula-1/our-verdict-on-ferraris-bewildering-leclerc-strategy/",
+   "attribution_type": "評論員意見",
+   "speaker": "Valentin Khorounzhiy（The Race 記者）",
+   "verbatim": "There was no excuse not to pit both Leclerc and Sainz.",
+   "zh_gloss": "沒有理由不讓勒克萊爾和 Sainz 兩台都進站。",
+   "use_in_section": "H2-5（2022 A：英國）",
+   "qualifiers": "必帶同篇 The Race 的 Edd Straw 認為留一台在場上合理（NH05-L39）。",
+   "evidence_file": "evidence/news/hist-2022-silverstone-therace-verdict.txt",
+   "evidence_line": 77
+  },
+  {
+   "id": "NH05-L39",
+   "source": "The Race（2022 英國站短評）",
+   "url": "https://www.the-race.com/formula-1/our-verdict-on-ferraris-bewildering-leclerc-strategy/",
+   "attribution_type": "評論員意見",
+   "speaker": "Edd Straw（The Race）",
+   "verbatim": "Ferrari had to leave one car out there so it was logical to leave Leclerc out and pit Sainz to cover Hamilton.",
+   "zh_gloss": "法拉利得留一台車在場上，所以留勒克萊爾、讓 Sainz 進站去防漢米爾頓是合理的。",
+   "use_in_section": "H2-5（2022 A：英國，與 R1-5 並陳）",
+   "qualifiers": "Straw 批評的是前段的車隊指令（L29），安全車那一停他認為合理；同行後文接 \"But again the lack of control showed\"（verify-news-history-2 C2）。",
+   "evidence_file": "evidence/news/hist-2022-silverstone-therace-verdict.txt",
+   "evidence_line": 39
+  },
+  {
+   "id": "R1-7",
+   "source": "ESPN（Laurence Edmondson 2022 匈牙利分析）",
+   "url": "https://www.espn.com/f1/story/_/id/34327571/how-ferrari-got-strategy-wrong-hungary",
+   "attribution_type": "評論員意見",
+   "speaker": "Laurence Edmondson（ESPN）",
+   "verbatim": "Analysis of either Friday practice or the relative performance of cars in the first half of the race made clear that the hard tyre was not a good option, unless you wanted to run a one-stop race.",
+   "zh_gloss": "不論看週五練習，還是看前半場各車的相對表現，都看得出硬胎不是好選項，除非你要跑一停。",
+   "use_in_section": "H2-5（2022 A：匈牙利）",
+   "qualifiers": "分析稿，有理由；必與 R1-8（勒克萊爾歸因硬胎）並陳 Binotto 歸因車速（R1-8b）與 Sainz 的看法（R1-8c）。",
+   "evidence_file": "evidence/news/hist-2022-hungary-espn.txt",
+   "evidence_line": 235
+  },
+  {
+   "id": "R1-8",
+   "source": "ESPN（Leclerc 2022 匈牙利賽後）",
+   "url": "https://www.espn.com/f1/story/_/id/34327571/how-ferrari-got-strategy-wrong-hungary",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "But then on the hard obviously we lost all the pace.",
+   "zh_gloss": "但換上硬胎之後，我們顯然把速度全丟了。",
+   "use_in_section": "H2-5（2022 A：匈牙利）",
+   "qualifiers": "車手直接把結果歸給硬胎；必帶 Binotto 歸因於整體車速不足（R1-8b）。",
+   "evidence_file": "evidence/news/hist-2022-hungary-espn.txt",
+   "evidence_line": 255
+  },
+  {
+   "id": "R1-8b",
+   "source": "ESPN（Binotto 2022 匈牙利賽後）",
+   "url": "https://www.espn.com/f1/story/_/id/34327571/how-ferrari-got-strategy-wrong-hungary",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Mattia Binotto（時任法拉利領隊）",
+   "verbatim": "What we were lacking today was really speed and pace,",
+   "zh_gloss": "我們今天缺的其實是速度和步調，",
+   "use_in_section": "H2-5（2022 A：匈牙利）",
+   "qualifiers": "場合是他自己的記者會（原檔 L211，verify-news-history-1 EV-03）；建檔補收（THESIS ⑤ 只列 R1-8，限定要求並陳 Binotto 歸因，見 _meta.open_issues）。",
+   "evidence_file": "evidence/news/hist-2022-hungary-espn.txt",
+   "evidence_line": 283
+  },
+  {
+   "id": "R1-8c",
+   "source": "ESPN（Sainz 2022 匈牙利賽後）",
+   "url": "https://www.espn.com/f1/story/_/id/34327571/how-ferrari-got-strategy-wrong-hungary",
+   "attribution_type": "車手的話",
+   "speaker": "Carlos Sainz（時任法拉利車手）",
+   "verbatim": "I think we were lacking pace, and I also don't think we did that many mistakes.",
+   "zh_gloss": "我想我們是缺步調，而且我也不認為我們犯了那麼多錯。",
+   "use_in_section": "H2-5（2022 A：匈牙利）",
+   "qualifiers": "建檔補收（見 _meta.open_issues）；車隊內部說法不一致本身就是匈牙利這張卡的重點。",
+   "evidence_file": "evidence/news/hist-2022-hungary-espn.txt",
+   "evidence_line": 273
+  },
+  {
+   "id": "Q1",
+   "source": "The Race（Edd Straw，2022 匈牙利站後）",
+   "url": "https://www.the-race.com/formula-1/was-hungary-ferraris-biggest-f1-2022-mess-yet-our-verdict/",
+   "attribution_type": "評論員意見",
+   "speaker": "Edd Straw（The Race）",
+   "verbatim": "One blunder in isolation can happen. But time and time again Ferrari makes significant strategic errors.",
+   "zh_gloss": "單一次失誤難免，但法拉利一再犯下重大的策略錯誤。",
+   "use_in_section": "H2-5（2022 年的評論）",
+   "qualifiers": "評論員意見，範圍限 2022 年；寫成「2022 年的評論」，「一再」只出現在這句引語內（THESIS 骨架句自查）。",
+   "evidence_file": "evidence/news/hist-2022-hungary-therace-verdict.txt",
+   "evidence_line": 51
+  },
+  {
+   "id": "Q5",
+   "source": "PlanetF1（轉引 Motorsport.com，Binotto 2022 暑假）",
+   "url": "https://www.planetf1.com/news/mattia-binotto-ferrari-not-weak-strategy",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Mattia Binotto（時任法拉利領隊）",
+   "verbatim": "Having said that, I think I have a great team that takes care of the strategy and I don’t think that’s a weakness of ours.",
+   "zh_gloss": "話說回來，我認為我們有一支很棒的團隊負責策略，我不認為那是我們的弱點。",
+   "use_in_section": "H2-5（2022 反方）",
+   "qualifiers": "二手（PlanetF1 轉引 Motorsport.com）；法拉利自己人，標明領隊身分。",
+   "evidence_file": "evidence/news/hist-2022-season-planetf1-binotto-not-weak.txt",
+   "evidence_line": 25
+  },
+  {
+   "id": "R1-10",
+   "source": "The Race（Sainz 2022 法國站賽後）",
+   "url": "https://www.the-race.com/formula-1/ferrari-strategy-not-a-disaster-like-people-say-sainz/",
+   "attribution_type": "車手的話",
+   "speaker": "Carlos Sainz（時任法拉利車手）",
+   "verbatim": "we are not a disaster like people seem to say we are.",
+   "zh_gloss": "我們不是外界說的那種災難。",
+   "use_in_section": "H2-5（2022 反方）",
+   "qualifiers": "法拉利自己人；若寫法國站必須帶 5 秒罰時脈絡（verify-news-history-1 EV-05）。",
+   "evidence_file": "evidence/news/hist-2022-season-therace-sainz-not-disaster.txt",
+   "evidence_line": 43
+  },
+  {
+   "id": "Q2",
+   "source": "The Race（Mark Hughes，The Race F1 Podcast，2023 摩納哥）",
+   "url": "https://www.the-race.com/formula-1/ferrari-monaco-gp-strategy-gamble-sainz-leclerc/",
+   "attribution_type": "評論員意見",
+   "speaker": "Mark Hughes（The Race）",
+   "verbatim": "It’s all part of the same old communication problem that’s been at Ferrari for a while and the questionable strategy comes under the same umbrella.",
+   "zh_gloss": "這都是法拉利存在已久的溝通老問題的一部分，令人質疑的策略也屬於同一個問題。",
+   "use_in_section": "H2-5（2023 A：摩納哥；跨年、談溝通與策略）",
+   "qualifiers": "podcast 口述；同一集 Straw 意見相近，算同一個來源；原檔 L53 另有 \"can't really see that it's changed since last year\"（未收）。",
+   "evidence_file": "evidence/news/hist-2023-monaco-therace-gamble-dubious.txt",
+   "evidence_line": 51
+  },
+  {
+   "id": "R1-12",
+   "source": "The Race（Vasseur 2023 摩納哥賽後）",
+   "url": "https://www.the-race.com/formula-1/ferrari-monaco-gp-strategy-gamble-sainz-leclerc/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "it was a bet from our side, but I have no regrets on this because we didn’t lose position at this stage.",
+   "zh_gloss": "那是我們下的賭注，但我對此沒有後悔，因為那時我們沒有掉名次。",
+   "use_in_section": "H2-5（2023 A：摩納哥）",
+   "qualifiers": "必帶 The Race 認為這個說法「debatable」（NH24-L55）。",
+   "evidence_file": "evidence/news/hist-2023-monaco-therace-gamble-dubious.txt",
+   "evidence_line": 79
+  },
+  {
+   "id": "NH24-L55",
+   "source": "The Race（2023 摩納哥評論文）",
+   "url": "https://www.the-race.com/formula-1/ferrari-monaco-gp-strategy-gamble-sainz-leclerc/",
+   "attribution_type": "評論員意見",
+   "speaker": "The Race 文章作者（未署名）",
+   "verbatim": "Vasseur’s claim that Ferrari “didn’t lose position” is debatable and presumably relates specifically to Leclerc finishing in the position (sixth) he held earlier in the grand prix.",
+   "zh_gloss": "Vasseur 說法拉利「沒有掉名次」，這點值得商榷，大概只是指勒克萊爾仍排在他賽前段所處的位置（第 6）。",
+   "use_in_section": "H2-5（2023 A：摩納哥，與 R1-12 並陳）",
+   "qualifiers": "The Race 作者的判語（未署名）。",
+   "evidence_file": "evidence/news/hist-2023-monaco-therace-gamble-dubious.txt",
+   "evidence_line": 55
+  },
+  {
+   "id": "R1-14",
+   "source": "RacingNews365（Vasseur 2023 美國站賽後、取消資格前）",
+   "url": "https://racingnews365.com/vasseur-explains-mistake-led-to-poor-leclerc-strategy",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "I think where we made the mistake is that we anticipated that it would be 50/50 and it was not at all.",
+   "zh_gloss": "我們錯在以為一停兩停是五五波，結果完全不是。",
+   "use_in_section": "H2-5（2023 A：美國）",
+   "qualifiers": "定性的全是法拉利自己人，沒有第三方，要標明；Vasseur 同一行也把大部分損失歸給車陣；方括號與括號補字是記者補的，不引。",
+   "evidence_file": "evidence/news/hist-2023-usa-racingnews365-vasseur.txt",
+   "evidence_line": 35
+  },
+  {
+   "id": "NH28-L18",
+   "source": "F1.com（Leclerc 2023 美國站賽後）",
+   "url": "https://www.formula1.com/en/latest/article/leclerc-left-ruing-wrong-strategy-prediction-after-slipping-from-first-to.3yPdQSiQ0EEwPkSLM4R5sp",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "it was just the wrong strategy – one-stop was definitely not the right thing to do.",
+   "zh_gloss": "就是錯的策略——一停絕對不是該做的事。",
+   "use_in_section": "H2-5（2023 A：美國）",
+   "qualifiers": "車隊自己人；與 R1-14 同屬「定性的全是法拉利自己人」。",
+   "evidence_file": "evidence/news/hist-2023-usa-f1com-leclerc-wrong-prediction.txt",
+   "evidence_line": 18
+  },
+  {
+   "id": "Q7",
+   "source": "Motorsport.com（2024 蒙札賽報）",
+   "url": "https://au.motorsport.com/f1/news/f1-italian-gp-leclerc-ferrari-mclaren-strategy/10650231/",
+   "attribution_type": "報導者敘述",
+   "speaker": "Motorsport.com 記者（未署名）",
+   "verbatim": "Charles Leclerc delighted Ferrari's home crowd in a strategic triumph to beat Oscar Piastri to victory at the Italian Grand Prix, after hanging on to the tyres in a one-stop strategy.",
+   "zh_gloss": "勒克萊爾靠一停策略撐住輪胎，在主場觀眾面前擊敗皮亞斯特里贏下義大利大獎賽，Motorsport.com 稱之為一場策略上的勝利。",
+   "use_in_section": "H2-5（2024 A：蒙札，稱讚場次）",
+   "qualifiers": "勝差用 FastF1 的 2.664 秒，不用同篇的 2.884（verify-news-history-2 10-7 FAIL、must_not 29）。",
+   "evidence_file": "evidence/news/hist-2024-monza-motorsport-mclaren-backfires.txt",
+   "evidence_line": 133
+  },
+  {
+   "id": "Q6",
+   "source": "GPblog（Vasseur 2024 年 10 月奧斯汀站後）",
+   "url": "https://www.gpblog.com/en/news/308257/f1-fred-vasseur-admits-ferrari-made-mistakes-across-2024-season.html",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "Strategy, I don't think that we lost so many points on the strategy.",
+   "zh_gloss": "策略上，我不認為我們丟了那麼多分。",
+   "use_in_section": "H2-5（2024）",
+   "qualifiers": "必須連同同一行的 Q6b（「整季確實犯過錯」）一起寫；日期是 2024 年 10 月奧斯汀站後，不是年底回顧（verify-news-history-2 11-8）。",
+   "evidence_file": "evidence/news/hist-2024-season-gpblog-vasseur-we-had-issues.txt",
+   "evidence_line": 31
+  },
+  {
+   "id": "Q6b",
+   "source": "GPblog（Vasseur 2024 年 10 月奧斯汀站後）",
+   "url": "https://www.gpblog.com/en/news/308257/f1-fred-vasseur-admits-ferrari-made-mistakes-across-2024-season.html",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "when you have a look at the complete season, we made mistakes,",
+   "zh_gloss": "看整個球季，我們犯過錯，",
+   "use_in_section": "H2-5（2024，與 Q6 同行必帶）",
+   "qualifiers": "Q6 的必帶後半；同一行後文還有 \"As a team, we had some issues, but I think it's true for everybody\"（未收）。不得寫成『Vasseur 承認策略犯錯』（must_not 37；R1 A3）。",
+   "evidence_file": "evidence/news/hist-2024-season-gpblog-vasseur-we-had-issues.txt",
+   "evidence_line": 31
+  },
+  {
+   "id": "Q3",
+   "source": "PlanetF1（2025 加拿大站後遙測分析）",
+   "url": "https://www.planetf1.com/news/charles-leclerc-ferrari-canada-gp-strategy-stand-off-data",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 作者（未署名）",
+   "verbatim": "And just like so many times before, the story ends the same way: with strategy questions and opportunities missed.",
+   "zh_gloss": "就像之前許多次，故事又以同樣的方式收場：策略疑問與錯失的機會。",
+   "use_in_section": "H2-5（2025 B：加拿大；PlanetF1 分析稿、作者未署名；跨年、談策略）",
+   "qualifiers": "作者未署名；與 NH40-L61（RaceFans：處境不同，但進站時機值得檢討）程度不同，不是結論相反（verify-news-history-2 12-8）。",
+   "evidence_file": "evidence/news/hist-2025-canada-planetf1-leclerc-validation.txt",
+   "evidence_line": 55
+  },
+  {
+   "id": "NH40-L61",
+   "source": "RaceFans（2025 加拿大數據稿）",
+   "url": "https://www.racefans.net/2025/06/16/would-the-one-stop-strategy-leclerc-wanted-have-paid-off-canadian-gp-data/",
+   "attribution_type": "報導者敘述",
+   "speaker": "RaceFans 作者（Keith Collantine）",
+   "verbatim": "But when Ferrari review the decision they may have cause to question whether they made the right call.",
+   "zh_gloss": "但法拉利檢討這個決定時，可能有理由質疑自己是否做了正確的決定。",
+   "use_in_section": "H2-5（2025 B：加拿大，與 Q3 並陳）",
+   "qualifiers": "方向偏質疑，不是反駁（verify-news-history-2 12-5）；同篇 L55–59 先說 Leclerc 的處境和一停車手不同；本檔 id 為建檔命名（非 Q 編號）。",
+   "evidence_file": "evidence/news/hist-2025-canada-racefans-one-stop-data.txt",
+   "evidence_line": 61
+  },
+  {
+   "id": "Q8",
+   "source": "formula1.com（2026 巴塞隆納賽報）",
+   "url": "https://www.formula1.com/en/latest/article/hamilton-claims-stellar-maiden-grand-prix-victory-for-ferrari-in-barcelona-as-antonelli-suffers-shock-retirement.4yCXiPLHUdcnl2BwNpqUIa",
+   "attribution_type": "報導者敘述",
+   "speaker": "formula1.com 編輯（賽報未署名）",
+   "verbatim": "Although Ferrari’s initial choice to start the Briton on soft tyres didn’t help him take the lead on the opening lap, they gambled on a three-stop strategy which played out flawlessly as Hamilton gained a free stop under a Virtual Safety Car.",
+   "zh_gloss": "雖然法拉利一開始選擇讓這位英國人用軟胎起跑，沒能幫他在第一圈取得領先，但他們押了三停策略，而且執行得無懈可擊，漢米爾頓在虛擬安全車下撿到一次免費進站。",
+   "use_in_section": "H2-5（2026 B：巴塞隆納，稱讚場次）",
+   "qualifiers": "註明虛擬安全車前漢米爾頓已領先（FastF1：第 38 圈起已第 1，R1 修正重算；verify-news-history-2 15-5 寫第 39 圈，以重算為準）；沒有法拉利人員的引語。",
+   "evidence_file": "evidence/news/hist-2026-barcelona-f1com-race-report.txt",
+   "evidence_line": 15
+  },
+  {
+   "id": "Q9",
+   "source": "formula1.com（2026 三站後回顧）",
+   "url": "https://www.formula1.com/en/latest/article/the-state-of-play-at-ferrari-after-three-rounds-of-the-2026-season.1Mz6eCCYFvJqGtc3wf10al",
+   "attribution_type": "報導者敘述",
+   "speaker": "formula1.com 作者（未署名）",
+   "verbatim": "There was also a questionable strategic decision in Australia that seemed to let Mercedes off the hook, when Ferrari opted not to pit under an early VSC like their rivals.",
+   "zh_gloss": "澳洲站也有一個可議的策略決定，似乎放了賓士一馬——法拉利選擇不像對手那樣在早段虛擬安全車下進站。",
+   "use_in_section": "H2-5（2026 A：澳洲）",
+   "qualifiers": "保留「似乎」（seemed）；並陳 Q10；不引 NH-44 L21／NH-45 L55 那組互相衝突的轉述。",
+   "evidence_file": "evidence/news/hist-2026-season-f1com-three-rounds.txt",
+   "evidence_line": 47
+  },
+  {
+   "id": "Q10",
+   "source": "Sky Sports（Vasseur 2026 澳洲站後）",
+   "url": "https://www.skysports.com/f1/news/12474/13516647/australian-gp-ferrari-boss-frederic-vasseur-has-no-regrets-over-strategy-choice-after-charles-leclerc-lewis-hamilton-finish-behind-mercedes",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "I have no regret on the strategy, no regret on the pace of today.",
+   "zh_gloss": "我對策略沒有後悔，對今天的步速也沒有後悔。",
+   "use_in_section": "H2-5（2026 A：澳洲，與 Q9 並陳）",
+   "qualifiers": "與 Q9 並陳。",
+   "evidence_file": "evidence/news/hist-2026-australia-sky-vasseur-no-regrets.txt",
+   "evidence_line": 37
+  },
+  {
+   "id": "Q11",
+   "source": "formula1.com（Vasseur 2026 英國站）",
+   "url": "https://www.formula1.com/en/latest/article/vasseur-explains-ferrari-reasoning-behind-decision-to-pit-hamilton-under-safety-car.3W4Uo93M7v8ZtqthKoQILg",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "But if I have to do it now, I will do the same.",
+   "zh_gloss": "但如果現在要重來，我還是會這樣做。",
+   "use_in_section": "H2-5（2026 B：英國）",
+   "qualifiers": "前面要先交代：安全車（SC，不是虛擬安全車）下兩車都進站，漢米爾頓從第 2 掉到第 3（FastF1，verify-news-history-2 17-6、17-2）；\"I will do the same\" 後的引號是原檔排版。",
+   "evidence_file": "evidence/news/hist-2026-silverstone-f1com-vasseur-pit-hamilton-sc.txt",
+   "evidence_line": 27
+  },
+  {
+   "id": "Q12",
+   "source": "The Race（Vasseur 2026 匈牙利）",
+   "url": "https://www.the-race.com/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "I think the execution was very poor.",
+   "zh_gloss": "我認為執行非常差。",
+   "use_in_section": "H2-5（2026 A：匈牙利）",
+   "qualifiers": "他說的執行是起步、進站道超速罰時與每次進站各掉 0.2–0.3 秒（原檔 L33–L39），不是策略；必同時寫 NH56-L57（他為進站決定辯護）；不得寫成承認策略錯誤（must_not 25）。",
+   "evidence_file": "evidence/news/hist-2026-hungary-therace-wasted.txt",
+   "evidence_line": 37
+  },
+  {
+   "id": "NH56-L57",
+   "source": "The Race（Vasseur 2026 匈牙利）",
+   "url": "https://www.the-race.com/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "I think if I had to do the same, I would do the same today, try to push with the soft.",
+   "zh_gloss": "如果要我重做，我今天還是會這樣做，試著用軟胎衝。",
+   "use_in_section": "H2-5（2026 A：匈牙利，與 Q12 必同寫）",
+   "qualifiers": "Q12 的必帶對照：他為進站決定辯護；本檔 id 為建檔命名（非 Q 編號）。",
+   "evidence_file": "evidence/news/hist-2026-hungary-therace-wasted.txt",
+   "evidence_line": 57
+  },
+  {
+   "id": "NH59-L38",
+   "source": "Pit Debrief（Vasseur 2026 雪邦站後）",
+   "url": "https://www.pitdebrief.com/post/ferraris-vasseur-admits-wrong-tyre-call-in-f1-race-in-malaysia-as-hamilton-recovers-to-podium/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "for sure it’s clear that it was better to start with inters, but we did the choice with the information that we had.",
+   "zh_gloss": "可以確定的是，用半雨胎起跑比較好，但我們是用手上的資訊做的選擇。",
+   "use_in_section": "H2-5（2026 A：雪邦，互鏈 10/5 專文）",
+   "qualifiers": "Pit Debrief 轉寫；上一句是 \"Now it's not that I have no regrets,\"；與 NH62-L73（同場另一版：重來也不確定）並陳，不裁決（verify-news-history-2 19-13）；本檔 id 為建檔命名。",
+   "evidence_file": "evidence/news/hist-2026-sepang-pitdebrief-vasseur-wrong.txt",
+   "evidence_line": 38
+  },
+  {
+   "id": "NH62-L73",
+   "source": "GRANDE PRÊMIO（Vasseur 2026 雪邦站後）",
+   "url": "https://grandepremio.com/en/f1/hamilton-recovered-from-a-minute-behind-did-ferrari-throw-away-a-sepang-win/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "Honestly, if I have to do it again, I’m not sure which choice I’d make now that I know.",
+   "zh_gloss": "說真的，如果要重來一次，我不確定在已經知道結果的現在會選哪個。",
+   "use_in_section": "H2-5（2026 A：雪邦，與 NH59-L38 並陳）",
+   "qualifiers": "GRANDE PRÊMIO 英文版可能為翻譯；與 NH59-L38 講同一件事（事後看該不該用半雨胎），兩家版本不同，兩邊並陳不裁決。",
+   "evidence_file": "evidence/news/hist-2026-sepang-grandepremio-throw-away-win.txt",
+   "evidence_line": 73
+  },
+  {
+   "id": "Q14",
+   "source": "crash.net（漢米爾頓新加坡站前對 Sky Sports F1）",
+   "url": "https://www.crash.net/f1/news/1106621/1/lewis-hamilton-hits-back-ferrari-critics-after-strategy-blunder-mclaren-made-same",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "We do for some reason, as a team, get far more flak than anybody else,",
+   "zh_gloss": "不知為何，我們車隊挨的批評比誰都多，",
+   "use_in_section": "H2-6（結尾引語；只當引語收尾，不當結論）",
+   "qualifiers": "他是當事人；新加坡站前、對 Sky Sports F1 說的；他說的是媒體看法拉利特別嚴，不是在為策略本身辯護（verify-news-history-2 C15）。",
+   "evidence_file": "evidence/news/hist-2026-sepang-crash-hamilton-hits-back.txt",
+   "evidence_line": 21
+  },
+  {
+   "id": "H4-LEC2022a",
+   "source": "ESPN（Nate Saunders 稿，勒克萊爾 2022 摩納哥賽後對媒體）",
+   "url": "https://www.espn.com/f1/story/_/id/34010141/how-ferrari-threw-away-victory-monaco-grand-prix",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "But there have been too many mistakes today overall.",
+   "zh_gloss": "但整體來說，今天犯的錯太多了。",
+   "use_in_section": "H2-5（2022 A：摩納哥；H-4 具名自承）",
+   "qualifiers": "原檔 evidence/news/hist-2022-monaco-espn.txt L195（\"Leclerc told the media later\"）；這句本身講「整體的錯」，沒有點名是策略；THESIS H-4 把它列為策略決定自承，策略指涉在下一段 H4-LEC2022b（第一個錯誤之後又一個）與 ESPN 作者前文（L193 兩次獨立 blunder）；與 R1-1、R1-2（Binotto）、R1-3（Rueda）同卡，Binotto 2022 摩納哥自承已有 R1-1／R1-2，不重複。",
+   "evidence_file": "evidence/news/hist-2022-monaco-espn.txt",
+   "evidence_line": 195
+  },
+  {
+   "id": "H4-LEC2022b",
+   "source": "ESPN（Nate Saunders 稿，勒克萊爾 2022 摩納哥賽後對媒體）",
+   "url": "https://www.espn.com/f1/story/_/id/34010141/how-ferrari-threw-away-victory-monaco-grand-prix",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "We cannot afford to lose so many points like this. It's not even from first to second, it's from first to fourth because after the first mistake we've done another one.",
+   "zh_gloss": "我們承擔不起這樣丟分。這已經不只是從第一掉到第二，而是從第一掉到第四，因為第一個錯誤之後，我們又犯了另一個。",
+   "use_in_section": "H2-5（2022 A：摩納哥；H-4 具名自承）",
+   "qualifiers": "原檔 evidence/news/hist-2022-monaco-espn.txt L197，緊接 L195；主詞 \"we\" 是車隊；兩句連續複製是因為「it's」指涉在前一句。",
+   "evidence_file": "evidence/news/hist-2022-monaco-espn.txt",
+   "evidence_line": 197
+  },
+  {
+   "id": "H4-LEC2024a",
+   "source": "RaceFans（Keith Collantine，2024 英國站）",
+   "url": "https://www.racefans.net/2024/07/09/how-leclerc-blew-another-wet-weather-tyre-call-while-sainz-nailed-it/",
+   "attribution_type": "報導者敘述",
+   "speaker": "RaceFans 作者（Keith Collantine）轉述勒克萊爾",
+   "verbatim": "After the race Leclerc admitted his decision was “clearly the wrong one” at the time.",
+   "zh_gloss": "賽後，勒克萊爾承認他的決定在當時「明顯是錯的」。",
+   "use_in_section": "H2-5（2024 B：英國，單一來源不展開；H-4 具名自承）",
+   "qualifiers": "原檔 evidence/news/hist-2024-britain-racefans-wet-tyre-call.txt L580；這是 RaceFans 作者的轉述句，只有引號內的 \"clearly the wrong one\" 是勒克萊爾的詞，直接引語在 H4-LEC2024b（L582）；單一來源（verify-news-history-2 08-5、THESIS H-4）；L637 以後是讀者留言，不可引。",
+   "evidence_file": "evidence/news/hist-2024-britain-racefans-wet-tyre-call.txt",
+   "evidence_line": 580
+  },
+  {
+   "id": "H4-LEC2024b",
+   "source": "RaceFans（勒克萊爾 2024 英國站賽後）",
+   "url": "https://www.racefans.net/2024/07/09/how-leclerc-blew-another-wet-weather-tyre-call-while-sainz-nailed-it/",
+   "attribution_type": "車手的話",
+   "speaker": "勒克萊爾（Charles Leclerc）",
+   "verbatim": "With the message I got and the information I had in the car, I felt like it was the right one,",
+   "zh_gloss": "根據我收到的訊息和我在車上掌握的資訊，我覺得那是對的決定，",
+   "use_in_section": "H2-5（2024 B：英國，單一來源不展開；H-4 具名自承）",
+   "qualifiers": "原檔 evidence/news/hist-2024-britain-racefans-wet-tyre-call.txt L582；必與 H4-LEC2024a 同寫：他承認決定錯，但說是依車內收到的資訊；單一來源。",
+   "evidence_file": "evidence/news/hist-2024-britain-racefans-wet-tyre-call.txt",
+   "evidence_line": 582
+  },
+  {
+   "id": "H4-HAM-SEPANG",
+   "source": "PlanetF1（漢米爾頓雪邦站後對 Sky Sports，經 PlanetF1）",
+   "url": "https://www.planetf1.com/news/lewis-hamilton-ferrari-criticism-bahrain-gp-tyre-strategy",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "It was ultimately a mistake, but it’s not the strategists.",
+   "zh_gloss": "那終究是個錯誤，但不是策略員的問題。",
+   "use_in_section": "H2-5（2026 A：雪邦；H-4 具名自承）",
+   "qualifiers": "原檔 evidence/news/hist-2026-sepang-planetf1-hamilton-more-flak.txt L51（\"He added:\" 起的引語，說話者漢米爾頓，verify-news-history-2 §3.2 PASS）；他強調是集體決定、不是策略員的錯；同行後句是 \"my strategy team gets the brunt of the (criticism for the) call\"（未收）。",
+   "evidence_file": "evidence/news/hist-2026-sepang-planetf1-hamilton-more-flak.txt",
+   "evidence_line": 51
+  },
+  {
+   "id": "H6-SPEEDWEEK",
+   "source": "Speedweek（英文版，2026 匈牙利站評論）",
+   "url": "https://www.speedweek.com/en/a/formula-1/ferrari-slap-in-the-face-vasseur-admits-hamilton-leclerc-podium-spot-squandered",
+   "attribution_type": "評論員意見",
+   "speaker": "Speedweek 評論作者（未署名）",
+   "verbatim": "Added to this was another penalty for Hamilton (driving too fast in the pit lane – was the speed limiter set correctly?) and the misjudgement of bringing both cars into the pits for fresh tyres during a VSC phase.",
+   "zh_gloss": "再加上漢米爾頓又吃了一次罰時（在維修道超速——限速器設定正確嗎？），以及在虛擬安全車階段把兩台車都叫進站換新胎的誤判。",
+   "use_in_section": "H2-5（2026 A：匈牙利；H-6『進了也被具名質疑』）",
+   "qualifiers": "原檔 evidence/news/hist-2026-hungary-speedweek-slap.txt L61；作者未署名的判語；\"misjudgement\" 是作者用詞；同篇 L59 的 \"barrage of criticism\" 屬無名歸因，不用；寫成「Speedweek 評論認為」，不寫「外界批評如潮」（verify-news-history-2 18-6）；整頁下半段引文沒標說話者，不歸給任何人。",
+   "evidence_file": "evidence/news/hist-2026-hungary-speedweek-slap.txt",
+   "evidence_line": 61
+  },
+  {
+   "id": "H6-HAM-HUNGARY",
+   "source": "The Race（漢米爾頓 2026 匈牙利站後）",
+   "url": "https://www.the-race.com/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/",
+   "attribution_type": "車手的話",
+   "speaker": "漢米爾頓（Lewis Hamilton）",
+   "verbatim": "I'm not really sure why we stopped at the end,",
+   "zh_gloss": "我不太確定最後為什麼要進站，",
+   "use_in_section": "H2-5（2026 A：匈牙利；H-6『進了也被具名質疑』）",
+   "qualifiers": "原檔 evidence/news/hist-2026-hungary-therace-wasted.txt L47；同一行續句 \"I got the call right before the pitlane entry, so I didn't have time to debate it.\"（可一起用，未收）；與 Q12、NH56-L57（Vasseur 為進站決定辯護）並陳（verify-news-history-2 18-5）。",
+   "evidence_file": "evidence/news/hist-2026-hungary-therace-wasted.txt",
+   "evidence_line": 47
+  },
+  {
+   "id": "H6-BUTTON-AUS",
+   "source": "Sky Sports（Jenson Button 2026 澳洲站後評論）",
+   "url": "https://www.skysports.com/f1/news/12474/13516647/australian-gp-ferrari-boss-frederic-vasseur-has-no-regrets-over-strategy-choice-after-charles-leclerc-lewis-hamilton-finish-behind-mercedes",
+   "attribution_type": "評論員意見",
+   "speaker": "Jenson Button（Sky 評論員）",
+   "verbatim": "It was a shame one of the Ferraris didn't pit under the VSC. At this point of the season, it's a good idea to split.",
+   "zh_gloss": "可惜有一台法拉利沒在虛擬安全車下進站。在賽季這個階段，分流是個好主意。",
+   "use_in_section": "H2-5（2026 A：澳洲；H-6『沒進也被具名質疑』，與 Q9、Q10 並陳）",
+   "qualifiers": "原檔 evidence/news/hist-2026-australia-sky-vasseur-no-regrets.txt L83；Button 主張應該分車（一台進站），verify-news-history-2 14-4 PASS；與 Q9（formula1.com 的『似乎』）同屬『沒進被質疑』；和新加坡的 E-113（另一場的 Button）不是同一句。",
+   "evidence_file": "evidence/news/hist-2026-australia-sky-vasseur-no-regrets.txt",
+   "evidence_line": 83
+  },
+  {
+   "id": "H2-5-JAIN-F1T",
+   "source": "f1technical.net（2024 奧斯汀站後）",
+   "url": "https://www.f1technical.net/news/25670",
+   "attribution_type": "報導者敘述",
+   "speaker": "f1technical 記者（未署名）",
+   "verbatim": "Ferrari's Head of Strategy, Ravin Jain, who replaced former chief strategist Inaki Rueda after a series of blunders in the 2022 Formula 1 season.",
+   "zh_gloss": "法拉利策略主管 Ravin Jain，他在 2022 年 F1 賽季一連串失誤之後，接替了前首席策略師 Inaki Rueda。",
+   "use_in_section": "H2-5（2024 B：Jain 接任，只有評價層）",
+   "qualifiers": "原檔 evidence/news/hist-2024-usa-f1technical-jain-praised.txt L18；\"after a series of blunders\" 是 f1technical 記者自己的敘述，不是法拉利說的；寫「媒體稱…」，與 H2-5-JAIN-VAS 時間上相容，不寫「說法不一」（verify-news-history-2 11-1、11-4）。",
+   "evidence_file": "evidence/news/hist-2024-usa-f1technical-jain-praised.txt",
+   "evidence_line": 18
+  },
+  {
+   "id": "H2-5-JAIN-VAS",
+   "source": "RaceFans（Vasseur 2023 年 3 月談策略組異動）",
+   "url": "https://www.racefans.net/2023/03/03/personnel-change-is-first-part-of-complete-review-of-ferrari-strategy-vasseur/",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "Strategy is the addition of tons of things: The software that you have at home, the team that you have at home, the communication flow is crucial and then you have a guy on the pit wall. For different reasons, we decided to do the move, but the move was also a bit initiated last year.",
+   "zh_gloss": "策略是很多東西的加總：你在家裡的軟體、你在家裡的團隊、關鍵的溝通流程，然後才是維修牆上的那個人。基於不同的原因，我們決定做這個異動，但這個異動去年就已經有點開始了。",
+   "use_in_section": "H2-5（2024 B：Jain 接任，只有評價層）",
+   "qualifiers": "原檔 evidence/news/hist-2023-season-racefans-vasseur-review.txt L45，回答 RaceFans 提問（L41，2023-03）；行首 \"Jain has taken charge on the Ferrari pit wall\" 是圖說黏進正文，不屬引語，不引；THESIS H2-5 的 Jain 句沒有 ⑤ 編號，本條為指揮位指示補收。",
+   "evidence_file": "evidence/news/hist-2023-season-racefans-vasseur-review.txt",
+   "evidence_line": 45
+  }
+ ],
+ "thesis_claim_count": "3 個主張（T1–T3），分別含 3、3、3 個可獨立被反駁的子主張，共 9 個（R1 修正）：T1＝①第 39 圈勒克萊爾進站、終點第 2，漢米爾頓留場、第 40–45 圈暫居第 2；②最後 22 圈對維斯塔潘多掉 45.192 秒、被 4 台超過、終點第 6；③45 秒裡胎齡與攻防各占多少拆不開。T2＝①車隊叫進站有雙方原話（Vasseur 對 Sky、漢米爾頓書面聲明；『兩台』只有 Vasseur 說）；②沒進站的原因：漢米爾頓聲明是一條（先錯過入口、後決定留），Vasseur 兩場訪問兩種說法、媒體會上同一句改口；③『無視／拒絕指令』是記者用語，桌內 36 篇新加坡報導裡沒有當事人說過。T3＝①本篇收錄範圍內具名來源的批評與稱讚都有、各針對哪些場次與誰說的（含車隊自承、2024 蒙札與 2026 巴塞隆納的獨立稱讚）；②2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在中立化時進不進站，『沒進』與『進了』都被具名質疑過；③本篇不是普查，不下『有沒有模式』的結論，歷史節不寫計數與頻率。全篇唯一一條『本站推論，信賴度中』是 F-10（判讀第 1 點）；原判讀第 4 點的歷史本站推論 R1 已刪。"
+}
