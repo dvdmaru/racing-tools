@@ -4,7 +4,7 @@
   "type": "feature",
   "built_by": "conductor（Sonnet）；論點 Opus、資料查核 Opus、新聞歸屬 Opus×3",
   "built_at": "2026-10-12",
-  "note": "事實包。R17 資料層數字由論點席以 FastF1 3.8.3 解析 F1 官方即時計時存檔（evidence/r17_R_laps.csv）與 Jolpica 賽果重算（桌內 tools/thesis_work/th1.py、th2.py、th3.py），建檔時已全部重跑一次，輸出存 packs/_facts_tmp/th1_out.txt、th2_out.txt、th3_out.txt，derived_values 的每個數字由建檔腳本（packs/_facts_tmp/fb_build.py）直接從 r17_R_laps.csv 重算，並與 verified_facts 的數字逐項核對（核對輸出 packs/_facts_tmp/numcheck.txt）。F-15 的數字不在 th1–th3 輸出內，建檔改跑 tools/vd_work/vd3.py（輸出 packs/_facts_tmp/vd3_out.txt）對上。資料查核席判決見 packs/verify-data.md；新聞歸屬判決見 packs/verify-news-sg.md（新加坡，182 條）、packs/verify-news-history-1.md（2022–2023，74 條）、packs/verify-news-history-2.md（2024–2026＋型態說法，169 條）；主張與編號來源是 packs/THESIS.md（唯一的主張來源）。news_quotes 每筆的 verbatim 由建檔腳本依 evidence_file／evidence_line 從 evidence/news 原檔該行以子字串擷取，並由 tools/verify_quotes_facts.py 獨立比對（正規化：彎引號折直引號、破折號折 -、空白折單一、轉小寫；另跑保留大小寫版）。本檔是桌內版，不寫進 repo；第 17 站賽果與進站以 Jolpica 標明為額外來源（站上資料庫只到第 16 站）。",
+  "note": "事實包。R17 資料層數字由論點席以 FastF1 3.8.3 解析 F1 官方即時計時存檔（evidence/r17_R_laps.csv）與 Jolpica 賽果重算（桌內 tools/thesis_work/th1.py、th2.py、th3.py），建檔時已全部重跑一次，輸出存 packs/_facts_tmp/th1_out.txt、th2_out.txt、th3_out.txt，derived_values 的每個數字由建檔腳本（packs/_facts_tmp/fb_build.py）直接從 r17_R_laps.csv 重算，並與 verified_facts 的數字逐項核對（核對輸出 packs/_facts_tmp/numcheck.txt）。F-15 的數字不在 th1–th3 輸出內，建檔改跑 tools/vd_work/vd3.py（輸出 packs/_facts_tmp/vd3_out.txt）對上。資料查核席判決見 packs/verify-data.md；新聞歸屬判決見 packs/verify-news-sg.md（新加坡，182 條）、packs/verify-news-history-1.md（2022–2023，74 條）、packs/verify-news-history-2.md（2024–2026＋型態說法，169 條）；主張與編號來源是 packs/THESIS.md（唯一的主張來源）。news_quotes 每筆的 verbatim 由建檔腳本依 evidence_file／evidence_line 從 evidence/news 原檔該行以子字串擷取，並由 tools/verify_quotes_facts.py 獨立比對（正規化：彎引號折直引號、破折號折 -、空白折單一、轉小寫；另跑保留大小寫版）。本檔是桌內版，不寫進 repo。",
   "open_issues": [
    "2026-10-12 指揮位修正：兩處（兩台只有 Vasseur 說／H2-3 標題），已同步——「車隊叫了進站」有雙方原話（Vasseur 對 Sky 說兩台都叫了；漢米爾頓聲明說車隊叫了他），「兩台」只掛 Vasseur（E-103）；H2-3 標題改為新版『…多掉 45.2 秒，中間被 4 台超過，終點第 6』（不含『從第 2 掉到第 6』），H2-4 標題改為『Vasseur 說兩台都叫了進站，漢米爾頓說他錯過入口後決定留在場上』；section_claims、required_sections、verified_facts H-06、thesis、_structure_hint 皆已依新版 THESIS 重建。",
    "已知（指揮位判『不用動』）：「第 2」只是對手進站造成的暫居（第 40–45 圈，第 46 圈起被勒克萊爾超過，F-11），新版 H2-3 標題已不寫『從第 2 掉到第 6』；正文若提 P2，須附『因對手虛擬安全車進站』（verify-data T8-14）。",
@@ -35,7 +35,9 @@
    "R1｜C1 E-105 qualifiers、C2 E-30 zh_gloss（中和→虛擬安全車結束後）、C3 E-26 qualifiers、C4 E-20 qualifiers＋THESIS H2-1 刪「同一提問」、C5 E-47 qualifiers＋判讀第 2 點移除 Mitchell-Malm、C6 must_not 3＋limits 新聞分級＋THESIS H2-4 ③ 補 F1.com rejected／Speedcafe ignoring／GPFans refused／PlanetF1 defy（四處原檔行號已回 evidence 核對）。",
    "R1｜D1：A／B 定義補「或沒有法拉利人員的說法（EV-12、EV-15）」（H-02、limits 事件分級、THESIS H2-5 節首）。D2：H-06 與 2026 表澳洲改「第一次虛擬安全車兩台都沒進（第二次期間進站口關閉）」，新增 must_not 39。D3：must_not 29 補英國不寫「全場只有一次安全車」，H_cards 記第 22、39 圈虛擬安全車碼。",
    "R1｜E2 譯名：事實包內文「佩雷茲」→「培瑞茲」、「博塔雷托」→「博托萊托」（依 zh_names 與 scripts/driver-zh.json；verbatim 不動）；COMMON L30 同步；WRITER §三加「事實包內文譯名以 zh_names 為準」。",
-   "R1｜agy #4：新增 must_not 38（豪賭失敗）。agy #5：H6-SPEEDWEEK attribution_type 改「評論員意見」（qualifiers 保留作者未署名）。另依 opus A③ 補 must_not 42–45（無線電錯過進站口、E-105 補主詞、對稱因果句、E-20 誤用到第 39 圈）。"
+   "R1｜agy #4：新增 must_not 38（豪賭失敗）。agy #5：H6-SPEEDWEEK attribution_type 改「評論員意見」（qualifiers 保留作者未署名）。另依 opus A③ 補 must_not 42–45（無線電錯過進站口、E-105 補主詞、對稱因果句、E-20 誤用到第 39 圈）。",
+   "2026-10-12 指揮位修正（Charlie 回「合 racing #113」後 build 時發現）：線上站 10/12 09:05 台北排程週更已抓進第 17 站（/seasons/2026/rounds/17/ HTTP 200），原寫「第 17 站尚未進站上資料庫／站上資料庫只到第 16 站／Jolpica 是額外來源」對線上站不再成立，文章與事實包同步拿掉這四類說法；數字、引文、限定不動。",
+   "2026-10-12 Terra R4 差異審查（PASS-WITH-FIXES，文章四處差異、frontmatter、積分邊界通過）的兩個事實包 MAJOR，指揮位裁定：①derived_values.H_cards 第 12 張 notes 由「以 Jolpica 標明為額外來源」改「取自 Jolpica」——接受為 derived_values 不變邊界的明文例外（只動來源措辭，數值與內容不變）；②must_not_claim 第 32 條括號刪掉「第 17 站未入站上資料庫，」這個已失效的理由，保留「本篇不寫積分榜」邊界（條數仍 54）。"
   ]
  },
  "thesis": "T1｜主題：第 39 圈虛擬安全車前後，勒克萊爾（進站）與漢米爾頓（留在場上）的名次與落後秒數變化，以及第 41 圈到終點對維斯塔潘多掉的 45.192 秒（胎齡與攻防各占多少，資料拆不開）；支撐：F-8、F-9、F-11、F-12、F-13（背景 F-2、F-4、F-10、F-14）。\nT2｜主題：車隊叫進站（雙方原話：Vasseur 對 Sky 說兩台都叫了，漢米爾頓聲明說車隊叫了他；『兩台』只有 Vasseur 說）與漢米爾頓沒進站的原因，具名說法並陳（漢米爾頓書面聲明是一條：先錯過入口、後決定留在場上；Vasseur 在兩場訪問給了兩種說法、媒體會上同一句改口；漢米爾頓賽後無線電；「兩種說法」只指 Vasseur 的兩場訪問；『無視／拒絕指令』是記者用語，沒有當事人說過）；支撐：E-103、E-104、E-13、E-14、E-34、E-26、E-09；verify-news-sg.md §2.3。\nT3｜主題：2022–2026 的法拉利策略爭議，每場分事實層與評價層；本篇收錄範圍內（109 場收錄 20 場、只查英文媒體，不是普查）具名來源的批評與稱讚都有，各自針對哪些場次、誰說的（批評裡有車隊自己人的自承；2024 蒙札與 2026 巴塞隆納有獨立媒體稱讚；2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在安全車／虛擬安全車出現時進不進站，進與不進都被具名質疑過；跨場說法依射程各有人說）；不下『有沒有模式』的結論；歷史節不寫任何計數或頻率（R1 指揮位裁定 1、2）；支撐：H-1～H-6、derived_values.H_cards。",
@@ -51,7 +53,7 @@
  "_structure_hint": "H2 標題＝THESIS ② 給的標題草案（required_sections）；寫手可縮短，但不得增刪標題裡的限定（例如『第 39 圈』『22 圈』），不得加入本站因果句（把 45 秒、名次變化或結果歸因給沒進站，見 must_not 6、7、8、44），具名來源自己說的因果可以掛名照引。標題放結論不放推導、不得含指代詞。H2-1～H2-5 只陳述事實與具名說法，所有判斷收進 H2-6；『本站』全文 ≤8 次（voice.forbidden_meta）。結構（THESIS ②）：lede（重點速答，3–4 句）→ 資料來源短段（不開 H2）→ H2-1 → H2-2 → H2-3 → H2-4 → H2-5 → H2-6 判讀 → 資料來源。字數帳：lede 200／H2-1 400／H2-2 450／H2-3 400／H2-4 550／H2-5 1,000（含表）／判讀 450 ≈ 3,450（估計，非上限；全文含表、不含資料來源節下限 3,000 字，不設上限）。歷史節（lede 的歷史句、H2-5、判讀第 3 點）不寫任何計數或頻率、不下『有沒有模式』的結論；歷史各場事實層只用 derived_values.H_cards（R1 指揮位裁定 1、2、5）。標題（THESIS ⑦，R1 重擬）：主案『新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓卻留在場上』；備案 1『漢米爾頓在新加坡第 39 圈虛擬安全車期間留在場上，隊友勒克萊爾則進站』；備案 2『虛擬安全車在新加坡第 39 圈出動，勒克萊爾進站換胎，漢米爾頓則留在場上』；三案 34–36 字，都只帶 Q1、有連接詞、不並置名次、不含做法詞，超過 30 字須先渲染封面兩行版位；終點名次與歷史主題放副標。封面概念（THESIS ⑦）：本站用 FastF1 計時自繪的折線圖——勒克萊爾與漢米爾頓『落後維斯塔潘秒數』第 1–62 圈兩條線，兩次虛擬安全車畫成色帶，第 39 圈兩線分岔處不加結論文字；不用官方 logo、轉播截圖、車隊標誌、車手照片；圖上文字只寫『新加坡 2026｜落後維斯塔潘秒數』與兩次虛擬安全車色帶，不寫結論。重述位置（THESIS ⑥，R1）：標題只陳述 Q1 的動作事實；subtitle 可寫終點名次＋Q2（Vasseur 與漢米爾頓都說車隊叫了進站）＋Q3（沒進站的原因，漢米爾頓聲明與 Vasseur 兩場訪問說法不一）＋主題式歷史句，不寫 Q4 數字與任何歷史計數（『兩台』只有 Vasseur 說，漢米爾頓聲明只說車隊叫了他，見 THESIS T2）；FAQ 若有：『漢米爾頓為什麼沒進站？』→漢米爾頓聲明（先錯過入口、後決定留）與 Vasseur 兩場訪問的兩種說法並陳；『法拉利策略是不是一直有問題？』→只答本篇收錄範圍內批評與稱讚都有、各針對哪些場次，本篇不是普查、不下有沒有模式的結論，不得比正文更確定；結尾 Q14 引語收尾，不加本站評論句。",
  "required_sections": [
   "開頭（lede，重點速答，3–4 句，約 200 字）：見 section_claims 的 lede 條；lede 不寫 45 秒的原因、不寫『失誤』由誰認、不寫任何歷史計數或頻率；重述位置依 _structure_hint。",
-  "資料來源段（正文前段，一個短段落，不開 H2）：數字來自 F1 官方即時計時公開存檔，第 17 站賽果與進站取 Jolpica（額外來源，第 17 站尚未進站上資料庫）；車手與車隊的說法來自具名媒體報導與賽後訪問、媒體會，各句掛出處；本文不引積分。",
+  "資料來源段（正文前段，一個短段落，不開 H2）：數字來自 F1 官方即時計時公開存檔，第 17 站賽果與進站取 Jolpica；車手與車隊的說法來自具名媒體報導與賽後訪問、媒體會，各句掛出處；本文不引積分。",
   "H2-1（標題草案）兩台法拉利從不同輪胎起跑，漢米爾頓第 18 圈全場第一個進站｜重述位置（THESIS ⑥）：事實句，不涉論點",
   "H2-2（標題草案）第 39 圈虛擬安全車，勒克萊爾、安東內利進站，漢米爾頓留在場上｜重述位置（THESIS ⑥）：Q1（第 39 圈）＋進站者；不寫原因",
   "H2-3（標題草案）漢米爾頓最後 22 圈對維斯塔潘多掉 45.2 秒，中間被 4 台超過，終點第 6｜重述位置（THESIS ⑥）：Q4 的數字可進標題（「最後 22 圈對維斯塔潘多掉 45.2 秒」），限定「拆不開」放第一段，不放「因為沒進站」",
@@ -64,8 +66,8 @@
  "data_sources": {
   "_rule": "URL 只准用這幾個；正文用到的每個數字都能回到 derived_values 或 verified_facts，每個引句都在 news_quotes。站內連結放 interlinks。",
   "f1_livetiming_archive": "https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/ （F1 官方即時計時公開存檔，賽後免費；FastF1 3.8.3 解析；含逐圈、輪胎段、賽會訊息、track_status）",
-  "jolpica_results": "https://api.jolpi.ca/ergast/f1/2026/17/results.json （賽果與官方差距；額外來源，第 17 站尚未進站上資料庫；桌內另存 evidence/jolpica_r17.json）",
-  "jolpica_pitstops": "https://api.jolpi.ca/ergast/f1/2026/17/pitstops.json （進站圈與當地時刻；額外來源，第 17 站尚未進站上資料庫；桌內另存 evidence/jolpica_r17_pitstops.json）",
+  "jolpica_results": "https://api.jolpi.ca/ergast/f1/2026/17/results.json （賽果與官方差距；桌內另存 evidence/jolpica_r17.json）",
+  "jolpica_pitstops": "https://api.jolpi.ca/ergast/f1/2026/17/pitstops.json （進站圈與當地時刻；桌內另存 evidence/jolpica_r17_pitstops.json）",
   "sg-planetf1-ferrari-defence": "https://www.planetf1.com/news/ferrari-lewis-hamilton-singapore-gp-pit-strategy-mistake （PlanetF1（Vasseur 賽後媒體會圍訪）；用於：E-17、E-18、E-20pre、E-20）",
   "sg-f1com-hamilton-painful-lesson": "https://www.formula1.com/en/latest/article/a-painful-lesson-hamilton-apologises-as-he-takes-responsibility-for-strategy-gamble-in-singapore.6NUbQvdet1DQa5ElDtonw1 （F1.com（漢米爾頓經法拉利發布的書面聲明）；用於：E-11、E-13、E-14b、E-09、E-14、E-15、E-16）",
   "sg-f1com-race-report": "https://www.formula1.com/en/latest/article/verstappen-seals-commanding-singapore-grand-prix-victory-from-leclerc-and-antonelli.49wDzysiVqi5cloGjle40A （F1.com 賽報（維斯塔潘賽後 Key quote）；用於：E-89、E-83）",
@@ -110,9 +112,9 @@
   "copyright_note": "依 F1 公開計時資料自行計算；個別數字與引句在編輯內容裡附帶使用並掛出處，不提供資料下載、不使用官方 logo 與轉播截圖。"
  },
  "limits_statement_points": [
-  "資料基準：F1 官方即時計時公開存檔（FastF1 3.8.3 離線載入；laps.csv 與重新載入 1240 列 11 欄 0 差異，verify-data 前置驗證）；第 17 站賽果取 Jolpica 並標明為額外來源（第 17 站尚未進站上資料庫），Jolpica 與 FastF1 兩源 22 人賽果 0 不一致（F-1）。",
+  "資料基準：F1 官方即時計時公開存檔（FastF1 3.8.3 離線載入；laps.csv 與重新載入 1240 列 11 欄 0 差異，verify-data 前置驗證）；第 17 站賽果取 Jolpica ，Jolpica 與 FastF1 兩源 22 人賽果 0 不一致（F-1）。",
   "母集與口徑：22 位車手、62 圈（計時圈號）；FastF1 補的 ghost 列（例如阿爾本第 60 圈帶著 Position=17）已排除，排除後 laps.csv 為 1236 列；完賽名次與落後秒數一律用 Jolpica；『過線順序』＝同一圈各車過線時刻先後（Time 欄）；退賽 4 人，其中阿爾本仍以第 18 名列入分類（verify-data T1）。",
-  "第 17 站不進站上積分榜：站上資料庫只到第 16 站賽果落地，本篇不寫第 17 站積分、積分榜、冠軍爭奪推論（must_not 32）；第 17 站賽果與進站為 Jolpica 額外來源。",
+  "本篇不引積分：不寫第 17 站積分、積分榜、冠軍爭奪推論（must_not 32）；第 17 站賽果與進站取自 Jolpica。",
   "虛擬安全車進站的判定方法：用 FastF1 track_status 賽道時鐘直接對 PitInTime，不經 UTC 對位；第二次虛擬安全車 VSCDeployed 1:59:38.412、VSCEnding 2:01:37.401、AllClear 2:01:50.574，約 119 秒；賽會訊息時鐘與 laps.csv 時鐘對位誤差小於 1 秒、賽會訊息時間解析度為整秒；羅素是『結束訊息後約 6 秒、恢復綠旗前約 7 秒』進站，不算期間內；引賽會訊息不寫圈號（LAP 欄只對領先者的圈成立）。",
   "過線時鐘差不是實際車距：Time 欄是過線時刻，與官方計時點最多約 0.1 秒差，圈中差距寫到 0.1 秒即可；『第 N 圈名次』是該圈結束過線時的順序，進站圈的名次是在進站道過線時的名次。",
   "『乾淨圈』含車流的警示：漢米爾頓第二段軟胎 41 個非進站非虛擬安全車圈裡，有 16 圈與前車差距不到 1.5 秒（含被超的第 54、55、61 圈），所以軟胎段後段變慢只寫區間約 1.4–2.2 秒（只算自由空氣 25 圈 1.36 秒；全部非進站非虛擬安全車圈約 2.2 秒），附方法，不寫純輪胎衰退（F-15 為可選）；各人樣本的車流比例差很多，不比『哪組輪胎好』。",
@@ -157,7 +159,7 @@
   "29. 蒙札勝差 2.884 秒；2026 摩納哥「五位罰退」（是 5 秒罰時）；2026 英國第 48 圈那次寫成「VSC」（是安全車）；2026 英國「全場只有一次安全車／中立化」（第 22、39 圈 TrackStatus 另有虛擬安全車碼，H_cards）。",
   "30. 「Vasseur 上任後策略變好」「Binotto 時代策略差」——跨任期因果；crash.net 的「在 Vasseur 領導下改變」只能掛名且標「呼應 Vasseur 受訪內容」。",
   "31. 「DHL 最快進站獎證明法拉利策略進步」（進站作業≠策略）。",
-  "32. 任何積分榜、冠軍爭奪推論（第 17 站未入站上資料庫，本篇不寫積分榜）。",
+  "32. 任何積分榜、冠軍爭奪推論（本篇不寫積分榜）。",
   "33. 「漢米爾頓的輪胎是全場最老的」（HAD、ALO 胎齡缺值）；可寫「44 圈是全場最長的輪胎段」「第 39 圈前 6 名中胎齡最大」。",
   "34. 「羅素為什麼從第 19 位發車」等與本主題無關、資料查無的事。",
   "35. 預測：「法拉利下一站／明年策略會…」。",
@@ -183,7 +185,7 @@
  ],
  "verified_facts": {
   "_rule": "值＝THESIS ⓪ 表的『事實』＋『必帶限定』＋來源，由建檔腳本逐列解析（不手抄）；R17 數字以建檔時重跑 th1／th2／th3（F-15 為 vd3）的輸出為準，逐項核對結果見 packs/_facts_tmp/numcheck.txt。標【本席新增】的是論點席自己重算新增的事實。",
-  "F-01": "維斯塔潘發車第 1、每圈圈末第 1、終點第 1；勒克萊爾發車第 2、終點第 2（落後 7.335 秒）；漢米爾頓發車第 3、終點第 6（落後 53.188 秒）；安東內利第 3、諾里斯第 4、皮亞斯特里第 5。（VD-1、VD-2）｜必帶限定：第 17 站以 Jolpica 標明為額外來源｜來源：Jolpica results（額外來源）×FastF1 22 人 0 不一致｜重算：th1.py『Jolpica results』區段（packs/_facts_tmp/th1_out.txt）",
+  "F-01": "維斯塔潘發車第 1、每圈圈末第 1、終點第 1；勒克萊爾發車第 2、終點第 2（落後 7.335 秒）；漢米爾頓發車第 3、終點第 6（落後 53.188 秒）；安東內利第 3、諾里斯第 4、皮亞斯特里第 5。（VD-1、VD-2）｜必帶限定：第 17 站取 Jolpica｜來源：Jolpica results×FastF1 22 人 0 不一致｜重算：th1.py『Jolpica results』區段（packs/_facts_tmp/th1_out.txt）",
   "F-02": "胎序：漢米爾頓中性胎 1–18（新胎）→軟胎 19–62（起始胎齡 4，用過的）；勒克萊爾軟胎 1–24（胎齡 4）→中性胎 25–39→軟胎 40–62（胎齡 4，用過的）；維斯塔潘軟胎 1–32→中性胎 33–62。｜必帶限定：「換上軟胎」或「較新的軟胎」，不寫「全新」｜來源：laps.csv Stint／Compound／TyreLife／FreshTyre｜重算：th1.py『stints』區段",
   "F-03": "漢米爾頓第 18 圈進站，是全場 25 次進站中最早的一次；下一個是培瑞茲（第 21 圈）。（VD-3）｜必帶限定：依進站時鐘｜來源：25 筆 PitInTime 排序｜重算：th1.py『pits』區段（25 筆 PitInTime 排序）",
   "F-04": "漢米爾頓第 19–62 圈的軟胎段 44 圈，是全場 47 個輪胎段中最長的；次長是羅素中性胎 39 圈；其他人最長的軟胎段 35 圈（阿隆索、林德布拉德）。（VD-4）｜必帶限定：寫段長，不寫「胎齡全場最大」（HAD、ALO 胎齡缺值）｜來源：Stint 分組，47 段逐段｜重算：th1.py『stints』（段長排序）與 th3.py（軟胎段排序）",
@@ -3111,7 +3113,7 @@
      "neutralisation": "虛擬安全車第 8–9 圈、第 39–40 圈（領先者 TrackStatus）",
      "position_change": "漢米爾頓第 39 圈第 3 → 第 40–45 圈第 2 → 第 46 圈第 3 → 第 54 圈第 4 → 第 55 圈第 5 → 第 61 圈第 6 → 終點第 6；勒克萊爾第 39 圈第 2 → 第 40 圈第 3 → 第 46 圈起第 2 → 終點第 2",
      "write_as": "2026 表這一列：第 39 圈虛擬安全車，勒克萊爾進站、漢米爾頓沒進；漢米爾頓第 40–45 圈暫居第 2，終點第 6；勒克萊爾終點第 2（細節回指 H2-2～H2-4）。",
-     "notes": "與 verified_facts F-02、F-08、F-11 一致；第 17 站完賽名次以 Jolpica 標明為額外來源。",
+     "notes": "與 verified_facts F-02、F-08、F-11 一致；第 17 站完賽名次取自 Jolpica。",
      "hist_stints_check": "不在 hist_stints（R17 由 evidence/r17_R_* 負責）；與 F-02、F-08、F-11 一致"
     }
    ]

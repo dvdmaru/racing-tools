@@ -1234,6 +1234,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-10T21:06:46+08:00",
       "note": "F1 新手村第九批（4 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-10-racing-newbie-village-9/TOPICS.md 與 LEDGER.md）。主題：處罰按機關分層：罰款上限、除名與禁賽各由誰判。Charlie 2026-10-10 回「合 racing #111」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：缺口分析 Sonnet→研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（Terra＋agy，寫手單一併送審）→R1 修正 Opus→寫手 Sonnet（初稿凍結 40）→agy R2＋冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R5 判 PASS，零 finding）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-fines-sanctions.90.md）逐位元組一致。Terra 額度 10/10 16:05 用完、19:55 恢復，期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C／D／E／F 現行版、運動規章 Issue 09（2026-10-01）；dropped-scores 另用本站資料庫與 8W／Motor Sport 等具名報導（歷史規則非規章原文，文中已標）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-2026-r17-singapore-ferrari-strategy-ledger",
+      "article_sha256": "00f5e73fe8cf5196312846eec8680871b11302e0182075b9a64661fafa4a4c90",
+      "facts_sha256": "13b8bef559c4b0919f90eb0a6309afd57748f1dab34f8cdaaf14fb599d8f2cd5",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-12T17:53:42+08:00",
+      "note": "新加坡站（2026 第 17 站，10/11）正賽分析＋法拉利 2022–2026 策略爭議回顧。Charlie 2026-10-12 對話指派「我們寫一篇昨天的新加坡大獎賽分析，加上分析法拉利這幾年的迷之策略，主旨和來源核對照規則交給 Opus」，並回「合 racing #113」授權簽核、build、合併、部署（PENDING 帳本與 PR 內文皆已事先寫明此話即授權）。資料：F1 官方即時計時公開存檔（FastF1 3.8.3）＋Jolpica 賽果與進站；新加坡新聞 36 篇、歷史來源 71 篇原文存檔，事實包 82 條外語引文 verify-quotes 逐字命中。流程（指揮規則第 7、8、9 條）：Sonnet 研究席→Opus 資料查核（47 項：40 PASS／6 WEAKEN／1 FAIL）、Opus 新聞歸屬×3（182／74／169 條）、Opus 論點席→R1 agy PASS-WITH-FIXES＋Opus 替代席 PASS-WITH-FIXES（Terra 額度缺席，Terra R1 補跑取消）→Opus 修正棒（歷史節拿掉所有計數與頻率詞）→Sonnet 寫手（初稿凍結 40）→R2 Terra PASS-WITH-FIXES（1 BLOCKER：『其餘 17 位』母集應為 13）＋agy→DeepSeek 冷讀→Opus 總編輯（R2 修正＋減法）→R3 Terra PASS（零 finding）→合併前發現線上站已抓進第 17 站，拿掉『站上資料庫只到第 16 站／額外來源』四處說法（80 版），Terra R4 差異審查通過。簽核 sha256 與桌上 80-conductor.md 逐位元組一致；封面 check-covers 通過。"
     }
   ]
 }
