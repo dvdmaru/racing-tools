@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* 漢米爾頓與勒克萊爾對維斯塔潘的累計時間差（第 36 到第 62 圈，計時圈號），一圈一點連成線；
+ * 資料＝roundtable 2026-10-12 r17_R_laps.csv 的逐圈 Time 欄（F1 官方即時計時公開存檔，FastF1 解析），
+ * 同一圈該車過線時刻減維斯塔潘過線時刻；這是計時過線差，不是實際車距。
+ * 橫軸線性：x = 70.0 + 1700 × (圈 − 36) ÷ 26；縱軸線性：y = 40.0 + 7.4 × 秒（維斯塔潘 = 0 在最上，越往下越落後）。
+ * 只標正文出現的數字（第 39 圈、第 40 圈、7.996、53.188、22 圈、45.192），不畫座標刻度；勒克萊爾那條線不標數字。
+ * 座標由 tmp/gen_cover_r17.py 算出，不手調。顏色只區分兩條線，不對應車隊塗裝。 */
+.chart { width: 100%; height: 560px; display: block; overflow: visible; }
+.chart .tk { font-family: 'Noto Sans TC'; font-weight: 500; font-size: 34px; fill: #493c40; }
+.chart .dn { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 38px; fill: #493c40; }
+.chart .dn.hi { fill: #d63a2f; }
+.chart .sp { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700; font-size: 46px; fill: #241a1c; }
+.chart .sp.hi { fill: #d63a2f; }
+h1 { font-size: 104px; margin-top: 40px; }
+.sub { margin-top: 24px; margin-bottom: 30px; font-size: 38px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 正賽</div>
+  <h1>新加坡站<span class="y">第 39 圈</span>虛擬安全車期間，<br>勒克萊爾進站，漢米爾頓則留在場上</h1>
+  <div class="sub">最後 22 圈漢米爾頓對維斯塔潘多掉 <span class="y">45.192 秒</span>；差距是過線時間差，不是實際車距</div>
+  <div class="viz">
+    <div class="lbl">漢米爾頓與勒克萊爾每圈比維斯塔潘晚幾秒（計時圈號第 36 到第 62 圈，越往下越落後）</div>
+    <svg class="chart" viewBox="0 -70 2160 620" preserveAspectRatio="xMidYMid meet">
+      <line x1="70.0" y1="40.0" x2="1770.0" y2="40.0" stroke="#a6989c" stroke-width="3"/>
+      <text x="70.0" y="26.0" text-anchor="start" class="tk">維斯塔潘</text>
+      <line x1="266.2" y1="40.0" x2="266.2" y2="410.0" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/>
+      <text x="252.2" y="416.0" text-anchor="end" class="tk">第 39 圈虛擬安全車</text>
+      <line x1="331.5" y1="99.2" x2="1820.0" y2="99.2" stroke="#d63a2f" stroke-width="3" stroke-dasharray="4 10" opacity=".7"/>
+      <polyline points="70.0,80.0 135.4,82.6 200.8,82.3 266.2,101.2 331.5,173.1 396.9,160.4 462.3,155.3 527.7,150.4 593.1,146.4 658.5,146.0 723.8,152.6 789.2,148.7 854.6,144.9 920.0,135.8 985.4,118.7 1050.8,112.1 1116.2,107.8 1181.5,105.5 1246.9,103.0 1312.3,106.4 1377.7,105.7 1443.1,112.8 1508.5,110.4 1573.8,103.8 1639.2,99.3 1704.6,95.6 1770.0,94.3" fill="none" stroke="#493c40" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="70.0,96.8 135.4,100.3 200.8,102.2 266.2,113.2 331.5,99.2 396.9,103.6 462.3,115.5 527.7,123.4 593.1,133.3 658.5,143.0 723.8,162.6 789.2,176.1 854.6,189.1 920.0,194.3 985.4,192.2 1050.8,199.6 1116.2,210.6 1181.5,231.4 1246.9,263.2 1312.3,302.5 1377.7,321.0 1443.1,336.0 1508.5,349.0 1573.8,359.9 1639.2,378.6 1704.6,413.2 1770.0,433.6" fill="none" stroke="#d63a2f" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+      <line x1="1820.0" y1="99.2" x2="1820.0" y2="433.6" stroke="#d63a2f" stroke-width="8" stroke-linecap="round"/>
+      <line x1="1804.0" y1="433.6" x2="1820.0" y2="433.6" stroke="#d63a2f" stroke-width="8" stroke-linecap="round"/>
+      <text x="1848.0" y="256.4" text-anchor="start" class="tk">最後 22 圈</text>
+      <text x="1848.0" y="312.4" text-anchor="start" class="sp hi">45.192 秒</text>
+      <circle cx="331.5" cy="99.2" r="16" fill="#241a1c"/>
+      <line x1="331.5" y1="99.2" x2="331.5" y2="-60.0" stroke="#a6989c" stroke-width="3"/>
+      <text x="351.5" y="-26.0" text-anchor="start" class="tk">第 40 圈</text>
+      <text x="351.5" y="24.0" text-anchor="start" class="sp">7.996 秒</text>
+      <circle cx="1770.0" cy="433.6" r="20" fill="#d63a2f" stroke="#241a1c" stroke-width="5"/>
+      <text x="1780.0" y="491.6" text-anchor="end" class="sp hi">53.188 秒</text>
+      <text x="1096.2" y="280.6" text-anchor="end" class="dn hi">漢米爾頓</text>
+      <text x="1312.3" y="172.4" text-anchor="middle" class="dn">勒克萊爾</text>
+    </svg>
+  </div>
+  <div class="foot">racing.twtools.cc · 資料截至第 17 站正賽</div>
+</div>
+</body>
+</html>
