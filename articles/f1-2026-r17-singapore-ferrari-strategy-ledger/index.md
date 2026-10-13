@@ -17,6 +17,8 @@ lede: "維斯塔潘從發車到終點都是第 1。第 39 圈虛擬安全車出�
 
 分流是誰決定的，兩邊說的主詞不同。Vasseur 在賽後媒體會說：「We took the decision to split the cars.」意思是車隊決定讓兩台車走不同策略。漢米爾頓在[法拉利（Ferrari）](/constructors/ferrari/)發布的書面聲明裡說：「I chose to start on a new medium tyre, to go long and try to make a one-stop work.」意思是他選了新的中性胎，想跑長一點，讓一停成立。
 
+賽前的資料不足，Vasseur 賽後也提過。crash.net 引述他說：「…we were expecting to do a long stint during the sprint race, but the sprint race was intermediate.」意思是我們本來預期在衝刺賽跑一段長的，結果衝刺賽是半雨胎。接著他說：「That meant we all started the race today completely blind.」意思是這代表今天我們所有人都是在完全看不見的狀態下開賽。crash.net 沒有標這是哪一場訪問。
+
 進站之前，兩人的圈速差先拉開。第 10 到 13 圈，漢米爾頓每圈只比勒克萊爾慢 0.07 到 0.11 秒。第 14 到 17 圈，差距擴大到每圈 0.51 到 1.37 秒，第 17 圈結束時他落後 6.44 秒。第 18 圈，他進站，換上一組用過的軟胎，胎齡 4。這是全場 25 次進站裡最早的一次，下一個是培瑞茲（Sergio Pérez）的第 21 圈。漢米爾頓在第 19 圈結束時排第 7。
 
 勒克萊爾第 24 圈進站。出站後，他在第 25 圈結束時以 0.850 秒領先漢米爾頓過線。之後 8 圈，也就是第 25 到 32 圈，漢米爾頓都在 0.785 到 1.488 秒以內；第 33 圈起差距逐圈拉開，第 38 圈結束時是 2.698 秒。這些是過線時間差，不是實際車距。這組差距撐不起「被擋住」的說法。
@@ -69,9 +71,29 @@ Motorsport.com 算出，虛擬安全車結束後的最後 22 圈，漢米爾頓�
 
 漢米爾頓這組軟胎的後段，圈速比前段慢約 1.4 到 2.2 秒。數字取決於挑哪些圈，比的是前 10 圈與後 10 圈的中位圈速。只看沒被前車壓著的 25 圈，是 1.4 秒左右；把 41 個非進站、非虛擬安全車的圈都算進去，是 2.2 秒左右，其中 16 圈與前車的差距不到 1.5 秒。這不是純輪胎衰退。
 
+## 第 32 到 44 圈，漢米爾頓在無線電上問了什麼，工程師回了什麼
+
+這一節的無線電逐字稿來自 RaceFans，每段的時間標是漢米爾頓當圈的圈速。官方公開的 Team Radio 錄音整場只有 32 段，其中漢米爾頓 7 段。第 36 到 38 圈那一段在公開錄音裡，本站用語音辨識轉寫過原檔，大意與逐字稿相符。第 32 圈的問答只見於 RaceFans 的逐字稿；第 44 圈問進站代價的幾句，只見於 RaceFans 與 Pit Debrief 的逐字稿；兩處都不在公開錄音裡。
+
+第 32 圈，漢米爾頓問：「What's the goal here, what's the plan? I have no idea what the hell we're doing. I see people on one stop.」意思是目標是什麼、計畫是什麼，我完全不知道我們在做什麼，我看到別人是一停。賽車工程師 Carlo Santi 回：「Plan B, we are on Plan B.」意思是我們走 Plan B。漢米爾頓說他知道是 Plan B，問別人在做什麼。Santi 回：「Everyone else is one-stop.」意思是其他人都是一停。漢米爾頓問勒克萊爾，Santi 回：「Same as you at the moment.」意思是目前和你一樣。
+
+第 36 圈，漢米爾頓問：「How was everyone's pace at the end of the run?」意思是大家在那段跑完的尾聲，圈速是多少。Santi 回：「It's high 36, high 36.」意思是 1 分 36 秒後半段的圈速。第 37 圈，漢米爾頓追問：「What's high 36?」Santi 回：「It's the pace of the other car, they are doing 36.5, 7, 8.」意思是那是別台車的圈速，他們跑 36.5、36.7、36.8。漢米爾頓接著說：「Yeah, they've got new tyres, I said 'at the end of their stint, how fast were they going?'」意思是對，他們是新胎，我問的是他們在胎段尾聲跑多快。
+
+第 38 圈，Santi 說：「The pace will be similar by the end of the race and at the moment we don't think we have the life.」意思是到終點的步調會差不多，而目前我們不認為（這組胎）有那個壽命。括號是本站依上下文補的，原句沒有寫是哪一組。虛擬安全車在第 39 圈出現。
+
+RaceFans 逐字稿的段落標頭是漢米爾頓當圈的圈速，第 36、37、38 圈的 1:37.308、1:37.363、1:37.221 與本站計時一致。官方公開錄音把第 36 到 38 圈的整段問答收在同一段錄音裡，逐圈分段是 RaceFans 的編排，本站沒有獨立核實。Santi 說的 36.5、7、8 是 1 分 36 秒後半段；本站計時裡，第 34 到 38 圈有數台車落在這個區間，包括維斯塔潘（中性胎胎齡 2 到 6，1:36.574 到 1:36.965）與勒克萊爾（第 35 圈 1:36.780、第 38 圈 1:36.919），原話沒有指名是哪一台。維斯塔潘、諾里斯、皮亞斯特里在第 32、32、33 圈進站前，軟胎胎齡 26 到 29 的四圈（賽道狀態全綠旗），圈速是 1:37.465 到 1:38.675；第 30、31 圈有黃旗或賽道狀態不是全綠，沒有算進去。漢米爾頓當時軟胎胎齡 21 到 23，跑 1:37.221 到 1:37.363。胎齡、油量與賽道狀態都不一樣，這不是同胎齡比較；這些數字也回答不了「當時如果給他這組數字，他的決定會不會不同」。
+
+PlanetF1 的分析稿（頁面沒有署名作者）把這段寫成虛擬安全車前幾圈的一次「confusing radio exchange」。作者寫的是：漢米爾頓問軟胎車手在胎段尾聲的圈速，工程師給的是當下的圈速；他重複問題之後，得到的是車隊認為軟胎撐不到終點的意見。作者的結論是：「Without that crucial data, and knowing he hadn't used the full potential of his current set, it's easy to see why Hamilton tried to stay out, keep track position ahead of Leclerc, and try to defend it until the finish line.」意思是沒有那份關鍵資料，又知道這組胎的潛力沒用完，就不難理解漢米爾頓為什麼想留在場上、守住在勒克萊爾前面的賽道位置、一路守到終點。這是作者的評論。「軟胎車手」也是作者的讀法，逐字稿裡漢米爾頓只說「他們」。
+
+虛擬安全車期間，官方公開錄音裡沒有任何漢米爾頓的錄音。賽會訊息說虛擬安全車從 13:07:14 到 13:09:13（UTC），他在公開錄音裡前後兩段相隔約 7 分半。虛擬安全車期間車隊有沒有叫他進站、怎麼叫，公開錄音既不能證明有，也不能證明沒有。
+
+之後的第 43 圈左右，有一段約 13 秒的公開錄音：漢米爾頓向工程師說剛才發生了什麼、他不知道是什麼，工程師回覆在檢查、車看起來沒事。這段內容沒有看到其他媒體引述，本篇不引原話，也不把它和進站決定連起來。
+
+第 43 圈，漢米爾頓問：「Can I not just hold it out?」意思是我不能就這樣撐下去嗎。Santi 回：「Coming back to you.」意思是我回頭答覆你。第 44 圈，Santi 說：「And we are six laps short to do Plan C.」意思是我們離能做 Plan C 還差六圈。這幾句在公開錄音裡，本站轉寫的大意相符。RaceFans 的逐字稿接著寫：漢米爾頓問：「Can I hold position? Like, if I pit, what do I lose?」意思是我能守住位置嗎？如果我進站，會掉什麼。Santi 回：「We are losing two positions with a delta pace advantage.」意思是會掉兩個名次，並帶著圈速差上的優勢；原話沒說這個優勢從哪來。漢米爾頓再問：「Well, if we're already losing two positions, should I wait to see if a VSC or something comes out?」意思是既然已經是掉兩個名次，我要不要等等看有沒有虛擬安全車之類的出現。Santi 回：「We can try.」意思是可以試試。
+
 ## Vasseur 說兩台都叫了進站，漢米爾頓的聲明說先錯過入口、後決定留在場上
 
-漢米爾頓賽後沒有到媒體區。法拉利說，他賽後身體不適，獲准不出席。他的說法留下兩份：賽後無線電，與法拉利發布的書面聲明。
+漢米爾頓賽後沒有到媒體區。法拉利說，他賽後身體不適，獲准不出席。他賽後的說法留下兩份：賽後無線電，與法拉利發布的書面聲明。
 
 賽後無線電裡（官方轉播播出），他說：對不起各位，我今天那個策略讓你們失望了，是我的決定，讓我們丟了寶貴的分數。
 
@@ -87,7 +109,7 @@ F1 TV 與 Sky 是兩場訪問的兩個版本。媒體會上，他在一句話裡
 
 Sky 和 ESPN 的報導用「無視」形容漢米爾頓這一步，ESPN 的另一句還寫成他「推翻」了工程師的呼叫。兩家緊接著印出的 Vasseur 原話，都是他錯過了進站口。本篇讀到的報導裡，沒有當事人說過這兩個詞。
 
-The Race 另寫，虛擬安全車期間法拉利與漢米爾頓的無線電通訊沒有被轉播收錄，原因是一個不尋常的故障。這是一家媒體的說法，法拉利沒有人具名證實。The Race 評論員 Josh Suttill 看了車載畫面，寫他明顯沒有試圖進入維修區。那是評論員的觀察；「錯過」是不是字面上的錯過，沒有人驗證過。
+The Race 另寫，虛擬安全車期間法拉利與漢米爾頓的無線電通訊沒有被轉播收錄，原因是一個不尋常的故障。RaceFans 也寫，漢米爾頓的車載畫面沒有那段對話的跡象，原因不明。故障的說法，法拉利沒有人具名證實。The Race 評論員 Josh Suttill 看了車載畫面，寫他明顯沒有試圖進入維修區。那是評論員的觀察；「錯過」是不是字面上的錯過，沒有人驗證過。
 
 PlanetF1 的遙測分析稿另寫：最終責任在漢米爾頓，但重要的是找出根本原因，車隊與車手之間溝通不良。
 
@@ -135,7 +157,9 @@ Vasseur 在 2024 年 10 月的奧斯汀站後說，策略上，他不認為車�
 
 本站推論，信賴度中：進站要掉多少時間，用進站前一圈結束到出站後一圈結束、對維斯塔潘的差距變化來算。勒克萊爾與安東內利在虛擬安全車期間進站，各多掉 12.272 秒與 13.623 秒。三次綠旗進站，漢米爾頓第 18 圈、安東內利第 23 圈、勒克萊爾第 24 圈，多掉 23.966 到 25.300 秒。虛擬安全車期間進站的代價，在 12 到 14 秒的量級；綠旗進站，在 24 到 25 秒的量級。這個算法含新舊胎的圈速差，不是純進站損失，只能當量級參考。
 
-**具名來源說的。** 車隊叫了進站，兩邊都這麼說。沒進站的原因，漢米爾頓的聲明是先錯過入口、之後決定留在場上；Vasseur 在兩場訪問說了兩個版本。把結果歸給漢米爾頓決定的，是 Vasseur 與漢米爾頓本人。對車隊的批評也有：PlanetF1 的遙測分析稿談了勒克萊爾第一次進站的時機與溝通。這一步誰對誰錯，資料評不了，本站也不評。
+**具名來源說的。** 車隊叫了進站，兩邊都這麼說。沒進站的原因，漢米爾頓的聲明是先錯過入口、之後決定留在場上；Vasseur 在兩場訪問說了兩個版本。把結果歸給漢米爾頓決定的，是 Vasseur 與漢米爾頓本人。對車隊的批評也有：PlanetF1 的遙測分析稿談了勒克萊爾第一次進站的時機，也談了虛擬安全車前那段無線電問答（見「第 32 到 44 圈」一節）。這一步誰對誰錯，資料評不了，本站也不評。
+
+**無線電說的。** 第 36、37 圈，漢米爾頓問的是大家胎段尾聲的圈速；工程師先報了一個圈速，說那是 the other car 的，逐字稿沒指名是哪一台；漢米爾頓接著說明他問的是胎段尾聲，之後工程師說了車隊對壽命的看法，原句沒說是哪一組胎。這段問答有逐字稿，官方公開錄音的轉寫大意也相符。PlanetF1 的作者把它讀成漢米爾頓決定留場的原因，那是評論；沒有具名的當事人說過那是原因，漢米爾頓自己的說法是先錯過入口、之後決定留下。虛擬安全車期間兩人之間說了什麼，公開錄音沒有，本站也不推。
 
 **五個賽季，收錄範圍內具名來源說的。** 在收錄範圍內（20 場，只查英文媒體，不是普查），批評與稱讚都有。批評裡有車隊自己人的自承：2022 年摩納哥的 Binotto 與 Rueda，2023 年美國站的 Vasseur 與勒克萊爾。稱讚有獨立媒體說的：2024 年蒙札的 Motorsport.com，2026 年巴塞隆納的 formula1.com。2026 年收錄的場次裡，沒進站被具名質疑過，進站也被具名質疑過。這份收錄不下「有沒有模式」的結論。
 
@@ -154,6 +178,7 @@ Vasseur 在 2024 年 10 月的奧斯汀站後說，策略上，他不認為車�
 
 - [F1 官方即時計時公開存檔（2026 新加坡大獎賽正賽）](https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/)：逐圈、輪胎段、賽會訊息與賽道狀態。
 - [Jolpica 第 17 站賽果](https://api.jolpi.ca/ergast/f1/2026/17/results.json)與[進站紀錄](https://api.jolpi.ca/ergast/f1/2026/17/pitstops.json)：第 17 站終點名次、落後秒數與進站圈。
+- [F1 官方公開 Team Radio 清單（2026 新加坡大獎賽正賽）](https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/TeamRadio.jsonStream)：整場 32 段公開錄音的路徑；錄音檔在同一目錄的 TeamRadio 資料夾下。
 
 ### 新聞與媒體報導
 
@@ -169,6 +194,10 @@ Vasseur 在 2024 年 10 月的奧斯汀站後說，策略上，他不認為車�
 - [The Race：評論員短評（Suttill）](https://www.the-race.com/formula-1/our-verdict-on-lewis-hamilton-singapore-strategy-failure/)
 - [ESPN：賽後報導](https://www.espn.com/f1/story/_/id/50131357/lewis-hamilton-calls-singapore-gp-strategy-painful-lesson-ferrari-apology-singapore-grand-prix-marina-bay-circuit-formula-1)
 - [crash.net：漢米爾頓新加坡站前對 Sky Sports F1](https://www.crash.net/f1/news/1106621/1/lewis-hamilton-hits-back-ferrari-critics-after-strategy-blunder-mclaren-made-same)
+- [crash.net：漢米爾頓向法拉利道歉（Vasseur 談衝刺賽與輪胎）](https://www.crash.net/f1/news/1107485/1/lewis-hamilton-apologises-letting-down-ferrari-singapore-gp)
+- [RaceFans：漢米爾頓一再要求讓他過勒克萊爾的無線電逐字稿](https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/)
+- [RaceFans：虛擬安全車那則進站呼叫為什麼沒有無線電](https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/)
+- [Pit Debrief：Vasseur 為法拉利辯護（第 43、44 圈無線電）](https://www.pitdebrief.com/post/why-vasseur-is-right-to-defend-ferrari-following-hamiltons-strategy-call-at-2026-f1-singapore-gp/)
 
 2022 年：
 
@@ -216,6 +245,8 @@ Vasseur 在 2024 年 10 月的奧斯汀站後說，策略上，他不認為車�
 - 45.192 秒與軟胎段後段變慢：兩人胎齡同時變化，被超的 4 圈占 16.940 秒，算不出若進站會怎樣；漢米爾頓第二段軟胎 41 個非進站非虛擬安全車圈裡，16 圈與前車差距不到 1.5 秒，只寫區間並附方法。
 - 虛擬安全車進站成本是本站推論，信賴度中：含新舊胎圈速差，不是純進站損失。
 - 歷史部分：母集是 FastF1 賽程表 2022–2026 第 17 站共 109 場正賽（22＋22＋24＋24＋17，賽程表場數，未逐場核是否全數舉行，不含衝刺賽）；收錄的 20 場是英文媒體關鍵字搜尋的樣本，不是普查，非英文媒體沒查，沒有用同一標準算其他車隊，不寫出錯率或比率。事件分級：A 是事實層與評價層都站得住；B 是缺一層、評價出自車隊自己人或單一來源，或沒有法拉利人員的說法；C 是單一來源未驗，不列。歷史各場的名次與進站圈，是 FastF1 離線快取重算；進站圈是進站時刻所在的圈（媒體常寫換胎後第一圈，同一次進站差 1）；賽會訊息不寫圈號。
-- 新聞分級：賽會訊息與 FIA 裁決書為一手；F1.com 賽報為官方網站敘述；Sky、ESPN、The Race、PlanetF1、Motorsport.com 等為媒體轉述與評論。「無視／推翻」是記者用語；本篇讀到的 36 篇新加坡報導中，沒有當事人說過。
-- 漢米爾頓沒有出席媒體區，他的說法只有賽後無線電與法拉利發布的書面聲明；Vasseur 的話分三個場合，不同場合是不同的句子。The Race 說無線電在虛擬安全車期間沒被轉播收錄，是一家之言，法拉利沒有具名人證實。
+- 新聞分級：賽會訊息與 FIA 裁決書為一手；F1.com 賽報為官方網站敘述；Sky、ESPN、The Race、PlanetF1、Motorsport.com 等為媒體轉述與評論。「無視／推翻」是記者用語；本篇讀到的 39 篇新加坡報導中，沒有當事人說過。
+- 漢米爾頓沒有出席媒體區，他賽後的說法只有賽後無線電與法拉利發布的書面聲明；Vasseur 的話分三個場合，不同場合是不同的句子。The Race 說無線電在虛擬安全車期間沒被轉播收錄、原因是故障；RaceFans 另寫車載畫面沒有那段對話的跡象、原因不明。故障的說法，法拉利沒有具名人證實。
+- 無線電逐字稿：RaceFans 的逐字稿以漢米爾頓每圈的圈速當時間標，本站對照計時，第 36 到 38 圈三個圈速吻合。RaceFans 把工程師寫成 Carlos Santi，Autosport、Motorsport.com 與 Pit Debrief 寫 Carlo Santi，本篇用後者。
+- 官方公開的 Team Radio 錄音整場 32 段（漢米爾頓 7 段、勒克萊爾 3 段），是 F1 官方公開的子集，不是完整的車隊無線電；虛擬安全車期間沒有任何漢米爾頓的公開錄音。本站對公開錄音的聽寫是語音辨識加人工聽取，不是官方文字稿；約第 43 圈那段約 13 秒的聽寫不穩定，漢米爾頓那半句有人工聽取、工程師那半句只有機器聽寫，只寫大意、不引原話。第 44 圈問進站代價的幾句，只見於 RaceFans 與 Pit Debrief 的逐字稿，本站沒有音檔。
 - 賽會訊息把斯托爾賽前練習起跑違規列為賽後調查，結果查無，本篇不寫結論。
