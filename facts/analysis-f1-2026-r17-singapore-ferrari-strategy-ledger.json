@@ -134,7 +134,7 @@
   "新聞分級：賽會訊息與 FIA 裁決書為一手；F1.com 賽報為官方網站敘述；Sky、ESPN、The Race、PlanetF1、Motorsport.com 等為媒體轉述與評論；『無視／拒絕／推翻』是記者用語（Sky、ESPN 的 ignored／overridden，F1.com 編輯稿的 rejected、Speedcafe 的 ignoring、GPFans 的 refused、PlanetF1 分析稿的 defy 皆屬記者框架），記者框架不等於當事人說法；桌內 36 篇新加坡報導中沒有任何當事人說過 ignore／refuse／override（正文寫成『本篇讀到的報導中』）。",
   "漢米爾頓沒有出席媒體區（法拉利說他身體不適、獲准不到媒體區；The Race 寫他沒有做電視或書面媒體職責），他的說法只有賽後無線電與法拉利發布的書面聲明；Vasseur 的話分三個場合（F1 TV、Sky Sports F1、賽後媒體會），不同場合是不同的句子，同一場合內是同一句的不同轉寫。",
   "賽後調查結果查無：賽會訊息 11:26:47 把斯托爾（STR）賽前練習起跑違規列為『賽後調查』，證據目錄全域搜尋只命中賽會訊息兩則，結果查無，本篇不寫結論；The Race 說無線電在虛擬安全車期間沒被轉播收錄是一家之言，法拉利沒有具名人證實。",
-  "無線電逐字稿：RaceFans 時間標＝漢米爾頓圈速，本站對照計時第 36–38 圈吻合；Santi 拼法 Carlos／Carlo 不一，用 Carlo。",
+  "無線電逐字稿：RaceFans 時間標＝漢米爾頓圈速，本站對照計時第 36–38 圈吻合；Santi 拼法 Carlos／Carlo 不一，用 Carlo；第 43、44 圈的分圈同樣是 RaceFans 編排，公開錄音是同一段、時間落在漢米爾頓第 44 圈內。",
   "官方公開 Team Radio 整場 32 段（HAM 7、LEC 3）是子集；虛擬安全車期間沒有漢米爾頓公開錄音；對公開錄音只有機器轉寫（13 秒那段另有人工聽取漢米爾頓的半句，工程師半句只有機器轉寫），不是官方文字稿；約第 43 圈那段只寫大意；第 44 圈問進站代價幾句只見於 RaceFans 與 Pit Debrief 逐字稿；第 36–38 圈的逐圈分段是 RaceFans 的編排，官方錄音是同一段。"
  ],
  "must_not_claim": [
@@ -197,7 +197,8 @@
   "49.【追改補】把約第 43 圈那段 13 秒公開錄音的內容寫成逐字引文、寫成『他的輪胎出問題』『他撿到碎片』或連到進站決定；只寫大意＋『未見其他媒體引述，不引原話』。",
   "50.【追改補】用本站推算去糾正 Santi 的『兩個名次』（綠旗進站成本推是 3 台，信賴度中，含新胎差）；不寫。",
   "51.【追改補】說公開錄音『證明他沒被叫進站』或『證明有叫』；公開錄音在虛擬安全車期間沒有任何漢米爾頓錄音，既不能證明有、也不能證明沒有。",
-  "52.【追改補】說『本站聽過原檔』（只有機器轉寫；人工聽取只有約第 43 圈那 13 秒的漢米爾頓半句）；說『工程師報的是對手當下的圈速』而不補『the other car 沒指名』；把第 30、31 圈（黃旗）算進軟胎末段區間。"
+  "52.【追改補】說『本站聽過原檔』（只有機器轉寫；人工聽取只有約第 43 圈那 13 秒的漢米爾頓半句）；說『工程師報的是對手當下的圈速』而不補『the other car 沒指名』；把第 30、31 圈（黃旗）算進軟胎末段區間。",
+  "53.【追改補】轉述 RaceFans 只寫『車載畫面沒有那段對話的跡象』而漏掉『多次按無線電鍵、有一則沒播出的通話』（F-22）；寫成『沒有證據他被叫進站』的傾向。"
  ],
  "verified_facts": {
   "_rule": "值＝THESIS ⓪ 表的『事實』＋『必帶限定』＋來源，由建檔腳本逐列解析（不手抄）；R17 數字以建檔時重跑 th1／th2／th3（F-15 為 vd3）的輸出為準，逐項核對結果見 packs/_facts_tmp/numcheck.txt。標【本席新增】的是論點席自己重算新增的事實。",
@@ -225,9 +226,10 @@
   "F-16": "官方公開 Team Radio 清單（TeamRadio.jsonStream，2026-10-13 取）：整場 32 段；HAM 7、LEC 3、ANT 9、VER 4、NOR 6、LIN 1、HUL 1、ALB 1。（VD-R2-1）｜必帶限定：這是 F1 官方公開的子集，不是完整車隊無線電｜來源：https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/TeamRadio.jsonStream（桌內存檔 evidence/news/20261013-official-teamradio/README.md）",
   "F-17": "虛擬安全車賽會訊息：13:07:14 DEPLOYED、13:09:13 ENDING（UTC，evidence/r17_R_race_control.csv）；漢米爾頓公開錄音前後兩段是 13:06:48 與 13:14:25（OpenF1 date；檔名時間 13:06:06／13:14:00），中間約 7 分 37 秒，該窗口內沒有任何漢米爾頓公開錄音。（VD-R2-2）｜必帶限定：正文寫『約 7 分半』；公開錄音沒有那段呼叫，既不能證明有、也不能證明沒有；不寫賽會訊息圈號｜來源：賽會訊息 csv、OpenF1 team_radio session_key=11388",
   "F-18": "13:06:48 那段公開錄音（約第 36–38 圈）本站以 Whisper large-v3-turbo 聽寫，轉寫內容與 RaceFans 逐字稿大意相符（How was everyone's pace…／What's high 36？／they've got new tyres, I said 'at the end of their stint…'／The pace will be similar…）。13:16:30 那段含 Plan B、Can I not just hold it out、Coming back to you、six laps short to do Plan C，大意相符。官方錄音把第 36–38 圈整段問答收在同一段（約 23 秒），逐圈分段是 RaceFans 的編排，本站未獨立核實。（VD-R2-3）｜必帶限定：只有機器轉寫，沒有人工聽取（人工聽取只有 13 秒那段）；正文不寫『本站聽過』，寫『轉寫大意相符』｜來源：evidence/news/20261013-official-teamradio/",
-  "F-19": "13:14:25 那段公開錄音約 13 秒，位置約第 43 圈（賽會訊息 13:13:40 起第 43 圈、13:15:18 起第 44 圈）：Charlie 人耳聽到漢米爾頓說『Something happened, I don't know what, …tyres』（後半句不確定）；機器聽寫四種結果不一；工程師回覆（兩種大模型一致）『Understood, we are checking. Car looks fine.』。（VD-R2-4）｜必帶限定：沒有任何媒體引述；正文只寫大意（漢米爾頓說剛才發生了什麼、他不知道是什麼；工程師回覆在檢查、車看起來沒事——工程師那半句只有機器聽寫），不引原話、不連進站決定；第 41 圈 1:37.504 因第 2 彎出界被刪（賽會訊息），第 42 圈 1:37.957、第 43 圈 1:37.381，計時看不出明顯掉速，正文不寫｜來源：evidence/news/20261013-official-teamradio/HAM_44_20261011_211400.mp3、README.md",
-  "F-20": "計時對照（derived_values.D19）：漢米爾頓第 36、37、38 圈 1:37.308／1:37.363／1:37.221（軟胎胎齡 21、22、23）；維斯塔潘第 34–38 圈中性胎胎齡 2–6，1:36.574–1:36.965；勒克萊爾第 35 圈 1:36.780、第 38 圈 1:36.919（中性胎胎齡 11、14）；維斯塔潘、諾里斯、皮亞斯特里進站前軟胎胎齡 26–29 的四圈（TrackStatus 全 1）1:37.465–1:38.675；第 30、31 圈有黃旗或賽道狀態非全綠，不計。（VD-R2-5）｜必帶限定：不是同胎齡比較；『the other car』沒指名是哪一台；回答不了『給了這組數字他的決定會不會不同』（must_not 47、48）｜來源：evidence/r17_R_laps.csv、evidence/r17_R_race_control.csv",
-  "F-21": "Vasseur 賽後（crash.net 引述，沒標場合）：『we were expecting to do a long stint during the sprint race, but the sprint race was intermediate』『That meant we all started the race today completely blind』。衝刺賽有跑（Jolpica sprint：維斯塔潘 1、漢米爾頓 2、勒克萊爾 3，20 圈），是半雨胎的濕地賽。（VD-R2-6）｜必帶限定：Pit Debrief 寫的『被雨取消』不對，不用；blind 指起跑選胎前的輪胎資料，不是第 39 圈的決定｜來源：crash.net、Jolpica sprint"
+  "F-19": "13:14:25 那段公開錄音約 13 秒，位置約第 43 圈（賽會訊息 13:13:40 起第 43 圈、13:15:18 起第 44 圈）：Charlie 人耳聽到漢米爾頓說『Something happened, I don't know what, …tyres』（後半句不確定）；機器聽寫四種結果不一；工程師回覆（兩種大模型一致）『Understood, we are checking. Car looks fine.』。（VD-R2-4）｜必帶限定：沒有任何媒體引述；正文只寫大意（漢米爾頓說有事情發生了、他不知道是什麼；工程師回覆在檢查、車看起來沒事——工程師那半句只有機器聽寫），不引原話、不連進站決定；第 41 圈 1:37.504 因第 2 彎出界被刪（賽會訊息），第 42 圈 1:37.957、第 43 圈 1:37.381，計時看不出明顯掉速，正文不寫｜來源：evidence/news/20261013-official-teamradio/HAM_44_20261011_211400.mp3、README.md",
+  "F-20": "計時對照（derived_values.D19）：漢米爾頓第 36、37、38 圈 1:37.308／1:37.363／1:37.221（軟胎胎齡 21、22、23）；維斯塔潘第 34–38 圈中性胎胎齡 2–6，1:36.574–1:36.965；勒克萊爾第 35 圈 1:36.780、第 38 圈 1:36.919（中性胎胎齡 11、14）；維斯塔潘、諾里斯、皮亞斯特里進站前軟胎胎齡 26–29 的四圈（TrackStatus 全 1）1:37.465–1:38.675；第 30 圈諾里斯與皮亞斯特里（TrackStatus 12）、第 31 圈三人（12／21，賽會訊息第 5、6 區黃旗）含黃旗，不計；維斯塔潘第 30 圈是綠旗但為統一規則也不計。（VD-R2-5）｜必帶限定：不是同胎齡比較；『the other car』沒指名是哪一台；回答不了『給了這組數字他的決定會不會不同』（must_not 47、48）｜來源：evidence/r17_R_laps.csv、evidence/r17_R_race_control.csv",
+  "F-21": "Vasseur 賽後（crash.net 引述，沒標場合）：『we were expecting to do a long stint during the sprint race, but the sprint race was intermediate』『That meant we all started the race today completely blind』。衝刺賽有跑（Jolpica sprint：維斯塔潘 1、漢米爾頓 2、勒克萊爾 3，20 圈），是半雨胎的濕地賽。（VD-R2-6）｜必帶限定：Pit Debrief 寫的『被雨取消』不對，不用；blind 指起跑選胎前的輪胎資料，不是第 39 圈的決定｜來源：crash.net、Jolpica sprint",
+  "F-22": "RaceFans（虛擬安全車那篇）對沒播出的通話：車載畫面轉播裡沒有進站對話；畫面顯示漢米爾頓在虛擬安全車期間多次用右手拇指按無線電鍵、方向盤綠燈亮起，其中一次在經過斯托爾停下的車旁；RaceFans 的讀法是有一則沒播出的通話，原因不明（FOM 可把訊息靜音；也可能是技術故障，他的畫面同時短暫中斷）。（VD-R2-7）｜必帶限定：轉述 RaceFans 時兩半都要寫（沒有對話的轉播＋多次按鍵、有沒播出的通話），不得只寫前半句；這是 RaceFans 對畫面的讀法，不是法拉利或漢米爾頓的說法；故障說法法拉利沒有具名人證實｜來源：evidence/news/sg-racefans-no-radio-vsc-message.txt"
  },
  "derived_values": {
   "_rule": "寫手不做算術：正文出現的每個數字都要能在本表或 verified_facts 找到。口徑：22 位車手、62 圈、圈號一律為計時圈號；過線順序＝同一圈各車過線時刻先後（Time 欄），Position 欄與 Time 欄排序 62 圈一致（verify-data T4c）；『落後』＝該圈過線時刻差（過線時鐘差，不是實際車距）；官方終點差一律用 Jolpica；ghost 列（FastF1 補的幽靈圈）已排除。標『算術』的值是兩個已列數字相減或相加，公式寫在欄位旁。本表由 packs/_facts_tmp/fb_build.py 直接從 evidence/r17_R_laps.csv 與 evidence/jolpica_r17.json 重算，與 th1／th2／th3 輸出逐項核對（numcheck.txt）。",
