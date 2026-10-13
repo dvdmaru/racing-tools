@@ -1237,12 +1237,12 @@
     },
     {
       "slug": "f1-2026-r17-singapore-ferrari-strategy-ledger",
-      "article_sha256": "00f5e73fe8cf5196312846eec8680871b11302e0182075b9a64661fafa4a4c90",
-      "facts_sha256": "13b8bef559c4b0919f90eb0a6309afd57748f1dab34f8cdaaf14fb599d8f2cd5",
+      "article_sha256": "6719c2f8bf07aa206a1328c601f0c6ac08187ebee8ccf835b3a3c328d648f910",
+      "facts_sha256": "81fe18b9a5c38a0ea080ac1753f68f0f4b043e325efcc598bc7f4eddbbcbd864",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-10-12T17:53:42+08:00",
-      "note": "新加坡站（2026 第 17 站，10/11）正賽分析＋法拉利 2022–2026 策略爭議回顧。Charlie 2026-10-12 對話指派「我們寫一篇昨天的新加坡大獎賽分析，加上分析法拉利這幾年的迷之策略，主旨和來源核對照規則交給 Opus」，並回「合 racing #113」授權簽核、build、合併、部署（PENDING 帳本與 PR 內文皆已事先寫明此話即授權）。資料：F1 官方即時計時公開存檔（FastF1 3.8.3）＋Jolpica 賽果與進站；新加坡新聞 36 篇、歷史來源 71 篇原文存檔，事實包 82 條外語引文 verify-quotes 逐字命中。流程（指揮規則第 7、8、9 條）：Sonnet 研究席→Opus 資料查核（47 項：40 PASS／6 WEAKEN／1 FAIL）、Opus 新聞歸屬×3（182／74／169 條）、Opus 論點席→R1 agy PASS-WITH-FIXES＋Opus 替代席 PASS-WITH-FIXES（Terra 額度缺席，Terra R1 補跑取消）→Opus 修正棒（歷史節拿掉所有計數與頻率詞）→Sonnet 寫手（初稿凍結 40）→R2 Terra PASS-WITH-FIXES（1 BLOCKER：『其餘 17 位』母集應為 13）＋agy→DeepSeek 冷讀→Opus 總編輯（R2 修正＋減法）→R3 Terra PASS（零 finding）→合併前發現線上站已抓進第 17 站，拿掉『站上資料庫只到第 16 站／額外來源』四處說法（80 版），Terra R4 差異審查通過。簽核 sha256 與桌上 80-conductor.md 逐位元組一致；封面 check-covers 通過。"
+      "note": "新加坡站（2026 第 17 站，10/11）正賽分析＋法拉利 2022–2026 策略爭議回顧。Charlie 2026-10-12 對話指派「我們寫一篇昨天的新加坡大獎賽分析，加上分析法拉利這幾年的迷之策略，主旨和來源核對照規則交給 Opus」，並回「合 racing #113」授權簽核、build、合併、部署（PENDING 帳本與 PR 內文皆已事先寫明此話即授權）。資料：F1 官方即時計時公開存檔（FastF1 3.8.3）＋Jolpica 賽果與進站；新加坡新聞 36 篇、歷史來源 71 篇原文存檔，事實包 82 條外語引文 verify-quotes 逐字命中。流程（指揮規則第 7、8、9 條）：Sonnet 研究席→Opus 資料查核（47 項：40 PASS／6 WEAKEN／1 FAIL）、Opus 新聞歸屬×3（182／74／169 條）、Opus 論點席→R1 agy PASS-WITH-FIXES＋Opus 替代席 PASS-WITH-FIXES（Terra 額度缺席，Terra R1 補跑取消）→Opus 修正棒（歷史節拿掉所有計數與頻率詞）→Sonnet 寫手（初稿凍結 40）→R2 Terra PASS-WITH-FIXES（1 BLOCKER：『其餘 17 位』母集應為 13）＋agy→DeepSeek 冷讀→Opus 總編輯（R2 修正＋減法）→R3 Terra PASS（零 finding）→合併前發現線上站已抓進第 17 站，拿掉『站上資料庫只到第 16 站／額外來源』四處說法（80 版），Terra R4 差異審查通過。簽核 sha256 與桌上 80-conductor.md 逐位元組一致；封面 check-covers 通過。【2026-10-13 追改，racing-tools PR #115】Charlie 回「改新加坡文，第 4 點中性帶一句」，並回「合 racing #115」授權重簽、build、合併、部署（PENDING 與 PR 內文事先寫明此話即授權）。追改內容：新增『第 32 到 44 圈，漢米爾頓在無線電上問了什麼，工程師回了什麼』一節（RaceFans 逐字稿＋本站計時對照＋PlanetF1 作者評論掛名）、起跑選胎節補 Vasseur 談衝刺賽、判讀節補『無線電說的』、限制聲明與來源列表補充；標題、導言、論點不變，無本站因果句。官方公開 Team Radio 整場 32 段、虛擬安全車期間沒有漢米爾頓錄音；約第 43 圈 13 秒只寫大意不引原話（Charlie 人耳聽取漢米爾頓半句）。審稿：Opus 乾淨室 R1／R3／R4（共抓 4 MAJOR、約 11 MINOR，全修）、Terra R2／R3 PASS 零 finding（Terra 未聽音檔、未抓到 Opus 的 MAJOR，故放行不只認 Terra）；R4 之後最後一處修改（RaceFans 沒播出通話原因照原文）未再送審。verify-quotes 102/102。兩席皆未聽 mp3 原檔。舊 article_sha256 00f5e73fe8cf…、舊 facts_sha256 13b8bef559c4…；approved_at 不動。"
     }
   ]
 }
