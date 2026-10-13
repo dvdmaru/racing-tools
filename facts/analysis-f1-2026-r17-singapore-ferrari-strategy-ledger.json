@@ -37,7 +37,8 @@
    "R1｜E2 譯名：事實包內文「佩雷茲」→「培瑞茲」、「博塔雷托」→「博托萊托」（依 zh_names 與 scripts/driver-zh.json；verbatim 不動）；COMMON L30 同步；WRITER §三加「事實包內文譯名以 zh_names 為準」。",
    "R1｜agy #4：新增 must_not 38（豪賭失敗）。agy #5：H6-SPEEDWEEK attribution_type 改「評論員意見」（qualifiers 保留作者未署名）。另依 opus A③ 補 must_not 42–45（無線電錯過進站口、E-105 補主詞、對稱因果句、E-20 誤用到第 39 圈）。",
    "2026-10-12 指揮位修正（Charlie 回「合 racing #113」後 build 時發現）：線上站 10/12 09:05 台北排程週更已抓進第 17 站（/seasons/2026/rounds/17/ HTTP 200），原寫「第 17 站尚未進站上資料庫／站上資料庫只到第 16 站／Jolpica 是額外來源」對線上站不再成立，文章與事實包同步拿掉這四類說法；數字、引文、限定不動。",
-   "2026-10-12 Terra R4 差異審查（PASS-WITH-FIXES，文章四處差異、frontmatter、積分邊界通過）的兩個事實包 MAJOR，指揮位裁定：①derived_values.H_cards 第 12 張 notes 由「以 Jolpica 標明為額外來源」改「取自 Jolpica」——接受為 derived_values 不變邊界的明文例外（只動來源措辭，數值與內容不變）；②must_not_claim 第 32 條括號刪掉「第 17 站未入站上資料庫，」這個已失效的理由，保留「本篇不寫積分榜」邊界（條數仍 54）。"
+   "2026-10-12 Terra R4 差異審查（PASS-WITH-FIXES，文章四處差異、frontmatter、積分邊界通過）的兩個事實包 MAJOR，指揮位裁定：①derived_values.H_cards 第 12 張 notes 由「以 Jolpica 標明為額外來源」改「取自 Jolpica」——接受為 derived_values 不變邊界的明文例外（只動來源措辭，數值與內容不變）；②must_not_claim 第 32 條括號刪掉「第 17 站未入站上資料庫，」這個已失效的理由，保留「本篇不寫積分榜」邊界（條數仍 54）。",
+   "2026-10-13 追改（Charlie 回『改新加坡文』、第 4 點『中性帶一句』）：新增 H2『第 32 到 44 圈…』、H2-1 補 Vasseur 談衝刺賽、判讀補『無線電說的』、限制聲明兩條、來源列表；新事實 F-16～F-21、D19；must_not 47–51；news_quotes R2-*。新來源原文存 evidence/news/sg-racefans-*.txt、sg-pitdebrief-vasseur-right.txt；官方公開錄音與聽寫存 evidence/news/20261013-official-teamradio/。"
   ]
  },
  "thesis": "T1｜主題：第 39 圈虛擬安全車前後，勒克萊爾（進站）與漢米爾頓（留在場上）的名次與落後秒數變化，以及第 41 圈到終點對維斯塔潘多掉的 45.192 秒（胎齡與攻防各占多少，資料拆不開）；支撐：F-8、F-9、F-11、F-12、F-13（背景 F-2、F-4、F-10、F-14）。\nT2｜主題：車隊叫進站（雙方原話：Vasseur 對 Sky 說兩台都叫了，漢米爾頓聲明說車隊叫了他；『兩台』只有 Vasseur 說）與漢米爾頓沒進站的原因，具名說法並陳（漢米爾頓書面聲明是一條：先錯過入口、後決定留在場上；Vasseur 在兩場訪問給了兩種說法、媒體會上同一句改口；漢米爾頓賽後無線電；「兩種說法」只指 Vasseur 的兩場訪問；『無視／拒絕指令』是記者用語，沒有當事人說過）；支撐：E-103、E-104、E-13、E-14、E-34、E-26、E-09；verify-news-sg.md §2.3。\nT3｜主題：2022–2026 的法拉利策略爭議，每場分事實層與評價層；本篇收錄範圍內（109 場收錄 20 場、只查英文媒體，不是普查）具名來源的批評與稱讚都有，各自針對哪些場次、誰說的（批評裡有車隊自己人的自承；2024 蒙札與 2026 巴塞隆納有獨立媒體稱讚；2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在安全車／虛擬安全車出現時進不進站，進與不進都被具名質疑過；跨場說法依射程各有人說）；不下『有沒有模式』的結論；歷史節不寫任何計數或頻率（R1 指揮位裁定 1、2）；支撐：H-1～H-6、derived_values.H_cards。",
@@ -48,7 +49,8 @@
   "H2-3｜標題草案：漢米爾頓最後 22 圈對維斯塔潘多掉 45.2 秒，中間被 4 台超過，終點第 6｜主張：第 41–62 圈全綠旗、兩人都沒進站，對維斯塔潘多掉 45.192 秒（F-13）；被超車順序與圈號（F-11）；第 40 圈末各車落後他的秒數（F-12）；勒克萊爾第 41 圈全場最快圈（F-14）。可選：軟胎段後段變慢 1.4–2.2 秒（F-15，附方法）。｜新聞：E-92/93（勒克萊爾：最後一段一開始推很兇、衰退多一點、不後悔）可選；E-30（Motorsport.com：後 22 圈對勒克萊爾平均每圈慢 2.5 秒）可用、本站自算 2.538 並註明比較對象；E-121（Speedcafe：最後 8 圈被超）可選；FIA 第 54 圈 Turn 1 不予處分（E-167～E-170／VD-14）可選一句。｜必寫一句限定：45.192 秒裡，漢米爾頓軟胎胎齡 26–47、維斯塔潘中性胎 9–30 同時變化，加上被超車的 4 圈占 16.94 秒，胎齡與攻防各占多少拆不開；也算不出「若進站會怎樣」。｜反例檢查：超車圈號以計時為準——勒克萊爾第 46 圈（不是 The Race 的第 48 圈）、安東內利第 54 圈、皮亞斯特里第 61 圈（不是「最後一圈」）；媒體不同說法照坑 2 只寫計時資料。｜降強度：不寫「沒進站讓他掉了 45 秒／4 個名次」。漢米爾頓聲明「closing laps … lost three places」指第 54、55、61 圈的 3 次，與資料一致，不要「更正」成 4。",
   "H2-4｜標題草案：Vasseur 說兩台都叫了進站，漢米爾頓說他錯過入口後決定留在場上｜主張（全部具名，依場合排）：\n1. 漢米爾頓（沒有出席媒體區，說法只有無線電與書面聲明，NS-02 L21）：賽後無線電 E-09；聲明 E-13、E-14、E-15（我負全責）。\n2. Vasseur 三個場合：F1 TV E-34「指令是兩台都進站，Lewis 決定留在賽道上」＋E-01 系「整體是個失誤，我們本來能拿第 2、第 3」（只引到這裡）；Sky E-103、E-104「本來會是第 2、第 3…他錯過了進站口」、E-105「無線電上講得非常清楚」（以 Sky \"It was\" 為準）；媒體會 E-26 整句含更正（「我的一位車手說『不，我寧可留在賽道上』。不，他不是這麼說，他說的是『我錯過了進站口』」）。寫明：①②是兩場訪問的兩種說法，不是轉寫差異；③他在同一句裡改口。\n3. 媒體框架（點名、不採為事實）：Sky、ESPN 以「無視（ignored／overridden）」形容，但兩家緊接印出的 Vasseur 原話是「他錯過進站口」（同屬記者框架的還有 F1.com 編輯稿的 rejected、Speedcafe 的 ignoring、GPFans 的 refused、PlanetF1 分析稿的 defy，不當中性敘述照用；正文只點名 Sky、ESPN 即可）；The Race 報導轉播在虛擬安全車期間沒收錄到法拉利與漢米爾頓的無線電（E-36，一家、講的是轉播沒收錄）。\n4. VSC 之後：可選一句「The Race、F1.com 等報導車隊之後討論過改兩停、判斷他差幾圈（未具名，沒有無線電原文）」，「6 圈」只能掛 The Race（E-41）。\n5. 評論（並陳，不裁決）：Schiff「他們在某些情況下已經不太相信對方的判斷」（E-110，她拿雪邦與新加坡兩週對照）對 Button「我不同意是信任問題，他只是想自己做決定」（E-113）；PlanetF1 分析稿「最終責任在漢米爾頓，根本原因是溝通不良」（E-72，作者觀點）；The Race 評論員 Mitchell-Malm「法拉利本可以把分流策略管理得更好」（NS-07 L33，備選；若用，必須連同他那段的主旨一起寫：小標說這是法拉利「（大概）本來就會輸」的一場（L23），他寫法拉利內部「似乎」認定錯在漢米爾頓（L27，原文 seemed），這句只是他列舉的幾個沒發生的假設之一；不放進「對車隊的具名批評」）。｜窮舉：Vasseur 三場合對照表（`verify-news-sg.md` §2.1）全用；不用孤本 E-04、E-08、E-130、E-153。｜反例檢查：「36 篇裡沒有任何當事人說過 ignore／refuse／override」的範圍＝桌內新加坡新聞 36 篇；寫成「本篇讀到的報導中」。｜降強度：「錯過」是不是字面意思，沒有人驗證過（Suttill 看車載畫面說「clearly made no attempt」是評論員觀察，可選、掛名）；不寫「藉口」「故意」。｜銜接：一句帶到雪邦（10/5 本站專文互鏈），只寫「一週前雪邦站，車隊提出進站、漢米爾頓說要等賽道變乾」（沿用 10/5 已查核的寫法），不寫「他本季一直聽車隊的」（E-70 FAIL）。",
   "H2-5｜標題草案：2022 到 2026 的法拉利策略爭議，分兩層記｜（H2 是主題式，不陳述計數或頻率〔R1 指揮位裁定 1〕；母集與收錄範圍在節首第一段交代。）｜節首必寫的選擇標準（避免挑好笑場次）：①母集：FastF1 賽程表 2022–2026 第 17 站 109 場（H-1）；②收錄方式：英文媒體關鍵字搜尋，正反兩面（失誤、被稱讚、被誇大）都搜，收錄 20 場（H-2）；③每場分兩層：事實層＝FastF1 計時與賽會訊息能驗的進站與名次；評價層＝誰具名說這是失誤或是好決定；④分級：A 兩層都站得住、B 只有一層或評價只有車隊自己人／單一來源，或沒有法拉利人員的說法、C 不列；⑤限制：不是 109 場普查，義大利媒體沒查，所以不算「出錯率」、不下「有沒有模式」的結論。｜事實層數字的唯一來源：事實包 `derived_values.H_cards`（A 級 10 場＋2026 小表的巴塞隆納、摩納哥、英國，共 13 筆；R1 修正棒用 FastF1 3.8.3 重算）。每場事實層句照該筆的 `write_as` 寫或縮短，不加 H_cards 沒有的圈號與名次；H_cards 沒收的場次（B 級的比利時、法國、日本、英國 2024、加拿大等）只寫做了什麼決定與誰怎麼說，不寫圈號、名次數字。｜內容（依年，正反都放）：\n- 2022（A：摩納哥、英國、匈牙利；B：比利時、法國）：A 三場的事實層各一句（照 H_cards）；評價層——Binotto「我們做了幾個糟糕的決定，也付出代價」（R1-1）與更具體的「至少早一圈叫他進站，或乾脆留在全雨胎」（R1-2）、Rueda「犯了兩個錯，第一個是去 cover Perez」（R1-3，二手經 racer.com）；英國 Khorounzhiy「兩台都該進站，沒有藉口」（R1-5）必帶同篇 Straw 認為留一台合理；匈牙利 ESPN Edmondson 硬胎分析（R1-7）、Leclerc「換上硬胎速度就全沒了」（R1-8）並陳 Binotto 歸因車速；Straw「一再犯下重大策略錯誤」（Q1，標明是 2022 年匈牙利站後的評論）；反方 Binotto「策略不是我們的弱點」（Q5）、Sainz「我們沒有外界說的那麼災難」（R1-10）。摩納哥 Sainz 那一步誰決定，兩邊說法都寫（ESPN NH-01 L233、RaceFans NH-18 L59：Sainz 拒絕進站指令；Rueda NH-03 L45：車隊最後一秒叫他留），不算成法拉利策略的成敗。比利時、法國是 B：各一行，只寫做了什麼決定與法拉利說法，不寫圈號、名次數字；法國若寫必帶罰時脈絡（R1-10 qualifiers）。\n- 2023（A：摩納哥、美國；事實層照 H_cards）：Hughes「法拉利由來已久的溝通老問題，可議的策略也屬同一類」（Q2，podcast 口述，跨年、談溝通與策略）；Vasseur「那是賭注，不後悔」（R1-12）必帶 The Race 認為「debatable」；美國站 Vasseur「錯在以為一停兩停五五波」（R1-14）、Leclerc「就是錯的策略」（NH-28 L18）——定性的全是法拉利自己人，要標明。\n- 2024（A：蒙札，事實層照 H_cards；B：日本、英國〔單一來源，不展開〕、Jain 接任〔只有評價層〕）：蒙札 Motorsport.com「策略上的勝利」（Q7，勝差 FastF1 2.664 秒）；Vasseur 2024 奧斯汀後「我不認為我們在策略上丟了那麼多分」（Q6）必連同行「整季確實犯過錯」；Jain 接任只寫「媒體稱在 2022 年一連串失誤之後；Vasseur 說策略不只是維修牆上那個人、換人有多重原因」（不寫「說法不一」）。\n- 2025（B：加拿大，不寫圈號與名次數字；C：奧斯汀不列）：PlanetF1 分析稿「就像之前許多次，又以策略疑問收場」（Q3，作者未署名；跨年、談策略）並陳 RaceFans「處境不同，但進站時機值得檢討」（程度不同，不是結論相反）。\n- 2026（收錄場次全列）：一張小表列 H-6 的各場（站名｜當時的中立化／決定｜名次變化｜具名評價）；「中立化／決定」與「名次變化」兩欄只准取 `derived_values.H_cards`；澳洲寫「第一次虛擬安全車兩台都沒進（第二次期間進站口關閉）」，不寫成兩次都選擇不進；英國只寫第 48 圈安全車那一次決定，不寫「全場只有一次安全車」；表前句交代母集（收錄場次，不是 17 站普查），表後句不寫比數、不寫「多在中立化」。巴塞隆納稱讚（Q8，註明 VSC 前漢米爾頓已領先）；澳洲 formula1.com（Q9，保留「似乎」）並陳 Vasseur「不後悔」（Q10）；英國 Vasseur「現在重來還是會這樣」（Q11，前面交代兩車都進、漢米爾頓第 2 掉第 3）；匈牙利 Vasseur「執行非常差」（Q12）必同時寫他為進站決定辯護（NH-56 L57）；雪邦互鏈 10/5 專文，一句 Vasseur 認錯（NH-59 L38）並陳同場另一版「重來也不確定會怎麼選」（NH-62 L73）；新加坡回指 H2-2～H2-4。｜窮舉：A 10 張全列（不挑）；B 9 張至少一行清單（EV-08、EV-11 寫明「只一層／單一來源」）；C 1 張寫明不列的理由。｜反例檢查（R1 重歸類）：Anderson 2022 那句「always…when it comes to strategy」是泛稱，不是 2022 單季；crash.net 2024 是跨季談策略決定、方向為改善；Suttill 2026 以「如果是他推翻車隊」為前提，連到先前錯誤造成的不信任；Morlidge P5 含引擎故障，若引要註明。｜降強度：不給任何「出錯率」「幾成」；2026 有 7 場不代表 2026 爭議最多（近期報導較多、搜尋偏差）；同理，按年張數（2022 年 5 張、2026 年 7 張等）不能讀成頻率，正文不寫。「零星」「集中」「轉成」「只有」「最晚」不用在歷史段；跨場說法只寫射程（誰、何時、談策略決定還是溝通與信任），例：「2023 年以後收錄到的跨場說法，Hughes、PlanetF1 分析稿、Suttill 談的是策略決定，Straw、Leclerc、PlanetF1 新加坡分析稿談的是執行、情緒或溝通；crash.net 則說策略名聲已改善」（R1 重查後，原「跨場說法轉向溝通與信任」不成立，不用）。｜降強度（指揮位補，R1 改寫）：2022 年的跨場說法裡，P1、P2 出自 The Race 2022 匈牙利短評，Anderson（P3）出自同系列 2022 英國短評且是泛稱，Morlidge（P5）含引擎故障；引用時掛名並說明出處，不寫條數。",
-  "H2-6｜標題草案：判讀｜收所有判斷；三層分開寫。｜1. 新加坡，資料量得到的：第 39 圈法拉利在賽道上第 2、第 3（F-9）；勒克萊爾進站、漢米爾頓沒進（F-8）；之後 22 圈全綠旗多掉 45.192 秒、被 4 台超過（F-11、F-13）。量不到的：45 秒裡胎齡與攻防各占多少、進站的話會怎樣。本站推論，信賴度中（全篇唯一一條本站推論；R1 從 H2-2 移來）：以「進站前一圈末到出站後一圈末、對維斯塔潘的差距變化」算，虛擬安全車期間進站多掉約 12–14 秒、綠旗進站約 24–25 秒（F-10）；含新舊胎圈速差，不是純進站損失。｜2. 新加坡，具名來源說的：車隊叫了進站——Vasseur 與漢米爾頓都這麼說（「兩台」只有 Vasseur 說）；沒進的原因——漢米爾頓聲明是「先錯過入口、之後決定留」，Vasseur 兩場訪問兩種說法；把結果歸給漢米爾頓決定的是 Vasseur 與漢米爾頓本人（E-34、E-01 系、E-09、E-15）；對車隊的批評也有（PlanetF1 分析稿談勒克萊爾第一停時機與溝通；作者未署名，掛 PlanetF1）。本站不把 45 秒歸因給沒進站，也不評這一步誰對。｜3. 五個賽季，本篇收錄範圍內具名來源怎麼說：批評與稱讚都有，各自針對哪些場次、誰說的——批評裡有車隊自己人的自承（H-4，例如 2022 摩納哥 Binotto、Rueda，2023 美國 Vasseur、Leclerc）；2024 蒙札、2026 巴塞隆納有獨立媒體稱讚（H-5）；2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在安全車／虛擬安全車出現時進不進站，沒進與進了都被具名質疑過（H-6）；跨場的說法依射程各有人說（H-3）。本篇不是普查（109 場裡收錄 20 場、只查英文媒體），不下「有沒有模式」的結論。｜4. 結尾一句可用漢米爾頓「不知為何，我們車隊挨的批評比誰都多」（Q14，標明他是當事人）——只當引語收尾，不當結論。"
+  "H2-6｜標題草案：判讀｜收所有判斷；三層分開寫。｜1. 新加坡，資料量得到的：第 39 圈法拉利在賽道上第 2、第 3（F-9）；勒克萊爾進站、漢米爾頓沒進（F-8）；之後 22 圈全綠旗多掉 45.192 秒、被 4 台超過（F-11、F-13）。量不到的：45 秒裡胎齡與攻防各占多少、進站的話會怎樣。本站推論，信賴度中（全篇唯一一條本站推論；R1 從 H2-2 移來）：以「進站前一圈末到出站後一圈末、對維斯塔潘的差距變化」算，虛擬安全車期間進站多掉約 12–14 秒、綠旗進站約 24–25 秒（F-10）；含新舊胎圈速差，不是純進站損失。｜2. 新加坡，具名來源說的：車隊叫了進站——Vasseur 與漢米爾頓都這麼說（「兩台」只有 Vasseur 說）；沒進的原因——漢米爾頓聲明是「先錯過入口、之後決定留」，Vasseur 兩場訪問兩種說法；把結果歸給漢米爾頓決定的是 Vasseur 與漢米爾頓本人（E-34、E-01 系、E-09、E-15）；對車隊的批評也有（PlanetF1 分析稿談勒克萊爾第一停時機與溝通；作者未署名，掛 PlanetF1）。本站不把 45 秒歸因給沒進站，也不評這一步誰對。｜3. 五個賽季，本篇收錄範圍內具名來源怎麼說：批評與稱讚都有，各自針對哪些場次、誰說的——批評裡有車隊自己人的自承（H-4，例如 2022 摩納哥 Binotto、Rueda，2023 美國 Vasseur、Leclerc）；2024 蒙札、2026 巴塞隆納有獨立媒體稱讚（H-5）；2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在安全車／虛擬安全車出現時進不進站，沒進與進了都被具名質疑過（H-6）；跨場的說法依射程各有人說（H-3）。本篇不是普查（109 場裡收錄 20 場、只查英文媒體），不下「有沒有模式」的結論。｜4. 結尾一句可用漢米爾頓「不知為何，我們車隊挨的批評比誰都多」（Q14，標明他是當事人）——只當引語收尾，不當結論。",
+  "H2-新（第 32 到 44 圈，漢米爾頓在無線電上問了什麼，工程師回了什麼）：事實層——第 32 圈問計畫、第 36–37 圈問對手胎段尾聲圈速而工程師報對手當下圈速、第 38 圈 Santi 對輪胎壽命的看法；本站計時對照（F-20）；PlanetF1 作者評論掛名；虛擬安全車期間沒有公開錄音（F-17）；約第 43 圈 13 秒中性一句（F-19）；第 43–44 圈問答。——不寫因果、不寫誰該負責、不寫反事實（must_not 47–51）。"
  ],
  "_structure_hint": "H2 標題＝THESIS ② 給的標題草案（required_sections）；寫手可縮短，但不得增刪標題裡的限定（例如『第 39 圈』『22 圈』），不得加入本站因果句（把 45 秒、名次變化或結果歸因給沒進站，見 must_not 6、7、8、44），具名來源自己說的因果可以掛名照引。標題放結論不放推導、不得含指代詞。H2-1～H2-5 只陳述事實與具名說法，所有判斷收進 H2-6；『本站』全文 ≤8 次（voice.forbidden_meta）。結構（THESIS ②）：lede（重點速答，3–4 句）→ 資料來源短段（不開 H2）→ H2-1 → H2-2 → H2-3 → H2-4 → H2-5 → H2-6 判讀 → 資料來源。字數帳：lede 200／H2-1 400／H2-2 450／H2-3 400／H2-4 550／H2-5 1,000（含表）／判讀 450 ≈ 3,450（估計，非上限；全文含表、不含資料來源節下限 3,000 字，不設上限）。歷史節（lede 的歷史句、H2-5、判讀第 3 點）不寫任何計數或頻率、不下『有沒有模式』的結論；歷史各場事實層只用 derived_values.H_cards（R1 指揮位裁定 1、2、5）。標題（THESIS ⑦，R1 重擬）：主案『新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓卻留在場上』；備案 1『漢米爾頓在新加坡第 39 圈虛擬安全車期間留在場上，隊友勒克萊爾則進站』；備案 2『虛擬安全車在新加坡第 39 圈出動，勒克萊爾進站換胎，漢米爾頓則留在場上』；三案 34–36 字，都只帶 Q1、有連接詞、不並置名次、不含做法詞，超過 30 字須先渲染封面兩行版位；終點名次與歷史主題放副標。封面概念（THESIS ⑦）：本站用 FastF1 計時自繪的折線圖——勒克萊爾與漢米爾頓『落後維斯塔潘秒數』第 1–62 圈兩條線，兩次虛擬安全車畫成色帶，第 39 圈兩線分岔處不加結論文字；不用官方 logo、轉播截圖、車隊標誌、車手照片；圖上文字只寫『新加坡 2026｜落後維斯塔潘秒數』與兩次虛擬安全車色帶，不寫結論。重述位置（THESIS ⑥，R1）：標題只陳述 Q1 的動作事實；subtitle 可寫終點名次＋Q2（Vasseur 與漢米爾頓都說車隊叫了進站）＋Q3（沒進站的原因，漢米爾頓聲明與 Vasseur 兩場訪問說法不一）＋主題式歷史句，不寫 Q4 數字與任何歷史計數（『兩台』只有 Vasseur 說，漢米爾頓聲明只說車隊叫了他，見 THESIS T2）；FAQ 若有：『漢米爾頓為什麼沒進站？』→漢米爾頓聲明（先錯過入口、後決定留）與 Vasseur 兩場訪問的兩種說法並陳；『法拉利策略是不是一直有問題？』→只答本篇收錄範圍內批評與稱讚都有、各針對哪些場次，本篇不是普查、不下有沒有模式的結論，不得比正文更確定；結尾 Q14 引語收尾，不加本站評論句。",
  "required_sections": [
@@ -61,7 +63,8 @@
   "H2-5（標題草案）2022 到 2026 的法拉利策略爭議，分兩層記｜重述位置（THESIS ⑥，R1）：標題主題式，不陳述計數；節首第一段交代母集與收錄範圍；內文不寫條數與頻率詞；各場事實層只用 derived_values.H_cards；2026 表前句交代母集（收錄場次，不是 17 站普查），表後句不寫比數、不寫『多在中立化』",
   "H2-6（標題草案）判讀｜重述位置（THESIS ⑥）：全部限定帶齊；全篇唯一的本站推論是 F-10（虛擬安全車進站代價），標信賴度中",
   "結尾（H2-6 判讀之後）：以漢米爾頓新加坡站前對 Sky Sports F1 說的 Q14 引語收尾（標明他是當事人），只當引語、不當結論，不加本站評論句。",
-  "## 資料來源（分『本站自有資料』『官方文件與官方說明』『新聞與媒體報導』，每條可點擊；只列正文實際引用的來源；查證日 2026 年 10 月 12 日；**本站限制聲明**照 limits_statement_points）"
+  "## 資料來源（分『本站自有資料』『官方文件與官方說明』『新聞與媒體報導』，每條可點擊；只列正文實際引用的來源；查證日 2026 年 10 月 12 日；**本站限制聲明**照 limits_statement_points）",
+  "H2-新（標題）第 32 到 44 圈，漢米爾頓在無線電上問了什麼，工程師回了什麼｜位置：H2-3 之後、H2-4 之前；判讀節補『無線電說的』一段（只講記錄在案的問答與評論歸屬，不推因果）。"
  ],
  "data_sources": {
   "_rule": "URL 只准用這幾個；正文用到的每個數字都能回到 derived_values 或 verified_facts，每個引句都在 news_quotes。站內連結放 interlinks。",
@@ -109,7 +112,12 @@
   "hist-2026-hungary-speedweek-slap": "https://www.speedweek.com/en/a/formula-1/ferrari-slap-in-the-face-vasseur-admits-hamilton-leclerc-podium-spot-squandered （Speedweek（英文版，2026 匈牙利站評論）；用於：H6-SPEEDWEEK）",
   "hist-2024-usa-f1technical-jain-praised": "https://www.f1technical.net/news/25670 （f1technical.net（2024 奧斯汀站後）；用於：H2-5-JAIN-F1T）",
   "hist-2023-season-racefans-vasseur-review": "https://www.racefans.net/2023/03/03/personnel-change-is-first-part-of-complete-review-of-ferrari-strategy-vasseur/ （RaceFans（Vasseur 2023 年 3 月談策略組異動）；用於：H2-5-JAIN-VAS）",
-  "copyright_note": "依 F1 公開計時資料自行計算；個別數字與引句在編輯內容裡附帶使用並掛出處，不提供資料下載、不使用官方 logo 與轉播截圖。"
+  "copyright_note": "依 F1 公開計時資料自行計算；個別數字與引句在編輯內容裡附帶使用並掛出處，不提供資料下載、不使用官方 logo 與轉播截圖。",
+  "sg-racefans-transcript-hold-position": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/ （RaceFans 無線電逐字稿；用於：R2-L32～R2-L38）",
+  "sg-racefans-no-radio-vsc-message": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/ （RaceFans；用於：R2-L43～R2-L44）",
+  "sg-pitdebrief-vasseur-right": "https://www.pitdebrief.com/post/why-vasseur-is-right-to-defend-ferrari-following-hamiltons-strategy-call-at-2026-f1-singapore-gp/ （Pit Debrief；只用於正文來源列表與第 43、44 圈對照）",
+  "sg-crash-hamilton-apologises": "https://www.crash.net/f1/news/1107485/1/lewis-hamilton-apologises-letting-down-ferrari-singapore-gp （crash.net；用於：R2-CR-1、R2-CR-2）",
+  "f1_teamradio_stream": "https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/TeamRadio.jsonStream （F1 官方公開 Team Radio 清單）"
  },
  "limits_statement_points": [
   "資料基準：F1 官方即時計時公開存檔（FastF1 3.8.3 離線載入；laps.csv 與重新載入 1240 列 11 欄 0 差異，verify-data 前置驗證）；第 17 站賽果取 Jolpica ，Jolpica 與 FastF1 兩源 22 人賽果 0 不一致（F-1）。",
@@ -125,7 +133,9 @@
   "歷史各場資料層（R1 修正）：FastF1 3.8.3 離線快取重算，收在 derived_values.H_cards；進站圈＝PitInTime 所在圈（媒體常寫換胎後第一圈，同一次進站差 1）；名次＝該圈結束過線順序（進站圈是在進站道過線時的名次）；中立化圈＝領先者該圈 TrackStatus 的安全車／虛擬安全車／紅旗碼；賽會訊息不寫圈號；H_cards 沒收的場次不寫圈號與名次數字。",
   "新聞分級：賽會訊息與 FIA 裁決書為一手；F1.com 賽報為官方網站敘述；Sky、ESPN、The Race、PlanetF1、Motorsport.com 等為媒體轉述與評論；『無視／拒絕／推翻』是記者用語（Sky、ESPN 的 ignored／overridden，F1.com 編輯稿的 rejected、Speedcafe 的 ignoring、GPFans 的 refused、PlanetF1 分析稿的 defy 皆屬記者框架），記者框架不等於當事人說法；桌內 36 篇新加坡報導中沒有任何當事人說過 ignore／refuse／override（正文寫成『本篇讀到的報導中』）。",
   "漢米爾頓沒有出席媒體區（法拉利說他身體不適、獲准不到媒體區；The Race 寫他沒有做電視或書面媒體職責），他的說法只有賽後無線電與法拉利發布的書面聲明；Vasseur 的話分三個場合（F1 TV、Sky Sports F1、賽後媒體會），不同場合是不同的句子，同一場合內是同一句的不同轉寫。",
-  "賽後調查結果查無：賽會訊息 11:26:47 把斯托爾（STR）賽前練習起跑違規列為『賽後調查』，證據目錄全域搜尋只命中賽會訊息兩則，結果查無，本篇不寫結論；The Race 說無線電在虛擬安全車期間沒被轉播收錄是一家之言，法拉利沒有具名人證實。"
+  "賽後調查結果查無：賽會訊息 11:26:47 把斯托爾（STR）賽前練習起跑違規列為『賽後調查』，證據目錄全域搜尋只命中賽會訊息兩則，結果查無，本篇不寫結論；The Race 說無線電在虛擬安全車期間沒被轉播收錄是一家之言，法拉利沒有具名人證實。",
+  "無線電逐字稿：RaceFans 時間標＝漢米爾頓圈速，本站對照計時第 36–38 圈吻合；Santi 拼法 Carlos／Carlo 不一，用 Carlo；第 43、44 圈的分圈同樣是 RaceFans 編排，公開錄音是同一段、時間落在漢米爾頓第 44 圈內。",
+  "官方公開 Team Radio 整場 32 段（HAM 7、LEC 3）是子集；虛擬安全車期間沒有漢米爾頓公開錄音；對公開錄音只有機器轉寫（13 秒那段另有人工聽取漢米爾頓的半句，工程師半句只有機器轉寫），不是官方文字稿；約第 43 圈那段只寫大意；第 44 圈問進站代價幾句只見於 RaceFans 與 Pit Debrief 逐字稿；第 36–38 圈的逐圈分段是 RaceFans 的編排，官方錄音是同一段。"
  ],
  "must_not_claim": [
   "1. 「迷之策略」「法拉利策略一向／總是／年年／又一次出錯」作為描述或結論（任何位置，含標題、FAQ、圖說）。",
@@ -181,7 +191,15 @@
   "【建檔補】把 The Race 的 \"Ferrari is adamant that Hamilton was instructed…\" 寫成法拉利具名人士的說法——原文沒有具名人（verify-news-sg E-37）。",
   "【建檔補】把 Autosport 的『虛擬安全車時兩車差 4.4 秒』『約 41.5 秒』、The Race 的『最後 10 圈每圈都在 1:38.6 以上』當資料事實——第 38 圈末兩車過線差是 2.698 秒、41.5 秒無法重現、第 59 圈 1:38.579 比 1:38.6 快 0.021 秒（verify-news-sg E-31、E-33、E-44）。",
   "【建檔補】把 RaceFans 2024 英國『Sainz nailed it』寫成稱讚法拉利策略——該文主旨是法拉利給兩位車手的資訊不對等，稱讚的是 Sainz 自己的判斷（verify-news-history-2 §3.4 FAIL）。",
-  "【建檔補】把 SPORTbible、ScuderiaFans、Total Motorsport 等聚合站的無線電或引語，或 Grandprix.com（整頁引語沒有引號）的引語，當逐字引文——SPORTbible 的漢米爾頓無線電與多數版不同；Grandprix.com NS-29 分不出引述或改寫（verify-news-sg §5-5、§6）。"
+  "【建檔補】把 SPORTbible、ScuderiaFans、Total Motorsport 等聚合站的無線電或引語，或 Grandprix.com（整頁引語沒有引號）的引語，當逐字引文——SPORTbible 的漢米爾頓無線電與多數版不同；Grandprix.com NS-29 分不出引述或改寫（verify-news-sg §5-5、§6）。",
+  "47.【追改補 2026-10-13】把 PlanetF1 的『沒有那份關鍵資料所以不難理解他為什麼留場』寫成本站陳述或事實；只能掛名＋標評論。",
+  "48.【追改補】『車隊沒給數據導致漢米爾頓沒進站』『工程師答非所問造成誤判』『車隊溝通失敗讓他失去第 3』——本站因果與反事實（沒有任何具名當事人說過；虛擬安全車期間的呼叫沒有公開錄音）；只能陳述『他問了什麼、工程師回了什麼、他自己怎麼說明』。",
+  "49.【追改補】把約第 43 圈那段 13 秒公開錄音的內容寫成逐字引文、寫成『他的輪胎出問題』『他撿到碎片』或連到進站決定；只寫大意＋『未見其他媒體引述，不引原話』。",
+  "50.【追改補】用本站推算去糾正 Santi 的『兩個名次』（綠旗進站成本推是 3 台，信賴度中，含新胎差）；不寫。",
+  "51.【追改補】說公開錄音『證明他沒被叫進站』或『證明有叫』；公開錄音在虛擬安全車期間沒有任何漢米爾頓錄音，既不能證明有、也不能證明沒有。",
+  "52.【追改補】說『本站聽過原檔』（只有機器轉寫；人工聽取只有約第 43 圈那 13 秒的漢米爾頓半句）；說『工程師報的是對手當下的圈速』而不補『the other car 沒指名』；把第 30、31 圈（黃旗）算進軟胎末段區間。",
+  "53.【追改補】轉述 RaceFans 只寫『車載畫面沒有那段對話的跡象』而漏掉『多次按無線電鍵、有一則沒播出的通話』（F-22）；寫成『沒有證據他被叫進站』的傾向。",
+  "54.【追改補】把 RaceFans 的『靜音不太可能、較簡單的解釋是技術故障』寫成『可能是靜音，也可能是故障』的並列；用『RaceFans 寫得更完整』這類評價來源的說法。"
  ],
  "verified_facts": {
   "_rule": "值＝THESIS ⓪ 表的『事實』＋『必帶限定』＋來源，由建檔腳本逐列解析（不手抄）；R17 數字以建檔時重跑 th1／th2／th3（F-15 為 vd3）的輸出為準，逐項核對結果見 packs/_facts_tmp/numcheck.txt。標【本席新增】的是論點席自己重算新增的事實。",
@@ -205,7 +223,14 @@
   "H-03": "跨場說法（談法拉利策略或作業、不只一場）依射程歸類（R1 修正重歸類）：①跨年或泛稱、談策略決定——Mark Hughes（The Race podcast，2023 摩納哥後，NH-24 L51／L53）、PlanetF1 分析稿（作者未署名，2025 加拿大後，NH-41 L55）、Gary Anderson（The Race 2022 英國短評，「always…when it comes to strategy」是泛稱，NH-05 L61）、Josh Suttill（The Race 2026 新加坡評論，以「如果是漢米爾頓推翻車隊」為前提〔L69–71〕：前任 Sainz 也多次在車上自己決定策略，那是被「put in the wrong position」太多次的結果，先前的錯誤造成的不信任可能讓法拉利在新加坡吃虧，NS-07 L73–77）；②跨年、談溝通、執行或信任——Edd Straw（2023，執行與丟分，NH-24 L45）、PlanetF1 分析稿（作者未署名，2026 新加坡後，無線電溝通，NH-66 L93）、Leclerc（2024，情緒管理、雙重保留，NH-38 L26）；③跨季、談策略決定、方向為改善——crash.net（2024 日本站後，NH-33 L3、L15，同段說在 Vasseur 領導下已改變）；④2022 年單季內跨場——P1、P2、P4–P7（P5 Morlidge 混了引擎故障）；⑤一句式泛稱、沒有論證——Gary Anderson（2026 新加坡，NS-07 L43）、PlanetF1（2026，「in true Ferrari fashion」，NH-47 L37）。｜必帶限定：**母集＝歷史段來源（`evidence/news/hist-*`）＋NH-66＋NS-07 兩條（Suttill、Anderson 2026）**；**正文只寫誰、何時、說了哪種射程，不寫條數、不寫「只有」「最晚」「集中」「零星」**；PlanetF1 三條作者未署名，寫「PlanetF1 分析稿」；Anderson 兩句、Suttill L73–77、crash.net 不在 news_quotes，要用只能中文轉述並掛名，不加引號；crash.net 只能掛名且標「呼應 Vasseur 受訪內容」（must_not 30）；本篇不是普查，不下「有沒有模式」的結論｜來源：`verify-news-history-2.md` §2–§3；R1 審稿 opus-r1 A1、D②；R1 修正棒回原檔核對行號（NH-05 L57–61、NH-33 L3／L15、NS-07 L43／L73–77）｜重算：R1 修正棒回 evidence 原檔核對行號（見來源欄）",
   "H-04": "具名自承「策略決定」錯：2022 摩納哥 Binotto、Rueda、Leclerc；2023 美國 Vasseur、Leclerc；2024 英國 Leclerc（自己的換胎決定，說是依車內收到的資訊，經 RaceFans，單一來源）；2026 雪邦 Vasseur、漢米爾頓；2026 新加坡漢米爾頓（自己的決定）。**不算自承**：Vasseur 2023 匈牙利（作業類）、2026 匈牙利（執行，同篇為決定辯護）、2026 新加坡（把錯歸給漢米爾頓不進站）。2025 年在蒐集範圍內沒有找到。｜必帶限定：不加總成「自承 N 次」當頻率｜來源：兩份歸屬判決 §2、§3.2｜重算：兩份歸屬判決與論點席（見來源欄）",
   "H-05": "獨立媒體稱讚單場策略的乾淨條目（正文不寫條數）：2024 蒙札 RaceFans（NH-35 L3）、Motorsport.com（NH-36 L133）；2026 巴塞隆納 formula1.com（NH-50 L15）、PlanetF1（NH-47 L33）。另 crash.net 2024 日本（有條件，呼應 Vasseur 受訪內容）。2022–2023 年在蒐集範圍內沒有獨立媒體稱讚單場策略的句子。｜必帶限定：蒙札勝差寫 FastF1 2.664 秒，不寫 2.884｜來源：`verify-news-history-2.md` §3.4、`-1` 末段｜重算：兩份歸屬判決與論點席（見來源欄）",
-  "H-06": "【本席新增】2026 年收錄場次的爭點（逐場列名）：澳洲（第一次虛擬安全車兩台都沒進；第二次期間進站口關閉，EV-14）、巴塞隆納（虛擬安全車期間漢米爾頓進站、被稱讚，EV-15）、摩納哥（安全車兩台都進，EV-16）、英國（第 48 圈安全車兩台都進、漢米爾頓從第 2 掉到第 3，EV-17）、匈牙利（虛擬安全車兩台都進，EV-18）、新加坡（Vasseur 說兩台都叫進站，EV-20）的爭點都在安全車／虛擬安全車出現時進不進站；雪邦（EV-19）是起跑選胎。「沒進」被具名質疑過（澳洲：formula1.com NH-46 L47「questionable…seemed」、Button NH-45 L83）；「進了」也被具名質疑過（匈牙利：Speedweek 評論作者 NH-57 L61「misjudgement」、漢米爾頓 NH-56 L47「not really sure why we stopped」）。｜必帶限定：**母集＝研究席收錄的 2026 年場次（17 站中），不是 17 站普查**；**正文逐場列名，不寫「7 場中 6 場」這類比數**，不寫比率、「多在」「每次」｜來源：各場資料層見事實包 `derived_values.H_cards`（R1 修正 FastF1 重算）＋上列行號｜重算：derived_values.H_cards（R1 修正棒 FastF1 3.8.3 重算）"
+  "H-06": "【本席新增】2026 年收錄場次的爭點（逐場列名）：澳洲（第一次虛擬安全車兩台都沒進；第二次期間進站口關閉，EV-14）、巴塞隆納（虛擬安全車期間漢米爾頓進站、被稱讚，EV-15）、摩納哥（安全車兩台都進，EV-16）、英國（第 48 圈安全車兩台都進、漢米爾頓從第 2 掉到第 3，EV-17）、匈牙利（虛擬安全車兩台都進，EV-18）、新加坡（Vasseur 說兩台都叫進站，EV-20）的爭點都在安全車／虛擬安全車出現時進不進站；雪邦（EV-19）是起跑選胎。「沒進」被具名質疑過（澳洲：formula1.com NH-46 L47「questionable…seemed」、Button NH-45 L83）；「進了」也被具名質疑過（匈牙利：Speedweek 評論作者 NH-57 L61「misjudgement」、漢米爾頓 NH-56 L47「not really sure why we stopped」）。｜必帶限定：**母集＝研究席收錄的 2026 年場次（17 站中），不是 17 站普查**；**正文逐場列名，不寫「7 場中 6 場」這類比數**，不寫比率、「多在」「每次」｜來源：各場資料層見事實包 `derived_values.H_cards`（R1 修正 FastF1 重算）＋上列行號｜重算：derived_values.H_cards（R1 修正棒 FastF1 3.8.3 重算）",
+  "F-16": "官方公開 Team Radio 清單（TeamRadio.jsonStream，2026-10-13 取）：整場 32 段；HAM 7、LEC 3、ANT 9、VER 4、NOR 6、LIN 1、HUL 1、ALB 1。（VD-R2-1）｜必帶限定：這是 F1 官方公開的子集，不是完整車隊無線電｜來源：https://livetiming.formula1.com/static/2026/2026-10-11_Singapore_Grand_Prix/2026-10-11_Race/TeamRadio.jsonStream（桌內存檔 evidence/news/20261013-official-teamradio/README.md）",
+  "F-17": "虛擬安全車賽會訊息：13:07:14 DEPLOYED、13:09:13 ENDING（UTC，evidence/r17_R_race_control.csv）；漢米爾頓公開錄音前後兩段是 13:06:48 與 13:14:25（OpenF1 date；檔名時間 13:06:06／13:14:00），中間約 7 分 37 秒，該窗口內沒有任何漢米爾頓公開錄音。（VD-R2-2）｜必帶限定：正文寫『約 7 分半』；公開錄音沒有那段呼叫，既不能證明有、也不能證明沒有；不寫賽會訊息圈號｜來源：賽會訊息 csv、OpenF1 team_radio session_key=11388",
+  "F-18": "13:06:48 那段公開錄音（約第 36–38 圈）本站以 Whisper large-v3-turbo 聽寫，轉寫內容與 RaceFans 逐字稿大意相符（How was everyone's pace…／What's high 36？／they've got new tyres, I said 'at the end of their stint…'／The pace will be similar…）。13:16:30 那段含 Plan B、Can I not just hold it out、Coming back to you、six laps short to do Plan C，大意相符。官方錄音把第 36–38 圈整段問答收在同一段（約 23 秒），逐圈分段是 RaceFans 的編排，本站未獨立核實。（VD-R2-3）｜必帶限定：只有機器轉寫，沒有人工聽取（人工聽取只有 13 秒那段）；正文不寫『本站聽過』，寫『轉寫大意相符』｜來源：evidence/news/20261013-official-teamradio/",
+  "F-19": "13:14:25 那段公開錄音約 13 秒，位置約第 43 圈（賽會訊息 13:13:40 起第 43 圈、13:15:18 起第 44 圈）：Charlie 人耳聽到漢米爾頓說『Something happened, I don't know what, …tyres』（後半句不確定）；機器聽寫四種結果不一；工程師回覆（兩種大模型一致）『Understood, we are checking. Car looks fine.』。（VD-R2-4）｜必帶限定：沒有任何媒體引述；正文只寫大意（漢米爾頓說有事情發生了、他不知道是什麼；工程師回覆在檢查、車看起來沒事——工程師那半句只有機器聽寫），不引原話、不連進站決定；第 41 圈 1:37.504 因第 2 彎出界被刪（賽會訊息），第 42 圈 1:37.957、第 43 圈 1:37.381，計時看不出明顯掉速，正文不寫｜來源：evidence/news/20261013-official-teamradio/HAM_44_20261011_211400.mp3、README.md",
+  "F-20": "計時對照（derived_values.D19）：漢米爾頓第 36、37、38 圈 1:37.308／1:37.363／1:37.221（軟胎胎齡 21、22、23）；維斯塔潘第 34–38 圈中性胎胎齡 2–6，1:36.574–1:36.965；勒克萊爾第 35 圈 1:36.780、第 38 圈 1:36.919（中性胎胎齡 11、14）；維斯塔潘、諾里斯、皮亞斯特里進站前軟胎胎齡 26–29 的四圈（TrackStatus 全 1）1:37.465–1:38.675；第 30 圈諾里斯與皮亞斯特里（TrackStatus 12）、第 31 圈三人（12／21，賽會訊息第 5、6 區黃旗）含黃旗，不計；維斯塔潘第 30 圈是綠旗但為統一規則也不計。（VD-R2-5）｜必帶限定：不是同胎齡比較；『the other car』沒指名是哪一台；回答不了『給了這組數字他的決定會不會不同』（must_not 47、48）｜來源：evidence/r17_R_laps.csv、evidence/r17_R_race_control.csv",
+  "F-21": "Vasseur 賽後（crash.net 引述，沒標場合）：『we were expecting to do a long stint during the sprint race, but the sprint race was intermediate』『That meant we all started the race today completely blind』。衝刺賽有跑（Jolpica sprint：維斯塔潘 1、漢米爾頓 2、勒克萊爾 3，20 圈），是半雨胎的濕地賽。（VD-R2-6）｜必帶限定：Pit Debrief 寫的『被雨取消』不對，不用；blind 指起跑選胎前的輪胎資料，不是第 39 圈的決定｜來源：crash.net、Jolpica sprint",
+  "F-22": "RaceFans（虛擬安全車那篇）對沒播出的通話：車載畫面轉播裡沒有進站對話；畫面顯示漢米爾頓在虛擬安全車期間多次用右手拇指按無線電鍵、方向盤綠燈亮起，其中一次在經過斯托爾停下的車旁；RaceFans 的讀法是有一則沒播出的通話，原因說不清楚：FOM 可把訊息靜音，但其過去的說法是為保護情緒激動的車手，RaceFans 認為這次不太可能；較簡單的解釋可能是技術故障（他的畫面同時短暫中斷）。（VD-R2-7）｜必帶限定：不可把『靜音』與『故障』寫成兩個並列原因（RaceFans 認為靜音不太可能、較簡單是技術故障）；轉述 RaceFans 時兩半都要寫（沒有對話的轉播＋多次按鍵、有沒播出的通話），不得只寫前半句；這是 RaceFans 對畫面的讀法，不是法拉利或漢米爾頓的說法；故障說法法拉利沒有具名人證實｜來源：evidence/news/sg-racefans-no-radio-vsc-message.txt"
  },
  "derived_values": {
   "_rule": "寫手不做算術：正文出現的每個數字都要能在本表或 verified_facts 找到。口徑：22 位車手、62 圈、圈號一律為計時圈號；過線順序＝同一圈各車過線時刻先後（Time 欄），Position 欄與 Time 欄排序 62 圈一致（verify-data T4c）；『落後』＝該圈過線時刻差（過線時鐘差，不是實際車距）；官方終點差一律用 Jolpica；ghost 列（FastF1 補的幽靈圈）已排除。標『算術』的值是兩個已列數字相減或相加，公式寫在欄位旁。本表由 packs/_facts_tmp/fb_build.py 直接從 evidence/r17_R_laps.csv 與 evidence/jolpica_r17.json 重算，與 th1／th2／th3 輸出逐項核對（numcheck.txt）。",
@@ -3117,6 +3142,98 @@
      "hist_stints_check": "不在 hist_stints（R17 由 evidence/r17_R_* 負責）；與 F-02、F-08、F-11 一致"
     }
    ]
+  },
+  "D19_radio_laps_36_38_timing": {
+   "_how": "evidence/r17_R_laps.csv（FastF1 3.8.3 解析的 F1 官方計時）逐圈圈速、胎種與胎齡；2026-10-13 追改時重算。進站圈：VER 32、NOR 32、PIA 33（pitin）。",
+   "by_driver_laps_26_38": {
+    "VER": {
+     "26": "1:37.623 SOFT 胎齡 26.0",
+     "27": "1:37.927 SOFT 胎齡 27.0",
+     "28": "1:37.465 SOFT 胎齡 28.0",
+     "29": "1:37.658 SOFT 胎齡 29.0",
+     "30": "1:37.952 SOFT 胎齡 30.0",
+     "31": "1:39.907 SOFT 胎齡 31.0",
+     "32": "1:43.902 SOFT 胎齡 32.0",
+     "33": "1:55.014 MEDIUM 胎齡 1.0",
+     "34": "1:36.945 MEDIUM 胎齡 2.0",
+     "35": "1:36.574 MEDIUM 胎齡 3.0",
+     "36": "1:36.784 MEDIUM 胎齡 4.0",
+     "37": "1:36.885 MEDIUM 胎齡 5.0",
+     "38": "1:36.965 MEDIUM 胎齡 6.0"
+    },
+    "NOR": {
+     "26": "1:38.309 SOFT 胎齡 26.0",
+     "27": "1:38.391 SOFT 胎齡 27.0",
+     "28": "1:38.345 SOFT 胎齡 28.0",
+     "29": "1:38.473 SOFT 胎齡 29.0",
+     "30": "1:38.736 SOFT 胎齡 30.0",
+     "31": "1:39.519 SOFT 胎齡 31.0",
+     "32": "1:44.755 SOFT 胎齡 32.0",
+     "33": "1:55.421 MEDIUM 胎齡 1.0",
+     "34": "1:37.370 MEDIUM 胎齡 2.0",
+     "35": "1:36.775 MEDIUM 胎齡 3.0",
+     "36": "1:37.790 MEDIUM 胎齡 4.0",
+     "37": "1:36.725 MEDIUM 胎齡 5.0",
+     "38": "1:36.634 MEDIUM 胎齡 6.0"
+    },
+    "PIA": {
+     "26": "1:38.132 SOFT 胎齡 26.0",
+     "27": "1:38.214 SOFT 胎齡 27.0",
+     "28": "1:38.675 SOFT 胎齡 28.0",
+     "29": "1:38.446 SOFT 胎齡 29.0",
+     "30": "1:38.808 SOFT 胎齡 30.0",
+     "31": "1:39.958 SOFT 胎齡 31.0",
+     "32": "1:39.006 SOFT 胎齡 32.0",
+     "33": "1:44.874 SOFT 胎齡 33.0",
+     "34": "1:57.098 MEDIUM 胎齡 1.0",
+     "35": "1:36.426 MEDIUM 胎齡 2.0",
+     "36": "1:36.611 MEDIUM 胎齡 3.0",
+     "37": "1:37.555 MEDIUM 胎齡 4.0",
+     "38": "1:37.371 MEDIUM 胎齡 5.0"
+    },
+    "HAM": {
+     "26": "1:37.249 SOFT 胎齡 11.0",
+     "27": "1:37.191 SOFT 胎齡 12.0",
+     "28": "1:36.922 SOFT 胎齡 13.0",
+     "29": "1:37.165 SOFT 胎齡 14.0",
+     "30": "1:37.276 SOFT 胎齡 15.0",
+     "31": "1:38.319 SOFT 胎齡 16.0",
+     "32": "1:37.538 SOFT 胎齡 17.0",
+     "33": "1:37.530 SOFT 胎齡 18.0",
+     "34": "1:37.271 SOFT 胎齡 19.0",
+     "35": "1:37.136 SOFT 胎齡 20.0",
+     "36": "1:37.308 SOFT 胎齡 21.0",
+     "37": "1:37.363 SOFT 胎齡 22.0",
+     "38": "1:37.221 SOFT 胎齡 23.0"
+    }
+   },
+   "VER_laps_34_38_medium_range": [
+    "1:36.574",
+    "1:36.965"
+   ],
+   "HAM_laps_36_38": [
+    "1:37.308",
+    "1:37.363",
+    "1:37.221"
+   ],
+   "HAM_soft_age_laps_36_38": [
+    21,
+    22,
+    23
+   ],
+   "verdict": "計時圈號與 RaceFans 逐字稿時間標一致（HAM 第 36–38 圈 1:37.308／1:37.363／1:37.221）。不是同胎齡比較。",
+   "VER_NOR_PIA_soft_laps_26_29_range_trackstatus_1_only": [
+    "1:37.465",
+    "1:38.675"
+   ],
+   "laps_30_31_excluded_reason": "第 30 圈 NOR、PIA 的 TrackStatus 為 12（含黃旗），第 31 圈 VER 12、NOR 21、PIA 21，且賽會訊息第 31 圈有第 5、6 區黃旗；兩圈都不算進區間。",
+   "LEC_laps_35_38_medium": {
+    "35": "1:36.780 中性胎 胎齡 11",
+    "36": "1:37.138 中性胎 胎齡 12",
+    "37": "1:37.237 中性胎 胎齡 13",
+    "38": "1:36.919 中性胎 胎齡 14"
+   },
+   "santi_36_5_7_8_reading": "1:36.5、1:36.7、1:36.8；第 34–38 圈落在 1 分 36 秒後半段的不只維斯塔潘（1:36.574–1:36.965），勒克萊爾第 35 圈 1:36.780、第 38 圈 1:36.919 也在；原話 the other car 沒指名。"
   }
  },
  "unanswerable": [
@@ -4308,6 +4425,292 @@
    "qualifiers": "原檔 evidence/news/hist-2023-season-racefans-vasseur-review.txt L45，回答 RaceFans 提問（L41，2023-03）；行首 \"Jain has taken charge on the Ferrari pit wall\" 是圖說黏進正文，不屬引語，不引；THESIS H2-5 的 Jain 句沒有 ⑤ 編號，本條為指揮位指示補收。",
    "evidence_file": "evidence/news/hist-2023-season-racefans-vasseur-review.txt",
    "evidence_line": 45
+  },
+  {
+   "id": "R2-L32-HAM",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 32 圈，圈速 1:37.538）",
+   "verbatim": "What’s the goal here, what’s the plan? I have no idea what the hell we’re doing. I see people on one stop.",
+   "zh_gloss": "目標是什麼、計畫是什麼，我完全不知道我們在做什麼，我看到別人是一停。",
+   "use_in_section": "H2-新（第 32 到 44 圈）",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 公開錄音沒有這一段，只有逐字稿。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 223
+  },
+  {
+   "id": "R2-L32-SANTI-1",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（賽車工程師，第 32 圈）",
+   "verbatim": "Plan B, we are on Plan B.",
+   "zh_gloss": "我們走 Plan B。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 226
+  },
+  {
+   "id": "R2-L32-SANTI-2",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 32 圈）",
+   "verbatim": "Everyone else is one-stop.",
+   "zh_gloss": "其他人都是一停。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 這句是 Santi 的說法，本站沒有逐車驗『其他人都是一停』。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 232
+  },
+  {
+   "id": "R2-L32-SANTI-3",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 32 圈）",
+   "verbatim": "Same as you at the moment.",
+   "zh_gloss": "目前和你一樣。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 漢米爾頓先問『And Charles?』。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 238
+  },
+  {
+   "id": "R2-L36-HAM",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 36 圈，圈速 1:37.308）",
+   "verbatim": "How was everyone’s pace at the end of the run?",
+   "zh_gloss": "大家在那段跑完的尾聲，圈速是多少。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 官方公開錄音（約 13:06 UTC 那一段）本站轉寫大意相符。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 264
+  },
+  {
+   "id": "R2-L36-SANTI",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 36 圈）",
+   "verbatim": "It’s high 36, high 36.",
+   "zh_gloss": "1 分 36 秒後半段的圈速。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 267
+  },
+  {
+   "id": "R2-L37-HAM-1",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 37 圈，圈速 1:37.363）",
+   "verbatim": "What’s high 36?",
+   "zh_gloss": "high 36 是什麼？",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 272
+  },
+  {
+   "id": "R2-L37-SANTI",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 37 圈）",
+   "verbatim": "It’s the pace of the other car, they are doing 36.5, 7, 8",
+   "zh_gloss": "那是別台車的圈速，他們跑 36.5、36.7、36.8。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 原文單數 the other car、複數 they；沒指名是哪一台；原稿句尾是『8 .』，這裡省略句點。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 275
+  },
+  {
+   "id": "R2-L37-HAM-2",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 37 圈）",
+   "verbatim": "Yeah, they’ve got new tyres, I said ‘at the end of their stint, how fast were they going?’",
+   "zh_gloss": "對，他們是新胎，我問的是他們在胎段尾聲跑多快。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 這是漢米爾頓自己對問題的說明；逐字稿沒說『他們』是誰。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 278
+  },
+  {
+   "id": "R2-L38-SANTI",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/hamilton-repeatedly-urged-ferrari-to-let-him-past-leclerc-after-hold-position-order/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 38 圈，圈速 1:37.221）",
+   "verbatim": "The pace will be similar by the end of the race and at the moment we don’t think we have the life.",
+   "zh_gloss": "到終點的步調會差不多，而目前我們不認為（這組胎）有那個壽命。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿，時間標是漢米爾頓當圈圈速；本站對照計時，第 36–38 圈圈速吻合；Santi 在 RaceFans 寫 Carlos、其他媒體寫 Carlo，本篇用 Carlo。 原句沒有寫 life 是指哪一組胎；括號是本站依上下文補，正文已寫明。虛擬安全車在第 39 圈。",
+   "evidence_file": "evidence/news/sg-racefans-transcript-hold-position.txt",
+   "evidence_line": 283
+  },
+  {
+   "id": "R2-L43-HAM",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 43 圈）",
+   "verbatim": "Can I not just hold it out?",
+   "zh_gloss": "我不能就這樣撐下去嗎。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。 官方公開錄音有這一段（約 13:16 UTC），本站轉寫大意相符（聽寫為 hold it up，以 RaceFans 文字為準）。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 137
+  },
+  {
+   "id": "R2-L43-SANTI",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 43 圈）",
+   "verbatim": "Coming back to you.",
+   "zh_gloss": "我回頭答覆你。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。 Pit Debrief 快照也有這句。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 140
+  },
+  {
+   "id": "R2-L44-SANTI-1",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 44 圈）",
+   "verbatim": "And we are six laps short to do Plan C.",
+   "zh_gloss": "我們離能做 Plan C 還差六圈。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。 不同的量：這句與 The Race 的 six laps short（車隊判斷他還差六圈撐到終點）、Vasseur 的『晚六圈進站』（E-20）不是同一件事，正文不連結。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 145
+  },
+  {
+   "id": "R2-L44-HAM-1",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 44 圈）",
+   "verbatim": "Can I hold position? Like, if I pit, what do I lose?",
+   "zh_gloss": "我能守住位置嗎？如果我進站，會掉什麼。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。 不在官方公開錄音裡，只見於 RaceFans 與 Pit Debrief 逐字稿。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 148
+  },
+  {
+   "id": "R2-L44-SANTI-2",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 44 圈）",
+   "verbatim": "We are losing two positions with a delta pace advantage.",
+   "zh_gloss": "會掉兩個名次，並帶著圈速差上的優勢。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。 Pit Debrief 寫成『We are losing two positions [but] with a delta pace advantage』，括號是該站加的；以 RaceFans 為準。原話沒說優勢從哪來。本篇不拿本站推算去對『兩個名次』。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 151
+  },
+  {
+   "id": "R2-L44-HAM-2",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "漢米爾頓（第 44 圈）",
+   "verbatim": "Well, if we’re already losing two positions, should I wait to see if a VSC or something comes out?",
+   "zh_gloss": "既然已經是掉兩個名次，我要不要等等看有沒有虛擬安全車之類的出現。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 154
+  },
+  {
+   "id": "R2-L44-SANTI-3",
+   "source": "RaceFans（無線電逐字稿）",
+   "url": "https://www.racefans.net/2026/10/12/why-was-there-no-radio-of-the-vsc-message-which-prompted-hamiltons-apology/",
+   "attribution_type": "無線電逐字稿（RaceFans）",
+   "speaker": "Santi（第 44 圈）",
+   "verbatim": "We can try.",
+   "zh_gloss": "可以試試。",
+   "use_in_section": "H2-新",
+   "qualifiers": "RaceFans 逐字稿（虛擬安全車那篇），時間標是漢米爾頓當圈圈速；第 43 圈圈速 1:37.381、第 44 圈 1:37.541。",
+   "evidence_file": "evidence/news/sg-racefans-no-radio-vsc-message.txt",
+   "evidence_line": 157
+  },
+  {
+   "id": "R2-PF1-1",
+   "source": "PlanetF1 遙測分析稿",
+   "url": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 分析稿作者（頁面未標作者）",
+   "verbatim": "Without that crucial data, and knowing he hadn’t used the full potential of his current set, it’s easy to see why Hamilton tried to stay out, keep track position ahead of Leclerc, and try to defend it until the finish line.",
+   "zh_gloss": "沒有那份關鍵資料，又知道這組胎的潛力沒用完，就不難理解漢米爾頓為什麼想留在場上、守住在勒克萊爾前面的賽道位置、一路守到終點。",
+   "use_in_section": "H2-新",
+   "qualifiers": "作者評論，不是事實也不是當事人說法；『軟胎車手』是作者讀法（逐字稿只說 they）；同稿另寫 root cause 是車隊與車手溝通不良（E 既有條）。must_not 47。",
+   "evidence_file": "evidence/news/sg-planetf1-strategy-analysis.txt",
+   "evidence_line": 63
+  },
+  {
+   "id": "R2-PF1-2",
+   "source": "PlanetF1 遙測分析稿",
+   "url": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 分析稿作者（頁面未標作者）",
+   "verbatim": "Hamilton wanted information on the lap times of drivers on soft tyres at the end of their stints. Instead, the race engineer gave him current lap times.",
+   "zh_gloss": "漢米爾頓想知道軟胎車手在胎段尾聲的圈速；工程師給他的是當下的圈速。",
+   "use_in_section": "H2-新",
+   "qualifiers": "作者對無線電的轉述（無逐字），與 RaceFans 逐字稿方向一致；『軟胎』是作者讀法。",
+   "evidence_file": "evidence/news/sg-planetf1-strategy-analysis.txt",
+   "evidence_line": 57
+  },
+  {
+   "id": "R2-PF1-3",
+   "source": "PlanetF1 遙測分析稿",
+   "url": "https://www.planetf1.com/f1-data/lewis-hamilton-singapore-gp-ferrari-strategy-error-analysis",
+   "attribution_type": "評論員意見",
+   "speaker": "PlanetF1 分析稿作者（頁面未標作者）",
+   "verbatim": "Just a few laps before the Virtual Safety Car, Hamilton and his race engineer had a confusing radio exchange.",
+   "zh_gloss": "虛擬安全車前幾圈，漢米爾頓與賽車工程師有一次讓人困惑的無線電對話。",
+   "use_in_section": "H2-新",
+   "qualifiers": "正文只引 confusing radio exchange 三個字。",
+   "evidence_file": "evidence/news/sg-planetf1-strategy-analysis.txt",
+   "evidence_line": 55
+  },
+  {
+   "id": "R2-CR-1",
+   "source": "crash.net（漢米爾頓向法拉利道歉）",
+   "url": "https://www.crash.net/f1/news/1107485/1/lewis-hamilton-apologises-letting-down-ferrari-singapore-gp",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "we were expecting to do a long stint during the sprint race, but the sprint race was intermediate.",
+   "zh_gloss": "我們本來預期在衝刺賽跑一段長的，結果衝刺賽是半雨胎。",
+   "use_in_section": "H2-1",
+   "qualifiers": "crash.net 引述，沒標場合（Sky 訪問或媒體會不明）；原稿此句以 We 起頭，前接 We didn’t want to touch it for the race and；正文引時前面加省略號。",
+   "evidence_file": "evidence/news/sg-crash-hamilton-apologises.txt",
+   "evidence_line": 57
+  },
+  {
+   "id": "R2-CR-2",
+   "source": "crash.net（漢米爾頓向法拉利道歉）",
+   "url": "https://www.crash.net/f1/news/1107485/1/lewis-hamilton-apologises-letting-down-ferrari-singapore-gp",
+   "attribution_type": "車隊人員的話",
+   "speaker": "Vasseur（法拉利領隊）",
+   "verbatim": "That meant we all started the race today completely blind.",
+   "zh_gloss": "這代表今天我們所有人都是在完全看不見的狀態下開賽。",
+   "use_in_section": "H2-1",
+   "qualifiers": "crash.net 引述，沒標場合；不要和 Sky 訪問版『we were all in the same situation starting the race a bit blind』（講賽前 50-50）混成一句。這句講的是賽前輪胎資料，不是第 39 圈的決定。",
+   "evidence_file": "evidence/news/sg-crash-hamilton-apologises.txt",
+   "evidence_line": 63
   }
  ],
  "thesis_claim_count": "3 個主張（T1–T3），分別含 3、3、3 個可獨立被反駁的子主張，共 9 個（R1 修正）：T1＝①第 39 圈勒克萊爾進站、終點第 2，漢米爾頓留場、第 40–45 圈暫居第 2；②最後 22 圈對維斯塔潘多掉 45.192 秒、被 4 台超過、終點第 6；③45 秒裡胎齡與攻防各占多少拆不開。T2＝①車隊叫進站有雙方原話（Vasseur 對 Sky、漢米爾頓書面聲明；『兩台』只有 Vasseur 說）；②沒進站的原因：漢米爾頓聲明是一條（先錯過入口、後決定留），Vasseur 兩場訪問兩種說法、媒體會上同一句改口；③『無視／拒絕指令』是記者用語，桌內 36 篇新加坡報導裡沒有當事人說過。T3＝①本篇收錄範圍內具名來源的批評與稱讚都有、各針對哪些場次與誰說的（含車隊自承、2024 蒙札與 2026 巴塞隆納的獨立稱讚）；②2026 年收錄的澳洲、巴塞隆納、摩納哥、英國、匈牙利、新加坡爭在中立化時進不進站，『沒進』與『進了』都被具名質疑過；③本篇不是普查，不下『有沒有模式』的結論，歷史節不寫計數與頻率。全篇唯一一條『本站推論，信賴度中』是 F-10（判讀第 1 點）；原判讀第 4 點的歷史本站推論 R1 已刪。"
