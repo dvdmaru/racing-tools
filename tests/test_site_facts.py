@@ -80,6 +80,18 @@ class DoesNotFlagCorrectProse(unittest.TestCase):
         """「原公布 24 站」是歷史事實，三處敘述都拿它當對照起點。"""
         self.assertFalse(check("2026 年賽曆原公布 24 站。"))
 
+    def test_other_season_total_with_year_prefix_is_not_current(self):
+        """「2025 全季 24 站」講的是 2025 賽季，不是當季（排位差距導讀文誤中，2026-10-14）。"""
+        for s in ("把範圍拉到 2025 全季 24 站：跨欄配對共 2,888 組。",
+                  "整個賽季 2025全季24站的欄值換算。"):
+            self.assertFalse(check(s), f"誤判：{s}")
+
+    def test_year_prefix_exemption_does_not_swallow_current_season_claim(self):
+        """陰性對照：沒有年份緊接在前的「全季 N 站」仍要查，過期的仍要抓。"""
+        self.assertTrue(check("全季 24 站，從澳洲揭幕。"))
+        self.assertTrue(check("2026 年的全季 24 站已經定案。"))
+        self.assertFalse(check("全季 23 站，從澳洲揭幕。"))
+
 
 class ExemptionsAreNarrow(unittest.TestCase):
     """反向：豁免通道只在該豁免時豁免，不能變成掩蓋器。"""

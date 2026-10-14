@@ -1243,6 +1243,60 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-12T17:53:42+08:00",
       "note": "新加坡站（2026 第 17 站，10/11）正賽分析＋法拉利 2022–2026 策略爭議回顧。Charlie 2026-10-12 對話指派「我們寫一篇昨天的新加坡大獎賽分析，加上分析法拉利這幾年的迷之策略，主旨和來源核對照規則交給 Opus」，並回「合 racing #113」授權簽核、build、合併、部署（PENDING 帳本與 PR 內文皆已事先寫明此話即授權）。資料：F1 官方即時計時公開存檔（FastF1 3.8.3）＋Jolpica 賽果與進站；新加坡新聞 36 篇、歷史來源 71 篇原文存檔，事實包 82 條外語引文 verify-quotes 逐字命中。流程（指揮規則第 7、8、9 條）：Sonnet 研究席→Opus 資料查核（47 項：40 PASS／6 WEAKEN／1 FAIL）、Opus 新聞歸屬×3（182／74／169 條）、Opus 論點席→R1 agy PASS-WITH-FIXES＋Opus 替代席 PASS-WITH-FIXES（Terra 額度缺席，Terra R1 補跑取消）→Opus 修正棒（歷史節拿掉所有計數與頻率詞）→Sonnet 寫手（初稿凍結 40）→R2 Terra PASS-WITH-FIXES（1 BLOCKER：『其餘 17 位』母集應為 13）＋agy→DeepSeek 冷讀→Opus 總編輯（R2 修正＋減法）→R3 Terra PASS（零 finding）→合併前發現線上站已抓進第 17 站，拿掉『站上資料庫只到第 16 站／額外來源』四處說法（80 版），Terra R4 差異審查通過。簽核 sha256 與桌上 80-conductor.md 逐位元組一致；封面 check-covers 通過。【2026-10-13 追改，racing-tools PR #115】Charlie 回「改新加坡文，第 4 點中性帶一句」，並回「合 racing #115」授權重簽、build、合併、部署（PENDING 與 PR 內文事先寫明此話即授權）。追改內容：新增『第 32 到 44 圈，漢米爾頓在無線電上問了什麼，工程師回了什麼』一節（RaceFans 逐字稿＋本站計時對照＋PlanetF1 作者評論掛名）、起跑選胎節補 Vasseur 談衝刺賽、判讀節補『無線電說的』、限制聲明與來源列表補充；標題、導言、論點不變，無本站因果句。官方公開 Team Radio 整場 32 段、虛擬安全車期間沒有漢米爾頓錄音；約第 43 圈 13 秒只寫大意不引原話（Charlie 人耳聽取漢米爾頓半句）。審稿：Opus 乾淨室 R1／R3／R4（共抓 4 MAJOR、約 11 MINOR，全修）、Terra R2／R3 PASS 零 finding（Terra 未聽音檔、未抓到 Opus 的 MAJOR，故放行不只認 Terra）；R4 之後最後一處修改（RaceFans 沒播出通話原因照原文）未再送審。verify-quotes 102/102。兩席皆未聽 mp3 原檔。舊 article_sha256 00f5e73fe8cf…、舊 facts_sha256 13b8bef559c4…；approved_at 不動。"
+    },
+    {
+      "slug": "f1-101-qualifying-gap-reading",
+      "article_sha256": "7d3835f587acdfbd6f4315fe6af27fd6c5daea71098ad069964dc28c8da1157a",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-14T18:25:48+08:00",
+      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：排位差距怎麼讀：同一欄才能相減、百分比要寫分母、空格不是 0 秒。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-qualifying-gap-reading.70.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-101-grid-data-reading",
+      "article_sha256": "3c4783390ac940080704a65fbabbf383bcc3a9b61ca303a0139f37c10f18943e",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-14T18:25:48+08:00",
+      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：賽果表的「發車」欄不是排位名次，欄位自己答不出 0 的意思。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-grid-data-reading.70.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-101-grid-to-finish",
+      "article_sha256": "858e2262ef25637c1348f6b239e52a96bff929d173281e8840975380ac5d44e3",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-14T18:25:48+08:00",
+      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：「進步幾名」是本站自訂的結果差，不是超車數。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-grid-to-finish.60.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-101-championship-scenarios",
+      "article_sha256": "f30f833075bb5f92528350271a7537046d63d271c7ffacef00387389cbc717df",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-14T18:25:48+08:00",
+      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：封王算術只能證明「追不上」，證明不了「最後會追上」。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b（對 70 版）：Terra、Sol 都 PASS-WITH-FIXES，唯一必修項為資料來源小標改字，80 版＝70 版加該單行改字，套用後未再送審。簽核 sha256 與桌目錄 drafts/f1-101-championship-scenarios.80.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-101-tyre-stint-chart-reading",
+      "article_sha256": "c98d8da08c2d7b63e23e62ea821647e755c9b5c48e988f8d8648cd8038e803ff",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-14T18:25:48+08:00",
+      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：輪胎分段圖的換色處不一定對得上進站紀錄。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-tyre-stint-chart-reading.70.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-101-pit-stop-table-reading",
+      "article_sha256": "db9fd40eff3a1a0a59378c0f0540bc1c40799ff23b3ee424baaf56addd143b44",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-14T18:25:48+08:00",
+      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：進站表上的秒數是車道時間；記靜止時間的欄位在新加坡全空。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-pit-stop-table-reading.60.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
     }
   ]
 }

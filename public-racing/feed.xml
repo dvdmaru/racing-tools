@@ -6,6 +6,48 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>OpenF1 輪胎分段圖：換色的地方，不一定對得上進站紀錄</title>
+    <link>https://racing.twtools.cc/articles/f1-101-tyre-stint-chart-reading/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-tyre-stint-chart-reading/</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
+    <description>OpenF1 文件稱其為開放原始碼的非官方 F1 資料 API，且不隸屬 Formula 1 companies。把它 2026 新加坡正賽的 stint 紀錄和 pit 紀錄逐人對照，再拿 2025 墨西哥城正賽當對照場：OpenF1 的 Stints 欄位表記了圈段、配方原值與起始胎齡，但沒有磨耗或策略原因欄。</description>
+  </item>
+  <item>
+    <title>一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？</title>
+    <link>https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
+    <description>本站資料庫的 qualifying 表有 q1、q2、q3 三欄，本文採用的來源沒有這三欄的欄位說明。拿它算差距之前，先固定同一場、同一欄，寫出百分比的分母，空格當缺值、不當零秒。</description>
+  </item>
+  <item>
+    <title>新加坡這張進站表，拆得出車輛靜止了多久嗎？</title>
+    <link>https://racing.twtools.cc/articles/f1-101-pit-stop-table-reading/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-pit-stop-table-reading/</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
+    <description>OpenF1 和 Jolpica 的進站欄位各自怎麼定義、兩邊能不能互相替代、空值該怎麼讀：拿 2026 新加坡正賽和 2025 墨西哥城正賽的快照逐筆對照。</description>
+  </item>
+  <item>
+    <title>賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀</title>
+    <link>https://racing.twtools.cc/articles/f1-101-grid-to-finish/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-grid-to-finish/</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
+    <description>本站把 grid 顯示為發車位；把它減去同一列的 position，得到的是本站自訂的結果差，本文能查的資料源文件沒有定義它。單看這個數字，讀不出超了幾台，也讀不出配速。</description>
+  </item>
+  <item>
+    <title>怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排</title>
+    <link>https://racing.twtools.cc/articles/f1-101-grid-data-reading/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-grid-data-reading/</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
+    <description>本站賽果表的『發車』欄，放的是資料源的 grid 值。它和本站排位表的名次並排，看得出哪幾筆不同；單靠這兩欄，看不出不同的原因。0 在我們能查到的資料源文件裡沒有定義。</description>
+  </item>
+  <item>
+    <title>封王算術能證明「追不上了」，證明不了「最後會追上」</title>
+    <link>https://racing.twtools.cc/articles/f1-101-championship-scenarios/</link>
+    <guid>https://racing.twtools.cc/articles/f1-101-championship-scenarios/</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
+    <description>封王上限篩檢不成立時，只能讀成「還沒在算術上確定」：式子把積分領先者的分數停在截點，剩下的每一場只填最高值，所以讀不出誰比較有機會。</description>
+  </item>
+  <item>
     <title>新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓則留在場上</title>
     <link>https://racing.twtools.cc/articles/f1-2026-r17-singapore-ferrari-strategy-ledger/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-r17-singapore-ferrari-strategy-ledger/</guid>
@@ -102,48 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-fia-documents/</guid>
     <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
     <description>規章把 FIA 另發的文件分成兩邊：有約束力的限於四類，還要規章條款明文授權；技術指令與賽事指令被列為無約束力的例子。但規章正文也把部分定義交給文件。個別文件站哪一邊，要看文件自己的標示；標為有約束力的，還要有規章條款明文授權並標出依據條號，而且只限四類。這些文件在查證範圍內一份也讀不到。</description>
-  </item>
-  <item>
-    <title>F1 超級執照的條文沒有寫體檢，車手的健康關卡在另一張執照</title>
-    <link>https://racing.twtools.cc/articles/f1-101-driver-medical/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-driver-medical/</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
-    <description>超級執照要先有 FIA 國際 A 級駕照，視力、色覺、心血管的門檻就寫在那張駕照的醫療規章裡。附則 L 替 F1 等多個系列共用的特別措施（賽事中六項、賽事外四項），是出事之後的通報與共同重返檢查。</description>
-  </item>
-  <item>
-    <title>F1 技術規章只寫過一次「driver aid」，而且是在講換檔</title>
-    <link>https://racing.twtools.cc/articles/f1-101-driver-aids/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-driver-aids/</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
-    <description>運動規章只有一句「獨自、不受協助地駕駛」，沒有說什麼算協助。在查過的 10 份 2026 年版規章文件裡，「driver aid」只出現一次。循跡、離合器、換檔、起跑各有各的條文，有的禁功能，有的明列例外。</description>
-  </item>
-  <item>
-    <title>F1 撞車之後的救援：人車配置有底線，到場時間規章沒寫</title>
-    <link>https://racing.twtools.cc/articles/f1-101-crash-rescue/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-crash-rescue/</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
-    <description>附則 H 整份自稱建議，醫療服務那一章卻對有醫療代表的錦標賽寫明 strictly mandatory。賽道管理員那一段沒有 F1 專屬條款，而且全文查不到人員或車輛的到場時限。</description>
-  </item>
-  <item>
-    <title>看得見翼片在動，算不算違規？F1 規章用載重測試回答</title>
-    <link>https://racing.twtools.cc/articles/f1-101-aero-legality-checks/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-aero-legality-checks/</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
-    <description>規章要求空力件剛性、相對參考框架不動；有對應載重測試的部件，通過測試只就受測的那項變形視為合規，FIA 還能對疑似在動的車身加測。</description>
-  </item>
-  <item>
-    <title>新加坡站 14 屆都有安全車，2024 年第一次沒有</title>
-    <link>https://racing.twtools.cc/articles/f1-singapore-marina-bay-safety-car-pole/</link>
-    <guid>https://racing.twtools.cc/articles/f1-singapore-marina-bay-safety-car-pole/</guid>
-    <pubDate>Fri, 02 Oct 2026 00:00:00 +0800</pubDate>
-    <description>2008 到 2023 年的 14 屆全都出過安全車，另有 4 屆被兩小時上限截在預定圈數前；桿位贏下正賽的比率，在辦過至少 8 場的 20 條賽道裡排第 2，但只有 16 屆的樣本。2026 年，F1 與 FIA 公布這條賽道將首次辦衝刺賽。</description>
-  </item>
-  <item>
-    <title>雪邦自 2017 年後首度回到 F1，22 位車手有 12 位沒在這裡跑過正賽</title>
-    <link>https://racing.twtools.cc/articles/f1-sepang-nine-years-guide/</link>
-    <guid>https://racing.twtools.cc/articles/f1-sepang-nine-years-guide/</guid>
-    <pubDate>Fri, 02 Oct 2026 00:00:00 +0800</pubDate>
-    <description>維斯塔潘（Max Verstappen）贏下了 2017 年最後一屆雪邦。Pirelli 與 RaceFans 都說這次隔了 9 年。過去 19 屆，起跑第 1 格贏了 9 屆；來源明寫中斷或重來的有 3 屆；Pirelli 說午後雷雨可能影響這個週末的任何一節。</description>
   </item>
 </channel>
 </rss>
