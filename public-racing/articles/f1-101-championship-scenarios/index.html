@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>封王算術能證明「追不上了」，證明不了「最後會追上」 | 賽車數據誌</title>
+<meta name="description" content="封王上限篩檢不成立時，只能讀成「還沒在算術上確定」：式子把積分領先者的分數停在截點，剩下的每一場只填最高值，所以讀不出誰比較有機會。">
+<meta property="og:title" content="封王算術能證明「追不上了」，證明不了「最後會追上」">
+<meta property="og:description" content="封王上限篩檢不成立時，只能讀成「還沒在算術上確定」：式子把積分領先者的分數停在截點，剩下的每一場只填最高值，所以讀不出誰比較有機會。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-championship-scenarios/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-championship-scenarios/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-championship-scenarios/#article","headline":"封王算術能證明「追不上了」，證明不了「最後會追上」","description":"封王上限篩檢不成立時，只能讀成「還沒在算術上確定」：式子把積分領先者的分數停在截點，剩下的每一場只填最高值，所以讀不出誰比較有機會。","datePublished":"2026-10-13","dateModified":"2026-10-13","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-championship-scenarios/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"封王算術能證明「追不上了」，證明不了「最後會追上」","item":"https://racing.twtools.cc/articles/f1-101-championship-scenarios/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-championship-scenarios/#faq","mainEntity":[{"@type":"Question","name":"做上限時，剩下的每場正賽都填冠軍分嗎？","acceptedAnswer":{"@type":"Answer","text":"做上限時，每場尚未舉行的正賽填 2026 年 Section A（Issue 03）全額欄的冠軍分 25 分。但這一欄要該場正賽領頭的車手完成排定距離 75% 以上，而且任何積分都要先有領頭車手在沒有安全車或虛擬安全車的情況下連續完整跑完兩圈，所以實際可能更少；取消的場次不算（A2.1.4(a)、A2.2.1）。本篇的 2025 範例是把這個 2026 年的數字代入做算術示意，不是 2025 年規則下的上限。"}},{"@type":"Question","name":"領先差剛好等於剩餘最多可得分，算封王嗎？","acceptedAnswer":{"@type":"Answer","text":"不能只靠積分判定。要依 A2.1.4(c) 比 first places in a race、再比第二名、第三名，仍分不出才比該季排位結果。條文的 race 是否包含衝刺賽，本篇引用的 2026 年 Section A（Issue 03）與 Section B（Issue 09）條文不足以判定；真的同分，要回查當期適用規章或 FIA 正式分類。"}},{"@type":"Question","name":"站內資料庫能直接查某一站後的積分榜嗎？","acceptedAnswer":{"@type":"Answer","text":"不能。driver_standings 以賽季與車手為主鍵、沒有站次欄，要自己把截點前的 results.points 與 sprint_results.points 加總。若只要數站內正賽結果表的第一名列數，可用 results.position_text='1'，但單靠這個列數不足以完成同分判定，同分要回查當期適用規章或 FIA 正式分類。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="主導覽">
+      <details class="nav-group">
+        <summary>本季</summary>
+        <div class="nav-menu">
+          <a href="/standings/">積分榜<small>車手與車隊年度積分</small></a>
+          <a href="/calendar/">賽曆<small>全季賽程，換算台北時間</small></a>
+          <a href="/results/">賽果<small>各站正賽完整名次</small></a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary>百科</summary>
+        <div class="nav-menu">
+          <a href="/seasons/">歷年<small>1950 年起的歷屆賽季</small></a>
+          <a href="/drivers/">車手<small>歷代世界冠軍與現役車手</small></a>
+          <a href="/constructors/">車隊<small>現役車隊名錄</small></a>
+          <a href="/circuits/">賽道<small>歷年賽道名錄</small></a>
+        </div>
+      </details>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active" aria-current="page">文章</a>
+    </nav>
+    <div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="選單"><span class="nt-icon" aria-hidden="true"></span><span class="nt-text">選單</span></button>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">封王算術能證明「追不上了」，證明不了「最後會追上」</h1>
+  <div class="art-meta"><span>2026 年 10 月 13 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">把站內資料庫裡 2025 年前 23 場的正賽與衝刺賽積分逐場加總，諾里斯（Lando Norris）408 分、維斯塔潘（Max Verstappen）396 分、皮亞斯特里（Oscar Piastri）392 分；剩下的第 24 場阿布達比，資料庫的衝刺賽結果表裡沒有這一場的列。這篇拿這個截點走一遍封王上限檢查表，看它能回答什麼，答不出什麼。</p>
+  <article class="prose">
+<p>站內資料庫有一張車手積分表，叫 <code>driver_standings</code>。它的欄位有賽季、名次、積分、勝場，沒有「第幾站」。</p>
+<p>所以想問「2025 年第 23 場打完，誰領先」，這張表答不出來。</p>
+<p>要回答某個截點，只能自己動手：把那一站以前的正賽積分和衝刺賽積分，逐場加起來。</p>
+<p>加完之後，才輪到封王算式上場。它拿截點的分數當輸入，輸出只有兩種：成立，或不成立。成立的時候，它能證明積分上追不上了。不成立的時候，答案只是「這條式子判不出來」。</p>
+<h2>站內車手積分表沒有「第 23 場後」這一列</h2>
+<p><code>driver_standings</code> 裡，同一賽季的同一位車手最多一列（主鍵是賽季加車手）。正賽積分放在 <code>results</code> 表，衝刺賽積分放在另一張 <code>sprint_results</code> 表。截點之前的分數，要從這兩張表各自加到第 23 場，再相加。</p>
+<p>2025 年這樣加到第 23 場，<a href="/drivers/norris/">諾里斯</a> 408 分，<a href="/drivers/max-verstappen/">維斯塔潘</a> 396 分，<a href="/drivers/piastri/">皮亞斯特里</a> 392 分。第 24 場是 2025 年 12 月 7 日的阿布達比大獎賽，<code>sprint_results</code> 表裡沒有這一場的列。這三個數字是本文逐場自行加總的結果，不是轉引自官方榜單。</p>
+<p>2025 年全季用同一種方式加總，結果和站內 <code>driver_standings</code> 的 2025 年積分一分不差。這個「對得上」只在 2025 年驗過。</p>
+<h2>剩下的場次，每場只填一個最高值</h2>
+<p>做上限檢查，剩下的每一場只填一個數字：該場最多能拿幾分。</p>
+<p>2026 年 Section A（Issue 03）把正賽積分分成四欄，看的是該場正賽領頭的車手跑完了排定距離的幾成。完成 75% 以上，採第 4 欄，也就是全額欄，冠軍 25 分（A2.2.1）。</p>
+<p>衝刺賽另有一張表，只用在另類賽制週末（Alternative Format Competition）。領頭的車手完成排定衝刺距離 50% 以上，冠軍 8 分（A2.2.2）。</p>
+<p>兩張表都有同一個前提：領頭的車手要在沒有安全車或虛擬安全車的情況下，連續完整跑完至少兩圈。</p>
+<p>所以 25 和 8 是「全額、而且拿第一」的理論上限，不是必得的分數。場次取消，就從上限裡拿掉（A2.1.4(a)）。比賽已經縮短，或已經確定採其他欄，就改用那一欄的分數重算。賽前做保守篩檢，才取最高欄。</p>
+<p>這個上限只會偏保守，前提有兩個。列出的場次，要就是剩下的全部。填進去的數字，也不能低於該年真正的最高分。25 和 8 出自 2026 年版條文，其他年份要先查那一年的條文。</p>
+<h2>對每一位追趕者各算一次</h2>
+<p>算式是這樣讀的：積分領先者現在的分數，要嚴格大於每一位追趕者「現在的分數，加上剩餘場次的最高分」。要宣告追不上，每一位都得過關。只要一位沒過，整條式子就不成立。</p>
+<p>2025 年第 23 場後，只剩阿布達比一站。站內的衝刺賽結果表沒有這一站的列，所以照本站資料庫的口徑，每位追趕者的剩餘最高分，只算一場正賽的冠軍分。</p>
+<p>把 2026 年 Section A（Issue 03）A2.2.1 全額欄的正賽冠軍分 25 分，代入 2025 年第 23 場後的分數：維斯塔潘 396 + 25 = 421，皮亞斯特里 392 + 25 = 417，都高於諾里斯的 408。下一位<a href="/drivers/russell/">羅素</a>（George Russell）代入後只到 334。把站內 2025 年資料裡的每位車手逐一代入，達到或超過 408 分的，只有維斯塔潘與皮亞斯特里。</p>
+<p>這個截點有兩位追趕者沒過關，所以式子不成立。</p>
+<p>這是代入的算術示意，不是 2025 年規則下的上限，也不能用來判定 2025 年的實際封王條件。代入時假設第 24 場照排定舉行。</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 316" role="img" aria-label="封王上限篩檢示意：追趕者的截點分數加上延伸段，與積分領先者對照">
+<title>封王上限篩檢示意</title>
+<desc>2025 年第 23 場後，站內資料庫把正賽與衝刺賽積分逐場加總：諾里斯 408 分、維斯塔潘 396 分、皮亞斯特里 392 分；站內資料庫的衝刺賽結果表沒有第 24 場阿布達比的列。延伸段是把 2026 年 Section A（Issue 03）全額欄的正賽冠軍分 25 分，代入第 24 場的算術示意：維斯塔潘到 421 分、皮亞斯特里到 417 分，都高於 408 分。全額欄要該場正賽領頭的車手完成排定距離 75% 以上；而且任何積分都要先有領頭車手在沒有安全車或虛擬安全車的情況下，連續完整跑完兩圈。代入時假設第 24 場照排定舉行。這不是 2025 年規則下的上限，也不是預測；諾里斯的分數停在第 23 場後，沒有算他第 24 場會拿的分。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="308" rx="10"/>
+<text class="d-fg" x="20" y="30" font-size="15">2025 年第 23 場後｜站內資料庫</text>
+<text class="d-fg" x="20" y="50" font-size="14">正賽＋衝刺賽逐場加總；第 24 場無衝刺賽列</text>
+<text class="d-fg" x="20" y="86" font-size="14">諾里斯　408</text>
+<rect class="d-accent d-line-s" x="20" y="94" width="286" height="18" rx="3"/>
+<text class="d-fg" x="20" y="138" font-size="14">維斯塔潘　396</text>
+<rect class="d-accent d-line-s" x="20" y="146" width="277" height="18" rx="3"/>
+<rect class="d-none d-accent-s" x="297" y="146" width="18" height="18" rx="3" stroke-width="2" stroke-dasharray="4 3"/>
+<text class="d-fg" x="20" y="190" font-size="14">皮亞斯特里　392</text>
+<rect class="d-accent d-line-s" x="20" y="198" width="274" height="18" rx="3"/>
+<rect class="d-none d-accent-s" x="294" y="198" width="18" height="18" rx="3" stroke-width="2" stroke-dasharray="4 3"/>
+<line class="d-fg d-line-s" x1="306" y1="68" x2="306" y2="228" stroke-width="2"/>
+<rect class="d-accent d-line-s" x="20" y="244" width="18" height="12" rx="2"/>
+<text class="d-fg" x="46" y="255" font-size="14">逐場加總的截點分數</text>
+<rect class="d-none d-accent-s" x="20" y="266" width="18" height="12" rx="2" stroke-width="2" stroke-dasharray="4 3"/>
+<text class="d-fg" x="46" y="277" font-size="14">篩檢延伸段</text>
+<text class="d-fg" x="20" y="300" font-size="14">直線：諾里斯的截點分數</text>
+</svg>
+<figcaption>圖：2025 年第 23 場後，站內資料庫把正賽與衝刺賽積分逐場加總的三位車手分數。延伸段是把 2026 年 Section A（Issue 03）全額欄的正賽冠軍分，代入第 24 場（站內資料庫沒有該站的衝刺賽結果列，並假設照排定舉行）的算術示意；全額欄要該場正賽領頭的車手完成排定距離 75% 以上，而且先在沒有安全車或虛擬安全車的情況下連續完整跑完兩圈。延伸段不是 2025 年規則下的上限，也不是預測，諾里斯的分數停在第 23 場後。本站依資料庫自行整理的示意，非依比例。</figcaption>
+</figure>
+
+<h2>式子沒算領先者之後會拿的分</h2>
+<p>式子不成立的時候，能讀出什麼？很少。</p>
+<p>式子把積分領先者的分數停在截點。諾里斯的 408 分停在第 23 場後，沒有加上他第 24 場會拿的分。追趕者那一邊，則每一場都填最高值。</p>
+<p>一邊停住，一邊拉滿，所以不成立只代表「還沒在算術上確定」。它推不出追趕者拿滿就會封王，也看不出誰比較有機會。</p>
+<p>成立的時候，結論才有力量。只要列出的場次就是剩下的全部、填的數字不低於該年真正的最高分，連最樂觀的填法都追不上，積分上就是追不上了。</p>
+<p>「追不上」可以證明；「最後會追上」，這條式子證明不了。</p>
+<h2>剛好等於時，要翻到同分條款</h2>
+<p>嚴格大於，是不必動用同分條款的充分條件，不是唯一的封王路徑。剛好等於的那一格，這套檢查表不處理。</p>
+<p>等號要翻到 2026 年 Section A（Issue 03）的同分程序：先比 <code>first places in a race</code> 的次數，再比第二名、第三名等次數；全部分不出來，才把同一套比法用在該季的排位賽結果（A2.1.4(c)）。</p>
+<p>這裡的 <code>race</code> 是否包含衝刺賽，本篇引用的條文不足以判定。所以本篇只教嚴格大於。真的同分，要回查當期適用規章或 FIA 正式分類。</p>
+<p>站內資料庫也數得出第一名列數：正賽結果表裡 <code>position_text</code> 為 1 的列。但這個計數只代表站內正賽表的第一名列數；單靠它，不足以完成 A2.1.4(c) 的同分判定。</p>
+<h2>常見問題</h2>
+<h3>做上限時，剩下的每場正賽都填冠軍分嗎？</h3>
+<p>做上限時，每場尚未舉行的正賽填 2026 年 Section A（Issue 03）全額欄的冠軍分 25 分。但這一欄要該場正賽領頭的車手完成排定距離 75% 以上，而且任何積分都要先有領頭車手在沒有安全車或虛擬安全車的情況下連續完整跑完兩圈，所以實際可能更少；取消的場次不算（A2.1.4(a)、A2.2.1）。本篇的 2025 範例是把這個 2026 年的數字代入做算術示意，不是 2025 年規則下的上限。</p>
+<h3>領先差剛好等於剩餘最多可得分，算封王嗎？</h3>
+<p>不能只靠積分判定。要依 A2.1.4(c) 比 <code>first places in a race</code>、再比第二名、第三名，仍分不出才比該季排位結果。條文的 <code>race</code> 是否包含衝刺賽，本篇引用的 2026 年 Section A（Issue 03）與 Section B（Issue 09）條文不足以判定；真的同分，要回查當期適用規章或 FIA 正式分類。</p>
+<h3>站內資料庫能直接查某一站後的積分榜嗎？</h3>
+<p>不能。<code>driver_standings</code> 以賽季與車手為主鍵、沒有站次欄，要自己把截點前的 <code>results.points</code> 與 <code>sprint_results.points</code> 加總。若只要數站內正賽結果表的第一名列數，可用 <code>results.position_text='1'</code>，但單靠這個列數不足以完成同分判定，同分要回查當期適用規章或 FIA 正式分類。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-101-points-championship/">F1 積分怎麼算：前十名有分，冠軍不一定是贏最多場的人</a>：積分表、縮減積分欄與同分比法</li>
+<li><a href="/articles/f1-101-sprint-weekend/">F1 衝刺賽週末怎麼跑：多一場短賽，其他環節怎麼跟著變</a>：衝刺賽週末的流程</li>
+</ul>
+<h2>資料來源</h2>
+<p>一手來源（FIA 規章）：</p>
+<ul>
+<li>FIA《2026 Formula 1 General Regulatory Provisions》Section A，Issue 03（2026-06-25 發布；FIA 官方網站公開文件）：A2.1.4 冠軍的計分範圍與同分排序、A2.2.1 正賽積分、A2.2.2 衝刺賽積分</li>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf">FIA 2026 F1 Regulations, Section B [Sporting], Issue 09（2026-10-01）</a>：B2.3.1 與 B2.5.1 的 Sprint、Race session 命名</li>
+</ul>
+<p>資料服務文件：本文未使用。</p>
+<p>本站自有資料：本站 F1 資料庫的 <code>driver_standings</code>、<code>results</code>、<code>sprint_results</code>、<code>races</code> 表（2026-10-13 查詢）。408、396、392 是逐場自行加總的結果，421、417、334 是代入後自行計算的結果，都不是轉引自官方積分榜。</p>
+<p>二手來源：本文未使用媒體報導。</p>
+<p>查證日：2026-10-13。限制：25 分與 8 分取自 2026 年 Section A（Issue 03），未取得 2025 年版 Section A，所以 2025 範例只是代入的算術示意；逐場加總對得上 <code>driver_standings</code>，只在 2025 年驗過；同分條款的 <code>race</code> 是否包含衝刺賽，已讀的 A2.1.4(c)、A2.2.2、Section A 定義段與 Section B（Issue 09）B2.3.1、B2.5.1 都沒有寫明如何適用，本文不替它下定義；2025 年的最終名次與總分不在本文範圍。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂數據 第 10 / 10 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-grid-to-finish/"><span class="lbl">← 新手村上一篇</span>賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀</a></div></div><div class="art-nav"><a href="/articles/f1-2026-r17-singapore-ferrari-strategy-ledger/"><span class="lbl">← 前一篇</span>新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓則留在場上</a><a href="/articles/f1-101-grid-data-reading/" style="text-align:right"><span class="lbl">後一篇 →</span>怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+
+(function initNav() {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  h.classList.add('has-js');
+  var btn = h.querySelector('.nav-toggle');
+  var groups = [].slice.call(h.querySelectorAll('.nav-group'));
+  var mq = window.matchMedia('(max-width: 719px)');
+  function closeAll(except) { groups.forEach(function (g) { if (g !== except) g.open = false; }); }
+  function setDrawer(open) {
+    h.classList.toggle('nav-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) groups.forEach(function (g) { g.open = true; });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('toggle', function () { if (g.open && !mq.matches) closeAll(g); });
+    g.addEventListener('focusout', function (e) {
+      if (!mq.matches && e.relatedTarget && !g.contains(e.relatedTarget)) g.open = false;
+    });
+  });
+  if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
+  // 點 header 外面：任何寬度都收——桌機收下拉，手機連抽屜一起收（觸控沒有 Esc，少了這條手機只能再按一次選單鈕）
+  document.addEventListener('click', function (e) { if (!h.contains(e.target)) { closeAll(); setDrawer(false); } });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
+    var a = document.activeElement, g = a && a.closest ? a.closest('.nav-group') : null;
+    var back = g ? g.querySelector('summary') : (h.classList.contains('nav-open') ? btn : null);
+    closeAll(); setDrawer(false);
+    if (back) back.focus();
+  });
+  var onChange = function () { closeAll(); setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
+})();
+</script>
+</body>
+</html>

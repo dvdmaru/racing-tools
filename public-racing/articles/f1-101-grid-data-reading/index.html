@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="carbon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排 | 賽車數據誌</title>
+<meta name="description" content="本站賽果表的『發車』欄，放的是資料源的 grid 值。它和本站排位表的名次並排，看得出哪幾筆不同；單靠這兩欄，看不出不同的原因。0 在我們能查到的資料源文件裡沒有定義。">
+<meta property="og:title" content="怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排">
+<meta property="og:description" content="本站賽果表的『發車』欄，放的是資料源的 grid 值。它和本站排位表的名次並排，看得出哪幾筆不同；單靠這兩欄，看不出不同的原因。0 在我們能查到的資料源文件裡沒有定義。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-grid-data-reading/">
+<meta property="og:site_name" content="賽車數據誌">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-grid-data-reading/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-grid-data-reading/#article","headline":"怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排","description":"本站賽果表的『發車』欄，放的是資料源的 grid 值。它和本站排位表的名次並排，看得出哪幾筆不同；單靠這兩欄，看不出不同的原因。0 在我們能查到的資料源文件裡沒有定義。","datePublished":"2026-10-13","dateModified":"2026-10-13","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-grid-data-reading/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排","item":"https://racing.twtools.cc/articles/f1-101-grid-data-reading/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-grid-data-reading/#faq","mainEntity":[{"@type":"Question","name":"賽果表的『發車』和排位名次是同一個數嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。以本站資料庫的 2025 墨西哥城大獎賽（第 20 站，2025-10-26）為例，20 位車手中有 6 位的賽果表『發車』欄數字和本站排位表名次不同；這是一場的例子，不代表其他場的比例。"}},{"@type":"Question","name":"發車欄寫 0 是什麼意思？","acceptedAnswer":{"@type":"Answer","text":"我們能查到的資料源文件沒有定義。本站資料庫（全部賽季，2026-10-13 查詢）26,247 筆賽果中，有 267 筆的發車欄是 0；單看這一欄，不能判斷它是維修區起跑、撤車或其他情況。"}},{"@type":"Question","name":"為什麼有些車手的『發車』欄數字和排位名次不同？","acceptedAnswer":{"@type":"Answer","text":"單靠賽果表的『發車』欄和本站排位表的名次，判斷不了。個別車手的原因，要另找有記載原因的來源核對；這兩欄能讀到什麼，見「兩欄數字不同，表上能讀到什麼」一節。"}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN5FKJNCVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DN5FKJNCVQ');
+</script>
+<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
+<script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="container">
+  <header class="site-header">
+    <div class="brand-block">
+      <a href="/" class="brand-mark">@RACING</a>
+      <div class="brand-tag">賽車數據 · 台北時間</div>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="主導覽">
+      <details class="nav-group">
+        <summary>本季</summary>
+        <div class="nav-menu">
+          <a href="/standings/">積分榜<small>車手與車隊年度積分</small></a>
+          <a href="/calendar/">賽曆<small>全季賽程，換算台北時間</small></a>
+          <a href="/results/">賽果<small>各站正賽完整名次</small></a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary>百科</summary>
+        <div class="nav-menu">
+          <a href="/seasons/">歷年<small>1950 年起的歷屆賽季</small></a>
+          <a href="/drivers/">車手<small>歷代世界冠軍與現役車手</small></a>
+          <a href="/constructors/">車隊<small>現役車隊名錄</small></a>
+          <a href="/circuits/">賽道<small>歷年賽道名錄</small></a>
+        </div>
+      </details>
+      <a href="/guide/">新手村</a>
+      <a href="/articles/" class="active" aria-current="page">文章</a>
+    </nav>
+    <div class="theme-switch">
+  <span class="ts-label">配色</span>
+  <div class="ts-dots">
+    <button class="ts-dot" data-theme="carbon" onclick="setTheme('carbon')" style="--sw:#d63a2f" aria-label="賽車紅"></button>
+    <button class="ts-dot" data-theme="asphalt" onclick="setTheme('asphalt')" style="--sw:#1f9d6b" aria-label="灰綠"></button>
+    <button class="ts-dot" data-theme="midnight" onclick="setTheme('midnight')" style="--sw:#c8971f" aria-label="霧藍金"></button>
+    <button class="ts-dot" data-theme="gravel" onclick="setTheme('gravel')" style="--sw:#d1652f" aria-label="陶土"></button>
+    <button class="ts-dot" data-theme="silver" onclick="setTheme('silver')" style="--sw:#4f7cc9" aria-label="岩灰"></button>
+  </div>
+</div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="選單"><span class="nt-icon" aria-hidden="true"></span><span class="nt-text">選單</span></button>
+  </header>
+
+  <main>
+  <div class="art-kicker">長青指南</div>
+  <h1 class="art-h1">怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排</h1>
+  <div class="art-meta"><span>2026 年 10 月 13 日</span><span>賽車數據誌</span></div>
+  
+  
+  <p class="art-lede">把本站資料庫裡 2025 年墨西哥城大獎賽（第 20 站，2025-10-26）的賽果表『發車』欄，和本站排位表的名次欄並排，20 位車手有 14 位相同、6 位不同：其中 5 位的發車欄數字比排位名次小 1，1 位大 5。單靠這兩欄，看不出這 6 位為什麼不同。</p>
+  <article class="prose">
+<p>本站資料庫裡的 2025 年墨西哥城大獎賽（第 20 站，2025-10-26），有一位車手在本站排位表的名次欄是 7，在賽果表的『發車』欄卻是 12。同一場另有 5 位車手，這兩欄只差 1。</p>
+<p>那位車手是<a href="/drivers/sainz/">塞恩斯</a>。差 1 的 5 位是<a href="/drivers/piastri/">皮亞斯特里</a>、<a href="/drivers/hadjar/">哈賈爾</a>、<a href="/drivers/bearman/">貝爾曼</a>、Tsunoda 和<a href="/drivers/ocon/">奧康</a>，他們的『發車』欄數字，都比排位名次小 1。</p>
+<p>這兩欄並排，看得出哪幾位不一樣。看不出的是為什麼。『發車』欄適合拿來找差異，不適合拿來解釋差異。</p>
+<p>賽果表裡還有一個更難讀的值：0，後面單獨講。</p>
+<h2>『發車』這一欄從哪裡來</h2>
+<p>本站賽果表每位車手一列，『發車』欄放的是資料源賽果裡的 grid 值。</p>
+<p>本站的數字和資料源對不對得上？拿兩場對照：2025 年墨西哥城大獎賽（第 20 站）的 20 列，加上 2026 年新加坡大獎賽（第 17 站）的 22 列，本站資料庫的 grid 和資料源賽果快照逐車一致。新加坡只用在這次對照，後面的例子都是墨西哥城。</p>
+<p>一致只代表這兩場的逐車數字相同。它沒有說這個數字的定義。</p>
+<p>本站資料庫替名次、積分幾欄寫了說明，grid 沒有。我們能查到的資料源文件，也沒有這個欄位的定義。</p>
+<p>所以表上的『發車』欄，是一個轉手過的數字：數字在表上，定義不在表上。往下讀的時候，把它當成「這一欄的值」來比較，不替它補定義。</p>
+<h2>把兩欄並排：墨西哥城這一場</h2>
+<p>並排的做法是：同一位車手、同一場、同一季，拿賽果表的『發車』欄，去對本站排位表的名次欄。</p>
+<p>2025 年墨西哥城大獎賽（第 20 站），本站資料庫裡有 20 位車手兩邊都有資料。14 位兩欄相同，6 位不同。</p>
+<figure class="diagram">
+<svg viewBox="0 0 420 340" role="img" aria-label="兩欄並排圖：本站排位表名次與本站賽果表『發車』欄">
+<title>兩欄並排：排位表名次與賽果表『發車』欄</title>
+<desc>左欄本站排位表名次、右欄本站賽果表發車欄，2025 墨西哥城大獎賽（第 20 站，2025-10-26）。皮亞斯特里 8→7、哈賈爾 9→8、貝爾曼 10→9、Tsunoda 11→10、奧康 12→11、塞恩斯 7→12；其餘 14 位兩欄相同。圖只顯示數字差異，不表示原因。</desc>
+<rect class="d-surface d-line-s" x="4" y="4" width="412" height="332" rx="10"/>
+<text class="d-fg" x="20" y="30" font-size="15">兩欄數字不同的 6 位車手</text>
+<text class="d-fg" x="14" y="62" font-size="14">排位表名次</text>
+<text class="d-fg" x="288" y="62" font-size="14">賽果表發車欄</text>
+<text class="d-fg" x="20" y="101" font-size="14">7</text>
+<text class="d-fg" x="20" y="135" font-size="14">8</text>
+<text class="d-fg" x="20" y="169" font-size="14">9</text>
+<text class="d-fg" x="14" y="203" font-size="14">10</text>
+<text class="d-fg" x="14" y="237" font-size="14">11</text>
+<text class="d-fg" x="14" y="271" font-size="14">12</text>
+<line class="d-fg-s" x1="48" y1="130" x2="282" y2="96" stroke-width="1.5"/>
+<line class="d-fg-s" x1="48" y1="164" x2="282" y2="130" stroke-width="1.5"/>
+<line class="d-fg-s" x1="48" y1="198" x2="282" y2="164" stroke-width="1.5"/>
+<line class="d-fg-s" x1="48" y1="232" x2="282" y2="198" stroke-width="1.5"/>
+<line class="d-fg-s" x1="48" y1="266" x2="282" y2="232" stroke-width="1.5"/>
+<line class="d-accent-s" x1="48" y1="96" x2="282" y2="266" stroke-width="3.5"/>
+<text class="d-fg" x="290" y="101" font-size="14">7　皮亞斯特里</text>
+<text class="d-fg" x="290" y="135" font-size="14">8　哈賈爾</text>
+<text class="d-fg" x="290" y="169" font-size="14">9　貝爾曼</text>
+<text class="d-fg" x="290" y="203" font-size="14">10　Tsunoda</text>
+<text class="d-fg" x="290" y="237" font-size="14">11　奧康</text>
+<text class="d-fg" x="290" y="271" font-size="14">12　塞恩斯</text>
+<text class="d-fg" x="20" y="304" font-size="14">2025 墨西哥城大獎賽（第 20 站，2025-10-26）</text>
+<text class="d-fg" x="20" y="324" font-size="14">本站資料庫｜其餘 14 位兩欄相同</text>
+</svg>
+<figcaption>圖：2025 墨西哥城大獎賽（第 20 站，2025-10-26），本站資料庫裡賽果表『發車』欄和本站排位表名次不同的 6 位車手；圖只呈現數字，不表示造成差異的原因。本站依資料庫自行整理的示意，非依比例。</figcaption>
+</figure>
+
+<p>同一場裡，有的車手兩欄相同，有的不同。所以單看一位車手的『發車』欄，分不出他屬於哪一邊。要分，只能和排位表並排。</p>
+<p>所以『發車』欄不能當排位名次引用。想知道某位車手排位排第幾，去看排位表的名次欄。</p>
+<p>這是一場的例子，不代表其他場的比例。</p>
+<h2>兩欄數字不同，表上能讀到什麼</h2>
+<p>2025 年墨西哥城這一場，本站資料庫裡兩欄不同的 6 筆，數字有一個形狀：5 筆的『發車』欄數字比排位名次小 1，1 筆大 5。表上能讀到的，到這裡為止。</p>
+<p>賽果表的欄位有名次、積分、圈數、完賽狀態和 grid。沒有任何一欄，記錄『發車』欄為什麼和排位名次不同。</p>
+<p>所以 6 筆不同，不等於 6 件事。單看這兩欄，確定不了背後發生了幾件事。原因得另找有記載原因的來源核對。</p>
+<p>FIA 2026 運動規章 Issue 09（2026-10-01）的 B2.5.4a，寫了正賽發車格怎麼形成：依排位結果（B2.4.2）、排位分類程序（B2.4.3）與該條的程序形成。同一條還寫了，針對正賽收到的罰則會加總，依該條的程序套用。</p>
+<p>這是 2026 年的現行條文，只說明正式發車格的一般形成方式。在這一版裡，正式發車格不是只看排位名次那一個數。這條條文不是資料表的填寫規格，也不用來解釋 2025 墨西哥城任何一位車手的差異。賽果表上沒有的，是把這些步驟對回每一列的記錄。</p>
+<h2>看到一個發車數字，能反推出什麼</h2>
+<p>單看一個發車數字，不能反推它走的是哪一條路。</p>
+<p>Issue 09 對正式發車格，還寫了幾條不同的路。以下各條同樣是 2026 年版的現行條文，只說明正式發車格的一般程序，不套到 2025 的任何一場。</p>
+<ul>
+<li>B2.5.4a：排位賽沒有舉行，而且幹事接受該節無法進行時，正賽發車格改依車手錦標賽排名形成；前述方法都不能適用時，由幹事全權裁量。</li>
+<li>B2.5.4c：有車撤出時，發車格會向前補齊（c(i)）；超過暖胎圈預定開始前 1¼ 小時才撤出或無法起跑的車，格位保持空缺（c(iii)）。</li>
+</ul>
+<p>累計罰退怎麼排進發車格，B2.5.4b 另有一套排序程序，見<a href="/articles/f1-101-pu-allocation/">動力單元配額：一季能用幾個元件，超過會被罰退多少</a>。從維修區起跑的車，B5.3.1、B5.3.2 另有一套在快車道排隊的程序，見<a href="/articles/f1-101-pit-lane/">F1 維修區的規矩：一般情況下技師在內側車道動手，出站要看綠燈</a>。</p>
+<p>本站賽果表沒有欄位說明這些情況怎麼標。規章裡的一種狀態，也不能自動等同資料欄位裡的某個值。</p>
+<h2>遇到 0 就停</h2>
+<p>『發車』欄有一個值，最容易讀過頭：0。</p>
+<p>本站資料庫（全部賽季，2026-10-13 查詢）有 26,247 筆賽果，其中 267 筆的『發車』欄是 0。</p>
+<p>我們能查到的資料源文件，沒有定義 0。維修區起跑、撤車或別的情況，都不能從 0 讀出來。</p>
+<p>所以讀到 0 就停下來。分析時，把 0 的列單獨挑出來，不要當成第 0 格，拿去和排位名次相減。</p>
+<h2>常見問題</h2>
+<h3>賽果表的『發車』和排位名次是同一個數嗎？</h3>
+<p>不一定。以本站資料庫的 2025 墨西哥城大獎賽（第 20 站，2025-10-26）為例，20 位車手中有 6 位的賽果表『發車』欄數字和本站排位表名次不同；這是一場的例子，不代表其他場的比例。</p>
+<h3>發車欄寫 0 是什麼意思？</h3>
+<p>我們能查到的資料源文件沒有定義。本站資料庫（全部賽季，2026-10-13 查詢）26,247 筆賽果中，有 267 筆的發車欄是 0；單看這一欄，不能判斷它是維修區起跑、撤車或其他情況。</p>
+<h3>為什麼有些車手的『發車』欄數字和排位名次不同？</h3>
+<p>單靠賽果表的『發車』欄和本站排位表的名次，判斷不了。個別車手的原因，要另找有記載原因的來源核對；這兩欄能讀到什麼，見「兩欄數字不同，表上能讀到什麼」一節。</p>
+<h2>接下來看什麼</h2>
+<ul>
+<li><a href="/articles/f1-101-qualifying/">F1 排位賽怎麼淘汰：三節、兩次砍人、一個發車位置</a></li>
+<li><a href="/articles/f1-101-pu-allocation/">動力單元配額：一季能用幾個元件，超過會被罰退多少</a></li>
+<li><a href="/articles/f1-101-pit-lane/">F1 維修區的規矩：一般情況下技師在內側車道動手，出站要看綠燈</a></li>
+</ul>
+<h2>資料來源</h2>
+<p>一手來源：</p>
+<ul>
+<li><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf">FIA《2026 Formula 1 Regulations – Section B [Sporting]》，Issue 09（2026-10-01 發布）</a>：B2.4.2、B2.4.3、B2.5.4、B5.3</li>
+</ul>
+<p>資料服務文件：</p>
+<ul>
+<li>資料源賽果快照：2025 年墨西哥城大獎賽（第 20 站）、2026 年新加坡大獎賽（第 17 站），2026-10-13 取得</li>
+<li>資料源的 pitstops 端點文件，2026-10-13 快照</li>
+<li><a href="https://openf1.org/docs/">OpenF1 文件</a>，2026-10-13 快照：Starting grid 端點不是本站賽果表『發車』欄的欄位文件，也沒有定義 0</li>
+</ul>
+<p>本站自有資料：</p>
+<ul>
+<li>本站賽果與排位資料庫（唯讀查詢，查詢日 2026-10-13）；賽果頁見<a href="/results/">各站賽果</a></li>
+</ul>
+<p>二手來源：本文未使用媒體報導作為事實依據。</p>
+<p>查證日：2026-10-13。限制：2025 墨西哥城的數字是單一場次的樣本，兩欄差異列為自行計算；本站『發車』欄與資料源賽果快照的對照只有 2025 第 20 站與 2026 第 17 站兩場；資料源文件的查閱範圍是查證日取得的 15 份快照與文件，在這個範圍內沒有找到 grid 欄位或 0 的定義，不代表其他來源沒有；規章引用的是 Issue 09（2026-10-01）這一版，不回頭套用到 2025 年的場次；FIA 規章文件為 FIA 網站公開文件。</p>
+  </article>
+  
+  <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂數據 第 8 / 10 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-qualifying-gap-reading/"><span class="lbl">← 新手村上一篇</span>一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？</a><a href="/articles/f1-101-grid-to-finish/" style="text-align:right"><span class="lbl">新手村下一篇 →</span>賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀</a></div></div><div class="art-nav"><a href="/articles/f1-101-championship-scenarios/"><span class="lbl">← 前一篇</span>封王算術能證明「追不上了」，證明不了「最後會追上」</a><a href="/articles/f1-101-grid-to-finish/" style="text-align:right"><span class="lbl">後一篇 →</span>賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀</a></div>
+  </main>
+  <div class="article-footer">
+    <div class="foot-links">
+      <a href="/standings/">積分榜</a>
+      <a href="/calendar/">台北時間賽曆</a>
+      <a href="/articles/">所有文章</a>
+      <a href="/seasons/">歷年賽季</a>
+      <a href="/drivers/">車手</a>
+      <a href="/constructors/">車隊</a>
+      <a href="/circuits/">賽道</a>
+      <a href="/errata/">勘誤紀錄</a>
+      <a href="https://github.com/dvdmaru/racing-tools/issues/new?template=errata.yml" target="_blank" rel="noopener">回報錯誤</a>
+    </div>
+    <div class="site-disclaimer">本站為非官方賽車資訊站，與 Formula 1、FIA 及各車隊、車手均無任何關聯或授權；數據整理自公開來源並標註出處，賽道示意均依公開資料自行重繪。<br><span>Unofficial fan-made site · Not affiliated with, endorsed by, or sponsored by Formula 1, Formula One Licensing BV, the FIA, or any team.</span></div>
+    <div class="sister-sites" style="margin-top:12px;font-size:12px;color:var(--dim);line-height:2;text-align:center">姊妹站　<a href="https://twtools.cc/" style="color:var(--dim);text-decoration:none">TWTools — 打工牛馬的線上工具箱</a>　·　<a href="https://aire.twtools.cc/" style="color:var(--dim);text-decoration:none">aire — AI Tool Atlas·AI 工具圖鑑</a>　·　<a href="https://tree.twtools.cc/" style="color:var(--dim);text-decoration:none">樹洞21號 — 匿名 AI 心事平台</a>　·　<a href="https://foootball.twtools.cc/" style="color:var(--dim);text-decoration:none">@foootball — 2026 世界盃賽程</a>　·　<a href="https://baseball.twtools.cc/" style="color:var(--dim);text-decoration:none">@baseball — 中職 CPBL＋MLB 深度戰報</a>　·　<a href="https://basketball.twtools.cc/" style="color:var(--dim);text-decoration:none">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</a>　·　<a href="https://health.twtools.cc/" style="color:var(--dim);text-decoration:none">健檢數據誌 — 健檢報告上的數字，各機構判準並列</a>　·　<a href="https://tender.twtools.cc/" style="color:var(--dim);text-decoration:none">標案雷達 — 網通設備標案查詢、押標金試算與規格預檢</a>　·　<a href="https://shhhh.cc/" style="color:var(--dim);text-decoration:none">Shhhh — 專業短網址管理平台</a>　·　<a href="https://dvdmaru.com/" style="color:var(--dim);text-decoration:none">dvdmaru — 把事實和敘事分開來看</a></div>
+  </div>
+</div>
+<script>
+const THEMES = ['carbon', 'asphalt', 'midnight', 'gravel', 'silver'];
+function setTheme(t) {
+  if (!THEMES.includes(t)) t = 'carbon';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('rc-theme', t); } catch (e) {}
+  document.querySelectorAll('.ts-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === t));
+}
+(function initTheme() {
+  let t = 'carbon';
+  try { t = localStorage.getItem('rc-theme') || 'carbon'; } catch (e) {}
+  setTheme(t);
+})();
+
+(function initNav() {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  h.classList.add('has-js');
+  var btn = h.querySelector('.nav-toggle');
+  var groups = [].slice.call(h.querySelectorAll('.nav-group'));
+  var mq = window.matchMedia('(max-width: 719px)');
+  function closeAll(except) { groups.forEach(function (g) { if (g !== except) g.open = false; }); }
+  function setDrawer(open) {
+    h.classList.toggle('nav-open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) groups.forEach(function (g) { g.open = true; });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('toggle', function () { if (g.open && !mq.matches) closeAll(g); });
+    g.addEventListener('focusout', function (e) {
+      if (!mq.matches && e.relatedTarget && !g.contains(e.relatedTarget)) g.open = false;
+    });
+  });
+  if (btn) btn.addEventListener('click', function () { setDrawer(!h.classList.contains('nav-open')); });
+  // 點 header 外面：任何寬度都收——桌機收下拉，手機連抽屜一起收（觸控沒有 Esc，少了這條手機只能再按一次選單鈕）
+  document.addEventListener('click', function (e) { if (!h.contains(e.target)) { closeAll(); setDrawer(false); } });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    // 關閉前記住焦點在哪一組，關完把焦點還給該組的 summary（抽屜則還給選單鈕），鍵盤使用者不用重頭 Tab
+    var a = document.activeElement, g = a && a.closest ? a.closest('.nav-group') : null;
+    var back = g ? g.querySelector('summary') : (h.classList.contains('nav-open') ? btn : null);
+    closeAll(); setDrawer(false);
+    if (back) back.focus();
+  });
+  var onChange = function () { closeAll(); setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
+})();
+</script>
+</body>
+</html>
