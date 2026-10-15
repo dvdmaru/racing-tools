@@ -169,5 +169,15 @@
     "zh": "BRM車隊",
     "src": "zhwiki-fallback-policy-2026-07-24",
     "status": "approved"
+  },
+  "brabham": {
+    "zh": "布拉漢姆車隊",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
+  },
+  "cooper-maserati": {
+    "zh": "庫珀－Maserati車隊",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
   }
 }

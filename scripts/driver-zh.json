@@ -259,5 +259,30 @@
     "zh": "雅克・維倫紐夫",
     "src": "charlie-2026-07-24",
     "status": "approved"
+  },
+  "moss": {
+    "zh": "史特靈・莫斯",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
+  },
+  "rodriguez": {
+    "zh": "佩德羅・羅德里格斯",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
+  },
+  "reutemann": {
+    "zh": "卡洛斯・瑞特曼",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
+  },
+  "peterson": {
+    "zh": "羅尼・彼得森",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
+  },
+  "gilles_villeneuve": {
+    "zh": "吉爾・維倫紐夫",
+    "src": "charlie-2026-10-15",
+    "status": "approved"
   }
 }
