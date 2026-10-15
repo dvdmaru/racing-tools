@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 盧安達 10 年協議首辦年未定：24 場世界錦標賽非洲站有 23 場在南非</title>
+    <link>https://racing.twtools.cc/articles/f1-rwanda-african-grand-prix-africa-rounds-1958-1993/</link>
+    <guid>https://racing.twtools.cc/articles/f1-rwanda-african-grand-prix-africa-rounds-1958-1993/</guid>
+    <pubDate>Thu, 15 Oct 2026 00:00:00 +0800</pubDate>
+    <description>首場要等 Bugesera 的新賽道完工，官方只說 2030 年代初；1993 年 3 月 14 日那場之後，截至 2026 年第 17 站的 633 場世界錦標賽沒有一場在非洲</description>
+  </item>
+  <item>
     <title>OpenF1 輪胎分段圖：換色的地方，不一定對得上進站紀錄</title>
     <link>https://racing.twtools.cc/articles/f1-101-tyre-stint-chart-reading/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-tyre-stint-chart-reading/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-personnel-movement/</guid>
     <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
     <description>F1 規章 A5.7.3 把冷靜期限定在兩隊有合作關係時，只寫給原東家，還排除車手；借調另有一款，要求的是 Restricted Duties，用 must。每支 F1 車隊都要做的，是採取合理措施防止洩密、用附錄 A6 向 FIA 通報相關人員流動，以及確保新人到職時被告知別帶前東家的資料。</description>
-  </item>
-  <item>
-    <title>技術指令「僅供參考」？FIA 文件有沒有約束力，規章這樣分</title>
-    <link>https://racing.twtools.cc/articles/f1-101-fia-documents/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-fia-documents/</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
-    <description>規章把 FIA 另發的文件分成兩邊：有約束力的限於四類，還要規章條款明文授權；技術指令與賽事指令被列為無約束力的例子。但規章正文也把部分定義交給文件。個別文件站哪一邊，要看文件自己的標示；標為有約束力的，還要有規章條款明文授權並標出依據條號，而且只限四類。這些文件在查證範圍內一份也讀不到。</description>
   </item>
 </channel>
 </rss>
