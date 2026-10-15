@@ -732,17 +732,17 @@
       "Alan Jones": "亞倫・瓊斯",
       "George Russell": "羅素",
       "Max Verstappen": "維斯塔潘",
-      "Lewis Hamilton": "漢米爾頓（driver-zh.json；PHASE0_ZH 與站內車手頁 H1 為「路易斯・漢米爾頓」，已知遺留衝突，本篇若不引 Hamilton 可避開）"
+      "Lewis Hamilton": "漢米爾頓（driver-zh.json；PHASE0_ZH 與站內車手頁 H1 為「路易斯・漢米爾頓」，已知遺留衝突，本篇若不引 Hamilton 可避開）",
+      "Stirling Moss": "史特靈・莫斯",
+      "Pedro Rodríguez": "佩德羅・羅德里格斯",
+      "Carlos Reutemann": "卡洛斯・瑞特曼",
+      "Ronnie Peterson": "羅尼・彼得森",
+      "Gilles Villeneuve": "吉爾・維倫紐夫"
     },
     "drivers_no_approved": [
-      "Carlos Reutemann",
-      "Gilles Villeneuve",
       "Jean-Pierre Jabouille",
-      "Pedro Rodríguez",
       "René Arnoux",
       "Riccardo Patrese",
-      "Ronnie Peterson",
-      "Stirling Moss",
       "Patrick Tambay",
       "Carlos Pace",
       "Alex Wurz"
@@ -761,14 +761,14 @@
       "Vanwall": "范沃爾車隊",
       "Brabham-Repco": "布拉漢姆－Repco車隊",
       "no_approved": [
-        "Brabham",
-        "Cooper-Maserati",
         "Ligier",
         "Zakspeed",
         "RAM",
         "Beatrice",
         "Lola"
-      ]
+      ],
+      "Brabham": "布拉漢姆車隊",
+      "Cooper-Maserati": "庫珀－Maserati車隊"
     },
     "people_no_approved": [
       "Stefano Domenicali",
@@ -784,7 +784,8 @@
       "Mattijs Diepraam",
       "Felix Muelas"
     ],
-    "places_and_orgs": "Rwanda＝盧安達、Kigali、Bugesera、Rwanda Development Board＝盧安達發展局（RDB）、Amnesty International＝國際特赦組織、FIA、FOM、FISA、FOCA：四張表無條目，前兩者與機構中文為通用名，地名 Kigali、Bugesera 保留英文。"
+    "places_and_orgs": "Rwanda＝盧安達、Kigali、Bugesera、Rwanda Development Board＝盧安達發展局（RDB）、Amnesty International＝國際特赦組織、FIA、FOM、FISA、FOCA：四張表無條目，前兩者與機構中文為通用名，地名 Kigali、Bugesera 保留英文。",
+    "_update_2026-10-15": "Charlie 2026-10-15 回「照建議」核准上列 5 位車手與 2 個車隊譯名（src charlie-2026-10-15，append 進 driver-zh.json／team-zh.json）；René Arnoux、Riccardo Patrese 的人名沒有核准，維持英文原名。首見用全形括號中英對照，表格內只寫中文。"
   },
   "interlinks": {
     "note": "以下路徑已確認 public-racing/ 下 index.html 存在並讀過 title／H1（th_site_out.txt）。Gilles Villeneuve 沒有站內頁：/drivers/villeneuve/ 是 Jacques Villeneuve，不得連。本篇的新價值是跨賽道、跨時段的整合；三個賽道頁已各自列出承辦賽季與分站冠軍，不重寫。",
