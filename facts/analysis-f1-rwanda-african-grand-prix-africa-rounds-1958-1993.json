@@ -1,0 +1,2549 @@
+{
+  "_meta": {
+    "slug_suggestion": "f1-rwanda-african-grand-prix-africa-rounds-1958-1993",
+    "type": "feature（data-recap＋外部來源）",
+    "built_by": "論點與歸屬席（Opus）；研究 Terra（A-history、B-news）；獨立查核 Sol（兩份 verify）",
+    "note": "寫手唯一的事實來源。寫手沒有網路、看不到 Sol 的判決，所以每條 verified_facts 都附 write_as（最多可以寫到哪裡）與 not_upgrade_to（不可以升格成什麼）。news_quotes 的 verbatim 由 packs/thesis_work/build_facts.py 依檔名＋行號＋錨點從 evidence/news 原檔切出，切不到就中止建檔；derived_values 由同一腳本唯讀查站內 db 重算並對關鍵數字下斷言。主張來源是 packs/THESIS.md；歸屬判決是 packs/ATTRIB.md；表格規格是 packs/table-spec.md。",
+    "open_issues": [
+      "633 場世界錦標賽（D-05）算到 2026 第 17 站新加坡（10/11）；第 18 站美國站 10/25，結果入庫後若尚未發稿，請重跑 build_facts.py。",
+      "批評層（H2-1 末段 ≤3 句）由論點席決定要寫；指揮位若決定不寫，刪 Q-35～Q-37 即可，論點不受影響。",
+      "表格不放發車位欄（db 1958–1993 沒有排位資料，grid=1 不等於桿位）；指揮位若要放，欄名只能是「發車第 1 格」。"
+    ],
+    "quote_count": 53,
+    "built_at": "2026-10-15T12:34:07+08:00"
+  },
+  "thesis": "主題：F1 世界錦標賽在非洲的紀錄集中在一國一條賽道（H-01、H-02、H-04：24 場、南非 23、卡亞拉米 20、全以國名命名），1993 年之後又辦了 633 場世界錦標賽（截至 2026 年第 17 站）、沒有一場在非洲（H-08、D-05）；盧安達的 10 年協議落在一個沒辦過世界錦標賽分站的國家、一條尚待完工的新專用賽道（Q-02）、一個還沒定的年份上（N-01、N-02、N-04、N-17、H-03），名稱從國名換成洲名（H-04、N-11）。判讀（只在 H2-6，本站判讀、信賴度中）：這份協議不是回到過去辦過世界錦標賽分站的國家或賽道，而是把首場繫於一條尚待完工的新賽道。",
+  "reader_takeaway": "F1 過去在非洲的 24 場世界錦標賽分站，有 23 場在南非、20 場在同一條卡亞拉米賽道，而且每一場都用國名命名；所以這次以「非洲大獎賽」為名的盧安達 10 年協議，不是回到過去辦過世界錦標賽分站的國家或賽道，而是把首場繫於一條尚待完工的新賽道（協議指定的 Bugesera 新專用賽道尚待完工），盧安達也從沒辦過世界錦標賽分站，連首辦年份都還沒定——它要接上的空窗，到官宣日已經 12,266 天，是這 24 場世界錦標賽非洲站之間最長空窗（2,325 天）的 5 倍多。（前半是站內資料庫自產的具體資訊；「不是回到過去辦過世界錦標賽分站的國家或賽道，而是把首場繫於一條尚待完工的新賽道」是本站判讀，只放 H2-6。此句是論點說明，不是標題，不得照抄進標題或 lede。）",
+  "thesis_claim_count": "3 個主張：T1 官宣確定了什麼、沒確定什麼，規格的出處與時間（N-01～N-08）；T2 24 場世界錦標賽非洲站的集中度與三種空白（H-01～H-16）；T3 洲名與第 3 國（N-11、N-12、H-03、H-04）。全篇唯一一條本站判讀在 H2-6。",
+  "section_claims": [
+    "lede（重點速答，3–4 句）：2026-10-13 台北 17:18 F1 宣布與盧安達的 10 年協議（Q-01），首辦只寫 2030 年代初、日期另行公布（Q-05），賽道在 Bugesera，要等新專用賽道完工（Q-02）；站內資料庫：F1 在非洲的 24 場世界錦標賽非洲站中 23 場在南非、20 場在卡亞拉米，最後一場 1993；之後 633 場世界錦標賽（截至 2026 年第 17 站）沒有一場在非洲（D-05）。不寫本站判讀、年份猜測、規格數字、批評層。",
+    "H2-1｜標題草案：10 月 13 日官宣：10 年協議、Bugesera 新賽道，首辦年份沒有寫｜主張：Q-09 場景（同台，不寫地點）；Q-01～Q-05；三人引言擇一到二（Q-06／Q-08／Q-10）；RaceFans「不尋常」（Q-26）；官宣前一句（兩家分開寫）：AutoGuide 引述 RacingNews365 的匿名圍場消息寫 2030 賽曆目標（Q-46）；The Next Web 寫首場預期不早於 2030、F1／FIA／盧安達政府都沒證實（Q-52、Q-47）；官宣稿沒給年份；末段批評 ≤3 句（Q-35、Q-36 標轉述、Q-37）。可選 Q-11（F1 說）、Q-51（官宣前）、Q-50、Q-33、Q-34。",
+    "H2-2｜標題草案：賽道長度與彎數，在官宣約 6 小時後才出現在 F1 官網｜主張：照 D-07 時間排——新聞稿與 Barretto 稿沒寫長度與彎數（D-15），Barretto：最終配置仍在設計、WurzDesign＋Tilke Engineers and Architects（Q-13）；RaceFans 標示 09:31 UTC 發布，本站讀到的版本寫 F1「沒有給規格細節」，頁面 10/14 更新、改了什麼不明（Q-27）；Horton 15:40 UTC：6 公里、逆時針、17 彎、197 公尺高低差、完整配置未公布（Q-22），設計者 Carsten Tilke 與 Alex Wurz（Q-21）。RaceFans 與 Horton 寫成時間序列，不裁決。可選 Q-23＋Q-24（海拔屬 Kigali）、Q-25、RISE Motordrome（N-09）。",
+    "H2-3｜標題（定版，不得刪「世界錦標賽」）：1958–1993 的 24 場世界錦標賽非洲站：23 場在南非，20 場在卡亞拉米｜主張：表 A（D-01）、表 B（D-02，規格見 table-spec.md，指揮位腳本產生）；表前句：母集＝世界錦標賽，1981 不計分、不在 24 場世界錦標賽資料列內（表 B 以註記列標出）；表後句：①24 場世界錦標賽非洲站的賽名只有摩洛哥大獎賽 1 場、南非大獎賽 23 場（D-14）；②1958 摩洛哥末站、之後沒再回去（Q-29），南非先東倫敦後卡亞拉米（Q-30）與表上順序一致；③1964 空白只隔 370 天（D-03）。對照：Horton（Q-15）寫南非辦過 23 次世界錦標賽 F1 大獎賽，RaceFans（Q-30）寫南非辦過 23 場大獎賽，都與站內資料庫南非 23 場世界錦標賽一致；可選 Barretto 的 1993 句（Q-14）。可選一句規律（D-11 或 D-12 二擇一）。",
+    "H2-4｜標題（定版）：表上的空白：1981 年不計分、1985 年的抵制，與之後的空窗｜主張：1981 三層（Q-44、Q-43、可選 Q-45），勝者 Reutemann（Williams）；1985 第 15／16 站、21 列（D-02），車隊（Q-38、Q-42），Alan Jones 兩說並陳（Q-41＋D-13 對 Q-39），RaceFans 2026 背景句（Q-30）；1985 年之後下一場是 1992 年，相隔 2,325 天（D-03；RaceFans 2026 官宣稿稱為七年缺席，Q-31；「7 年」只掛 RaceFans）；Q-40（與 Q-38、Q-39 同一篇 RaceFans 2008 回顧）只寫「原文沒有標明是哪一年」；來源沒有逐年交代 1986–1991；1993 之後相隔 12,266 天（D-04；「年」只掛 Kagame「三十多年」Q-07）、633 場世界錦標賽（截至 2026 年第 17 站）（D-05）、Kagame「三十多年」（Q-07）、情境算術 2030−1993＝37、2033−1993＝40（D-06，可選 Q-32；不寫成本站歷時）。",
+    "H2-5｜標題草案：從「南非大獎賽」到「非洲大獎賽」｜主張：24 場世界錦標賽非洲站都用國名（D-14）→新賽名（Q-01；RaceFans 轉述 Kagame 的命名句 Q-28 可選）；Horton 敘述（Q-16）；Afrika 命名理由（Q-19）；可選 Kagame（Q-17）；Afrika：不是唯一申辦者（Q-20），可選 Barretto（Q-12）；官宣前報導：南非也申辦（Q-48）、卡亞拉米與開普敦爭取過（Q-49）——本文讀到的來源中，F1 沒有點名其他申辦者；RaceFans：盧安達從沒辦過世界錦標賽分站（Q-26）→若首場如期舉行，是第 3 個辦過世界錦標賽分站的非洲國家（H-03）。反例：European GP、Pacific GP（D-14）。可選收尾 Q-18。",
+    "H2-6｜判讀｜①資料量得到的（H-01、H-02、H-04、D-03、D-05；N-01～N-07）；②本站判讀（信賴度中，全篇唯一）：這份協議不是回到過去辦過世界錦標賽分站的國家或賽道，而是把首場繫於一條尚待完工的新賽道——理由：過去幾乎就是卡亞拉米一條賽道（20／24 場世界錦標賽非洲站），而協議指定的 Bugesera 新專用賽道尚待完工（Q-02）、盧安達沒辦過世界錦標賽分站（Q-26）、首辦年份未定且空窗以天數算已是過去最長的 5 倍多（Q-05、D-04、D-10）；反方一句（固定）：F1 稱之為重返非洲；Kagame 說，世界頂級賽車錦標賽已三十多年沒有在非洲比賽，這份協議會改變此事（Q-01、Q-07）；以大陸為單位「重返」也成立，本站判讀講的是賽道與國家層級；不寫「Kagame 用『重返』」；③量不到的（unanswerable）；④不下任何政治價值判斷。"
+  ],
+  "_structure_hint": "結構：lede → 資料來源短段（不開 H2）→ H2-1 → H2-2 → H2-3（兩張表）→ H2-4 → H2-5 → H2-6 判讀 → 資料來源。字數帳（估計，非上限；站規只下下限）：lede 220／H2-1 650／H2-2 550／H2-3 700（不含表）／H2-4 750／H2-5 450／H2-6 450 ≈ 3,770。H2 標題＝section_claims 的標題（H2-3、H2-4 為定版），其餘可縮短，但不得增刪限定（「約 6 小時後」「F1 官網」「世界錦標賽」「23 場」「20 場」），不得含指代詞。H2-1～H2-5 只寫事實與具名說法；所有判斷收進 H2-6，「本站判讀」只出現一次。標題（THESIS ⑦，R1 改；凡出現 24／23／20 都在同一標題內帶「世界錦標賽」，≤42 字）：主案「F1 盧安達 10 年協議首辦年未定：24 場世界錦標賽非洲站有 23 場在南非」；備案 1「F1 重返非洲落在盧安達：24 場世界錦標賽非洲站，卡亞拉米一條賽道就占 20 場」；備案 2「從南非大獎賽到非洲大獎賽：F1 盧安達 10 年協議與 1958–1993 的非洲站」（主題式）。H2-3、H2-4 標題為定版。封面（R1 改）：1958→2026 年份軸、24 點標「24 場世界錦標賽」；1993–2026 空白標「633 場世界錦標賽（截至 2026 年第 17 站）」且圖形終點停在 2026；軸尾獨立文字「2030 年代初（未定）」，不畫 2030–2034 端點或區間。表格由指揮位依 table-spec.md 用腳本產生，寫手照貼不手打。",
+  "required_sections": [
+    "開頭（lede，3–4 句，約 220 字）：見 section_claims 第 1 條。",
+    "資料來源段（不開 H2，一段）：官宣與賽道資訊取自 F1 官網三篇（新聞稿、Lawrence Barretto 問答稿、Phillip Horton 特稿）與 RaceFans、grandprix.com；歷史場次、日期、勝者、天數由站內資料庫（F1 世界錦標賽場次，2026-10-15 讀取）自算；1981、1985 的經過取自 8W、GrandPrix247、Motor Sport、RaceFans、grandprix.com 歷史頁。",
+    "H2-1｜10 月 13 日官宣：10 年協議、Bugesera 新賽道，首辦年份沒有寫",
+    "H2-2｜賽道長度與彎數，在官宣約 6 小時後才出現在 F1 官網",
+    "H2-3｜1958–1993 的 24 場世界錦標賽非洲站：23 場在南非，20 場在卡亞拉米（含表 A、表 B）",
+    "H2-4｜表上的空白：1981 年不計分、1985 年的抵制，與之後的空窗",
+    "H2-5｜從「南非大獎賽」到「非洲大獎賽」",
+    "H2-6｜判讀",
+    "資料來源（文末）：列 data_sources 的 URL；站內資料庫註明讀取日與世界錦標賽範圍。"
+  ],
+  "data_sources": {
+    "_rule": "URL 只准用這幾個（皆為本桌快照第一行的 URL）；正文每個數字都能回到 derived_values 或 verified_facts，每個英文引句都在 news_quotes。",
+    "f1-press-release": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+    "f1-everything-we-know": "https://www.formula1.com/en/latest/article/everything-we-know-about-f1s-all-new-race-in-rwanda.3Mde3s9FqIOTbkzKs0Puwo",
+    "f1-inside-plan": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+    "racefans": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+    "grandprix": "https://www.grandprix.com/news/rwanda-gp-officially-confirmed-in-10-year-agreement.html",
+    "grandprix-amnesty": "https://www.grandprix.com/news/amnesty-criticizes-rwanda-grand-prix-as-sportswashing.html",
+    "racefans-1985-retro": "https://www.racefans.net/?p=5850",
+    "grandprix-gpe-1985": "https://grandprix.com/gpe/rr419.html",
+    "8w-1981": "https://8w.forix.com/za81.html",
+    "grandprix247-1981": "https://www.grandprix247.com/formula-1-news/on-this-day-reutemanns-win-that-wasnt-and-other-memories",
+    "motorsport-db-1981": "https://www.motorsportmagazine.com/database/races/1981-south-african-grand-prix",
+    "autoguide-2030": "https://www.autoguide.com/auto/f1-set-to-return-to-africa-with-2030-rwanda-grand-prix-44639827",
+    "thenextweb-2030": "https://thenextweb.com/news/rwanda-f1-grand-prix-2030-africa",
+    "pitdebrief-2024": "https://www.pitdebrief.com/post/rwanda-announces-bid-for-f1-race",
+    "site_db": "站內資料庫（對外寫「本站資料庫」，不寫檔案路徑；內部路徑 data/f1/db.sqlite）（只收 F1 世界錦標賽場次；2026-10-15 讀取；最新有結果的一站為 2026 第 17 站新加坡）"
+  },
+  "limits_statement_points": [
+    "母集：站內資料庫只收 F1 世界錦標賽場次；不計分賽事（例：1981 年 2 月 7 日卡亞拉米）不在 24 場世界錦標賽資料列內（表 B 以註記列標出）。24／23／20 場與 633 場世界錦標賽（截至 2026 年第 17 站）都是世界錦標賽口徑。",
+    "首辦時間：官方只說 early 2030s／early in the next decade／from the next decade，沒有年份；首場日期、賽道里程碑、週末安排另行公布。",
+    "協議：本桌沒有協議或合約原文；締約主體、起訖年份、撤約條款查無，只能寫「F1 宣布」。",
+    "賽道規格：6 公里、逆時針、17 彎、197 公尺高低差只出自 F1 官網特約作者 Phillip Horton 的文章（官宣約 6 小時 22 分後）；完整配置未公布。官宣現場有沒有口頭講規格，本桌沒有現場逐字稿。",
+    "RaceFans 頁面標示 10/14 更新；本站讀到的是更新後版本，初版文字與更新內容無從判定。",
+    "空窗口徑：天數＝相鄰兩場日期相減；日曆年差＝賽季年相減。1993 年起算的 12,266 天算到官宣日 2026-10-13；633 場世界錦標賽算到 2026 第 17 站。",
+    "1986–1991：本文讀到的來源沒有逐年交代；維基有相關敘述，但所引原文不在本桌快照，不作出處。",
+    "發車位：資料庫 1958–1993 沒有排位資料，發車第 1 格不等於桿位；本篇表格不放此欄。",
+    "批評層：只用 grandprix.com 的報導與轉述；本桌沒有 Amnesty 原始聲明、BBC 原文或 F1 章程原文。",
+    "（只有正文引用 Q-11 時才寫）F1 的車迷人數與年齡比例是 F1 自己的說法，本站無法驗證。",
+    "查無範圍（對外寫成「本文讀到的報導與官方文章」，不寫快照份數或檔名）：本桌 19 份新聞文字快照（其中 12 份非歷史新聞）的本文，不含讀者留言。"
+  ],
+  "must_not_claim": [
+    "1. 把 early 2030s 寫成任何年份（「2030 年首辦」「最快 2030 年」「預計 2031 年」）；把情境算術寫成無條件句（「空窗將是 37 年／40 年」）。",
+    "2. 「F1 與盧安達政府簽約」「RDB 與 FOM 簽約」「合約到 2040 年」——締約主體與起訖年份查無。",
+    "2a.【R1 補】「盧安達將連續舉辦 10 場」「10 年內每年舉辦一場」——協議長度不等於場次與頻率（Q-01 只寫 10-year agreement；Q-05 日期與週末安排另行公布）。",
+    "2b.【R1 補】「盧安達沒有現成的賽道」「盧安達沒有可辦 F1 的賽道」或任何關於盧安達國內其他賽道有無的陳述——證據只到「協議指定的 Bugesera 新專用賽道尚待完工」（Q-02）。",
+    "2c.【R1 補】「1985 之後南非停了 7 年」「空窗 33 年」作本站歷時——歷時一律寫天數（2,325 天、12,266 天）；「七年缺席」只掛 RaceFans 2026 官宣稿，「三十多年」只掛 Kagame。",
+    "3. 「F1 公布賽道長 6 公里、17 個彎」——新聞稿沒有；規格只能歸 F1 官網特約作者 Horton。",
+    "4. 「Wurz 說賽道 6 公里」「Tilke 說 17 個彎」——全句是 Horton 敘述。",
+    "5. 「賽道已定案／已動工／完整賽道圖已公布」。",
+    "6. 「Bugesera 賽道海拔 1,500 公尺」「盧安達將是海拔第二高的賽道」——來源寫的是 Kigali、「最高之一」。",
+    "7. 「RaceFans 報錯」「RaceFans 後來改了這句」「RaceFans 發稿時不知道規格」「RaceFans 初版寫了沒有規格」。",
+    "8. 「官宣現場沒有提到規格」——沒有現場逐字稿。",
+    "9. 「Hermann Tilke 設計盧安達賽道」；把各來源的設計公司名稱統一成某個正式法人名。",
+    "10. 「賽道正式名稱是 RISE Motordrome」——只見於 RaceFans。",
+    "11. 「F1 在非洲只比過 24 場」「非洲只有兩國辦過 F1 比賽」「卡亞拉米辦過 20 場 F1」——一律加「世界錦標賽」。",
+    "12. 「盧安達將成為第 3 個辦 F1 的非洲國家」不帶「若如期舉行」與「世界錦標賽分站」。",
+    "13. 「非洲大獎賽是 F1 史上第一個以洲命名的大獎賽」「第一個不用國名的大獎賽」——站內資料庫有 European Grand Prix 23 場世界錦標賽、Pacific Grand Prix 2 場。",
+    "14. 「F1 三十多年沒去過／沒踏上非洲」——2024 年 FIA 頒獎典禮在 Kigali；只能寫「沒有世界錦標賽分站」。",
+    "15. 把發車第 1 格寫成「桿位」；本篇表格不放發車位欄。",
+    "16. 把 1981 寫成「非法比賽」「官方不承認」「被 FIA 取消」「1981 年南非沒有比賽」；拿掉 8W 的「大概（probably）」。",
+    "17. 把「不計入世界錦標賽」（GrandPrix247）與「連非錦標賽 F1 都不算」（8W）寫成兩家說法矛盾。",
+    "18. 「1985 年多數車隊抵制」「Zakspeed、RAM 也抵制」；把「僅有的真正抵制者」寫成本站陳述（是 RaceFans 的話）。",
+    "19. 「Alan Jones 拒賽抗議」「Jones 稱病是藉口」或任何對兩種說法的裁決。",
+    "20. 「1986–1991 年因種族隔離被禁賽」「FISA 禁止南非賽事到 1992」「FIA 宣布不再回南非」——桌內只有維基，所引原文缺快照。",
+    "21. 「Ecclestone 取消了 1986 年（或 1986–1991 年）的南非站」——原句只寫「the event」。",
+    "22. 把 1986–1991 的空白寫成單一原因；把 RaceFans「部分車隊抵制 1985」延伸成之後空窗的原因。",
+    "23. 替 1959、1960、1961、1964、1966 等空白年份寫原因或寫「停辦」；1964 尤其不得寫停辦（前後兩場只隔 370 天）。",
+    "24. 「喬治王子賽道位於東倫敦」作本站確認的事實——只照 RaceFans 的描述（南非先在東倫敦的一條賽道）寫。",
+    "25. 把 F1 的 1 億車迷、近 60% 未滿 35 歲寫成客觀統計；寫「盧安達每年將獲 1 億英鎊經濟效益」（本篇不用 £100m）。",
+    "26. 把盧安達人口 14.6 million 與「6.82 million 女性占 51.5%」並列或寫成同一比例（分母不一致；整段不用）。",
+    "27. 把 RaceFans 的 Featured Comment（讀者 Ibex 的留言）或 RaceFans 留言區任何內容當 RaceFans 或媒體的說法。",
+    "28. 把 Felix Jakens 那句寫成 Amnesty 原始聲明或 BBC 逐字引文；寫「F1 被控洗白」（被指控的是盧安達）；把「sportswashing／洗白」當本站用語。",
+    "29. 對盧安達政府、Kagame、Amnesty、F1 的任何價值判斷；把 1985 抵制與 2026 批評寫成「歷史重演」「同樣的爭議」。",
+    "30. 引用 grandprix.com 的剛果民主共和國／國際法院／M23 段落。",
+    "31. 「F1 確認南非（或摩洛哥、奈及利亞）落選」「盧安達擊敗南非」——F1 沒點名；那些是官宣前媒體報導與傳聞。",
+    "32. 寫成本站讀過 RacingNews365 原文；把匿名圍場消息寫成「消息證實」。",
+    "33. 「Kigali 新機場 2028 年啟用」作事實（只有 Horton；建議不用）。",
+    "34. 把 F1 官網作者（Barretto、Horton）的敘述寫成「F1 新聞稿」或「F1 表示」；把 Horton 的敘述寫成 Domenicali、Kagame、Afrika、Wurz 或 Tilke 說的。",
+    "35. 把「非洲大獎賽」命名理由寫成 F1 的決定理由（是 RDB 執行長 Afrika 的說法）。",
+    "36. 把車手的話寫成官宣當天的表態（Barretto 明寫是官宣前）。",
+    "37. 「非洲站通常是開幕戰」「盧安達站可能排在季初」——賽曆位置查無，D-11 只描述 24 場世界錦標賽非洲站。",
+    "38. 「卡亞拉米是英國車手的主場」「南非車手只贏過一次 F1」——D-12 只限這 24 場世界錦標賽非洲站。",
+    "39. 引 FISA 1985 年聲明的「22 年」或拿它與資料庫對算。",
+    "40. 標題、副標、封面放查證狀態或來源範圍（「經查證」「本站獨家」「完整對照表」「全解析」）。",
+    "41. 「Gilles Villeneuve」連到 /drivers/villeneuve/（那是 Jacques Villeneuve 的頁）；替 Gilles Villeneuve、Carlos Reutemann 等無定版者自創中文譯名。",
+    "42. 「本站判讀」出現第二次；把判讀句（不是回到過去辦過世界錦標賽分站的國家或賽道，而是把首場繫於一條尚待完工的新賽道）放進標題、副標、lede 或 H2-1～H2-5。"
+  ],
+  "verified_facts": {
+    "_rule": "每條：value＝事實；write_as＝最多可以寫到這樣；not_upgrade_to＝不可以升格成這些；sources＝回原檔或 db 的位置；type＝本站計算／F1官方稿／F1官網作者／媒體／被引述者／維基定位。寫手只准在 write_as 的強度內改寫成中文，不得加 value 沒有的數字或因果。",
+    "H-01": {
+      "value": "站內資料庫的 F1 世界錦標賽裡，賽道位於非洲國家的共 24 場，全落在 1958–1993：摩洛哥 1、南非 23。賽名路徑與賽道國家路徑各得同一批 24 場世界錦標賽。",
+      "write_as": "F1 世界錦標賽在非洲辦過 24 場（站內資料庫）：摩洛哥 1 場、南非 23 場。",
+      "not_upgrade_to": [
+        "F1 在非洲只比過 24 場（不計分賽事不在內）",
+        "非洲只有兩國辦過 F1 比賽"
+      ],
+      "sources": [
+        "db：th_recalc_out.txt §2–§4；derived_values D-02",
+        "f1-inside-plan.txt:11（Q-15）",
+        "racefans.txt:31（Q-30）"
+      ],
+      "type": "本站計算（F1官網作者與媒體交叉）",
+      "use_in": "lede, H2-3, H2-6",
+      "priority": "必用"
+    },
+    "H-02": {
+      "value": "世界錦標賽賽道分布：艾因迪亞卜賽道 1 場（1958）、喬治王子賽道 3 場（1962、1963、1965）、卡亞拉米賽道 20 場（1967–1980、1982–1985、1992–1993；首年 1967、末年 1993，中間 1981、1986–1991 沒有世界錦標賽分站）。",
+      "write_as": "24 場世界錦標賽裡，卡亞拉米一條賽道就占 20 場。",
+      "not_upgrade_to": [
+        "卡亞拉米辦過 20 場 F1（1981 不計分賽事也在卡亞拉米）"
+      ],
+      "sources": [
+        "db：D-01"
+      ],
+      "type": "本站計算",
+      "use_in": "lede, H2-3, H2-6",
+      "priority": "必用"
+    },
+    "H-03": {
+      "value": "站內資料庫 circuits 表 34 個國家中，非洲國家只有 Morocco、South Africa；Rwanda 0 條賽道。Horton 寫只有兩個非洲國家辦過世界錦標賽 F1 大獎賽（Q-15）；RaceFans 寫盧安達從沒辦過世界錦標賽分站（Q-26）。",
+      "write_as": "若首場如期舉行，盧安達會是第 3 個辦過 F1 世界錦標賽分站的非洲國家。",
+      "not_upgrade_to": [
+        "盧安達將成為第 3 個辦 F1 的非洲國家（無條件、無世界錦標賽限定）"
+      ],
+      "sources": [
+        "db：th_recalc_out.txt §1",
+        "f1-inside-plan.txt:11",
+        "racefans.txt:21"
+      ],
+      "type": "本站計算（F1官網作者與媒體交叉）",
+      "use_in": "H2-5",
+      "priority": "必用"
+    },
+    "H-04": {
+      "value": "24 場世界錦標賽非洲站的賽名只有兩種：Moroccan Grand Prix 1 場、South African Grand Prix 23 場。站內資料庫另有 European Grand Prix 23 場世界錦標賽（1983–2016）、Pacific Grand Prix 2 場（1994–1995）。",
+      "write_as": "過去 24 場世界錦標賽非洲站都用國名命名（摩洛哥大獎賽、南非大獎賽）；新賽事以洲命名。",
+      "not_upgrade_to": [
+        "非洲大獎賽是 F1 第一個以洲命名的大獎賽",
+        "第一個不用國名的大獎賽"
+      ],
+      "sources": [
+        "db：D-14"
+      ],
+      "type": "本站計算",
+      "use_in": "H2-3, H2-5",
+      "priority": "必用"
+    },
+    "H-05": {
+      "value": "1958–1993 共 36 個年份，其中 24 年有非洲世界錦標賽分站；缺 1959、1960、1961、1964、1966、1981、1986、1987、1988、1989、1990、1991。",
+      "write_as": "1958 到 1993 的 36 個年份裡，有 24 年排了非洲站（世界錦標賽）。",
+      "not_upgrade_to": [
+        "缺的年份非洲都沒有 F1 比賽",
+        "缺的年份都是停辦"
+      ],
+      "sources": [
+        "db：D-09"
+      ],
+      "type": "本站計算",
+      "use_in": "H2-3, H2-4",
+      "priority": "可選"
+    },
+    "H-06": {
+      "value": "1963 站在 1963-12-28、1965 站在 1965-01-01，相隔 370 天；1964 年表上空白是排期跨年造成。",
+      "write_as": "1964 年表上空白，但前後兩場只隔 370 天（1963 年 12 月 28 日、1965 年 1 月 1 日）。",
+      "not_upgrade_to": [
+        "1964 年南非站停辦"
+      ],
+      "sources": [
+        "db：D-03 note_1964"
+      ],
+      "type": "本站計算",
+      "use_in": "H2-3（表後句）",
+      "priority": "必用"
+    },
+    "H-07": {
+      "value": "相鄰兩場非洲站的 23 段空窗中，最長是 1985-10-19 → 1992-03-01：2,325 天、日曆年差 7（略過 1986–1991 六個年份）；第二長是 1958 → 1962：1,532 天、日曆年差 4。",
+      "write_as": "24 場世界錦標賽非洲站之間最長的空窗是 1985 年 10 月到 1992 年 3 月，2,325 天。",
+      "not_upgrade_to": [
+        "F1 抵制南非 7 年",
+        "因種族隔離停辦 6 年"
+      ],
+      "sources": [
+        "db：D-03"
+      ],
+      "type": "本站計算",
+      "use_in": "H2-4, H2-6",
+      "priority": "必用"
+    },
+    "H-08": {
+      "value": "1993-03-14 卡亞拉米之後，到站內資料庫有結果的最新一站（2026 第 17 站新加坡，10/11），F1 共辦 633 場世界錦標賽，非洲 0 場；1993-03-14 到官宣日 2026-10-13 共 12,266 天（日曆年差 33 只是減法，不作本站歷時）。",
+      "write_as": "1993 年卡亞拉米之後，F1 又辦了 633 場世界錦標賽（算到 2026 年第 17 站新加坡），沒有一場在非洲；到官宣日已 12,266 天。",
+      "not_upgrade_to": [
+        "F1 三十多年沒去過非洲（2024 FIA 頒獎典禮在 Kigali）",
+        "633 場不帶截止點"
+      ],
+      "sources": [
+        "db：D-04、D-05",
+        "f1-press-release.txt:17；f1-everything-we-know.txt:24（2024 FIA 頒獎典禮）"
+      ],
+      "type": "本站計算",
+      "use_in": "lede, H2-4, H2-6",
+      "priority": "必用"
+    },
+    "H-09": {
+      "value": "24 場世界錦標賽非洲站中 9 場是該季開幕戰（1965、1967、1968、1969、1970、1971、1982、1992、1993）、4 場是該季最後一站（1958、1962、1963、1983）；按月份 1 月 4、3 月 14、4 月 1、10 月 3、12 月 2（1–4 月 19 場）。",
+      "write_as": "24 場世界錦標賽非洲站中有 9 場是開幕戰、19 場在 1 到 4 月。",
+      "not_upgrade_to": [
+        "非洲站通常是開幕戰",
+        "盧安達站可能排在季初"
+      ],
+      "sources": [
+        "db：D-11"
+      ],
+      "type": "本站計算",
+      "use_in": "H2-3",
+      "priority": "可選（與 H-10 二擇一）"
+    },
+    "H-10": {
+      "value": "24 場世界錦標賽非洲站有 17 位不同勝者；最多是 Jim Clark、Niki Lauda 各 3 場；車隊最多 Ferrari 4 場；勝者國籍為 South African 的只有 1975 年 Jody Scheckter（db drivers.nationality）。",
+      "write_as": "17 位不同勝者，最多是吉姆・克拉克與尼基・勞達各 3 場；南非籍車手在這 24 場世界錦標賽非洲站只贏過 1975 年朱迪・謝科特那一場。",
+      "not_upgrade_to": [
+        "卡亞拉米是英國車手的主場",
+        "南非車手只贏過一次 F1"
+      ],
+      "sources": [
+        "db：D-12"
+      ],
+      "type": "本站計算",
+      "use_in": "H2-3",
+      "priority": "可選（與 H-09 二擇一）"
+    },
+    "H-11": {
+      "value": "1958 摩洛哥大獎賽（艾因迪亞卜賽道，db locality Casablanca）是該季第 11 站（共 11 站）、1958-10-19；RaceFans：之後這項錦標賽沒再回到摩洛哥。",
+      "write_as": "1958 年摩洛哥站是該季最後一站，之後世界錦標賽沒再回到摩洛哥。",
+      "not_upgrade_to": [
+        "摩洛哥只辦過一次 F1 比賽（非錦標賽未查）"
+      ],
+      "sources": [
+        "db：D-02",
+        "racefans.txt:30（Q-29）"
+      ],
+      "type": "本站計算＋媒體",
+      "use_in": "H2-3",
+      "priority": "必用"
+    },
+    "H-12": {
+      "value": "RaceFans：南非先在東倫敦（East London）的一條賽道、後到約翰尼斯堡附近的 Kyalami。db：喬治王子賽道 1962、1963、1965（db locality Eastern Cape Province），之後的非洲站都在卡亞拉米（首年 1967；db locality Midrand）。",
+      "write_as": "RaceFans 寫南非先在東倫敦的一條賽道、後到約翰尼斯堡附近的卡亞拉米，與資料庫先喬治王子（1962、1963、1965）、後卡亞拉米（首年 1967）的順序一致。",
+      "not_upgrade_to": [
+        "本站確認喬治王子賽道位於東倫敦（只有維基）"
+      ],
+      "sources": [
+        "racefans.txt:31（Q-30）",
+        "db：circuits.locality（th_db2_out.txt）"
+      ],
+      "type": "媒體＋本站計算",
+      "use_in": "H2-3",
+      "priority": "必用"
+    },
+    "H-13": {
+      "value": "1981-02-07 卡亞拉米那場不在站內資料庫的世界錦標賽母集。GrandPrix247：不計入當年 FIA 世界錦標賽（Q-44）。8W（Mattijs Diepraam、Felix Muelas）：官方上不是 F1 比賽，大概是最後一場 Formula Libre，嚴格說連非錦標賽 F1 都算不上，因為賽車不符 1981 新規的側裙禁令（Q-43）。Motor Sport 當時賽報：FISA 會不會把它算成世界錦標賽第一站很難說（Q-45）。勝者 Carlos Reutemann（Williams）（8W L49；GrandPrix247 L10）。",
+      "write_as": "1981 年 2 月 7 日卡亞拉米那場不計入世界錦標賽（GrandPrix247）；8W 的作者更認為，它在官方上不是 F1 比賽，大概是最後一場自由方程式（Formula Libre）比賽，嚴格說連非錦標賽 F1 都算不上。勝者是開 Williams 的 Carlos Reutemann。",
+      "not_upgrade_to": [
+        "非法比賽",
+        "官方不承認",
+        "被 FIA 取消",
+        "兩家說法矛盾",
+        "拿掉「大概」"
+      ],
+      "sources": [
+        "hist-grandprix247-reutemann.txt:10",
+        "hist-8w-za81.txt:42,49",
+        "hist-motorsport-db-1981.txt:13",
+        "db：races 1981 無卡亞拉米列"
+      ],
+      "type": "媒體＋本站計算",
+      "use_in": "H2-3（表前句一句）, H2-4",
+      "priority": "必用"
+    },
+    "H-14": {
+      "value": "1985 南非大獎賽：1985-10-19，該季第 15 站（共 16 站），db 結果列 21。RaceFans 2008：26 台常態出賽車有 21 台到卡亞拉米，雷諾與 Ligier 是僅有的真正抵制者（法國政府施壓），Zakspeed、RAM 沒到是缺錢（Q-38）。grandprix.com 歷史頁：因南非政治問題數隊不參賽、最明顯是雷諾與 Ligier，RAM 沒錢、Zakspeed 本來沒打算去，參賽減到 21 台（Q-42）。Alan Jones：grandprix.com 寫因身體不適被車隊撤下（Q-41），db status＝Driver unwell（D-13）；RaceFans 2008 寫撤車時有車隊奉命退出的傳聞（Q-39）。",
+      "write_as": "1985 年有部分車隊沒去：RaceFans 2008 年的回顧文說雷諾與 Ligier 是僅有的真正抵制者，Zakspeed、RAM 則是缺錢；Alan Jones 的退出，grandprix.com 寫是身體不適，RaceFans 寫當時有車隊奉命退出的傳聞。",
+      "not_upgrade_to": [
+        "多數車隊抵制",
+        "四隊抵制",
+        "Jones 拒賽抗議",
+        "裁決 Jones 兩種說法"
+      ],
+      "sources": [
+        "hist-racefans-5850.txt:105–106",
+        "hist-gpe-1985.txt:6,8,31",
+        "db：D-02、D-13"
+      ],
+      "type": "媒體＋本站計算",
+      "use_in": "H2-4",
+      "priority": "必用"
+    },
+    "H-15": {
+      "value": "1985 之後下一場是 1992。RaceFans 2026：缺席七年後回到大幅改造的卡亞拉米辦了兩場（Q-31）；部分車隊抵制 1985 的背景是在種族隔離政權下辦賽受批評（Q-30）。RaceFans 2008：1985 賽後幾週 FIA 仍在考慮之後的南非賽事，最後數家電視台在工會壓力下拒絕轉播，迫使 Ecclestone 取消了那場比賽（Q-40；原文沒寫哪一年）。本桌沒有逐年交代 1986–1991 的非維基來源。",
+      "write_as": "1985 年之後下一場是 1992 年，相隔 2,325 天（RaceFans 在 2026 年的官宣稿裡稱為七年缺席）；RaceFans 2008 年的回顧文（與「僅有的真正抵制者」「奉命退出傳聞」同一篇）寫，1985 賽後幾週 FIA 仍在考慮之後的南非賽事，最後因數家電視台在工會壓力下拒絕轉播，Ecclestone 取消了那場比賽（原文沒有標明是哪一年的比賽）。本文讀到的來源沒有逐年交代 1986–1991 年的情況。",
+      "not_upgrade_to": [
+        "1985 之後停了 7 年（作本站歷時）",
+        "因種族隔離被禁 6 年",
+        "FISA 禁賽到 1992",
+        "Ecclestone 取消 1986（或 1986–1991）年南非站",
+        "單一原因"
+      ],
+      "sources": [
+        "racefans.txt:31–32",
+        "hist-racefans-5850.txt:111",
+        "維基定位（不作出處）：1985_South_African_Grand_Prix.wikitext:60；1986_Formula_One_World_Championship.wikitext:400；South_African_Grand_Prix.wikitext:41,58,253–254"
+      ],
+      "type": "媒體（維基只定位）",
+      "use_in": "H2-4",
+      "priority": "必用"
+    },
+    "H-16": {
+      "value": "1992-03-01、1993-03-14 兩場都在卡亞拉米、都是該季第 1 站（共 16 站）；RaceFans：回到大幅改造的卡亞拉米辦了兩場。1993 卡亞拉米是此前最後一場非洲世界錦標賽分站（F1 新聞稿圖說 L27、Barretto L14、grandprix.com L12、RaceFans L19）。",
+      "write_as": "資料庫：1992、1993 年都在卡亞拉米、都是開幕戰（RaceFans 2026 官宣稿只說九〇年代回到大幅改造的卡亞拉米辦了兩場，年份來自資料庫）；1993 年 3 月 14 日是到目前為止最後一場非洲世界錦標賽分站。",
+      "not_upgrade_to": [
+        "1993 年後南非再也沒辦過 F1 比賽（不計分賽事未查）"
+      ],
+      "sources": [
+        "db：D-02",
+        "racefans.txt:19,32",
+        "f1-press-release.txt:27",
+        "f1-everything-we-know.txt:14",
+        "grandprix.txt:12"
+      ],
+      "type": "本站計算＋F1官方稿＋媒體",
+      "use_in": "H2-3, H2-4",
+      "priority": "必用"
+    },
+    "N-01": {
+      "value": "F1 新聞稿（2026-10-13 09:18:14 UTC＝台北 17:18，週二）：F1 宣布 10 年協議，Formula 1 African Grand Prix, presented by Visit Rwanda 預定 early 2030s 加入賽曆。",
+      "write_as": "F1 在台北時間 10 月 13 日 17:18 發布新聞稿，宣布與盧安達的 10 年協議，賽事名為 Formula 1 African Grand Prix, presented by Visit Rwanda，預定 2030 年代初加入賽曆。",
+      "not_upgrade_to": [
+        "F1 與盧安達政府簽約",
+        "合約到某年",
+        "2030 年首辦"
+      ],
+      "sources": [
+        "f1-press-release.txt:8–9（Q-01）",
+        "f1-press-release.html:40（datePublished）"
+      ],
+      "type": "F1官方稿",
+      "use_in": "lede, H2-1",
+      "priority": "必用"
+    },
+    "N-02": {
+      "value": "首場要等 Bugesera 的新專用賽道完工後才舉行，預期在下一個十年初；新賽道依 FIA Grade 1 標準開發，屬 RDB 主導的開發計畫。",
+      "write_as": "首場要等 Bugesera 的新賽道蓋好才辦；賽道依 FIA 一級標準開發，屬盧安達發展局主導的開發計畫。",
+      "not_upgrade_to": [
+        "賽道已動工",
+        "某年完工",
+        "RDB 出資"
+      ],
+      "sources": [
+        "f1-press-release.txt:12–13（Q-02、Q-03）"
+      ],
+      "type": "F1官方稿",
+      "use_in": "lede, H2-1, H2-6",
+      "priority": "必用"
+    },
+    "N-03": {
+      "value": "位於 Kigali 以南約 40 公里、緊鄰新的 Kigali 國際機場（F1 新聞稿；Barretto 約 40km；RaceFans 40 公里；grandprix.com 約 25 英里＝40.2336 公里）。Horton 另寫機場預定 early 2028 啟用。",
+      "write_as": "賽道在首都 Kigali 以南約 40 公里、新機場旁。",
+      "not_upgrade_to": [
+        "機場 2028 年啟用（只有 Horton；若用必須掛名）"
+      ],
+      "sources": [
+        "f1-press-release.txt:14（Q-04）",
+        "f1-everything-we-know.txt:16",
+        "racefans.txt:22",
+        "grandprix.txt:10",
+        "f1-inside-plan.txt:25"
+      ],
+      "type": "F1官方稿（媒體交叉）",
+      "use_in": "H2-1",
+      "priority": "必用"
+    },
+    "N-04": {
+      "value": "首辦沒有年份：新聞稿 early 2030s（L9）／early in the next decade（L12）、Domenicali from the next decade（L22）；日期、里程碑、週末安排另行公布（L21）；grandprix.com：還沒公布首場日期；RaceFans：沒有確認年份「不尋常」。",
+      "write_as": "官方只說 2030 年代初，首場日期另行公布；RaceFans 形容沒給年份「不尋常」。",
+      "not_upgrade_to": [
+        "任何年份",
+        "最快 2030 年（作為 F1 說法）",
+        "三種措辭互相矛盾"
+      ],
+      "sources": [
+        "f1-press-release.txt:9,12,21,22（Q-01、Q-02、Q-05、Q-06）",
+        "grandprix.txt:9（Q-33）",
+        "racefans.txt:21（Q-26）"
+      ],
+      "type": "F1官方稿＋媒體",
+      "use_in": "lede, H2-1, H2-6",
+      "priority": "必用"
+    },
+    "N-05": {
+      "value": "官宣前：AutoGuide（2026-10-06，Marcus Lewinsky）寫 2030 賽曆目標，依據是 RacingNews365 引述的多位圍場消息人士；The Next Web（2026-10-10，Darius Popa）寫 RacingNews365 以圍場消息首先報導這筆協議（經 GrandPrix.com 轉述）、首場預期不早於 2030（無引述主詞），並寫 F1、FIA、盧安達政府都沒證實；TNW 沒有寫 2030 年目標。",
+      "write_as": "兩家分開寫：①官宣前，AutoGuide（10/6）引述 RacingNews365 的匿名圍場消息，寫盧安達新大獎賽以 2030 年賽曆為目標；②The Next Web（10/10）寫首場預期不早於 2030，並寫 F1、FIA、盧安達政府都沒證實。官宣稿沒有給年份。",
+      "not_upgrade_to": [
+        "RacingNews365 報導（本站讀過原文）",
+        "消息證實 2030",
+        "The Next Web 寫 2030 年目標",
+        "兩家都引述 RacingNews365 寫 2030"
+      ],
+      "sources": [
+        "news-autoguide-2030.txt:18（Q-46）",
+        "news-thenextweb-2030.txt:6（Q-53）、7（Q-47）、10（Q-52）"
+      ],
+      "type": "媒體（匿名＋轉述）",
+      "use_in": "H2-1",
+      "priority": "必用"
+    },
+    "N-06": {
+      "value": "設計：Barretto 寫最終配置仍在設計，WurzDesign（Alex Wurz 領導）與 Tilke Engineers and Architects 合作，後者設計過雪邦等賽道；Horton 寫 Tilke Engineering 的 Carsten Tilke 與 Wurz Designs 的 Alex Wurz；RaceFans 寫圖由 Tilke Gmbh 與 Wurz Design 繪製；grandprix.com 圖片版權列「Tilke / DAR / Wurz Design」。",
+      "write_as": "F1 官網的 Barretto 寫，最終配置仍在設計，由前 F1 車手 Alex Wurz 領導的 WurzDesign 與設計過雪邦的 Tilke Engineers and Architects 合作；Horton 點名的設計者是 Carsten Tilke 與 Alex Wurz。",
+      "not_upgrade_to": [
+        "Hermann Tilke 設計",
+        "統一成某一個正式公司名",
+        "DAR 是共同設計方"
+      ],
+      "sources": [
+        "f1-everything-we-know.txt:20（Q-13）",
+        "f1-inside-plan.txt:24（Q-21）",
+        "racefans.txt:23（Q-27）",
+        "grandprix.txt:7"
+      ],
+      "type": "F1官網作者＋媒體",
+      "use_in": "H2-2",
+      "priority": "必用"
+    },
+    "N-07": {
+      "value": "Horton（F1 官網特約作者，15:40:07 UTC）：規劃中的賽道 6 公里、逆時針、17 個彎，可供多種賽車項目；完整配置尚未公布；Wurz 在模擬器跑了「thousands」圈；單圈 197 公尺高低差，有帶傾角的彎與斜坡彎。",
+      "write_as": "F1 官網特約作者 Phillip Horton 在官宣當天稍晚的文章寫：規劃中的賽道 6 公里、逆時針、17 個彎，單圈高低差 197 公尺；完整配置還沒公布。",
+      "not_upgrade_to": [
+        "F1 公布規格",
+        "Wurz／Tilke 說的規格",
+        "賽道長 6 公里（無歸屬）",
+        "賽道定案"
+      ],
+      "sources": [
+        "f1-inside-plan.txt:29（Q-22）"
+      ],
+      "type": "F1官網作者",
+      "use_in": "H2-2",
+      "priority": "必用"
+    },
+    "N-08": {
+      "value": "時間序（UTC）：新聞稿 09:18:14；RaceFans 標示發布 09:31:54；Barretto 09:45:46；Horton 15:40:07；RaceFans 標示更新 10/14 08:01:27；本桌 RaceFans 快照抓取 10/15 02:34:36（更新後 18 小時 33 分），其中仍有「gave no details of its specifications」。新聞稿與 Barretto 稿全文沒有長度、彎數與高低差數字（兩篇都提到利用地形的 elevation changes，只是沒給數字；197 只在 Horton 稿）。",
+      "write_as": "新聞稿與 27 分鐘後的 Barretto 問答稿都沒寫長度與彎數；RaceFans 那篇標示 09:31 UTC 發布，本站讀到的版本寫 F1「沒有給規格細節」，頁面隔天標示更新過、改了什麼沒說明；Horton 的文章在 15:40 UTC，比新聞稿晚約 6 小時 22 分、比 RaceFans 標示的發布時間晚約 6 小時 8 分。",
+      "not_upgrade_to": [
+        "新聞稿與 Barretto 稿沒提高低差（兩篇都提到 elevation changes，只是沒數字）",
+        "RaceFans 報錯／改稿",
+        "RaceFans 初版寫了什麼",
+        "RaceFans 發稿時知不知道規格",
+        "官宣現場沒講規格"
+      ],
+      "sources": [
+        "derived_values D-07、D-15",
+        "racefans.html:128–129,489",
+        "f1-*.html:40",
+        "racefans.txt:2,23"
+      ],
+      "type": "本站計算（metadata）＋媒體＋F1官網作者",
+      "use_in": "H2-2",
+      "priority": "必用"
+    },
+    "N-09": {
+      "value": "RISE Motordrome 在本桌 19 份新聞文字快照中只出現在 racefans.txt 第 23、29 行；F1 官網三篇沒有。",
+      "write_as": "RaceFans 稱 F1 發布的規劃圖叫 RISE Motordrome；本文讀到的三篇 F1 官網文章沒有用這個名字。",
+      "not_upgrade_to": [
+        "賽道正式名稱是 RISE Motordrome"
+      ],
+      "sources": [
+        "derived_values D-15",
+        "racefans.txt:23,29"
+      ],
+      "type": "媒體＋本站掃描",
+      "use_in": "H2-2",
+      "priority": "可選"
+    },
+    "N-10": {
+      "value": "Horton：Kigali 海拔約 1,500 公尺，會是賽曆上最高的賽道之一，墨西哥城 2,200 公尺；Wurz：空氣壓力低、空力抓地較少，會用傾角補。",
+      "write_as": "Horton 寫 Kigali 海拔約 1,500 公尺，會是賽曆上最高的賽道之一（墨西哥城 2,200 公尺）；Wurz 說這代表空氣壓力低、空力產生的抓地力較少。",
+      "not_upgrade_to": [
+        "Bugesera 賽道海拔 1,500 公尺",
+        "海拔第二高"
+      ],
+      "sources": [
+        "f1-inside-plan.txt:34–35（Q-23、Q-24）"
+      ],
+      "type": "F1官網作者＋被引述者",
+      "use_in": "H2-2",
+      "priority": "可選"
+    },
+    "N-11": {
+      "value": "賽名 Formula 1 African Grand Prix, presented by Visit Rwanda（新聞稿 L9）。Horton：名稱部分是因為要讓盧安達成為整個大陸的焦點（L13）。RDB 執行長 Jean-Guy Afrika：叫 Kigali 或 Rwanda Grand Prix 會有點排他，叫 African Grand Prix 比較容易邀合作夥伴（L20）。Kagame：把盧安達放在大陸脈絡裡看（L17）。RaceFans：根據 Kagame，賽事將稱為 Formula 1 African Grand Prix（L25）。",
+      "write_as": "盧安達發展局執行長 Jean-Guy Afrika 說，叫「Kigali 大獎賽」或「盧安達大獎賽」會有點排他，叫非洲大獎賽比較容易邀合作夥伴加入。",
+      "not_upgrade_to": [
+        "F1 決定用洲名的理由",
+        "非洲大獎賽由非洲多國合辦"
+      ],
+      "sources": [
+        "f1-press-release.txt:9",
+        "f1-inside-plan.txt:13,17,20",
+        "racefans.txt:25"
+      ],
+      "type": "F1官方稿＋F1官網作者＋被引述者",
+      "use_in": "H2-5",
+      "priority": "必用"
+    },
+    "N-12": {
+      "value": "Afrika：盧安達不是唯一的申辦者，預期首場之後會有更多比賽（沒點名）。Barretto：有很多有意的單位（沒點名）。官宣前：The Next Web 寫南非也申辦過；AutoGuide 寫卡亞拉米與開普敦都爭取過、摩洛哥與奈及利亞出現在傳聞中。",
+      "write_as": "Afrika 說盧安達不是唯一的申辦者，但沒點名；官宣前，The Next Web 報導南非也申辦過，AutoGuide 寫卡亞拉米與開普敦都爭取過。",
+      "not_upgrade_to": [
+        "F1 沒有公布申辦者名單（無範圍；要寫「本文讀到的來源中」）",
+        "F1 確認南非落選",
+        "盧安達擊敗南非",
+        "摩洛哥、奈及利亞申辦過（只是傳聞）"
+      ],
+      "sources": [
+        "f1-inside-plan.txt:23（Q-20）",
+        "f1-everything-we-know.txt:13（Q-12）",
+        "news-thenextweb-2030.txt:13（Q-48）",
+        "news-autoguide-2030.txt:23（Q-49）"
+      ],
+      "type": "被引述者＋F1官網作者＋媒體（官宣前）",
+      "use_in": "H2-5",
+      "priority": "必用"
+    },
+    "N-13": {
+      "value": "Pit Debrief（Karishma Persad，2024-12-13）：在 Kigali 的 2024 FIA 頒獎典禮之前，Kagame 宣布盧安達正式申辦 F1 大獎賽，並引其原話。",
+      "write_as": "2024 年 12 月，Kagame 在 Kigali 的 FIA 頒獎典禮前宣布盧安達正式申辦（Pit Debrief 報導）。",
+      "not_upgrade_to": [
+        "多家媒體報導（單一媒體）"
+      ],
+      "sources": [
+        "news-pitdebrief-bid2024.txt:16–17（Q-50）",
+        "news-pitdebrief-bid2024.html:20,26"
+      ],
+      "type": "媒體",
+      "use_in": "H2-1 或 H2-5",
+      "priority": "可選"
+    },
+    "N-14": {
+      "value": "新聞稿圖說：Domenicali 與 Kagame、Ben Sulayem 同台宣布協議（L31）；Domenicali（L22）、Kagame（L27、L29）、Ben Sulayem（L32）的引言。新聞稿沒寫官宣地點。",
+      "write_as": "Domenicali 與盧安達總統 Kagame、FIA 主席 Ben Sulayem 同台宣布。",
+      "not_upgrade_to": [
+        "在某地宣布（地點查無）",
+        "FIA 是締約方"
+      ],
+      "sources": [
+        "f1-press-release.txt:22,27,29,31,32（Q-06～Q-10）"
+      ],
+      "type": "F1官方稿（含圖說）＋被引述者",
+      "use_in": "H2-1",
+      "priority": "必用"
+    },
+    "N-15": {
+      "value": "grandprix.com（2026-10-13）：Amnesty International 指控盧安達利用新的 F1 協議改善國際形象（L8）；轉述 Amnesty 英國分會倡議主管 Felix Jakens 對 BBC 的話（L10，無引號）；同篇寫 F1 表示其章程承諾尊重國際公認人權（L13）。",
+      "write_as": "同一天，grandprix.com 報導國際特赦組織批評盧安達藉這份協議改善國際形象，並轉述其英國分會的 Felix Jakens 對 BBC 的說法；同篇也寫，F1 表示其章程承諾尊重國際公認的人權。",
+      "not_upgrade_to": [
+        "Amnesty 原始聲明",
+        "BBC 逐字",
+        "F1 被控洗白",
+        "本站評語",
+        "連到 1985"
+      ],
+      "sources": [
+        "grandprix-amnesty.txt:8,10,13（Q-35～Q-37）"
+      ],
+      "type": "媒體（第二手轉述）",
+      "use_in": "H2-1（末段 ≤3 句）",
+      "priority": "必用"
+    },
+    "N-16": {
+      "value": "F1 新聞稿：非洲已有超過 1 億人關注 F1，撒哈拉以南重點市場近 60% 車迷未滿 35 歲。",
+      "write_as": "F1 說非洲已有超過 1 億名車迷。",
+      "not_upgrade_to": [
+        "客觀統計",
+        "盧安達的車迷數"
+      ],
+      "sources": [
+        "f1-press-release.txt:16（Q-11）"
+      ],
+      "type": "F1官方稿（行銷數字）",
+      "use_in": "H2-1",
+      "priority": "可選"
+    },
+    "N-17": {
+      "value": "RaceFans：盧安達過去從沒辦過世界錦標賽分站；首辦年份沒有確認，RaceFans 稱之為不尋常（Unusually）。",
+      "write_as": "RaceFans 寫盧安達從沒辦過世界錦標賽分站，並形容官方沒給首辦年份「不尋常」。",
+      "not_upgrade_to": [
+        "本站評「不尋常」"
+      ],
+      "sources": [
+        "racefans.txt:21（Q-26）"
+      ],
+      "type": "媒體",
+      "use_in": "H2-1, H2-5, H2-6",
+      "priority": "必用"
+    },
+    "N-18": {
+      "value": "RaceFans：等盧安達辦第一場時，距 F1 上一次在非洲比賽可能已過「最多 40 年」。",
+      "write_as": "RaceFans 寫等到盧安達首場，距上一場非洲站可能已過最多 40 年（對應 2033 年）。",
+      "not_upgrade_to": [
+        "空窗將是 40 年"
+      ],
+      "sources": [
+        "racefans.txt:33（Q-32）",
+        "derived_values D-06"
+      ],
+      "type": "媒體＋情境算術",
+      "use_in": "H2-4",
+      "priority": "可選"
+    },
+    "N-19": {
+      "value": "Kagame（新聞稿）：三十多年來，頂級賽車錦標賽一直沒有在這塊大陸比賽，這份協議改變了這件事。",
+      "write_as": "Kagame 在新聞稿裡說，三十多年來頂級錦標賽沒在非洲比賽。",
+      "not_upgrade_to": [
+        "本站陳述「F1 三十多年沒去非洲」"
+      ],
+      "sources": [
+        "f1-press-release.txt:27（Q-07）"
+      ],
+      "type": "被引述者（F1官方稿內）",
+      "use_in": "H2-4",
+      "priority": "必用"
+    },
+    "N-20": {
+      "value": "Barretto 引述 Hamilton、Verstappen、Russell「官宣前」談非洲；Russell：非洲是唯一沒比賽的（有人居住的）大洲，早該辦一場。",
+      "write_as": "官宣前，羅素說非洲是唯一還沒比賽的有人居住大洲。",
+      "not_upgrade_to": [
+        "官宣當天表態"
+      ],
+      "sources": [
+        "f1-everything-we-know.txt:33,39（Q-51）"
+      ],
+      "type": "被引述者（F1官網作者文內）",
+      "use_in": "H2-1",
+      "priority": "可選"
+    },
+    "N-21": {
+      "value": "2024 年 FIA 頒獎典禮（與 FIA General Assemblies）在 Kigali 舉行（新聞稿 L17；Barretto L24；RaceFans L22；Horton L12）。",
+      "write_as": "背景用：盧安達 2024 年辦過 FIA 頒獎典禮。",
+      "not_upgrade_to": [
+        "F1 三十多年沒去過非洲（此事實是反例）"
+      ],
+      "sources": [
+        "f1-press-release.txt:17",
+        "f1-everything-we-know.txt:24",
+        "racefans.txt:22",
+        "f1-inside-plan.txt:12"
+      ],
+      "type": "F1官方稿＋F1官網作者＋媒體",
+      "use_in": "H2-1（可選一句）",
+      "priority": "可選"
+    }
+  },
+  "unanswerable": [
+    "首辦年份與日期：官方只說 early 2030s，另行公布（f1-press-release.txt:21）。",
+    "協議起算年、終止年、締約主體、撤約條款：本桌 12 份非歷史新聞快照的本文查無。",
+    "完整賽道配置：Horton 與 Barretto 都說還沒定（f1-inside-plan.txt:29；f1-everything-we-know.txt:20）。",
+    "Bugesera 賽場本身的海拔：來源只寫 Kigali（f1-inside-plan.txt:34）。",
+    "造價、出資來源、觀眾容量、票價、賽曆位置、環評：本桌 12 份非歷史新聞快照的本文查無（grandprix-amnesty.txt:16 只說 financing remains ahead）。",
+    "官宣現場有沒有口頭講規格：本桌沒有現場逐字稿或影片。",
+    "RaceFans 頁面 10/14 更新改了什麼、初版文字：頁面沒有修訂紀錄。",
+    "1986–1991 逐年的情況與原因：本桌沒有非維基來源；維基定位線索 1985_South_African_Grand_Prix.wikitext:60（引 Orlando Sentinel）、1986_Formula_One_World_Championship.wikitext:400（引 Motor Sport Kyalami 頁）、South_African_Grand_Prix.wikitext:41,58,253–254，所引原文都不在桌內。",
+    "1959–1966 等空白年份非洲有沒有不計分 F1 賽事：不在本篇母集，未查。",
+    "RacingNews365 的原始報導：本桌沒有快照。"
+  ],
+  "zh_names": {
+    "_rule": "譯名唯一資料源是 scripts/driver-zh.json、team-zh.json、circuit-zh.json、race-zh.json（status=approved），另查 check-zh.py 的 PHASE0_ZH 與 gen-racing-entities-phase0.py 的 seed；沒有定版就寫英文原名，不自創。首次出現用全形括號中英對照，之後可只用中文。",
+    "circuits": {
+      "kyalami": "卡亞拉米賽道（Kyalami）",
+      "george": "喬治王子賽道（Prince George Circuit）",
+      "ain-diab": "艾因迪亞卜賽道（Ain Diab）",
+      "sepang": "雪邦國際賽道（Sepang International Circuit）",
+      "rodriguez": "羅德里格斯兄弟賽道（墨西哥城）（Autódromo Hermanos Rodríguez）"
+    },
+    "races": {
+      "South African Grand Prix": "南非大獎賽",
+      "Moroccan Grand Prix": "摩洛哥大獎賽",
+      "Mexico City Grand Prix": "墨西哥城站",
+      "Formula 1 African Grand Prix": "無定版：首次寫 Formula 1 African Grand Prix, presented by Visit Rwanda，正文可用描述性的「非洲大獎賽」並加引號，不視為站內定版譯名"
+    },
+    "drivers_approved": {
+      "Alain Prost": "亞倫・普羅斯特",
+      "Denny Hulme": "丹尼・休姆",
+      "Graham Hill": "葛拉罕・希爾",
+      "Jack Brabham": "傑克・布拉漢姆",
+      "Jackie Stewart": "傑奇・史都華",
+      "James Hunt": "詹姆士・亨特",
+      "Jim Clark": "吉姆・克拉克",
+      "Jody Scheckter": "朱迪・謝科特",
+      "Mario Andretti": "馬里奧・安德烈蒂",
+      "Mike Hawthorn": "麥克・霍索恩",
+      "Niki Lauda": "尼基・勞達",
+      "Nigel Mansell": "奈傑爾・曼塞爾",
+      "Nelson Piquet": "尼爾森・皮凱",
+      "Alan Jones": "亞倫・瓊斯",
+      "George Russell": "羅素",
+      "Max Verstappen": "維斯塔潘",
+      "Lewis Hamilton": "漢米爾頓（driver-zh.json；PHASE0_ZH 與站內車手頁 H1 為「路易斯・漢米爾頓」，已知遺留衝突，本篇若不引 Hamilton 可避開）"
+    },
+    "drivers_no_approved": [
+      "Carlos Reutemann",
+      "Gilles Villeneuve",
+      "Jean-Pierre Jabouille",
+      "Pedro Rodríguez",
+      "René Arnoux",
+      "Riccardo Patrese",
+      "Ronnie Peterson",
+      "Stirling Moss",
+      "Patrick Tambay",
+      "Carlos Pace",
+      "Alex Wurz"
+    ],
+    "teams": {
+      "Ferrari": "法拉利",
+      "McLaren": "麥拉倫",
+      "Williams": "威廉斯",
+      "Renault": "雷諾車隊",
+      "Tyrrell": "泰瑞爾車隊",
+      "Team Lotus": "蓮花車隊",
+      "Lotus-Climax": "蓮花－Climax車隊",
+      "Lotus-Ford": "蓮花－福特車隊",
+      "Matra-Ford": "馬特拉－福特車隊",
+      "BRM": "BRM車隊",
+      "Vanwall": "范沃爾車隊",
+      "Brabham-Repco": "布拉漢姆－Repco車隊",
+      "no_approved": [
+        "Brabham",
+        "Cooper-Maserati",
+        "Ligier",
+        "Zakspeed",
+        "RAM",
+        "Beatrice",
+        "Lola"
+      ]
+    },
+    "people_no_approved": [
+      "Stefano Domenicali",
+      "Paul Kagame",
+      "Mohammed Ben Sulayem",
+      "Jean-Guy Afrika",
+      "Carsten Tilke",
+      "Lawrence Barretto",
+      "Phillip Horton",
+      "Keith Collantine",
+      "Felix Jakens",
+      "Bernie Ecclestone",
+      "Mattijs Diepraam",
+      "Felix Muelas"
+    ],
+    "places_and_orgs": "Rwanda＝盧安達、Kigali、Bugesera、Rwanda Development Board＝盧安達發展局（RDB）、Amnesty International＝國際特赦組織、FIA、FOM、FISA、FOCA：四張表無條目，前兩者與機構中文為通用名，地名 Kigali、Bugesera 保留英文。"
+  },
+  "interlinks": {
+    "note": "以下路徑已確認 public-racing/ 下 index.html 存在並讀過 title／H1（th_site_out.txt）。Gilles Villeneuve 沒有站內頁：/drivers/villeneuve/ 是 Jacques Villeneuve，不得連。本篇的新價值是跨賽道、跨時段的整合；三個賽道頁已各自列出承辦賽季與分站冠軍，不重寫。",
+    "candidates": [
+      "/circuits/kyalami/（卡亞拉米賽道承辦紀錄）",
+      "/circuits/george/（喬治王子賽道承辦紀錄）",
+      "/circuits/ain-diab/（艾因迪亞卜賽道承辦紀錄）",
+      "/circuits/sepang/（雪邦國際賽道承辦紀錄；H2-2 Barretto 提到雪邦時）",
+      "/circuits/rodriguez/（羅德里格斯兄弟賽道（墨西哥城）承辦紀錄；H2-2 海拔句若用）",
+      "/seasons/1958/",
+      "/seasons/1981/（1981 賽季總覽；H2-4 若需要）",
+      "/seasons/1985/",
+      "/seasons/1992/",
+      "/seasons/1993/",
+      "/seasons/2026/",
+      "/drivers/clark/",
+      "/drivers/lauda/",
+      "/drivers/prost/",
+      "/drivers/mansell/",
+      "/drivers/scheckter/",
+      "/drivers/stewart/",
+      "/drivers/jones/（亞倫・瓊斯，H2-4）",
+      "/drivers/russell/（若用 Q-51）",
+      "/articles/f1-sepang-nine-years-guide/（可選；該文寫 Hermann Tilke 設計雪邦，與本篇 Carsten Tilke 不是同一人）",
+      "/guide/（F1 新手村，可選）"
+    ],
+    "seasons_all_24": "表 B 每列可連 /seasons/<年>/（24 個年份頁皆存在：1958、1962、1963、1965、1967–1980、1982–1985、1992、1993）；目標年份沒有分站獨立頁，不得虛構 /rounds/ 連結。"
+  },
+  "checked_not_used": [
+    "racefans-featured-comment.txt 全篇（讀者 Ibex 的留言，L21、L25）；racefans.txt L48–518 讀者留言區。",
+    "f1-everything-we-know.txt:28–29 人口與性別（分母不一致，B ⚠️3）。",
+    "f1-inside-plan.txt:18 £100m 經濟影響（previous new race locations／typically；本篇不需要）。",
+    "grandprix-amnesty.txt:12 剛果民主共和國／國際法院／M23（單一編輯敘述）。",
+    "hist-racefans-5850.txt:45 FISA 聲明「22 years」（量的定義不明，易被誤讀成矛盾）。",
+    "hist-grandprix247-reutemann.txt:13 與 hist-motorsport-db-1981.txt:13 的 1981 缺席車隊名單（詳略不同，本篇不寫名單）。",
+    "news-pitdebrief-bid2024.txt:18「Wurz’s company, reportedly…」（reportedly）。",
+    "news-thenextweb-2030.txt:14 McKenzie 社群貼文（經 African Business 轉述，三層）。",
+    "hist-motorsport-1981-article.txt:33「Why Rwanda beat Kyalami to F1’s African return」只是相關文章標題，沒有內文。",
+    "所有 evidence/snap/wiki/*.wikitext：只作定位與交叉比對；含 1985／1986 的 FISA／apartheid 敘述（引用原文不在桌內）。",
+    "results.grid=1（發車第 1 格）與勝者同人 6／24：可算，但表格不放發車位欄，正文不用（易被讀成桿位）。"
+  ],
+  "voice": {
+    "_instruction": "⚠️ 下面 spec_verbatim 是站上文風規格的原文整段（取自記憶檔 feedback_voice_target_xiaolin_zhangquanling.md 的「派工單貼文」節，行 85–195），派寫作 agent 時要整段複製進派工單的風格節，不要節錄、不要改寫、不要只挑幾條。",
+    "spec_verbatim": "## 📋 派工單貼文＝寫手單（派寫作 agent 時整段複製到 §風格，不要節錄）\n\n### 標竿\n小 Lin 說＋張泉靈（硅谷101 只補「明寫查證工作量」，取代不了標竿）：①從具體的怪事切進去，不從分類切進去 ②短句，一句話一件事 ③方法論留在文外。連不確定都直接說，條文／日期／前例敢斷，走向與動機明說不知道。\n\n### 一　文章層（W32）：動筆前先寫一句話論點\n稿子最上方先寫（交稿前刪掉，或交指揮位放進 `05-thesis.md`）：\n①**這篇在主張什麼**——一句話，讀者可以不同意的判斷（「本文介紹／整理了 X」不算）。\n②**每一節要撐的主張**——一節一句，說出那一節的「所以呢」。\n> **⭐ 節形狀選單（接在 W32 ② 之後；Cole harvest 判 ✅ 的五種，分類見 [[hub_writing_framing]] Cole 附錄）**\n>\n> **適用範圍＝承載主張的節**；收尾節（時效提醒、不給建議的收尾）與結構節（來源／FAQ）不判。\n> **用法**：每一節先寫一句主張（W32 ②），再從下面五種裡挑一種形狀撐那句主張；挑得出形狀就照那個形狀排材料，\n> **挑不出形狀的節＝資料堆候選，回報指揮位**（縮節、併節或換主張）。一節一種形狀就夠；✅ 例句取自三篇試行文的真實段落（❌ 對照在記憶檔 `hub_writing_framing` 附錄與回顧檔）。\n>\n> **① 數據**＝用一組先有出處的數字撐這一節的主張，數字之間要能互相對照。\n> ✅ article-racing…leclerc-parabolica.md `## 勒克萊爾在 205 km/h 就全油門，比自己與另外五人的第 2 圈全開都早`——六個對照排成一張表（210–223 對 205），每一筆都指回同一份公開存檔。\n>\n> **② 理由**＝用「往支持／往反對」兩個方向的材料撐一個判斷，連信賴度一起講。\n> ✅ article-racing…leclerc-parabolica.md `## 第二次全開之後，車速不動，轉速卻跳了 4%`——同一個比值 48.3，往支持給自己出彎 8 筆與漢米爾頓兩圈的取樣，往反對給第 1 圈那筆換檔瞬態，並標信賴度中。\n>\n> **③ 犯錯**＝把讀者最容易踩的那一個坑講明白，用自家材料拆開它（守 W19：坑是內容，不是彈藥）。\n> ✅ article-baseball-brock.md `## 這是統一隊史紀錄，不是中職聯盟紀錄`——坑＝把隊史紀錄當成聯盟紀錄；用柏格中職 58 勝、勇壯 108 勝拆開，全程沒有寫誰報錯。\n>\n> **④ 範例**＝用能串成一條過程的具體材料撐主張，每件材料帶日期、原話或代價（W26 材料計數）。\n> ✅ article-baseball-brock.md `## 布雷克這 7 個球季，撐過背傷也撐過了洋將大限`——背傷下二軍、季末註銷、2 年保障合約、羅力條款四件材料各有日期與原話，串成「留得夠久」。\n>\n> **⑤ 問題**＝H2 自己就是讀者會追問的那個反轉，節內當場回答（W30 已接受過的形狀①）。\n> ✅ article-baseball-brock.md `## 防禦率全聯盟第 2，勝場卻只有 7 勝 7 敗`——反轉在 H2，節內用 7 場敗投的比分表與 5 月 16 日那場 0 比 1 回答。\n>\n> ⚠️ 建議型文型另有三種（訣竅／步驟／好處），健檢站與賽事分析不套。\n>\n> **「數據」形狀的順序是先有出處、再有句子**：拿著出處找句子，句子撐得住；拿著句子找數據，會長出查無出處的數字\n> （☠️「給我一個數據支撐這個說法」這個 prompt 不收，理由見 [[hub_writing_framing]] Cole 附錄與 [[feedback_llm_fetch_fabricates_unhappened_events]]）。\n自檢：每一節讀完，讀者知道的是「事情放在哪裡」還是「那代表什麼」？前者＝地圖句，整節重寫。\n⚠️ 寫不出站得住的論點＝回報指揮位縮題或換角度。張力來自事實；絕對詞（最／唯一／完全沒有／只可能）一律換成可查的數字或條文。\n\n### 二　句子層（W29）：唸得完的句子\n每一句與每個標題都要唸得完：一個主詞、一個主要動詞；兩半的關係用連接詞明說（之後／因為／但是／雖然），逗號並排讓讀者自己接的一律改寫。\n❌「台鋼雄鷹連 33 局沒有得分，起點是一場勝利」→ ✅「台鋼雄鷹 8 月 29 日贏球之後，連續 33 局沒有得分」\n自檢：唸給人聽，對方反問「所以呢？」「這兩件事有什麼關係？」＝並置病。\n\n### 三　標題（W30）：先問「有沒有人想讀」\n紀律全過的標題仍可能沒有人想讀。原標題通常已有鉤子：先問「鉤子在哪個詞上」，查證推翻某個詞就只換那個詞，非鉤子則整句保留。\n四種被接受過的形狀（起手處，非套版）：問句＋反轉／具體人事時地物／反直覺的具體事實／**描述＋反轉**（前半是人地事的直述，後半接一個反轉）。\n自檢：唸給一個不看足球的人聽，他問「然後呢？」＝有鉤子，點頭說「喔」＝重寫。\n\n⭐ **標題與 description 寫發現，不寫做法。** 讀者最想知道的那件事（誰漲價、能不能投、規則停在哪）要進標題或 description，不能埋在第三節。\n❌「Three TrendForce Releases, March to September」「這篇逐一標出每筆訊號的出處」→ ✅「ChatGPT 廣告開到台灣：保健食品、法律服務不能投」\n自檢：把標題和 description 遮起來只看動詞——「並排」「整理」「標出」「列出」「解釋」是在描述你做了什麼，換成那件事本身。\n\n⭐ **動筆時的第一個動作：把自己的 lede 第一句抄下來，跟標題並排看。**\nCharlie 退標題時的固定做法就是拿同篇 lede 當正確版對照組——已發生在 2026-08-11（足球站與 aire 同日兩站）\n與 2026-09-16（他直接把 lede 首句貼回來當標題提案）。**lede 裡通常已經有人事時地物，標題缺的就是那些。**\n⛔ 但 **lede 首句不能整句搬進標題**：它是為「交代清楚」寫的，含全名括號與完整子句，\n長度通常是標題的三到四倍，塞不進封面版位（見下）。**抄的是它的元素，不是它的句子。**\n\n📏 **長度帶（foootball 實測，2026-09-16）**：站上 94 篇非 daily 標題**中位 33 字、P90 42、最長 55**；\n而 **feature 封面版位（2400×1260，標題固定兩行）的限制是每行寬度，不是總字數**：\n實測 126 字會吃掉四行、把頁尾擠出版面；**31 字（第 1 行 14＋第 2 行 15）沒溢出，第 2 行只用約 75% 寬**（2026-09-19 巴薩篇，封面已實看）。\n⚠️ 本節舊版寫「實際容量約 24–30 字」——**過保守，2026-09-19 實測推翻**；但長標題仍**超過 30 字就先渲染確認**，別用猜的。\n\n⚠️ **本庫的慣性是「在標題層過度壓縮」**：2026-09-16 那篇初版 24 字，比站上 91% 的標題都短，被 Charlie 退「拗口」。\n⇒ **短不是優點**。標題太短時，兩件事會被壓成逗號並排、關係消失（＝W29 的並置病搬到標題層）。\n\n### 四　引文與限定：各講一次\n1. **外文一手源：每段最多 1 條逐字外文引文**（同一段並列兩方原句對照時例外），其餘用中文轉述並掛頁名；轉述不得比原文強。\n2. **同一個限定只講一次**：推論、beta／preview、官方沒寫、本文的讀法——第一次出現時講清楚，之後由主詞承載，不逐段重貼；推翻條件與版本限定收進文末一段「範圍與版本」。\n   ❌ 每節開頭都有「以下是推論，官方沒有這樣寫」→ ✅ 第一次寫清楚是推論與根據，後面直接寫「照這個讀法，…」\n3. **事實表與派工單裡的「沒寫／查無／不推論／不換算」是給你的判準，不是給讀者的句子。** 正文要用就講事實本身，一次就好。\n   ❌「稿中沒有」「稿子沒有替讀者接起來」一篇出現幾十次 → ✅「TrendForce 只給了企業級 SSD 的漲幅，沒有給出貨量」\n4. **同一件事只主述一次**：表格列過的數字，正文只講它代表什麼，不再重念；FAQ 的答案比正文那一節短，並指回那一節；結尾不重講開場。\n\n### 六個漂移症狀（①④⑤ 同病根＝成品在展示工序；測試：這句在告訴讀者「一件事」，還是「我怎麼知道這件事」？後者一律改寫）\n\n**① gate 語言長進正文（最主要病灶）**\n❌「這是媒體估值，不是官方公布的確定數字，本文照原樣寫成區間，不換算成新台幣，也不取整成單一數字，那樣做只會製造一個看起來精確、實際上查無出處的假數字。」\n✅「這是媒體估的區間，不是官方數字。」\n判準：標可靠度＝留（媒體估／官方公告照標，講完就走），解釋本站紀律＝移到文末來源區塊；「誠實說／照實說」這類框架詞一律刪掉，誠實是預設。\n\n**② 標籤式標題**\n❌ `## 機制一：同一國辦兩場，第二場得換名字` → ✅ `## 聖馬利諾大獎賽，從來沒在聖馬利諾辦過`\n標題自己就要是一個事實，邏輯關係靠內文轉場句承接。\n\n**③ 指代不具體**\n❌「那家真公司一定也是演習的一部分」→ ✅「它攻的是一家真公司，而且知道那是真的」\n要讀者往回翻的詞（這件事／那家公司／後者／前面講的）一律換成具體名詞或改寫成不需指代的句子；H2 內出現指代詞＝FAIL。查不到名字時的正解＝改寫成事實句，而非硬補一個名字。\n\n**④ 第一人稱主詞「我」浮濫**\n❌「我把 84 場全部拉出來排了一次」→ ✅「把 84 場全部拉出來、逐場看場地欄，結果是：」\n中文可省主詞：工作量要寫，動作者不出場。改法＝主題句（硬刪「我」留半殘句不算，「我們」一樣多餘）；收尾前 grep「我」，拿掉會不通才留。\n\n**⑤ 標題塞證據鏈**\n❌「中職一週內 4 場雨延：8 月 8 日兩場補在 10 月 4 日，8 月 9 日兩場只寫「補賽週」」→ ✅「中職延賽的兩種補法：給日期，或只寫「補賽週」」\n標題放結論，日期／場次／數量降到副標；太抽象（機制一二三）與太具體（整條證據鏈）是同軸兩端（與②合讀），修完一端盪到另一端同樣重寫。自檢＝唸進封面兩行。\n\n**⑥ 廢話文學＝形狀正確但零資訊的句子（最典型＝同義反覆）**\n❌「開球時間就是手機上的時間，下午 3 點 30 分就是下午 3 點 30 分」→ ✅「一個換算都不用做——星期日吃完午餐出門，趕得上下午 3 點 30 分那場」\n判準＝讀完這句，知道的事情比讀之前多了什麼；答不出來就是廢話。高發位置＝系列文／系列卡的共同軸句位。\n\n### 材料（W26）\n非虛構稿 ≥1,200 字：五件具體材料（動作／數字／原話／代價／結果，各註來路）串成一條實際過程；數不夠就回報指揮位縮篇幅，補解釋、補用途意義風險未來一律不算材料。\n\n### 交稿前最後一關（W31）\n紀律規則都是負面閘門，是地板，不是量尺；這一關排在紀律檢查之後，有權推翻紀律產生的寫法（事實紅線除外）。三個動作，答案寫進交稿回報：\n1. 從頭到尾真讀一次；掃描、grep、只看改過的地方都不算讀。\n2. 標出自己讀到會想跳過的段落——至少一段，寫出段號與第一句；標不出來＝重讀。\n3. 逐個 H2 問：讀者讀完這節為什麼要繼續往下讀？答不出來的那節先問該搬位置還是併掉。\n4. 讀結尾那一段：讀者帶走的是一個判斷，還是一句「怎麼讀這組數字／下個月再看」？後者重寫成一個讀者可以不同意的判斷。\n產物＝指名的段號與句子；「已檢查，通過」是一句自述，任何人都檢查不了，不算交件。\n",
+    "w36_event_skeleton": {
+      "lede": "lede＝重點速答（3–4 句，約 200 字）：先給結果與具名說法的並陳，不寫 45 秒的原因，不寫『失誤』由誰認。",
+      "opening": "場景起手照時間講（H2-1 起：起跑分流→第 18 圈第一個進站→第 39 圈虛擬安全車→最後 22 圈），H2-1～H2-5 只陳述事實與具名說法。",
+      "last_section": "最後一節（H2-6 判讀）收所有判斷，三層分開寫：資料量得到的／具名來源說的／本站推論（信賴度中）。",
+      "title_cover": "標題與封面不放查證狀態（不寫『查證』『未證實』『疑似』作標題）；封面只放圖，圖上文字不寫結論。"
+    },
+    "headline_style": "標題自己要是一個事實，而且是結論那一個事實，不是推導過程。原料（時間戳、取樣率、筆數）降到內文。不要編號、不要分類標籤。自檢：把標題唸進封面兩行版面，塞不進去的多半是工序。",
+    "forbidden_meta": "gate 語言不進正文，『本站』全文 ≤8 次，不得有任何 H2 在講我們怎麼取材。❌『本站從公開存檔解析出的資料顯示，他在 205 km/h 踩到全油門』→ ✅『他在 205 km/h 踩到全油門』｜❌『兩家說法互相矛盾，本站兩邊都寫，不裁決：A 說…；B 說…』→ ✅『A 說…；B 說…。兩家說法不一樣。』｜❌『分析席 E 與指揮位兩套腳本重算一致』→ 這句只准出現在資料來源區塊。",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』『那個彎』『這條線』『這一刻』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+    "tone": "小 Lin 說＋張泉靈。從具體的怪事切進去、短句、不在正文解釋方法論。",
+    "length": "全文（含表格，不含資料來源節）下限 3,000 字，不設上限；不得為湊字數增加 THESIS 沒有的內容（R1 指揮位裁定 3、站規 W15）。THESIS ② 字帳 lede 200／H2-1 400／H2-2 450／H2-3 400／H2-4 550／H2-5 1,000 含表／判讀 450 ≈ 3,450 是估計，非上限；要精簡時優先砍 B 級清單說明文字，不砍 A。"
+  },
+  "derived_values": {
+    "_rule": "寫手不做算術：正文出現的每個數字都要能在本表或 verified_facts 找到。本表由 packs/thesis_work/build_facts.py 直接查站內 db（唯讀，2026-10-15 讀取）與快照 metadata 重算；與 thesis_work/th_recalc_out.txt、th_db2_out.txt 逐項一致。標「情境算術」的只是減法，不是預測。",
+    "D-01_by_circuit": [
+      {
+        "circuit_id": "ain-diab",
+        "country": "Morocco",
+        "rounds": 1,
+        "first": 1958,
+        "last": 1958,
+        "seasons": [
+          1958
+        ]
+      },
+      {
+        "circuit_id": "george",
+        "country": "South Africa",
+        "rounds": 3,
+        "first": 1962,
+        "last": 1965,
+        "seasons": [
+          1962,
+          1963,
+          1965
+        ]
+      },
+      {
+        "circuit_id": "kyalami",
+        "country": "South Africa",
+        "rounds": 20,
+        "first": 1967,
+        "last": 1993,
+        "seasons": [
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1982,
+          1983,
+          1984,
+          1985,
+          1992,
+          1993
+        ]
+      }
+    ],
+    "D-02_african_rounds_24": [
+      {
+        "season": 1958,
+        "round": 11,
+        "rounds_in_season": 11,
+        "date": "1958-10-19",
+        "race_name": "Moroccan Grand Prix",
+        "circuit_id": "ain-diab",
+        "circuit_name_en": "Ain Diab",
+        "country": "Morocco",
+        "winner_driver_id": "moss",
+        "winner": "Stirling Moss",
+        "winner_constructor_id": "vanwall",
+        "winner_constructor": "Vanwall",
+        "result_rows": 25,
+        "days_since_previous_african_round": null,
+        "calendar_year_diff_from_previous": null
+      },
+      {
+        "season": 1962,
+        "round": 9,
+        "rounds_in_season": 9,
+        "date": "1962-12-29",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "george",
+        "circuit_name_en": "Prince George Circuit",
+        "country": "South Africa",
+        "winner_driver_id": "hill",
+        "winner": "Graham Hill",
+        "winner_constructor_id": "brm",
+        "winner_constructor": "BRM",
+        "result_rows": 21,
+        "days_since_previous_african_round": 1532,
+        "calendar_year_diff_from_previous": 4
+      },
+      {
+        "season": 1963,
+        "round": 10,
+        "rounds_in_season": 10,
+        "date": "1963-12-28",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "george",
+        "circuit_name_en": "Prince George Circuit",
+        "country": "South Africa",
+        "winner_driver_id": "clark",
+        "winner": "Jim Clark",
+        "winner_constructor_id": "lotus-climax",
+        "winner_constructor": "Lotus-Climax",
+        "result_rows": 23,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1965,
+        "round": 1,
+        "rounds_in_season": 10,
+        "date": "1965-01-01",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "george",
+        "circuit_name_en": "Prince George Circuit",
+        "country": "South Africa",
+        "winner_driver_id": "clark",
+        "winner": "Jim Clark",
+        "winner_constructor_id": "lotus-climax",
+        "winner_constructor": "Lotus-Climax",
+        "result_rows": 23,
+        "days_since_previous_african_round": 370,
+        "calendar_year_diff_from_previous": 2
+      },
+      {
+        "season": 1967,
+        "round": 1,
+        "rounds_in_season": 11,
+        "date": "1967-01-02",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "rodriguez",
+        "winner": "Pedro Rodríguez",
+        "winner_constructor_id": "cooper-maserati",
+        "winner_constructor": "Cooper-Maserati",
+        "result_rows": 18,
+        "days_since_previous_african_round": 731,
+        "calendar_year_diff_from_previous": 2
+      },
+      {
+        "season": 1968,
+        "round": 1,
+        "rounds_in_season": 12,
+        "date": "1968-01-01",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "clark",
+        "winner": "Jim Clark",
+        "winner_constructor_id": "lotus-ford",
+        "winner_constructor": "Lotus-Ford",
+        "result_rows": 23,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1969,
+        "round": 1,
+        "rounds_in_season": 11,
+        "date": "1969-03-01",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "stewart",
+        "winner": "Jackie Stewart",
+        "winner_constructor_id": "matra-ford",
+        "winner_constructor": "Matra-Ford",
+        "result_rows": 18,
+        "days_since_previous_african_round": 425,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1970,
+        "round": 1,
+        "rounds_in_season": 13,
+        "date": "1970-03-07",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "jack_brabham",
+        "winner": "Jack Brabham",
+        "winner_constructor_id": "brabham",
+        "winner_constructor": "Brabham",
+        "result_rows": 23,
+        "days_since_previous_african_round": 371,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1971,
+        "round": 1,
+        "rounds_in_season": 11,
+        "date": "1971-03-06",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "mario_andretti",
+        "winner": "Mario Andretti",
+        "winner_constructor_id": "ferrari",
+        "winner_constructor": "Ferrari",
+        "result_rows": 25,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1972,
+        "round": 2,
+        "rounds_in_season": 12,
+        "date": "1972-03-04",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "hulme",
+        "winner": "Denny Hulme",
+        "winner_constructor_id": "mclaren",
+        "winner_constructor": "McLaren",
+        "result_rows": 26,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1973,
+        "round": 3,
+        "rounds_in_season": 15,
+        "date": "1973-03-03",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "stewart",
+        "winner": "Jackie Stewart",
+        "winner_constructor_id": "tyrrell",
+        "winner_constructor": "Tyrrell",
+        "result_rows": 25,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1974,
+        "round": 3,
+        "rounds_in_season": 15,
+        "date": "1974-03-30",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "reutemann",
+        "winner": "Carlos Reutemann",
+        "winner_constructor_id": "brabham",
+        "winner_constructor": "Brabham",
+        "result_rows": 27,
+        "days_since_previous_african_round": 392,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1975,
+        "round": 3,
+        "rounds_in_season": 14,
+        "date": "1975-03-01",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "scheckter",
+        "winner": "Jody Scheckter",
+        "winner_constructor_id": "tyrrell",
+        "winner_constructor": "Tyrrell",
+        "result_rows": 26,
+        "days_since_previous_african_round": 336,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1976,
+        "round": 2,
+        "rounds_in_season": 16,
+        "date": "1976-03-06",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "lauda",
+        "winner": "Niki Lauda",
+        "winner_constructor_id": "ferrari",
+        "winner_constructor": "Ferrari",
+        "result_rows": 25,
+        "days_since_previous_african_round": 371,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1977,
+        "round": 3,
+        "rounds_in_season": 17,
+        "date": "1977-03-05",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "lauda",
+        "winner": "Niki Lauda",
+        "winner_constructor_id": "ferrari",
+        "winner_constructor": "Ferrari",
+        "result_rows": 23,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1978,
+        "round": 3,
+        "rounds_in_season": 16,
+        "date": "1978-03-04",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "peterson",
+        "winner": "Ronnie Peterson",
+        "winner_constructor_id": "team_lotus",
+        "winner_constructor": "Team Lotus",
+        "result_rows": 26,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1979,
+        "round": 3,
+        "rounds_in_season": 15,
+        "date": "1979-03-03",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "gilles_villeneuve",
+        "winner": "Gilles Villeneuve",
+        "winner_constructor_id": "ferrari",
+        "winner_constructor": "Ferrari",
+        "result_rows": 24,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1980,
+        "round": 3,
+        "rounds_in_season": 14,
+        "date": "1980-03-01",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "arnoux",
+        "winner": "René Arnoux",
+        "winner_constructor_id": "renault",
+        "winner_constructor": "Renault",
+        "result_rows": 26,
+        "days_since_previous_african_round": 364,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1982,
+        "round": 1,
+        "rounds_in_season": 16,
+        "date": "1982-01-23",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "prost",
+        "winner": "Alain Prost",
+        "winner_constructor_id": "renault",
+        "winner_constructor": "Renault",
+        "result_rows": 26,
+        "days_since_previous_african_round": 693,
+        "calendar_year_diff_from_previous": 2
+      },
+      {
+        "season": 1983,
+        "round": 15,
+        "rounds_in_season": 15,
+        "date": "1983-10-15",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "patrese",
+        "winner": "Riccardo Patrese",
+        "winner_constructor_id": "brabham",
+        "winner_constructor": "Brabham",
+        "result_rows": 26,
+        "days_since_previous_african_round": 630,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1984,
+        "round": 2,
+        "rounds_in_season": 16,
+        "date": "1984-04-07",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "lauda",
+        "winner": "Niki Lauda",
+        "winner_constructor_id": "mclaren",
+        "winner_constructor": "McLaren",
+        "result_rows": 27,
+        "days_since_previous_african_round": 175,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1985,
+        "round": 15,
+        "rounds_in_season": 16,
+        "date": "1985-10-19",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "mansell",
+        "winner": "Nigel Mansell",
+        "winner_constructor_id": "williams",
+        "winner_constructor": "Williams",
+        "result_rows": 21,
+        "days_since_previous_african_round": 560,
+        "calendar_year_diff_from_previous": 1
+      },
+      {
+        "season": 1992,
+        "round": 1,
+        "rounds_in_season": 16,
+        "date": "1992-03-01",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "mansell",
+        "winner": "Nigel Mansell",
+        "winner_constructor_id": "williams",
+        "winner_constructor": "Williams",
+        "result_rows": 26,
+        "days_since_previous_african_round": 2325,
+        "calendar_year_diff_from_previous": 7
+      },
+      {
+        "season": 1993,
+        "round": 1,
+        "rounds_in_season": 16,
+        "date": "1993-03-14",
+        "race_name": "South African Grand Prix",
+        "circuit_id": "kyalami",
+        "circuit_name_en": "Kyalami",
+        "country": "South Africa",
+        "winner_driver_id": "prost",
+        "winner": "Alain Prost",
+        "winner_constructor_id": "williams",
+        "winner_constructor": "Williams",
+        "result_rows": 26,
+        "days_since_previous_african_round": 378,
+        "calendar_year_diff_from_previous": 1
+      }
+    ],
+    "D-03_gaps": {
+      "definition": "相鄰兩場非洲站的日期相減（天）；日曆年差＝後一場賽季年減前一場賽季年。",
+      "list": [
+        {
+          "from": 1958,
+          "to": 1962,
+          "days": 1532,
+          "calendar_year_diff": 4
+        },
+        {
+          "from": 1962,
+          "to": 1963,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1963,
+          "to": 1965,
+          "days": 370,
+          "calendar_year_diff": 2
+        },
+        {
+          "from": 1965,
+          "to": 1967,
+          "days": 731,
+          "calendar_year_diff": 2
+        },
+        {
+          "from": 1967,
+          "to": 1968,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1968,
+          "to": 1969,
+          "days": 425,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1969,
+          "to": 1970,
+          "days": 371,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1970,
+          "to": 1971,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1971,
+          "to": 1972,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1972,
+          "to": 1973,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1973,
+          "to": 1974,
+          "days": 392,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1974,
+          "to": 1975,
+          "days": 336,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1975,
+          "to": 1976,
+          "days": 371,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1976,
+          "to": 1977,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1977,
+          "to": 1978,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1978,
+          "to": 1979,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1979,
+          "to": 1980,
+          "days": 364,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1980,
+          "to": 1982,
+          "days": 693,
+          "calendar_year_diff": 2
+        },
+        {
+          "from": 1982,
+          "to": 1983,
+          "days": 630,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1983,
+          "to": 1984,
+          "days": 175,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1984,
+          "to": 1985,
+          "days": 560,
+          "calendar_year_diff": 1
+        },
+        {
+          "from": 1985,
+          "to": 1992,
+          "days": 2325,
+          "calendar_year_diff": 7
+        },
+        {
+          "from": 1992,
+          "to": 1993,
+          "days": 378,
+          "calendar_year_diff": 1
+        }
+      ],
+      "longest": {
+        "from": 1985,
+        "to": 1992,
+        "days": 2325,
+        "calendar_year_diff": 7,
+        "dates": "1985-10-19 → 1992-03-01",
+        "skipped_years": "1986–1991（6 個年份）",
+        "write_as": "1985 年之後下一場是 1992 年，相隔 2,325 天（RaceFans 稱為七年缺席）；「7 年」不作本站歷時"
+      },
+      "second_longest": {
+        "from": 1958,
+        "to": 1962,
+        "days": 1532,
+        "calendar_year_diff": 4
+      },
+      "note_1964": "1963 站 1963-12-28、1965 站 1965-01-01，相隔 370 天；1964 年表上空白是排期跨年造成，不代表隔了一年以上。"
+    },
+    "D-04_since_last_african_round": {
+      "from": "1993-03-14（1993 南非大獎賽，卡亞拉米）",
+      "to": "2026-10-13（官宣日）",
+      "days": 12266,
+      "calendar_year_diff": 33,
+      "write_as": "到官宣日為止 12,266 天。日曆年差 33（2026−1993）只是減法，不作本站歷時；要寫「年」只能掛 Kagame「三十多年」（Q-07）"
+    },
+    "D-05_wc_races_after_1993_kyalami": {
+      "count": 633,
+      "african_among_them": 0,
+      "boundary": "1993-03-14 之後（不含）到站內資料庫有結果的最新一站 2026 第 17 站 Singapore Grand Prix（2026-10-11）（含）",
+      "valid_until": "下一站 2026 第 18 站 United States Grand Prix（2026-10-25）結果入庫前；若發稿時已入庫，請指揮位重跑本腳本",
+      "check": "1993 第 2–16 站 15 場＋1994–2025 共 601 場＋2026 第 1–17 站 17 場＝633 場世界錦標賽（截至 2026 年第 17 站）",
+      "write_as": "1993 年卡亞拉米之後，F1 又辦了 633 場世界錦標賽（算到 2026 年第 17 站新加坡），沒有一場在非洲"
+    },
+    "D-06_scenario_arithmetic": {
+      "2030_minus_1993": 37,
+      "2033_minus_1993": 40,
+      "write_as": "若照 early 2030s 的字面：2030−1993＝37（日曆年相減）；RaceFans 的「最多 40 年」對應 2033−1993＝40。兩者都是情境算術，官方沒有給年份，不寫成本站歷時。",
+      "must_not": "不得寫成「盧安達 2030 年首辦」「空窗將是 37 年」（無條件句）"
+    },
+    "D-07_publication_times": {
+      "utc": {
+        "f1_press_release": "2026-10-13T09:18:14.670000+00:00",
+        "racefans_published": "2026-10-13T09:31:54+00:00",
+        "f1_barretto": "2026-10-13T09:45:46.499000+00:00",
+        "f1_horton": "2026-10-13T15:40:07.503000+00:00",
+        "racefans_modified": "2026-10-14T08:01:27+00:00",
+        "racefans_snapshot_fetched": "2026-10-15T02:34:36+00:00"
+      },
+      "taipei": {
+        "f1_press_release": "2026-10-13T17:18:14.670000+08:00",
+        "racefans_published": "2026-10-13T17:31:54+08:00",
+        "f1_barretto": "2026-10-13T17:45:46.499000+08:00",
+        "f1_horton": "2026-10-13T23:40:07.503000+08:00",
+        "racefans_modified": "2026-10-14T16:01:27+08:00",
+        "racefans_snapshot_fetched": "2026-10-15T10:34:36+08:00"
+      },
+      "diffs": {
+        "press_release_to_racefans": "0:13:39",
+        "press_release_to_barretto": "0:27:31",
+        "press_release_to_horton": "6:21:52",
+        "racefans_to_horton": "6:08:13",
+        "horton_to_racefans_modified": "16:21:19",
+        "racefans_modified_to_snapshot": "18:33:09"
+      },
+      "sources": "f1-press-release.html:40、f1-everything-we-know.html:40、f1-inside-plan.html:40（datePublished）；racefans.html:128–129、489（published／updated）；racefans.txt:2（抓取時間）",
+      "write_as": "新聞稿台北時間 13 日 17:18；Horton 特稿 23:40，比新聞稿晚約 6 小時 22 分；RaceFans 那篇標示 17:31 發布、14 日 16:01 更新"
+    },
+    "D-08_unit_conversion": {
+      "25_miles_km": 40.2336,
+      "note": "grandprix.com 的 25 英里＝40.2336 公里，與 F1 的約 40 公里是同一件事。"
+    },
+    "D-09_coverage_and_share": {
+      "seasons_1958_1993": 36,
+      "seasons_with_african_round": 24,
+      "missing_seasons": [
+        1959,
+        1960,
+        1961,
+        1964,
+        1966,
+        1981,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991
+      ],
+      "wc_races_1958_1993": 484,
+      "african_share_1958_1993": "24/484",
+      "wc_races_db_total_to_latest": 1166,
+      "african_share_all": "24/1166",
+      "note": "缺的年份只代表站內資料庫沒有非洲的世界錦標賽分站，不代表那年非洲沒有任何 F1 比賽（例：1981 有一場不計分的 Kyalami 賽事）。"
+    },
+    "D-10_ratio_optional": {
+      "calendar_years": "33/7≈4.7",
+      "days": "12266/2325≈5.3",
+      "write_as": "建議直接並列兩個數字（2,325 天 vs 12,266 天）；若要寫倍數，寫「以天數算超過 5 倍」並附兩端日期。"
+    },
+    "D-11_slot_in_season": {
+      "openers": [
+        1965,
+        1967,
+        1968,
+        1969,
+        1970,
+        1971,
+        1982,
+        1992,
+        1993
+      ],
+      "finals": [
+        1958,
+        1962,
+        1963,
+        1983
+      ],
+      "by_month": {
+        "1": 4,
+        "3": 14,
+        "4": 1,
+        "10": 3,
+        "12": 2
+      },
+      "jan_to_apr": 19,
+      "oct_to_dec": 5,
+      "use": "可選；只描述 24 場世界錦標賽非洲站，不外推到盧安達的賽曆位置（查無）。"
+    },
+    "D-12_winners": {
+      "distinct_winners": 17,
+      "winners": [
+        [
+          "Jim Clark",
+          3
+        ],
+        [
+          "Niki Lauda",
+          3
+        ],
+        [
+          "Jackie Stewart",
+          2
+        ],
+        [
+          "Alain Prost",
+          2
+        ],
+        [
+          "Nigel Mansell",
+          2
+        ],
+        [
+          "Stirling Moss",
+          1
+        ],
+        [
+          "Graham Hill",
+          1
+        ],
+        [
+          "Pedro Rodríguez",
+          1
+        ],
+        [
+          "Jack Brabham",
+          1
+        ],
+        [
+          "Mario Andretti",
+          1
+        ],
+        [
+          "Denny Hulme",
+          1
+        ],
+        [
+          "Carlos Reutemann",
+          1
+        ],
+        [
+          "Jody Scheckter",
+          1
+        ],
+        [
+          "Ronnie Peterson",
+          1
+        ],
+        [
+          "Gilles Villeneuve",
+          1
+        ],
+        [
+          "René Arnoux",
+          1
+        ],
+        [
+          "Riccardo Patrese",
+          1
+        ]
+      ],
+      "winner_constructors": [
+        [
+          "Ferrari",
+          4
+        ],
+        [
+          "Brabham",
+          3
+        ],
+        [
+          "Williams",
+          3
+        ],
+        [
+          "Lotus-Climax",
+          2
+        ],
+        [
+          "McLaren",
+          2
+        ],
+        [
+          "Tyrrell",
+          2
+        ],
+        [
+          "Renault",
+          2
+        ],
+        [
+          "Vanwall",
+          1
+        ],
+        [
+          "BRM",
+          1
+        ],
+        [
+          "Cooper-Maserati",
+          1
+        ],
+        [
+          "Lotus-Ford",
+          1
+        ],
+        [
+          "Matra-Ford",
+          1
+        ],
+        [
+          "Team Lotus",
+          1
+        ]
+      ],
+      "south_african_winner_in_african_rounds": [
+        [
+          1975,
+          "Jody Scheckter"
+        ]
+      ],
+      "use": "可選；勝者國籍取自站內資料庫 drivers.nationality。"
+    },
+    "D-13_1985_alan_jones_db": {
+      "position_text": "W",
+      "status": "Driver unwell",
+      "note": "站內資料庫 1985 第 15 站 Alan Jones：position_text=W、status=Driver unwell。"
+    },
+    "D-14_race_names": {
+      "african_24": {
+        "Moroccan Grand Prix": 1,
+        "South African Grand Prix": 23
+      },
+      "continental_name_counterexamples_in_db": [
+        [
+          "European Grand Prix",
+          23,
+          1983,
+          2016
+        ],
+        [
+          "Pacific Grand Prix",
+          2,
+          1994,
+          1995
+        ]
+      ]
+    },
+    "D-15_source_scans": {
+      "spec_terms_in_f1_articles": {
+        "f1-press-release.txt": {
+          "6km": [],
+          "6 km": [],
+          "17 corners": [],
+          "197": [],
+          "anti-clockwise": [],
+          "corners": []
+        },
+        "f1-everything-we-know.txt": {
+          "6km": [],
+          "6 km": [],
+          "17 corners": [],
+          "197": [],
+          "anti-clockwise": [],
+          "corners": []
+        },
+        "f1-inside-plan.txt": {
+          "6km": [
+            29
+          ],
+          "6 km": [],
+          "17 corners": [
+            29
+          ],
+          "197": [
+            29
+          ],
+          "anti-clockwise": [
+            29
+          ],
+          "corners": [
+            29,
+            36
+          ]
+        }
+      },
+      "rise_motordrome_hits": {
+        "racefans.txt": [
+          23,
+          29
+        ]
+      },
+      "news_txt_files": 19,
+      "racefans_snapshot_post_update_contains_no_details_sentence": true
+    },
+    "D-16_gaps_over_1000_days": {
+      "definition": "相鄰兩場非洲站日期差超過 1,000 天的段數（由 D-03 的 23 個值計算）；1,000 只是篩選門檻，不是來源給的數字。",
+      "threshold_days": 1000,
+      "count": 2,
+      "segments": [
+        {
+          "from": 1958,
+          "to": 1962,
+          "days": 1532
+        },
+        {
+          "from": 1985,
+          "to": 1992,
+          "days": 2325
+        }
+      ],
+      "gaps_336_to_425_days": 16,
+      "of_total_gaps": 23,
+      "write_as": "超過 1,000 天的只有兩段：1958 到 1962 年的 1,532 天，以及 1985 到 1992 年的 2,325 天。「多半隔約一年」＝23 個間隔裡有 16 個落在 336–425 天。"
+    }
+  },
+  "news_quotes": [
+    {
+      "id": "Q-01",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿本文）",
+      "attribution_type": "F1官方稿",
+      "verbatim": "Formula 1 has announced a landmark 10-year agreement to bring the sport back to the African continent, with the Formula 1 African Grand Prix, presented by Visit Rwanda, set to join the calendar in the early 2030s.",
+      "zh_gloss": "F1 宣布一份具里程碑意義的 10 年協議，讓這項運動重返非洲大陸；Formula 1 African Grand Prix, presented by Visit Rwanda 預定在 2030 年代初加入賽曆。",
+      "use_in_section": "lede, H2-1",
+      "priority": "必用",
+      "qualifiers": "協議的締約主體、起訖年份在本桌快照查無；只能寫「F1 宣布」。early 2030s 不是年份。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 9
+    },
+    {
+      "id": "Q-02",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿本文）",
+      "attribution_type": "F1官方稿",
+      "verbatim": "The long-term agreement will see the first race in the country take place once a new purpose-built circuit in Bugesera, Rwanda, has been completed, which is expected to be early in the next decade.",
+      "zh_gloss": "這份長期協議下，首場比賽要等盧安達 Bugesera 的新專用賽道完工後才舉行，預期在下一個十年初。",
+      "use_in_section": "H2-1",
+      "priority": "必用",
+      "qualifiers": "「完工後才舉行」是首辦的前提；不得寫成已動工或完工年份。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 12
+    },
+    {
+      "id": "Q-03",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿本文）",
+      "attribution_type": "F1官方稿",
+      "verbatim": "The new track will be developed to FIA Grade 1 standards as part of a wider sports, tourism, infrastructure, and commercial development project led by the Rwanda Development Board.",
+      "zh_gloss": "新賽道將依 FIA 一級（Grade 1）標準開發，屬於盧安達發展局（Rwanda Development Board）主導的體育、觀光、基礎建設與商業開發計畫的一部分。",
+      "use_in_section": "H2-1",
+      "priority": "必用",
+      "qualifiers": "「RDB 主導開發計畫」不等於 RDB 出資或締約；出資來源查無。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-04",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿本文）",
+      "attribution_type": "F1官方稿",
+      "verbatim": "Located approximately 40 kilometres south of capital city Kigali, and adjacent to the new Kigali International Airport",
+      "zh_gloss": "位於首都 Kigali 以南約 40 公里，緊鄰新的 Kigali 國際機場。",
+      "use_in_section": "H2-1",
+      "priority": "必用",
+      "qualifiers": "grandprix.com 寫 25 英里（＝40.2336 公里，D-08），同一件事的兩種單位，不是矛盾。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 14
+    },
+    {
+      "id": "Q-05",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿本文）",
+      "attribution_type": "F1官方稿",
+      "verbatim": "Further details regarding the inaugural race date, circuit development milestones and race weekend plans will be announced in due course.",
+      "zh_gloss": "首場比賽日期、賽道開發里程碑與比賽週末安排的進一步細節，將在適當時候公布。",
+      "use_in_section": "lede, H2-1",
+      "priority": "必用",
+      "qualifiers": "這句是「首辦日期未定」的直接出處；RaceFans 第 24 行逐字引用同一句。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 21
+    },
+    {
+      "id": "Q-06",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "Stefano Domenicali（F1 President and CEO）",
+      "attribution_type": "被引述者（F1官方稿內）",
+      "verbatim": "With Rwanda joining the calendar from the next decade, our sport will race in every inhabited continent",
+      "zh_gloss": "隨著盧安達從下一個十年加入賽曆，我們這項運動將在每一個有人居住的大洲比賽。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "「from the next decade」也不是年份；這是對未來的說法，不寫成已成事實。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 22
+    },
+    {
+      "id": "Q-07",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "Paul Kagame（盧安達總統）",
+      "attribution_type": "被引述者（F1官方稿內）",
+      "verbatim": "For more than three decades, the world’s premier motorsport championship has raced without this continent, and that changes with this agreement.",
+      "zh_gloss": "三十多年來，世界頂級賽車錦標賽一直沒有在這塊大陸比賽，這份協議改變了這件事。",
+      "use_in_section": "H2-4, H2-6（反方句）",
+      "priority": "必用",
+      "qualifiers": "與站內資料庫 1993-03-14 至官宣日 12,266 天（D-04）相容；引語是 Kagame 的話，不是本站結論。Kagame 原話沒有「重返（return）」一詞；H2-6 反方句固定寫「F1 稱之為重返非洲；Kagame 說，世界頂級賽車錦標賽已三十多年沒有在非洲比賽，這份協議會改變此事」，不得寫成「Kagame 用『重返』」。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 27
+    },
+    {
+      "id": "Q-08",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "Paul Kagame（盧安達總統）",
+      "attribution_type": "被引述者（F1官方稿內）",
+      "verbatim": "This 10-year partnership is also an investment in Rwanda’s future.",
+      "zh_gloss": "這份 10 年的合作也是對盧安達未來的投資。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "Kagame 的主張，不寫成本站評價。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 29
+    },
+    {
+      "id": "Q-09",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿圖說）",
+      "attribution_type": "F1官方稿（圖說）",
+      "verbatim": "Stefano Domenicali was joined on stage by the President of Rwanda Paul Kagame and FIA President Mohammed Ben Sulayem to announce the historic agreement",
+      "zh_gloss": "Stefano Domenicali 與盧安達總統 Paul Kagame、FIA 主席 Mohammed Ben Sulayem 同台宣布這份歷史性協議。",
+      "use_in_section": "H2-1（場景起手）",
+      "priority": "必用",
+      "qualifiers": "這是新聞稿頁面的圖說文字；只證明三人同台，不證明官宣地點（本桌快照未寫地點，不寫在哪裡宣布）。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 31
+    },
+    {
+      "id": "Q-10",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "Mohammed Ben Sulayem（FIA President）",
+      "attribution_type": "被引述者（F1官方稿內）",
+      "verbatim": "the FIA will work closely with FOM and our partners as this new circuit is developed to the highest international standards.",
+      "zh_gloss": "FIA 會與 FOM 及合作夥伴密切合作，讓這條新賽道依最高國際標準開發。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "不是簽約方清單；不得據此寫 FIA 是締約方。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 32
+    },
+    {
+      "id": "Q-11",
+      "source": "Formula1.com 新聞稿（F1 官方，2026-10-13 09:18 UTC＝台北 17:18）",
+      "url": "https://www.formula1.com/en/latest/article/formula-1-returns-to-africa-with-10-year-agreement-to-race-in-rwanda.13xs9VMK7cGFiBd2IplyES",
+      "speaker": "F1（新聞稿本文）",
+      "attribution_type": "F1官方稿（行銷數字）",
+      "verbatim": "more than 100 million fans already following F1 across the continent, and almost 60% of fans in key Sub-Saharan African markets under the age of 35.",
+      "zh_gloss": "非洲已有超過 1 億人關注 F1，在撒哈拉以南的重點市場，近 60% 的車迷未滿 35 歲。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "只能寫成「F1 說」；本桌沒有方法、樣本或資料可驗。",
+      "evidence_file": "evidence/news/f1-press-release.txt",
+      "evidence_line": 16
+    },
+    {
+      "id": "Q-12",
+      "source": "Formula1.com，Lawrence Barretto（F1 Correspondent & Presenter），2026-10-13 09:45 UTC",
+      "url": "https://www.formula1.com/en/latest/article/everything-we-know-about-f1s-all-new-race-in-rwanda.3Mde3s9FqIOTbkzKs0Puwo",
+      "speaker": "Lawrence Barretto（F1 官網記者兼主持人）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "There had been a lot of interested parties who wanted to bring F1 to Africa",
+      "zh_gloss": "先前有很多有意把 F1 帶到非洲的單位。",
+      "use_in_section": "H2-5",
+      "priority": "可選",
+      "qualifiers": "沒有點名任何競標者；不得據此寫出名單。",
+      "evidence_file": "evidence/news/f1-everything-we-know.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-13",
+      "source": "Formula1.com，Lawrence Barretto（F1 Correspondent & Presenter），2026-10-13 09:45 UTC",
+      "url": "https://www.formula1.com/en/latest/article/everything-we-know-about-f1s-all-new-race-in-rwanda.3Mde3s9FqIOTbkzKs0Puwo",
+      "speaker": "Lawrence Barretto（F1 官網記者兼主持人）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "Design work is continuing on the final layout, which is a collaboration between WurzDesign (headed up by former F1 driver Alex Wurz) and Tilke Engineers and Architects, who were responsible for several tracks including Malaysia’s Sepang.",
+      "zh_gloss": "最終賽道配置仍在設計中，由前 F1 車手 Alex Wurz 領導的 WurzDesign 與 Tilke Engineers and Architects 合作；後者設計過包括馬來西亞雪邦在內的多條賽道。",
+      "use_in_section": "H2-2",
+      "priority": "必用",
+      "qualifiers": "公司名稱各來源寫法不同（WurzDesign／Wurz Designs／Wurz Design；Tilke Engineers and Architects／Tilke Engineering／Tilke Gmbh），照各來源原寫，不自行統一。",
+      "evidence_file": "evidence/news/f1-everything-we-know.txt",
+      "evidence_line": 20
+    },
+    {
+      "id": "Q-14",
+      "source": "Formula1.com，Lawrence Barretto（F1 Correspondent & Presenter），2026-10-13 09:45 UTC",
+      "url": "https://www.formula1.com/en/latest/article/everything-we-know-about-f1s-all-new-race-in-rwanda.3Mde3s9FqIOTbkzKs0Puwo",
+      "speaker": "Lawrence Barretto（F1 官網記者兼主持人）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "This will see the sport return to the continent for the first time since 1993 when Kyalami hosted the South African Grand Prix.",
+      "zh_gloss": "這會讓 F1 自 1993 年 Kyalami 舉辦南非大獎賽之後，首度回到非洲大陸。",
+      "use_in_section": "H2-3",
+      "priority": "可選",
+      "qualifiers": "與 F1 新聞稿頁面圖說（f1-press-release.txt:27）、grandprix.com（grandprix.txt:12）、RaceFans（racefans.txt:19）同說 1993 是上一場。",
+      "evidence_file": "evidence/news/f1-everything-we-know.txt",
+      "evidence_line": 14
+    },
+    {
+      "id": "Q-15",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Phillip Horton（F1 官網特約作者）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "Only two countries in Africa have so far held a World Championship Formula 1 Grand Prix. Morocco’s Ain-Daib road course made a one-off appearance in 1958, while South Africa was visited on 23 occasions, most prominently at Kyalami, but it held its final Grand Prix in 1993.",
+      "zh_gloss": "到目前為止，只有兩個非洲國家辦過世界錦標賽 F1 大獎賽：摩洛哥的 Ain-Daib 公路賽道在 1958 年辦過一次，南非辦過 23 次（最有名的是 Kyalami），最後一場在 1993 年。",
+      "use_in_section": "H2-3",
+      "priority": "必用",
+      "qualifiers": "這是 F1 官網特約作者的敘述，不是新聞稿機構聲明、更不是 Wurz 的話；原文拼作 Ain-Daib，引用時照原文，中文正文用站內定版「艾因迪亞卜賽道」。與站內資料庫 1＋23 一致（H-01）。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 11
+    },
+    {
+      "id": "Q-16",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Phillip Horton（F1 官網特約作者）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "It is part of a process not just to develop Rwanda as a tourist, sports and entertainment destination, but to become a focal point for the rest of the continent too, in part explaining the African Grand Prix moniker.",
+      "zh_gloss": "這是一個過程的一部分：不只要把盧安達發展成觀光、體育與娛樂目的地，也要讓它成為整個非洲大陸的焦點，這也部分解釋了「非洲大獎賽」這個名稱。",
+      "use_in_section": "H2-5",
+      "priority": "必用",
+      "qualifiers": "作者敘述；Afrika 自己的解釋見 Q-19。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-17",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Paul Kagame（盧安達總統）",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "we are looking at Rwanda in the context of a continent, and we have ambitions to bring in other African brothers and sisters to participate.",
+      "zh_gloss": "我們看的不是盧安達自己，而是把盧安達放在整個大陸的脈絡裡，我們有野心讓其他非洲兄弟姊妹一起參與。",
+      "use_in_section": "H2-5",
+      "priority": "可選",
+      "qualifiers": "Horton 引述 Kagame 在官宣時的話（L14 交代場合 at the announcement）。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 17
+    },
+    {
+      "id": "Q-18",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Jean-Guy Afrika（盧安達發展局 RDB 執行長）",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "We want to make it the moment when the sport came back to Africa and then never left.",
+      "zh_gloss": "我們想讓這一刻成為這項運動回到非洲、而且從此不再離開的時刻。",
+      "use_in_section": "H2-5 或 H2-6（收尾引語）",
+      "priority": "可選",
+      "qualifiers": "是 RDB 的期望，不是承諾或合約條款。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 19
+    },
+    {
+      "id": "Q-19",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Jean-Guy Afrika（盧安達發展局 RDB 執行長）",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "We felt that calling it ‘Kigali Grand Prix’ or ‘Rwanda Grand Prix’ would have felt slightly exclusive. You know, it's much easier if you call it an African Grand Prix, to approach partners in this wide effort.",
+      "zh_gloss": "我們覺得叫它「Kigali 大獎賽」或「盧安達大獎賽」會顯得有點排他。叫它非洲大獎賽的話，要邀合作夥伴加入這項廣泛的努力會容易得多。",
+      "use_in_section": "H2-5",
+      "priority": "必用",
+      "qualifiers": "命名理由是 RDB 執行長的說法，不寫成 F1 的決定理由。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 20
+    },
+    {
+      "id": "Q-20",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Jean-Guy Afrika（盧安達發展局 RDB 執行長）",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "We weren't the only ones bidding, and we expect that after the first race, there probably would be many more races.",
+      "zh_gloss": "我們不是唯一的申辦者；我們預期第一場之後，大概還會有更多（非洲）比賽。",
+      "use_in_section": "H2-5",
+      "priority": "必用",
+      "qualifiers": "沒有點名其他申辦者；「更多比賽」是預期。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 23
+    },
+    {
+      "id": "Q-21",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Phillip Horton（F1 官網特約作者）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "Carsten Tilke of renowned designers Tilke Engineering, and ex-F1 racer Alex Wurz of Wurz Designs",
+      "zh_gloss": "知名設計公司 Tilke Engineering 的 Carsten Tilke，與 Wurz Designs 的前 F1 車手 Alex Wurz。",
+      "use_in_section": "H2-2",
+      "priority": "必用",
+      "qualifiers": "設計者是 Carsten Tilke；不得寫成 Hermann Tilke（站內雪邦文提到的是 Hermann Tilke 設計雪邦）。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 24
+    },
+    {
+      "id": "Q-22",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Phillip Horton（F1 官網特約作者）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "The 6km anti-clockwise circuit is planned to feature 17 corners and has been designed for a wide range of motorsport disciplines. The full track layout has not yet been released but Wurz has completed “thousands” of laps in the simulator, there will be 197 metres of elevation change across a lap, as well as cambered turns and banking.",
+      "zh_gloss": "這條 6 公里、逆時針的賽道規劃有 17 個彎，設計上可供多種賽車項目使用。完整賽道配置尚未公布，但 Wurz 已在模擬器上跑了「好幾千」圈；單圈有 197 公尺高低差，還有帶傾角的彎與斜坡彎。",
+      "use_in_section": "H2-2",
+      "priority": "必用",
+      "qualifiers": "整句是 Horton 的作者敘述；只有「thousands」標明是 Wurz 用語。不得寫成 Wurz 或 Tilke 說的規格，也不得寫成 F1 新聞稿公布的規格。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 29
+    },
+    {
+      "id": "Q-23",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Phillip Horton（F1 官網特約作者）",
+      "attribution_type": "F1官網作者",
+      "verbatim": "Kigali is located around 1,500 metres above sea level, which will make it one of the highest circuits on the calendar, with Mexico City at 2,200 metres.",
+      "zh_gloss": "Kigali 海拔約 1,500 公尺，這會讓它成為賽曆上最高的賽道之一；墨西哥城是 2,200 公尺。",
+      "use_in_section": "H2-2",
+      "priority": "可選",
+      "qualifiers": "來源寫的是 Kigali，不是 Bugesera 賽場；不得改寫成「Bugesera 賽道海拔 1,500 公尺」，也不得寫「第二高」。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 34
+    },
+    {
+      "id": "Q-24",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Alex Wurz（Wurz Designs）",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "That means we have less pressure in the air, that means also less grip from the aerodynamics",
+      "zh_gloss": "這代表空氣壓力比較低，也代表空力產生的抓地力比較少。",
+      "use_in_section": "H2-2",
+      "priority": "可選",
+      "qualifiers": "談的是 Kigali 高度對空力的影響（接 Q-23）；不延伸成賽道最終設計結論。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 35
+    },
+    {
+      "id": "Q-25",
+      "source": "Formula1.com，Phillip Horton（Special Contributor），2026-10-13 15:40 UTC",
+      "url": "https://www.formula1.com/en/latest/article/hills-a-lake-and-a-roller-coaster-inside-rwandas-plan-for-the-african-grand-prix.76LEZDItQYH362QElcHoY1",
+      "speaker": "Carsten Tilke（Tilke Engineering）",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "It really is a roller coaster track.",
+      "zh_gloss": "它真的是一條雲霄飛車式的賽道。",
+      "use_in_section": "H2-2",
+      "priority": "可選",
+      "qualifiers": "設計者自評，不寫成本站評價。",
+      "evidence_file": "evidence/news/f1-inside-plan.txt",
+      "evidence_line": 31
+    },
+    {
+      "id": "Q-26",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans（Keith Collantine）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "The series has agreed a 10-year deal to race in Rwanda, which has never previously held a round of the world championship. Unusually, no year for the inaugural race has been confirmed, with F1 saying only that it will “join the calendar in the early 2030s”.",
+      "zh_gloss": "F1 已同意在盧安達比賽 10 年；盧安達過去從沒辦過世界錦標賽分站。不尋常的是，首場比賽的年份沒有確認，F1 只說會「在 2030 年代初加入賽曆」。",
+      "use_in_section": "H2-1, H2-5",
+      "priority": "必用",
+      "qualifiers": "「Unusually」是 RaceFans 的編輯判斷，引用時掛名；「never previously held a round」是第 3 國主張（H-03）的媒體來源之一。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 21
+    },
+    {
+      "id": "Q-27",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans（Keith Collantine）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "F1 published an image of the planned RISE Motordrome circuit, which was created by Tilke Gmbh and Wurz Design, but gave no details of its specifications.",
+      "zh_gloss": "F1 發布了規劃中的 RISE Motordrome 賽道圖，由 Tilke Gmbh 與 Wurz Design 繪製，但沒有給出任何規格細節。",
+      "use_in_section": "H2-2",
+      "priority": "必用",
+      "qualifiers": "本桌讀到的是頁面標示 10/14 更新之後的版本（N-08）；初版是否已有這句、更新改了什麼，無從判定。不得寫成「RaceFans 報錯」或「RaceFans 後來改稿」。RISE Motordrome 在本桌 19 份文字快照只見於 RaceFans。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 23
+    },
+    {
+      "id": "Q-28",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans 轉述 Paul Kagame",
+      "attribution_type": "第二手轉述",
+      "verbatim": "According to Rwanda’s president Paul Kagame the race will be called the “Formula 1 African Grand Prix”.",
+      "zh_gloss": "根據盧安達總統 Paul Kagame 的說法，這場比賽將命名為「Formula 1 African Grand Prix」。",
+      "use_in_section": "H2-5",
+      "priority": "可選",
+      "qualifiers": "RaceFans 的轉述；正式全名以 F1 新聞稿 Q-01 為準。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 25
+    },
+    {
+      "id": "Q-29",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans（Keith Collantine）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "F1 first raced in Africa in 1958, when Morocco’s Aib-Diab circuit held the final round of the season. However the series never returned to the northern African state.",
+      "zh_gloss": "F1 第一次在非洲比賽是 1958 年，摩洛哥的 Aib-Diab 賽道辦了該季最後一站；但之後這項錦標賽沒再回到這個北非國家。",
+      "use_in_section": "H2-3",
+      "priority": "必用",
+      "qualifiers": "原文拼作 Aib-Diab（照引）；「never returned」限世界錦標賽層級。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 30
+    },
+    {
+      "id": "Q-30",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans（Keith Collantine，2026-10-13 官宣稿）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "The series found a longer-term home in South Africa, first at a track in East London, then at the popular Kyalami circuit near Johannesburg. South Africa held 23 grands prix, though the series faced growing criticism for holding events under the country’s racist apartheid regime, which led some teams to boycott the 1985 race .",
+      "zh_gloss": "這項錦標賽後來在南非找到較長期的落腳處，先是東倫敦的一條賽道，然後是約翰尼斯堡附近很受歡迎的 Kyalami。南非辦過 23 場大獎賽，但在該國種族隔離政權下辦賽受到愈來愈多批評，導致部分車隊抵制 1985 年那場。",
+      "use_in_section": "H2-3, H2-4",
+      "priority": "必用",
+      "qualifiers": "原句句末是英文半形「 .」（快照原樣，含空格）；「導致部分車隊抵制」只講 1985 一場，不延伸成之後空窗的原因。出處是 RaceFans 2026-10-13 官宣稿（racefans.txt），不是 2008 回顧文（hist-racefans-5850）。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 31
+    },
+    {
+      "id": "Q-31",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans（Keith Collantine，2026-10-13 官宣稿）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "Following a seven-year absence, F1 returned to a heavily revised Kyalami circuit for two races in the nineties .",
+      "zh_gloss": "缺席七年之後，F1 回到大幅改造過的 Kyalami，在 1990 年代辦了兩場。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "與 Q-30 是兩句，不得用省略號接成一句；這句沒有說七年空窗的原因。「七年缺席」出自 RaceFans 2026-10-13 官宣稿（racefans.txt:32），不是 2008 回顧文；原文只說 two races in the nineties，1992、1993 的年份來自站內資料庫，不得寫進 RaceFans 的話。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 32
+    },
+    {
+      "id": "Q-32",
+      "source": "RaceFans，Keith Collantine，標示發布 2026-10-13 09:31:54 UTC、更新 2026-10-14 08:01:27 UTC（racefans.html:128–129、489）；本快照抓取於更新之後",
+      "url": "https://www.racefans.net/2026/10/13/formula-1-announces-it-will-race-in-rwanda-from-early-2030s/",
+      "speaker": "RaceFans（Keith Collantine）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "By the time Rwanda hosts its first grand prix, up to 40 years may have passed since F1’s last race in Africa.",
+      "zh_gloss": "等到盧安達辦第一場大獎賽時，距離 F1 上一次在非洲比賽，可能已經過了最多 40 年。",
+      "use_in_section": "H2-4",
+      "priority": "可選",
+      "qualifiers": "「up to 40 years」對應 2033−1993＝40（D-06 情境算術）；本站不改寫成精確「40 年」。",
+      "evidence_file": "evidence/news/racefans.txt",
+      "evidence_line": 33
+    },
+    {
+      "id": "Q-33",
+      "source": "grandprix.com 編輯稿，2026-10-13",
+      "url": "https://www.grandprix.com/news/rwanda-gp-officially-confirmed-in-10-year-agreement.html",
+      "speaker": "grandprix.com 編輯",
+      "attribution_type": "媒體編輯",
+      "verbatim": "Formula 1 expects that to be early in the next decade, but it has not yet announced an inaugural date.",
+      "zh_gloss": "F1 預期在下一個十年初，但還沒公布首場日期。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "媒體對官方資訊的轉述。",
+      "evidence_file": "evidence/news/grandprix.txt",
+      "evidence_line": 9
+    },
+    {
+      "id": "Q-34",
+      "source": "grandprix.com 編輯稿，2026-10-13",
+      "url": "https://www.grandprix.com/news/rwanda-gp-officially-confirmed-in-10-year-agreement.html",
+      "speaker": "grandprix.com 編輯",
+      "attribution_type": "媒體編輯",
+      "verbatim": "The official announcement settles the largest question—whether there is a contract—but leaves the practical ones in place.",
+      "zh_gloss": "正式宣布解決了最大的問題（有沒有合約），但實際的問題都還在。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "編輯評論，掛名 grandprix.com。",
+      "evidence_file": "evidence/news/grandprix.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-35",
+      "source": "grandprix.com 編輯稿，2026-10-13",
+      "url": "https://www.grandprix.com/news/amnesty-criticizes-rwanda-grand-prix-as-sportswashing.html",
+      "speaker": "grandprix.com 編輯",
+      "attribution_type": "媒體編輯（轉述 Amnesty 的指控）",
+      "verbatim": "Amnesty International has accused Rwanda of using its new Formula 1 agreement to improve the country's international image",
+      "zh_gloss": "國際特赦組織指控盧安達利用這份新的 F1 協議改善國家的國際形象。",
+      "use_in_section": "H2-1（批評段，≤3 句）",
+      "priority": "必用（若寫批評段）",
+      "qualifiers": "主詞是 grandprix.com 的敘述；本桌沒有 Amnesty 原始聲明。",
+      "evidence_file": "evidence/news/grandprix-amnesty.txt",
+      "evidence_line": 8
+    },
+    {
+      "id": "Q-36",
+      "source": "grandprix.com 編輯稿，2026-10-13",
+      "url": "https://www.grandprix.com/news/amnesty-criticizes-rwanda-grand-prix-as-sportswashing.html",
+      "speaker": "grandprix.com 轉述 Felix Jakens（Amnesty International UK head of campaigns）對 BBC 的話",
+      "attribution_type": "第二手轉述",
+      "verbatim": "Felix Jakens, Amnesty International UK's head of campaigns, told the BBC, Rwanda is buying into the world's biggest sports to polish its image and deflect from its appalling human rights record.",
+      "zh_gloss": "Amnesty 英國分會倡議主管 Felix Jakens 對 BBC 表示，盧安達是在買進世界最大的運動賽事，以擦亮形象、轉移外界對其人權紀錄的注意。",
+      "use_in_section": "H2-1（批評段）",
+      "priority": "可選（若寫批評段）",
+      "qualifiers": "原文沒有引號：是 grandprix.com 轉述 Jakens 對 BBC 說的話，本桌沒有 BBC 原文。正文必須寫「grandprix.com 轉述……對 BBC 表示」；原句中的評價詞（appalling）屬被轉述者，正文中文轉述時可省略或照原意標明是他的說法，不得變成本站用語。",
+      "evidence_file": "evidence/news/grandprix-amnesty.txt",
+      "evidence_line": 10
+    },
+    {
+      "id": "Q-37",
+      "source": "grandprix.com 編輯稿，2026-10-13",
+      "url": "https://www.grandprix.com/news/amnesty-criticizes-rwanda-grand-prix-as-sportswashing.html",
+      "speaker": "grandprix.com 轉述 F1",
+      "attribution_type": "第二手轉述",
+      "verbatim": "Formula 1 said its charter commits the championship to respecting internationally recognized human rights.",
+      "zh_gloss": "F1 表示，其章程承諾這項錦標賽尊重國際公認的人權。",
+      "use_in_section": "H2-1（批評段）",
+      "priority": "必用（若寫批評段）",
+      "qualifiers": "本桌沒有 F1 章程或回應原文；寫成「grandprix.com 報導，F1 表示……」。",
+      "evidence_file": "evidence/news/grandprix-amnesty.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-38",
+      "source": "RaceFans，Keith Collantine，2008-02-05 回顧文（hist-racefans-5850.html:115、476）",
+      "url": "https://www.racefans.net/?p=5850",
+      "speaker": "RaceFans（Keith Collantine，2008 回顧文）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "Of the 26 cars that had appeared at most of the 1985 rounds, 21 went to Kyalami. Renault and Ligier were the only true boycotters (the former on the verge of quitting the sport anyway), following pressure from the French government. Zakspeed and RAM were not present, but in these cases a lack of money was a more pressing matter than political concerns.",
+      "zh_gloss": "1985 年大多數分站出賽的 26 台車裡，有 21 台去了 Kyalami。雷諾與 Ligier 是僅有的真正抵制者（前者本來就快退出 F1），起因是法國政府施壓。Zakspeed 與 RAM 沒有到場，但對這兩隊來說，缺錢比政治考量更迫切。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "「only true boycotters」是 RaceFans 的判斷，掛名；Zakspeed、RAM 不得寫成政治抵制。同一篇 RaceFans 2008 回顧（hist-racefans-5850.txt，?p=5850，2008-02-05 發布；與 Q-38「僅有的真正抵制者」、Q-39「奉命退出傳聞」、Q-40「Ecclestone 取消那場比賽」同篇），不得寫成「RaceFans 的另一篇回顧」。",
+      "evidence_file": "evidence/news/hist-racefans-5850.txt",
+      "evidence_line": 105
+    },
+    {
+      "id": "Q-39",
+      "source": "RaceFans，Keith Collantine，2008-02-05 回顧文（hist-racefans-5850.html:115、476）",
+      "url": "https://www.racefans.net/?p=5850",
+      "speaker": "RaceFans（Keith Collantine，2008 回顧文）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "The Beatrice stickers came off Alan Jones’s Lola, and then the car was withdrawn, amid rumours that the team had been instructed to pull out.",
+      "zh_gloss": "Beatrice 的貼紙從 Alan Jones 的 Lola 賽車上撕掉，接著這台車退出，當時有傳聞說車隊是奉命退出。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "與 Q-41（grandprix.com：因身體不適）並陳，不裁決；「傳聞」要保留。同一篇 RaceFans 2008 回顧（hist-racefans-5850.txt，?p=5850，2008-02-05 發布；與 Q-38「僅有的真正抵制者」、Q-39「奉命退出傳聞」、Q-40「Ecclestone 取消那場比賽」同篇），不得寫成「RaceFans 的另一篇回顧」。",
+      "evidence_file": "evidence/news/hist-racefans-5850.txt",
+      "evidence_line": 106
+    },
+    {
+      "id": "Q-40",
+      "source": "RaceFans，Keith Collantine，2008-02-05 回顧文（hist-racefans-5850.html:115、476）",
+      "url": "https://www.racefans.net/?p=5850",
+      "speaker": "RaceFans（Keith Collantine，2008 回顧文）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "In the following weeks the FIA were still considering future races at South Africa. But finally the refusal of several television companies to broadcast the race, following pressure from their unions, forced Ecclestone to cancel the event.",
+      "zh_gloss": "之後幾週，FIA 仍在考慮未來的南非賽事。但最後，數家電視台在工會壓力下拒絕轉播，迫使 Ecclestone 取消了那場比賽。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "同一篇 RaceFans 2008 回顧（hist-racefans-5850.txt，?p=5850，2008-02-05 發布；與 Q-38「僅有的真正抵制者」、Q-39「奉命退出傳聞」、Q-40「Ecclestone 取消那場比賽」同篇），不得寫成「RaceFans 的另一篇回顧」。「the event」原文沒寫是哪一年：只寫「原文沒有標明是哪一年的比賽」，不要再接 1986–1991（不寫「不能套進 1986–1991 的每一年」）；不得寫成「取消 1986 年」或「取消 1986–1991 年」。",
+      "evidence_file": "evidence/news/hist-racefans-5850.txt",
+      "evidence_line": 111
+    },
+    {
+      "id": "Q-41",
+      "source": "grandprix.com 歷史賽事資料頁（GPE），1985 南非站",
+      "url": "https://grandprix.com/gpe/rr419.html",
+      "speaker": "grandprix.com（GPE 歷史資料頁）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "On race morning the Beatrice team withdrew Alan Jones because he was unwell",
+      "zh_gloss": "比賽當天早上，Beatrice 車隊因 Alan Jones 身體不適讓他退出。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "站內資料庫 1985 第 15 站 Alan Jones 的 status 欄為「Driver unwell」（D-13）；與 Q-39 的傳聞並陳。",
+      "evidence_file": "evidence/news/hist-gpe-1985.txt",
+      "evidence_line": 8
+    },
+    {
+      "id": "Q-42",
+      "source": "grandprix.com 歷史賽事資料頁（GPE），1985 南非站",
+      "url": "https://grandprix.com/gpe/rr419.html",
+      "speaker": "grandprix.com（GPE 歷史資料頁）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "because of the political problems with South Africa several teams decided not to take part, notably Renault and Ligier. RAM had run out of money and Zakspeed was never planning to go to Kyalami and so the entry was reduced to 21 cars.",
+      "zh_gloss": "因為南非的政治問題，好幾支車隊決定不參賽，其中最明顯的是雷諾與 Ligier。RAM 錢用完了，Zakspeed 本來就沒打算去 Kyalami，所以參賽車數減到 21 台。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "21 台與 RaceFans（Q-38）、站內資料庫結果列數 21 一致。",
+      "evidence_file": "evidence/news/hist-gpe-1985.txt",
+      "evidence_line": 6
+    },
+    {
+      "id": "Q-43",
+      "source": "8W（forix／autosport.com 歷史專欄），作者 Mattijs Diepraam、Felix Muelas，2000 年聖誕號（hist-8w-za81.txt:26–30）",
+      "url": "https://8w.forix.com/za81.html",
+      "speaker": "8W（Mattijs Diepraam、Felix Muelas）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "One of the events to fall victim of the infamous FISA-FOCA power struggle, the 1981 South African GP was officially not an F1 race. In fact, it was probably the last Formula Libre race ever. So technically, it wasn't even a non-championship F1 event since the cars present did not conform to the new-for-1981 F1 rules prohibiting the use of skirts.",
+      "zh_gloss": "作為惡名昭彰的 FISA–FOCA 權力鬥爭的受害賽事之一，1981 南非大獎賽在官方上不是 F1 比賽。事實上，它大概是史上最後一場 Formula Libre（自由方程式）比賽。所以嚴格說，它連非錦標賽 F1 都算不上，因為參賽車輛不符合 1981 年新規則對側裙的禁令。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "作者是 Diepraam 與 Muelas（研究包誤記為 Michael Ferner，Ferner 是同頁第 52 行起的另一節）；「probably」要保留；這是 8W 的分類判斷，與 GrandPrix247「不計入世界錦標賽」是不同層次，不是矛盾。",
+      "evidence_file": "evidence/news/hist-8w-za81.txt",
+      "evidence_line": 42
+    },
+    {
+      "id": "Q-44",
+      "source": "GrandPrix247 NewsDesk，2020-02-07",
+      "url": "https://www.grandprix247.com/formula-1-news/on-this-day-reutemanns-win-that-wasnt-and-other-memories",
+      "speaker": "GrandPrix247 NewsDesk",
+      "attribution_type": "媒體編輯",
+      "verbatim": "On 7 February 1981, Carlos Reutemann won the controversial and rain-soaked South African Grand Prix in a Williams - the race did not count towards the FIA World Championship that year.",
+      "zh_gloss": "1981 年 2 月 7 日，Carlos Reutemann 開 Williams 贏下爭議不斷、雨水浸透的南非大獎賽；這場比賽不計入當年的 FIA 世界錦標賽。",
+      "use_in_section": "H2-4",
+      "priority": "必用",
+      "qualifiers": "「不計入」不等於「非法」或「官方不承認比賽存在」。",
+      "evidence_file": "evidence/news/hist-grandprix247-reutemann.txt",
+      "evidence_line": 10
+    },
+    {
+      "id": "Q-45",
+      "source": "Motor Sport Magazine 資料庫賽事頁（1981 當時賽報節錄）",
+      "url": "https://www.motorsportmagazine.com/database/races/1981-south-african-grand-prix",
+      "speaker": "Motor Sport Magazine（1981 當時賽報）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "whether FISA will ever formally regard it as the first round of the FIA World Championship is hard to say.",
+      "zh_gloss": "FISA 會不會正式把它當成 FIA 世界錦標賽的第一站，很難說。",
+      "use_in_section": "H2-4",
+      "priority": "可選",
+      "qualifiers": "這是賽前／當時的不確定說法，不是事後結論；用來說明當時連分類都未定。",
+      "evidence_file": "evidence/news/hist-motorsport-db-1981.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-46",
+      "source": "AutoGuide，Marcus Lewinsky，2026-10-06（官宣前）",
+      "url": "https://www.autoguide.com/auto/f1-set-to-return-to-africa-with-2030-rwanda-grand-prix-44639827",
+      "speaker": "AutoGuide（Marcus Lewinsky），引述 RacingNews365 的匿名圍場消息",
+      "attribution_type": "第二手轉述（匿名消息）",
+      "verbatim": "Formula 1 is poised to return to Africa for the first time since 1993, with a new grand prix in Rwanda targeted for the 2030 calendar, according to multiple paddock sources cited by RacingNews365 .",
+      "zh_gloss": "根據 RacingNews365 引述的多位圍場消息人士，F1 準備在 1993 年後首度回到非洲，盧安達的新大獎賽目標是 2030 年的賽曆。",
+      "use_in_section": "H2-1（官宣前一句）",
+      "priority": "必用",
+      "qualifiers": "「2030 年的賽曆目標（targeted for the 2030 calendar）」只有 AutoGuide 寫，不得歸給 The Next Web；匿名＋轉述兩層（AutoGuide 引 RacingNews365 的多位圍場消息）；本桌沒有 RacingNews365 原文；只能放官宣前時間線，不得蓋過官宣稿的 early 2030s。",
+      "evidence_file": "evidence/news/news-autoguide-2030.txt",
+      "evidence_line": 18
+    },
+    {
+      "id": "Q-47",
+      "source": "The Next Web，Darius Popa，2026-10-10 08:33 UTC（官宣前）",
+      "url": "https://thenextweb.com/news/rwanda-f1-grand-prix-2030-africa",
+      "speaker": "The Next Web（Darius Popa）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "Neither F1, the FIA nor Rwanda’s government has confirmed it.",
+      "zh_gloss": "F1、FIA 與盧安達政府都沒有證實。",
+      "use_in_section": "H2-1（官宣前一句）",
+      "priority": "必用",
+      "qualifiers": "The Next Web 與 AutoGuide 分開寫：TNW 寫 RacingNews365 以圍場消息首報「這筆協議」、經 GrandPrix.com 轉述（Q-53），首場「預期不早於 2030」（Q-52，無引述主詞），並寫 F1、FIA、盧安達政府都沒證實（本句）；TNW 沒有寫「2030 年目標」。",
+      "evidence_file": "evidence/news/news-thenextweb-2030.txt",
+      "evidence_line": 7
+    },
+    {
+      "id": "Q-48",
+      "source": "The Next Web，Darius Popa，2026-10-10 08:33 UTC（官宣前）",
+      "url": "https://thenextweb.com/news/rwanda-f1-grand-prix-2030-africa",
+      "speaker": "The Next Web（Darius Popa）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "South Africa also bid for the race.",
+      "zh_gloss": "南非也申辦過這場比賽。",
+      "use_in_section": "H2-5",
+      "priority": "可選",
+      "qualifiers": "官宣前報導；F1 沒有點名其他申辦者（Q-12、Q-20），不得寫成 F1 確認南非落選。",
+      "evidence_file": "evidence/news/news-thenextweb-2030.txt",
+      "evidence_line": 13
+    },
+    {
+      "id": "Q-49",
+      "source": "AutoGuide，Marcus Lewinsky，2026-10-06（官宣前）",
+      "url": "https://www.autoguide.com/auto/f1-set-to-return-to-africa-with-2030-rwanda-grand-prix-44639827",
+      "speaker": "AutoGuide（Marcus Lewinsky）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "In South Africa, former host venue Kyalami and Cape Town have both pushed for a slot, and Morocco and Nigeria have surfaced in speculation too.",
+      "zh_gloss": "在南非，前主辦場地 Kyalami 與開普敦都爭取過席位，摩洛哥與奈及利亞也曾出現在傳聞中。",
+      "use_in_section": "H2-5",
+      "priority": "可選",
+      "qualifiers": "官宣前報導；「speculation」只能寫成傳聞。",
+      "evidence_file": "evidence/news/news-autoguide-2030.txt",
+      "evidence_line": 23
+    },
+    {
+      "id": "Q-50",
+      "source": "Pit Debrief，Karishma Persad，2024-12-13（官宣前）",
+      "url": "https://www.pitdebrief.com/post/rwanda-announces-bid-for-f1-race",
+      "speaker": "Paul Kagame（盧安達總統），Pit Debrief 引述",
+      "attribution_type": "被引述者（媒體文內）",
+      "verbatim": "I am happy to formally announce that Rwanda is bidding to bring the thrill of racing back to Africa, by hosting a Formula 1 grand prix",
+      "zh_gloss": "我很高興正式宣布，盧安達要申辦一場 F1 大獎賽，把賽車的刺激帶回非洲。",
+      "use_in_section": "H2-1 或 H2-5",
+      "priority": "可選",
+      "qualifiers": "Pit Debrief 2024-12-13 報導（作者與日期見 html metadata）；同文 L16 交代場合為 Kigali 的 2024 FIA 頒獎典禮前。單一媒體。",
+      "evidence_file": "evidence/news/news-pitdebrief-bid2024.txt",
+      "evidence_line": 17
+    },
+    {
+      "id": "Q-51",
+      "source": "Formula1.com，Lawrence Barretto（F1 Correspondent & Presenter），2026-10-13 09:45 UTC",
+      "url": "https://www.formula1.com/en/latest/article/everything-we-know-about-f1s-all-new-race-in-rwanda.3Mde3s9FqIOTbkzKs0Puwo",
+      "speaker": "George Russell（官宣前受訪），Barretto 引述",
+      "attribution_type": "被引述者（F1官網作者文內）",
+      "verbatim": "Africa is the only [inhabited] continent we don’t race on and it’s about time we had a race there.",
+      "zh_gloss": "非洲是我們唯一沒有比賽的（有人居住的）大洲，早該在那裡辦一場了。",
+      "use_in_section": "H2-1",
+      "priority": "可選",
+      "qualifiers": "方括號 [inhabited] 是 F1 官網編輯補字，照原樣；同文 L33 明寫是「官宣前」說的，不得寫成官宣當天表態。",
+      "evidence_file": "evidence/news/f1-everything-we-know.txt",
+      "evidence_line": 39
+    },
+    {
+      "id": "Q-52",
+      "source": "The Next Web，Darius Popa，2026-10-10 08:33 UTC（官宣前）",
+      "url": "https://thenextweb.com/news/rwanda-f1-grand-prix-2030-africa",
+      "speaker": "The Next Web（Darius Popa）",
+      "attribution_type": "媒體編輯",
+      "verbatim": "The first race is expected no earlier than 2030.",
+      "zh_gloss": "首場預期不早於 2030 年。",
+      "use_in_section": "H2-1（官宣前一句）",
+      "priority": "必用",
+      "qualifiers": "原文沒有寫是誰預期（無引述主詞）；是官宣前報導，不得寫成目標年、官方年份或 RacingNews365 的說法；與 Q-47 同放。",
+      "evidence_file": "evidence/news/news-thenextweb-2030.txt",
+      "evidence_line": 10
+    },
+    {
+      "id": "Q-53",
+      "source": "The Next Web，Darius Popa，2026-10-10 08:33 UTC（官宣前）",
+      "url": "https://thenextweb.com/news/rwanda-f1-grand-prix-2030-africa",
+      "speaker": "The Next Web（Darius Popa）",
+      "attribution_type": "第二手轉述（匿名消息）",
+      "verbatim": "Motorsport site RacingNews365 first reported the deal, citing paddock sources, as GrandPrix.com relayed.",
+      "zh_gloss": "賽車網站 RacingNews365 引述圍場消息首先報導這筆協議（GrandPrix.com 轉述）。",
+      "use_in_section": "H2-1（官宣前一句）",
+      "priority": "可選",
+      "qualifiers": "TNW 是經 GrandPrix.com 轉述 RacingNews365，引的是「這筆協議」，沒有寫 2030 目標。",
+      "evidence_file": "evidence/news/news-thenextweb-2030.txt",
+      "evidence_line": 6
+    }
+  ]
+}

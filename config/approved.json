@@ -1297,6 +1297,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-14T18:25:48+08:00",
       "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：進站表上的秒數是車道時間；記靜止時間的欄位在新加坡全空。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-pit-stop-table-reading.60.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+    },
+    {
+      "slug": "f1-rwanda-african-grand-prix-africa-rounds-1958-1993",
+      "article_sha256": "370080338d43b91d961d61236efbcfd868b806107c2ece55d22a76c1d59e6c1c",
+      "facts_sha256": "ef99d5b07d163a68bd5029bdc403b5d9c390aa70297febe80a8771e22d8d7d10",
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-10-15T13:20:06+08:00",
+      "note": "F1 盧安達 10 年協議（官宣 2026-10-13）＋1958–1993 世界錦標賽非洲站對照表（選題台 2026-10-15:R1，19 分；topic_ref＝2026-10-15:R1）。Charlie 2026-10-15 原話「R1 (19) F1 重返非洲：盧安達大獎賽 10 年合約＋1958–1993 歷屆非洲站對照表，主旨和來源核對照規則交給 Opus。我們這次試一次 Terra 寫稿，查核桌你審？」，並回「合 racing #117」授權簽核、build、合併、部署（PR 內文與 PENDING 帳本皆已事先寫明此話即授權）。資料與來源：站內資料庫 F1 世界錦標賽場次（24 場非洲站、633 場為 1993-03-14 之後到 2026 年第 17 站）；F1 官網三篇（新聞稿、Barretto 問答稿、Horton 特稿）、RaceFans、grandprix.com、AutoGuide、The Next Web、8W、GrandPrix247、Motor Sport、RaceFans 2008 回顧；來源頁面文字與 html metadata 存桌目錄 evidence/news（維基只定位、不當出處）；事實包 53 條外語引句逐字比對原檔（validate_facts.py 錯誤 0）。流程（指揮規則第 7、8、9 條；本篇寫手為 Terra〔試驗〕，因此異源審稿改由 Sol 與 Opus 乾淨室擔任）：研究 Terra×2（離線）→獨立查核 Sol×2→論點與歸屬 Opus→R1／R1b／R1c Sol（FAIL×3，皆為修正未同步到全部位置，已修）→寫手 Terra（初稿凍結 40）→R2 Sol（0 BLOCKER）＋Opus 乾淨室（0 BLOCKER、MAJOR 6、MINOR 8）→冷讀 Opus→修正＋總編輯減法 Opus（40→50→60）→R3 Sol（MAJOR 1：副標未帶規格出處，經基準修訂裁定副標不陳述規格故不需要）＋Opus 乾淨室（MINOR 4）→指揮位六處最小修改（70→71）→R4 Sol 差異審查 PASS（BLOCKER 0／MAJOR 0／MINOR 0）。簽核 sha256 與桌目錄 drafts/71-rwanda.md、packs/facts.site.json 逐位元組一致。本文判讀只有 H2-6 一條（信賴度中）；批評層 2 句只用 grandprix.com 的報導與轉述；表內 7 位勝者與 2 個車隊無站內定版譯名，照規則寫英文原名。"
     }
   ]
 }
