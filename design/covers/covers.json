@@ -137,6 +137,12 @@
       "html": "cover-singapore-ferrari-strategy-ledger.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-rwanda-african-grand-prix-africa-rounds-1958-1993",
+      "html": "cover-rwanda-africa-rounds.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

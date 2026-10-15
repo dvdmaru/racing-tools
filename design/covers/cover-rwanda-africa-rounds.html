@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* F1 世界錦標賽非洲站 24 場（1958–1993），資料來源＝data/f1/db.sqlite；由 tmp 腳本 gen_cover.py 生成，要改資料請重跑，不要手調座標。
+ * 刻度 x 由賽日線性換算（1958-01-01 → 2026-10-13，軸長 1800）。
+ * 633 場的標示與虛線停在 2026（截至第 17 站）；軸外另放獨立虛線框「2030 年代初（未定）」，不共用量尺、不畫年份端點。
+ * 顏色只用來區分三條賽道，不對應任何車隊塗裝（站規：不用官方素材）。 */
+.chart { width: 100%; height: 282px; display: block; }
+.chart .yr { font-family: 'Chakra Petch'; font-style: italic; font-weight: 700; font-size: 40px; fill: #786a6e; }
+.chart .gap { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 44px; fill: #d63a2f; }
+.chart .gap2 { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 52px; fill: #493c40; }
+.chart .soon { font-family: 'Noto Sans TC'; font-weight: 700; font-size: 40px; fill: #786a6e; }
+h1 { font-size: 104px; margin-top: 26px; }
+.sub { margin-top: 26px; margin-bottom: 22px; font-size: 40px; }
+.legend { margin-bottom: 18px; }
+.stats { margin-top: 24px; }
+.wrap { padding-bottom: 96px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌 · 紀錄</div>
+  <h1>世界錦標賽的 24 場非洲站<br><span class="y">23 場</span>在南非</h1>
+  <div class="sub">1958–1993；盧安達 10 年協議的首辦年份，官方只說 2030 年代初</div>
+  <div class="viz">
+    <div class="lbl">F1 世界錦標賽非洲站（1958–1993），依賽道分色</div>
+    <div class="legend">紅＝卡亞拉米賽道（20 場）　藍＝喬治王子賽道（3 場）　黃＝艾因迪亞卜賽道（1 場）</div>
+    <svg class="chart" viewBox="0 -86 2140 316">
+      <rect x="13.9" y="40" width="14" height="110" rx="3" fill="#e0a41b"/>
+      <rect x="123.6" y="40" width="14" height="110" rx="3" fill="#2f6fd6"/>
+      <rect x="149.7" y="40" width="14" height="110" rx="3" fill="#2f6fd6"/>
+      <rect x="176.2" y="40" width="14" height="110" rx="3" fill="#2f6fd6"/>
+      <rect x="228.6" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="254.7" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="285.1" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="311.7" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="337.8" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="363.9" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="389.9" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="418.0" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="442.1" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="468.7" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="494.8" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="520.8" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="546.9" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="573.0" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="622.7" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="667.8" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="680.3" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="720.5" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="887.1" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <rect x="914.1" y="40" width="14" height="110" rx="3" fill="#d63a2f"/>
+      <text x="20.9" y="206" text-anchor="start" class="yr">1958</text>
+      <text x="921.1" y="206" text-anchor="middle" class="yr">1993</text>
+      <text x="1800.0" y="206" text-anchor="end" class="yr">2026</text>
+      <line x1="921.1" y1="-2" x2="1800.0" y2="-2" stroke="#a6989c" stroke-width="3" stroke-dasharray="10 10"/>
+      <line x1="921.1" y1="-16" x2="921.1" y2="12" stroke="#a6989c" stroke-width="3"/>
+      <line x1="1800.0" y1="-16" x2="1800.0" y2="12" stroke="#a6989c" stroke-width="3"/>
+      <text x="1360.6" y="-34" text-anchor="middle" class="gap">633 場世界錦標賽（截至 2026 年第 17 站）</text>
+      <text x="1360.6" y="108" text-anchor="middle" class="gap2">非洲 0 場</text>
+      <rect x="1880" y="30" width="250" height="130" rx="10" fill="none" stroke="#a6989c" stroke-width="3" stroke-dasharray="12 10"/>
+      <text x="2005" y="86" text-anchor="middle" class="soon">2030 年代初</text>
+      <text x="2005" y="132" text-anchor="middle" class="soon">（未定）</text>
+    </svg>
+    <div class="stats">
+      <div class="stat"><b>24</b><span>場世界錦標賽非洲站</span></div>
+      <div class="stat"><b>20</b><span>場在卡亞拉米賽道</span></div>
+      <div class="stat"><b>633</b><span>場 1993 年 3 月 14 日那場之後的<br>世界錦標賽，非洲 0 場</span></div>
+    </div>
+  </div>
+  <div class="foot">racing.twtools.cc · 站內資料庫，截至 2026 年第 17 站</div>
+</div>
+</body>
+</html>
