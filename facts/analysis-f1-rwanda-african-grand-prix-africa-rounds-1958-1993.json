@@ -111,7 +111,7 @@
     "38. 「卡亞拉米是英國車手的主場」「南非車手只贏過一次 F1」——D-12 只限這 24 場世界錦標賽非洲站。",
     "39. 引 FISA 1985 年聲明的「22 年」或拿它與資料庫對算。",
     "40. 標題、副標、封面放查證狀態或來源範圍（「經查證」「本站獨家」「完整對照表」「全解析」）。",
-    "41. 「Gilles Villeneuve」連到 /drivers/villeneuve/（那是 Jacques Villeneuve 的頁）；替 Gilles Villeneuve、Carlos Reutemann 等無定版者自創中文譯名。",
+    "41. 「Gilles Villeneuve」連到 /drivers/villeneuve/（那是 Jacques Villeneuve 的頁）；替沒有核准譯名的 René Arnoux、Riccardo Patrese 自創中文譯名（Moss、Rodríguez、Reutemann、Peterson、Gilles Villeneuve 已於 2026-10-15 核准，一律用核准譯名）。",
     "42. 「本站判讀」出現第二次；把判讀句（不是回到過去辦過世界錦標賽分站的國家或賽道，而是把首場繫於一條尚待完工的新賽道）放進標題、副標、lede 或 H2-1～H2-5。"
   ],
   "verified_facts": {
@@ -288,7 +288,7 @@
     },
     "H-13": {
       "value": "1981-02-07 卡亞拉米那場不在站內資料庫的世界錦標賽母集。GrandPrix247：不計入當年 FIA 世界錦標賽（Q-44）。8W（Mattijs Diepraam、Felix Muelas）：官方上不是 F1 比賽，大概是最後一場 Formula Libre，嚴格說連非錦標賽 F1 都算不上，因為賽車不符 1981 新規的側裙禁令（Q-43）。Motor Sport 當時賽報：FISA 會不會把它算成世界錦標賽第一站很難說（Q-45）。勝者 Carlos Reutemann（Williams）（8W L49；GrandPrix247 L10）。",
-      "write_as": "1981 年 2 月 7 日卡亞拉米那場不計入世界錦標賽（GrandPrix247）；8W 的作者更認為，它在官方上不是 F1 比賽，大概是最後一場自由方程式（Formula Libre）比賽，嚴格說連非錦標賽 F1 都算不上。勝者是開 Williams 的 Carlos Reutemann。",
+      "write_as": "1981 年 2 月 7 日卡亞拉米那場不計入世界錦標賽（GrandPrix247）；8W 的作者更認為，它在官方上不是 F1 比賽，大概是最後一場自由方程式（Formula Libre）比賽，嚴格說連非錦標賽 F1 都算不上。勝者是開 Williams 的卡洛斯・瑞特曼（Carlos Reutemann，2026-10-15 核准譯名）。",
       "not_upgrade_to": [
         "非法比賽",
         "官方不承認",
@@ -785,7 +785,7 @@
       "Felix Muelas"
     ],
     "places_and_orgs": "Rwanda＝盧安達、Kigali、Bugesera、Rwanda Development Board＝盧安達發展局（RDB）、Amnesty International＝國際特赦組織、FIA、FOM、FISA、FOCA：四張表無條目，前兩者與機構中文為通用名，地名 Kigali、Bugesera 保留英文。",
-    "_update_2026-10-15": "Charlie 2026-10-15 回「照建議」核准上列 5 位車手與 2 個車隊譯名（src charlie-2026-10-15，append 進 driver-zh.json／team-zh.json）；René Arnoux、Riccardo Patrese 的人名沒有核准，維持英文原名。首見用全形括號中英對照，表格內只寫中文。"
+    "_update_2026-10-15": "Charlie 2026-10-15 回「照建議」核准上列 5 位車手與 2 個車隊譯名（src charlie-2026-10-15）；René Arnoux、Riccardo Patrese 的人名沒有核准，維持英文原名。首見用全形括號中英對照，表格內只寫中文。"
   },
   "interlinks": {
     "note": "以下路徑已確認 public-racing/ 下 index.html 存在並讀過 title／H1（th_site_out.txt）。Gilles Villeneuve 沒有站內頁：/drivers/villeneuve/ 是 Jacques Villeneuve，不得連。本篇的新價值是跨賽道、跨時段的整合；三個賽道頁已各自列出承辦賽季與分站冠軍，不重寫。",
