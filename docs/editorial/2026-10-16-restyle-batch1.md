@@ -10,10 +10,10 @@ Sonnet寫手 → 雙席R2及修正結案 → Opus冷讀與減法 → 雙席R3三
 - `f1-2026-r17-singapore-ferrari-strategy-ledger`：`2c19fd58d1bc22f3d3064c5b3b479da93ecfc16a16ccefa8833b48302e5e7531`
 - `f1-2027-race-distance-290km`：`e89a9c7755b1e9b0941fd52987fec3c1f0d229a301a750ec6540231cd04433d9`
 
-本PR僅供內容審閱。`approved.json`保留舊簽核，未產正式站輸出，未取得此次發布授權。取得Charlie授權後才重簽新雜湊、建置輸出與CI、合併／手動部署並驗收正式站。不可直接合併此草稿。
+Charlie於2026-10-16（台北時間）回覆「ok~上線」，授權本批三篇重新簽核、建置、測試、合併及部署。`approved.json`依已審82稿重新綁定，保留原核准時點、事實包與既有審核欄位。文章本文未再修改。
 
 ## 驗證
 
-完整測試：基線966項全過；改稿後966項中964通過、2失敗（142.771秒）。失敗為`ApprovedArticlesAreStillApproved.test_every_approved_article_matches_its_recorded_sha`（正確擋下未重簽的三稿），以及`DeterminismTests.test_existing_champion_pages_gain_only_current_constructor_links`（車手頁相關文章變更）。後者的生成器`gen-racing-drivers.py:389`使用`interlink.related_articles_html`，其`published_articles`在`interlink.py:615`排除雜湊不符的新稿，所以與原公開頁比較會改變相關文章清單。兩項均保留失敗，沒有改簽核或放寬測試；正式發布前重簽／建置後必須再跑。
+重新簽核及建置後完整966項測試全數通過（134.400秒）；草稿階段因未簽核而失敗的兩項已解除。現有測試與簽核規則未放寬。三篇正文與最終82稿逐位元組相同，三篇新雜湊及note以外的approved欄位均不變。
 
-另已跑指南與圖表26項全過，兩篇封面主張及全站已登記事實檢查通過，`git diff --check`通過。測試日誌見`evidence/final-tests.log`。
+兩次文章、百科與sitemap建置結果一致，704個受追蹤產出及指紋檔零差異。封面主張、已登記事實、diff格式檢查通過；先前指南／圖表26項及390／1440版面驗收亦通過。發布後另驗正式站整檔與桌機／手機版面。
