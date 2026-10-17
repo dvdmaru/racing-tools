@@ -31,9 +31,7 @@
       "slug": "f1-2026-r11-hungary-blue-flag-failure",
       "html": "cover-r11-blue-flag.html",
       "allow": {},
-      "allow_claims": {
-        "刻相近者重疊": "圖表判讀說明（「藍旗發出（11 條，時刻相近者重疊）」），在描述視覺編碼不是賽事主張。"
-      }
+      "allow_claims": {}
     },
     {
       "slug": "f1-tech-timing-positioning-race-control",
