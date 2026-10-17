@@ -25,3 +25,5 @@ Norris facts升v6，撤回舊寫作指令與誤歸屬，原來源文字及歷史
 - `f1-2026-norris-mclaren-2030-extension`：`8d174237af1a5229b9d59ecf6812e704e47199187248021f021b4172b514a912`
 - `f1-2026-r11-hungary-blue-flag-failure`：`a82de91658c6a6f1acc41399b7498ea92f8e7eabe2c34f4e216a2e5e7d1fb309`
 - `f1-101-fines-sanctions`：`18e596339a683b8350c98a1e53c48bd087ba7f8e5662a449f760f2100bb7c30f`
+
+最終完整測試：966項，960通過、3 failures／3 errors；六項皆為未重簽的直接或關聯發布集合前提，詳83診斷。最終重跑已確認兩封面測試通過；不是966全綠。全量render --check因worktree未改舊圖的檔案時間出現過期提示，不作歷史圖內容失效判定，僅檢本批兩圖通過。
