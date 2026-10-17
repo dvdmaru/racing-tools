@@ -143,6 +143,12 @@
       "html": "cover-rwanda-africa-rounds.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-cota-us-grand-prix-guide",
+      "html": "cover-cota-us-guide.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
