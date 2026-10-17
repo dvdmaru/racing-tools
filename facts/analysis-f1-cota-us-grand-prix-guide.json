@@ -1,0 +1,1344 @@
+{
+  "_meta": {
+    "slug_suggestion": "f1-cota-us-grand-prix-guide",
+    "type": "feature",
+    "built_at_taipei": "2026-10-17",
+    "desk_ref": "2026-10-17-racing-cota",
+    "note": "Serialized from the independently reviewed Markdown facts and thesis. This serialization was generated after writing; it does not claim a pre-writing JSON lint run.",
+    "facts_markdown_sha256": "bc4d225001f5372ca7ac4394433b436b9864910798ae5c87786f821c17937707"
+  },
+  "thesis": "COTA 13 屆正賽有 9 勝屬於漢米爾頓與維斯塔潘，但拿到桿位的人只有 6 屆同年贏下正賽；這張表告訴你這條賽道誰贏過、桿位撐不撐得住，不告訴你 2026 誰會贏。今年真正的看點在積分表：安東內利帶著 102 分領先進場，美國站已經是他有機會封王的一站。",
+  "section_claims": "# 05-thesis：COTA 賽道百科＋2026 台北時間\n\n事實輸入：`packs/facts.md`（F-ID 皆指該檔）。歸屬覆核紀錄：`desk/05-attribution.md`。\n\n## 一句話論點\n\nCOTA 13 屆正賽有 9 勝屬於漢米爾頓與維斯塔潘，但拿到桿位的人只有 6 屆同年贏下正賽；這張表告訴你這條賽道誰贏過、桿位撐不撐得住，不告訴你 2026 誰會贏。今年真正的看點在積分表：安東內利帶著 102 分領先進場，美國站已經是他有機會封王的一站。\n\n（讀者可以不同意的點：「桿位在 COTA 不等於勝利」這個讀法；以及「歷史表不能拿來押今年」。）\n\n## 各節主張與對應事實\n\n| # | 建議 H2 方向（寫手自訂措辭） | 這一節的主張（所以呢） | 形狀 | 對應 F-ID |\n|---|---|---|---|---|\n| 1 | 一彎的上坡與 3–6 號彎 S 彎 | 這條賽道的辨識度來自一段陡坡衝進一彎髮夾彎，3–6 號彎則是一串被比作 Silverstone 的高速 S 彎；官方介紹一彎看台可遠眺 Austin 市中心；想近看攻防，則建議 15／16 號彎的 Stadium Section 看台 | 範例 | F-T01, F-T03, F-T04, F-T05, F-T06, F-T07, F-T08 |\n| 2 | 13 屆桿位與冠軍表 | 13 屆裡漢米爾頓 5 勝、維斯塔潘 4 勝，其餘 4 位各 1 勝；COTA 的勝場高度集中在兩個人 | 數據 | F-H2012…F-H2025, F-H2020, F-S01, F-S02, F-T09 |\n| 2a | （表後短段）2015 年的桿位是 Q2 成績 | 2015 年 Q3 因雨取消，桿位時間要讀 Q2 的 1:56.824，不是羅斯堡 Q1 較快的那一圈 | 犯錯 | F-H2015Q, F-HT |\n| 3 | 桿位只換來 6 屆同年正賽勝利 | 13 屆裡 7 屆桿位者沒贏；漢米爾頓 5 勝中，只有 2016、2017 這 2 屆同年拿到桿位。所以在 COTA，排位第一是好消息，不是結果 | 問題 | F-S03, F-S04, F-S05, F-S07, F-H2023DQ（選用） |\n| 4 | 2026 美國站台北時間 | 一般週末、沒有 Sprint；台灣觀眾要熬的是星期六、星期日凌晨的練習排位，以及星期一凌晨 4 點的正賽開跑 | 數據 | F-W01, F-W02, F-W03, F-W04 |\n| 5 | 安東內利帶 102 分進美國站 | 依 10/17 官方積分，安東內利在美國站就有機會封王：例如他奪冠、羅素與漢米爾頓都沒得分，任何人都追不上 365 分；但他若沒得分、羅素奪冠，這站就封不了 | 理由 | F-C01, F-C02, F-C03, F-C04, F-C05, F-C06, F-C07 |\n| — | FAQ（結構節，不判形狀） | 答案比正文短、指回對應節：COTA 一圈多長、2020 為何沒辦、今年美國站有沒有 Sprint、台北幾點開跑、桿位者在 COTA 贏過幾屆 | — | F-T01, F-H2020, F-W02, F-W04, F-S03 |\n| — | 資料來源（結構節） | F1 結果頁與年度桿位表、F1 2026 賽曆與時程、FIA 賽道介紹、COTA 主辦方回顧；方法論只放這裡 | — | 全部 |\n\n## 切分與母體提醒（寫手必守）\n\n- 第 2、3 節是 2012–2025 歷史統計；第 4、5 節是 2026 現況。兩邊不互相推論：不寫「維斯塔潘在 COTA 4 勝所以今年…」，也不寫「桿位 6／13 所以排位第一的人有 46% 機會」。\n- 絕對詞母體：「最多勝」限 13 屆 COTA 正賽；「沒有 Sprint」限 2026 美國站；「剩 5 場」限美國站之後的大獎賽；不寫「唯一」「最早」「必然」「只要」。\n- 封王段只給一個足夠例子（F-C06）與一個反例（F-C07），不推最早封王站、不窮舉條件、不給機率。\n- S 彎沒有觀賽位置來源（F-T08），第 1 節只寫布局。\n\n## 撤回／未採用的主張\n\n- 研究席「2026 活動頁是第二條獨立官方入口」：撤。時程表與活動頁同為 formula1.com，且 `2026-event.html` 與 `usa-current.html` SHA 相同，只能稱同源互核。\n- 選題台「美國不能封王」：不採，以 F-C06 取代；正文當看點寫，不寫成糾錯。\n",
+  "verified_facts_markdown": "# COTA 核定事實表（Opus 論點與來源歸屬席，R1 前）\n\n核定日：2026-10-17（Asia/Taipei）。本表是寫手唯一事實輸入；`packs/research.md` 與 `packs/standings-research.md` 是研究席產物，本表已逐條回原始 `evidence/` 覆核，衝突處以原始證據為準（見 `desk/05-attribution.md`）。\n證據等級依 `_contract.md`：A＝桌內凍結的第一方原始資料。\n英文逐字引文：每個來源累積 ≤15 words，已在每條標字數；正文要用就照此，不要再加。\n\n---\n\n## 一、賽道（穩定輪廓）\n\n| F-ID | 事實（可寫的範圍） | 來源 URL | evidence | 等級 | 支撐範圍／不可延伸 |\n|---|---|---|---|---|---|\n| F-T01 | 賽道名 Circuit of The Americas（COTA），位於德州 Austin；單圈 5.513 km；首次 F1 大獎賽 2012；預定 56 圈；官方正賽距離 308.405 km | https://www.formula1.com/en/racing/2026/united-states | `2026-event.txt:35`（與 `usa-current.txt:35` 為同一檔，SHA 相同） | A | 308.405 km 照官方標示寫，不以 5.513×56 重算覆寫。「首次 2012」指 COTA，不是美國大獎賽首屆 |\n| F-T02 | 正賽單圈紀錄 1:36.169，Charles Leclerc，2019 | 同上 | `2026-event.txt:35` | A | 只能稱「正賽單圈紀錄」，不能說是此地所有場次最快圈 |\n| F-T03 | 20 個彎、逆時針；全場高低差 40.5 m（133 英尺） | https://www.fia.com/news/wec-20-facts-and-figures-6-hours-circuit-americas | `fia-track-profile.txt:406,408`；HTML `published_time 2015-09-14` | A | 來源是 FIA 2015 年 WEC 文章：賽道布局屬穩定輪廓可用；不得引用該文其他 WEC 數據或當成 2026 F1 設定。該文「3.4-mile」不要寫，長度用 F-T01 |\n| F-T04 | 一彎是一段陡上坡衝進去的髮夾彎 | FIA 同上；F1 同 F-T01 | `fia-track-profile.txt:408`；`usa-current.txt:45` | A | FIA 原文片語可引 \"steep, uphill run into the hairpin Turn 1\"（8 words）；F1 頁用 \"uphill run into wide, wide Turn 1\"（7 words） |\n| F-T05 | F1 官方賽道介紹把一彎列為常見超車的地方 | F1 同 F-T01 | `usa-current.txt:45` | A | 原文是宣傳口吻，轉述不得比原文強；不得延伸成超車次數、DRS 或特定年份案例 |\n| F-T06 | 3 到 6 號彎的連續 S 彎，F1 頁比作 Silverstone 的 Maggotts/Becketts 與 Suzuka 的 S Curves；FIA 只比作 Maggotts/Becketts | F1 同 F-T01；FIA 同 F-T03 | `usa-current.txt:45`；`fia-track-profile.txt:408` | A | 「Suzuka」只能掛 F1 頁，不能掛 FIA。兩頁都沒有 S 彎觀賽位置資訊 |\n| F-T07 | 12 到 15 號彎比作 Hockenheim 的體育場路段（stadium section） | F1、FIA 同上 | 同上 | A | — |\n| F-T08 | F1 官方觀賽建議：一彎看台可遠眺 Austin 市中心；想近看攻防，選 15／16 號彎的 Stadium Section 看台；主看台在起終點直道 | F1 同 F-T01 | `usa-current.txt:51` | A | 只有這三處觀賽位置有來源；S 彎（3–6 號彎）**沒有**觀賽建議來源，正文寫 S 彎只能寫布局，不能寫「最佳觀賽點」 |\n| F-T09 | 2012 年 COTA 首辦，是美國大獎賽自 2007 年 Indianapolis 之後首次回歸；漢米爾頓 2012 年在此拿下他麥拉倫生涯最後一勝 | F1 同 F-T01 | `usa-current.txt:42` | A | 可引 \"last ever win in a McLaren\"（6 words；F1 頁累計 13 words）。Indianapolis 2007 不列入 COTA 統計 |\n\n## 二、2012–2025 COTA 正賽歷史（13 屆）\n\n母體：COTA 美國大獎賽正賽，2012–2019、2021–2025，共 13 屆；2020 停辦。不含 Sprint、不含 Indianapolis、Miami、Las Vegas。\n桿位＝當年官方 Pole Positions 年度表的美國站列，且與該站 Qualifying 第 1 名吻合；**沒有用 Starting Grid 第 1 名**。\n冠軍＝該站 Race Result 的 Pos. 1。車隊欄為 F1 結果頁當年原標籤（引擎名包含在標籤內；2025 官方改用無引擎名的簡稱）。\n\n| F-ID | 年 | 桿位 | 桿位車隊（原標籤） | 正賽冠軍 | 冠軍車隊（原標籤） | 桿位＝冠軍 |\n|---|---|---|---|---|---|---|\n| F-H2012 | 2012 | Sebastian Vettel | Red Bull Racing Renault | Lewis Hamilton | McLaren Mercedes | 否 |\n| F-H2013 | 2013 | Sebastian Vettel | Red Bull Racing Renault | Sebastian Vettel | Red Bull Racing Renault | 是 |\n| F-H2014 | 2014 | Nico Rosberg | Mercedes | Lewis Hamilton | Mercedes | 否 |\n| F-H2015 | 2015 | Nico Rosberg | Mercedes | Lewis Hamilton | Mercedes | 否 |\n| F-H2016 | 2016 | Lewis Hamilton | Mercedes | Lewis Hamilton | Mercedes | 是 |\n| F-H2017 | 2017 | Lewis Hamilton | Mercedes | Lewis Hamilton | Mercedes | 是 |\n| F-H2018 | 2018 | Lewis Hamilton | Mercedes | Kimi Räikkönen | Ferrari | 否 |\n| F-H2019 | 2019 | Valtteri Bottas | Mercedes | Valtteri Bottas | Mercedes | 是 |\n| F-H2020 | 2020 | 停辦 | — | — | — | — |\n| F-H2021 | 2021 | Max Verstappen | Red Bull Racing Honda | Max Verstappen | Red Bull Racing Honda | 是 |\n| F-H2022 | 2022 | Carlos Sainz | Ferrari | Max Verstappen | Red Bull Racing RBPT | 否 |\n| F-H2023 | 2023 | Charles Leclerc | Ferrari | Max Verstappen | Red Bull Racing Honda RBPT | 否 |\n| F-H2024 | 2024 | Lando Norris | McLaren Mercedes | Charles Leclerc | Ferrari | 否 |\n| F-H2025 | 2025 | Max Verstappen | Red Bull Racing | Max Verstappen | Red Bull Racing | 是 |\n\n逐年來源（URL 皆 formula1.com，A 級；evidence 行號為 TXT，HTML 同名檔為原始快照）：\n\n| 年 | 桿位年度表 URL | Qualifying／Race Result URL 基底 | evidence（桿位列／Q 第 1 列／正賽第 1 列） |\n|---|---|---|---|\n| 2012 | /en/results/2012/awards/pole-positions | /en/results/2012/races/26/united-states/ | `2012-pole-awards.txt:119`／`2012-qualifying.txt:132`／`2012-race-result.txt:132` |\n| 2013 | /en/results/2013/awards/pole-positions | /en/results/2013/races/896/united-states/ | `2013-pole-awards.txt:118`／`2013-qualifying.txt:131`／`2013-race-result.txt:131` |\n| 2014 | /en/results/2014/awards/pole-positions | /en/results/2014/races/914/united-states/ | `2014-pole-awards.txt:117`／`2014-qualifying.txt:131`／`2014-race-result.txt:131` |\n| 2015 | /en/results/2015/awards/pole-positions | /en/results/2015/races/933/united-states/ | `2015-pole-awards.txt:116`／`2015-qualifying.txt:130`／`2015-race-result.txt:130` |\n| 2016 | /en/results/2016/awards/pole-positions | /en/results/2016/races/954/united-states/ | `2016-pole-awards.txt:119`／`2016-qualifying.txt:133`／`2016-race-result.txt:133` |\n| 2017 | /en/results/2017/awards/pole-positions | /en/results/2017/races/975/united-states/ | `2017-pole-awards.txt:118`／`2017-qualifying.txt:132`／`2017-race-result.txt:132` |\n| 2018 | /en/results/2018/awards/pole-positions | /en/results/2018/races/996/united-states/ | `2018-pole-awards.txt:124`／`2018-qualifying.txt:133`／`2018-race-result.txt:133` |\n| 2019 | /en/results/2019/awards/pole-positions | /en/results/2019/races/1018/united-states/ | `2019-pole-awards.txt:126`／`2019-qualifying.txt:133`／`2019-race-result.txt:133` |\n| 2021 | /en/results/2021/awards/pole-positions | /en/results/2021/races/1102/united-states/ | `2021-pole-awards.txt:124`／`2021-qualifying.txt:134`／`2021-race-result.txt:134` |\n| 2022 | /en/results/2022/awards/pole-positions | /en/results/2022/races/1135/united-states/ | `2022-pole-awards.txt:126`／`2022-qualifying.txt:134`／`2022-race-result.txt:134` |\n| 2023 | /en/results/2023/awards/pole-positions | /en/results/2023/races/1222/united-states/ | `2023-pole-awards.txt:125`／`2023-qualifying.txt:136`／`2023-race-result.txt:136` |\n| 2024 | /en/results/2024/awards/pole-positions | /en/results/2024/races/1247/united-states/ | `2024-pole-awards.txt:126`／`2024-qualifying.txt:137`／`2024-race-result.txt:137` |\n| 2025 | /en/results/2025/awards/pole-positions | /en/results/2025/races/1271/united-states/ | `2025-pole-awards.txt:139`／`2025-qualifying.txt:137`／`2025-race-result.txt:137` |\n\n（完整 URL＝`https://www.formula1.com` ＋上列路徑；Race Result 頁另有 `Circuit of The Americas` 場地行，13 年都已確認，見各檔第 1 列上一行。）\n\n| F-ID | 事實 | 來源 | evidence | 等級 | 支撐範圍 |\n|---|---|---|---|---|---|\n| F-H2020 | 2020 年 F1 未在 COTA 舉行，賽道主辦方回顧寫明因 COVID-19 疫情取消；2021 年是 COTA 第 9 次舉辦 F1 大獎賽 | https://circuitoftheamericas.com/blog/timeline/2021-2/ | `cota-2020-cancelled.txt:77`；HTML `modified_time 2022-09-15` | A（主辦方第一方） | 可引 \"cancelled in 2020 due to the COVID-19 pandemic\"（8 words）。來源是主辦方，不是 F1／FIA；不要寫成 FIA 公告 |\n| F-H2015Q | 2015 年排位因雨延到星期日早上，Q3 取消，名次以 Q2 決定；Rosberg 桿位時間 1:56.824 是 Q2 成績，他的 Q1 時間 1:56.671 較快但不是桿位時間 | https://www.formula1.com/en/latest/article/rosberg-on-pole-in-austin-after-rain-curtailed-qualifying.74wg9TQFZCQWoRXPzlYAlm | `2015-qualifying-report.txt:16,19,30`；`2015-qualifying.txt:130`；`2015-pole-awards.txt:116` | A | 可引 \"before Q3 was cancelled due to worsening rain\"（8 words）。HTML `dateModified 2015-10-25`（`datePublished 2024-09-05` 不採作2015比賽的新聞日期） |\n| F-H2023DQ | 2023 年正賽結果頁將漢米爾頓列為 DQ、0 分 | 2023 Race Result（上表） | `2023-race-result.txt` 第 2 列；`history-extracted.json` 2023 | A | 只寫「賽後被取消資格」；結果頁附註載明技術違規（technical infringements），本稿不展開具體原因 |\n| F-HT | 桿位時間（若寫手要用）：2012 1:35.657／2013 1:36.338／2014 1:36.067／2015 1:56.824（Q2）／2016 1:34.999／2017 1:33.108／2018 1:32.237／2019 1:32.029／2021 1:32.910／2022 1:34.356／2023 1:34.723／2024 1:32.330／2025 1:32.510 | 各年桿位年度表 | 同上表 | A | 2024 是一般排位 1:32.330，不是 Sprint 排位；2015 必須單獨註明 Q2。表格可省略此欄 |\n\n### 由上表重算的摘要（只限這 13 屆）\n\n| F-ID | 摘要 | 重算方式 |\n|---|---|---|\n| F-S01 | 正賽勝場：漢米爾頓 5（2012、2014、2015、2016、2017）、維斯塔潘 4（2021、2022、2023、2025）；維特爾 2013、雷克南 2018、博塔斯 2019、勒克萊爾 2024 各 1。合計 13 | 數冠軍欄 |\n| F-S02 | 兩人合計 9／13 勝 | 5＋4 |\n| F-S03 | 桿位者同年奪冠：2013、2016、2017、2019、2021、2025，共 6／13；另 7 屆桿位者沒贏 | 比對兩欄 |\n| F-S04 | 漢米爾頓 5 勝裡只有 2016、2017 這 2 屆同年拿到桿位；2012、2014、2015 是別人拿桿位、他贏正賽 | 交叉 |\n| F-S05 | 維斯塔潘 4 勝裡 2 勝（2021、2025）同年拿桿位；2022、2023 的桿位是法拉利車手（Carlos Sainz、勒克萊爾） | 交叉。**不得寫維斯塔潘這兩年從第幾位起跑**——起跑格未核 |\n| F-S06 | 桿位次數：漢米爾頓 3（2016–2018）；維特爾、羅斯堡、維斯塔潘各 2；博塔斯、Carlos Sainz、勒克萊爾、諾里斯各 1。合計 13 | 數桿位欄 |\n| F-S07 | 2018 年漢米爾頓拿桿位、雷克南贏；2024 年諾里斯拿桿位、勒克萊爾贏 | 讀表 |\n\n「6／13」是這 13 屆的算術，不是 2026 勝率或桿位價值的估計；不要換算成百分比去推今年。\n\n## 三、2026 美國站時間（一般週末，無 Sprint）\n\n| F-ID | 事實 | 來源 | evidence | 等級 |\n|---|---|---|---|---|\n| F-W01 | 2026 美國站是現行賽曆第 18 站；新加坡是已完賽的第 17 站；當地 10/23–25 | https://www.formula1.com/en/racing/2026 | `calendar-official.txt:17,19,201,212`；擷取 2026-10-17 09:12 台北 | A |\n| F-W02 | 本站只有 FP1、FP2、FP3、排位、正賽，沒有 Sprint；2026 六場 Sprint（中國、邁阿密、加拿大、英國、荷蘭、新加坡）都在美國站之前 | F1 活動頁同 F-T01；FIA https://www.fia.com/news/fia-and-formula-1-announce-2026-sprint-calendar | `2026-event.txt:23-27`；`sprint-announcement-official.txt` | A |\n| F-W03 | 官方時程註明 Austin 比 UTC 慢 5 小時；台北 UTC+8，所以台北比 Austin 快 13 小時 | 2026 full timetable：https://www.formula1.com/en/latest/article/formula-1-msc-cruises-united-states-grand-prix-2026.2u6li2pzNhPzL3TSYaagrm | `2026-timetable.txt:39`；HTML `datePublished 2026-09-24T11:51Z`（`dateModified 2022-01-01` 不採作本頁現況更新日） | A |\n| F-W04 | 正賽官方欄位「56 LAPS OR 120 MINS」、當地 15:00–17:00；只能寫預定開跑時間，不保證結束時間；官方註明時程可能變動 | 同 F-W03 | `2026-timetable.txt:38-39` | A |\n\n**台北時間表（Asia/Taipei，UTC+8）**——時程表與活動頁「My time」顯示值（與 UTC 換算一致）逐場互核一致；兩者同為 formula1.com，屬同源互核，不是兩個獨立來源。\n\n| 場次 | Austin 當地（UTC−5） | 台北（UTC+8） |\n|---|---|---|\n| 第一次練習 FP1 | 10/23（五）12:30–13:30 | 10/24（六）01:30–02:30 |\n| 第二次練習 FP2 | 10/23（五）16:00–17:00 | 10/24（六）05:00–06:00 |\n| 第三次練習 FP3 | 10/24（六）12:30–13:30 | 10/25（日）01:30–02:30 |\n| 排位賽 Qualifying | 10/24（六）16:00–17:00 | 10/25（日）05:00–06:00 |\n| 正賽 Race | 10/25（日）15:00 開跑 | 10/26（一）04:00 開跑 |\n\n星期核對：時程表原文「FRIDAY 23 OCTOBER」（`2026-timetable.txt:15`），其餘依序推。\n不可寫：轉播平台、電視節目時刻、輪胎配方、DRS／可動空力、賽事總監備忘錄內容（皆未核）。\n\n## 四、2026 賽前積分與封王算術（快照）\n\n快照時刻：F1 官方積分頁擷取於 2026-10-17 09:12 台北（`standings-verification.json` sources）。新加坡站（第 17 站）後、美國站前。\n\n| F-ID | 事實 | 來源 | evidence | 等級 |\n|---|---|---|---|---|\n| F-C01 | 車手積分前六：安東內利 340（Mercedes）、羅素 238（Mercedes）、漢米爾頓 229（Ferrari）、維斯塔潘 221（Red Bull Racing）、勒克萊爾 215（Ferrari）、諾里斯 201（McLaren）；第 7 名 Oscar Piastri 138 | https://www.formula1.com/en/results/2026/drivers | `standings-official.txt:123-129`；`standings-verification.json` | A |\n| F-C02 | 安東內利領先羅素 102 分 | 由 F-C01 相減 | — | B |\n| F-C03 | 美國站起還剩 6 場大獎賽（美國、墨西哥、巴西、拉斯維加斯、卡達、阿布達比），0 場 Sprint；美國站之後剩 5 場 | 賽曆同 F-W01 | `calendar-official.txt:212-224` | A |\n| F-C04 | 大獎賽給分前十：25、18、15、12、10、8、6、4、2、1；2026 FIA Section A Issue03 A2.2.1完整給分規則最高25分，沒有額外最快圈分；另F1官方已明載2025年起取消最快圈加分，見本表附錄 | https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-f1-drivers-championship.53MjXJzTDxQnfxfoCLnxNZ | `scoring-official.txt:21`；HTML `dateModified 2025-12-29` | A |\n| F-C05 | 美國站前每人最多還能拿 150 分；美國站後最多 125 分 | 6×25、5×25 | — | B |\n| F-C06 | **足夠封王的一例**：安東內利美國站奪冠（到 365 分），羅素、漢米爾頓都沒得分。此時羅素最多 363、漢米爾頓最多 354；其他每位車手就算這站給 18 分再包辦最後 5 場，最高是維斯塔潘 364——全都低於 365，所以安東內利在美國站就確定封王 | 研究席算術，已覆核 | `standings-verification.json` `favorable_all_rivals`（22 位對手全列）；`standings-verify.py` | B |\n| F-C07 | 反例：安東內利 0 分、羅素奪冠，差距縮為 77，後面還有 125 分可拿，這站不會封王 | 同上 | `standings-verification.json` `adverse_scenario` | B |\n\n寫法邊界（給寫手）：\n- 只寫「美國站有機會封王」＋F-C06 一例；**不寫**最早封王站、完整封王條件、機率。\n- F-C06 是「足夠」不是「必要」：不能寫成「只要安東內利贏就封王」（羅素若得分就不成立）。\n- 這是快照；積分若再被裁定更動，要重抓重算。\n- 現有「美國站不能封王」說法已被官方現況推翻；正文當本季看點寫，不寫成糾錯。\n\n## 五、人名與車隊中文（只用研究席已核 approved）\n\n| 英文 | 中文 | 英文 | 中文 |\n|---|---|---|---|\n| Lewis Hamilton | 漢米爾頓 | Kimi Antonelli | 安東內利 |\n| Sebastian Vettel | 賽巴斯蒂安・維特爾 | George Russell | 羅素 |\n| Nico Rosberg | 尼可・羅斯堡 | McLaren | 麥拉倫 |\n| Kimi Räikkönen | 奇米・雷克南 | Mercedes | 賓士 |\n| Valtteri Bottas | 博塔斯 | Red Bull | 紅牛 |\n| Max Verstappen | 維斯塔潘 | Ferrari | 法拉利 |\n| Charles Leclerc | 勒克萊爾 | | |\n| Lando Norris | 諾里斯 | | |\n| Carlos Sainz | 塞恩斯 | | |\n| Oscar Piastri | 皮亞斯特里 | | |\n| Sergio Perez | 培瑞茲 | | |\n\n來源：`evidence/approved-names.json`（研究席讀自站內 driver-zh／team-zh，status approved）。\n- 首見寫「中文（English）」全形括號，之後用中文。\n- 另由指揮位直接讀本次 origin/main 工作樹 driver-zh.json：sainz／piastri／perez 均 approved，已補上；Mark Webber 未核，若提及維持英文。\n- 引擎標籤（Renault、Honda、RBPT、TAG Heuer）無核准中文，保留英文，例：「紅牛（當年標籤 Red Bull Racing Renault）」「麥拉倫（McLaren Mercedes，Mercedes 是引擎）」。\n- 賽道核准名稱為「美洲賽道（奧斯汀）」；scripts/circuit-zh.json 的 americas 為 approved。英文 Circuit of The Americas（COTA），不稱官方中文名。\n\n## R1 歸屬補證（寫手不需新增段落）\n- 站內核准名稱完整原表：`evidence/approved-names-repo.json`，包含sainz/piastri/perez以及americas；只補證，不改repo譯名。\n- 2026 FIA Section A Issue03（25 June 2026），A2.2.1/A2.2.2，第9–11頁（PDF頁序9–11）：完整正賽給分表最高25分，衝刺最高8分；本輪從FIA現行規章索引進入，2026-10-17現行列表的Section A為Issue03。文件：https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_a_general_provisions_-_iss_03_-_2026-06-25.pdf 。原PDF與layout TXT為`evidence/fia-2026-section-a-issue03.pdf/.txt`，索引快照`fia-current-regulations.html/.txt`。不引用舊Issue01。\n- F1官方2024年公告明載2025年起取消最快圈額外一分：https://www.formula1.com/en/latest/article/fastest-lap-point-to-be-scrapped-in-2025-after-latest-fia-world-motor-sport.4pUjDzWnGRN7KVWENLc1BY ，`fastest-point-removal.html/.txt`。本稿不需講沿革，只用現行上限算術。\n- Opus建議的1933積分加總不採為未來給分規則證明：改以現行完整規章與官方取消公告直接補證，原有封王例子與數字不變。\n",
+  "historical_results": [
+    {
+      "year": 2012,
+      "base": "https://www.formula1.com/en/results/2012/races/26/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "1",
+          "Sebastian   Vettel  VET",
+          "Red Bull Racing Renault",
+          "1:36.558",
+          "1:35.796",
+          "1:35.657",
+          "20"
+        ],
+        [
+          "2",
+          "4",
+          "Lewis   Hamilton  HAM",
+          "McLaren Mercedes",
+          "1:37.058",
+          "1:36.795",
+          "1:35.766",
+          "20"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "4",
+          "Lewis   Hamilton  HAM",
+          "McLaren Mercedes",
+          "56",
+          "1:35:55.269",
+          "25"
+        ],
+        [
+          "2",
+          "1",
+          "Sebastian   Vettel  VET",
+          "Red Bull Racing Renault",
+          "56",
+          "+0.675s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2013,
+      "base": "https://www.formula1.com/en/results/2013/races/896/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "1",
+          "Sebastian   Vettel  VET",
+          "Red Bull Racing Renault",
+          "1:38.516",
+          "1:37.065",
+          "1:36.338",
+          "12"
+        ],
+        [
+          "2",
+          "2",
+          "Mark   Webber  WEB",
+          "Red Bull Racing Renault",
+          "1:38.161",
+          "1:37.312",
+          "1:36.441",
+          "14"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "1",
+          "Sebastian   Vettel  VET",
+          "Red Bull Racing Renault",
+          "56",
+          "1:39:17.148",
+          "25"
+        ],
+        [
+          "2",
+          "8",
+          "Romain   Grosjean  GRO",
+          "Lotus Renault",
+          "56",
+          "+6.284s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2014,
+      "base": "https://www.formula1.com/en/results/2014/races/914/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "6",
+          "Nico   Rosberg  ROS",
+          "Mercedes",
+          "1:38.303",
+          "1:36.290",
+          "1:36.067",
+          "20"
+        ],
+        [
+          "2",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "1:37.196",
+          "1:37.287",
+          "1:36.443",
+          "16"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "1:40:04.785",
+          "25"
+        ],
+        [
+          "2",
+          "6",
+          "Nico   Rosberg  ROS",
+          "Mercedes",
+          "56",
+          "+4.314s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2015,
+      "base": "https://www.formula1.com/en/results/2015/races/933/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "6",
+          "Nico   Rosberg  ROS",
+          "Mercedes",
+          "1:56.671",
+          "1:56.824",
+          "",
+          "16"
+        ],
+        [
+          "2",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "1:56.871",
+          "1:56.929",
+          "",
+          "14"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "1:50:52.703",
+          "25"
+        ],
+        [
+          "2",
+          "6",
+          "Nico   Rosberg  ROS",
+          "Mercedes",
+          "56",
+          "+2.850s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2016,
+      "base": "https://www.formula1.com/en/results/2016/races/954/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "1:36.296",
+          "1:36.450",
+          "1:34.999",
+          "13"
+        ],
+        [
+          "2",
+          "6",
+          "Nico   Rosberg  ROS",
+          "Mercedes",
+          "1:36.397",
+          "1:36.351",
+          "1:35.215",
+          "13"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "1:38:12.618",
+          "25"
+        ],
+        [
+          "2",
+          "6",
+          "Nico   Rosberg  ROS",
+          "Mercedes",
+          "56",
+          "+4.520s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2017,
+      "base": "https://www.formula1.com/en/results/2017/races/975/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "1:34.822",
+          "1:33.437",
+          "1:33.108",
+          "18"
+        ],
+        [
+          "2",
+          "5",
+          "Sebastian   Vettel  VET",
+          "Ferrari",
+          "1:35.420",
+          "1:34.103",
+          "1:33.347",
+          "18"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "1:33:50.991",
+          "25"
+        ],
+        [
+          "2",
+          "5",
+          "Sebastian   Vettel  VET",
+          "Ferrari",
+          "56",
+          "+10.143s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2018,
+      "base": "https://www.formula1.com/en/results/2018/races/996/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "1:34.130",
+          "1:33.480",
+          "1:32.237",
+          "20"
+        ],
+        [
+          "2",
+          "5",
+          "Sebastian   Vettel  VET",
+          "Ferrari",
+          "1:34.569",
+          "1:33.079",
+          "1:32.298",
+          "18"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "7",
+          "Kimi   Räikkönen  RAI",
+          "Ferrari",
+          "56",
+          "1:34:18.643",
+          "25"
+        ],
+        [
+          "2",
+          "33",
+          "Max   Verstappen  VER",
+          "Red Bull Racing TAG Heuer",
+          "56",
+          "+1.281s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2019,
+      "base": "https://www.formula1.com/en/results/2019/races/1018/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "77",
+          "Valtteri   Bottas  BOT",
+          "Mercedes",
+          "1:33.750",
+          "1:33.160",
+          "1:32.029",
+          "18"
+        ],
+        [
+          "2",
+          "5",
+          "Sebastian   Vettel  VET",
+          "Ferrari",
+          "1:33.766",
+          "1:32.782",
+          "1:32.041",
+          "17"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "77",
+          "Valtteri   Bottas  BOT",
+          "Mercedes",
+          "56",
+          "1:33:55.653",
+          "25"
+        ],
+        [
+          "2",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "+4.148s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2021,
+      "base": "https://www.formula1.com/en/results/2021/races/1102/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "33",
+          "Max   Verstappen  VER",
+          "Red Bull Racing Honda",
+          "1:34.352",
+          "1:33.464",
+          "1:32.910",
+          "16"
+        ],
+        [
+          "2",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "1:34.579",
+          "1:33.797",
+          "1:33.119",
+          "16"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "33",
+          "Max   Verstappen  VER",
+          "Red Bull Racing Honda",
+          "56",
+          "1:34:36.552",
+          "25"
+        ],
+        [
+          "2",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "+1.333s",
+          "19"
+        ]
+      ]
+    },
+    {
+      "year": 2022,
+      "base": "https://www.formula1.com/en/results/2022/races/1135/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "55",
+          "Carlos   Sainz  SAI",
+          "Ferrari",
+          "1:35.297",
+          "1:35.590",
+          "1:34.356",
+          "14"
+        ],
+        [
+          "2",
+          "16",
+          "Charles   Leclerc  LEC",
+          "Ferrari",
+          "1:35.795",
+          "1:35.246",
+          "1:34.421",
+          "14"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "1",
+          "Max   Verstappen  VER",
+          "Red Bull Racing RBPT",
+          "56",
+          "1:42:11.687",
+          "25"
+        ],
+        [
+          "2",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "+5.023s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2023,
+      "base": "https://www.formula1.com/en/results/2023/races/1222/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "16",
+          "Charles   Leclerc  LEC",
+          "Ferrari",
+          "1:36.061",
+          "1:35.004",
+          "1:34.723",
+          "21"
+        ],
+        [
+          "2",
+          "4",
+          "Lando   Norris  NOR",
+          "McLaren Mercedes",
+          "1:35.110",
+          "1:35.441",
+          "1:34.853",
+          "20"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "1",
+          "Max   Verstappen  VER",
+          "Red Bull Racing Honda RBPT",
+          "56",
+          "1:35:21.362",
+          "25"
+        ],
+        [
+          "DQ",
+          "44",
+          "Lewis   Hamilton  HAM",
+          "Mercedes",
+          "56",
+          "+2.225s",
+          "0"
+        ]
+      ]
+    },
+    {
+      "year": 2024,
+      "base": "https://www.formula1.com/en/results/2024/races/1247/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "4",
+          "Lando   Norris  NOR",
+          "McLaren Mercedes",
+          "1:33.616",
+          "1:32.851",
+          "1:32.330",
+          "16"
+        ],
+        [
+          "2",
+          "1",
+          "Max   Verstappen  VER",
+          "Red Bull Racing Honda RBPT",
+          "1:33.046",
+          "1:32.584",
+          "1:32.361",
+          "17"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "16",
+          "Charles   Leclerc  LEC",
+          "Ferrari",
+          "56",
+          "1:35:09.639",
+          "25"
+        ],
+        [
+          "2",
+          "55",
+          "Carlos   Sainz  SAI",
+          "Ferrari",
+          "56",
+          "+8.562s",
+          "18"
+        ]
+      ]
+    },
+    {
+      "year": 2025,
+      "base": "https://www.formula1.com/en/results/2025/races/1271/united-states",
+      "qualifying": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Laps"
+        ],
+        [
+          "1",
+          "1",
+          "Max   Verstappen  VER",
+          "Red Bull Racing",
+          "1:33.207",
+          "1:32.701",
+          "1:32.510",
+          "14"
+        ],
+        [
+          "2",
+          "4",
+          "Lando   Norris  NOR",
+          "McLaren",
+          "1:33.843",
+          "1:32.876",
+          "1:32.801",
+          "20"
+        ]
+      ],
+      "race-result": [
+        [
+          "Pos.",
+          "No.",
+          "Driver",
+          "Team",
+          "Laps",
+          "Time / Retired",
+          "Pts."
+        ],
+        [
+          "1",
+          "1",
+          "Max   Verstappen  VER",
+          "Red Bull Racing",
+          "56",
+          "1:34:00.161",
+          "25"
+        ],
+        [
+          "2",
+          "4",
+          "Lando   Norris  NOR",
+          "McLaren",
+          "56",
+          "+7.959s",
+          "18"
+        ]
+      ]
+    }
+  ],
+  "standings_verification": {
+    "sources": [
+      {
+        "file": "standings-official.html",
+        "url": "https://www.formula1.com/en/results/2026/drivers",
+        "fetched_at_utc": "2026-10-17T01:12:16.061908+00:00",
+        "fetched_at_taipei": "2026-10-17T09:12:16.061908+08:00",
+        "sha256": "6d3b4ba2d3b6a39e94d1143391223384bdc90e7febdf89cda87071ea13268a82"
+      },
+      {
+        "file": "calendar-official.html",
+        "url": "https://www.formula1.com/en/racing/2026",
+        "fetched_at_utc": "2026-10-17T01:12:16.098248+00:00",
+        "fetched_at_taipei": "2026-10-17T09:12:16.098248+08:00",
+        "sha256": "fb434952faea3d222483ee650d9063e17a643b73c45a9c2f197a88dbe762be05"
+      },
+      {
+        "file": "sprint-announcement-official.html",
+        "url": "https://www.fia.com/news/fia-and-formula-1-announce-2026-sprint-calendar",
+        "fetched_at_utc": "2026-10-17T01:12:17.596865+00:00",
+        "fetched_at_taipei": "2026-10-17T09:12:17.596865+08:00",
+        "sha256": "75b66edbca6308a44af98288776b04934fee3b1bffbc710c22efd78ea8df1193"
+      },
+      {
+        "file": "calendar-original-announcement.html",
+        "url": "https://www.formula1.com/en/latest/article/formula-1-reveals-calendar-for-2026-season.YctbMZWqBvrgyddrnauo8",
+        "fetched_at_utc": "2026-10-17T01:12:17.673722+00:00",
+        "fetched_at_taipei": "2026-10-17T09:12:17.673722+08:00",
+        "sha256": "2d861bb535dc37fc639065bf39b094e39bbb7fd198acf70a6e370d3e7e474fd3"
+      },
+      {
+        "file": "scoring-official.html",
+        "url": "https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-f1-drivers-championship.53MjXJzTDxQnfxfoCLnxNZ",
+        "fetched_at_utc": "2026-10-17T01:12:17.069553+00:00",
+        "fetched_at_taipei": "2026-10-17T09:12:17.069553+08:00",
+        "sha256": "55fefe4d26535d1d146853bbbf5d0991b6ea59ffb911445f0b2b1bad29589259"
+      },
+      {
+        "file": "sprint-guide-current.html",
+        "url": "https://www.formula1.com/en/latest/article/the-beginners-guide-to-the-f1-print.55yJBEiF7vYkZEwSV9lZJ9",
+        "fetched_at_utc": "2026-10-17T01:13:02.535338+00:00",
+        "fetched_at_taipei": "2026-10-17T09:13:02.535338+08:00",
+        "sha256": "01290c5eeda3fa44ca9b167d472ff6fdf6d006039f280212c6c724cab12adb94"
+      },
+      {
+        "file": "singapore-current.html",
+        "url": "https://www.formula1.com/en/racing/2026/singapore",
+        "fetched_at_utc": "2026-10-17T01:13:04.593544+00:00",
+        "fetched_at_taipei": "2026-10-17T09:13:04.593544+08:00",
+        "sha256": "8be83beaa8cad5c4a2d2edd7cae994a9c6acaa3334c41ff9dc4013aa47e5dcda"
+      },
+      {
+        "file": "usa-current.html",
+        "url": "https://www.formula1.com/en/racing/2026/united-states",
+        "fetched_at_utc": "2026-10-17T01:13:04.765913+00:00",
+        "fetched_at_taipei": "2026-10-17T09:13:04.765913+08:00",
+        "sha256": "d4b3b2d288da83985d5b31bb87e4d81cc19dc7bfc22cb8f0efa6beaacb2473c6"
+      }
+    ],
+    "standings_table": [
+      [
+        "Pos.",
+        "Driver",
+        "Nationality",
+        "Team",
+        "Pts."
+      ],
+      [
+        "1",
+        "Kimi Antonelli ANT",
+        "ITA",
+        "Mercedes",
+        "340"
+      ],
+      [
+        "2",
+        "George Russell RUS",
+        "GBR",
+        "Mercedes",
+        "238"
+      ],
+      [
+        "3",
+        "Lewis Hamilton HAM",
+        "GBR",
+        "Ferrari",
+        "229"
+      ],
+      [
+        "4",
+        "Max Verstappen VER",
+        "NED",
+        "Red Bull Racing",
+        "221"
+      ],
+      [
+        "5",
+        "Charles Leclerc LEC",
+        "MON",
+        "Ferrari",
+        "215"
+      ],
+      [
+        "6",
+        "Lando Norris NOR",
+        "GBR",
+        "McLaren",
+        "201"
+      ],
+      [
+        "7",
+        "Oscar Piastri PIA",
+        "AUS",
+        "McLaren",
+        "138"
+      ],
+      [
+        "8",
+        "Isack Hadjar HAD",
+        "FRA",
+        "Red Bull Racing",
+        "97"
+      ],
+      [
+        "9",
+        "Liam Lawson LAW",
+        "NZL",
+        "Racing Bulls",
+        "75"
+      ],
+      [
+        "10",
+        "Pierre Gasly GAS",
+        "FRA",
+        "Alpine",
+        "41"
+      ],
+      [
+        "11",
+        "Arvid Lindblad LIN",
+        "GBR",
+        "Racing Bulls",
+        "38"
+      ],
+      [
+        "12",
+        "Franco Colapinto COL",
+        "ARG",
+        "Alpine",
+        "27"
+      ],
+      [
+        "13",
+        "Oliver Bearman BEA",
+        "GBR",
+        "Haas F1 Team",
+        "23"
+      ],
+      [
+        "14",
+        "Nico Hulkenberg HUL",
+        "GER",
+        "Audi",
+        "13"
+      ],
+      [
+        "15",
+        "Gabriel Bortoleto BOR",
+        "BRA",
+        "Audi",
+        "10"
+      ],
+      [
+        "16",
+        "Esteban Ocon OCO",
+        "FRA",
+        "Haas F1 Team",
+        "7"
+      ],
+      [
+        "17",
+        "Fernando Alonso ALO",
+        "ESP",
+        "Aston Martin",
+        "7"
+      ],
+      [
+        "18",
+        "Carlos Sainz SAI",
+        "ESP",
+        "Williams",
+        "7"
+      ],
+      [
+        "19",
+        "Alexander Albon ALB",
+        "THA",
+        "Williams",
+        "5"
+      ],
+      [
+        "20",
+        "Yuki Tsunoda TSU",
+        "JPN",
+        "Racing Bulls",
+        "1"
+      ],
+      [
+        "21",
+        "Lance Stroll STR",
+        "CAN",
+        "Aston Martin",
+        "0"
+      ],
+      [
+        "22",
+        "Valtteri Bottas BOT",
+        "FIN",
+        "Cadillac",
+        "0"
+      ],
+      [
+        "23",
+        "Sergio Perez PER",
+        "MEX",
+        "Cadillac",
+        "0"
+      ]
+    ],
+    "calculation": {
+      "completed_grands_prix": 17,
+      "remaining_gp": [
+        "United States",
+        "Mexico",
+        "Brazil",
+        "Las Vegas",
+        "Qatar",
+        "Abu Dhabi"
+      ],
+      "remaining_sprints": [],
+      "antonelli": 340,
+      "russell": 238,
+      "gap": 102,
+      "gp_win_points": 25,
+      "remaining_max_points_before_usa": 150,
+      "antonelli_max_after_usa": 365,
+      "russell_min_after_usa": 238,
+      "largest_gap_after_usa": 127,
+      "points_after_usa": 125,
+      "cannot_clinch_usa": false,
+      "exists_usa_clinch_scenario": true,
+      "favorable_scenario": "Antonelli wins (25); Russell 0; Hamilton 0; each other rival granted at most 18 in USA; all later five GP wins granted independently as a conservative bound.",
+      "adverse_scenario": {
+        "antonelli_usa_points": 0,
+        "russell_usa_points": 25,
+        "post_usa_gap": 77,
+        "remaining_points": 125,
+        "clinched": false
+      }
+    },
+    "favorable_all_rivals": [
+      {
+        "driver": "George Russell RUS",
+        "current_points": 238,
+        "usa_allowance": 0,
+        "post_usa_points_upper_bound": 238,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 363,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Lewis Hamilton HAM",
+        "current_points": 229,
+        "usa_allowance": 0,
+        "post_usa_points_upper_bound": 229,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 354,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Max Verstappen VER",
+        "current_points": 221,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 239,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 364,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Charles Leclerc LEC",
+        "current_points": 215,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 233,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 358,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Lando Norris NOR",
+        "current_points": 201,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 219,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 344,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Oscar Piastri PIA",
+        "current_points": 138,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 156,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 281,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Isack Hadjar HAD",
+        "current_points": 97,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 115,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 240,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Liam Lawson LAW",
+        "current_points": 75,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 93,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 218,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Pierre Gasly GAS",
+        "current_points": 41,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 59,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 184,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Arvid Lindblad LIN",
+        "current_points": 38,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 56,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 181,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Franco Colapinto COL",
+        "current_points": 27,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 45,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 170,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Oliver Bearman BEA",
+        "current_points": 23,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 41,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 166,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Nico Hulkenberg HUL",
+        "current_points": 13,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 31,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 156,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Gabriel Bortoleto BOR",
+        "current_points": 10,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 28,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 153,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Esteban Ocon OCO",
+        "current_points": 7,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 25,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 150,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Fernando Alonso ALO",
+        "current_points": 7,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 25,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 150,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Carlos Sainz SAI",
+        "current_points": 7,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 25,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 150,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Alexander Albon ALB",
+        "current_points": 5,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 23,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 148,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Yuki Tsunoda TSU",
+        "current_points": 1,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 19,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 144,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Lance Stroll STR",
+        "current_points": 0,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 18,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 143,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Valtteri Bottas BOT",
+        "current_points": 0,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 18,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 143,
+        "below_antonelli_365": true
+      },
+      {
+        "driver": "Sergio Perez PER",
+        "current_points": 0,
+        "usa_allowance": 18,
+        "post_usa_points_upper_bound": 18,
+        "last_five_gp_upper_bound": 125,
+        "season_upper_bound": 143,
+        "below_antonelli_365": true
+      }
+    ]
+  },
+  "voice": {
+    "_instruction": "⚠️ 下面 spec_verbatim 是站上文風規格的原文整段（取自記憶檔 feedback_voice_target_xiaolin_zhangquanling.md 的「派工單貼文」節，行 85–195），派寫作 agent 時要整段複製進派工單的風格節，不要節錄、不要改寫、不要只挑幾條。",
+    "spec_verbatim": "## 📋 派工單貼文＝寫手單（派寫作 agent 時整段複製到 §風格，不要節錄）\n\n### 標竿\n小 Lin 說＋張泉靈（硅谷101 只補「明寫查證工作量」，取代不了標竿）：①從具體的怪事切進去，不從分類切進去 ②短句，一句話一件事 ③方法論留在文外。連不確定都直接說，條文／日期／前例敢斷，走向與動機明說不知道。\n\n### 一　文章層（W32）：動筆前先寫一句話論點\n稿子最上方先寫（交稿前刪掉，或交指揮位放進 `05-thesis.md`）：\n①**這篇在主張什麼**——一句話，讀者可以不同意的判斷（「本文介紹／整理了 X」不算）。\n②**每一節要撐的主張**——一節一句，說出那一節的「所以呢」。\n> **⭐ 節形狀選單（接在 W32 ② 之後；Cole harvest 判 ✅ 的五種，分類見 [[hub_writing_framing]] Cole 附錄）**\n>\n> **適用範圍＝承載主張的節**；收尾節（時效提醒、不給建議的收尾）與結構節（來源／FAQ）不判。\n> **用法**：每一節先寫一句主張（W32 ②），再從下面五種裡挑一種形狀撐那句主張；挑得出形狀就照那個形狀排材料，\n> **挑不出形狀的節＝資料堆候選，回報指揮位**（縮節、併節或換主張）。一節一種形狀就夠；✅ 例句取自三篇試行文的真實段落（❌ 對照在記憶檔 `hub_writing_framing` 附錄與回顧檔）。\n>\n> **① 數據**＝用一組先有出處的數字撐這一節的主張，數字之間要能互相對照。\n> ✅ article-racing…leclerc-parabolica.md `## 勒克萊爾在 205 km/h 就全油門，比自己與另外五人的第 2 圈全開都早`——六個對照排成一張表（210–223 對 205），每一筆都指回同一份公開存檔。\n>\n> **② 理由**＝用「往支持／往反對」兩個方向的材料撐一個判斷，連信賴度一起講。\n> ✅ article-racing…leclerc-parabolica.md `## 第二次全開之後，車速不動，轉速卻跳了 4%`——同一個比值 48.3，往支持給自己出彎 8 筆與漢米爾頓兩圈的取樣，往反對給第 1 圈那筆換檔瞬態，並標信賴度中。\n>\n> **③ 犯錯**＝把讀者最容易踩的那一個坑講明白，用自家材料拆開它（守 W19：坑是內容，不是彈藥）。\n> ✅ article-baseball-brock.md `## 這是統一隊史紀錄，不是中職聯盟紀錄`——坑＝把隊史紀錄當成聯盟紀錄；用柏格中職 58 勝、勇壯 108 勝拆開，全程沒有寫誰報錯。\n>\n> **④ 範例**＝用能串成一條過程的具體材料撐主張，每件材料帶日期、原話或代價（W26 材料計數）。\n> ✅ article-baseball-brock.md `## 布雷克這 7 個球季，撐過背傷也撐過了洋將大限`——背傷下二軍、季末註銷、2 年保障合約、羅力條款四件材料各有日期與原話，串成「留得夠久」。\n>\n> **⑤ 問題**＝H2 自己就是讀者會追問的那個反轉，節內當場回答（W30 已接受過的形狀①）。\n> ✅ article-baseball-brock.md `## 防禦率全聯盟第 2，勝場卻只有 7 勝 7 敗`——反轉在 H2，節內用 7 場敗投的比分表與 5 月 16 日那場 0 比 1 回答。\n>\n> ⚠️ 建議型文型另有三種（訣竅／步驟／好處），健檢站與賽事分析不套。\n>\n> **「數據」形狀的順序是先有出處、再有句子**：拿著出處找句子，句子撐得住；拿著句子找數據，會長出查無出處的數字\n> （☠️「給我一個數據支撐這個說法」這個 prompt 不收，理由見 [[hub_writing_framing]] Cole 附錄與 [[feedback_llm_fetch_fabricates_unhappened_events]]）。\n自檢：每一節讀完，讀者知道的是「事情放在哪裡」還是「那代表什麼」？前者＝地圖句，整節重寫。\n⚠️ 寫不出站得住的論點＝回報指揮位縮題或換角度。張力來自事實；絕對詞（最／唯一／完全沒有／只可能）一律換成可查的數字或條文。\n\n### 二　句子層（W29）：唸得完的句子\n每一句與每個標題都要唸得完：一個主詞、一個主要動詞；兩半的關係用連接詞明說（之後／因為／但是／雖然），逗號並排讓讀者自己接的一律改寫。\n❌「台鋼雄鷹連 33 局沒有得分，起點是一場勝利」→ ✅「台鋼雄鷹 8 月 29 日贏球之後，連續 33 局沒有得分」\n自檢：唸給人聽，對方反問「所以呢？」「這兩件事有什麼關係？」＝並置病。\n\n### 三　標題（W30）：先問「有沒有人想讀」\n紀律全過的標題仍可能沒有人想讀。原標題通常已有鉤子：先問「鉤子在哪個詞上」，查證推翻某個詞就只換那個詞，非鉤子則整句保留。\n四種被接受過的形狀（起手處，非套版）：問句＋反轉／具體人事時地物／反直覺的具體事實／**描述＋反轉**（前半是人地事的直述，後半接一個反轉）。\n自檢：唸給一個不看足球的人聽，他問「然後呢？」＝有鉤子，點頭說「喔」＝重寫。\n\n⭐ **標題與 description 寫發現，不寫做法。** 讀者最想知道的那件事（誰漲價、能不能投、規則停在哪）要進標題或 description，不能埋在第三節。\n❌「Three TrendForce Releases, March to September」「這篇逐一標出每筆訊號的出處」→ ✅「ChatGPT 廣告開到台灣：保健食品、法律服務不能投」\n自檢：把標題和 description 遮起來只看動詞——「並排」「整理」「標出」「列出」「解釋」是在描述你做了什麼，換成那件事本身。\n\n⭐ **動筆時的第一個動作：把自己的 lede 第一句抄下來，跟標題並排看。**\nCharlie 退標題時的固定做法就是拿同篇 lede 當正確版對照組——已發生在 2026-08-11（足球站與 aire 同日兩站）\n與 2026-09-16（他直接把 lede 首句貼回來當標題提案）。**lede 裡通常已經有人事時地物，標題缺的就是那些。**\n⛔ 但 **lede 首句不能整句搬進標題**：它是為「交代清楚」寫的，含全名括號與完整子句，\n長度通常是標題的三到四倍，塞不進封面版位（見下）。**抄的是它的元素，不是它的句子。**\n\n📏 **長度帶（foootball 實測，2026-09-16）**：站上 94 篇非 daily 標題**中位 33 字、P90 42、最長 55**；\n而 **feature 封面版位（2400×1260，標題固定兩行）的限制是每行寬度，不是總字數**：\n實測 126 字會吃掉四行、把頁尾擠出版面；**31 字（第 1 行 14＋第 2 行 15）沒溢出，第 2 行只用約 75% 寬**（2026-09-19 巴薩篇，封面已實看）。\n⚠️ 本節舊版寫「實際容量約 24–30 字」——**過保守，2026-09-19 實測推翻**；但長標題仍**超過 30 字就先渲染確認**，別用猜的。\n\n⚠️ **本庫的慣性是「在標題層過度壓縮」**：2026-09-16 那篇初版 24 字，比站上 91% 的標題都短，被 Charlie 退「拗口」。\n⇒ **短不是優點**。標題太短時，兩件事會被壓成逗號並排、關係消失（＝W29 的並置病搬到標題層）。\n\n### 四　引文與限定：各講一次\n1. **外文一手源：每段最多 1 條逐字外文引文**（同一段並列兩方原句對照時例外），其餘用中文轉述並掛頁名；轉述不得比原文強。\n2. **同一個限定只講一次**：推論、beta／preview、官方沒寫、本文的讀法——第一次出現時講清楚，之後由主詞承載，不逐段重貼；推翻條件與版本限定收進文末一段「範圍與版本」。\n   ❌ 每節開頭都有「以下是推論，官方沒有這樣寫」→ ✅ 第一次寫清楚是推論與根據，後面直接寫「照這個讀法，…」\n3. **事實表與派工單裡的「沒寫／查無／不推論／不換算」是給你的判準，不是給讀者的句子。** 正文要用就講事實本身，一次就好。\n   ❌「稿中沒有」「稿子沒有替讀者接起來」一篇出現幾十次 → ✅「TrendForce 只給了企業級 SSD 的漲幅，沒有給出貨量」\n4. **同一件事只主述一次**：表格列過的數字，正文只講它代表什麼，不再重念；FAQ 的答案比正文那一節短，並指回那一節；結尾不重講開場。\n\n### 六個漂移症狀（①④⑤ 同病根＝成品在展示工序；測試：這句在告訴讀者「一件事」，還是「我怎麼知道這件事」？後者一律改寫）\n\n**① gate 語言長進正文（最主要病灶）**\n❌「這是媒體估值，不是官方公布的確定數字，本文照原樣寫成區間，不換算成新台幣，也不取整成單一數字，那樣做只會製造一個看起來精確、實際上查無出處的假數字。」\n✅「這是媒體估的區間，不是官方數字。」\n判準：標可靠度＝留（媒體估／官方公告照標，講完就走），解釋本站紀律＝移到文末來源區塊；「誠實說／照實說」這類框架詞一律刪掉，誠實是預設。\n\n**② 標籤式標題**\n❌ `## 機制一：同一國辦兩場，第二場得換名字` → ✅ `## 聖馬利諾大獎賽，從來沒在聖馬利諾辦過`\n標題自己就要是一個事實，邏輯關係靠內文轉場句承接。\n\n**③ 指代不具體**\n❌「那家真公司一定也是演習的一部分」→ ✅「它攻的是一家真公司，而且知道那是真的」\n要讀者往回翻的詞（這件事／那家公司／後者／前面講的）一律換成具體名詞或改寫成不需指代的句子；H2 內出現指代詞＝FAIL。查不到名字時的正解＝改寫成事實句，而非硬補一個名字。\n\n**④ 第一人稱主詞「我」浮濫**\n❌「我把 84 場全部拉出來排了一次」→ ✅「把 84 場全部拉出來、逐場看場地欄，結果是：」\n中文可省主詞：工作量要寫，動作者不出場。改法＝主題句（硬刪「我」留半殘句不算，「我們」一樣多餘）；收尾前 grep「我」，拿掉會不通才留。\n\n**⑤ 標題塞證據鏈**\n❌「中職一週內 4 場雨延：8 月 8 日兩場補在 10 月 4 日，8 月 9 日兩場只寫「補賽週」」→ ✅「中職延賽的兩種補法：給日期，或只寫「補賽週」」\n標題放結論，日期／場次／數量降到副標；太抽象（機制一二三）與太具體（整條證據鏈）是同軸兩端（與②合讀），修完一端盪到另一端同樣重寫。自檢＝唸進封面兩行。\n\n**⑥ 廢話文學＝形狀正確但零資訊的句子（最典型＝同義反覆）**\n❌「開球時間就是手機上的時間，下午 3 點 30 分就是下午 3 點 30 分」→ ✅「一個換算都不用做——星期日吃完午餐出門，趕得上下午 3 點 30 分那場」\n判準＝讀完這句，知道的事情比讀之前多了什麼；答不出來就是廢話。高發位置＝系列文／系列卡的共同軸句位。\n\n### 材料（W26）\n非虛構稿 ≥1,200 字：五件具體材料（動作／數字／原話／代價／結果，各註來路）串成一條實際過程；數不夠就回報指揮位縮篇幅，補解釋、補用途意義風險未來一律不算材料。\n\n### 交稿前最後一關（W31）\n紀律規則都是負面閘門，是地板，不是量尺；這一關排在紀律檢查之後，有權推翻紀律產生的寫法（事實紅線除外）。三個動作，答案寫進交稿回報：\n1. 從頭到尾真讀一次；掃描、grep、只看改過的地方都不算讀。\n2. 標出自己讀到會想跳過的段落——至少一段，寫出段號與第一句；標不出來＝重讀。\n3. 逐個 H2 問：讀者讀完這節為什麼要繼續往下讀？答不出來的那節先問該搬位置還是併掉。\n4. 讀結尾那一段：讀者帶走的是一個判斷，還是一句「怎麼讀這組數字／下個月再看」？後者重寫成一個讀者可以不同意的判斷。\n產物＝指名的段號與句子；「已檢查，通過」是一句自述，任何人都檢查不了，不算交件。\n",
+    "w36_event_skeleton": {
+      "lede": "lede＝重點速答（3–4 句，約 200 字）：先給結果與具名說法的並陳，不寫 45 秒的原因，不寫『失誤』由誰認。",
+      "opening": "場景起手照時間講（H2-1 起：起跑分流→第 18 圈第一個進站→第 39 圈虛擬安全車→最後 22 圈），H2-1～H2-5 只陳述事實與具名說法。",
+      "last_section": "最後一節（H2-6 判讀）收所有判斷，三層分開寫：資料量得到的／具名來源說的／本站推論（信賴度中）。",
+      "title_cover": "標題與封面不放查證狀態（不寫『查證』『未證實』『疑似』作標題）；封面只放圖，圖上文字不寫結論。"
+    },
+    "headline_style": "標題自己要是一個事實，而且是結論那一個事實，不是推導過程。原料（時間戳、取樣率、筆數）降到內文。不要編號、不要分類標籤。自檢：把標題唸進封面兩行版面，塞不進去的多半是工序。",
+    "forbidden_meta": "gate 語言不進正文，『本站』全文 ≤8 次，不得有任何 H2 在講我們怎麼取材。❌『本站從公開存檔解析出的資料顯示，他在 205 km/h 踩到全油門』→ ✅『他在 205 km/h 踩到全油門』｜❌『兩家說法互相矛盾，本站兩邊都寫，不裁決：A 說…；B 說…』→ ✅『A 說…；B 說…。兩家說法不一樣。』｜❌『分析席 E 與指揮位兩套腳本重算一致』→ 這句只准出現在資料來源區塊。",
+    "referent_policy": "禁止不具體的指代。發稿前 grep『那次』『這件事』『這個安排』『前者』『後者』『上面提到的』『那個彎』『這條線』『這一刻』，一律換成具體名詞。H2 標題裡出現指代詞一律 FAIL。",
+    "tone": "小 Lin 說＋張泉靈。從具體的怪事切進去、短句、不在正文解釋方法論。",
+    "length": "全文（含表格，不含資料來源節）下限 3,000 字，不設上限；不得為湊字數增加 THESIS 沒有的內容（R1 指揮位裁定 3、站規 W15）。THESIS ② 字帳 lede 200／H2-1 400／H2-2 450／H2-3 400／H2-4 550／H2-5 1,000 含表／判讀 450 ≈ 3,450 是估計，非上限；要精簡時優先砍 B 級清單說明文字，不砍 A。"
+  },
+  "must_not_claim": [
+    "grid第1等於桿位",
+    "歷史6/13等於2026勝率",
+    "封王範例是必要且充分完整條件",
+    "美國站尚未開賽卻寫結果",
+    "未核轉播/輪胎/空力配置",
+    "只看羅素而不核全體競爭者"
+  ]
+}

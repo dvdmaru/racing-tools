@@ -15,6 +15,7 @@
 
 ## 最新文章
 
+- [F1 美國站 COTA：歷屆桿位、冠軍與 2026 台北時間](https://racing.twtools.cc/articles/f1-cota-us-grand-prix-guide/)（2026-10-17）
 - [F1 盧安達 10 年協議首辦年未定：24 場世界錦標賽非洲站有 23 場在南非](https://racing.twtools.cc/articles/f1-rwanda-african-grand-prix-africa-rounds-1958-1993/)（2026-10-15）
 - [OpenF1 輪胎分段圖：換色的地方，不一定對得上進站紀錄](https://racing.twtools.cc/articles/f1-101-tyre-stint-chart-reading/)（2026-10-13）
 - [一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？](https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/)（2026-10-13）
@@ -24,7 +25,6 @@
 - [封王算術能證明「追不上了」，證明不了「最後會追上」](https://racing.twtools.cc/articles/f1-101-championship-scenarios/)（2026-10-13）
 - [新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓則留在場上](https://racing.twtools.cc/articles/f1-2026-r17-singapore-ferrari-strategy-ledger/)（2026-10-12）
 - [F1 輪胎歸還表：配到的乾胎，週末會被分批收走](https://racing.twtools.cc/articles/f1-101-tyre-set-returns/)（2026-10-10）
-- [領隊、技術總監要向 FIA 登記？七個職位與罰款對象](https://racing.twtools.cc/articles/f1-101-registered-roles/)（2026-10-10）
 
 ## 文章與更新
 
