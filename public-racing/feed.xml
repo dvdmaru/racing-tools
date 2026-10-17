@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 美國站 COTA：歷屆桿位、冠軍與 2026 台北時間</title>
+    <link>https://racing.twtools.cc/articles/f1-cota-us-grand-prix-guide/</link>
+    <guid>https://racing.twtools.cc/articles/f1-cota-us-grand-prix-guide/</guid>
+    <pubDate>Sat, 17 Oct 2026 00:00:00 +0800</pubDate>
+    <description>2026 年美國站沒有 Sprint；安東內利領先 102 分進場，這一站有機會封王。</description>
+  </item>
+  <item>
     <title>F1 盧安達 10 年協議首辦年未定：24 場世界錦標賽非洲站有 23 場在南非</title>
     <link>https://racing.twtools.cc/articles/f1-rwanda-african-grand-prix-africa-rounds-1958-1993/</link>
     <guid>https://racing.twtools.cc/articles/f1-rwanda-african-grand-prix-africa-rounds-1958-1993/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-2026-r16-sepang-qualifying-gaps/</guid>
     <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
     <description>2026 年 10 月 3 日雪邦排位賽，維斯塔潘（Max Verstappen）的排位最佳圈是 1:35.130，比第 2 名漢米爾頓（Lewis Hamilton）快 0.298 秒；漢米爾頓到排位第 8 的羅素（George Russell）七台車，只差 0.443 秒。紅牛兩台都排在賓士兩台前面，但第二台只比賓士最快的一台快 0.073 秒。</description>
-  </item>
-  <item>
-    <title>F1 轉隊一定要冷靜期嗎？規章只在「有合作的兩隊」之間寫了這一條</title>
-    <link>https://racing.twtools.cc/articles/f1-101-personnel-movement/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-personnel-movement/</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0800</pubDate>
-    <description>F1 規章 A5.7.3 把冷靜期限定在兩隊有合作關係時，只寫給原東家，還排除車手；借調另有一款，要求的是 Restricted Duties，用 must。每支 F1 車隊都要做的，是採取合理措施防止洩密、用附錄 A6 向 FIA 通報相關人員流動，以及確保新人到職時被告知別帶前東家的資料。</description>
   </item>
 </channel>
 </rss>
