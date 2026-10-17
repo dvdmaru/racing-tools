@@ -67,12 +67,12 @@
     },
     {
       "slug": "f1-2026-r11-hungary-blue-flag-failure",
-      "article_sha256": "fffda80da46ce5fd2d14d4119af36a3fc6d6cfad70452a9d47f64b958c02f556",
+      "article_sha256": "4b51ca0d495fa193b12e250c85dc4dee860caeacfe3069a6dbadae0ba42089ee",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-07-30T14:58:21+08:00",
-      "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。　2026-07-30 上線前修訂（資安節）：Charlie 裁決保留該節後，作者席另開一席做檢索覆蓋率擴充（10 種語言＋資安專業媒體＋Reddit 兩板逐留言掃描＋FIA 全 63 份文件）。結果：來源層仍零反例（原主張成立），但**社群層確實有人提出干擾疑問**，原文完全未提＝不完整，讀者自行在 Reddit 撞到會誤以為本站選擇性忽略。已改寫為：具體寫出擴充後的檢索邊界；承認社群有此推測並附同串內的反證（當日 GPS 干擾監測資料不支持、當地讀者表示無異常）；明白區分「網友提問」與「來源主張」；補記三個易被誤引為反例的不同事件（2025-10 車手分級系統外洩、2024 FIA email 釣魚、2012 F1 網站 DDoS）。⚠️ 刻意不採用該席建議引用的一則 Reddit 技術反駁（稱藍旗靠計時線圈不靠 GPS）——它與本站另一篇引用的 FIA 技術規則 C8.11.1 相矛盾；用錯的反駁去駁沒證據的假說是雙重錯誤。亦不引用網友帳號與原文（可辨識個人，描述討論存在即足夠）。；2026-08-11 譯名回改（艾爾邦→阿爾本，Charlie 裁決統一 driver-zh 核准值）sha256 重綁 3c51cff644→fffda80da4"
+      "note": "外部來源文（feature）。查核桌第十七戰 Terra high 四輪 Content GO（R1 五 BLOCKER→R4 GO），桌子 CoWork/roundtable/2026-07-30-racing-r11-blue-flag-and-tech-crosscheck/、92 件凍結證據。非 facts 管線產出（事實來自 FIA 一手文件與媒體，jolpica 無對應欄位），故走 verify-sources gate 而非 verify-all，facts/check_report sha256 為 null。Charlie 2026-07-30 裁決「發」。編輯裁決兩項：資安節保留（審稿席建議刪、Charlie 裁留）、成績變動追蹤節維持一段不縮成一句、全文維持一篇不拆。　2026-07-30 上線前修訂（資安節）：Charlie 裁決保留該節後，作者席另開一席做檢索覆蓋率擴充（10 種語言＋資安專業媒體＋Reddit 兩板逐留言掃描＋FIA 全 63 份文件）。結果：來源層仍零反例（原主張成立），但**社群層確實有人提出干擾疑問**，原文完全未提＝不完整，讀者自行在 Reddit 撞到會誤以為本站選擇性忽略。已改寫為：具體寫出擴充後的檢索邊界；承認社群有此推測並附同串內的反證（當日 GPS 干擾監測資料不支持、當地讀者表示無異常）；明白區分「網友提問」與「來源主張」；補記三個易被誤引為反例的不同事件（2025-10 車手分級系統外洩、2024 FIA email 釣魚、2012 F1 網站 DDoS）。⚠️ 刻意不採用該席建議引用的一則 Reddit 技術反駁（稱藍旗靠計時線圈不靠 GPS）——它與本站另一篇引用的 FIA 技術規則 C8.11.1 相矛盾；用錯的反駁去駁沒證據的假說是雙重錯誤。亦不引用網友帳號與原文（可辨識個人，描述討論存在即足夠）。；2026-08-11 譯名回改（艾爾邦→阿爾本，Charlie 裁決統一 driver-zh 核准值）sha256 重綁 3c51cff644→fffda80da4；2026-10-17 第二批舊文風格改寫，Charlie原話「上線」授權重新簽核、合併及部署。Sonnet寫手40凍結→雙席R2→Opus冷讀／減法→雙席R3→83封面與來源註記增量結案GO；桌CoWork/roundtable/2026-10-17-racing-style-batch2。精確80版article SHA重綁，Norris facts v6同步重綁（撤回舊指令，不冒稱全包重驗）；保留原approved_at及歷史check_report。；發布前90版首段補回「匈牙利站」四字，恢復既有分站互鏈；91異源增量GO，除此正文不變。"
     },
     {
       "slug": "f1-tech-timing-positioning-race-control",
@@ -553,12 +553,12 @@
     },
     {
       "slug": "f1-2026-norris-mclaren-2030-extension",
-      "article_sha256": "a04d6cab7cc2efcd145c32d4aaa990093f741a538f0b897f3d43d071dc6f8b7e",
-      "facts_sha256": "0ef3dd5305a08fc318393017090aba40e62e3aa6d2a13672b84acba7aa1ddfc1",
+      "article_sha256": "8d174237af1a5229b9d59ecf6812e704e47199187248021f021b4172b514a912",
+      "facts_sha256": "f683d11bdbbb8ba1e546a3a80117b794d6abfc047e4c9232cb076f9d7e70b8fc",
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-08-31T10:40:00+08:00",
-      "note": "選題台 2026-08-31 R1（18 分，cross-check 等級）。查核桌 CoWork/roundtable/2026-08-31-racing-norris-mclaren-2030：Terra R1 判 NO-GO 四項（C1 起跑口徑、C3 譯名、C4 來源等級、V1 方法論語言），R2 覆核四項全數 RESOLVED、總判 GO with fixes，最後一項（事實表 4 處盤古之白）已修。C1 為部分駁回——舊口徑會得出 Michael Schumacher 在法拉利 181 場，與賓士官方載明的 180 場矛盾；六個差異點逐案皆為明確未起跑，審稿席重建資料庫後接受反駁。Charlie 以合併 PR 為核准發布的授權行為。　2026-08-31 譯名勘誤重新核准（Charlie：「加譯名」）：David Coulthard 新增定版譯名「大衛・庫塔」進 scripts/driver-zh.json；Michael Schumacher 的「麥可・舒馬克」本來就已核准（在 check-zh.py 與 gen-racing-entities-phase0.py 的 phase0 seed 裡，不在 driver-zh.json——發布時只 grep 了一張表因而誤判為無定版，正文才用英文原名）。正文、事實表與封面改用定版譯名，首見全名、之後只用姓。sha256 d5de8233… → a04d6cab…"
+      "note": "選題台 2026-08-31 R1（18 分，cross-check 等級）。查核桌 CoWork/roundtable/2026-08-31-racing-norris-mclaren-2030：Terra R1 判 NO-GO 四項（C1 起跑口徑、C3 譯名、C4 來源等級、V1 方法論語言），R2 覆核四項全數 RESOLVED、總判 GO with fixes，最後一項（事實表 4 處盤古之白）已修。C1 為部分駁回——舊口徑會得出 Michael Schumacher 在法拉利 181 場，與賓士官方載明的 180 場矛盾；六個差異點逐案皆為明確未起跑，審稿席重建資料庫後接受反駁。Charlie 以合併 PR 為核准發布的授權行為。　2026-08-31 譯名勘誤重新核准（Charlie：「加譯名」）：David Coulthard 新增定版譯名「大衛・庫塔」進 scripts/driver-zh.json；Michael Schumacher 的「麥可・舒馬克」本來就已核准（在 check-zh.py 與 gen-racing-entities-phase0.py 的 phase0 seed 裡，不在 driver-zh.json——發布時只 grep 了一張表因而誤判為無定版，正文才用英文原名）。正文、事實表與封面改用定版譯名，首見全名、之後只用姓。sha256 d5de8233… → a04d6cab…；2026-10-17 第二批舊文風格改寫，Charlie原話「上線」授權重新簽核、合併及部署。Sonnet寫手40凍結→雙席R2→Opus冷讀／減法→雙席R3→83封面與來源註記增量結案GO；桌CoWork/roundtable/2026-10-17-racing-style-batch2。精確80版article SHA重綁，Norris facts v6同步重綁（撤回舊指令，不冒稱全包重驗）；保留原approved_at及歷史check_report。"
     },
     {
       "slug": "f1-2027-race-distance-290km",
@@ -1228,12 +1228,12 @@
     },
     {
       "slug": "f1-101-fines-sanctions",
-      "article_sha256": "bc9e61c8c01e0834d7ad1d5f65bb0479fc234e7fcec1bc35749a49354de0cd2a",
+      "article_sha256": "18e596339a683b8350c98a1e53c48bd087ba7f8e5662a449f760f2100bb7c30f",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-10-10T21:06:46+08:00",
-      "note": "F1 新手村第九批（4 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-10-racing-newbie-village-9/TOPICS.md 與 LEDGER.md）。主題：處罰按機關分層：罰款上限、除名與禁賽各由誰判。Charlie 2026-10-10 回「合 racing #111」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：缺口分析 Sonnet→研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（Terra＋agy，寫手單一併送審）→R1 修正 Opus→寫手 Sonnet（初稿凍結 40）→agy R2＋冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R5 判 PASS，零 finding）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-fines-sanctions.90.md）逐位元組一致。Terra 額度 10/10 16:05 用完、19:55 恢復，期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C／D／E／F 現行版、運動規章 Issue 09（2026-10-01）；dropped-scores 另用本站資料庫與 8W／Motor Sport 等具名報導（歷史規則非規章原文，文中已標）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+      "note": "F1 新手村第九批（4 篇；Charlie 原話「新手村下一批，主旨和來源核對照規則交給 Opus」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-10-racing-newbie-village-9/TOPICS.md 與 LEDGER.md）。主題：處罰按機關分層：罰款上限、除名與禁賽各由誰判。Charlie 2026-10-10 回「合 racing #111」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9 條）：缺口分析 Sonnet→研究 Sonnet→查核 Opus→論點與來源歸屬 Opus→R1（Terra＋agy，寫手單一併送審）→R1 修正 Opus→寫手 Sonnet（初稿凍結 40）→agy R2＋冷讀 DeepSeek→總編輯 Opus→Terra 多輪（本篇於 R5 判 PASS，零 finding）。簽核 sha256 與 Terra 判 PASS 的快照（桌目錄 drafts/f1-101-fines-sanctions.90.md）逐位元組一致。Terra 額度 10/10 16:05 用完、19:55 恢復，期間以 Opus 替代審查席頂（不取代 Terra，放行只認 Terra PASS）。事實依據：Section A Issue 03、ISC（Application from 26 June 2026）、Section C／D／E／F 現行版、運動規章 Issue 09（2026-10-01）；dropped-scores 另用本站資料庫與 8W／Motor Sport 等具名報導（歷史規則非規章原文，文中已標）。facts_sha256 為 null（事實包不進 repo，放桌目錄）。；2026-10-17 第二批舊文風格改寫，Charlie原話「上線」授權重新簽核、合併及部署。Sonnet寫手40凍結→雙席R2→Opus冷讀／減法→雙席R3→83封面與來源註記增量結案GO；桌CoWork/roundtable/2026-10-17-racing-style-batch2。精確80版article SHA重綁，Norris facts v6同步重綁（撤回舊指令，不冒稱全包重驗）；保留原approved_at及歷史check_report。"
     },
     {
       "slug": "f1-2026-r17-singapore-ferrari-strategy-ledger",
