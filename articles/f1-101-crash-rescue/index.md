@@ -40,8 +40,11 @@ Appendix H 第 2 章的賽道救援與醫療條文，以及 F1 Section B，未�
 
 把 F1 救援讀成「有沒有在幾分鐘內到」，會漏掉條文分別交代的事：誰先通報、誰可進入賽道範圍，以及哪些人車必須預先配置。
 
-## 資料來源與範圍
+## 資料來源
 
-本文只依 2026 年 FIA《Appendix H》（2026-06-23 公布）與 2026 年 F1 Sporting Regulations Section B Issue 09（2026-10-01）撰寫，查核基準為 2026-10-18（台北時間）。本文描述的是這些文件支持的 2026 現行規章，不適用於舊事故或其他版本。
+本文只依 2026 年 FIA《Appendix H》（2026-06-23 公布）與 2026 年 F1 Sporting Regulations Section B Issue 09（2026-10-01）撰寫，查證日：2026-10-18（台北時間）。本文描述的是這些文件支持的 2026 現行規章，不適用於舊事故或其他版本。
 
 本文所稱「未見數字到場期限」限於 Appendix H 第 2 章的賽道救援／醫療條文與 F1 Section B；不推論其他 FIA 賽事、未取得文件或現場作業標準。Appendix H 的法文為解釋爭議時的正式文本；本文只在技術脫困小組人數處並列法英文本差異。
+
+- [Appendix H 2026](https://www.fia.com/system/files/documents/appendix_h_2026_published_23062026.pdf)
+- [F1 Section B Issue 09（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf)

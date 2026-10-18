@@ -44,8 +44,14 @@ A1.4.3 對個人 Financial Penalty 的直接對象設了限制：除 Driver 或 
 
 七個職位回答的是登記問題；個人 Financial Penalty 則要回到另一套定義與條件。
 
-## 資料來源與範圍
+## 資料來源
 
-本文只依 2026 年 FIA《International Sporting Code》（自 2026-06-26 起適用）、F1 Regulations Section A Issue 03、Section B Issue 09、Section D Issue 08 與 Section F Issue 11 撰寫，查核基準為 2026-10-18（台北時間）。本文所述是這些文件支持的 2026 現行規章，不描述各車隊實際組織、僱傭關係或內部匯報線。
+本文只依 2026 年 FIA《International Sporting Code》（自 2026-06-26 起適用）、F1 Regulations Section A Issue 03、Section B Issue 09、Section D Issue 08 與 Section F Issue 11 撰寫，查證日：2026-10-18（台北時間）。本文所述是這些文件支持的 2026 現行規章，不描述各車隊實際組織、僱傭關係或內部匯報線。
 
 Appendix A5 在 Key Individual 定義中的交叉引用原因，以及 2.6.4.a.viii 下是否另有完整的 additional roles 清單，均未取得可定案的官方說明。
+
+- [2026 International Sporting Code](https://www.fia.com/system/files/documents/2026_international_sporting_code_fr-en_clean_version_25.06.2026.pdf)
+- [F1 Section A Issue 03（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_a_general_provisions_-_iss_03_-_2026-06-25.pdf)
+- [F1 Section B Issue 09（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf)
+- [F1 Section D Issue 08（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_d_financial_-_f1_teams_-_iss_08_-_2026-10-01.pdf)
+- [F1 Section F Issue 11（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_f_operational_-_iss_11_-_2026-10-01.pdf)

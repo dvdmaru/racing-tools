@@ -44,8 +44,11 @@ C9.8.3 要求每一次個別換檔由車手分別發起。超轉保護可以拒�
 
 規章要求車手保有被指定的發起與控制權；系統不得造成被禁止的效果；明列的例外，則只能留在自己的條件裡。
 
-## 資料來源與範圍
+## 資料來源
 
-本文只依 2026 年 FIA F1 Technical Regulations Section C Issue 20 與 Sporting Regulations Section B Issue 09 撰寫，查核基準為 2026-10-18（台北時間）。本文描述的是這些文件支持的 2026 現行規章，不用以評斷 2025 年或更早的事故、系統或賽事。
+本文只依 2026 年 FIA F1 Technical Regulations Section C Issue 20 與 Sporting Regulations Section B Issue 09 撰寫，查證日：2026-10-18（台北時間）。本文描述的是這些文件支持的 2026 現行規章，不用以評斷 2025 年或更早的事故、系統或賽事。
 
 本文不以 `launch control`、`ABS` 或 `driver aid` 的字面搜尋判斷功能的合法性。實際車隊控制軟體、方向盤介面與起跑操作方式，也不能由這些公開規章反推。
+
+- [F1 Section C Issue 20（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf)
+- [F1 Section B Issue 09（2026）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf)
