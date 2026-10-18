@@ -11,7 +11,13 @@
       "slug": "f1-2026-rules-guide",
       "html": "cover-rules.html",
       "allow": {},
-      "allow_claims": {}
+      "allow_claims": {
+        "各自管什": "本批封面主題問句，不斷言規則；三機制作用已由Terra60/80及Opus61/81核GO，正文分節回答。",
+        "作用與使用": "三機制作用與使用條件的主題標籤；正文各節帶原必要條件，雙席R3確認相容。",
+        "三項機制": "主動空力、Overtake、Boost三個具名分類，正文三節各自說明；雙席R3核GO。",
+        "作用": "分類的主題詞，正文分節描述各自作用；非新增性能/因果主張，雙席R3核GO。",
+        "各自說明": "編排標籤：正文分節講主動空力/Overtake/Boost，雙席R3核GO。"
+      }
     },
     {
       "slug": "f1-2026-names-glossary",
@@ -140,7 +146,9 @@
       "slug": "f1-rwanda-african-grand-prix-africa-rounds-1958-1993",
       "html": "cover-rwanda-africa-rounds.html",
       "allow": {},
-      "allow_claims": {}
+      "allow_claims": {
+        "1場": "正文1958–1993非洲F1世界錦標賽小表艾因迪亞卜數值為1，欄名世界錦標賽場數；封面摩洛哥1場同一母集。raw重算與雙席R3核GO；僅字串相鄰單位缺口。"
+      }
     },
     {
       "slug": "f1-cota-us-grand-prix-guide",
