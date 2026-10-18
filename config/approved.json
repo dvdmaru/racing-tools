@@ -958,30 +958,30 @@
     },
     {
       "slug": "f1-2026-r15-baku-colapinto-fault-ruling",
-      "article_sha256": "3517d6651074dc1de0846224aa699375fc54b02325dc4eee01a9e7d626b9045c",
+      "article_sha256": "12c0422f2e634cbeeaf65b84351a7b265ae7bf1839f79508502744a1a2e72a19",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-27T17:35:25+08:00",
-      "note": "Charlie 2026-09-27 於對話中回「合 racing #96」授權發布（PR #96）。非 facts 管線產出（feature 型，外部來源文），故 facts/check_report sha256 為 null。查證流程：事實查證 subagent 建 facts-pack 落盤 → 對抗查核 subagent（fresh context，逐句對 facts-pack，抓到 8 個問題含 2 個自創事實：接觸方位細節、安全車觸發原因未經證實）→ Codex 異源查核（獨立連網重查，抓到 3 個 BLOCKER：Norris 禁賽說法原稿低估、Briatore 引語轉述不精確、積分算術把 P7 名次分數與兩車合計分數搞混）→ 逐條重新查證後修正，修正紀錄見 CoWork job b14498e9 tmp facts-pack 附錄。已過 verify-sources gate 與 check-links（11/12 連結 200，1 條 429 疑似 bot 擋非死鏈）。"
+      "note": "Charlie 2026-09-27 於對話中回「合 racing #96」授權發布（PR #96）。非 facts 管線產出（feature 型，外部來源文），故 facts/check_report sha256 為 null。查證流程：事實查證 subagent 建 facts-pack 落盤 → 對抗查核 subagent（fresh context，逐句對 facts-pack，抓到 8 個問題含 2 個自創事實：接觸方位細節、安全車觸發原因未經證實）→ Codex 異源查核（獨立連網重查，抓到 3 個 BLOCKER：Norris 禁賽說法原稿低估、Briatore 引語轉述不精確、積分算術把 P7 名次分數與兩車合計分數搞混）→ 逐條重新查證後修正，修正紀錄見 CoWork job b14498e9 tmp facts-pack 附錄。已過 verify-sources gate 與 check-links（11/12 連結 200，1 條 429 疑似 bot 擋非死鏈）。 【2026-10-18 舊文風格第三批 PR #122】Charlie 於對話明示「合併 & 上線」授權本批三篇82版；R1、雙席R2、冷讀減法及R3最終83結案GO。事件主線與減法重整，已核來源限定保留；詳 CoWork/roundtable/2026-10-18-racing-style-batch3。依本次授權代登新本文SHA，歷史approved_at及facts/check_report原欄位不變。"
     },
     {
       "slug": "f1-101-team-orders",
-      "article_sha256": "8c8c8a89c7cd8f92266cbf128e146549ec1fd6608a7c77eb00d3644a68100bd4",
+      "article_sha256": "c88d27e8003383fcc712a362f140c17f932419849bc446eb6ad0606182c61f10",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-28T15:34:56+08:00",
-      "note": "F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：現行規章沒有專屬 team orders 條文（2003 年那條俗稱 Article 39.1 已於 2011 年廢除），紅線回歸 ISC 12.2.1.c／12.2.1.m 與 A4.3 指向的《操縱比賽規則》；配 2002 奧地利站、2010 德國站兩案例。審稿履歷：agy R1（2 MAJOR：manipulat/A4.3 矛盾敘述、「第一次執行」排他性斷言，已改）→Terra R1（1 MAJOR＋1 MINOR：開頭「兩條」概述漏列 A4.3、manipulat 全庫排他性斷言，已改，並在同型掃描時一併修正 H2 標題與 FAQ 殘留）→Terra R2（PASS，零 finding）。"
+      "note": "F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：現行規章沒有專屬 team orders 條文（2003 年那條俗稱 Article 39.1 已於 2011 年廢除），紅線回歸 ISC 12.2.1.c／12.2.1.m 與 A4.3 指向的《操縱比賽規則》；配 2002 奧地利站、2010 德國站兩案例。審稿履歷：agy R1（2 MAJOR：manipulat/A4.3 矛盾敘述、「第一次執行」排他性斷言，已改）→Terra R1（1 MAJOR＋1 MINOR：開頭「兩條」概述漏列 A4.3、manipulat 全庫排他性斷言，已改，並在同型掃描時一併修正 H2 標題與 FAQ 殘留）→Terra R2（PASS，零 finding）。 【2026-10-18 舊文風格第三批 PR #122】Charlie 於對話明示「合併 & 上線」授權本批三篇82版；R1、雙席R2、冷讀減法及R3最終83結案GO。事件主線與減法重整，已核來源限定保留；詳 CoWork/roundtable/2026-10-18-racing-style-batch3。依本次授權代登新本文SHA，歷史approved_at及facts/check_report原欄位不變。"
     },
     {
       "slug": "f1-101-circuit-grade",
-      "article_sha256": "c3730fc61e02c437f51ff44b8fc5743814e9af08aca06694062f78fa9cd581f0",
+      "article_sha256": "897fe14f63a53ec4d3afa00f7abb017edfffec2a798f605f27498d6f1b36634a",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
       "approved_at": "2026-09-28T15:34:56+08:00",
-      "note": "F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：F1 分站資格繫於 FIA 核發、有效期最長 3 年的 Grade 1 賽道執照，配上海賽車場、伊斯坦堡公園兩個真實案例。審稿履歷：agy R1（2 MAJOR：未經證實的醫療人力數字「至少 2 名醫師＋2 名外科醫師」、摩納哥例子過度連結規章條文，已刪除/改保守措辭；2 MINOR）→Terra R1（2 MAJOR：主詞誤植巡查員為核發者、60 天截止期限語意反轉；1 MINOR：地主國政府誤植為 ASN 同義詞，已修）→Terra R2（PASS，零 finding）。 【簽核後修正】合併前發現 SVG 內文字缺盤古之白（F1/日期數字緊貼中文）與一處簡體字殘留（賽历→賽曆，check-zh.py 的簡體掃描清單未收錄「历」這個字，屬該 gate 的既有缺口），已修正並更新 sha256；未變動事實內容，approved_by/approved_at 沿用原簽核。"
+      "note": "F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇主題：F1 分站資格繫於 FIA 核發、有效期最長 3 年的 Grade 1 賽道執照，配上海賽車場、伊斯坦堡公園兩個真實案例。審稿履歷：agy R1（2 MAJOR：未經證實的醫療人力數字「至少 2 名醫師＋2 名外科醫師」、摩納哥例子過度連結規章條文，已刪除/改保守措辭；2 MINOR）→Terra R1（2 MAJOR：主詞誤植巡查員為核發者、60 天截止期限語意反轉；1 MINOR：地主國政府誤植為 ASN 同義詞，已修）→Terra R2（PASS，零 finding）。 【簽核後修正】合併前發現 SVG 內文字缺盤古之白（F1/日期數字緊貼中文）與一處簡體字殘留（賽历→賽曆，check-zh.py 的簡體掃描清單未收錄「历」這個字，屬該 gate 的既有缺口），已修正並更新 sha256；未變動事實內容，approved_by/approved_at 沿用原簽核。 【2026-10-18 舊文風格第三批 PR #122】Charlie 於對話明示「合併 & 上線」授權本批三篇82版；R1、雙席R2、冷讀減法及R3最終83結案GO。事件主線與減法重整，已核來源限定保留；詳 CoWork/roundtable/2026-10-18-racing-style-batch3。依本次授權代登新本文SHA，歷史approved_at及facts/check_report原欄位不變。"
     },
     {
       "slug": "f1-101-reserve-driver",
