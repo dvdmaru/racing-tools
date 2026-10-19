@@ -290,8 +290,79 @@ class ClinchArithmeticTests(unittest.TestCase):
         if not ARTICLE.exists():
             self.skipTest("文章尚未進 repo")
         body = ARTICLE.read_text(encoding="utf-8")
-        for token in ("66", "60", "59", "23", "126", "143", "151", "123", "27", "134", "61", "103"):
+        for token in ("302", "236", "66", "83", "24", "125", "199＋61＋125＝385"):
             self.assertIn(token, body, f"文章缺承重數字 {token}")
+        # Historical snapshot and sufficient witness must remain attached to the numbers.
+        self.assertIn('date: "2026-09-27"', body)
+        self.assertIn("以 2026 年 9 月 27 日巴庫站後為截點", body)
+        self.assertIn("不代表安東內利必須全勝才能封王", body)
+        self.assertIn("不是對賽果的預測", body)
+        self.assertIn("沒有後續行政處分改動成績", body)
+        self.assertIn("各場足額給分", body)
+
+
+class AllRivalsWitnessTests(unittest.TestCase):
+    """Independent raw-results oracle; does not consume derived witness values."""
+
+    @classmethod
+    def setUpClass(cls):
+        from collections import Counter
+        cls.points, cls.gp_wins, cls.sprint_wins = Counter(), Counter(), Counter()
+        cls.gp_count = cls.sprint_count = 0
+        for directory, key in (("results", "Results"), ("sprint", "SprintResults")):
+            for path in sorted((ROOT / "data/f1/raw" / directory).glob("2026-*.json")):
+                race = json.loads(path.read_text(encoding="utf-8"))
+                if not 1 <= int(race["round"]) <= 15:
+                    continue
+                if directory == "results":
+                    cls.gp_count += 1
+                else:
+                    cls.sprint_count += 1
+                for result in race[key]:
+                    driver = result["Driver"]["driverId"]
+                    cls.points[driver] += int(result["points"])
+                    if result["position"] == "1":
+                        (cls.gp_wins if directory == "results" else cls.sprint_wins)[driver] += 1
+        cls.calendar = load()["own_data"]["remaining_calendar"]
+
+    def test_raw_snapshot_binds_all_drivers(self):
+        self.assertEqual((self.gp_count, self.sprint_count, len(self.points)), (15, 5, 23))
+        self.assertEqual([self.points[d] for d in ("antonelli", "russell", "hamilton", "norris")], [302, 236, 199, 186])
+        for driver, points in load()["own_data"]["standings_after_r15"].items():
+            self.assertEqual(self.points[driver], points, driver)
+        self.assertEqual([self.gp_wins[d] for d in ("antonelli", "russell", "hamilton")], [8, 3, 1])
+
+    def test_full_win_witness_excludes_every_rival(self):
+        first, later = self.calendar[:3], self.calendar[3:]
+        self.assertEqual([r["round"] for r in first], [16, 17, 18])
+        sprint_count = sum(r["sprint_weekend"] for r in first)
+        self.assertEqual(sprint_count, 1)
+        gained = len(first) * 25 + sprint_count * 8
+        remainder = sum(25 + (8 if r["sprint_weekend"] else 0) for r in later)
+        second_places = len(first) * 18 + sprint_count * 7
+        champion = self.points["antonelli"] + gained
+        self.assertEqual((gained, second_places, remainder, champion), (83, 61, 125, 385))
+        a_wins = self.gp_wins["antonelli"] + len(first)
+        for driver, points in self.points.items():
+            if driver == "antonelli":
+                continue
+            cap = 24 if driver == "russell" else second_places
+            final = points + cap + remainder
+            self.assertLessEqual(final, champion, driver)
+            if final == champion:
+                # A owns all three GP wins, so rivals can only add the final five.
+                rival_wins = self.gp_wins[driver] + len(later)
+                self.assertLess(rival_wins, a_wins, driver)
+                # Robustness check only: no assertion that FIA includes Sprint wins.
+                self.assertLess(rival_wins + self.sprint_wins[driver], a_wins + self.sprint_wins["antonelli"] + sprint_count, driver)
+
+    def test_strict_russell_margin_is_not_all_rivals_guarantee(self):
+        # Jointly legal positions over GP/GP/GP/Sprint, A gains60, Russell0;
+        # Hamilton gains76. Excluding Russell cannot establish a championship.
+        ant = self.points["antonelli"] + sum((25, 18, 10, 7))
+        ham = self.points["hamilton"] + sum((18, 25, 25, 8))
+        self.assertGreater(ant - self.points["russell"], 125)
+        self.assertGreater(ham + 125, ant)
 
 
 if __name__ == "__main__":
