@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 巴西聖保羅站 Interlagos：歷屆桿位、冠軍與 2026 台北時間</title>
+    <link>https://racing.twtools.cc/articles/f1-interlagos-sao-paulo-grand-prix-guide/</link>
+    <guid>https://racing.twtools.cc/articles/f1-interlagos-sao-paulo-grand-prix-guide/</guid>
+    <pubDate>Thu, 22 Oct 2026 00:00:00 +0800</pubDate>
+    <description>2026 年聖保羅站沒有衝刺賽；正賽預定台北 11 月 9 日星期一凌晨 1 點開跑。</description>
+  </item>
+  <item>
     <title>F1 美國站 COTA：歷屆桿位、冠軍與 2026 台北時間</title>
     <link>https://racing.twtools.cc/articles/f1-cota-us-grand-prix-guide/</link>
     <guid>https://racing.twtools.cc/articles/f1-cota-us-grand-prix-guide/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-materials/</guid>
     <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
     <description>2026 年技術規章 C15 的准用清單裡，列著亞麻、竹這類天然補強纖維，也列著巴沙木夾層核心。碳纖維的強度、模量、密度各有一道上限，全車金屬零件另有一道比模量上限。</description>
-  </item>
-  <item>
-    <title>雪邦排位前八名：維斯塔潘領先 0.298 秒，第 2 到第 8 名七台只差 0.443 秒</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-r16-sepang-qualifying-gaps/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-r16-sepang-qualifying-gaps/</guid>
-    <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
-    <description>2026 年 10 月 3 日雪邦排位賽，維斯塔潘（Max Verstappen）的排位最佳圈是 1:35.130，比第 2 名漢米爾頓（Lewis Hamilton）快 0.298 秒；漢米爾頓到排位第 8 的羅素（George Russell）七台車，只差 0.443 秒。紅牛兩台都排在賓士兩台前面，但第二台只比賓士最快的一台快 0.073 秒。</description>
   </item>
 </channel>
 </rss>
