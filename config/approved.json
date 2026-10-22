@@ -1315,6 +1315,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-17T10:09:23+08:00",
       "note": "Charlie於本篇完整稿與草稿PR #120交付後明示「上線」，授權本篇簽核、離線重建、測試、合併及部署。文章與共用桌drafts/84-cota.md逐位元一致。研究與論點歸屬Opus、R1審表與寫手單、Sonnet初稿凍結、獨立席與Opus雙席R2、冷讀與Opus減法、R3與82至84增量結案GO。最終判決desk/86-final-closure.md；歷年官方Pole Positions／Qualifying／Race Result逐年核對，2026台北時程及積分快照為10月17日上午。封王情境限全額給分且只是充分條件。完整證據CoWork/roundtable/2026-10-17-racing-cota；交付CoWork/Charlie/2026-10-17/racing-cota。"
+    },
+    {
+      "slug": "f1-interlagos-sao-paulo-grand-prix-guide",
+      "article_sha256": "858bf3b188627f9e074851321a0c7f82eccac754877a360da656ffab373a87e6",
+      "facts_sha256": "6a9f0f621a40f095fdec9d8f772547091b7a10744e5d47a0c49f7deb1ece3056",
+      "check_report_sha256": "c35fc6cd930fb25352f339b0f7fc125f68a3afbd64197f937d10d3a0993d2434",
+      "approved_by": "charlie",
+      "approved_at": "2026-10-22T11:46:29.564156+08:00",
+      "note": "Charlie於完整稿及Draft PR #126交付後明示「上線」，授權本篇簽核、離線重建、測試、合併及部署。Codex指揮／寫作與獨立查核、Claude Max訂閱異源R1/R2/R3及來源增量查核GO；API呼叫0。正文與共用桌drafts/82-interlagos.md逐位元一致，facts為寫前序列化並已審。42場Interlagos範圍及2021/2022桿位定義已查核；發布前重核2026官方時程未變。最終判決desk/84-final-closure.md，證據CoWork/roundtable/2026-10-22-racing-interlagos。"
     }
   ]
 }

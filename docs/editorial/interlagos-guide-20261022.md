@@ -1,6 +1,6 @@
 # Interlagos 賽道百科：受審草稿交接
 
-選題 `2026-10-22:R1`（18分），slug `f1-interlagos-sao-paulo-grand-prix-guide`。新稿，不計入舊文18/93風格回修。狀態：完整稿、封面與來源已審，未合併／未部署；使用者「部署」後立即「按錯」撤回，因此不構成發布授權。
+選題 `2026-10-22:R1`（18分），slug `f1-interlagos-sao-paulo-grand-prix-guide`。新稿，不計入舊文18/93風格回修。狀態：完整稿、封面與來源已審；Charlie於交付後最新明示「上線」，本PR新增精確簽核及完整生成產物，準備合併部署。先前「部署／按錯」的撤回僅屬歷史紀錄。
 
 R1逐年原件矩陣＋Opus歸屬席→R1b全結案→40初稿凍結→Codex與Claude雙R2→60修正→全新上下文冷讀→80編輯→Codex與Claude雙R3 Content/Artifact GO→82只改官方canonical href及來源清單空行→Opus增量GO。指揮／寫作由Codex主session；Agy預設模型quota用盡、無有效內容回覆，異源席改Claude Max訂閱。API呼叫0；未使用API fallback。查核桌 `roundtable/2026-10-22-racing-interlagos`，完整版交付 `Charlie/2026-10-22/racing-interlagos`。
 
@@ -12,9 +12,9 @@ R1逐年原件矩陣＋Opus歸屬席→R1b全結案→40初稿凍結→Codex與C
 
 本機969測試通過（80版156.489秒），82為來源href與空行增量，來源／封面lint另跑，PR CI驗最終commit。草稿排除建置實驗證：沒有新slug文字／頁面輸出；approved.json逐位元未變，draft-exclude明列本slug。Chrome390/1440無整頁溢出、封面2400px載入，三表6/8/36行（含表頭），FAQ/schema5題。9正文站內目標HTTP200；95官方來源目標94個HTTP200、市府curl403但Chrome實際可讀並封存DOM原文。最後單一canonical替換也實抓HTTP200，主文到Next Up前與原頁相同，推薦新聞變動不算本文事實變動。
 
-上線仍須針對本稿取得明確指示。發布前重新查官方2026時程，再依最終SHA簽核、移出draft-exclude、沿既有離線建置／測試與racing-weekly手動部署流程，不做未授權fetch落地賽果。合併／CI不等於部署，正式URL整檔與版面驗證後才可回報上線。本稿尚未操作GSC。
+2026-10-22 Charlie於交付後最新明示「上線」，已取得本稿發布授權。發布前重新查官方2026時程，再依最終SHA簽核、移出draft-exclude、沿既有離線建置／測試與racing-weekly手動部署流程，不做未授權fetch落地賽果。合併／CI不等於部署，正式URL整檔與版面驗證後才可回報上線。本稿尚未操作GSC。
 
-最終對版：
+交付前草稿快照（發布狀態以共用桌release回執為準）：
 {
   "state": "reviewed unsigned draft; publication not authorized",
   "slug": "f1-interlagos-sao-paulo-grand-prix-guide",
