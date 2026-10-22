@@ -155,6 +155,12 @@
       "html": "cover-cota-us-guide.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-interlagos-sao-paulo-grand-prix-guide",
+      "html": "cover-interlagos-guide.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

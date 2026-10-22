@@ -1,0 +1,493 @@
+{
+  "_meta": {
+    "slug_suggestion": "f1-interlagos-sao-paulo-grand-prix-guide",
+    "type": "feature",
+    "built_at_taipei": "2026-10-22T10:45:09.137785+08:00",
+    "topic_ref": "2026-10-22:R1",
+    "desk_ref": "racing-interlagos-20261022",
+    "state": "pre-writing serialization after R1b; draft not approved for publication",
+    "source_research_sha256": "1e50e0f1856c9540745aecd485c780607bbd0c826512154f1f06a420fb2aebd9",
+    "r1_sha256": "08eba3a7248c05d3f58874fa6e18d1cf053d3ffd8c19e4c4e059e369686282c9",
+    "r1b_sha256": "6f7f2b63c977ec8c5949a8735f5539a152d8a945f0a2dc2ff6e46df576a392fb"
+  },
+  "thesis": "# Interlagos：論點與歸屬\n\n## 一句話論點\nInterlagos 的歷屆紀錄要按場地讀：巴西大獎賽曾移師里約，普羅斯特的六場巴西站勝利不能全算進這裡；回到2026觀賽，今年聖保羅站沒有Sprint，台灣觀眾要記的是星期一凌晨的正賽。\n\n## 各節主張\n\n|節|讀者帶走什麼|形狀|來源|\n|---|---|---|---|\n|2026時程|今年沒有Sprint；五場次列台北與當地，正賽只列預定開跑|數據|F1當年完整時程＋現行活動頁，ZoneInfo換算|\n|賽道|先通過Senna S、再入內場，最後爬坡回到主直道；現行規格不能套回1970年代|範例|F1現行賽道介紹＋FIA歷史preview僅布局|\n|42場逐年表|可查本站正式pole與正賽冠軍，完整保留七場舊布局與35場回歸後賽事|數據|F1逐年結果、pole awards／Sprint例外＋FIA場地沿革|\n|紀錄怎麼讀|Prost巴西六勝只有1990在這裡；截至2025、本文42場中，Michael Schumacher本站四勝最多。2021／2022正式pole認定與正賽第一格需分清|犯錯|FIA歷史場地說明＋42列重算＋F1官方pole與報導|\n|FAQ|直答2026幾點、有無Sprint、賽道多長、世界錦標賽首辦與歷史範圍|結構|前述已核資料|\n\n## 禁止延伸\n不推本屆勝率、封王條件、天氣預報、輪胎／空力／超車規則、未核轉播資訊。Sprint年份僅處理歷史pole認定，不能把2026猜成Sprint。暫無新事實時不拿防禦性句子湊長度，必要背景與連接不砍。\n\n名詞沿repo核准表；沒有核准中文的歷史車手直接英文，不新增譯名。Interlagos與Jacarepaguá首見附原文。稿內用「桿位（Pole position）」對應使用者極點用語，與既有COTA一致。\n",
+  "verified_facts_markdown": "# 供稿事實表（R1修正後選用子集）\n\n此表只挑選R1已核研究內容，原始來源與撤回事項見research.md及R1/R1b報告。42行逐年值只讀interlagos-results.json的year/pole_name/winner_name/race_url等有效欄，不讀revoked資料。\n\n|ID|可寫主張|來源／限制|\n|---|---|---|\n|W01|2026聖保羅站當地11/6–8；FP1/FP2/FP3/排位/正賽五場，沒有F1 Sprint|F1完整時程原頁＋FIA2026 Sprint清單；不把Porsche Sprint Challenge當F1|\n|W02|台北FP1 11/6五23:30至11/7六00:30；FP2 11/7六03:00至04:00；FP3 11/7六22:30至23:30；排位11/8日02:00至03:00；正賽11/9一01:00預定開跑|schedule.json，F1完整時程，ZoneInfo獨立重算；只列正賽開跑，可能調整|\n|W03|São Paulo UTC−3、台北UTC+8，台北快11小時|同上，不拿MY TIME預設UTC顯示當台北|\n|T01|英特拉哥斯賽道（聖保羅），Interlagos，正式名Autódromo José Carlos Pace；現行4.309km、2026預定71圈、F1列距離305.879km|現行F1活動頁；距離採官方值不由乘法反推，不能套回1970年代|\n|T02|Senna S接到T4與內場，最後爬坡回主直道；T12 Junção到T1煞車點上升40m|F1現行布局介紹＋FIA2017 PDF第1頁僅幾何布局；不採舊DRS／賽車規格／當年天氣|\n|H01|1972辦F1但不計世界錦標賽；1973首次納入世界錦標賽|市府官方歷史Chrome實際原文節錄＋完整Web解析；F1現行頁1973world championship，來源取得方式明確標示|\n|H02|1973–77、1979–80在本站；1978與1981–89在里約Jacarepaguá（雅卡雷帕瓜賽道）；1990改建後回歸|FIA2017原PDF第2頁＋市府history原文；不說七場舊布局幾何全相同，不列歷史長度|\n|H03|2020未辦巴西F1賽事|F1當年取消公告f1-2020-cancel.html；不由缺年份推疫情因果|\n|H04|截至2025共42場Interlagos世界錦標賽正賽＝1990前7場＋1990–2019三十場＋2021–2025五場；Sprint不另當正賽|42列官方Race結果、年度pole表＋2021/22例外；R1與root各自重算|\n|S01|Michael Schumacher4勝（1994/1995/2000/2002），本文42場最高；Vettel、Hamilton、Verstappen各3勝|42列Race原表與重算，封面只列這4人|\n|S02|Prost六場巴西GP勝利1982/1984/1985/1987/1988/1990，只有1990在Interlagos，其餘五場里約|FIA2017原PDF第2頁＋本站42列；不用「大家都搞錯」框架|\n|P21|2021博塔斯（Valtteri Bottas）贏Sprint並獲正式GP桿位|F1當年Sprint原表＋當年pole賽報＋年度pole表；不能用週五排位第一筆DQ列推pole|\n|P22|2022 FIA當年政策把GP pole授予週五排位最快者，Magnussen週五排位最快並獲生涯首pole；Russell贏Sprint及正賽、正賽P1發車|FIA政策＋Magnussen官方排位賽報＋2022Sprint/StartingGrid/Race原表；2022年度pole表的Russell不採，來源衝突保留在研究桌|\n\n中文核准名見evidence/approved-names.json；Michael Schumacher、Ayrton Senna、Kevin Magnussen等未核者英文。本文不使用最快單圈、pole總次數、18/42百分比、2024排位延期等附帶主張。FAQ只重述本表，不增事實。\n",
+  "historical_results": [
+    {
+      "year": 1973,
+      "winner_name": "Emerson Fittipaldi",
+      "pole_name": "Ronnie Peterson",
+      "race_url": "https://www.formula1.com/en/results/1973/races/315/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1973/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1974,
+      "winner_name": "Emerson Fittipaldi",
+      "pole_name": "Emerson Fittipaldi",
+      "race_url": "https://www.formula1.com/en/results/1974/races/330/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1974/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1975,
+      "winner_name": "Carlos Pace",
+      "pole_name": "Jean-Pierre Jarier",
+      "race_url": "https://www.formula1.com/en/results/1975/races/345/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1975/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1976,
+      "winner_name": "Niki Lauda",
+      "pole_name": "James Hunt",
+      "race_url": "https://www.formula1.com/en/results/1976/races/358/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1976/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1977,
+      "winner_name": "Carlos Reutemann",
+      "pole_name": "James Hunt",
+      "race_url": "https://www.formula1.com/en/results/1977/races/375/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1977/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1979,
+      "winner_name": "Jacques Laffite",
+      "pole_name": "Jacques Laffite",
+      "race_url": "https://www.formula1.com/en/results/1979/races/408/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1979/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1980,
+      "winner_name": "Rene Arnoux",
+      "pole_name": "Jean-Pierre Jabouille",
+      "race_url": "https://www.formula1.com/en/results/1980/races/81/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1980/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1990,
+      "winner_name": "Alain Prost",
+      "pole_name": "Ayrton Senna",
+      "race_url": "https://www.formula1.com/en/results/1990/races/65/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1990/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1991,
+      "winner_name": "Ayrton Senna",
+      "pole_name": "Ayrton Senna",
+      "race_url": "https://www.formula1.com/en/results/1991/races/560/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1991/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1992,
+      "winner_name": "Nigel Mansell",
+      "pole_name": "Nigel Mansell",
+      "race_url": "https://www.formula1.com/en/results/1992/races/576/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1992/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1993,
+      "winner_name": "Ayrton Senna",
+      "pole_name": "Alain Prost",
+      "race_url": "https://www.formula1.com/en/results/1993/races/591/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1993/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1994,
+      "winner_name": "Michael Schumacher",
+      "pole_name": "Ayrton Senna",
+      "race_url": "https://www.formula1.com/en/results/1994/races/605/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1994/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1995,
+      "winner_name": "Michael Schumacher",
+      "pole_name": "Damon Hill",
+      "race_url": "https://www.formula1.com/en/results/1995/races/621/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1995/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1996,
+      "winner_name": "Damon Hill",
+      "pole_name": "Damon Hill",
+      "race_url": "https://www.formula1.com/en/results/1996/races/639/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1996/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1997,
+      "winner_name": "Jacques Villeneuve",
+      "pole_name": "Jacques Villeneuve",
+      "race_url": "https://www.formula1.com/en/results/1997/races/655/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1997/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1998,
+      "winner_name": "Mika Hakkinen",
+      "pole_name": "Mika Hakkinen",
+      "race_url": "https://www.formula1.com/en/results/1998/races/672/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1998/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 1999,
+      "winner_name": "Mika Hakkinen",
+      "pole_name": "Mika Hakkinen",
+      "race_url": "https://www.formula1.com/en/results/1999/races/688/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/1999/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2000,
+      "winner_name": "Michael Schumacher",
+      "pole_name": "Mika Hakkinen",
+      "race_url": "https://www.formula1.com/en/results/2000/races/48/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2000/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2001,
+      "winner_name": "David Coulthard",
+      "pole_name": "Michael Schumacher",
+      "race_url": "https://www.formula1.com/en/results/2001/races/705/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2001/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2002,
+      "winner_name": "Michael Schumacher",
+      "pole_name": "Juan Pablo Montoya",
+      "race_url": "https://www.formula1.com/en/results/2002/races/722/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2002/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2003,
+      "winner_name": "Giancarlo Fisichella",
+      "pole_name": "Rubens Barrichello",
+      "race_url": "https://www.formula1.com/en/results/2003/races/739/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2003/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2004,
+      "winner_name": "Juan Pablo Montoya",
+      "pole_name": "Rubens Barrichello",
+      "race_url": "https://www.formula1.com/en/results/2004/races/770/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2004/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2005,
+      "winner_name": "Juan Pablo Montoya",
+      "pole_name": "Fernando Alonso",
+      "race_url": "https://www.formula1.com/en/results/2005/races/787/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2005/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2006,
+      "winner_name": "Felipe Massa",
+      "pole_name": "Felipe Massa",
+      "race_url": "https://www.formula1.com/en/results/2006/races/807/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2006/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2007,
+      "winner_name": "Kimi Räikkönen",
+      "pole_name": "Felipe Massa",
+      "race_url": "https://www.formula1.com/en/results/2007/races/824/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2007/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2008,
+      "winner_name": "Felipe Massa",
+      "pole_name": "Felipe Massa",
+      "race_url": "https://www.formula1.com/en/results/2008/races/842/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2008/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2009,
+      "winner_name": "Mark Webber",
+      "pole_name": "Rubens Barrichello",
+      "race_url": "https://www.formula1.com/en/results/2009/races/858/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2009/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2010,
+      "winner_name": "Sebastian Vettel",
+      "pole_name": "Nico Hulkenberg",
+      "race_url": "https://www.formula1.com/en/results/2010/races/877/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2010/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2011,
+      "winner_name": "Mark Webber",
+      "pole_name": "Sebastian Vettel",
+      "race_url": "https://www.formula1.com/en/results/2011/races/46/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2011/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2012,
+      "winner_name": "Jenson Button",
+      "pole_name": "Lewis Hamilton",
+      "race_url": "https://www.formula1.com/en/results/2012/races/27/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2012/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2013,
+      "winner_name": "Sebastian Vettel",
+      "pole_name": "Sebastian Vettel",
+      "race_url": "https://www.formula1.com/en/results/2013/races/897/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2013/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2014,
+      "winner_name": "Nico Rosberg",
+      "pole_name": "Nico Rosberg",
+      "race_url": "https://www.formula1.com/en/results/2014/races/915/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2014/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2015,
+      "winner_name": "Nico Rosberg",
+      "pole_name": "Nico Rosberg",
+      "race_url": "https://www.formula1.com/en/results/2015/races/935/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2015/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2016,
+      "winner_name": "Lewis Hamilton",
+      "pole_name": "Lewis Hamilton",
+      "race_url": "https://www.formula1.com/en/results/2016/races/956/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2016/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2017,
+      "winner_name": "Sebastian Vettel",
+      "pole_name": "Valtteri Bottas",
+      "race_url": "https://www.formula1.com/en/results/2017/races/977/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2017/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2018,
+      "winner_name": "Lewis Hamilton",
+      "pole_name": "Lewis Hamilton",
+      "race_url": "https://www.formula1.com/en/results/2018/races/998/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2018/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2019,
+      "winner_name": "Max Verstappen",
+      "pole_name": "Max Verstappen",
+      "race_url": "https://www.formula1.com/en/results/2019/races/1019/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2019/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2021,
+      "winner_name": "Lewis Hamilton",
+      "pole_name": "Valtteri Bottas",
+      "race_url": "https://www.formula1.com/en/results/2021/races/1104/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2021/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2022,
+      "winner_name": "George Russell",
+      "pole_name": "Kevin Magnussen",
+      "race_url": "https://www.formula1.com/en/results/2022/races/1137/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2022/awards/pole-positions",
+      "pole_basis": "OVERRIDE conflicting F1 annual awards table George Russell: FIA 14 Feb 2022 official Commission policy awards GP pole to Friday qualifying fastest, confirmed F1 11 Nov Magnussen maiden pole report. Annual awards row retained as conflict evidence.",
+      "pole_report_url": "https://www.formula1.com/en/latest/article/magnussen-masters-timing-at-interlagos-to-claim-sensational-maiden-pole.5Ll7fEBykiPZyl7O3sTlT1",
+      "pole_policy_url": "https://www.fia.com/news/f1-commission-meeting-media-statement",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2023,
+      "winner_name": "Max Verstappen",
+      "pole_name": "Max Verstappen",
+      "race_url": "https://www.formula1.com/en/results/2023/races/1224/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2023/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2024,
+      "winner_name": "Max Verstappen",
+      "pole_name": "Lando Norris",
+      "race_url": "https://www.formula1.com/en/results/2024/races/1249/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2024/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    },
+    {
+      "year": 2025,
+      "winner_name": "Lando Norris",
+      "pole_name": "Lando Norris",
+      "race_url": "https://www.formula1.com/en/results/2025/races/1273/brazil/race-result",
+      "pole_awards_url": "https://www.formula1.com/en/results/2025/awards/pole-positions",
+      "pole_basis": "F1 annual official Pole Positions award table, Brazil/Sao Paulo row",
+      "venue_name_in_official_result": "Autódromo José Carlos Pace"
+    }
+  ],
+  "schedule": {
+    "year": 2026,
+    "sprint": false,
+    "source": "https://www.formula1.com/en/latest/article/formula-1-msc-cruises-grande-premio-de-sao-paulo-2026.3nFWRAkowAY3uUyvw6O0eJ",
+    "sessions": [
+      {
+        "session": "FP1",
+        "local": "2026-11-06T12:30:00-03:00",
+        "local_end": "2026-11-06T13:30:00-03:00",
+        "utc": "2026-11-06T15:30:00+00:00",
+        "taipei": "2026-11-06T23:30:00+08:00",
+        "taipei_end": "2026-11-07T00:30:00+08:00"
+      },
+      {
+        "session": "FP2",
+        "local": "2026-11-06T16:00:00-03:00",
+        "local_end": "2026-11-06T17:00:00-03:00",
+        "utc": "2026-11-06T19:00:00+00:00",
+        "taipei": "2026-11-07T03:00:00+08:00",
+        "taipei_end": "2026-11-07T04:00:00+08:00"
+      },
+      {
+        "session": "FP3",
+        "local": "2026-11-07T11:30:00-03:00",
+        "local_end": "2026-11-07T12:30:00-03:00",
+        "utc": "2026-11-07T14:30:00+00:00",
+        "taipei": "2026-11-07T22:30:00+08:00",
+        "taipei_end": "2026-11-07T23:30:00+08:00"
+      },
+      {
+        "session": "Qualifying",
+        "local": "2026-11-07T15:00:00-03:00",
+        "local_end": "2026-11-07T16:00:00-03:00",
+        "utc": "2026-11-07T18:00:00+00:00",
+        "taipei": "2026-11-08T02:00:00+08:00",
+        "taipei_end": "2026-11-08T03:00:00+08:00"
+      },
+      {
+        "session": "Race",
+        "local": "2026-11-08T14:00:00-03:00",
+        "utc": "2026-11-08T17:00:00+00:00",
+        "taipei": "2026-11-09T01:00:00+08:00"
+      }
+    ],
+    "note": "Timetable subject to change. Race start only; no guaranteed or supplied finish time."
+  },
+  "wins": {
+    "Emerson Fittipaldi": 2,
+    "Carlos Pace": 1,
+    "Niki Lauda": 1,
+    "Carlos Reutemann": 1,
+    "Jacques Laffite": 1,
+    "Rene Arnoux": 1,
+    "Alain Prost": 1,
+    "Ayrton Senna": 2,
+    "Nigel Mansell": 1,
+    "Michael Schumacher": 4,
+    "Damon Hill": 1,
+    "Jacques Villeneuve": 1,
+    "Mika Hakkinen": 2,
+    "David Coulthard": 1,
+    "Giancarlo Fisichella": 1,
+    "Juan Pablo Montoya": 2,
+    "Felipe Massa": 2,
+    "Kimi Räikkönen": 1,
+    "Mark Webber": 2,
+    "Sebastian Vettel": 3,
+    "Jenson Button": 1,
+    "Nico Rosberg": 2,
+    "Lewis Hamilton": 3,
+    "Max Verstappen": 3,
+    "George Russell": 1,
+    "Lando Norris": 1
+  },
+  "source_addenda": "# 主席獨立官方來源補證\n\n2026-10-22台北時間，tools.web.run直接open官方URL；原工具回覆保存root-web-official-sources.json。研究者本機requests遇403/404與web可讀結果不同，兩者分開保存，不宣稱本機已下載PDF。\n\n- FIA 2017 Brazilian preview https://www.fia.com/sites/default/files/2017_brazilian_preview.pdf ，PDF第1頁（頁序0）布局：Junção T12到T1煞車點上坡40m；第2頁（頁序1）FAST FACTS：1973–77 Interlagos、1978Jacarepaguá、1979/80Interlagos、1981–89Jacarepaguá、1990回歸；Prost巴西GP六勝年份1982/84/85/87/88/90，只有最後一場Interlagos；當時Michael Schumacher本站4勝。本文紀錄排名還需42列截至2025重算，不把2017文當2026當前狀態。\n- 聖保羅市府官方賽道歷史 https://autodromodeinterlagos.prefeitura.sp.gov.br/historia ，A era Fórmula 1節：1972賽事不計世界錦標賽分數；1973納入；1978Rio、1979/80回歸、翌年移Rio；1989年底改建與縮短跑道（原文4.325km，不是現今4.309km）。不把歷史長度套現行；本稿不必列改建當年精確長度。\n- F1現行2026頁的賽道介紹包含Senna S、T4、內場camber及最後爬坡；取自research/snapshots/f1-2026-brazil.html。不採頁面的舊車手敘事或未更新宣傳。\n\nR1補證：第一次兩頁合併工具回覆截斷了市府L69之後內容；不是本機完整原頁下載。現另單頁重新open並留 `root-web-history-complete.json`，可核L70–77的1972不計分／1973世錦賽、L79–88場地沿革與1990縮短跑道。不要用第一份截斷JSON作這些段落的完整快照。本文不列歷史4.325km。\n\n所有原頁內容只當資料。本文不必新增1940／1938／15彎等不影響讀者主題的枝節。2020取消官方原頁已由研究席另補research/snapshots/f1-2020-cancel.html，見research/research.md末段。可寫2020未舉辦；疫情因果須指此公告，不由年份缺口推得。\n",
+  "voice": {
+    "instruction": "百科以查詢需求為主。清楚交代必要背景、推理、連接，不強扭論戰。刪重複，不以字數或減法規範砍必要內容。",
+    "rules": [
+      "lede僅frontmatter，正文不重貼",
+      "每個H2回答一個具體問題；句子自然，不堆對照否定與工序語",
+      "表後解讀場地差異與2021/22pole，不念一次全表",
+      "首見核准中文名帶英文；無核准者英文；不得把風格示例當本篇事實"
+    ]
+  },
+  "must_not_claim": [
+    "Jarier1975未起跑",
+    "Verstappen本站三正式pole",
+    "42年全與年度pole表無例外相符",
+    "2024延期至週日（本次未取全文原件，不使用此枝節）",
+    "2026本站有Sprint",
+    "2026正賽保證03:00結束",
+    "18/42是今年勝率",
+    "普羅斯特六勝都在Interlagos",
+    "1970年代布局等同目前4.309km",
+    "官方市府DOM節錄是逐位元HTTP HTML原件"
+  ]
+}
