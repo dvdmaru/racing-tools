@@ -4,20 +4,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="base.css">
 <style>
-/* 本篇的中心論點＝「賽事名稱指涉的國家」與「賽道實際所在國」是兩件事。
- * 所以封面就畫成一本對照帳：左欄賽事名稱、右欄實際辦在哪，中間一條斷開的連線。
- *
- * 資料全部出自本站賽事資料庫（1950–2026、1,172 場），與正文同一組數字：
- *   聖馬利諾 26 屆 → 義大利 ／ 盧森堡 2 屆 → 德國 ／ 瑞士 1982 那 1 屆 → 法國
- * 最後一列是 2026 巴林站，用 accent 標出來——它是這篇的由來，不是先例。
- *
- * ⚠️ IP 紅線：零官方素材、無隊徽車徽塗裝，賽車紅用站定色 #d63a2f（不是 F1 官方 #e10600）。
- * ⚠️ check-covers gate：封面上的每個數字都必須在正文出現。這裡用到的
- *    1,172 / 56 / 29 / 26 / 2 / 1982 / 2026 全部在正文有對應，故 allow 留空。
- */
-/* ⚠️ 第一次 render 目視發現底部 stats 的數字被裁掉、說明文字整排掉出畫布。
- * render-covers.py 明說沒有自動 gate，只能目視——cover-tech-timing.html 也踩過同一個坑。
- * 以下尺寸是為了把整頁壓回 1260px 內收緊的，不是隨意調的：改動任何一項都要重新目視。 */
+/* 名稱與場地；2026一列依官方公告的歷史安排。 */
 .wrap { padding: 70px 130px; }
 h1 { font-size: 88px; margin-top: 28px; }
 .sub { font-size: 34px; margin-top: 20px; }
@@ -48,6 +35,7 @@ h1 { font-size: 88px; margin-top: 28px; }
 .stats { margin-top: 0; }
 .stats .stat b { font-size: 58px; }
 .stats .stat span { font-size: 24px; }
+.foot { font-size: 22px; letter-spacing: 0; }
 </style>
 </head>
 <body>
@@ -55,10 +43,10 @@ h1 { font-size: 88px; margin-top: 28px; }
 <div class="wrap">
   <div class="brand">@RACING</div>
   <div class="tag">賽車數據誌 · 深度專題</div>
-  <h1>大獎賽的名字<br>不是<span class="y">地名</span></h1>
-  <div class="sub">名稱指涉的國家，與賽道實際所在國，本來就是兩件事</div>
+  <h1>巴林大獎賽<br>移師<span class="y">馬來西亞</span></h1>
+  <div class="sub">大獎賽的名字，不能直接當成地址</div>
   <div class="viz">
-    <div class="lbl">名稱 ／ 實際舉辦國　·　本站賽事資料庫 1950–2026</div>
+    <div class="lbl">名稱 ／ 舉辦國　·　歷史場次依本站世界錦標賽資料庫</div>
     <div class="ledger">
       <div class="lrow">
         <div class="nm">聖馬利諾大獎賽<i>SAN MARINO · 26 屆</i></div>
@@ -66,32 +54,23 @@ h1 { font-size: 88px; margin-top: 28px; }
         <div class="vn">義大利<i>IMOLA</i></div>
       </div>
       <div class="lrow">
-        <div class="nm">盧森堡大獎賽<i>LUXEMBOURG · 2 屆</i></div>
-        <div class="gap"></div>
-        <div class="vn">德國<i>NÜRBURGRING</i></div>
-      </div>
-      <div class="lrow">
         <div class="nm">瑞士大獎賽<i>SWISS · 1982</i></div>
         <div class="gap"></div>
         <div class="vn">法國<i>DIJON-PRENOIS</i></div>
       </div>
       <div class="lrow now">
-        <div class="nm">巴林大獎賽<i>BAHRAIN · 2026</i></div>
+        <div class="nm">巴林大獎賽<i>BAHRAIN · 2026 公告安排</i></div>
         <div class="gap"></div>
         <div class="vn">馬來西亞<i>SEPANG</i></div>
       </div>
     </div>
-    <!-- ⚠️ check-covers 是 default-deny：封面上每個可見數字都必須在正文出現。
-         初版這三格是 1,172／56／29（本站核對場次／賽事名稱種數／名實不符場次），
-         那是「糾正外電」框架下的數字；改稿把骨架換成三種機制後，正文不再出現這三個數，
-         gate 當場會擋。**改文章骨架時封面數字要一起重選**，這是同一件事的兩面。 -->
     <div class="stats">
-      <div class="stat"><b>26</b><span>聖馬利諾站全在義大利辦的屆數</span></div>
-      <div class="stat"><b>28</b><span>瑞士站兩度舉行相隔的年數</span></div>
-      <div class="stat"><b>19</b><span>雪邦主辦馬來西亞站的屆數</span></div>
+      <div class="stat"><b>26</b><span>聖馬利諾大獎賽在伊莫拉</span></div>
+      <div class="stat"><b>28</b><span>1954 至 1982 瑞士站相隔年數</span></div>
+      <div class="stat"><b>19</b><span>雪邦的馬來西亞大獎賽</span></div>
     </div>
   </div>
-  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 數據出自本站賽事資料庫</div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 歷史場次依本站世界錦標賽資料；2026 依 F1 公告安排</div>
 </div>
 </body>
 </html>
