@@ -4,15 +4,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="base.css">
 <style>
-/* 兩種「分段」的對比＝這篇的中心區分。
- * 上：計時分段（timing sector）＝轉播上的第一、二、三分段，一條賽道 3 個，這是規則裡的定值。
- * 下：安全分區（marshalling sector）＝燈號面板切出來的旗號生效範圍，二十幾個。
- *
- * ⚠️ 下排刻意畫成示意且右端淡出：本文核對的文件裡沒有任何一條賽道的面板總數，
- * 畫出可數的格數就等於宣稱一個查不到出處的數字。長度也刻意不等分——真實分區不等長。
- */
-/* 第一次 render 目視發現底部 stats 的說明文字掉出畫布、且壓到 footer，
- * 以下數值是為了把整頁壓回 1260px 內收緊的，不是隨意調的。 */
+/* 三個計時分段與VSC安全分區；下排為不表示實際數量的示意。 */
 h1 { font-size: 96px; margin-top: 48px; }
 .sub { font-size: 40px; margin-top: 24px; }
 .pair { display: flex; flex-direction: column; gap: 34px; }
@@ -31,6 +23,7 @@ h1 { font-size: 96px; margin-top: 48px; }
   mask-image: linear-gradient(90deg, #000 0 78%, transparent 100%); }
 .note { font-size: 24px; color: #786a6e; margin-top: 10px; letter-spacing: 1px; }
 .stats { margin-top: 26px; }
+.foot { font-size: 22px; letter-spacing: 0; }
 </style>
 </head>
 <body>
@@ -38,25 +31,25 @@ h1 { font-size: 96px; margin-top: 48px; }
 <div class="wrap">
   <div class="brand">@RACING</div>
   <div class="tag">賽車數據誌 · 長青指南</div>
-  <h1>F1 怎麼知道<br>每一台車<span class="y">在哪裡</span></h1>
-  <div class="sub">計時線圈 ・ 車上定位單元 ・ 賽道旁燈號面板：三套系統各管什麼</div>
+  <h1>F1 計時與安全訊號<br>各自<span class="y">怎麼分工</span></h1>
+  <div class="sub">計時記錄快慢，定位追蹤位置，安全訊號提示行動</div>
   <div class="viz pair">
     <div class="row">
       <div class="lbl"><b>計時分段</b>　TIMING SECTOR ・ 一條賽道 3 個</div>
       <div class="track t3"><div>SECTOR 1</div><div>SECTOR 2</div><div>SECTOR 3</div></div>
     </div>
     <div class="row">
-      <div class="lbl"><b>安全分區</b>　MARSHALLING SECTOR ・ 二十幾個</div>
+      <div class="lbl"><b>安全分區</b>　MARSHALLING SECTOR ・ 相鄰 FIA 燈號面板之間</div>
       <div class="track tm"></div>
-      <div class="note">下排為示意，不代表實際分區數與長度：本文核對的官方文件裡沒有任何一條賽道的面板總數。</div>
+      <div class="note">下排為示意；VSC 的安全分區不同於 3 個計時分段。</div>
     </div>
     <div class="stats">
-      <div class="stat"><b>3</b><span>成績公布的小數位數</span></div>
-      <div class="stat"><b>27</b><span>文件可見的最大面板編號</span></div>
-      <div class="stat"><b>200<i>m</i></b><span>差距欄位更新的 loop 間距（約）</span></div>
+      <div class="stat"><b>3</b><span>計時分段</span></div>
+      <div class="stat"><b>2</b><span>2026 規則：每台車計時應答器</span></div>
+      <div class="stat"><b>200<i>m</i></b><span>2019 年 Gap／Interval 更新說明（約）</span></div>
     </div>
   </div>
-  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 依 FIA 規則、計時系統規範與賽事總監指令原文</div>
+  <div class="foot">racing.twtools.cc ・ 非官方資訊站 ・ 依 FIA 2026 規則、FIA 計時指引（2018）及 Formula1.com 解說</div>
 </div>
 </body>
 </html>
