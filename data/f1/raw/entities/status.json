@@ -2,7 +2,7 @@
   "Status": [
     {
       "statusId": "1",
-      "count": "8191",
+      "count": "8202",
       "status": "Finished"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "statusId": "143",
-      "count": "406",
+      "count": "414",
       "status": "Lapped"
     },
     {
@@ -61,14 +61,14 @@
       "status": "+4 Laps"
     },
     {
+      "statusId": "31",
+      "count": "322",
+      "status": "Retired"
+    },
+    {
       "statusId": "7",
       "count": "321",
       "status": "Transmission"
-    },
-    {
-      "statusId": "31",
-      "count": "319",
-      "status": "Retired"
     },
     {
       "statusId": "10",
@@ -684,7 +684,7 @@
   "total": 136,
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/status.json",
-    "fetched_at": "2026-10-12T10:16:12.611249+00:00",
+    "fetched_at": "2026-10-26T16:50:29.702236+00:00",
     "backfill": true
   }
 }
