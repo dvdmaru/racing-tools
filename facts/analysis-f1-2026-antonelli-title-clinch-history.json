@@ -1,0 +1,569 @@
+{
+  "_meta": {
+    "slug_suggestion": "f1-2026-antonelli-title-clinch-history",
+    "type": "feature",
+    "topic_ref": "2026-10-26:R1",
+    "built_at_taipei": "2026-10-26T13:07:38.601841+08:00",
+    "state": "R2修正後事實序列化；原寫前facts保留於facts.site.json及40-frozen"
+  },
+  "thesis": "# 論點與來源邊界\n\n一句話論點：安東內利若在墨西哥城封王，將留下四場正賽尚未跑；比較歷年封王有多早，應先把剩餘正賽場數數清楚，再看當年的賽曆與積分制度，不能只比領先幾分。\n\n|節|要回答的問題|來源與界線|\n|---|---|---|\n|開場與現況|為何領先123分仍未封王？五場最多125；墨西哥城第九保證封王；若封王剩四場|本日官方全榜＋R18 Jolpica獨立比對，FIA SectionA Issue03，1021種前三互斥結果驗算；時效截止10/26台北|\n|歷史表|歷年提前至少四場正賽封王的代表案例；2026另列條件式，不宣稱七例為完整窮盡名單|76列二手總表只作篩選，入正文七例逐一對具名封王來源與F1官方賽曆；2001與2004的封王原件為Atlas F1／Autosport當年媒體報導。不得宣稱76季逐季完成史實驗證|\n|兩個六場|2002正賽結束封王；2023衝刺環節鎖冠，卡達正賽尚未跑，所以六場未跑|F1官方明寫matching；表列『封王環節結束後』積分差，不冒稱Perez退賽瞬間已確定更新積分|\n|分差不能直接比較|1992匈牙利賽果冠軍10分、第二6分；2004比利時冠軍10分、第二8分；2011日本冠軍25分、第二18分|三份本輪官方歷史賽果給分表核驗，見historical-points.json；不宣稱已逐年審規則。展示具體可理解例子，不寫誰比較強、不推勝率|\n|收束與觀賽|墨西哥城是這份進度的下一次封王機會；台北11/2一04:00預定開跑|F1完整local timetable14:00 UTC-6，ZoneInfo換算；未來賽事可能調整|\n\n站內差異：既有封王算術固定9/27巴庫歷史情境，最年輕冠軍篇是年齡。本篇以10/26現況引入歷史時點，不修改兩篇舊稿。歷史未核中文名用英文，現役譯名沿driver-zh.json。\n\n優勢：同一個『還有幾場沒跑』能把本季與歷史連起來。風險：Sprint使週末輪次不等於未跑正賽數；場外退出與捨分制度會使單靠資料庫追溯的時點偏離當年實際封王，未核案例不拿來寫排行結論。\n",
+  "current": {
+    "checked_at_taipei": "2026-10-26T12:57:36.333231+08:00",
+    "scope": "2026 R18後；正常賽程、足額給分、無後續改判",
+    "official_and_jolpica_all_points_match": true,
+    "standings": [
+      {
+        "id": "antonelli",
+        "points": 365,
+        "wins": 9
+      },
+      {
+        "id": "russell",
+        "points": 242,
+        "wins": 3
+      },
+      {
+        "id": "hamilton",
+        "points": 241,
+        "wins": 1
+      },
+      {
+        "id": "max_verstappen",
+        "points": 236,
+        "wins": 2
+      },
+      {
+        "id": "leclerc",
+        "points": 233,
+        "wins": 1
+      },
+      {
+        "id": "norris",
+        "points": 211,
+        "wins": 2
+      },
+      {
+        "id": "piastri",
+        "points": 144,
+        "wins": 0
+      },
+      {
+        "id": "hadjar",
+        "points": 105,
+        "wins": 0
+      },
+      {
+        "id": "lawson",
+        "points": 77,
+        "wins": 0
+      },
+      {
+        "id": "gasly",
+        "points": 42,
+        "wins": 0
+      },
+      {
+        "id": "arvid_lindblad",
+        "points": 38,
+        "wins": 0
+      },
+      {
+        "id": "colapinto",
+        "points": 27,
+        "wins": 0
+      },
+      {
+        "id": "bearman",
+        "points": 23,
+        "wins": 0
+      },
+      {
+        "id": "hulkenberg",
+        "points": 13,
+        "wins": 0
+      },
+      {
+        "id": "bortoleto",
+        "points": 10,
+        "wins": 0
+      },
+      {
+        "id": "ocon",
+        "points": 7,
+        "wins": 0
+      },
+      {
+        "id": "alonso",
+        "points": 7,
+        "wins": 0
+      },
+      {
+        "id": "sainz",
+        "points": 7,
+        "wins": 0
+      },
+      {
+        "id": "albon",
+        "points": 5,
+        "wins": 0
+      },
+      {
+        "id": "tsunoda",
+        "points": 1,
+        "wins": 0
+      },
+      {
+        "id": "stroll",
+        "points": 0,
+        "wins": 0
+      },
+      {
+        "id": "bottas",
+        "points": 0,
+        "wins": 0
+      },
+      {
+        "id": "perez",
+        "points": 0,
+        "wins": 0
+      }
+    ],
+    "remaining_races": [
+      {
+        "round": "19",
+        "name": "Mexico City Grand Prix",
+        "date": "2026-11-01",
+        "sprint": false
+      },
+      {
+        "round": "20",
+        "name": "Brazilian Grand Prix",
+        "date": "2026-11-08",
+        "sprint": false
+      },
+      {
+        "round": "21",
+        "name": "Las Vegas Grand Prix",
+        "date": "2026-11-22",
+        "sprint": false
+      },
+      {
+        "round": "22",
+        "name": "Qatar Grand Prix",
+        "date": "2026-11-29",
+        "sprint": false
+      },
+      {
+        "round": "23",
+        "name": "Abu Dhabi Grand Prix",
+        "date": "2026-12-06",
+        "sprint": false
+      }
+    ],
+    "mexico_start_taipei": "2026-11-02T04:00:00+08:00",
+    "after_mexico_max_points": 100,
+    "all_valid_top3_placing_scenarios": 1021,
+    "conditions": [
+      "安東內利第9或更好，確保封王",
+      "安東內利第10，羅素未贏則封王",
+      "安東內利零分，羅素與漢米爾頓都未贏則封王"
+    ],
+    "other_drivers_cannot_catch_now": true,
+    "raw_sha256": {
+      "jolpica-standings.json": "3ab81d11765e5d4d3b10000c55fa5b6ae2eaaf0b79e15cf9bbc7fce152be3f8b",
+      "calendar.html": "933bd79b74dd7569463b7ef480ab9ece945e0b20254a06a1fe864d4f57caecef",
+      "jolpica-results.json": "d414c6ea4a01f03450d22f1218e58d564102c2202b2c93d14ce4251b481f82c9",
+      "fia-index.html": "714f52d6631b84ac62f7c57c8cee73f228b3973b024f25e16d80a0b9d9fa4884",
+      "standings.html": "54c63b438b9e4a99261d42bdf1cffbb574518a70f1e019748ec7735d6ef83bb3",
+      "fia-a.pdf": "6ce8c9420ddb8194e1b5ea8f678dbbdcb4bb2094780e636324b709ee70d276d6",
+      "jolpica-schedule.json": "a9a9e30ba2a3d4df6ad9c3e0d2773f2f289022b584fe9b26fa90c8e712a545c1",
+      "fia-a.txt": "127c842542280ee0cf7bb24f3f0a5e4acdb4de4526cd38984ae9425666ac81bd",
+      "mexico.html": "519d745499690ad89fda828fbbaf00aac021d8cde3ff8d2c3ffb665db9837db6",
+      "f1-austin.html": "3a4b5e0504b09aab63018bd4f008b82f5a5fb258d4f57911ee87a54e7d4e8af2"
+    }
+  },
+  "history": {
+    "checked_at_taipei": "2026-10-26T13:00:48.069668+08:00",
+    "method": "剩餘正賽＝全年正式正賽總數−封王輪次＋封王在該輪正賽之前的1場（此七例僅2023 Sprint）；分差為封王環節結束後即時榜首與最高其他車手之差，非季末分差。",
+    "rows": [
+      {
+        "season": 1992,
+        "driver": "Nigel Mansell",
+        "total_gp": 16,
+        "clinch_round": 11,
+        "event": "Hungary",
+        "event_local_date": "1992-08-16",
+        "phase": "Grand Prix",
+        "gp_unrun_after_clinch_phase": 5,
+        "leader_points_after_phase": 92.0,
+        "nearest_rival_points_after_phase": 40.0,
+        "gap_after_phase": 52,
+        "source_artifact": "official-williams1992.html",
+        "calendar_source": "https://www.formula1.com/en/results/1992/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/1992/11/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "",
+        "clinch_source": "https://www.williamsf1.com/articles/22794892-7962-4c82-b00b-90aac32870b8/nigel-mansell-and-the-fw14b-an-iconic-duo",
+        "completed_gp_after_clinch_phase": 11
+      },
+      {
+        "season": 2001,
+        "driver": "Michael Schumacher",
+        "total_gp": 17,
+        "clinch_round": 13,
+        "event": "Hungary",
+        "event_local_date": "2001-08-19",
+        "phase": "Grand Prix",
+        "gp_unrun_after_clinch_phase": 4,
+        "leader_points_after_phase": 94.0,
+        "nearest_rival_points_after_phase": 51.0,
+        "gap_after_phase": 43,
+        "source_artifact": "autosport-hungary2001.html",
+        "calendar_source": "https://www.formula1.com/en/results/2001/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/2001/13/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "",
+        "clinch_source": "https://atlasf1.autosport.com/2001/hun/elizalde.html",
+        "completed_gp_after_clinch_phase": 13
+      },
+      {
+        "season": 2002,
+        "driver": "Michael Schumacher",
+        "total_gp": 17,
+        "clinch_round": 11,
+        "event": "France",
+        "event_local_date": "2002-07-21",
+        "phase": "Grand Prix",
+        "gp_unrun_after_clinch_phase": 6,
+        "leader_points_after_phase": 96.0,
+        "nearest_rival_points_after_phase": 34.0,
+        "gap_after_phase": 62,
+        "source_artifact": "official-qatar2023-stats.html",
+        "calendar_source": "https://www.formula1.com/en/results/2002/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/2002/11/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "",
+        "clinch_source": "https://www.formula1.com/en/latest/article/facts-and-stats-rookie-piastri-claims-first-f1-win-of-any-kind-in-qatar.1faYZYwjJHzdwVggJG212l",
+        "completed_gp_after_clinch_phase": 11
+      },
+      {
+        "season": 2004,
+        "driver": "Michael Schumacher",
+        "total_gp": 18,
+        "clinch_round": 14,
+        "event": "Belgium",
+        "event_local_date": "2004-08-29",
+        "phase": "Grand Prix",
+        "gp_unrun_after_clinch_phase": 4,
+        "leader_points_after_phase": 128.0,
+        "nearest_rival_points_after_phase": 88.0,
+        "gap_after_phase": 40,
+        "source_artifact": "autosport-belgium2004.html",
+        "calendar_source": "https://www.formula1.com/en/results/2004/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/2004/14/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "分差40等於剩餘最高40，靠既有勝場決勝；不可只用嚴格大於。",
+        "clinch_source": "https://www.autosport.com/f1/news/raikkonen-takes-dramatic-win-schumacher-grabs-title-5066823/5066823/",
+        "completed_gp_after_clinch_phase": 14
+      },
+      {
+        "season": 2011,
+        "driver": "Sebastian Vettel",
+        "total_gp": 19,
+        "clinch_round": 15,
+        "event": "Japan",
+        "event_local_date": "2011-10-09",
+        "phase": "Grand Prix",
+        "gp_unrun_after_clinch_phase": 4,
+        "leader_points_after_phase": 324.0,
+        "nearest_rival_points_after_phase": 210.0,
+        "gap_after_phase": 114,
+        "source_artifact": "official-vettel-biography.html",
+        "calendar_source": "https://www.formula1.com/en/results/2011/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/2011/15/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "",
+        "clinch_source": "https://www.formula1.com/en/information/drivers-hall-of-fame-sebastian-vettel.GBy6vPkxKOKUV89QOhZe5",
+        "completed_gp_after_clinch_phase": 15
+      },
+      {
+        "season": 2022,
+        "driver": "Max Verstappen",
+        "total_gp": 22,
+        "clinch_round": 18,
+        "event": "Japan",
+        "event_local_date": "2022-10-09",
+        "phase": "Grand Prix",
+        "gp_unrun_after_clinch_phase": 4,
+        "leader_points_after_phase": 366.0,
+        "nearest_rival_points_after_phase": 253.0,
+        "gap_after_phase": 113,
+        "source_artifact": "official-japan2022-report.html",
+        "calendar_source": "https://www.formula1.com/en/results/2022/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/2022/18/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "",
+        "clinch_source": "https://www.formula1.com/en/latest/article/verstappen-crowned-world-champion-with-japanese-gp-victory-after-late.7g1xgGHHew3f2If32u8U1z",
+        "completed_gp_after_clinch_phase": 18
+      },
+      {
+        "season": 2023,
+        "driver": "Max Verstappen",
+        "total_gp": 22,
+        "clinch_round": 17,
+        "event": "Qatar",
+        "event_local_date": "2023-10-07",
+        "phase": "Sprint",
+        "gp_unrun_after_clinch_phase": 6,
+        "leader_points_after_phase": 407.0,
+        "nearest_rival_points_after_phase": 223.0,
+        "gap_after_phase": 184,
+        "source_artifact": "official-qatar2023-stats.html",
+        "calendar_source": "https://www.formula1.com/en/results/2023/races",
+        "standings_source": "https://api.jolpi.ca/ergast/f1/2023/16/driverstandings.json?limit=100",
+        "verification": "historical_clinch_source_plus_official_calendar_plus_independent_live_data_api",
+        "note": "Sprint後積分；Perez退賽時已確保冠軍，並非鎖定瞬間即407分。",
+        "clinch_source": "https://www.formula1.com/en/latest/article/facts-and-stats-rookie-piastri-claims-first-f1-win-of-any-kind-in-qatar.1faYZYwjJHzdwVggJG212l",
+        "completed_gp_after_clinch_phase": 16
+      }
+    ],
+    "sources": {
+      "official-williams1992": "https://www.williamsf1.com/articles/22794892-7962-4c82-b00b-90aac32870b8/nigel-mansell-and-the-fw14b-an-iconic-duo",
+      "autosport-hungary2001": "https://atlasf1.autosport.com/2001/hun/elizalde.html",
+      "official-qatar2023-stats": "https://www.formula1.com/en/latest/article/facts-and-stats-rookie-piastri-claims-first-f1-win-of-any-kind-in-qatar.1faYZYwjJHzdwVggJG212l",
+      "autosport-belgium2004": "https://www.autosport.com/f1/news/raikkonen-takes-dramatic-win-schumacher-grabs-title-5066823/5066823/",
+      "official-vettel-biography": "https://www.formula1.com/en/information/drivers-hall-of-fame-sebastian-vettel.GBy6vPkxKOKUV89QOhZe5",
+      "official-japan2022-report": "https://www.formula1.com/en/latest/article/verstappen-crowned-world-champion-with-japanese-gp-victory-after-late.7g1xgGHHew3f2If32u8U1z",
+      "official-qatar2023-sprint": "https://www.formula1.com/en/latest/article/verstappen-secures-third-f1-world-title-as-piastri-takes-sprint-victory-in.4d0SLopnXU9W8uzefnJmu3",
+      "sky-earliest2015": "https://www.skysports.com/f1/news/12433/10028202/earliest-f1-title-wins"
+    },
+    "artifacts": {
+      "official-vettel-biography.html": {
+        "sha256": "f2a337d19baddfdf23036a7a4f4f7c8063e7ceed7e29fda4639c73ad189bbe6a",
+        "bytes": 326323
+      },
+      "official-calendar-2002.html": {
+        "sha256": "94a51f5e466fcf72ab046c84bd68de54474483d1dce48c1d11a3883e3afa7539",
+        "bytes": 429824
+      },
+      "official-calendar-2022.html": {
+        "sha256": "c2c211277c5ab4378cf1d5a6e82a10eeaa336e924f937b3da09afbcc9581d890",
+        "bytes": 469549
+      },
+      "official-qatar2023-sprint.html": {
+        "sha256": "b03650329fe60e9ff23b4e3ed23a735493734024b3a80a4c6fd6b3d3a248dbea",
+        "bytes": 357802
+      },
+      "standings-2001-13.json": {
+        "sha256": "bf4f7e8bf1214ebe83d59c8f466b115c8663cb883007b9776a337fd207ab5760",
+        "bytes": 9986
+      },
+      "current-facts.json": {
+        "sha256": "8e569eb02feb1e7593e609187ff7cac07c556dd3e88e39c107d9591c0eea1296",
+        "bytes": 3794
+      },
+      "official-calendar-2023.html": {
+        "sha256": "9e06170986be3116b394cfbbb6410bec0d76041fbab3b34a5e50fdb4c987bf5a",
+        "bytes": 477105
+      },
+      "autosport-hungary2001.html": {
+        "sha256": "cf2d8276ca4a3bd6d352f61167662ea57cf9c7d2ce87529dcfdee0661b32cf30",
+        "bytes": 122807
+      },
+      "official-calendar-1992.html": {
+        "sha256": "4b0a4ee3a87914c46050cef31cb124e07faf109e23e081bc6b037b4bca557264",
+        "bytes": 420747
+      },
+      "standings-2011-15.json": {
+        "sha256": "e0647ea8306f67229cbafa833b41111ca408769fcf26c64869187fe1b197ee10",
+        "bytes": 11730
+      },
+      "sprint-2023-17.json": {
+        "sha256": "0e4ee6a1384d3748594b9a2fe695bd1de4fc4f35e3e1ca739c6490e9c57ac87e",
+        "bytes": 11566
+      },
+      "official-calendar-2004.html": {
+        "sha256": "81e6b28f7f9e859d8b2eea8ffd662b755fa9b71044077aa706ad7fccebbf23de",
+        "bytes": 438429
+      },
+      "standings-2023-16.json": {
+        "sha256": "37fa8e27373051b2e810fb6956d13029a3c5f440f6c88ed922dc0f5bcb58b1c2",
+        "bytes": 9584
+      },
+      "sky-earliest2015.html": {
+        "sha256": "d48d94df70c2c6a567d91867450eb5319cf0cdf10208c9e6c61b59f8d5394308",
+        "bytes": 208689
+      },
+      "standings-1992-11.json": {
+        "sha256": "2110cc8ef1720214350c3d76f99fe99a05d817af8c9092ef290029bbb862f107",
+        "bytes": 12666
+      },
+      "history-candidates.json": {
+        "sha256": "6737013e50aa0b84cb92b670d7a81abe7abba524cd6a06f448092a5abfb8544c",
+        "bytes": 77294
+      },
+      "standings-2004-14.json": {
+        "sha256": "fed56ab34c5962905085a5cb73a68a6c1c069852013b9ac50cb4cef04edd463f",
+        "bytes": 9777
+      },
+      "standings-2002-11.json": {
+        "sha256": "462e63019c0e1774860fb4d8a14a6ad6cd2b116d6972e3a1f855d1eb929d79e6",
+        "bytes": 8961
+      },
+      "standings-2022-18.json": {
+        "sha256": "a54b03013b54830cd7e4845e27a95ca43c4de3b773915c2124478df182ff4ab9",
+        "bytes": 9601
+      },
+      "autosport-belgium2004.html": {
+        "sha256": "9830a8219eef73fab5c6d55a7dc3f59970d344517bfd4dd249be45e7669a44ac",
+        "bytes": 368989
+      },
+      "official-williams1992.html": {
+        "sha256": "85877ec52d55dc62e2c77b91cfb54368d9d43bf0a3995c360077798175fffe84",
+        "bytes": 3941407
+      },
+      "official-calendar-2011.html": {
+        "sha256": "50bbd4fcbd0e300bdf6ea84e838cbf305faea2dc7f6e67a109c3952165c6b47e",
+        "bytes": 449282
+      },
+      "official-japan2022-report.html": {
+        "sha256": "4f07f69a9ba73d1d6be739dd21b4828ce341ef4c308f73606d5e8939059204d6",
+        "bytes": 370388
+      },
+      "champions-wikipedia.html": {
+        "sha256": "89e84184f7a2adece202d72c70d674ebff7e7e199b9f6c0c4600b2686ca9bc3f",
+        "bytes": 1049681
+      },
+      "official-qatar2023-stats.html": {
+        "sha256": "70a2826db5cbd567fe1c0b8fb19b597bb3336cf6c15f7daebbcfb3e15141c8ec",
+        "bytes": 329311
+      },
+      "official-calendar-2001.html": {
+        "sha256": "e8acc1e95848d33e9b56aa8fd331cfaafcd2165be57afd991e05dc51a40a4440",
+        "bytes": 429870
+      }
+    }
+  },
+  "writing_values": {
+    "current_remaining_max": 125,
+    "mexico_p9_points": 2,
+    "mexico_p10_points": 1,
+    "a_if_p9": 367,
+    "r_if_win_mexico": 267,
+    "r_end_ceiling_if_mexico_win": 367,
+    "r_max_wins_if_all_remaining_won": 8,
+    "a_current_wins": 9,
+    "2004_schumacher_wins": 12,
+    "2004_barrichello_wins": 0,
+    "2004_barrichello_max_wins": 4,
+    "2004_remaining_points": 40,
+    "1992_remaining_points": 50,
+    "2011_remaining_points": 100,
+    "2023_qatar_unrun": [
+      "Qatar",
+      "United States",
+      "Mexico",
+      "Brazil",
+      "Las Vegas",
+      "Abu Dhabi"
+    ]
+  },
+  "historical_points": {
+    "1992": [
+      [
+        "1",
+        "1",
+        "Ayrton Senna SEN",
+        "McLaren Honda",
+        "77",
+        "1:46:19.216",
+        "10"
+      ],
+      [
+        "2",
+        "5",
+        "Nigel Mansell MAN",
+        "Williams Renault",
+        "77",
+        "+40.139s",
+        "6"
+      ]
+    ],
+    "2004": [
+      [
+        "1",
+        "6",
+        "Kimi Räikkönen RAI",
+        "McLaren Mercedes",
+        "44",
+        "1:32:35.274",
+        "10"
+      ],
+      [
+        "2",
+        "1",
+        "Michael Schumacher MSC",
+        "Ferrari",
+        "44",
+        "+3.132s",
+        "8"
+      ]
+    ],
+    "2011": [
+      [
+        "1",
+        "4",
+        "Jenson Button BUT",
+        "McLaren Mercedes",
+        "53",
+        "1:30:53.427",
+        "25"
+      ],
+      [
+        "2",
+        "5",
+        "Fernando Alonso ALO",
+        "Ferrari",
+        "53",
+        "+1.160s",
+        "18"
+      ]
+    ]
+  },
+  "voice": {
+    "reference": "近批已審稿與dvdmaru六篇風格參考",
+    "opening": "領先123分仍未封王的具體疑問；隨即接歷史進度",
+    "forbidden_meta": "本文不把快照變成全史證明→直接寫來源與涵蓋範圍，刪除自我辯護段落",
+    "headline_style": "標題直接說事實與問題；避免分類標籤",
+    "referent_policy": "用具體車手、賽季與分站，不用那次或前者讓讀者回翻",
+    "rhythm": "完整解釋，保留必要轉場；刪重複，不為字數縮短"
+  },
+  "must_not_claim": [
+    "安東內利已封王",
+    "七例等於已逐季重建76季",
+    "分差可直接比較統治力或勝率",
+    "Jolpica或Wikipedia是FIA官方",
+    "2023 Sprint後407分是Perez退賽瞬間的積分",
+    "2026歷史假設列進既有紀錄"
+  ],
+  "review_inputs": {
+    "desk/12-r1-current.md": "2d9d16036e085ab5129c98a14b6ebc3014918a1c8ef82e4522bca1dcb45e0bdc",
+    "desk/14-r1-history.md": "e19c93caa2073cfeabd01ad7bf2d4f5048587adf17c675e2bb30ad940fd02b5f",
+    "desk/15-r1b-closure.md": "778e36a7810d7f4a035a1d41c4881264c6fca47868049f0faa3864a1f045d98a",
+    "30-writer-brief.md": "53e26db73d45f21ee8efe37948d234a3617cc8d0be30b53407ea07d502b941c7"
+  },
+  "post_r2": {
+    "qatar2023_sprint_start_local": "2023-10-07T20:30:00+03:00",
+    "qatar2023_sprint_start_taipei": "2023-10-08T01:30:00+08:00",
+    "source_url": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2023-timetable.f4apJqLlXXwkWHgm43B8K",
+    "source_sha256": "92feaa092d80ae78878255c8ab3ef3df0285f00a984447e53d65294eab517d98",
+    "not_used": "Jolpica Sprint API外層Race date/time是週日GP，非Sprint時間；該欄不作日期換算來源",
+    "display_name": {
+      "zh": "麥可・舒馬克",
+      "en": "Michael Schumacher",
+      "basis": "existing charlie-approved season-intro-2002; exact body SHA verified",
+      "article_sha256": "e00f98f54e4827da1b6876beea633bbaed456ccd4e42f3d5b34d77f84fbc2999",
+      "registry_modified": false
+    }
+  }
+}
