@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>安東內利最快墨西哥城封王：F1 歷年提前封王時點對照</title>
+    <link>https://racing.twtools.cc/articles/f1-2026-antonelli-title-clinch-history/</link>
+    <guid>https://racing.twtools.cc/articles/f1-2026-antonelli-title-clinch-history/</guid>
+    <pubDate>Mon, 26 Oct 2026 00:00:00 +0800</pubDate>
+    <description>2002 年的法國正賽與 2023 年的卡達衝刺賽，都在還有六場正賽時決定冠軍；今年若在墨西哥城封王，則會留下四場</description>
+  </item>
+  <item>
     <title>F1 巴西聖保羅站 Interlagos：歷屆桿位、冠軍與 2026 台北時間</title>
     <link>https://racing.twtools.cc/articles/f1-interlagos-sao-paulo-grand-prix-guide/</link>
     <guid>https://racing.twtools.cc/articles/f1-interlagos-sao-paulo-grand-prix-guide/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-rule-changes/</guid>
     <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
     <description>國際賽車運動規章第 18.2 條給改動配了最早生效日：FIA 因安全理由對規章做的改動可以立即生效，技術與運動等規則原則上最早在公布後隔年；一般改動想縮短通知期，預設得為該錦標賽正式報名的全體車隊一致同意。F1 Commission 受治理協議與 WMSC 批准約束，它內部的表決門檻，FIA 公布的規章裡查無明文。</description>
-  </item>
-  <item>
-    <title>F1 車體材料白名單：不在清單、不屬例外的不能用，在清單上不等於能用</title>
-    <link>https://racing.twtools.cc/articles/f1-101-materials/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-materials/</guid>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
-    <description>2026 年技術規章 C15 的准用清單裡，列著亞麻、竹這類天然補強纖維，也列著巴沙木夾層核心。碳纖維的強度、模量、密度各有一道上限，全車金屬零件另有一道比模量上限。</description>
   </item>
 </channel>
 </rss>
