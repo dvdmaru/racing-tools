@@ -166,7 +166,9 @@ class GenerationTests(unittest.TestCase):
 
     def test_index_sorted_by_2026_standings_and_champion_badges(self):
         hrefs = re.findall(r'<td><a href="/constructors/([^/]+)/">', self.index)
-        self.assertEqual(hrefs, ["mercedes", "ferrari", "mclaren", "red-bull", "rb", "alpine",
+        # 2026-10-27 R18 已賽（美國站）：紅牛與麥拉倫同 355 分、同 2 勝，紅牛第 2 名次數較多
+        # （4 對 2）排第 3；jolpica 與 F1 官網車隊榜同序，樣本同步推進。
+        self.assertEqual(hrefs, ["mercedes", "ferrari", "red-bull", "mclaren", "rb", "alpine",
                                  "haas", "audi", "williams", "aston-martin", "cadillac"])
         self.assertEqual(self.index.count('class="chip">世界冠軍'), 5)
 
