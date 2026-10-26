@@ -1324,6 +1324,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-22T11:46:29.564156+08:00",
       "note": "Charlie於完整稿及Draft PR #126交付後明示「上線」，授權本篇簽核、離線重建、測試、合併及部署。Codex指揮／寫作與獨立查核、Claude Max訂閱異源R1/R2/R3及來源增量查核GO；API呼叫0。正文與共用桌drafts/82-interlagos.md逐位元一致，facts為寫前序列化並已審。42場Interlagos範圍及2021/2022桿位定義已查核；發布前重核2026官方時程未變。最終判決desk/84-final-closure.md，證據CoWork/roundtable/2026-10-22-racing-interlagos。"
+    },
+    {
+      "slug": "f1-2026-antonelli-title-clinch-history",
+      "article_sha256": "358374c9b262e26ce523c8a5f4c586433462443f4e7300d9890daaa6cc50d9b3",
+      "facts_sha256": "a97143f65d15b7b18bfcf9f17212a84ce2a8559003f6134b394e5c00a87dadac",
+      "check_report_sha256": "93f7a41039b07da81006f7bc19b1c313c1e0671f664cd89872a9bc29006b7e75",
+      "approved_by": "charlie",
+      "approved_at": "2026-10-26T13:38:13.055997+08:00",
+      "note": "Charlie於受審稿、Draft PR128交付後明示「上線」。原生與Claude Max訂閱完成R1/R2、全新上下文冷讀、R3；85僅facts來源層級精確化由原生窄回歸閉合。模型API0。本文/封面為80、facts85，七個歷史代表案例非全史窮盡，2026仍條件式；發布前官方23位積分、賽程及墨西哥城時程重驗一致。共用桌2026-10-26-racing-clinch-history。 發布閘門將歷史表相鄰欄誤讀為當季衝刺場數，86僅加同義（Sprint）標籤；所有數字／其餘文字不變，原生86窄回歸GO後更新本文精確SHA，未改閘門或加例外。"
     }
   ]
 }

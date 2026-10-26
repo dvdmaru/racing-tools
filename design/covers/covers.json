@@ -161,6 +161,12 @@
       "html": "cover-interlagos-guide.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-2026-antonelli-title-clinch-history",
+      "html": "cover-clinch-history.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
