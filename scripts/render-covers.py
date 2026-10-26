@@ -116,13 +116,40 @@ def render(chrome, html_path, out_path):
     return _shoot(chrome, html_path, out_path, W, H)
 
 
+# 通用分享卡（2026-10-27）：沒有自己封面的頁分享到 LINE／FB 時的 og:image。
+# 不進 covers.json：那份清單是「文章封面」，check-covers 會拿它對文章數字對帳，這兩張不屬於任何文章。
+# 輸出放 public-racing/share/ 而不是 /assets/：/assets/* 帶一年 immutable 快取（見 _headers），
+# 這兩張改版時檔名不變，放進去就會被快取卡住。
+SHARE_CARDS = {
+    "share-site.html": ROOT / "public-racing" / "share" / "site.png",
+    "share-guide.html": ROOT / "public-racing" / "share" / "guide.png",
+}
+
+
 def main():
     ap = argparse.ArgumentParser(description="封面 HTML → PNG")
     ap.add_argument("--slug")
     ap.add_argument("--check", action="store_true", help="不產圖，只檢查 PNG 是否比 HTML 舊")
     ap.add_argument("--force", action="store_true",
                     help="連已是最新的封面也重產（預設只產缺的與比 HTML 舊的）")
+    ap.add_argument("--share", action="store_true",
+                    help="只產通用分享卡（design/covers/share-*.html → public-racing/share/*.png）")
     args = ap.parse_args()
+
+    if args.share:
+        chrome = find_chrome()
+        if not chrome:
+            print("❌ 找不到 headless Chrome，無法產分享卡")
+            return 1
+        ok = True
+        for name, out in SHARE_CARDS.items():
+            out.parent.mkdir(parents=True, exist_ok=True)
+            good, msg = render(chrome, COVER_DIR / name, out)
+            print(("✅ " if good else "❌ ") + f"{name} → {out.relative_to(ROOT)}　{msg}")
+            ok = ok and good
+        if ok:
+            print("⚠️ 請看一次產出的 PNG 確認字型有生效（沒有自動 gate，理由見本檔註解）")
+        return 0 if ok else 1
 
     entries = json.loads((COVER_DIR / "covers.json").read_text(encoding="utf-8"))["covers"]
     if args.slug:

@@ -768,15 +768,19 @@ def round_narrative(year, rnd):
         grid = str(winner.get("grid", "") or "")
         laps = str(winner.get("laps", "") or "")
         pts = winner.get("points", "0")
+        # grid＝0 不寫成「自維修道起跑」（2026-10-27 更正）：0 在我們查得到的資料源文件裡沒有定義，
+        # 站內「發車格欄」新手村文（f1-101-grid-data-reading）也明寫這一點；這裡照實說欄位值、不推定原因。
+        grid_note = ""
         if grid == "0":
-            start = "自維修道（發車位 0）起跑"
+            start = ""
+            grid_note = "資料源的發車欄記為 0，該值在資料源文件裡沒有定義。"
         elif grid.isdigit():
             start = f"從第 {grid} 位發車"
         else:
             start = "起跑"
-        lap_txt = f"、完成 {laps} 圈" if laps else ""
+        lap_txt = (f"、完成 {laps} 圈" if start else f"完成 {laps} 圈") if laps else ""
         lines.append(f"{year} {rc.race_zh(race_name)}由 {wname} {start}{lap_txt}奪下分站冠軍，"
-                     f"單場進帳 {pts} 分。")
+                     f"單場進帳 {pts} 分。{grid_note}")
     pod = round_podium(year, rnd)
     if pod[1] is not None and pod[2] is not None:
         p2, p3 = pod[1].get("Driver", {}), pod[2].get("Driver", {})

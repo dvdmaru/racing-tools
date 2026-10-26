@@ -11,6 +11,11 @@
 <meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/">
 <meta property="og:site_name" content="賽車數據誌">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://racing.twtools.cc/share/guide.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://racing.twtools.cc/share/guide.png">
 <link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/#article","headline":"一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？","description":"本站資料庫的 qualifying 表有 q1、q2、q3 三欄，本文採用的來源沒有這三欄的欄位說明。拿它算差距之前，先固定同一場、同一欄，寫出百分比的分母，空格當缺值、不當零秒。","datePublished":"2026-10-13","dateModified":"2026-10-13","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？","item":"https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/#faq","mainEntity":[{"@type":"Question","name":"排位表上 q2 欄跟 q3 欄的數字，能不能直接比？","acceptedAnswer":{"@type":"Answer","text":"規章這邊，依 Issue 09（2026-10-01），已獲分類的車手依最後參與的節次分組排序，以 22 輛車符合參賽資格為基準。資料這邊，本站資料庫 qualifying 表 2025 全季，跨欄比較的 2,888 組裡有 139 組，先後與 position 欄相反；同欄的 1,519 組沒有。所以在這張表上，跨欄相減得到的先後，不一定和 position 欄一致。為其他研究問題並列跨欄數字可以，但要寫明欄位不同。本文採用的來源沒有本站欄位說明，這是資料口徑檢查。"}},{"@type":"Question","name":"表上空白的格子能當 0 秒嗎？","acceptedAnswer":{"@type":"Answer","text":"規章（Issue 09）沒有把未設時間寫成零秒：Q2 或 Q3 有多於一位車手未設時間時另依分組排序，Q1 未設時間屬 unclassified。本站資料庫 q1 欄的 164 個缺值全是空字串。當成 0 秒，換算後會成為該欄最小值，所以本文把它排除、不補零。空格的原因，在本文採用的來源內查無。"}},{"@type":"Question","name":"差距的百分比怎麼算？","acceptedAnswer":{"@type":"Answer","text":"本文自定「較慢減較快，除以較快，再乘以 100」，不是 FIA 通用口徑。以本站資料庫 2025 澳洲站法拉利兩列的 q3 欄為例，差 0.218 秒，以較快者為分母是 0.2878%，以較慢者為分母是 0.2869%。規章的 107% 是另一件事：Issue 09 以 Q1 最快圈為母體，針對的是在 Q1 被淘汰、且 Q1 最佳圈超過 Q1 最快圈 107% 的車手，賽事總監宣布濕地時例外。"}},{"@type":"Question","name":"老年份的排位時間能一起比嗎？","acceptedAnswer":{"@type":"Answer","text":"本站資料庫 qualifying 表 1994–2004 每季 q2、q3 欄全空，2005 只有 q2 欄有值，2006 年 q2、q3 兩欄才都有值。本文採用的來源沒有這些欄位對應各年賽制的說明，所以這只是本站欄位可用性，不是賽制史，也不做跨年代的分節百分比榜。"}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +29,7 @@
   gtag('js', new Date());
   gtag('config', 'G-DN5FKJNCVQ');
 </script>
-<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
+<link rel="stylesheet" href="/assets/rc-4fe3d3a210.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>

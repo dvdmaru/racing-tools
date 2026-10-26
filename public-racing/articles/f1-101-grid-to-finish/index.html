@@ -11,6 +11,11 @@
 <meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-grid-to-finish/">
 <meta property="og:site_name" content="賽車數據誌">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://racing.twtools.cc/share/guide.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://racing.twtools.cc/share/guide.png">
 <link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-grid-to-finish/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-grid-to-finish/#article","headline":"賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀","description":"本站把 grid 顯示為發車位；把它減去同一列的 position，得到的是本站自訂的結果差，本文能查的資料源文件沒有定義它。單看這個數字，讀不出超了幾台，也讀不出配速。","datePublished":"2026-10-13","dateModified":"2026-10-13","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-grid-to-finish/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀","item":"https://racing.twtools.cc/articles/f1-101-grid-to-finish/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-grid-to-finish/#faq","mainEntity":[{"@type":"Question","name":"結果差是正數，就代表超了那麼多台車嗎？","acceptedAnswer":{"@type":"Answer","text":"這張表讀不出來。把同一列的 grid（本站顯示為發車位）減 position，得到的是本站自訂的結果差，本文能查的資料源文件沒有定義它。本站資料庫的 results 表，也沒有逐圈名次或超車事件欄位。2025 年墨西哥城這一場（20 列的 grid 與 position 都恰為 1 到 20），阿爾本的 +5 對應 5 台 grid 比他小、position 比他大的車，反方向是 0 台，其中 4 台狀態是 Retired。它們退賽前有沒有在場上被他超過，表上查不到。怎麼拆，見上面拆成台數的那一節。"}},{"@type":"Question","name":"position 欄有數字，就代表有名次嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。本站資料庫 2025 年賽季正賽 479 列裡，55 列的 position_text 是 R、D 或 W，position 欄照樣有整數。position_text 是數字、能寫「第 X 到第 Y」的是其餘 424 列，其中另有 5 列狀態是 Retired。要寫「第幾名」，先看 position_text，再看狀態與圈數。"}},{"@type":"Question","name":"同一列的 grid 與 position 相同，代表比賽中沒有換位嗎？","acceptedAnswer":{"@type":"Answer","text":"這張表看不出來。結果表每台車只有一列，沒有比賽中間的紀錄。2025 年墨西哥城這一場，20 列的 grid 與 position 都恰為 1 到 20。安東內利 grid 6、position 6，本站自訂的結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）是 0：grid 比他大、position 比他小的有 2 台，grid 比他小、position 比他大的也有 2 台。"}},{"@type":"Question","name":"不同場比賽的進步名次，可以直接比嗎？","acceptedAnswer":{"@type":"Answer","text":"先數那一場有幾列。本站資料庫 2025 年第 9 站賽果只有 19 列，其餘 23 站各 20 列。缺的是排位表裡有、賽果表沒有的斯托爾，原因在本文能查的資料裡查無。列數不同，本站自訂的結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）可能的範圍也不同。跨場比較前，先揭露各場的結果列數；本文不把列數不同場次的結果差，直接當成同一尺度。"}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +29,7 @@
   gtag('js', new Date());
   gtag('config', 'G-DN5FKJNCVQ');
 </script>
-<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
+<link rel="stylesheet" href="/assets/rc-4fe3d3a210.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>

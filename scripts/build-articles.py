@@ -99,6 +99,9 @@ INDEX_CSS = """
 .next-race .when { margin-left:auto; text-align:right; font-family: var(--font-mono); }
 .next-race .when b { color: var(--accent); font-size: 17px; }
 .next-race .when span { display:block; color: var(--dim); font-size: 11.5px; }
+.next-race .next-sub { flex-basis:100%; color: var(--accent); font-size: 13px; font-weight: 700; text-decoration:none;
+  border-top: 1px dashed var(--accent-line); padding-top: 10px; }
+.next-race .next-sub:hover, .next-race .next-sub:focus-visible { text-decoration: underline; }
 .podium-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
 .podium-card { border:1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--surface); }
 .podium-card .pos { font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-style: italic; font-weight: 700; }
@@ -331,13 +334,9 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
                           rc.breadcrumb_node([("首頁", f"{BASE}/"), ("文章", f"{BASE}/articles/"),
                                               (title, url)]),
                           rc.faq_node(faq, url)])
-    og_img = ""
-    if cover:
-        og_img = (f'<meta property="og:image" content="{cover}">\n'
-                  '<meta property="og:image:width" content="1200">\n'
-                  '<meta property="og:image:height" content="630">\n'
-                  '<meta name="twitter:card" content="summary_large_image">\n'
-                  f'<meta name="twitter:image" content="{cover}">\n')
+    # 分享圖：自己的封面 → 新手村卡（guide_nav 非空＝這篇在新手村裡）→ 全站卡。
+    # JSON-LD 的 image 仍只放自己的封面：通用卡不是這篇文章的圖。
+    og_img = rc.og_image_meta(cover or rc.share_card_url("guide" if guide_nav else "site"))
 
     return f"""<!DOCTYPE html>
 <html lang="zh-Hant" data-theme="{SITE['default_theme']}">
@@ -394,11 +393,12 @@ def _standings_mini(season=rc.SEASON):
     def rows_d():
         out = ""
         for s in ds["standings"]["DriverStandings"][:6]:
-            cons = s["Constructors"][-1]["name"] if s["Constructors"] else ""
+            cons_d = s["Constructors"][-1] if s["Constructors"] else {}
+            cons = cons_d.get("name", "")
             lead = ' class="lead"' if s["position"] == "1" else ""
             out += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                    f'<td class="l nm">{rc.driver_pair(s["Driver"])}</td>'
-                    f'<td class="l">{rc.team_pair(cons)}</td>'
+                    f'<td class="l nm">{rc.entity_link(rc.driver_pair(s["Driver"]), "drivers", s["Driver"].get("driverId", ""))}</td>'
+                    f'<td class="l">{rc.entity_link(rc.team_pair(cons), "constructors", cons_d.get("constructorId", ""))}</td>'
                     f'<td class="std-pts">{s["points"]}</td></tr>')
         return out
 
@@ -407,7 +407,7 @@ def _standings_mini(season=rc.SEASON):
         for s in cs["standings"]["ConstructorStandings"][:6]:
             lead = ' class="lead"' if s["position"] == "1" else ""
             out += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                    f'<td class="l nm">{rc.team_pair(s["Constructor"]["name"])}</td>'
+                    f'<td class="l nm">{rc.entity_link(rc.team_pair(s["Constructor"]["name"]), "constructors", s["Constructor"].get("constructorId", ""))}</td>'
                     f'<td class="std-pts">{s["points"]}</td></tr>')
         return out
 
@@ -438,7 +438,8 @@ def _next_race_chip(season=rc.SEASON, today=None):
             sprint = "（衝刺賽週末）" if "Sprint" in race else ""
             return (f'<div class="next-race"><div class="big">下一站　Rd{rnd} {rc.race_zh(race["raceName"])}{sprint}'
                     f'<span class="en">{html_lib.escape(race["raceName"])}</span></div>'
-                    f'<div class="when"><span>正賽 · 台北時間</span><b>{when}</b></div></div>')
+                    f'<div class="when"><span>正賽 · 台北時間</span><b>{when}</b></div>'
+                    '<a class="next-sub" href="/calendar/#subscribe">全季賽程加進手機行事曆 →</a></div>')
     return ""
 
 
@@ -455,8 +456,8 @@ def _latest_podium(season=rc.SEASON):
     cards = ""
     for res in rows:
         cards += (f'<div class="podium-card"><div class="pos">P{res["position"]}</div>'
-                  f'<div class="who">{rc.driver_pair(res["Driver"])}</div>'
-                  f'<div class="team">{rc.team_pair(res["Constructor"]["name"])}</div></div>')
+                  f'<div class="who">{rc.entity_link(rc.driver_pair(res["Driver"]), "drivers", res["Driver"].get("driverId", ""))}</div>'
+                  f'<div class="team">{rc.entity_link(rc.team_pair(res["Constructor"]["name"]), "constructors", res["Constructor"].get("constructorId", ""))}</div></div>')
     name = rc.race_zh((race or sprint)["raceName"])
     return (f'<div class="rc-sec"><h2>最新賽果 · 第 {rnd} 站{name}{label}</h2>'
             '<span class="ln"></span>'
@@ -556,8 +557,9 @@ def render_home(articles):
     jsonld = rc.graph_ld([rc.org_node(), rc.website_node(), collection,
                           rc.breadcrumb_node([("首頁", f"{BASE}/")]),
                           rc.faq_node(HOME_FAQ, f"{BASE}/")])
-    desc = ("F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，"
-            "台灣慣用譯名、每週自動更新，加上規則解析與深度專題。")
+    # 開頭不放「積分榜」：理由見 config/site.json 的 home_title 註解（首頁與 /standings/ 搶同一個字）。
+    desc = ("F1 台北時間賽曆、各站賽果與歷年百科——非官方繁體中文賽車數據站，"
+            "台灣慣用譯名、每週自動更新，另有新手村入門與規則解析專題。")
     body = f"""
   <section class="rc-hero">
     <h1>看懂 F1，<br>用台北時間。</h1>

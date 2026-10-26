@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<!-- 全站預設分享卡（2026-10-27）：沒有自己封面的頁（首頁、資料頁、百科頁）分享到 LINE／FB 時用這張。
+     只放不會過期的字：不寫站數、篇數、年份範圍以外的數字。IP 紅線：不用官方標誌、字型、車隊塗裝。 -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:2400px; height:1260px; color:#241a1c; font-family:'Noto Sans TC',sans-serif; overflow:hidden;
+  position:relative; background: radial-gradient(120% 80% at 80% -10%, #fbf3f3 0%, #f3e9e9 60%); }
+.grid { position:absolute; inset:0; opacity:.12;
+  background-image: linear-gradient(rgba(214,58,47,.30) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,58,47,.30) 1px, transparent 1px);
+  background-size: 120px 120px; }
+.stripe { position:absolute; right:-120px; top:0; bottom:0; width:520px; opacity:.9;
+  background: repeating-linear-gradient(-62deg, #d63a2f 0 14px, transparent 14px 34px); }
+.wrap { position:relative; padding:120px 560px 120px 140px; height:100%; display:flex; flex-direction:column; }
+.brand { font-family:'Chakra Petch'; font-style:italic; font-weight:700; font-size:52px; letter-spacing:8px; color:#d63a2f; }
+.tag { font-size:34px; letter-spacing:8px; color:#786a6e; margin-top:14px; }
+h1 { font-weight:900; font-size:150px; line-height:1.18; margin-top:90px; letter-spacing:4px; }
+h1 em { font-style:normal; color:#d63a2f; }
+.sub { font-size:50px; color:#493c40; margin-top:44px; letter-spacing:3px; }
+.foot { margin-top:auto; display:flex; justify-content:space-between; align-items:flex-end;
+  border-top:3px solid #241a1c; padding-top:30px; font-size:34px; color:#493c40; }
+.foot b { font-family:'Chakra Petch'; font-weight:700; letter-spacing:3px; color:#241a1c; font-size:40px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="stripe"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌</div>
+  <h1>看懂 F1，<br>用<em>台北時間</em>。</h1>
+  <div class="sub">台北時間賽曆・各站賽果・積分榜・歷年百科</div>
+  <div class="foot"><b>racing.twtools.cc</b><span>非官方繁體中文 F1 資料站・每週自動更新</span></div>
+</div>
+</body>
+</html>

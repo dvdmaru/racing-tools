@@ -8,8 +8,10 @@ sprint 週末加跑六、日＋workflow_dispatch 手動。非賽週跑了沒新�
 
 跑序鐵則（sitemap manifest 化，M0 後）：
   1. fetch_racing all：積分榜+賽曆+賽果快照（exit 3 = 無新資料 → 安靜跳過，除非 --force；exit 4 = 積分對帳不一致 → 禁止部署）
-  2. build-articles：文章+首頁 dashboard+寫 sitemap part（articles）
-  3. 各 gen-*：standings / calendar / results，各自寫自己的 sitemap part
+  2. 百科段：當季橋接＋選擇性重生，寫 seasons/drivers/constructors/circuits part
+     （2026-10-27 起排在 build-articles 之前——後面兩步都讀這些 part，理由見 main()）
+  3. build-articles：文章+首頁 dashboard+llms.txt+寫 sitemap part（articles）
+  3a. 各 gen-*：standings / calendar / results，各自寫自己的 sitemap part
   3b. build-sitemap：合併全部 part → public-racing/sitemap.xml
   4.（可選）wrangler deploy；成功後 IndexNow ping 本次變動頁
 
@@ -241,18 +243,23 @@ def main():
         print("\n😴 無新資料（非賽週或賽果未出）→ 安靜跳過，不重建不部署")
         return
 
-    # 2. build-articles（文章+首頁+整個覆寫 sitemap）——必須在各 gen-* 之前
+    # 2. 百科段（published gate）——**必須排在 build-articles 與三個 gen-* 之前**。
+    # ☠️ 2026-10-27 前它排在最後，於是 build-articles 讀到的 data/sitemap-parts/*.txt 永遠是
+    # 「上一站」的：新一站的分站頁還沒生成，文章的分站自動互鏈就連不上、llms.txt 少一站
+    # （PR #128 實測：四篇文章缺 R18 互鏈、llms 賽季索引 420 而非 421）。
+    # 反向沒有依賴：百科頁的「相關報導」讀的是 articles/ 原始 markdown，不是 build-articles 的產物。
+    # 週更三頁的車手／車隊連結（racinglib.entity_href）同樣讀 drivers／constructors part，也要在後。
+    # published:false＝整段跳過，sitemap 與改動前一致。百科層失敗自我隔離（不進 FAILED），
+    # 絕不拖垮週更三頁的 fail-fast 部署——失敗時後面讀到的是上一版 part，過期但自洽。
+    encyclopedia_step(full=args.full)
+
+    # 3. build-articles（文章＋首頁＋llms.txt＋articles sitemap part）
     run(script("build-articles.py"), "build-articles (home + sitemap)")
 
-    # 3. 各 generator 寫自己的 sitemap part
+    # 3a. 各 generator 寫自己的 sitemap part
     run(script("gen-racing-standings.py", "--season", s), "gen standings")
     run(script("gen-racing-calendar.py", "--season", s), "gen calendar")
     run(script("gen-racing-results.py", "--season", s), "gen results")
-
-    # 3c. 百科段（dormant；published gate）——在 build-sitemap 之前，好讓 published 時的
-    # seasons/drivers sitemap part 一併被合併。published:false＝整段跳過，sitemap 與改動前一致。
-    # 百科層失敗自我隔離（不進 FAILED），絕不拖垮週更三頁的 fail-fast 部署。
-    encyclopedia_step(full=args.full)
 
     # 3b. 合併全部 sitemap part → public-racing/sitemap.xml（三個 gen-* 之後、hard gate 之前）
     run(script("build-sitemap.py"), "build sitemap")

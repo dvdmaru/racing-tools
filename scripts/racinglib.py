@@ -213,6 +213,10 @@ THEME_SWITCH_CSS = """
   .theme-switch { padding: 5px 9px; gap: 7px; }
   .ts-label { display: none; }
   .ts-dot { width: 16px; height: 16px; }
+  /* 手機點擊範圍（2026-10-27 手機模擬實量 16×16）：外觀不變，用透明外框把可點範圍撐到 22px；
+     只撐到不與相鄰圓點重疊（gap 6～7px），避免點 A 變成切到 B。 */
+  .ts-dot { position: relative; }
+  .ts-dot::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; }
 }
 """
 
@@ -354,6 +358,8 @@ SITE_HEADER_CSS = """
     order: 3; display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
     font-family: var(--font-ui); font-size: 13px; letter-spacing: 1px; color: var(--dim);
     background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px 6px 10px;
+    /* 手機上唯一的導覽入口，實量只有 34×18；撐到 40×40 以上（2026-10-27） */
+    min-height: 40px; min-width: 44px; justify-content: center;
   }
   .nav-toggle .nt-icon { width: 14px; height: 2px; background: currentColor; border-radius: 2px;
     box-shadow: 0 -4.5px 0 currentColor, 0 4.5px 0 currentColor; }
@@ -382,6 +388,10 @@ SITE_HEADER_CSS = """
 .foot-links { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center; font-size: 13px; }
 .foot-links a { color: var(--dim); text-decoration: none; }
 .foot-links a:hover { color: var(--accent); }
+@media (max-width: 719px) {
+  .foot-links { gap: 2px 14px; }
+  .foot-links a { display: inline-block; padding: 8px 4px; }
+}
 """
 
 # 非官方聲明（全 surface footer）——商標紅線三層防護之一（另兩層：域名避 f1 字樣、零官方素材）
@@ -757,6 +767,30 @@ def constructor_slug(constructor_id: str) -> str:
     return slugs[constructor_id]
 
 
+# ---------- 週更資料頁 → 百科實體頁互鏈（2026-10-27） ----------
+# 積分榜是全站曝光最大的頁，卻一條實體連結都沒有（GSC 90 天 15,301 次曝光、每次造訪 1.5 頁）；
+# 車手實體頁反而是續看最好的頁型。這裡補的是「表格裡的名字點得進去」。
+# 「有頁才連」的判定讀百科生成器落地的 sitemap part——它就是那些頁實際被生成的清單
+# （同 build-articles.py 讀 part 的理由：part 進 git，不需要 db.sqlite）。
+# 不讀 slugs.json 的註冊就直接連：slug 已註冊≠頁面已生成（slugs 是 append-only 註冊表）。
+
+def entity_href(kind: str, entity_id: str) -> str:
+    """kind＝drivers／constructors。百科已公開、slug 已註冊、且頁面在 sitemap part 裡 → 根相對 URL；否則空字串。"""
+    if kind not in ("drivers", "constructors") or not ENCYCLOPEDIA_PUBLISHED or not entity_id:
+        return ""
+    slug = _SLUGS.get(kind, {}).get(entity_id)
+    if not slug:
+        return ""
+    path = f"/{kind}/{slug}/"
+    return path if f"{BASE}{path}" in read_sitemap_part(kind) else ""
+
+
+def entity_link(inner_html: str, kind: str, entity_id: str) -> str:
+    """有實體頁就包一層 <a class="ent">；沒有就原樣回傳（禁死連結）。"""
+    href = entity_href(kind, entity_id)
+    return f'<a class="ent" href="{href}">{inner_html}</a>' if href else inner_html
+
+
 def driver_zh(driver: dict) -> str:
     """Ergast Driver dict → 繁中譯名（familyName 為主）；查無對照回原文姓氏。"""
     did = driver.get("driverId", "")
@@ -866,6 +900,10 @@ DATA_CSS = """
 /* 中英對照的原文附註（人名/車隊/賽道/站名共用；窄螢幕改成獨立一行避免撐爆表格） */
 .zh-en { color: var(--faint); font-size: 12px; font-weight: 500; font-family: var(--font-ui); }
 @media (max-width: 640px) { .zh-en { display:block; margin-left:0; font-size:11px; } }
+/* 資料頁表格裡的車手／車隊名 → 百科實體頁。手機沒有 hover，所以常駐一條淡底線讓人知道點得進去。 */
+a.ent { color: inherit; text-decoration: underline; text-decoration-color: var(--line);
+  text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a.ent:hover, a.ent:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
 .std-table td.rk { color:var(--dim); font-family:var(--font-mono); font-style:italic; font-weight:700; font-size:13px;
   font-variant-numeric: tabular-nums; }
 .std-table tbody tr { transition: background .12s ease; }
@@ -1098,16 +1136,33 @@ def faq_html(pairs) -> str:
     return f'<h2 class="sec-h">常見問題</h2><section class="pg-faq">{qa}</section>'
 
 
+# ---------- 通用分享卡（2026-10-27） ----------
+# 沒有自己封面的頁，分享到 LINE／FB 時原本沒有任何預覽圖（新手村 70 篇、首頁、所有資料頁）。
+# 兩張卡由 `render-covers.py --share` 從 design/covers/share-*.html 產出，檔案存在才掛
+# （測試把 PUB 換成暫存目錄時自然不掛，不會指向不存在的圖）。
+SHARE_CARDS = {"site": "share/site.png", "guide": "share/guide.png"}
+
+
+def share_card_url(kind: str = "site") -> str:
+    rel = SHARE_CARDS[kind]
+    return f"{BASE}/{rel}" if (PUB / rel).exists() else ""
+
+
+def og_image_meta(og_image: str) -> str:
+    """og:image＋Twitter large card 的 meta 區塊；空字串＝不輸出。頁殼與文章頁共用這一份。"""
+    if not og_image:
+        return ""
+    return (f'<meta property="og:image" content="{og_image}">\n'
+            '<meta property="og:image:width" content="1200">\n'
+            '<meta property="og:image:height" content="630">\n'
+            '<meta name="twitter:card" content="summary_large_image">\n'
+            f'<meta name="twitter:image" content="{og_image}">\n')
+
+
 def page_shell(title: str, desc: str, canonical: str, jsonld: str, body: str,
                active: str, extra_css: str = "", og_image: str = "") -> str:
     """資料頁/列表頁共用外殼（文章頁另有 render；共用 tokens/header/footer/theme）。"""
-    og_img = ""
-    if og_image:
-        og_img = (f'<meta property="og:image" content="{og_image}">\n'
-                  '<meta property="og:image:width" content="1200">\n'
-                  '<meta property="og:image:height" content="630">\n'
-                  '<meta name="twitter:card" content="summary_large_image">\n'
-                  f'<meta name="twitter:image" content="{og_image}">\n')
+    og_img = og_image_meta(og_image or share_card_url("site"))
     return f"""<!DOCTYPE html>
 <html lang="zh-Hant" data-theme="{SITE['default_theme']}">
 <head>

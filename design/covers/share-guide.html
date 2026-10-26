@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<!-- 新手村分享卡（2026-10-27）：新手村文章沒有各自的封面，分享到 LINE／FB 時用這張。
+     五個層級名照 config/guide.json 的 levels 逐字；層級增減時要回來改這張並重產。 -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:2400px; height:1260px; color:#241a1c; font-family:'Noto Sans TC',sans-serif; overflow:hidden;
+  position:relative; background: radial-gradient(120% 80% at 80% -10%, #fbf3f3 0%, #f3e9e9 60%); }
+.grid { position:absolute; inset:0; opacity:.12;
+  background-image: linear-gradient(rgba(214,58,47,.30) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,58,47,.30) 1px, transparent 1px);
+  background-size: 120px 120px; }
+.wrap { position:relative; padding:120px 140px; height:100%; display:flex; flex-direction:column; }
+.brand { font-family:'Chakra Petch'; font-style:italic; font-weight:700; font-size:52px; letter-spacing:8px; color:#d63a2f; }
+.tag { font-size:34px; letter-spacing:8px; color:#786a6e; margin-top:14px; }
+.kicker { margin-top:80px; font-size:56px; font-weight:700; color:#d63a2f; letter-spacing:6px; }
+h1 { font-weight:900; font-size:150px; line-height:1.18; margin-top:18px; letter-spacing:4px; }
+.levels { display:flex; gap:26px; margin-top:56px; }
+.levels span { border:4px solid #241a1c; border-radius:999px; padding:14px 40px; font-size:46px; font-weight:700; }
+.foot { margin-top:auto; display:flex; justify-content:space-between; align-items:flex-end;
+  border-top:3px solid #241a1c; padding-top:30px; font-size:34px; color:#493c40; }
+.foot b { font-family:'Chakra Petch'; font-weight:700; letter-spacing:3px; color:#241a1c; font-size:40px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <div class="tag">賽車數據誌</div>
+  <div class="kicker">F1 新手村</div>
+  <h1>從零開始看懂 F1</h1>
+  <div class="levels"><span>看懂比賽</span><span>看懂賽車</span><span>看懂策略</span><span>看懂數據</span><span>看懂車隊</span></div>
+  <div class="foot"><b>racing.twtools.cc</b><span>循序入門・規則對照官方規章原文</span></div>
+</div>
+</body>
+</html>

@@ -11,6 +11,11 @@
 <meta property="og:url" content="https://racing.twtools.cc/articles/f1-101-ers-shutdown/">
 <meta property="og:site_name" content="賽車數據誌">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://racing.twtools.cc/share/guide.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://racing.twtools.cc/share/guide.png">
 <link rel="canonical" href="https://racing.twtools.cc/articles/f1-101-ers-shutdown/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://racing.twtools.cc/#org","name":"賽車數據誌","url":"https://racing.twtools.cc/"},{"@type":"WebSite","@id":"https://racing.twtools.cc/#website","name":"賽車數據誌","url":"https://racing.twtools.cc/","inLanguage":"zh-Hant","publisher":{"@id":"https://racing.twtools.cc/#org"},"description":"F1 積分榜、台北時間賽曆、各站賽果——非官方繁體中文賽車數據站，台灣慣用譯名、每週自動更新。"},{"@type":"Article","@id":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/#article","headline":"F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘","description":"規章要求高壓系統有三個關閉入口，關閉程序不得超過 2 秒；但「關閉完成」的定義很窄，關閉之後還有東西刻意保持通電。本文只讀規章對設計的要求，不是實測。","datePublished":"2026-09-30","dateModified":"2026-09-30","inLanguage":"zh-Hant","mainEntityOfPage":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/","author":{"@type":"Organization","name":"賽車數據誌"},"publisher":{"@id":"https://racing.twtools.cc/#org"},"isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://racing.twtools.cc/"},{"@type":"ListItem","position":2,"name":"文章","item":"https://racing.twtools.cc/articles/"},{"@type":"ListItem","position":3,"name":"F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘","item":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/"}]},{"@type":"FAQPage","@id":"https://racing.twtools.cc/articles/f1-101-ers-shutdown/#faq","mainEntity":[{"@type":"Question","name":"撞車之後，F1 賽車的高壓系統會自動關掉嗎？","acceptedAnswer":{"@type":"Answer","text":"規章沒有把撞擊寫成 ERS 關閉的觸發。規章要求的關閉手段是車手主開關（C8.7.1）、車外把手（C8.7.2）與 CDS 按鈕（C9.3）。FIA 標準 ECU 啟動熄火防止停機時，ERS 也必須關閉（C5.17.2）。撞擊警示燈（C8.13）回報事故嚴重程度，不是關閉高壓的機制。"}},{"@type":"Question","name":"ERS 關閉之後，車上就完全沒電了嗎？","acceptedAnswer":{"@type":"Answer","text":"規章沒有這樣寫。「關閉完成」只指 CU-K 側的高壓直流母線、CU-K 的電容與 RV-PU-ERS 之外三處沒有高壓（C5.17.1）。兩顆狀態燈在關閉程序開始後，至少還要供電 15 分鐘（C5.17.3）。電池組由接觸器與 CU-K 隔開（C5.20.5）。"}},{"@type":"Question","name":"規章有寫狀態燈的顏色代表什麼嗎？","acceptedAnswer":{"@type":"Answer","text":"2026 年 Section C，Issue 20 沒有。條文只寫燈要依 FIA-F1-DOC-043 安裝，旁邊要有「HIGH VOLTAGE」符號（C5.17.3）。DOC-043 這次沒有取得，所以燈號的意思查無。"}},{"@type":"Question","name":"2 秒與 15 分鐘，是實際救援所用的時間嗎？","acceptedAnswer":{"@type":"Answer","text":"不是。2 秒是關閉程序的時限上限（C5.17.1），15 分鐘是三種「保持通電或脫開」的最短要求（C9.3、C5.17.3、C5.17.5）。它們都是規章對設計的要求。撞擊之後現場救援的官方流程與時間軸，已查的官方文字裡找不到。"}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +29,7 @@
   gtag('js', new Date());
   gtag('config', 'G-DN5FKJNCVQ');
 </script>
-<link rel="stylesheet" href="/assets/rc-87acaa67d7.css">
+<link rel="stylesheet" href="/assets/rc-4fe3d3a210.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
