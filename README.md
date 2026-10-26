@@ -44,9 +44,13 @@ python3 scripts/gen-racing-results.py       # /results/
 
 sitemap 已改為 manifest 合併（M0）：每支生成器只寫自己的 `data/sitemap-parts/<owner>.txt`，
 最後由 `python3 scripts/build-sitemap.py` 合併成 `public-racing/sitemap.xml`。
-所以**跑序不再是鐵則**，但 `build-sitemap.py` 一定要在所有生成器之後跑一次——
-只跑 `build-articles.py` 不會更新 `sitemap.xml`。
+`build-sitemap.py` 一定要在所有生成器之後跑一次——只跑 `build-articles.py` 不會更新 `sitemap.xml`。
 （舊版 README 寫的「build-articles 先跑並覆寫 sitemap」已不符現況，2026-07-30 更正。）
+
+⚠️ **但有一條跑序仍是鐵則（2026-10-27）**：百科段（`refresh-f1-current.py`＋`regen-encyclopedia.py`）
+必須在 `build-articles.py` 與三個 `gen-racing-*` **之前**。後兩者讀百科落地的 sitemap part 決定
+「有頁才連」（文章的分站／車手互鏈、llms.txt 的百科索引、資料頁表格的車手／車隊連結）；
+順序反了，新一站的頁就要等下一週才連得上。`update-racing.py` 已照這個順序跑。
 
 需 Python `markdown`、Node/`npx wrangler`、headless Chrome（封面用）。
 

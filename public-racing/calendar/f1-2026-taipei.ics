@@ -1,0 +1,1507 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//racing.twtools.cc//F1 calendar//ZH-TW
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:F1 2026 賽程（賽車數據誌）
+X-WR-TIMEZONE:Asia/Taipei
+X-WR-CALDESC:F1 2026 全季練習、排位、衝刺賽與正賽時刻。非
+ 官方整理，改期以主辦方公告為準。
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:2026-r01-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260306T013000Z
+DTEND:20260306T023000Z
+SUMMARY:F1 澳洲站｜練習一
+LOCATION:亞伯特公園賽道（墨爾本）
+DESCRIPTION:第 1 站澳洲站・練習一。台北時間 3/6（五）09:30
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r01-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260306T050000Z
+DTEND:20260306T060000Z
+SUMMARY:F1 澳洲站｜練習二
+LOCATION:亞伯特公園賽道（墨爾本）
+DESCRIPTION:第 1 站澳洲站・練習二。台北時間 3/6（五）13:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r01-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260307T013000Z
+DTEND:20260307T023000Z
+SUMMARY:F1 澳洲站｜練習三
+LOCATION:亞伯特公園賽道（墨爾本）
+DESCRIPTION:第 1 站澳洲站・練習三。台北時間 3/7（六）09:30
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r01-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260307T050000Z
+DTEND:20260307T060000Z
+SUMMARY:F1 澳洲站｜排位賽
+LOCATION:亞伯特公園賽道（墨爾本）
+DESCRIPTION:第 1 站澳洲站・排位賽。台北時間 3/7（六）13:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r01-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260308T040000Z
+DTEND:20260308T060000Z
+SUMMARY:F1 澳洲站｜正賽
+LOCATION:亞伯特公園賽道（墨爾本）
+DESCRIPTION:第 1 站澳洲站・正賽。台北時間 3/8（日）12:00。
+ 結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/cal
+ endar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r02-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260313T033000Z
+DTEND:20260313T043000Z
+SUMMARY:F1 中國站｜練習一
+LOCATION:上海國際賽車場
+DESCRIPTION:第 2 站中國站・練習一。台北時間 3/13（五）11:3
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r02-sprintqualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260313T073000Z
+DTEND:20260313T081500Z
+SUMMARY:F1 中國站｜衝刺排位
+LOCATION:上海國際賽車場
+DESCRIPTION:第 2 站中國站・衝刺排位。台北時間 3/13（五）1
+ 5:30。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r02-sprint@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260314T030000Z
+DTEND:20260314T040000Z
+SUMMARY:F1 中國站｜衝刺賽
+LOCATION:上海國際賽車場
+DESCRIPTION:第 2 站中國站・衝刺賽。台北時間 3/14（六）11:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r02-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260314T070000Z
+DTEND:20260314T080000Z
+SUMMARY:F1 中國站｜排位賽
+LOCATION:上海國際賽車場
+DESCRIPTION:第 2 站中國站・排位賽。台北時間 3/14（六）15:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r02-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260315T070000Z
+DTEND:20260315T090000Z
+SUMMARY:F1 中國站｜正賽
+LOCATION:上海國際賽車場
+DESCRIPTION:第 2 站中國站・正賽。台北時間 3/15（日）15:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r03-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260327T023000Z
+DTEND:20260327T033000Z
+SUMMARY:F1 日本站｜練習一
+LOCATION:鈴鹿賽道
+DESCRIPTION:第 3 站日本站・練習一。台北時間 3/27（五）10:3
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r03-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260327T060000Z
+DTEND:20260327T070000Z
+SUMMARY:F1 日本站｜練習二
+LOCATION:鈴鹿賽道
+DESCRIPTION:第 3 站日本站・練習二。台北時間 3/27（五）14:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r03-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260328T023000Z
+DTEND:20260328T033000Z
+SUMMARY:F1 日本站｜練習三
+LOCATION:鈴鹿賽道
+DESCRIPTION:第 3 站日本站・練習三。台北時間 3/28（六）10:3
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r03-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260328T060000Z
+DTEND:20260328T070000Z
+SUMMARY:F1 日本站｜排位賽
+LOCATION:鈴鹿賽道
+DESCRIPTION:第 3 站日本站・排位賽。台北時間 3/28（六）14:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r03-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260329T050000Z
+DTEND:20260329T070000Z
+SUMMARY:F1 日本站｜正賽
+LOCATION:鈴鹿賽道
+DESCRIPTION:第 3 站日本站・正賽。台北時間 3/29（日）13:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r04-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260501T160000Z
+DTEND:20260501T170000Z
+SUMMARY:F1 邁阿密站｜練習一
+LOCATION:邁阿密國際賽道
+DESCRIPTION:第 4 站邁阿密站・練習一。台北時間 5/2（六）00
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r04-sprintqualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260501T203000Z
+DTEND:20260501T211500Z
+SUMMARY:F1 邁阿密站｜衝刺排位
+LOCATION:邁阿密國際賽道
+DESCRIPTION:第 4 站邁阿密站・衝刺排位。台北時間 5/2（六
+ ）04:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r04-sprint@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260502T160000Z
+DTEND:20260502T170000Z
+SUMMARY:F1 邁阿密站｜衝刺賽
+LOCATION:邁阿密國際賽道
+DESCRIPTION:第 4 站邁阿密站・衝刺賽。台北時間 5/3（日）00
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r04-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260502T200000Z
+DTEND:20260502T210000Z
+SUMMARY:F1 邁阿密站｜排位賽
+LOCATION:邁阿密國際賽道
+DESCRIPTION:第 4 站邁阿密站・排位賽。台北時間 5/3（日）04
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r04-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260503T200000Z
+DTEND:20260503T220000Z
+SUMMARY:F1 邁阿密站｜正賽
+LOCATION:邁阿密國際賽道
+DESCRIPTION:第 4 站邁阿密站・正賽。台北時間 5/4（一）04:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r05-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260522T163000Z
+DTEND:20260522T173000Z
+SUMMARY:F1 加拿大站｜練習一
+LOCATION:維倫紐夫賽道（蒙特婁）
+DESCRIPTION:第 5 站加拿大站・練習一。台北時間 5/23（六）0
+ 0:30。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r05-sprintqualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260522T203000Z
+DTEND:20260522T211500Z
+SUMMARY:F1 加拿大站｜衝刺排位
+LOCATION:維倫紐夫賽道（蒙特婁）
+DESCRIPTION:第 5 站加拿大站・衝刺排位。台北時間 5/23（六
+ ）04:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r05-sprint@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260523T160000Z
+DTEND:20260523T170000Z
+SUMMARY:F1 加拿大站｜衝刺賽
+LOCATION:維倫紐夫賽道（蒙特婁）
+DESCRIPTION:第 5 站加拿大站・衝刺賽。台北時間 5/24（日）0
+ 0:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r05-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260523T200000Z
+DTEND:20260523T210000Z
+SUMMARY:F1 加拿大站｜排位賽
+LOCATION:維倫紐夫賽道（蒙特婁）
+DESCRIPTION:第 5 站加拿大站・排位賽。台北時間 5/24（日）0
+ 4:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r05-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260524T200000Z
+DTEND:20260524T220000Z
+SUMMARY:F1 加拿大站｜正賽
+LOCATION:維倫紐夫賽道（蒙特婁）
+DESCRIPTION:第 5 站加拿大站・正賽。台北時間 5/25（一）04:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r06-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260605T113000Z
+DTEND:20260605T123000Z
+SUMMARY:F1 摩納哥站｜練習一
+LOCATION:摩納哥街道賽道
+DESCRIPTION:第 6 站摩納哥站・練習一。台北時間 6/5（五）19
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r06-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260605T150000Z
+DTEND:20260605T160000Z
+SUMMARY:F1 摩納哥站｜練習二
+LOCATION:摩納哥街道賽道
+DESCRIPTION:第 6 站摩納哥站・練習二。台北時間 6/5（五）23
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r06-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260606T103000Z
+DTEND:20260606T113000Z
+SUMMARY:F1 摩納哥站｜練習三
+LOCATION:摩納哥街道賽道
+DESCRIPTION:第 6 站摩納哥站・練習三。台北時間 6/6（六）18
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r06-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260606T140000Z
+DTEND:20260606T150000Z
+SUMMARY:F1 摩納哥站｜排位賽
+LOCATION:摩納哥街道賽道
+DESCRIPTION:第 6 站摩納哥站・排位賽。台北時間 6/6（六）22
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r06-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260607T130000Z
+DTEND:20260607T150000Z
+SUMMARY:F1 摩納哥站｜正賽
+LOCATION:摩納哥街道賽道
+DESCRIPTION:第 6 站摩納哥站・正賽。台北時間 6/7（日）21:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r07-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260612T113000Z
+DTEND:20260612T123000Z
+SUMMARY:F1 巴塞隆納站｜練習一
+LOCATION:加泰隆尼亞賽道（巴塞隆納）
+DESCRIPTION:第 7 站巴塞隆納站・練習一。台北時間 6/12（五
+ ）19:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r07-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260612T150000Z
+DTEND:20260612T160000Z
+SUMMARY:F1 巴塞隆納站｜練習二
+LOCATION:加泰隆尼亞賽道（巴塞隆納）
+DESCRIPTION:第 7 站巴塞隆納站・練習二。台北時間 6/12（五
+ ）23:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r07-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260613T103000Z
+DTEND:20260613T113000Z
+SUMMARY:F1 巴塞隆納站｜練習三
+LOCATION:加泰隆尼亞賽道（巴塞隆納）
+DESCRIPTION:第 7 站巴塞隆納站・練習三。台北時間 6/13（六
+ ）18:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r07-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260613T140000Z
+DTEND:20260613T150000Z
+SUMMARY:F1 巴塞隆納站｜排位賽
+LOCATION:加泰隆尼亞賽道（巴塞隆納）
+DESCRIPTION:第 7 站巴塞隆納站・排位賽。台北時間 6/13（六
+ ）22:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r07-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260614T130000Z
+DTEND:20260614T150000Z
+SUMMARY:F1 巴塞隆納站｜正賽
+LOCATION:加泰隆尼亞賽道（巴塞隆納）
+DESCRIPTION:第 7 站巴塞隆納站・正賽。台北時間 6/14（日）2
+ 1:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r08-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260626T113000Z
+DTEND:20260626T123000Z
+SUMMARY:F1 奧地利站｜練習一
+LOCATION:紅牛環（史匹爾柏格）
+DESCRIPTION:第 8 站奧地利站・練習一。台北時間 6/26（五）1
+ 9:30。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r08-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260626T150000Z
+DTEND:20260626T160000Z
+SUMMARY:F1 奧地利站｜練習二
+LOCATION:紅牛環（史匹爾柏格）
+DESCRIPTION:第 8 站奧地利站・練習二。台北時間 6/26（五）2
+ 3:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r08-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260627T103000Z
+DTEND:20260627T113000Z
+SUMMARY:F1 奧地利站｜練習三
+LOCATION:紅牛環（史匹爾柏格）
+DESCRIPTION:第 8 站奧地利站・練習三。台北時間 6/27（六）1
+ 8:30。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r08-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260627T140000Z
+DTEND:20260627T150000Z
+SUMMARY:F1 奧地利站｜排位賽
+LOCATION:紅牛環（史匹爾柏格）
+DESCRIPTION:第 8 站奧地利站・排位賽。台北時間 6/27（六）2
+ 2:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r08-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260628T130000Z
+DTEND:20260628T150000Z
+SUMMARY:F1 奧地利站｜正賽
+LOCATION:紅牛環（史匹爾柏格）
+DESCRIPTION:第 8 站奧地利站・正賽。台北時間 6/28（日）21:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r09-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260703T113000Z
+DTEND:20260703T123000Z
+SUMMARY:F1 英國站｜練習一
+LOCATION:銀石賽道
+DESCRIPTION:第 9 站英國站・練習一。台北時間 7/3（五）19:30
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r09-sprintqualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260703T153000Z
+DTEND:20260703T161500Z
+SUMMARY:F1 英國站｜衝刺排位
+LOCATION:銀石賽道
+DESCRIPTION:第 9 站英國站・衝刺排位。台北時間 7/3（五）23
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r09-sprint@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260704T110000Z
+DTEND:20260704T120000Z
+SUMMARY:F1 英國站｜衝刺賽
+LOCATION:銀石賽道
+DESCRIPTION:第 9 站英國站・衝刺賽。台北時間 7/4（六）19:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r09-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260704T150000Z
+DTEND:20260704T160000Z
+SUMMARY:F1 英國站｜排位賽
+LOCATION:銀石賽道
+DESCRIPTION:第 9 站英國站・排位賽。台北時間 7/4（六）23:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r09-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260705T140000Z
+DTEND:20260705T160000Z
+SUMMARY:F1 英國站｜正賽
+LOCATION:銀石賽道
+DESCRIPTION:第 9 站英國站・正賽。台北時間 7/5（日）22:00。
+ 結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/cal
+ endar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r10-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260717T113000Z
+DTEND:20260717T123000Z
+SUMMARY:F1 比利時站｜練習一
+LOCATION:斯帕賽道（Spa-Francorchamps）
+DESCRIPTION:第 10 站比利時站・練習一。台北時間 7/17（五）
+ 19:30。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r10-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260717T150000Z
+DTEND:20260717T160000Z
+SUMMARY:F1 比利時站｜練習二
+LOCATION:斯帕賽道（Spa-Francorchamps）
+DESCRIPTION:第 10 站比利時站・練習二。台北時間 7/17（五）
+ 23:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r10-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260718T103000Z
+DTEND:20260718T113000Z
+SUMMARY:F1 比利時站｜練習三
+LOCATION:斯帕賽道（Spa-Francorchamps）
+DESCRIPTION:第 10 站比利時站・練習三。台北時間 7/18（六）
+ 18:30。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r10-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260718T140000Z
+DTEND:20260718T150000Z
+SUMMARY:F1 比利時站｜排位賽
+LOCATION:斯帕賽道（Spa-Francorchamps）
+DESCRIPTION:第 10 站比利時站・排位賽。台北時間 7/18（六）
+ 22:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r10-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260719T130000Z
+DTEND:20260719T150000Z
+SUMMARY:F1 比利時站｜正賽
+LOCATION:斯帕賽道（Spa-Francorchamps）
+DESCRIPTION:第 10 站比利時站・正賽。台北時間 7/19（日）21:
+ 00。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r11-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260724T113000Z
+DTEND:20260724T123000Z
+SUMMARY:F1 匈牙利站｜練習一
+LOCATION:匈牙利賽道（Hungaroring）
+DESCRIPTION:第 11 站匈牙利站・練習一。台北時間 7/24（五）
+ 19:30。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r11-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260724T150000Z
+DTEND:20260724T160000Z
+SUMMARY:F1 匈牙利站｜練習二
+LOCATION:匈牙利賽道（Hungaroring）
+DESCRIPTION:第 11 站匈牙利站・練習二。台北時間 7/24（五）
+ 23:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r11-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260725T103000Z
+DTEND:20260725T113000Z
+SUMMARY:F1 匈牙利站｜練習三
+LOCATION:匈牙利賽道（Hungaroring）
+DESCRIPTION:第 11 站匈牙利站・練習三。台北時間 7/25（六）
+ 18:30。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r11-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260725T140000Z
+DTEND:20260725T150000Z
+SUMMARY:F1 匈牙利站｜排位賽
+LOCATION:匈牙利賽道（Hungaroring）
+DESCRIPTION:第 11 站匈牙利站・排位賽。台北時間 7/25（六）
+ 22:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r11-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260726T130000Z
+DTEND:20260726T150000Z
+SUMMARY:F1 匈牙利站｜正賽
+LOCATION:匈牙利賽道（Hungaroring）
+DESCRIPTION:第 11 站匈牙利站・正賽。台北時間 7/26（日）21:
+ 00。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r12-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260821T103000Z
+DTEND:20260821T113000Z
+SUMMARY:F1 荷蘭站｜練習一
+LOCATION:贊德沃特賽道
+DESCRIPTION:第 12 站荷蘭站・練習一。台北時間 8/21（五）18:
+ 30。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r12-sprintqualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260821T143000Z
+DTEND:20260821T151500Z
+SUMMARY:F1 荷蘭站｜衝刺排位
+LOCATION:贊德沃特賽道
+DESCRIPTION:第 12 站荷蘭站・衝刺排位。台北時間 8/21（五）
+ 22:30。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r12-sprint@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260822T100000Z
+DTEND:20260822T110000Z
+SUMMARY:F1 荷蘭站｜衝刺賽
+LOCATION:贊德沃特賽道
+DESCRIPTION:第 12 站荷蘭站・衝刺賽。台北時間 8/22（六）18:
+ 00。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r12-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260822T140000Z
+DTEND:20260822T150000Z
+SUMMARY:F1 荷蘭站｜排位賽
+LOCATION:贊德沃特賽道
+DESCRIPTION:第 12 站荷蘭站・排位賽。台北時間 8/22（六）22:
+ 00。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r12-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260823T130000Z
+DTEND:20260823T150000Z
+SUMMARY:F1 荷蘭站｜正賽
+LOCATION:贊德沃特賽道
+DESCRIPTION:第 12 站荷蘭站・正賽。台北時間 8/23（日）21:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r13-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260904T103000Z
+DTEND:20260904T113000Z
+SUMMARY:F1 義大利站｜練習一
+LOCATION:蒙札賽道
+DESCRIPTION:第 13 站義大利站・練習一。台北時間 9/4（五）1
+ 8:30。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r13-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260904T140000Z
+DTEND:20260904T150000Z
+SUMMARY:F1 義大利站｜練習二
+LOCATION:蒙札賽道
+DESCRIPTION:第 13 站義大利站・練習二。台北時間 9/4（五）2
+ 2:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r13-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260905T103000Z
+DTEND:20260905T113000Z
+SUMMARY:F1 義大利站｜練習三
+LOCATION:蒙札賽道
+DESCRIPTION:第 13 站義大利站・練習三。台北時間 9/5（六）1
+ 8:30。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r13-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260905T140000Z
+DTEND:20260905T150000Z
+SUMMARY:F1 義大利站｜排位賽
+LOCATION:蒙札賽道
+DESCRIPTION:第 13 站義大利站・排位賽。台北時間 9/5（六）2
+ 2:00。結束時間為估計值。賽曆與賽果：https://racing.twtools
+ .cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r13-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260906T130000Z
+DTEND:20260906T150000Z
+SUMMARY:F1 義大利站｜正賽
+LOCATION:蒙札賽道
+DESCRIPTION:第 13 站義大利站・正賽。台北時間 9/6（日）21:0
+ 0。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc
+ /calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r14-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260911T113000Z
+DTEND:20260911T123000Z
+SUMMARY:F1 西班牙站（馬德里）｜練習一
+LOCATION:馬德里賽道（Madring）
+DESCRIPTION:第 14 站西班牙站（馬德里）・練習一。台北時
+ 間 9/11（五）19:30。結束時間為估計值。賽曆與賽果：http
+ s://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r14-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260911T150000Z
+DTEND:20260911T160000Z
+SUMMARY:F1 西班牙站（馬德里）｜練習二
+LOCATION:馬德里賽道（Madring）
+DESCRIPTION:第 14 站西班牙站（馬德里）・練習二。台北時
+ 間 9/11（五）23:00。結束時間為估計值。賽曆與賽果：http
+ s://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r14-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260912T103000Z
+DTEND:20260912T113000Z
+SUMMARY:F1 西班牙站（馬德里）｜練習三
+LOCATION:馬德里賽道（Madring）
+DESCRIPTION:第 14 站西班牙站（馬德里）・練習三。台北時
+ 間 9/12（六）18:30。結束時間為估計值。賽曆與賽果：http
+ s://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r14-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260912T140000Z
+DTEND:20260912T150000Z
+SUMMARY:F1 西班牙站（馬德里）｜排位賽
+LOCATION:馬德里賽道（Madring）
+DESCRIPTION:第 14 站西班牙站（馬德里）・排位賽。台北時
+ 間 9/12（六）22:00。結束時間為估計值。賽曆與賽果：http
+ s://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r14-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260913T130000Z
+DTEND:20260913T150000Z
+SUMMARY:F1 西班牙站（馬德里）｜正賽
+LOCATION:馬德里賽道（Madring）
+DESCRIPTION:第 14 站西班牙站（馬德里）・正賽。台北時間 9
+ /13（日）21:00。結束時間為估計值。賽曆與賽果：https://r
+ acing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r15-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260924T083000Z
+DTEND:20260924T093000Z
+SUMMARY:F1 亞塞拜然站｜練習一
+LOCATION:巴庫街道賽道
+DESCRIPTION:第 15 站亞塞拜然站・練習一。台北時間 9/24（四
+ ）16:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r15-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260924T120000Z
+DTEND:20260924T130000Z
+SUMMARY:F1 亞塞拜然站｜練習二
+LOCATION:巴庫街道賽道
+DESCRIPTION:第 15 站亞塞拜然站・練習二。台北時間 9/24（四
+ ）20:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r15-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260925T083000Z
+DTEND:20260925T093000Z
+SUMMARY:F1 亞塞拜然站｜練習三
+LOCATION:巴庫街道賽道
+DESCRIPTION:第 15 站亞塞拜然站・練習三。台北時間 9/25（五
+ ）16:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r15-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260925T120000Z
+DTEND:20260925T130000Z
+SUMMARY:F1 亞塞拜然站｜排位賽
+LOCATION:巴庫街道賽道
+DESCRIPTION:第 15 站亞塞拜然站・排位賽。台北時間 9/25（五
+ ）20:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r15-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20260926T110000Z
+DTEND:20260926T130000Z
+SUMMARY:F1 亞塞拜然站｜正賽
+LOCATION:巴庫街道賽道
+DESCRIPTION:第 15 站亞塞拜然站・正賽。台北時間 9/26（六）
+ 19:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r16-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261002T043000Z
+DTEND:20261002T053000Z
+SUMMARY:F1 巴林站（馬來西亞雪邦）｜練習一
+LOCATION:雪邦國際賽道
+DESCRIPTION:第 16 站巴林站（馬來西亞雪邦）・練習一。台
+ 北時間 10/2（五）12:30。結束時間為估計值。賽曆與賽果
+ ：https://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r16-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261002T080000Z
+DTEND:20261002T090000Z
+SUMMARY:F1 巴林站（馬來西亞雪邦）｜練習二
+LOCATION:雪邦國際賽道
+DESCRIPTION:第 16 站巴林站（馬來西亞雪邦）・練習二。台
+ 北時間 10/2（五）16:00。結束時間為估計值。賽曆與賽果
+ ：https://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r16-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261003T043000Z
+DTEND:20261003T053000Z
+SUMMARY:F1 巴林站（馬來西亞雪邦）｜練習三
+LOCATION:雪邦國際賽道
+DESCRIPTION:第 16 站巴林站（馬來西亞雪邦）・練習三。台
+ 北時間 10/3（六）12:30。結束時間為估計值。賽曆與賽果
+ ：https://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r16-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261003T080000Z
+DTEND:20261003T090000Z
+SUMMARY:F1 巴林站（馬來西亞雪邦）｜排位賽
+LOCATION:雪邦國際賽道
+DESCRIPTION:第 16 站巴林站（馬來西亞雪邦）・排位賽。台
+ 北時間 10/3（六）16:00。結束時間為估計值。賽曆與賽果
+ ：https://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r16-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261004T070000Z
+DTEND:20261004T090000Z
+SUMMARY:F1 巴林站（馬來西亞雪邦）｜正賽
+LOCATION:雪邦國際賽道
+DESCRIPTION:第 16 站巴林站（馬來西亞雪邦）・正賽。台北
+ 時間 10/4（日）15:00。結束時間為估計值。賽曆與賽果：h
+ ttps://racing.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r17-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261009T083000Z
+DTEND:20261009T093000Z
+SUMMARY:F1 新加坡站｜練習一
+LOCATION:濱海灣街道賽道（新加坡）
+DESCRIPTION:第 17 站新加坡站・練習一。台北時間 10/9（五）
+ 16:30。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r17-sprintqualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261009T123000Z
+DTEND:20261009T131500Z
+SUMMARY:F1 新加坡站｜衝刺排位
+LOCATION:濱海灣街道賽道（新加坡）
+DESCRIPTION:第 17 站新加坡站・衝刺排位。台北時間 10/9（五
+ ）20:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r17-sprint@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261010T090000Z
+DTEND:20261010T100000Z
+SUMMARY:F1 新加坡站｜衝刺賽
+LOCATION:濱海灣街道賽道（新加坡）
+DESCRIPTION:第 17 站新加坡站・衝刺賽。台北時間 10/10（六
+ ）17:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r17-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261010T130000Z
+DTEND:20261010T140000Z
+SUMMARY:F1 新加坡站｜排位賽
+LOCATION:濱海灣街道賽道（新加坡）
+DESCRIPTION:第 17 站新加坡站・排位賽。台北時間 10/10（六
+ ）21:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r17-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261011T120000Z
+DTEND:20261011T140000Z
+SUMMARY:F1 新加坡站｜正賽
+LOCATION:濱海灣街道賽道（新加坡）
+DESCRIPTION:第 17 站新加坡站・正賽。台北時間 10/11（日）20
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r18-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261023T173000Z
+DTEND:20261023T183000Z
+SUMMARY:F1 美國站｜練習一
+LOCATION:美洲賽道（奧斯汀）
+DESCRIPTION:第 18 站美國站・練習一。台北時間 10/24（六）01
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r18-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261023T210000Z
+DTEND:20261023T220000Z
+SUMMARY:F1 美國站｜練習二
+LOCATION:美洲賽道（奧斯汀）
+DESCRIPTION:第 18 站美國站・練習二。台北時間 10/24（六）05
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r18-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261024T173000Z
+DTEND:20261024T183000Z
+SUMMARY:F1 美國站｜練習三
+LOCATION:美洲賽道（奧斯汀）
+DESCRIPTION:第 18 站美國站・練習三。台北時間 10/25（日）01
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r18-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261024T210000Z
+DTEND:20261024T220000Z
+SUMMARY:F1 美國站｜排位賽
+LOCATION:美洲賽道（奧斯汀）
+DESCRIPTION:第 18 站美國站・排位賽。台北時間 10/25（日）05
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r18-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261025T200000Z
+DTEND:20261025T220000Z
+SUMMARY:F1 美國站｜正賽
+LOCATION:美洲賽道（奧斯汀）
+DESCRIPTION:第 18 站美國站・正賽。台北時間 10/26（一）04:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r19-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261030T183000Z
+DTEND:20261030T193000Z
+SUMMARY:F1 墨西哥城站｜練習一
+LOCATION:羅德里格斯兄弟賽道（墨西哥城）
+DESCRIPTION:第 19 站墨西哥城站・練習一。台北時間 10/31（
+ 六）02:30。結束時間為估計值。賽曆與賽果：https://racing.
+ twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r19-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261030T220000Z
+DTEND:20261030T230000Z
+SUMMARY:F1 墨西哥城站｜練習二
+LOCATION:羅德里格斯兄弟賽道（墨西哥城）
+DESCRIPTION:第 19 站墨西哥城站・練習二。台北時間 10/31（
+ 六）06:00。結束時間為估計值。賽曆與賽果：https://racing.
+ twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r19-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261031T173000Z
+DTEND:20261031T183000Z
+SUMMARY:F1 墨西哥城站｜練習三
+LOCATION:羅德里格斯兄弟賽道（墨西哥城）
+DESCRIPTION:第 19 站墨西哥城站・練習三。台北時間 11/1（日
+ ）01:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r19-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261031T210000Z
+DTEND:20261031T220000Z
+SUMMARY:F1 墨西哥城站｜排位賽
+LOCATION:羅德里格斯兄弟賽道（墨西哥城）
+DESCRIPTION:第 19 站墨西哥城站・排位賽。台北時間 11/1（日
+ ）05:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r19-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261101T200000Z
+DTEND:20261101T220000Z
+SUMMARY:F1 墨西哥城站｜正賽
+LOCATION:羅德里格斯兄弟賽道（墨西哥城）
+DESCRIPTION:第 19 站墨西哥城站・正賽。台北時間 11/2（一）
+ 04:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r20-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261106T153000Z
+DTEND:20261106T163000Z
+SUMMARY:F1 巴西站｜練習一
+LOCATION:英特拉哥斯賽道（聖保羅）
+DESCRIPTION:第 20 站巴西站・練習一。台北時間 11/6（五）23:
+ 30。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r20-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261106T190000Z
+DTEND:20261106T200000Z
+SUMMARY:F1 巴西站｜練習二
+LOCATION:英特拉哥斯賽道（聖保羅）
+DESCRIPTION:第 20 站巴西站・練習二。台北時間 11/7（六）03:
+ 00。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r20-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261107T143000Z
+DTEND:20261107T153000Z
+SUMMARY:F1 巴西站｜練習三
+LOCATION:英特拉哥斯賽道（聖保羅）
+DESCRIPTION:第 20 站巴西站・練習三。台北時間 11/7（六）22:
+ 30。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r20-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261107T180000Z
+DTEND:20261107T190000Z
+SUMMARY:F1 巴西站｜排位賽
+LOCATION:英特拉哥斯賽道（聖保羅）
+DESCRIPTION:第 20 站巴西站・排位賽。台北時間 11/8（日）02:
+ 00。結束時間為估計值。賽曆與賽果：https://racing.twtools.c
+ c/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r20-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261108T170000Z
+DTEND:20261108T190000Z
+SUMMARY:F1 巴西站｜正賽
+LOCATION:英特拉哥斯賽道（聖保羅）
+DESCRIPTION:第 20 站巴西站・正賽。台北時間 11/9（一）01:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r21-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261120T003000Z
+DTEND:20261120T013000Z
+SUMMARY:F1 拉斯維加斯站｜練習一
+LOCATION:拉斯維加斯街道賽道
+DESCRIPTION:第 21 站拉斯維加斯站・練習一。台北時間 11/20
+ （五）08:30。結束時間為估計值。賽曆與賽果：https://raci
+ ng.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r21-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261120T040000Z
+DTEND:20261120T050000Z
+SUMMARY:F1 拉斯維加斯站｜練習二
+LOCATION:拉斯維加斯街道賽道
+DESCRIPTION:第 21 站拉斯維加斯站・練習二。台北時間 11/20
+ （五）12:00。結束時間為估計值。賽曆與賽果：https://raci
+ ng.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r21-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261121T003000Z
+DTEND:20261121T013000Z
+SUMMARY:F1 拉斯維加斯站｜練習三
+LOCATION:拉斯維加斯街道賽道
+DESCRIPTION:第 21 站拉斯維加斯站・練習三。台北時間 11/21
+ （六）08:30。結束時間為估計值。賽曆與賽果：https://raci
+ ng.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r21-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261121T040000Z
+DTEND:20261121T050000Z
+SUMMARY:F1 拉斯維加斯站｜排位賽
+LOCATION:拉斯維加斯街道賽道
+DESCRIPTION:第 21 站拉斯維加斯站・排位賽。台北時間 11/21
+ （六）12:00。結束時間為估計值。賽曆與賽果：https://raci
+ ng.twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r21-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261122T040000Z
+DTEND:20261122T060000Z
+SUMMARY:F1 拉斯維加斯站｜正賽
+LOCATION:拉斯維加斯街道賽道
+DESCRIPTION:第 21 站拉斯維加斯站・正賽。台北時間 11/22（
+ 日）12:00。結束時間為估計值。賽曆與賽果：https://racing.
+ twtools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r22-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261127T133000Z
+DTEND:20261127T143000Z
+SUMMARY:F1 卡達站｜練習一
+LOCATION:羅賽爾國際賽道
+DESCRIPTION:第 22 站卡達站・練習一。台北時間 11/27（五）21
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r22-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261127T170000Z
+DTEND:20261127T180000Z
+SUMMARY:F1 卡達站｜練習二
+LOCATION:羅賽爾國際賽道
+DESCRIPTION:第 22 站卡達站・練習二。台北時間 11/28（六）01
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r22-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261128T143000Z
+DTEND:20261128T153000Z
+SUMMARY:F1 卡達站｜練習三
+LOCATION:羅賽爾國際賽道
+DESCRIPTION:第 22 站卡達站・練習三。台北時間 11/28（六）22
+ :30。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r22-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261128T180000Z
+DTEND:20261128T190000Z
+SUMMARY:F1 卡達站｜排位賽
+LOCATION:羅賽爾國際賽道
+DESCRIPTION:第 22 站卡達站・排位賽。台北時間 11/29（日）02
+ :00。結束時間為估計值。賽曆與賽果：https://racing.twtools.
+ cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r22-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261129T160000Z
+DTEND:20261129T180000Z
+SUMMARY:F1 卡達站｜正賽
+LOCATION:羅賽爾國際賽道
+DESCRIPTION:第 22 站卡達站・正賽。台北時間 11/30（一）00:00
+ 。結束時間為估計值。賽曆與賽果：https://racing.twtools.cc/
+ calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r23-firstpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261204T093000Z
+DTEND:20261204T103000Z
+SUMMARY:F1 阿布達比站｜練習一
+LOCATION:亞斯碼頭賽道（阿布達比）
+DESCRIPTION:第 23 站阿布達比站・練習一。台北時間 12/4（五
+ ）17:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r23-secondpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261204T130000Z
+DTEND:20261204T140000Z
+SUMMARY:F1 阿布達比站｜練習二
+LOCATION:亞斯碼頭賽道（阿布達比）
+DESCRIPTION:第 23 站阿布達比站・練習二。台北時間 12/4（五
+ ）21:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r23-thirdpractice@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261205T103000Z
+DTEND:20261205T113000Z
+SUMMARY:F1 阿布達比站｜練習三
+LOCATION:亞斯碼頭賽道（阿布達比）
+DESCRIPTION:第 23 站阿布達比站・練習三。台北時間 12/5（六
+ ）18:30。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r23-qualifying@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261205T140000Z
+DTEND:20261205T150000Z
+SUMMARY:F1 阿布達比站｜排位賽
+LOCATION:亞斯碼頭賽道（阿布達比）
+DESCRIPTION:第 23 站阿布達比站・排位賽。台北時間 12/5（六
+ ）22:00。結束時間為估計值。賽曆與賽果：https://racing.twt
+ ools.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-r23-race@racing.twtools.cc
+DTSTAMP:20260101T000000Z
+DTSTART:20261206T130000Z
+DTEND:20261206T150000Z
+SUMMARY:F1 阿布達比站｜正賽
+LOCATION:亞斯碼頭賽道（阿布達比）
+DESCRIPTION:第 23 站阿布達比站・正賽。台北時間 12/6（日）
+ 21:00。結束時間為估計值。賽曆與賽果：https://racing.twtool
+ s.cc/calendar/
+URL:https://racing.twtools.cc/calendar/
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

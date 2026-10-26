@@ -28,8 +28,8 @@ def driver_table(standings):
         drv, cons = s["Driver"], s["Constructors"][-1] if s["Constructors"] else {}
         lead = ' class="lead"' if s["position"] == "1" else ""
         rows += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                 f'<td class="l nm">{rc.driver_pair(drv, full=True)}</td>'
-                 f'<td class="l">{rc.team_pair(cons.get("name",""))}</td>'
+                 f'<td class="l nm">{rc.entity_link(rc.driver_pair(drv, full=True), "drivers", drv.get("driverId", ""))}</td>'
+                 f'<td class="l">{rc.entity_link(rc.team_pair(cons.get("name","")), "constructors", cons.get("constructorId", ""))}</td>'
                  f'<td class="std-pts">{s["points"]}</td><td>{s["wins"]}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
             '<th class="rk">#</th><th class="l">車手</th><th class="l">車隊</th>'
@@ -42,8 +42,9 @@ def constructor_table(standings):
     for s in standings["ConstructorStandings"]:
         lead = ' class="lead"' if s["position"] == "1" else ""
         name = s["Constructor"]["name"]
+        cid = s["Constructor"].get("constructorId", "")
         rows += (f'<tr{lead}><td class="rk">{s["position"]}</td>'
-                 f'<td class="l nm">{rc.team_pair(name)}</td>'
+                 f'<td class="l nm">{rc.entity_link(rc.team_pair(name), "constructors", cid)}</td>'
                  f'<td class="std-pts">{s["points"]}</td><td>{s["wins"]}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
             '<th class="rk">#</th><th class="l">車隊</th><th>積分</th><th>分站冠軍</th>'
@@ -104,13 +105,18 @@ def main():
     jsonld = rc.graph_ld([rc.org_node(), rc.website_node(), coll,
                           rc.breadcrumb_node([("首頁", f"{rc.BASE}/"), ("積分榜", canonical)]),
                           rc.faq_node(faq, canonical)])
-    desc = (f"F1 {season} 賽季車手積分榜與車隊積分榜（截至第 {rnd} 站賽後），"
-            "台灣慣用繁中譯名＋原文對照，每週自動更新。")
+    # title／description 帶截至站次與領先者：搜尋結果頁上看得出「這份是最新的」（2026-10-27，
+    # GSC 90 天本頁 15,301 次曝光、點擊率 0.58%）。數字全部從同一份快照推，不寫死。
+    top = ds["standings"]["DriverStandings"][0]
+    leader = (f"{rc.driver_zh(top['Driver'])} {top['points']} 分領先，"
+              if top.get("position") == "1" else "")
+    desc = (f"F1 {season} 賽季車手積分榜與車隊積分榜，截至第 {rnd} 站{race_name}賽後；"
+            f"{leader}台灣慣用繁中譯名＋原文對照，每週自動更新。")
 
     out = rc.PUB / "standings"
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(
-        rc.page_shell(f"F1 {season} 積分榜（車手＋車隊）", desc, canonical, jsonld, body, "standings"),
+        rc.page_shell(f"F1 {season} 積分榜・車手與車隊排名" + (f"（截至第 {rnd} 站）" if rnd else ""), desc, canonical, jsonld, body, "standings"),
         encoding="utf-8")
     print("✅ public-racing/standings/index.html")
     rc.write_sitemap_part("standings", [canonical])

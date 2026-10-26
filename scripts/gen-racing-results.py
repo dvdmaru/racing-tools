@@ -48,8 +48,8 @@ def result_table(race_results):
         fl = res.get("FastestLap", {})
         fl_mark = " ⏱" if fl.get("rank") == "1" else ""
         rows += (f'<tr{lead}><td class="rk">{res.get("positionText", res.get("position",""))}</td>'
-                 f'<td class="l nm">{rc.driver_pair(drv)}{fl_mark}</td>'
-                 f'<td class="l">{rc.team_pair(res["Constructor"]["name"])}</td>'
+                 f'<td class="l nm">{rc.entity_link(rc.driver_pair(drv), "drivers", drv.get("driverId", ""))}{fl_mark}</td>'
+                 f'<td class="l">{rc.entity_link(rc.team_pair(res["Constructor"]["name"]), "constructors", res["Constructor"].get("constructorId", ""))}</td>'
                  f'<td>{res.get("grid","")}</td><td>{t}</td>'
                  f'<td class="std-pts">{res.get("points","")}</td></tr>')
     return ('<div class="tbl-scroll"><table class="std-table"><thead><tr>'
