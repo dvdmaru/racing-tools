@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 397,
+  "total": 398,
   "Races": [
     {
       "season": "2007",
@@ -23767,11 +23767,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "18",
+      "url": "https://en.wikipedia.org/wiki/2026_United_States_Grand_Prix",
+      "raceName": "United States Grand Prix",
+      "Circuit": {
+        "circuitId": "americas",
+        "url": "https://en.wikipedia.org/wiki/Circuit_of_the_Americas",
+        "circuitName": "Circuit of the Americas",
+        "Location": {
+          "lat": "30.1328",
+          "long": "-97.6411",
+          "locality": "Austin",
+          "country": "USA"
+        }
+      },
+      "date": "2026-10-25",
+      "time": "20:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "4",
+          "positionText": "4",
+          "points": "12",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": "5",
+          "laps": "56",
+          "status": "Finished",
+          "Time": {
+            "millis": "5735165",
+            "time": "+18.515"
+          },
+          "FastestLap": {
+            "rank": "3",
+            "lap": "48",
+            "Time": {
+              "time": "1:38.457"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-10-12T10:16:15.214191+00:00",
+    "fetched_at": "2026-10-26T16:50:36.716141+00:00",
     "backfill": true
   }
 }
