@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 墨西哥城大獎賽賽道百科：歷屆桿位、冠軍與 2026 台北時間</title>
+    <link>https://racing.twtools.cc/articles/f1-mexico-city-grand-prix-guide/</link>
+    <guid>https://racing.twtools.cc/articles/f1-mexico-city-grand-prix-guide/</guid>
+    <pubDate>Wed, 28 Oct 2026 00:00:00 +0800</pubDate>
+    <description>正賽預定台北 11 月 2 日星期一凌晨 4 點開跑；從高海拔、大尾翼到體育場區，看懂墨西哥城站。</description>
+  </item>
+  <item>
     <title>安東內利最快墨西哥城封王：F1 歷年提前封王時點對照</title>
     <link>https://racing.twtools.cc/articles/f1-2026-antonelli-title-clinch-history/</link>
     <guid>https://racing.twtools.cc/articles/f1-2026-antonelli-title-clinch-history/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-season-framework/</guid>
     <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
     <description>保管期間，冠軍車隊要替車隊冠軍獎盃買保險、付運費，只有 FIA 調回時由 FIA 付合理運費。同一份規章也替一季畫好外框：8 到 24 站、整季最多 24 輛車，可用賽車少於 12 輛時比賽可以延期或取消。</description>
-  </item>
-  <item>
-    <title>F1 新規通過了，哪天開始算數？最早生效日分三層</title>
-    <link>https://racing.twtools.cc/articles/f1-101-rule-changes/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-rule-changes/</guid>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
-    <description>國際賽車運動規章第 18.2 條給改動配了最早生效日：FIA 因安全理由對規章做的改動可以立即生效，技術與運動等規則原則上最早在公布後隔年；一般改動想縮短通知期，預設得為該錦標賽正式報名的全體車隊一致同意。F1 Commission 受治理協議與 WMSC 批准約束，它內部的表決門檻，FIA 公布的規章裡查無明文。</description>
   </item>
 </channel>
 </rss>
