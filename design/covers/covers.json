@@ -167,6 +167,12 @@
       "html": "cover-clinch-history.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-mexico-city-grand-prix-guide",
+      "html": "cover-mexico-guide.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
