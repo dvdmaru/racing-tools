@@ -1333,6 +1333,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-26T13:38:13.055997+08:00",
       "note": "Charlie於受審稿、Draft PR128交付後明示「上線」。原生與Claude Max訂閱完成R1/R2、全新上下文冷讀、R3；85僅facts來源層級精確化由原生窄回歸閉合。模型API0。本文/封面為80、facts85，七個歷史代表案例非全史窮盡，2026仍條件式；發布前官方23位積分、賽程及墨西哥城時程重驗一致。共用桌2026-10-26-racing-clinch-history。 發布閘門將歷史表相鄰欄誤讀為當季衝刺場數，86僅加同義（Sprint）標籤；所有數字／其餘文字不變，原生86窄回歸GO後更新本文精確SHA，未改閘門或加例外。"
+    },
+    {
+      "slug": "f1-mexico-city-grand-prix-guide",
+      "article_sha256": "f42dcdc3d5637f36b316d78774ffabbcf9842f1f391f47036ca9f46061c4d078",
+      "facts_sha256": "c646e071926dbd60769ee0d95425c8337d6a7b20f81fd0ae6e1374c5b610a2ce",
+      "check_report_sha256": "54af69b9b39d87d229b156e1c1ecce02070b052465cb116f02bc8a5464fd6a84",
+      "approved_by": "charlie",
+      "approved_at": "2026-10-28T18:16:30.785201+08:00",
+      "note": "Charlie於受審草稿PR131後明示上線；原生與Claude Max訂閱雙席查核、冷讀及R3通過，2026官方時程發布前重核；共用桌2026-10-28-racing-mexico-guide。"
     }
   ]
 }
