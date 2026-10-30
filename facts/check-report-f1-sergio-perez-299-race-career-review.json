@@ -1,0 +1,14 @@
+{
+  "slug": "f1-sergio-perez-299-race-career-review",
+  "checked_at_taipei": "2026-10-30",
+  "article_type": "external-sourced feature",
+  "checks": {
+    "r1_source_ledger": "pass with recorded source-attribution corrections",
+    "r2_claude_subscription": "pass after correction of one major attribution issue and five minor wording issues",
+    "verify_sources": "pass",
+    "cover_anchor_gate": "pass"
+  },
+  "critical_boundary": "Before an actual Mexico City race start, do not state that Pérez has completed 300 starts or become the seventh member.",
+  "billing": "Claude subscription; no Anthropic API fallback",
+  "release_authorization": "Charlie explicitly said 上線 after reviewing the 60 revision and check-desk result."
+}

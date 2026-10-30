@@ -15,6 +15,7 @@
 
 ## 最新文章
 
+- [F1 300 場俱樂部前夕：培瑞茲第 299 場回顧](https://racing.twtools.cc/articles/f1-sergio-perez-299-race-career-review/)（2026-10-30）
 - [F1 墨西哥城大獎賽賽道百科：歷屆桿位、冠軍與 2026 台北時間](https://racing.twtools.cc/articles/f1-mexico-city-grand-prix-guide/)（2026-10-28）
 - [安東內利最快墨西哥城封王：F1 歷年提前封王時點對照](https://racing.twtools.cc/articles/f1-2026-antonelli-title-clinch-history/)（2026-10-26）
 - [F1 巴西聖保羅站 Interlagos：歷屆桿位、冠軍與 2026 台北時間](https://racing.twtools.cc/articles/f1-interlagos-sao-paulo-grand-prix-guide/)（2026-10-22）
@@ -24,7 +25,6 @@
 - [一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？](https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/)（2026-10-13）
 - [新加坡這張進站表，拆得出車輛靜止了多久嗎？](https://racing.twtools.cc/articles/f1-101-pit-stop-table-reading/)（2026-10-13）
 - [賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀](https://racing.twtools.cc/articles/f1-101-grid-to-finish/)（2026-10-13）
-- [怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排](https://racing.twtools.cc/articles/f1-101-grid-data-reading/)（2026-10-13）
 
 ## 文章與更新
 

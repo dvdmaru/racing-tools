@@ -173,6 +173,12 @@
       "html": "cover-mexico-guide.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-sergio-perez-299-race-career-review",
+      "html": "cover-perez-299.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
