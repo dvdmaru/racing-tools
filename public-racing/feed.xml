@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 300 場俱樂部前夕：培瑞茲第 299 場回顧</title>
+    <link>https://racing.twtools.cc/articles/f1-sergio-perez-299-race-career-review/</link>
+    <guid>https://racing.twtools.cc/articles/f1-sergio-perez-299-race-career-review/</guid>
+    <pubDate>Fri, 30 Oct 2026 00:00:00 +0800</pubDate>
+    <description>他還不是第 7 人。官方統計目前列 299 場；墨西哥城正賽實際發車後，才會跨進 300 場的門檻。</description>
+  </item>
+  <item>
     <title>F1 墨西哥城大獎賽賽道百科：歷屆桿位、冠軍與 2026 台北時間</title>
     <link>https://racing.twtools.cc/articles/f1-mexico-city-grand-prix-guide/</link>
     <guid>https://racing.twtools.cc/articles/f1-mexico-city-grand-prix-guide/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-stopped-car/</guid>
     <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
     <description>停下不等於退出：棄車和外力協助各由不同條文管，在賽道上棄車之後車手要去哪裡，10 月的新版才寫明。</description>
-  </item>
-  <item>
-    <title>F1 車隊冠軍獎盃只能保管一段時間，期滿原件要還給 FIA</title>
-    <link>https://racing.twtools.cc/articles/f1-101-season-framework/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-season-framework/</guid>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
-    <description>保管期間，冠軍車隊要替車隊冠軍獎盃買保險、付運費，只有 FIA 調回時由 FIA 付合理運費。同一份規章也替一季畫好外框：8 到 24 站、整季最多 24 輛車，可用賽車少於 12 輛時比賽可以延期或取消。</description>
   </item>
 </channel>
 </rss>

@@ -1342,6 +1342,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-28T18:16:30.785201+08:00",
       "note": "Charlie於受審草稿PR131後明示上線；原生與Claude Max訂閱雙席查核、冷讀及R3通過，2026官方時程發布前重核；共用桌2026-10-28-racing-mexico-guide。"
+    },
+    {
+      "slug": "f1-sergio-perez-299-race-career-review",
+      "article_sha256": "2a4058b2c24a1e19e7f3dcaa2115b11e913ac80685df396218ddc35de72c03a7",
+      "facts_sha256": "7fe605638cb447e02ecfbb3110c20f0d2e674ff1245c2b658cc3adec9689c593",
+      "check_report_sha256": "81c757c1aaa09b7d386a347aa49e7f66f69ab106d4dbe670720ffe33d70ba549",
+      "approved_by": "charlie",
+      "approved_at": "2026-10-30T10:56:26+08:00",
+      "note": "Charlie於 60 修訂稿、R1 來源帳本及 Claude Opus 訂閱查核後明示上線。R2 修正 F1 原話與本站條件式的歸屬問題；發布前保留實際正賽發車才可寫成完成式的邊界。Claude API fallback 為 0。"
     }
   ]
 }

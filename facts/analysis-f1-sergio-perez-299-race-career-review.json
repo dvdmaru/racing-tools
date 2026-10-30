@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "slug": "f1-sergio-perez-299-race-career-review",
+    "type": "external-sourced feature",
+    "verified_at_taipei": "2026-10-30",
+    "desk": "racing-perez-300-20261030",
+    "scope": "賽前生涯回顧；墨西哥城正賽尚未開跑。"
+  },
+  "claims": [
+    {"id":"P01","claim":"F1 官方車手頁列 Sergio Pérez 生涯 Grands Prix Entered 為 299。","source":"https://www.formula1.com/en/drivers/sergio-perez","boundary":"不可轉述為 299 次正賽起跑。"},
+    {"id":"P02","claim":"F1 賽前內容把墨西哥城週末定位為 Pérez 的第 300 次 Grand Prix start，並稱他將超越 Sebastian Vettel、升至第 7 位。","source":"https://www.formula1.com/en/latest/article/the-risk-perspective-how-f1-drivers-engineers-and-strategists-tackle-the-mexico-city-grand-prix.B8P8xr5i1sPDgQOmL7hzs","boundary":"完成式僅在實際正賽發車後使用。"},
+    {"id":"P03","claim":"墨西哥城站主辦方列出此前到過 300 場的六人。","source":"https://www.mexicogp.mx/mediacenter/checo-perez-hara-historia-llegara-a-los300-grandes-premios-de-f1-en-mexico/","boundary":"不延伸各人的精確總場數或排名。"},
+    {"id":"P04","claim":"Pérez 2011 年以 Sauber 首秀；2012 馬來西亞站第二名為首次頒獎台。","source":"https://www.formula1.com/en/latest/article/exclusive-sergio-perez-reflects-on-his-f1-career-in-photos-as-he-reaches-300-grand-prix-starts.4c7PQiuN2WobXtsQ2tEeRw"},
+    {"id":"P05","claim":"Pérez 在 2020 Sakhir Grand Prix 取得首勝；2021 阿塞拜然站第二勝，2022–23 再添 3 個桿位與 4 場正賽勝利，2023 車手積分榜第二。","source":"https://www.formula1.com/en/latest/article/exclusive-sergio-perez-reflects-on-his-f1-career-in-photos-as-he-reaches-300-grand-prix-starts.4c7PQiuN2WobXtsQ2tEeRw"},
+    {"id":"P06","claim":"2025 年離開 F1 賽場一季，2026 年為 Cadillac 出賽；生涯 6 勝、39 次頒獎台、3 次桿位。","source":"https://www.formula1.com/en/drivers/sergio-perez","boundary":"不推測離場或回歸動機。"},
+    {"id":"P07","claim":"墨西哥城正賽預定當地 2026-11-01 14:00 開跑，換算台北為 2026-11-02（一）04:00。","source":"https://www.formula1.com/en/latest/article/formula-1-gran-premio-de-la-ciudad-de-mexico-2026.14b3wTWzNNLJ5Wd8cG7HCQ","boundary":"時程可能調整，只寫預定開跑。"}
+  ],
+  "must_not_claim": ["已完成第 300 場", "已成為第 7 人", "299 entered 等同 299 starts", "未確認賽果或完賽時間"]
+}
