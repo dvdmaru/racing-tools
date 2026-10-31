@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "slug_suggestion": "f1-las-vegas-grand-prix-guide",
+    "type": "feature",
+    "built_at_taipei": "2026-10-31T00:00:00+08:00",
+    "selection": "Charlie selected R1 (18): F1 拉斯維加斯大獎賽賽道百科：2023 年至今歷屆極點、冠軍與台北時間賽程",
+    "desk_ref": "racing-las-vegas-guide-20261031",
+    "state": "R1 research and initial draft; excluded from publication"
+  },
+  "scope": "Only Formula 1 World Championship Grands Prix at the current Las Vegas Strip Circuit from 2023 through 2025. Do not merge earlier Las Vegas events at different venues/layouts.",
+  "schedule_2026": {
+    "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22",
+    "local_utc_offset": "UTC-8",
+    "taipei_utc_offset": "UTC+8",
+    "sessions": [
+      {"session": "FP1", "local": "2026-11-19 16:30-17:30", "taipei": "2026-11-20 08:30-09:30"},
+      {"session": "FP2", "local": "2026-11-19 20:00-21:00", "taipei": "2026-11-20 12:00-13:00"},
+      {"session": "FP3", "local": "2026-11-20 16:30-17:30", "taipei": "2026-11-21 08:30-09:30"},
+      {"session": "Qualifying", "local": "2026-11-20 20:00-21:00", "taipei": "2026-11-21 12:00-13:00"},
+      {"session": "Race", "local": "2026-11-21 20:00", "taipei": "2026-11-22 12:00"}
+    ],
+    "boundary": "Official timetable is subject to change; article states only scheduled start for the race."
+  },
+  "circuit": {
+    "source": "https://www.formula1.com/en/racing/2026/las-vegas",
+    "length_km": "6.201",
+    "laps": 50,
+    "race_distance_km": "309.958",
+    "first_grand_prix": 2023
+  },
+  "historical_results": [
+    {"year": 2023, "pole": "Charles Leclerc", "pole_time": "1:32.726", "winner": "Max Verstappen"},
+    {"year": 2024, "pole": "George Russell", "pole_time": "1:32.312", "winner": "George Russell"},
+    {"year": 2025, "pole": "Lando Norris", "pole_time": "1:47.934", "winner": "Max Verstappen", "classification": "final; FIA final classification checked after post-race disqualifications"}
+  ],
+  "derived": {
+    "poles_unique_drivers": 3,
+    "winners": {"Max Verstappen": 2, "George Russell": 1}
+  },
+  "editorial_boundaries": [
+    "Do not infer 2026 winning probability, strategy, weather, DRS configuration, or tyre behaviour from three past races.",
+    "Pole position is qualifying first place and is not interchangeable with final grid position.",
+    "Race winner uses final classification, especially for 2025."
+  ]
+}

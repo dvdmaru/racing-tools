@@ -179,6 +179,12 @@
       "html": "cover-perez-299.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-las-vegas-grand-prix-guide",
+      "html": "cover-las-vegas-guide.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
