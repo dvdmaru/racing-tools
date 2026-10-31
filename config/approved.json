@@ -1351,6 +1351,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-30T10:56:26+08:00",
       "note": "Charlie於 60 修訂稿、R1 來源帳本及 Claude Opus 訂閱查核後明示上線。R2 修正 F1 原話與本站條件式的歸屬問題；發布前保留實際正賽發車才可寫成完成式的邊界。Claude API fallback 為 0。"
+    },
+    {
+      "slug": "f1-las-vegas-grand-prix-guide",
+      "article_sha256": "6dff4f5c731ac7e7d79c78fe6e5217c4e9d0ef275d61b5bc55f05562f56aa37c",
+      "facts_sha256": "50c053fe4340faecae960a91436a200428e8b47f60d8d75e03edd319f0f99e52",
+      "check_report_sha256": "f6c8f9692f8c01e47dcfc8ec872de75a1f1765b438cbefceff258adfd412c150",
+      "approved_by": "charlie",
+      "approved_at": "2026-10-31T10:35:38+08:00",
+      "note": "Charlie於 R1 一手來源帳本、Claude Opus 訂閱 R2 查核及修正後明示「合併 & 部署」。範圍限 2023 年首辦的現行拉斯維加斯大道賽道；2025 年冠軍採 FIA 最終分類。Claude API fallback 為 0。"
     }
   ]
 }
