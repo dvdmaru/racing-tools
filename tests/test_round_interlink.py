@@ -691,5 +691,62 @@ class RoundMentionFingerprintTests(unittest.TestCase):
             pub_ctx.__exit__(None, None, None)
 
 
+# ============================================================
+# 文章正向連結只連 sitemap part 裡真的有的分站頁（2026-11-03 R19 死連結）
+# ============================================================
+
+class PublishedRoundLinkTests(unittest.TestCase):
+    """百科段被 gate 擋下時（R19：新車手首賽→現役擴編 gate），db 已有賽果、分站頁沒產出。
+
+    舊版文章正向連結只看「生成器會建頁」，於是培瑞茲 299 文連到 404 的 /rounds/19/。
+    現在加一道 seasons part 判定；分站頁反向「相關報導」不受影響（它在百科生成途中算）。
+    """
+
+    # ⚠️ interlink 自己 importlib 載一份 racinglib（il.rc），與 re_mod.rc 不是同一個物件：
+    # 覆寫 SITEMAP_PARTS_OVERRIDE 必須打在 il.rc 上，否則 patch 不生效、測的是真 part。
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        self.addCleanup(setattr, il.rc, "SITEMAP_PARTS_OVERRIDE", il.rc.SITEMAP_PARTS_OVERRIDE)
+        self.addCleanup(il.clear_caches)
+        self.full = il.round_link_index(2026)
+        self.assertIn("墨西哥城站", self.full, "前提：R19 在 db 判定表裡")
+        self.real = rc.read_sitemap_part("seasons")
+        self.r19 = f"{rc.BASE}/seasons/2026/rounds/19/"
+        self.assertIn(self.r19, self.real, "前提：repo 的 seasons part 有 R19")
+
+    def _use_part(self, lines):
+        (self.tmp / "seasons.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        il.rc.SITEMAP_PARTS_OVERRIDE = self.tmp
+        il.clear_caches()
+
+    def test_full_part_equals_db_index(self):
+        """正常跑序：part 完整 → 與 round_link_index 完全相同（陽性對照）。"""
+        self.assertEqual(il.published_round_link_index(2026), self.full)
+        self.assertEqual(il.published_round_link_index(2002), il.round_link_index(2002))
+
+    def test_round_missing_from_part_is_not_linked(self):
+        """part 少了 R19（百科段被擋的形狀）→ 判定表與 linkify 都不收墨西哥城站。"""
+        self._use_part([u for u in self.real if u != self.r19])
+        idx = il.published_round_link_index(2026)
+        self.assertNotIn("墨西哥城站", idx)
+        self.assertIn("美國站", idx, "其他已發布站不受影響")
+        html, linked = il.linkify_rounds("<p>墨西哥城站與美國站</p>", 2026)
+        self.assertNotIn("/seasons/2026/rounds/19/", html)
+        self.assertIn("/seasons/2026/rounds/18/", html)
+        self.assertEqual([(y, r) for y, r, _ in linked], [(2026, 18)])
+
+    def test_reverse_mentions_still_use_db_index(self):
+        """反向（分站頁相關報導）照舊用 round_link_index——百科生成途中 part 還沒寫進新站。"""
+        self._use_part([u for u in self.real if u != self.r19])
+        self.assertIn("墨西哥城站", il.round_link_index(2026))
+
+    def test_missing_part_file_links_nothing(self):
+        """part 檔不存在＝該線還沒接上 → 一律不連（比照 entity_href，寧漏勿錯連）。"""
+        il.rc.SITEMAP_PARTS_OVERRIDE = self.tmp
+        il.clear_caches()
+        self.assertEqual(il.published_round_link_index(2026), {})
+
+
 if __name__ == "__main__":
     unittest.main()

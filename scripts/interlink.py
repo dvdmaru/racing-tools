@@ -333,6 +333,26 @@ def round_link_index(year):
     return _CACHE[key]
 
 
+def published_round_link_index(year):
+    """round_link_index 再過一道「頁真的在 sitemap part 裡」——**文章正向連結專用**。
+
+    round_link_index 的「有頁」是 season_round_numbers（生成器**會**建頁的站次），
+    分站頁自己在百科生成途中算「相關報導」要用它（那時 seasons part 還沒寫進新站，
+    見 regen-encyclopedia 結尾的 write_sitemap_part）。但文章是在百科段之後才建：
+    百科段若被 gate 擋下整段跳過（2026-11-03 R19：新車手首賽觸發現役擴編 gate），
+    db 已有賽果、分站頁卻沒產出，文章就會連到 404。這裡比照 racinglib.entity_href
+    的「有頁才連」——part 檔是生成器落地且進 git 的實際 URL 清單。
+    正常跑序（百科段在 build-articles 之前，#129）兩者相同；只有百科段被擋時這裡較窄，
+    而那時分站頁本來就不存在，反向「相關報導」也不會出現，兩個方向仍一致。
+    """
+    idx = round_link_index(year)
+    if not idx:
+        return idx
+    listed = set(rc.read_sitemap_part("seasons"))
+    return {zh: (y, r) for zh, (y, r) in idx.items()
+            if f"{rc.BASE}/seasons/{y}/rounds/{r}/" in listed}
+
+
 def article_round_season(meta):
     """文章的賽季脈絡（年份消歧的唯一依據）。回 int 或 None。
 
@@ -528,7 +548,7 @@ def linkify_rounds(body_html, season, index=None):
     整個 token 不連（寧漏勿錯連——本站互鏈的既定教義）。
     """
     default = index is None
-    index = round_link_index(season) if default else index
+    index = published_round_link_index(season) if default else index
     key = ("round_pattern", season) if default and index else None
     out, hits = _linkify(body_html, index,
                          href_of=lambda t: f"/seasons/{t[0]}/rounds/{t[1]}/",
