@@ -185,6 +185,12 @@
       "html": "cover-las-vegas-guide.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-qatar-grand-prix-lusail-guide",
+      "html": "cover-qatar-lusail-guide.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
