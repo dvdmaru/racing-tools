@@ -38,7 +38,7 @@
 
 ## 歷年賽季（百科）
 
-- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 421 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
+- [歷年賽季索引](https://racing.twtools.cc/seasons/)：逐季總覽、各季子頁與單場分站頁，涵蓋 1950 至 2026 年，共 422 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
 - https://racing.twtools.cc/seasons/2026/
 - https://racing.twtools.cc/seasons/2026/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2026/drivers/max-verstappen/
@@ -71,6 +71,7 @@
 - https://racing.twtools.cc/seasons/2026/rounds/16/
 - https://racing.twtools.cc/seasons/2026/rounds/17/
 - https://racing.twtools.cc/seasons/2026/rounds/18/
+- https://racing.twtools.cc/seasons/2026/rounds/19/
 - https://racing.twtools.cc/seasons/2025/
 - https://racing.twtools.cc/seasons/2025/drivers/hamilton/
 - https://racing.twtools.cc/seasons/2025/drivers/max-verstappen/
@@ -462,7 +463,7 @@
 
 ## 車手（百科）
 
-- [車手索引](https://racing.twtools.cc/drivers/)：歷代冠軍與當季車手的生涯逐季成績，共 55 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
+- [車手索引](https://racing.twtools.cc/drivers/)：歷代冠軍與當季車手的生涯逐季成績，共 56 頁。資料源為 jolpica-f1（Ergast 相容、由志願者維護的開源專案）的公開 API 快照，實體頁每一筆明細都標到它所依據的來源快照檔；本站非官方整理，數字以 FIA 與賽事官方公告為準。
 - https://racing.twtools.cc/drivers/albon/
 - https://racing.twtools.cc/drivers/alonso/
 - https://racing.twtools.cc/drivers/antonelli/
@@ -508,6 +509,7 @@
 - https://racing.twtools.cc/drivers/rindt/
 - https://racing.twtools.cc/drivers/rosberg/
 - https://racing.twtools.cc/drivers/russell/
+- https://racing.twtools.cc/drivers/ryo-hirakawa/
 - https://racing.twtools.cc/drivers/sainz/
 - https://racing.twtools.cc/drivers/scheckter/
 - https://racing.twtools.cc/drivers/senna/

@@ -44,6 +44,7 @@ https://racing.twtools.cc/drivers/raikkonen/
 https://racing.twtools.cc/drivers/rindt/
 https://racing.twtools.cc/drivers/rosberg/
 https://racing.twtools.cc/drivers/russell/
+https://racing.twtools.cc/drivers/ryo-hirakawa/
 https://racing.twtools.cc/drivers/sainz/
 https://racing.twtools.cc/drivers/scheckter/
 https://racing.twtools.cc/drivers/senna/

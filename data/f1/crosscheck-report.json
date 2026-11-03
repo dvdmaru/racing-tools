@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T01:56:25.790832+00:00",
+  "generated_at": "2026-11-03T06:32:27.439720+00:00",
   "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
   "note": "維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決",
   "coverage": {
@@ -166,9 +166,9 @@
   },
   "network": {
     "from_cache": 54,
-    "from_network": 0,
+    "from_network": 1,
     "f1stat_from_cache": true,
-    "total_api_requests_this_run": 0
+    "total_api_requests_this_run": 1
   },
   "summary": {
     "drivers_checked": 55,
@@ -183,7 +183,7 @@
       "unclear": 2
     },
     "template_not_literal_field_count": 0,
-    "f1stat_resolved_field_count": 115,
+    "f1stat_resolved_field_count": 120,
     "f1stat_coverage_reduction_count": 0,
     "record_only_fields": [
       "poles",
@@ -3886,7 +3886,73 @@
     },
     {
       "driver_id": "ryo_hirakawa",
-      "error": "drivers.json 缺 wikipedia url"
+      "name": "Ryo Hirakawa",
+      "wikipedia_title": "Ryo_Hirakawa",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ryo_Hirakawa",
+      "from_cache": false,
+      "wiki_revid": 1383466318,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 1,
+          "wiki_entries": 1,
+          "wiki_starts": null,
+          "wiki_raw": "{{F1stat|HIR|entries}} ({{F1stat|HIR|starts}} start)",
+          "wiki_expanded": "1 (1 start)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|fastestlaps}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
     },
     {
       "driver_id": "sainz",
