@@ -235,8 +235,13 @@ def _detail_row(d):
             extra.append(f'{d["points"]} 分')
         if d.get("wins_that_year"):
             extra.append(f'當年 {d["wins_that_year"]} 勝')
+        # 進行中賽季已數學封王（2026-11-03 Charlie 裁「封王即算」）：積分與勝場仍會變動，明講是「目前／至今」
+        label = "世界冠軍（已在數學上封王，賽季進行中）" if d.get("clinched") else "世界冠軍"
+        if d.get("clinched") and extra:
+            extra = [x.replace("當年 ", "至今 ") for x in extra]
+            extra[0] = "目前 " + extra[0]
         tail = f'<span class="sub">　{esc("、".join(extra))}</span>' if extra else ""
-        inner = f'<span class="mono">{yr}</span> 世界冠軍{tail}'
+        inner = f'<span class="mono">{yr}</span> {label}{tail}'
     if href:
         inner = f'<a href="{href}">{inner}</a>'
     return f'<li title="來源檔：{src}">{inner}</li>'

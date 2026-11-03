@@ -7,8 +7,8 @@
     "crosscheck_report": "data/f1/crosscheck-report.json",
     "crosscheck_verdicts": "config/f1-crosscheck-verdicts.json",
     "field_formulas": {
-      "championships": "count_seasons_driver_standing_eq_1",
-      "championship_years": "count_seasons_driver_standing_eq_1",
+      "championships": "count_seasons_driver_title_completed_or_clinched",
+      "championship_years": "count_seasons_driver_title_completed_or_clinched",
       "wins": "results_position_text_eq_1",
       "podiums": "results_position_text_in_123",
       "entries": "results_distinct_races"
@@ -62,8 +62,10 @@
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
     "antonelli": {
-      "championships": 0,
-      "championship_years": [],
+      "championships": 1,
+      "championship_years": [
+        2026
+      ],
       "wins": 6,
       "podiums": 12,
       "entries": 35,
@@ -73,7 +75,7 @@
       },
       "approved_by": "charlie",
       "approved_at": "2026-08-13",
-      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
+      "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）；2026-11-03 Charlie 裁封王即算：championships 0→1、championship_years []→[2026]（冠軍的 as_of 截斷粒度是賽季，2026 是否計入看目前是否已數學封王；wins／podiums／entries 凍結值不動）"
     },
     "arvid_lindblad": {
       "championships": 0,

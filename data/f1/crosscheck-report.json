@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-11-03T06:32:27.439720+00:00",
+  "generated_at": "2026-11-03T13:54:48.977411+00:00",
   "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
   "note": "維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決",
   "coverage": {
-    "scope": "35 位歷代車手冠軍 ∪ 2026 現役 22 人（聯集 53 人；非全 881 車手）",
-    "expected_champion_count": 35,
+    "scope": "36 位歷代車手冠軍 ∪ 2026 現役 24 人（聯集 55 人；非全 881 車手）",
+    "expected_champion_count": 36,
     "expected_champion_ids": [
       "alonso",
+      "antonelli",
       "ascari",
       "button",
       "clark",
@@ -142,10 +143,11 @@
     ]
   },
   "definition_registry": {
-    "count_seasons_driver_standing_eq_1": {
-      "formula": "count(seasons where driver_standings.position==1 and season completed)",
+    "count_seasons_driver_title_completed_or_clinched": {
+      "formula": "count(seasons where driver_standings.position==1 and (season completed or leader mathematically clinched: leader_points > every other driver's points + remaining races*race_max + remaining sprints*sprint_max))",
       "coverage": "1950-2026",
-      "unit": "季"
+      "unit": "季",
+      "caveat": "進行中賽季的封王判定嚴格大於（平手不算、不計同分決勝）；單場上限取現行給分表"
     },
     "results_position_text_eq_1": {
       "formula": "count(results where position_text=='1')",
@@ -165,22 +167,19 @@
     }
   },
   "network": {
-    "from_cache": 54,
-    "from_network": 1,
+    "from_cache": 55,
+    "from_network": 0,
     "f1stat_from_cache": true,
-    "total_api_requests_this_run": 1
+    "total_api_requests_this_run": 0
   },
   "summary": {
     "drivers_checked": 55,
-    "diffs_total": 27,
+    "diffs_total": 25,
     "diffs_by_field": {
-      "entries": 25,
-      "championships_count": 1,
-      "championships_years": 1
+      "entries": 25
     },
     "diffs_by_classification": {
-      "likely_definition_differs": 25,
-      "unclear": 2
+      "likely_definition_differs": 25
     },
     "template_not_literal_field_count": 0,
     "f1stat_resolved_field_count": 120,
@@ -203,36 +202,6 @@
       "wiki_starts": 146,
       "definition_id": "results_distinct_races",
       "wiki_revid": 1383383604
-    },
-    {
-      "driver_id": "antonelli",
-      "driver_name": "Andrea Kimi Antonelli",
-      "field": "championships_count",
-      "ours": 0,
-      "wiki": 1,
-      "classification": "unclear",
-      "reason": "冠軍數不符：我方 0 vs 維基 1；需人工查賽季歸屬（這正是外部對照要抓的定義層錯）",
-      "key": "antonelli|championships_count",
-      "definition_id": "count_seasons_driver_standing_eq_1",
-      "wiki_revid": 1383441045
-    },
-    {
-      "driver_id": "antonelli",
-      "driver_name": "Andrea Kimi Antonelli",
-      "field": "championships_years",
-      "ours": [],
-      "wiki": [
-        2026
-      ],
-      "classification": "unclear",
-      "reason": "年份集合不同：我方獨有 []、維基獨有 [2026]",
-      "key": "antonelli|championships_years",
-      "ours_only": [],
-      "wiki_only": [
-        2026
-      ],
-      "definition_id": "count_seasons_driver_standing_eq_1",
-      "wiki_revid": 1383441045
     },
     {
       "driver_id": "ascari",
@@ -704,8 +673,10 @@
       "infobox_found": true,
       "fields": {
         "championships": {
-          "ours_count": 0,
-          "ours_years": [],
+          "ours_count": 1,
+          "ours_years": [
+            2026
+          ],
           "wiki_count": 1,
           "wiki_years": [
             2026
@@ -3889,7 +3860,7 @@
       "name": "Ryo Hirakawa",
       "wikipedia_title": "Ryo_Hirakawa",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ryo_Hirakawa",
-      "from_cache": false,
+      "from_cache": true,
       "wiki_revid": 1383466318,
       "infobox_found": true,
       "fields": {

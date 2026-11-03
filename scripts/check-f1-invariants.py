@@ -47,6 +47,9 @@
   I5  4 位有生涯檔車手：f1stats 發布路徑 vs db 獨立 SQL 逐欄比對＋實體表無聚合欄
         守：發布統計與 db 明細不一致、實體表被塞跨季聚合欄。 不守：兩個原始源同錯、
              未涵蓋的欄位（poles/fastest_laps/生涯積分/starts 皆未發布，不假裝比對）。
+        championships（2026-11-03 起＝已完成賽季榜首＋進行中賽季已數學封王）：封王判定兩端
+             共用 f1stats.driver_title_clinched，資料各讀各的（raw 積分榜／賽曆 vs db 表）——
+             守資料組裝不一致，不守判定函式本身寫錯（那由 tests/test_title_clinch.py 守）。
   I6  每季 逐車手 毛積分(results+sprint) == 官方 standings 積分；指紋鎖全體 mismatch 明細
         守：扣分制以外的任何積分竄改（含 §S0-1 的 +1000）。 不守：兩個源同步竄改。
   I7  **凍結賽季**（最新賽季以前）每個 scheduled round 都有 result；指紋鎖缺漏 round 集合
@@ -257,8 +260,18 @@ def _i5_schema_check(cur):
     return out
 
 
-def _db_driver_stats(cur, did):
-    """db 端獨立重算（來源＝global results/*.json 落地的 results 表 + driver_standings 表）。"""
+def _db_driver_stats(cur, did, f1=None):
+    """db 端獨立重算（來源＝global results/*.json 落地的 results 表 + driver_standings 表）。
+
+    championships（2026-11-03 Charlie 裁「封王即算」並授權改本道守衛）：已完成賽季的榜首照舊
+    用 SQL 直數；進行中賽季是否已封王則呼叫 f1stats 的單一判定 driver_title_rows_db（db 資料），
+    與發布端 driver_championships（raw 生涯檔＋raw 積分榜）共用同一個判定函式、各讀各的資料。
+    """
+    f1 = f1 or _load_module("f1stats", "f1stats.py")
+    completed = cur.execute(
+        "SELECT count(*) FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
+        "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed'", (did,)).fetchone()[0]
+    clinched = sum(1 for _s, d, _p, _w, c in f1.driver_title_rows_db(cur) if d == did and c)
     return {
         "wins": cur.execute(
             "SELECT count(*) FROM results WHERE driver_id=? AND position_text='1'", (did,)).fetchone()[0],
@@ -266,9 +279,7 @@ def _db_driver_stats(cur, did):
             "SELECT count(*) FROM results WHERE driver_id=? AND position_text IN ('1','2','3')", (did,)).fetchone()[0],
         "entries": cur.execute(
             "SELECT count(DISTINCT season || '-' || round) FROM results WHERE driver_id=?", (did,)).fetchone()[0],
-        "championships": cur.execute(
-            "SELECT count(*) FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
-            "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed'", (did,)).fetchone()[0],
+        "championships": completed + clinched,
     }
 
 
@@ -293,7 +304,7 @@ def _i5_dualpath_check(cur):
             continue
         pub = {"wins": car["wins"]["value"], "podiums": car["podiums"]["value"],
                "entries": car["entries"]["value"], "championships": champ["value"]}
-        db = _db_driver_stats(cur, did)
+        db = _db_driver_stats(cur, did, f1)
         diffs = sorted([f, pub[f], db[f]] for f in I5_COMPARED_FIELDS if pub[f] != db[f])
         if diffs:
             out.append(_v("I5", {"kind": "dualpath", "driver_id": did},

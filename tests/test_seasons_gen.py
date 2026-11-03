@@ -3,7 +3,8 @@
 """M3 賽季頁生成器回歸測試（gen-racing-seasons.py）。
 
 鎖住四條驗收條件與踩過的錯：
-- 進行中賽季不顯示冠軍（把榜首當冠軍的錯）。
+- 進行中賽季不把「目前領先」當冠軍（把榜首當冠軍的錯）；唯一例外＝車手已在數學上封王
+  （2026-11-03 Charlie 裁「封王即算」），車隊冠軍一律等賽季結束。
 - 退賽明細 value == len(detail)（衍生數字紀律）。
 - 分差 == 兩列 standings 積分之差（SOURCED − SOURCED）。
 - 產出 HTML 除 page_shell 白名單（theme init / GA / JSON-LD）外零 script、零 client fetch；
@@ -56,10 +57,24 @@ class IndexInProgressTests(unittest.TestCase):
         self.assertEqual(row["driver_champ"]["id"], "michael_schumacher")
         self.assertIsNotNone(row["constructor_champ"])
 
-    def test_real_in_progress_season_hides_champion(self):
-        # 2026 進行中（fs._is_completed=False）——榜首是領先不是冠軍
+    def test_real_in_progress_season_shows_clinched_driver_only(self):
+        # 2026 進行中、安東內利已數學封王 → 車手冠軍欄列他並標封王；車隊冠軍仍不列
         row = g.index_row(2026)
         self.assertTrue(row["in_progress"])
+        self.assertTrue(row["driver_champ_clinched"])
+        self.assertEqual(row["driver_champ"]["id"], "antonelli")
+        self.assertIsNone(row["constructor_champ"])
+
+    def test_real_in_progress_season_hides_champion_when_not_clinched(self):
+        # 陰性：判定為未封王（例如剩餘場次更多）→ 進行中賽季照舊不列冠軍
+        orig = fs.driver_title_clinched_json
+        fs.driver_title_clinched_json = lambda y: None
+        try:
+            row = g.index_row(2026)
+        finally:
+            fs.driver_title_clinched_json = orig
+        self.assertTrue(row["in_progress"])
+        self.assertFalse(row["driver_champ_clinched"])
         self.assertIsNone(row["driver_champ"])
         self.assertIsNone(row["constructor_champ"])
 
@@ -77,15 +92,16 @@ class IndexInProgressTests(unittest.TestCase):
         self.assertIn(f'{row["rounds"]} / {row["scheduled"]}', html)
 
     def test_monkeypatched_incomplete_hides_champion(self):
-        orig = fs._is_completed
+        orig, orig_hit = fs._is_completed, fs.driver_title_clinched_json
         fs._is_completed = lambda y: False
+        fs.driver_title_clinched_json = lambda y: None
         try:
-            row = g.index_row(2002)  # 合成：即使有 2002 榜也不得吐冠軍
+            row = g.index_row(2002)  # 合成：即使有 2002 榜，未封王也不得吐冠軍
             self.assertTrue(row["in_progress"])
             self.assertIsNone(row["driver_champ"])
             self.assertIsNone(row["constructor_champ"])
         finally:
-            fs._is_completed = orig
+            fs._is_completed, fs.driver_title_clinched_json = orig, orig_hit
 
     def test_index_html_marks_in_progress_not_champion(self):
         tmp = pathlib.Path(tempfile.mkdtemp())
@@ -96,8 +112,14 @@ class IndexInProgressTests(unittest.TestCase):
         g.render_index()
         html = (tmp / "seasons" / "index.html").read_text(encoding="utf-8")
         self.assertIn("進行中", html)  # 2026 那列
-        # 2026 那列不得出現「奪冠」語意的積分冠軍名（榜首 antonelli 不得被當冠軍呈現於冠軍欄）
-        self.assertNotRegex(html, r"2026[^<]*安東內利")
+        row = re.search(r'<tr><td class="l">(?:<a [^>]*>)?<span class="mono">2026</span>.*?</tr>', html)
+        self.assertTrue(row, "索引缺 2026 列")
+        cells = re.findall(r'<td class="l">(.*?)</td>', row.group(0))
+        # 車手冠軍欄：已數學封王 → 列安東內利並標「已封王・賽季進行中」；車隊冠軍欄仍是「進行中」
+        self.assertIn("安東內利", cells[1])
+        self.assertIn("已封王・賽季進行中", cells[1])
+        self.assertEqual(cells[2], '<span class="ip">進行中</span>')
+        self.assertNotIn("賓士", cells[2])
 
 
 class RetirementDisciplineTests(unittest.TestCase):
@@ -734,11 +756,45 @@ class InProgressSeasonRenderTests(unittest.TestCase):
         self.assertIn("進行中", self.html)
         self.assertIn("ip-tag", self.html)
 
-    def test_shows_ran_over_scheduled_not_champion(self):
+    def test_shows_ran_over_scheduled_and_clinched_champion(self):
         self.assertIn("已跑 / 排定", self.html)
-        self.assertNotIn("奪下車手世界冠軍", self.html)   # 榜首≠冠軍
+        self.assertNotIn("奪下車手世界冠軍", self.html)   # 完賽季定案語不得出現在進行中賽季
         self.assertIn("每週自動更新", self.html)
-        self.assertIn("目前領先者積分", self.html)
+        # 安東內利已數學封王：hero／敘事／stat 卡改「冠軍」語意，並附封王算術
+        self.assertIn("已在數學上確定奪得 2026 年車手世界冠軍", self.html)
+        self.assertIn("冠軍目前積分", self.html)
+        self.assertIn("封王判定", self.html)
+        self.assertNotIn("目前領先者積分", self.html)
+        self.assertNotIn("暫居車手積分榜首", self.html)
+        # 車隊冠軍不動：車隊榜首仍是「暫居」
+        self.assertIn("暫居第一", self.html)
+
+    def test_not_clinched_variant_keeps_leader_wording(self):
+        # 陰性：判定未封王 → 回到「目前領先」「暫居」舊文字，不出現封王句
+        orig = fs.driver_title_clinched_json
+        fs.driver_title_clinched_json = lambda y: None
+        try:
+            html = _render_overview(self.tmp, 2026)
+        finally:
+            fs.driver_title_clinched_json = orig
+        self.assertIn("目前領先者積分", html)
+        self.assertIn("暫居車手積分榜首", html)
+        self.assertNotIn("已在數學上", html)
+        self.assertNotIn("封王判定", html)
+
+    def test_clinched_driver_subpage(self):
+        # 已數學封王的車手子頁寫「奪得冠軍」，不寫「暫居第 1 位」
+        g_pub, rc_pub = g.PUB, rc.PUB
+        g.PUB = rc.PUB = self.tmp
+        try:
+            g.render_driver_subpage(2026, "antonelli")
+        finally:
+            g.PUB, rc.PUB = g_pub, rc_pub
+        h = (self.tmp / "seasons" / "2026" / "drivers" / "antonelli"
+             / "index.html").read_text(encoding="utf-8")
+        self.assertIn("已在數學上確定奪得 2026 年車手世界冠軍", h)
+        self.assertNotIn("暫居", h)
+        self.assertIn("進行中", h)
 
     def test_sprint_season_chart_gate_passes(self):
         # sprint 季（含 sprint 分）累計圖終點對得上目前官方積分 → 圖畫得出來

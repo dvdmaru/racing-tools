@@ -362,34 +362,6 @@
       "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+2），reason 不變"
     },
     {
-      "key": "antonelli|championships_count",
-      "verdict": "definition_differs",
-      "reason": "暫時口徑差（2026-11-03 Charlie 裁：封王即算的定義改動另開 PR，該 PR 合併時移除本條）。本站現行 championships 定義＝賽季已完成且車手榜第 1（count_seasons_driver_standing_eq_1，2026 賽季未完成故我方 0）；維基已把 2026 數學封王計入（維基 1）。",
-      "by": "charlie",
-      "date": "2026-11-03",
-      "definition_id": "count_seasons_driver_standing_eq_1",
-      "bound_ours": 0,
-      "bound_wiki": 1,
-      "wiki_revid": 1383441045,
-      "bound_fingerprint": "f3c177bb6f40623a5b18f1ae2b81dd439a438110214ffb8e80daf65fe9fc0933",
-      "note": "2026-11-03 R19 後重產報告出現的新 diff；Charlie 裁決（after_approval.py 綁定）"
-    },
-    {
-      "key": "antonelli|championships_years",
-      "verdict": "definition_differs",
-      "reason": "暫時口徑差（2026-11-03 Charlie 裁：封王即算的定義改動另開 PR，該 PR 合併時移除本條）。本站現行 championships 定義＝賽季已完成且車手榜第 1（2026 賽季未完成故我方年份集合為空）；維基已把 2026 數學封王計入（[2026]）。",
-      "by": "charlie",
-      "date": "2026-11-03",
-      "definition_id": "count_seasons_driver_standing_eq_1",
-      "bound_ours": [],
-      "bound_wiki": [
-        2026
-      ],
-      "wiki_revid": 1383441045,
-      "bound_fingerprint": "f7fee4e8652308a4948197374652d54d43bb7827906cfc5a9135d51e3bd8a45f",
-      "note": "2026-11-03 R19 後重產報告出現的新 diff；Charlie 裁決（after_approval.py 綁定）"
-    },
-    {
       "key": "ocon|entries",
       "verdict": "definition_differs",
       "reason": "欄位定義口徑差：本站 entries 用 definition_id=results_distinct_races（不重複、有賽果紀錄的場次，coverage 1950-2026），維基 races 欄計入報名場次（含未起跑）。我方 198 vs 維基 199（維基 starts=198）。非我方計算錯誤。",

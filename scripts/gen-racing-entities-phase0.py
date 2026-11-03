@@ -48,8 +48,9 @@ INK = {"red": "#d63a2f", "amber": "#e8b04b", "muted": "#868d97"}
 
 # formula id → 給讀者看的中文定義（頁面永不直接印 formula id / raw 檔路徑）
 FORMULA_ZH = {
-    "count_seasons_driver_standing_eq_1":
-        "每個賽季結束時的官方車手積分榜，此車手名列第 1 的賽季數",
+    "count_seasons_driver_title_completed_or_clinched":
+        "每個賽季結束時的官方車手積分榜，此車手名列第 1 的賽季數；進行中的賽季若此車手已在數學上封王"
+        "（目前積分大於其餘每位車手現有積分加上剩餘全部正賽與衝刺賽的最高可得分，平手不算），也計入",
     "count_seasons_constructor_standing_eq_1":
         "每個賽季結束時的官方車隊積分榜，此車隊名列第 1 的賽季數",
     "results_position_text_eq_1":
@@ -147,9 +148,14 @@ def _detail_row(d):
         extra.append(f'{d["points"]} 分')
     if d.get("wins_that_year"):
         extra.append(f'當年 {d["wins_that_year"]} 勝')
+    # 進行中賽季已數學封王：積分與勝場仍會變動，明講是「目前／至今」數字
+    label = "世界冠軍（已在數學上封王，賽季進行中）" if d.get("clinched") else "世界冠軍"
+    if d.get("clinched") and extra:
+        extra = [x.replace("當年 ", "至今 ") for x in extra]
+        extra[0] = "目前 " + extra[0]
     tail = f'<span class="sub">　{esc("、".join(extra))}</span>' if extra else ""
     return (f'<li title="來源檔：{src}"><span class="mono">{yr}</span> '
-            f'世界冠軍{tail}</li>')
+            f'{label}{tail}</li>')
 
 
 def stat_card(label, stat, unit="", note=""):

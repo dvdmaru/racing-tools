@@ -4,8 +4,9 @@
 
 **只做資料層，不做任何視覺**（不畫圖、不算佈局）。四種邊、單次 SQL、決定性輸出：
 
-- won_championship  (driver → season)     ：逐季車手榜 position==1 且該季已完成
-                                            （與 f1stats 冠軍定義一致：standings 層、非勝場）。
+- won_championship  (driver → season)     ：逐季車手榜 position==1 且該季已完成，或進行中賽季
+                                            已在數學上封王（2026-11-03 Charlie 裁「封王即算」）；
+                                            直接呼叫 f1stats.driver_title_rows_db，不另寫 SQL。
 - drove_for         (driver → constructor)：per season，取自 results 的 distinct
                                             (season, driver_id, constructor_id)。
 - raced_at          (driver → circuit)    ：distinct (driver_id, circuit_id)（賽果 join 賽事）。
@@ -23,6 +24,7 @@
       python3 scripts/build-graph-edges.py --check     # 只驗筆數與 sqlite 直查一致（不寫檔）
 """
 import argparse
+import importlib.util
 import json
 import pathlib
 import sqlite3
@@ -31,16 +33,22 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "f1" / "db.sqlite"
 OUT = ROOT / "data" / "f1" / "graph" / "edges.json"
 
+_spec = importlib.util.spec_from_file_location("f1stats", ROOT / "scripts" / "f1stats.py")
+fs = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(fs)
+
+
+def _champion_rows(conn):
+    """車手冠軍列（單一判定：f1stats.driver_title_rows_db），依 season、driver_id 排。"""
+    return [{"season": season, "driver_id": did}
+            for season, did, _pts, _wins, _clinched in fs.driver_title_rows_db(conn)]
+
 # 每種邊：SQL（含顯式 ORDER BY，決定性）＋ row → edge dict 的映射。
 EDGE_SPECS = {
     "won_championship": {
-        "desc": "driver→season：逐季車手榜 position=1 且該季已完成",
-        "sql": (
-            "SELECT ds.driver_id AS driver_id, ds.season AS season "
-            "FROM driver_standings ds JOIN seasons s ON s.year = ds.season "
-            "WHERE ds.position = 1 AND s.status = 'completed' "
-            "ORDER BY ds.season, ds.driver_id"
-        ),
+        "desc": "driver→season：逐季車手榜 position=1 且該季已完成，或進行中賽季已在數學上封王",
+        # 不走 SQL：冠軍判定只有 f1stats 一份（進行中賽季要比剩餘可得分，不是單句 SQL 能表達）
+        "rows": _champion_rows,
         "edge": lambda r: {
             "type": "won_championship",
             "from": f"driver:{r['driver_id']}",
@@ -103,7 +111,7 @@ def collect(conn):
     counts = {}
     for name in EDGE_ORDER:
         spec = EDGE_SPECS[name]
-        rows = conn.execute(spec["sql"]).fetchall()
+        rows = spec["rows"](conn) if "rows" in spec else conn.execute(spec["sql"]).fetchall()
         block = [spec["edge"](r) for r in rows]
         counts[name] = len(block)
         edges.extend(block)
