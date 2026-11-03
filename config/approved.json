@@ -1360,6 +1360,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-10-31T10:35:38+08:00",
       "note": "Charlie於 R1 一手來源帳本、Claude Opus 訂閱 R2 查核及修正後明示「合併 & 部署」。範圍限 2023 年首辦的現行拉斯維加斯大道賽道；2025 年冠軍採 FIA 最終分類。Claude API fallback 為 0。"
+    },
+    {
+      "slug": "f1-qatar-grand-prix-lusail-guide",
+      "article_sha256": "5d285fdaef3e87e52100f2406dc8bee87e5d3d368f91cf643d2282fe0ff3f7f2",
+      "facts_sha256": "a80c63ee6a8d50b72ae26e2c49b14fecf9b81022a1e0ead9afb6e3e1053efa0f",
+      "check_report_sha256": "56b66091c9abdd0e8951a60d9650fb9c19cfccf80de89ce7f095d1f18080b24e",
+      "approved_by": "charlie",
+      "approved_at": "2026-11-03T10:16:51+08:00",
+      "note": "Charlie在 R1 來源帳本、Agy 訂閱唯讀 R2 修正與 R3 GO 後明示「合併、部署」。範圍限 Lusail 已完賽的 2021、2023–2025 F1 正賽；2022 不列為舉辦屆次。2026 時程為預定，正賽台北 11/30（一）00:00。Claude 訂閱未登入，未記為查核；API fallback 為 0。"
     }
   ]
 }
