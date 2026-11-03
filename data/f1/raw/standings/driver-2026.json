@@ -1,11 +1,11 @@
 {
   "season": "2026",
-  "round": "18",
+  "round": "19",
   "DriverStandings": [
     {
       "position": "1",
       "positionText": "1",
-      "points": "365",
+      "points": "380",
       "wins": "9",
       "Driver": {
         "driverId": "antonelli",
@@ -29,31 +29,31 @@
     {
       "position": "2",
       "positionText": "2",
-      "points": "242",
+      "points": "261",
       "wins": "3",
       "Driver": {
-        "driverId": "russell",
-        "permanentNumber": "63",
-        "code": "RUS",
-        "url": "http://en.wikipedia.org/wiki/George_Russell_(racing_driver)",
-        "givenName": "George",
-        "familyName": "Russell",
-        "dateOfBirth": "1998-02-15",
-        "nationality": "British"
+        "driverId": "max_verstappen",
+        "permanentNumber": "3",
+        "code": "VER",
+        "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+        "givenName": "Max",
+        "familyName": "Verstappen",
+        "dateOfBirth": "1997-09-30",
+        "nationality": "Dutch"
       },
       "Constructors": [
         {
-          "constructorId": "mercedes",
-          "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One",
-          "name": "Mercedes",
-          "nationality": "German"
+          "constructorId": "red_bull",
+          "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+          "name": "Red Bull",
+          "nationality": "Austrian"
         }
       ]
     },
     {
       "position": "3",
       "positionText": "3",
-      "points": "241",
+      "points": "259",
       "wins": "1",
       "Driver": {
         "driverId": "hamilton",
@@ -77,31 +77,31 @@
     {
       "position": "4",
       "positionText": "4",
-      "points": "236",
-      "wins": "2",
+      "points": "250",
+      "wins": "3",
       "Driver": {
-        "driverId": "max_verstappen",
-        "permanentNumber": "3",
-        "code": "VER",
-        "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
-        "givenName": "Max",
-        "familyName": "Verstappen",
-        "dateOfBirth": "1997-09-30",
-        "nationality": "Dutch"
+        "driverId": "russell",
+        "permanentNumber": "63",
+        "code": "RUS",
+        "url": "http://en.wikipedia.org/wiki/George_Russell_(racing_driver)",
+        "givenName": "George",
+        "familyName": "Russell",
+        "dateOfBirth": "1998-02-15",
+        "nationality": "British"
       },
       "Constructors": [
         {
-          "constructorId": "red_bull",
-          "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
-          "name": "Red Bull",
-          "nationality": "Austrian"
+          "constructorId": "mercedes",
+          "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One",
+          "name": "Mercedes",
+          "nationality": "German"
         }
       ]
     },
     {
       "position": "5",
       "positionText": "5",
-      "points": "233",
+      "points": "245",
       "wins": "1",
       "Driver": {
         "driverId": "leclerc",
@@ -125,7 +125,7 @@
     {
       "position": "6",
       "positionText": "6",
-      "points": "211",
+      "points": "221",
       "wins": "2",
       "Driver": {
         "driverId": "norris",
@@ -173,7 +173,7 @@
     {
       "position": "8",
       "positionText": "8",
-      "points": "105",
+      "points": "107",
       "wins": "0",
       "Driver": {
         "driverId": "hadjar",
@@ -197,7 +197,7 @@
     {
       "position": "9",
       "positionText": "9",
-      "points": "77",
+      "points": "83",
       "wins": "0",
       "Driver": {
         "driverId": "lawson",
@@ -323,17 +323,17 @@
     {
       "position": "14",
       "positionText": "14",
-      "points": "13",
+      "points": "14",
       "wins": "0",
       "Driver": {
-        "driverId": "hulkenberg",
-        "permanentNumber": "27",
-        "code": "HUL",
-        "url": "http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg",
-        "givenName": "Nico",
-        "familyName": "Hülkenberg",
-        "dateOfBirth": "1987-08-19",
-        "nationality": "German"
+        "driverId": "bortoleto",
+        "permanentNumber": "5",
+        "code": "BOR",
+        "url": "https://en.wikipedia.org/wiki/Gabriel_Bortoleto",
+        "givenName": "Gabriel",
+        "familyName": "Bortoleto",
+        "dateOfBirth": "2004-10-14",
+        "nationality": "Brazilian"
       },
       "Constructors": [
         {
@@ -347,17 +347,17 @@
     {
       "position": "15",
       "positionText": "15",
-      "points": "10",
+      "points": "13",
       "wins": "0",
       "Driver": {
-        "driverId": "bortoleto",
-        "permanentNumber": "5",
-        "code": "BOR",
-        "url": "https://en.wikipedia.org/wiki/Gabriel_Bortoleto",
-        "givenName": "Gabriel",
-        "familyName": "Bortoleto",
-        "dateOfBirth": "2004-10-14",
-        "nationality": "Brazilian"
+        "driverId": "hulkenberg",
+        "permanentNumber": "27",
+        "code": "HUL",
+        "url": "http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg",
+        "givenName": "Nico",
+        "familyName": "Hülkenberg",
+        "dateOfBirth": "1987-08-19",
+        "nationality": "German"
       },
       "Constructors": [
         {
@@ -491,6 +491,30 @@
     {
       "position": "21",
       "positionText": "21",
+      "points": "1",
+      "wins": "0",
+      "Driver": {
+        "driverId": "ryo_hirakawa",
+        "permanentNumber": "50",
+        "code": "HIR",
+        "url": "https://en.wikipedia.org/wiki/Ryo_Hirakawa",
+        "givenName": "Ryo",
+        "familyName": "Hirakawa",
+        "dateOfBirth": "1994-03-07",
+        "nationality": "Japanese"
+      },
+      "Constructors": [
+        {
+          "constructorId": "haas",
+          "url": "https://en.wikipedia.org/wiki/Haas_F1_Team",
+          "name": "Haas F1 Team",
+          "nationality": "American"
+        }
+      ]
+    },
+    {
+      "position": "22",
+      "positionText": "22",
       "points": "0",
       "wins": "0",
       "Driver": {
@@ -513,8 +537,8 @@
       ]
     },
     {
-      "position": "22",
-      "positionText": "22",
+      "position": "23",
+      "positionText": "23",
       "points": "0",
       "wins": "0",
       "Driver": {
@@ -537,8 +561,8 @@
       ]
     },
     {
-      "position": "23",
-      "positionText": "23",
+      "position": "24",
+      "positionText": "24",
       "points": "0",
       "wins": "0",
       "Driver": {
@@ -563,7 +587,7 @@
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/2026/driverstandings.json",
-    "fetched_at": "2026-10-26T16:50:12.975879+00:00",
+    "fetched_at": "2026-11-03T01:37:56.027289+00:00",
     "backfill": true
   }
 }

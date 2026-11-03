@@ -1,11 +1,11 @@
 {
   "season": "2026",
-  "round": "18",
+  "round": "19",
   "ConstructorStandings": [
     {
       "position": "1",
       "positionText": "1",
-      "points": "607",
+      "points": "630",
       "wins": "12",
       "Constructor": {
         "constructorId": "mercedes",
@@ -17,7 +17,7 @@
     {
       "position": "2",
       "positionText": "2",
-      "points": "474",
+      "points": "504",
       "wins": "2",
       "Constructor": {
         "constructorId": "ferrari",
@@ -29,8 +29,8 @@
     {
       "position": "3",
       "positionText": "3",
-      "points": "355",
-      "wins": "2",
+      "points": "382",
+      "wins": "3",
       "Constructor": {
         "constructorId": "red_bull",
         "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
@@ -41,7 +41,7 @@
     {
       "position": "4",
       "positionText": "4",
-      "points": "355",
+      "points": "365",
       "wins": "2",
       "Constructor": {
         "constructorId": "mclaren",
@@ -53,7 +53,7 @@
     {
       "position": "5",
       "positionText": "5",
-      "points": "102",
+      "points": "108",
       "wins": "0",
       "Constructor": {
         "constructorId": "rb",
@@ -77,7 +77,7 @@
     {
       "position": "7",
       "positionText": "7",
-      "points": "30",
+      "points": "31",
       "wins": "0",
       "Constructor": {
         "constructorId": "haas",
@@ -89,7 +89,7 @@
     {
       "position": "8",
       "positionText": "8",
-      "points": "23",
+      "points": "27",
       "wins": "0",
       "Constructor": {
         "constructorId": "audi",
@@ -137,7 +137,7 @@
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/2026/constructorstandings.json",
-    "fetched_at": "2026-10-26T16:50:13.437151+00:00",
+    "fetched_at": "2026-11-03T01:37:57.013952+00:00",
     "backfill": true
   }
 }

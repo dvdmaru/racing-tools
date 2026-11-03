@@ -677,6 +677,20 @@
       "approved_at": "2026-08-13",
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）"
     },
+    "ryo_hirakawa": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 0,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "PENDING-charlie",
+      "approved_at": "2026-11-03",
+      "note": "2026 R19 墨西哥城站首次進入本季 results（Haas，現役集合擴編，沿用 R12 角田先例）。統計由 db 明細重算到 as_of R11 基線（wins/podiums/entries=0/0/0；R19 首賽在基線之後故不計；重算到 R19＝0/0/1）。維基對審尚未完成：本地 entities/drivers.json 的 ryo_hirakawa 是無 url 的殘缺列（上游 jolpica 現已補齊），crosscheck 報告以「抓取失敗」fail closed，該列要不要依上游補齊需另裁。待 Charlie 核准後改 approved_by。"
+    },
     "sainz": {
       "championships": 0,
       "championship_years": [],
