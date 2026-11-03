@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "slug_suggestion": "f1-qatar-grand-prix-lusail-guide",
+    "type": "feature",
+    "built_at_taipei": "2026-11-03T00:00:00+08:00",
+    "selection": "Charlie selected R1 (20): F1 卡達大獎賽賽道百科：Lusail 歷屆極點、冠軍與台北時間賽程",
+    "desk_ref": "racing-qatar-guide-20261103",
+    "state": "R1 research and initial draft; excluded from publication"
+  },
+  "scope": "Only completed Formula 1 World Championship Grands Prix at Lusail International Circuit: 2021, 2023, 2024, and 2025. Do not treat 2022, which had no Qatar round on the FIA calendar, as a held race; do not merge Sprint results into the Grand Prix table.",
+  "schedule_2026": {
+    "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG",
+    "local_utc_offset": "UTC+3",
+    "taipei_utc_offset": "UTC+8",
+    "sessions": [
+      {"session": "FP1", "local": "2026-11-27 16:30-17:30", "taipei": "2026-11-27 21:30-22:30"},
+      {"session": "FP2", "local": "2026-11-27 20:00-21:00", "taipei": "2026-11-28 01:00-02:00"},
+      {"session": "FP3", "local": "2026-11-28 17:30-18:30", "taipei": "2026-11-28 22:30-23:30"},
+      {"session": "Qualifying", "local": "2026-11-28 21:00-22:00", "taipei": "2026-11-29 02:00-03:00"},
+      {"session": "Race", "local": "2026-11-29 19:00", "taipei": "2026-11-30 00:00"}
+    ],
+    "boundary": "Official timetable is subject to change; article states only the scheduled race start. This is a standard weekend with no F1 Sprint on the published timetable."
+  },
+  "circuit": {
+    "source": "https://www.formula1.com/en/racing/2026/qatar",
+    "length_km": "5.419",
+    "laps": 57,
+    "race_distance_km": "308.611",
+    "first_grand_prix": 2021
+  },
+  "historical_results": [
+    {"year": 2021, "pole": "Lewis Hamilton", "pole_time": "1:20.827", "winner": "Lewis Hamilton"},
+    {"year": 2023, "pole": "Max Verstappen", "pole_time": "1:23.778", "winner": "Max Verstappen"},
+    {"year": 2024, "pole": "Max Verstappen", "pole_time": "1:20.520", "winner": "Max Verstappen"},
+    {"year": 2025, "pole": "Oscar Piastri", "pole_time": "1:19.387", "winner": "Max Verstappen"}
+  ],
+  "derived": {
+    "held_grands_prix": 4,
+    "poles": {"Lewis Hamilton": 1, "Max Verstappen": 2, "Oscar Piastri": 1},
+    "winners": {"Lewis Hamilton": 1, "Max Verstappen": 3}
+  },
+  "editorial_boundaries": [
+    "Do not infer 2026 winning probability, strategy, weather, DRS configuration, tyre behaviour, or overtaking difficulty from four past Grands Prix.",
+    "Pole position is qualifying first place and is not interchangeable with the final grid position or any Sprint result.",
+    "Race winner means the Grand Prix final classification, not the Sprint winner."
+  ]
+}
