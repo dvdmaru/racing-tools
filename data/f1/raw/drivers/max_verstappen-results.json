@@ -1,6 +1,6 @@
 {
   "driverId": "max_verstappen",
-  "total": 251,
+  "total": 252,
   "Races": [
     {
       "season": "2015",
@@ -14848,11 +14848,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "19",
+      "url": "https://en.wikipedia.org/wiki/2026_Mexico_City_Grand_Prix",
+      "raceName": "Mexico City Grand Prix",
+      "Circuit": {
+        "circuitId": "rodriguez",
+        "url": "https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez",
+        "circuitName": "Autódromo Hermanos Rodríguez",
+        "Location": {
+          "lat": "19.4042",
+          "long": "-99.0907",
+          "locality": "Mexico City",
+          "country": "Mexico"
+        }
+      },
+      "date": "2026-11-01",
+      "time": "20:00:00Z",
+      "Results": [
+        {
+          "number": "3",
+          "position": "1",
+          "positionText": "1",
+          "points": "25",
+          "Driver": {
+            "driverId": "max_verstappen",
+            "permanentNumber": "3",
+            "code": "VER",
+            "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+            "givenName": "Max",
+            "familyName": "Verstappen",
+            "dateOfBirth": "1997-09-30",
+            "nationality": "Dutch"
+          },
+          "Constructor": {
+            "constructorId": "red_bull",
+            "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+            "name": "Red Bull",
+            "nationality": "Austrian"
+          },
+          "grid": "5",
+          "laps": "71",
+          "status": "Finished",
+          "Time": {
+            "millis": "8428772",
+            "time": "2:20:28.772"
+          },
+          "FastestLap": {
+            "rank": "2",
+            "lap": "50",
+            "Time": {
+              "time": "1:19.328"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/max_verstappen/results.json",
-    "fetched_at": "2026-10-26T16:50:42.360782+00:00",
+    "fetched_at": "2026-11-03T01:38:23.591901+00:00",
     "backfill": true
   }
 }

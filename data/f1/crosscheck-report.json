@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:51:18.979387+00:00",
+  "generated_at": "2026-11-03T06:32:27.439720+00:00",
   "source": "en.wikipedia.org MediaWiki API — {{Infobox F1 driver}}",
   "note": "維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決",
   "coverage": {
@@ -42,7 +42,7 @@
       "vettel",
       "villeneuve"
     ],
-    "expected_active_count": 23,
+    "expected_active_count": 24,
     "expected_active_driver_ids": [
       "albon",
       "alonso",
@@ -64,11 +64,12 @@
       "perez",
       "piastri",
       "russell",
+      "ryo_hirakawa",
       "sainz",
       "stroll",
       "tsunoda"
     ],
-    "expected_driver_count": 54,
+    "expected_driver_count": 55,
     "expected_driver_ids": [
       "albon",
       "alonso",
@@ -115,6 +116,7 @@
       "rindt",
       "rosberg",
       "russell",
+      "ryo_hirakawa",
       "sainz",
       "scheckter",
       "senna",
@@ -132,7 +134,7 @@
       "podiums",
       "entries"
     ],
-    "f1stat_template_revid": 1370951777,
+    "f1stat_template_revid": 1383382100,
     "f1stat_coverage_reductions": [],
     "blind_spots": [
       "無法由釘版 Template:F1stat 解析的具名欄位列於 f1stat_coverage_reductions",
@@ -163,22 +165,25 @@
     }
   },
   "network": {
-    "from_cache": 0,
-    "from_network": 54,
-    "f1stat_from_cache": false,
-    "total_api_requests_this_run": 59
+    "from_cache": 54,
+    "from_network": 1,
+    "f1stat_from_cache": true,
+    "total_api_requests_this_run": 1
   },
   "summary": {
-    "drivers_checked": 54,
-    "diffs_total": 24,
+    "drivers_checked": 55,
+    "diffs_total": 27,
     "diffs_by_field": {
-      "entries": 24
+      "entries": 25,
+      "championships_count": 1,
+      "championships_years": 1
     },
     "diffs_by_classification": {
-      "likely_definition_differs": 24
+      "likely_definition_differs": 25,
+      "unclear": 2
     },
     "template_not_literal_field_count": 0,
-    "f1stat_resolved_field_count": 115,
+    "f1stat_resolved_field_count": 120,
     "f1stat_coverage_reduction_count": 0,
     "record_only_fields": [
       "poles",
@@ -190,14 +195,44 @@
       "driver_id": "albon",
       "driver_name": "Alexander Albon",
       "field": "entries",
-      "ours": 141,
-      "wiki": 142,
+      "ours": 148,
+      "wiki": 149,
       "classification": "likely_definition_differs",
-      "reason": "我方 entries=141 vs 維基 races=142（139 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "reason": "我方 entries=148 vs 維基 races=149（146 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
       "key": "albon|entries",
-      "wiki_starts": 139,
+      "wiki_starts": 146,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1366385158
+      "wiki_revid": 1383383604
+    },
+    {
+      "driver_id": "antonelli",
+      "driver_name": "Andrea Kimi Antonelli",
+      "field": "championships_count",
+      "ours": 0,
+      "wiki": 1,
+      "classification": "unclear",
+      "reason": "冠軍數不符：我方 0 vs 維基 1；需人工查賽季歸屬（這正是外部對照要抓的定義層錯）",
+      "key": "antonelli|championships_count",
+      "definition_id": "count_seasons_driver_standing_eq_1",
+      "wiki_revid": 1383441045
+    },
+    {
+      "driver_id": "antonelli",
+      "driver_name": "Andrea Kimi Antonelli",
+      "field": "championships_years",
+      "ours": [],
+      "wiki": [
+        2026
+      ],
+      "classification": "unclear",
+      "reason": "年份集合不同：我方獨有 []、維基獨有 [2026]",
+      "key": "antonelli|championships_years",
+      "ours_only": [],
+      "wiki_only": [
+        2026
+      ],
+      "definition_id": "count_seasons_driver_standing_eq_1",
+      "wiki_revid": 1383441045
     },
     {
       "driver_id": "ascari",
@@ -210,7 +245,7 @@
       "key": "ascari|entries",
       "wiki_starts": 32,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370209992
+      "wiki_revid": 1383463694
     },
     {
       "driver_id": "clark",
@@ -223,7 +258,7 @@
       "key": "clark|entries",
       "wiki_starts": 72,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370473885
+      "wiki_revid": 1373701593
     },
     {
       "driver_id": "damon_hill",
@@ -236,7 +271,7 @@
       "key": "damon_hill|entries",
       "wiki_starts": 115,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1365876385
+      "wiki_revid": 1380242162
     },
     {
       "driver_id": "emerson_fittipaldi",
@@ -249,7 +284,7 @@
       "key": "emerson_fittipaldi|entries",
       "wiki_starts": 144,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1367337766
+      "wiki_revid": 1377307992
     },
     {
       "driver_id": "fangio",
@@ -262,7 +297,7 @@
       "key": "fangio|entries",
       "wiki_starts": 51,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1364230610
+      "wiki_revid": 1380597575
     },
     {
       "driver_id": "farina",
@@ -275,7 +310,7 @@
       "key": "farina|entries",
       "wiki_starts": 33,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1336550249
+      "wiki_revid": 1378919210
     },
     {
       "driver_id": "hakkinen",
@@ -288,7 +323,7 @@
       "key": "hakkinen|entries",
       "wiki_starts": 161,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1366692195
+      "wiki_revid": 1380598257
     },
     {
       "driver_id": "hawthorn",
@@ -301,7 +336,7 @@
       "key": "hawthorn|entries",
       "wiki_starts": 45,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1361573865
+      "wiki_revid": 1378371090
     },
     {
       "driver_id": "hill",
@@ -314,7 +349,7 @@
       "key": "hill|entries",
       "wiki_starts": 176,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1368365067
+      "wiki_revid": 1382060420
     },
     {
       "driver_id": "keke_rosberg",
@@ -340,7 +375,7 @@
       "key": "lauda|entries",
       "wiki_starts": 171,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1368329699
+      "wiki_revid": 1381567894
     },
     {
       "driver_id": "mansell",
@@ -353,7 +388,7 @@
       "key": "mansell|entries",
       "wiki_starts": 187,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1365267406
+      "wiki_revid": 1377887398
     },
     {
       "driver_id": "mario_andretti",
@@ -366,20 +401,33 @@
       "key": "mario_andretti|entries",
       "wiki_starts": 128,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370845228
+      "wiki_revid": 1382318761
+    },
+    {
+      "driver_id": "ocon",
+      "driver_name": "Esteban Ocon",
+      "field": "entries",
+      "ours": 198,
+      "wiki": 199,
+      "classification": "likely_definition_differs",
+      "reason": "我方 entries(198) 等於維基的 starts(198)——口徑差：我方逐 results 列計數＝起跑場次，維基 races 欄取 entries（含未起跑）",
+      "key": "ocon|entries",
+      "wiki_starts": 198,
+      "definition_id": "results_distinct_races",
+      "wiki_revid": 1383318503
     },
     {
       "driver_id": "perez",
       "driver_name": "Sergio Pérez",
       "field": "entries",
-      "ours": 295,
-      "wiki": 297,
+      "ours": 302,
+      "wiki": 304,
       "classification": "likely_definition_differs",
-      "reason": "我方 entries=295 vs 維基 races=297（293 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "reason": "我方 entries=302 vs 維基 races=304（300 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
       "key": "perez|entries",
-      "wiki_starts": 293,
+      "wiki_starts": 300,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370054465
+      "wiki_revid": 1383501557
     },
     {
       "driver_id": "phil_hill",
@@ -392,7 +440,7 @@
       "key": "phil_hill|entries",
       "wiki_starts": 49,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1356364975
+      "wiki_revid": 1382497775
     },
     {
       "driver_id": "piquet",
@@ -405,7 +453,7 @@
       "key": "piquet|entries",
       "wiki_starts": 204,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1369586850
+      "wiki_revid": 1381734803
     },
     {
       "driver_id": "raikkonen",
@@ -418,7 +466,7 @@
       "key": "raikkonen|entries",
       "wiki_starts": 349,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1367448649
+      "wiki_revid": 1383016950
     },
     {
       "driver_id": "rindt",
@@ -431,20 +479,20 @@
       "key": "rindt|entries",
       "wiki_starts": 60,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370335431
+      "wiki_revid": 1383398226
     },
     {
       "driver_id": "sainz",
       "driver_name": "Carlos Sainz",
       "field": "entries",
-      "ours": 244,
-      "wiki": 245,
+      "ours": 251,
+      "wiki": 252,
       "classification": "likely_definition_differs",
-      "reason": "我方 entries=244 vs 維基 races=245（241 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "reason": "我方 entries=251 vs 維基 races=252（248 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
       "key": "sainz|entries",
-      "wiki_starts": 241,
+      "wiki_starts": 248,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370167795
+      "wiki_revid": 1382638866
     },
     {
       "driver_id": "scheckter",
@@ -457,7 +505,7 @@
       "key": "scheckter|entries",
       "wiki_starts": 112,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1368364858
+      "wiki_revid": 1382671024
     },
     {
       "driver_id": "senna",
@@ -470,20 +518,20 @@
       "key": "senna|entries",
       "wiki_starts": 161,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1368551997
+      "wiki_revid": 1382079074
     },
     {
       "driver_id": "stroll",
       "driver_name": "Lance Stroll",
       "field": "entries",
-      "ours": 203,
-      "wiki": 205,
+      "ours": 210,
+      "wiki": 212,
       "classification": "likely_definition_differs",
-      "reason": "我方 entries=203 vs 維基 races=205（201 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
+      "reason": "我方 entries=210 vs 維基 races=212（208 starts）；races 欄本身含 entries/starts 兩口徑，需確認我方 results_row_exists 對應哪一個",
       "key": "stroll|entries",
-      "wiki_starts": 201,
+      "wiki_starts": 208,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1370856270
+      "wiki_revid": 1383408048
     },
     {
       "driver_id": "surtees",
@@ -496,7 +544,7 @@
       "key": "surtees|entries",
       "wiki_starts": 111,
       "definition_id": "results_distinct_races",
-      "wiki_revid": 1364521906
+      "wiki_revid": 1378396821
     }
   ],
   "drivers": [
@@ -505,8 +553,8 @@
       "name": "Alexander Albon",
       "wikipedia_title": "Alexander_Albon",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alexander_Albon",
-      "from_cache": false,
-      "wiki_revid": 1366385158,
+      "from_cache": true,
+      "wiki_revid": 1383383604,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -539,11 +587,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 141,
-          "wiki_entries": 142,
-          "wiki_starts": 139,
+          "ours": 148,
+          "wiki_entries": 149,
+          "wiki_starts": 146,
           "wiki_raw": "{{F1stat|ALB|entries}} ({{F1stat|ALB|starts}} starts)",
-          "wiki_expanded": "142 (139 starts)",
+          "wiki_expanded": "149 (146 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -575,8 +623,8 @@
       "name": "Fernando Alonso",
       "wikipedia_title": "Fernando_Alonso",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Fernando_Alonso",
-      "from_cache": false,
-      "wiki_revid": 1370890947,
+      "from_cache": true,
+      "wiki_revid": 1383385697,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -615,11 +663,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 440,
-          "wiki_entries": 440,
-          "wiki_starts": 437,
+          "ours": 447,
+          "wiki_entries": 447,
+          "wiki_starts": 444,
           "wiki_raw": "{{F1stat|ALO|entries}} ({{F1stat|ALO|starts}} starts)",
-          "wiki_expanded": "440 (437 starts)",
+          "wiki_expanded": "447 (444 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -651,54 +699,56 @@
       "name": "Andrea Kimi Antonelli",
       "wikipedia_title": "Andrea_Kimi_Antonelli",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli",
-      "from_cache": false,
-      "wiki_revid": 1370124807,
+      "from_cache": true,
+      "wiki_revid": 1383441045,
       "infobox_found": true,
       "fields": {
         "championships": {
           "ours_count": 0,
           "ours_years": [],
-          "wiki_count": 0,
-          "wiki_years": [],
-          "wiki_raw": "0",
+          "wiki_count": 1,
+          "wiki_years": [
+            2026
+          ],
+          "wiki_raw": "1 ({{F1|2026}})",
           "wiki_expanded": null,
           "template_not_literal": false,
           "f1stat_resolved_count": 0,
           "f1stat_unresolved": []
         },
         "wins": {
-          "ours": 6,
-          "wiki": 6,
+          "ours": 9,
+          "wiki": 9,
           "wiki_raw": "{{F1stat|ANT|wins}}",
-          "wiki_expanded": "6",
+          "wiki_expanded": "9",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 13,
-          "wiki": 13,
+          "ours": 19,
+          "wiki": 19,
           "wiki_raw": "{{F1stat|ANT|podiums}}",
-          "wiki_expanded": "13",
+          "wiki_expanded": "19",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 36,
-          "wiki_entries": 36,
-          "wiki_starts": 36,
+          "ours": 43,
+          "wiki_entries": 43,
+          "wiki_starts": 43,
           "wiki_raw": "{{F1stat|ANT|entries}} ({{F1stat|ANT|starts}} starts)",
-          "wiki_expanded": "36 (36 starts)",
+          "wiki_expanded": "43 (43 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": 6,
+          "wiki": 7,
           "wiki_raw": "{{F1stat|ANT|poles}}",
-          "wiki_expanded": "6",
+          "wiki_expanded": "7",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -706,9 +756,9 @@
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": 9,
+          "wiki": 10,
           "wiki_raw": "{{F1stat|ANT|fastestlaps}}",
-          "wiki_expanded": "9",
+          "wiki_expanded": "10",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -721,8 +771,8 @@
       "name": "Arvid Lindblad",
       "wikipedia_title": "Arvid_Lindblad",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arvid_Lindblad",
-      "from_cache": false,
-      "wiki_revid": 1370869352,
+      "from_cache": true,
+      "wiki_revid": 1382894459,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -755,11 +805,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 12,
-          "wiki_entries": 12,
-          "wiki_starts": 11,
+          "ours": 19,
+          "wiki_entries": 19,
+          "wiki_starts": 18,
           "wiki_raw": "{{F1stat|LIN|entries}} ({{F1stat|LIN|starts}} starts)",
-          "wiki_expanded": "12 (11 starts)",
+          "wiki_expanded": "19 (18 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -791,8 +841,8 @@
       "name": "Alberto Ascari",
       "wikipedia_title": "Alberto_Ascari",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alberto_Ascari",
-      "from_cache": false,
-      "wiki_revid": 1370209992,
+      "from_cache": true,
+      "wiki_revid": 1383463694,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -867,8 +917,8 @@
       "name": "Oliver Bearman",
       "wikipedia_title": "Oliver_Bearman",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Oliver_Bearman",
-      "from_cache": false,
-      "wiki_revid": 1369740181,
+      "from_cache": true,
+      "wiki_revid": 1374678717,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -901,11 +951,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 39,
-          "wiki_entries": 39,
-          "wiki_starts": 39,
+          "ours": 46,
+          "wiki_entries": 46,
+          "wiki_starts": 46,
           "wiki_raw": "{{F1stat|BEA|entries}} ({{F1stat|BEA|starts}} starts)",
-          "wiki_expanded": "39 (39 starts)",
+          "wiki_expanded": "46 (46 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -937,8 +987,8 @@
       "name": "Gabriel Bortoleto",
       "wikipedia_title": "Gabriel_Bortoleto",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Gabriel_Bortoleto",
-      "from_cache": false,
-      "wiki_revid": 1369565337,
+      "from_cache": true,
+      "wiki_revid": 1380466018,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -971,11 +1021,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 36,
-          "wiki_entries": 36,
-          "wiki_starts": 35,
+          "ours": 43,
+          "wiki_entries": 43,
+          "wiki_starts": 42,
           "wiki_raw": "{{F1stat|BOR|entries}} ({{F1stat|BOR|starts}} starts)",
-          "wiki_expanded": "36 (35 starts)",
+          "wiki_expanded": "43 (42 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -1007,8 +1057,8 @@
       "name": "Valtteri Bottas",
       "wikipedia_title": "Valtteri_Bottas",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Valtteri_Bottas",
-      "from_cache": false,
-      "wiki_revid": 1369222186,
+      "from_cache": true,
+      "wiki_revid": 1383464476,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1041,11 +1091,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 259,
-          "wiki_entries": 259,
-          "wiki_starts": 258,
+          "ours": 266,
+          "wiki_entries": 266,
+          "wiki_starts": 265,
           "wiki_raw": "{{F1stat|BOT|entries}} ({{F1stat|BOT|starts}} starts)",
-          "wiki_expanded": "259 (258 starts)",
+          "wiki_expanded": "266 (265 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -1077,8 +1127,8 @@
       "name": "Jenson Button",
       "wikipedia_title": "Jenson_Button",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jenson_Button",
-      "from_cache": false,
-      "wiki_revid": 1368900797,
+      "from_cache": true,
+      "wiki_revid": 1377697207,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1151,8 +1201,8 @@
       "name": "Jim Clark",
       "wikipedia_title": "Jim_Clark",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jim_Clark",
-      "from_cache": false,
-      "wiki_revid": 1370473885,
+      "from_cache": true,
+      "wiki_revid": 1373701593,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1227,8 +1277,8 @@
       "name": "Franco Colapinto",
       "wikipedia_title": "Franco_Colapinto",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Franco_Colapinto",
-      "from_cache": false,
-      "wiki_revid": 1370907110,
+      "from_cache": true,
+      "wiki_revid": 1383349361,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1261,11 +1311,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 39,
-          "wiki_entries": 39,
-          "wiki_starts": 38,
+          "ours": 46,
+          "wiki_entries": 46,
+          "wiki_starts": 45,
           "wiki_raw": "{{f1stat|COL|entries}} ({{f1stat|COL|starts}} starts)",
-          "wiki_expanded": "39 (38 starts)",
+          "wiki_expanded": "46 (45 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -1297,8 +1347,8 @@
       "name": "Damon Hill",
       "wikipedia_title": "Damon_Hill",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Damon_Hill",
-      "from_cache": false,
-      "wiki_revid": 1365876385,
+      "from_cache": true,
+      "wiki_revid": 1380242162,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1371,8 +1421,8 @@
       "name": "Emerson Fittipaldi",
       "wikipedia_title": "Emerson_Fittipaldi",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Emerson_Fittipaldi",
-      "from_cache": false,
-      "wiki_revid": 1367337766,
+      "from_cache": true,
+      "wiki_revid": 1377307992,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1447,8 +1497,8 @@
       "name": "Juan Fangio",
       "wikipedia_title": "Juan_Manuel_Fangio",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Juan_Manuel_Fangio",
-      "from_cache": false,
-      "wiki_revid": 1364230610,
+      "from_cache": true,
+      "wiki_revid": 1380597575,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1529,8 +1579,8 @@
       "name": "Nino Farina",
       "wikipedia_title": "Nino_Farina",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nino_Farina",
-      "from_cache": false,
-      "wiki_revid": 1336550249,
+      "from_cache": true,
+      "wiki_revid": 1378919210,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1603,8 +1653,8 @@
       "name": "Pierre Gasly",
       "wikipedia_title": "Pierre_Gasly",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Pierre_Gasly",
-      "from_cache": false,
-      "wiki_revid": 1369414321,
+      "from_cache": true,
+      "wiki_revid": 1380435183,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1628,29 +1678,29 @@
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 6,
-          "wiki": 6,
+          "ours": 5,
+          "wiki": 5,
           "wiki_raw": "{{F1stat|GAS|podiums}}",
-          "wiki_expanded": "6",
+          "wiki_expanded": "5",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 190,
-          "wiki_entries": 190,
-          "wiki_starts": 189,
+          "ours": 197,
+          "wiki_entries": 197,
+          "wiki_starts": 196,
           "wiki_raw": "{{F1stat|GAS|entries}} ({{F1stat|GAS|starts}} starts)",
-          "wiki_expanded": "190 (189 starts)",
+          "wiki_expanded": "197 (196 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": 0,
+          "wiki": 1,
           "wiki_raw": "{{F1stat|GAS|poles}}",
-          "wiki_expanded": "0",
+          "wiki_expanded": "1",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -1673,8 +1723,8 @@
       "name": "Isack Hadjar",
       "wikipedia_title": "Isack_Hadjar",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Isack_Hadjar",
-      "from_cache": false,
-      "wiki_revid": 1370278773,
+      "from_cache": true,
+      "wiki_revid": 1383004971,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1698,20 +1748,20 @@
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 1,
-          "wiki": 1,
+          "ours": 3,
+          "wiki": 3,
           "wiki_raw": "{{F1stat|HAD|podiums}}",
-          "wiki_expanded": "1",
+          "wiki_expanded": "3",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 35,
-          "wiki_entries": 35,
-          "wiki_starts": 34,
+          "ours": 40,
+          "wiki_entries": 40,
+          "wiki_starts": 39,
           "wiki_raw": "{{F1stat|HAD|entries}} ({{F1stat|HAD|starts}} starts)",
-          "wiki_expanded": "35 (34 starts)",
+          "wiki_expanded": "40 (39 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -1743,8 +1793,8 @@
       "name": "Mika Häkkinen",
       "wikipedia_title": "Mika_Häkkinen",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen",
-      "from_cache": false,
-      "wiki_revid": 1366692195,
+      "from_cache": true,
+      "wiki_revid": 1380598257,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1819,8 +1869,8 @@
       "name": "Lewis Hamilton",
       "wikipedia_title": "Lewis_Hamilton",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
-      "from_cache": false,
-      "wiki_revid": 1370877821,
+      "from_cache": true,
+      "wiki_revid": 1383441308,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1860,29 +1910,29 @@
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 207,
-          "wiki": 207,
+          "ours": 209,
+          "wiki": 209,
           "wiki_raw": "{{F1stat|HAM|podiums}}",
-          "wiki_expanded": "207",
+          "wiki_expanded": "209",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 392,
-          "wiki_entries": 392,
-          "wiki_starts": 392,
+          "ours": 399,
+          "wiki_entries": 399,
+          "wiki_starts": 399,
           "wiki_raw": "{{F1stat|HAM|entries}} ({{F1stat|HAM|starts}} starts)",
-          "wiki_expanded": "392 (392 starts)",
+          "wiki_expanded": "399 (399 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": 104,
+          "wiki": 105,
           "wiki_raw": "{{F1stat|HAM|poles}}",
-          "wiki_expanded": "104",
+          "wiki_expanded": "105",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -1890,9 +1940,9 @@
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": 69,
+          "wiki": 70,
           "wiki_raw": "{{F1stat|HAM|fastestlaps}}",
-          "wiki_expanded": "69",
+          "wiki_expanded": "70",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -1905,8 +1955,8 @@
       "name": "Mike Hawthorn",
       "wikipedia_title": "Mike_Hawthorn",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Mike_Hawthorn",
-      "from_cache": false,
-      "wiki_revid": 1361573865,
+      "from_cache": true,
+      "wiki_revid": 1378371090,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -1979,8 +2029,8 @@
       "name": "Graham Hill",
       "wikipedia_title": "Graham_Hill",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Graham_Hill",
-      "from_cache": false,
-      "wiki_revid": 1368365067,
+      "from_cache": true,
+      "wiki_revid": 1382060420,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2055,8 +2105,8 @@
       "name": "Nico Hülkenberg",
       "wikipedia_title": "Nico_Hülkenberg",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg",
-      "from_cache": false,
-      "wiki_revid": 1369714073,
+      "from_cache": true,
+      "wiki_revid": 1383435230,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2089,11 +2139,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 266,
-          "wiki_entries": 266,
-          "wiki_starts": 261,
+          "ours": 273,
+          "wiki_entries": 273,
+          "wiki_starts": 268,
           "wiki_raw": "{{F1stat|HUL|entries}} ({{F1stat|HUL|starts}} starts)",
-          "wiki_expanded": "266 (261 starts)",
+          "wiki_expanded": "273 (268 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -2125,7 +2175,7 @@
       "name": "Denny Hulme",
       "wikipedia_title": "Denny_Hulme",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Denny_Hulme",
-      "from_cache": false,
+      "from_cache": true,
       "wiki_revid": 1370814821,
       "infobox_found": true,
       "fields": {
@@ -2199,8 +2249,8 @@
       "name": "James Hunt",
       "wikipedia_title": "James_Hunt",
       "wikipedia_url": "http://en.wikipedia.org/wiki/James_Hunt",
-      "from_cache": false,
-      "wiki_revid": 1365762528,
+      "from_cache": true,
+      "wiki_revid": 1381769113,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2273,8 +2323,8 @@
       "name": "Jack Brabham",
       "wikipedia_title": "Jack_Brabham",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jack_Brabham",
-      "from_cache": false,
-      "wiki_revid": 1369788375,
+      "from_cache": true,
+      "wiki_revid": 1378926771,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2351,8 +2401,8 @@
       "name": "Alan Jones",
       "wikipedia_title": "Alan_Jones_(Formula_1)",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alan_Jones_(Formula_1)",
-      "from_cache": false,
-      "wiki_revid": 1367498908,
+      "from_cache": true,
+      "wiki_revid": 1382498319,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2425,7 +2475,7 @@
       "name": "Keke Rosberg",
       "wikipedia_title": "Keke_Rosberg",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Keke_Rosberg",
-      "from_cache": false,
+      "from_cache": true,
       "wiki_revid": 1367663938,
       "infobox_found": true,
       "fields": {
@@ -2499,8 +2549,8 @@
       "name": "Niki Lauda",
       "wikipedia_title": "Niki_Lauda",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Niki_Lauda",
-      "from_cache": false,
-      "wiki_revid": 1368329699,
+      "from_cache": true,
+      "wiki_revid": 1381567894,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2577,8 +2627,8 @@
       "name": "Liam Lawson",
       "wikipedia_title": "Liam_Lawson",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Liam_Lawson",
-      "from_cache": false,
-      "wiki_revid": 1370949991,
+      "from_cache": true,
+      "wiki_revid": 1383346917,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2611,11 +2661,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 47,
-          "wiki_entries": 47,
-          "wiki_starts": 47,
+          "ours": 54,
+          "wiki_entries": 54,
+          "wiki_starts": 54,
           "wiki_raw": "{{F1stat|LAW|entries}} ({{F1stat|LAW|starts}} starts)",
-          "wiki_expanded": "47 (47 starts)",
+          "wiki_expanded": "54 (54 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -2647,8 +2697,8 @@
       "name": "Charles Leclerc",
       "wikipedia_title": "Charles_Leclerc",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Charles_Leclerc",
-      "from_cache": false,
-      "wiki_revid": 1370561690,
+      "from_cache": true,
+      "wiki_revid": 1383293546,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2672,20 +2722,20 @@
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 54,
-          "wiki": 54,
+          "ours": 56,
+          "wiki": 56,
           "wiki_raw": "{{F1stat|LEC|podiums}}",
-          "wiki_expanded": "54",
+          "wiki_expanded": "56",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 185,
-          "wiki_entries": 185,
-          "wiki_starts": 183,
+          "ours": 192,
+          "wiki_entries": 192,
+          "wiki_starts": 190,
           "wiki_raw": "{{F1stat|LEC|entries}} ({{F1stat|LEC|starts}} starts)",
-          "wiki_expanded": "185 (183 starts)",
+          "wiki_expanded": "192 (190 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -2702,9 +2752,9 @@
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": 13,
+          "wiki": 15,
           "wiki_raw": "{{F1stat|LEC|fastestlaps}}",
-          "wiki_expanded": "13",
+          "wiki_expanded": "15",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -2717,8 +2767,8 @@
       "name": "Nigel Mansell",
       "wikipedia_title": "Nigel_Mansell",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nigel_Mansell",
-      "from_cache": false,
-      "wiki_revid": 1365267406,
+      "from_cache": true,
+      "wiki_revid": 1377887398,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2791,8 +2841,8 @@
       "name": "Mario Andretti",
       "wikipedia_title": "Mario_Andretti",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Mario_Andretti",
-      "from_cache": false,
-      "wiki_revid": 1370845228,
+      "from_cache": true,
+      "wiki_revid": 1382318761,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2865,8 +2915,8 @@
       "name": "Max Verstappen",
       "wikipedia_title": "Max_Verstappen",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Max_Verstappen",
-      "from_cache": false,
-      "wiki_revid": 1370382193,
+      "from_cache": true,
+      "wiki_revid": 1383281447,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -2891,38 +2941,38 @@
           "f1stat_unresolved": []
         },
         "wins": {
-          "ours": 71,
-          "wiki": 71,
+          "ours": 74,
+          "wiki": 74,
           "wiki_raw": "{{F1stat|VER|wins}}",
-          "wiki_expanded": "71",
+          "wiki_expanded": "74",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 131,
-          "wiki": 131,
+          "ours": 138,
+          "wiki": 138,
           "wiki_raw": "{{F1stat|VER|podiums}}",
-          "wiki_expanded": "131",
+          "wiki_expanded": "138",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 245,
-          "wiki_entries": 245,
-          "wiki_starts": 245,
+          "ours": 252,
+          "wiki_entries": 252,
+          "wiki_starts": 252,
           "wiki_raw": "{{F1stat|VER|entries}} ({{F1stat|VER|starts}} starts)",
-          "wiki_expanded": "245 (245 starts)",
+          "wiki_expanded": "252 (252 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": 48,
+          "wiki": 50,
           "wiki_raw": "{{F1stat|VER|poles}}",
-          "wiki_expanded": "48",
+          "wiki_expanded": "50",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -2930,9 +2980,9 @@
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": 37,
+          "wiki": 38,
           "wiki_raw": "{{F1stat|VER|fastestlaps}}",
-          "wiki_expanded": "37",
+          "wiki_expanded": "38",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -2945,8 +2995,8 @@
       "name": "Michael Schumacher",
       "wikipedia_title": "Michael_Schumacher",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Michael_Schumacher",
-      "from_cache": false,
-      "wiki_revid": 1370001414,
+      "from_cache": true,
+      "wiki_revid": 1383125010,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3031,8 +3081,8 @@
       "name": "Lando Norris",
       "wikipedia_title": "Lando_Norris",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Lando_Norris",
-      "from_cache": false,
-      "wiki_revid": 1366497171,
+      "from_cache": true,
+      "wiki_revid": 1383375159,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3060,29 +3110,29 @@
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 48,
-          "wiki": 48,
+          "ours": 49,
+          "wiki": 49,
           "wiki_raw": "{{F1stat|NOR|podiums}}",
-          "wiki_expanded": "48",
+          "wiki_expanded": "49",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 164,
-          "wiki_entries": 164,
-          "wiki_starts": 163,
+          "ours": 171,
+          "wiki_entries": 171,
+          "wiki_starts": 170,
           "wiki_raw": "{{F1stat|NOR|entries}} ({{F1stat|NOR|starts}} starts)",
-          "wiki_expanded": "164 (163 starts)",
+          "wiki_expanded": "171 (170 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": 18,
+          "wiki": 19,
           "wiki_raw": "{{F1stat|NOR|poles}}",
-          "wiki_expanded": "18",
+          "wiki_expanded": "19",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -3105,8 +3155,8 @@
       "name": "Esteban Ocon",
       "wikipedia_title": "Esteban_Ocon",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Esteban_Ocon",
-      "from_cache": false,
-      "wiki_revid": 1366128482,
+      "from_cache": true,
+      "wiki_revid": 1383318503,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3139,11 +3189,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 192,
-          "wiki_entries": 192,
-          "wiki_starts": 192,
+          "ours": 198,
+          "wiki_entries": 199,
+          "wiki_starts": 198,
           "wiki_raw": "{{F1stat|OCO|entries}} ({{F1stat|OCO|starts}} starts)",
-          "wiki_expanded": "192 (192 starts)",
+          "wiki_expanded": "199 (198 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -3175,8 +3225,8 @@
       "name": "Sergio Pérez",
       "wikipedia_title": "Sergio_Pérez",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez",
-      "from_cache": false,
-      "wiki_revid": 1370054465,
+      "from_cache": true,
+      "wiki_revid": 1383501557,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3209,11 +3259,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 295,
-          "wiki_entries": 297,
-          "wiki_starts": 293,
+          "ours": 302,
+          "wiki_entries": 304,
+          "wiki_starts": 300,
           "wiki_raw": "{{F1stat|PER|entries}} ({{F1stat|PER|starts}} starts)",
-          "wiki_expanded": "297 (293 starts)",
+          "wiki_expanded": "304 (300 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -3245,8 +3295,8 @@
       "name": "Phil Hill",
       "wikipedia_title": "Phil_Hill",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Phil_Hill",
-      "from_cache": false,
-      "wiki_revid": 1356364975,
+      "from_cache": true,
+      "wiki_revid": 1382497775,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3319,8 +3369,8 @@
       "name": "Oscar Piastri",
       "wikipedia_title": "Oscar_Piastri",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Oscar_Piastri",
-      "from_cache": false,
-      "wiki_revid": 1370863221,
+      "from_cache": true,
+      "wiki_revid": 1383345661,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3353,11 +3403,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 82,
-          "wiki_entries": 82,
-          "wiki_starts": 80,
+          "ours": 89,
+          "wiki_entries": 89,
+          "wiki_starts": 87,
           "wiki_raw": "{{F1stat|PIA|entries}} ({{F1stat|PIA|starts}} starts)",
-          "wiki_expanded": "82 (80 starts)",
+          "wiki_expanded": "89 (87 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -3389,8 +3439,8 @@
       "name": "Nelson Piquet",
       "wikipedia_title": "Nelson_Piquet",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nelson_Piquet",
-      "from_cache": false,
-      "wiki_revid": 1369586850,
+      "from_cache": true,
+      "wiki_revid": 1381734803,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3467,8 +3517,8 @@
       "name": "Alain Prost",
       "wikipedia_title": "Alain_Prost",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Alain_Prost",
-      "from_cache": false,
-      "wiki_revid": 1366968700,
+      "from_cache": true,
+      "wiki_revid": 1379213915,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3547,8 +3597,8 @@
       "name": "Kimi Räikkönen",
       "wikipedia_title": "Kimi_Räikkönen",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Kimi_R%C3%A4ikk%C3%B6nen",
-      "from_cache": false,
-      "wiki_revid": 1367448649,
+      "from_cache": true,
+      "wiki_revid": 1383016950,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3621,8 +3671,8 @@
       "name": "Jochen Rindt",
       "wikipedia_title": "Jochen_Rindt",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jochen_Rindt",
-      "from_cache": false,
-      "wiki_revid": 1370335431,
+      "from_cache": true,
+      "wiki_revid": 1383398226,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3695,8 +3745,8 @@
       "name": "Nico Rosberg",
       "wikipedia_title": "Nico_Rosberg",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Nico_Rosberg",
-      "from_cache": false,
-      "wiki_revid": 1366102321,
+      "from_cache": true,
+      "wiki_revid": 1380148772,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3769,8 +3819,8 @@
       "name": "George Russell",
       "wikipedia_title": "George_Russell_(racing_driver)",
       "wikipedia_url": "http://en.wikipedia.org/wiki/George_Russell_(racing_driver)",
-      "from_cache": false,
-      "wiki_revid": 1368534149,
+      "from_cache": true,
+      "wiki_revid": 1381002026,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3785,38 +3835,38 @@
           "f1stat_unresolved": []
         },
         "wins": {
-          "ours": 7,
-          "wiki": 7,
+          "ours": 8,
+          "wiki": 8,
           "wiki_raw": "{{F1stat|RUS|wins}}",
-          "wiki_expanded": "7",
+          "wiki_expanded": "8",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "podiums": {
-          "ours": 30,
-          "wiki": 30,
+          "ours": 32,
+          "wiki": 32,
           "wiki_raw": "{{F1stat|RUS|podiums}}",
-          "wiki_expanded": "30",
+          "wiki_expanded": "32",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 164,
-          "wiki_entries": 164,
-          "wiki_starts": 164,
+          "ours": 171,
+          "wiki_entries": 171,
+          "wiki_starts": 171,
           "wiki_raw": "{{F1stat|RUS|entries}} ({{F1stat|RUS|starts}} starts)",
-          "wiki_expanded": "164 (164 starts)",
+          "wiki_expanded": "171 (171 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
         },
         "poles": {
           "ours": null,
-          "wiki": 11,
+          "wiki": 12,
           "wiki_raw": "{{F1stat|RUS|poles}}",
-          "wiki_expanded": "11",
+          "wiki_expanded": "12",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -3824,9 +3874,79 @@
         },
         "fastest_laps": {
           "ours": null,
-          "wiki": 11,
+          "wiki": 13,
           "wiki_raw": "{{F1stat|RUS|fastestlaps}}",
-          "wiki_expanded": "11",
+          "wiki_expanded": "13",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        }
+      }
+    },
+    {
+      "driver_id": "ryo_hirakawa",
+      "name": "Ryo Hirakawa",
+      "wikipedia_title": "Ryo_Hirakawa",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ryo_Hirakawa",
+      "from_cache": false,
+      "wiki_revid": 1383466318,
+      "infobox_found": true,
+      "fields": {
+        "championships": {
+          "ours_count": 0,
+          "ours_years": [],
+          "wiki_count": 0,
+          "wiki_years": [],
+          "wiki_raw": "0",
+          "wiki_expanded": null,
+          "template_not_literal": false,
+          "f1stat_resolved_count": 0,
+          "f1stat_unresolved": []
+        },
+        "wins": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|wins}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "podiums": {
+          "ours": 0,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|podiums}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": []
+        },
+        "entries": {
+          "ours": 1,
+          "wiki_entries": 1,
+          "wiki_starts": null,
+          "wiki_raw": "{{F1stat|HIR|entries}} ({{F1stat|HIR|starts}} start)",
+          "wiki_expanded": "1 (1 start)",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 2,
+          "f1stat_unresolved": []
+        },
+        "poles": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|poles}}",
+          "wiki_expanded": "0",
+          "template_not_literal": false,
+          "f1stat_resolved_count": 1,
+          "f1stat_unresolved": [],
+          "note": "第一階段不發布，僅記錄維基值不比對"
+        },
+        "fastest_laps": {
+          "ours": null,
+          "wiki": 0,
+          "wiki_raw": "{{F1stat|HIR|fastestlaps}}",
+          "wiki_expanded": "0",
           "template_not_literal": false,
           "f1stat_resolved_count": 1,
           "f1stat_unresolved": [],
@@ -3839,8 +3959,8 @@
       "name": "Carlos Sainz",
       "wikipedia_title": "Carlos_Sainz_Jr.",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Carlos_Sainz_Jr.",
-      "from_cache": false,
-      "wiki_revid": 1370167795,
+      "from_cache": true,
+      "wiki_revid": 1382638866,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3873,11 +3993,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 244,
-          "wiki_entries": 245,
-          "wiki_starts": 241,
+          "ours": 251,
+          "wiki_entries": 252,
+          "wiki_starts": 248,
           "wiki_raw": "{{F1stat|SAI|entries}} ({{F1stat|SAI|starts}} starts)",
-          "wiki_expanded": "245 (241 starts)",
+          "wiki_expanded": "252 (248 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -3909,8 +4029,8 @@
       "name": "Jody Scheckter",
       "wikipedia_title": "Jody_Scheckter",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jody_Scheckter",
-      "from_cache": false,
-      "wiki_revid": 1368364858,
+      "from_cache": true,
+      "wiki_revid": 1382671024,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -3983,8 +4103,8 @@
       "name": "Ayrton Senna",
       "wikipedia_title": "Ayrton_Senna",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Ayrton_Senna",
-      "from_cache": false,
-      "wiki_revid": 1368551997,
+      "from_cache": true,
+      "wiki_revid": 1382079074,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -4061,8 +4181,8 @@
       "name": "Jackie Stewart",
       "wikipedia_title": "Jackie_Stewart",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jackie_Stewart",
-      "from_cache": false,
-      "wiki_revid": 1364117726,
+      "from_cache": true,
+      "wiki_revid": 1381547967,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -4139,8 +4259,8 @@
       "name": "Lance Stroll",
       "wikipedia_title": "Lance_Stroll",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Lance_Stroll",
-      "from_cache": false,
-      "wiki_revid": 1370856270,
+      "from_cache": true,
+      "wiki_revid": 1383408048,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -4173,11 +4293,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 203,
-          "wiki_entries": 205,
-          "wiki_starts": 201,
+          "ours": 210,
+          "wiki_entries": 212,
+          "wiki_starts": 208,
           "wiki_raw": "{{F1stat|STR|entries}} ({{F1stat|STR|starts}} starts)",
-          "wiki_expanded": "205 (201 starts)",
+          "wiki_expanded": "212 (208 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -4209,8 +4329,8 @@
       "name": "John Surtees",
       "wikipedia_title": "John_Surtees",
       "wikipedia_url": "http://en.wikipedia.org/wiki/John_Surtees",
-      "from_cache": false,
-      "wiki_revid": 1364521906,
+      "from_cache": true,
+      "wiki_revid": 1378396821,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -4283,8 +4403,8 @@
       "name": "Yuki Tsunoda",
       "wikipedia_title": "Yuki_Tsunoda",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Yuki_Tsunoda",
-      "from_cache": false,
-      "wiki_revid": 1370672243,
+      "from_cache": true,
+      "wiki_revid": 1383481867,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -4317,11 +4437,11 @@
           "f1stat_unresolved": []
         },
         "entries": {
-          "ours": 115,
-          "wiki_entries": 115,
-          "wiki_starts": 112,
+          "ours": 117,
+          "wiki_entries": 117,
+          "wiki_starts": 114,
           "wiki_raw": "{{F1stat|TSU|entries}} ({{F1stat|TSU|starts}} starts)",
-          "wiki_expanded": "115 (112 starts)",
+          "wiki_expanded": "117 (114 starts)",
           "template_not_literal": false,
           "f1stat_resolved_count": 2,
           "f1stat_unresolved": []
@@ -4353,8 +4473,8 @@
       "name": "Sebastian Vettel",
       "wikipedia_title": "Sebastian_Vettel",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Sebastian_Vettel",
-      "from_cache": false,
-      "wiki_revid": 1369187312,
+      "from_cache": true,
+      "wiki_revid": 1383375345,
       "infobox_found": true,
       "fields": {
         "championships": {
@@ -4433,8 +4553,8 @@
       "name": "Jacques Villeneuve",
       "wikipedia_title": "Jacques_Villeneuve",
       "wikipedia_url": "http://en.wikipedia.org/wiki/Jacques_Villeneuve",
-      "from_cache": false,
-      "wiki_revid": 1366705063,
+      "from_cache": true,
+      "wiki_revid": 1383444707,
       "infobox_found": true,
       "fields": {
         "championships": {
