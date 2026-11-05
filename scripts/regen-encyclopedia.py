@@ -202,6 +202,10 @@ def _year_slice(con, year):
         slc[tbl] = [tuple(r) for r in rows]
     st = con.execute("SELECT status FROM seasons WHERE year=?", (year,)).fetchone()
     slc["status"] = st[0] if st else None
+    if slc["status"] != "completed":
+        # 進行中賽季頁的冠軍文字取決於封王判定，判定還讀 raw 賽曆的衝刺賽排程（不在上面的 db 切片裡）；
+        # 只在進行中賽季加這個鍵，已完成賽季的指紋不動。
+        slc["driver_title_clinched"] = fs.driver_title_clinched_json(year)
     slc["season_intro"] = _season_intro_slice(year)
     slc["zh_sha256"] = _zh_sha256("driver-zh.json", "team-zh.json", "race-zh.json")
     overrides = _season_override_slice(year)
@@ -225,15 +229,22 @@ def _driver_slice(con, did):
     meta = con.execute(
         "SELECT given_name, family_name, nationality, dob, url, code, permanent_number "
         "FROM drivers WHERE driver_id=?", (did,)).fetchone()
-    return {"results": [tuple(r) for r in results],
-            "standings": [tuple(r) for r in standings],
-            "status": [tuple(r) for r in status],
-            "meta": tuple(meta) if meta else None,
-            # 車手頁 constructor chips 的可連名單來自這份 roster；其內容變更必須使頁面 stale。
-            "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER),
-            # 車手頁印兩種譯名：車手自己的（il.resolve_zh → driver-zh.json）與
-            # 車隊 chips 的（rc.TEAM_ZH → team-zh.json）。賽道／分站名不印，故不切那兩張。
-            "zh_sha256": _zh_sha256("driver-zh.json", "team-zh.json")}
+    out = {"results": [tuple(r) for r in results],
+           "standings": [tuple(r) for r in standings],
+           "status": [tuple(r) for r in status],
+           "meta": tuple(meta) if meta else None,
+           # 車手頁 constructor chips 的可連名單來自這份 roster；其內容變更必須使頁面 stale。
+           "constructor_roster_sha256": _file_sha(CONSTRUCTOR_ROSTER),
+           # 車手頁印兩種譯名：車手自己的（il.resolve_zh → driver-zh.json）與
+           # 車隊 chips 的（rc.TEAM_ZH → team-zh.json）。賽道／分站名不印，故不切那兩張。
+           "zh_sha256": _zh_sha256("driver-zh.json", "team-zh.json")}
+    # 進行中賽季的數學封王取決於對手積分與剩餘賽曆（不在本車手自己的切片裡）。只在他確實
+    # 有封王季時加這個鍵：封王前後指紋必變，其餘車手的指紋不動。
+    clinched = [d["season"] for d in fs.driver_championships_db(did, con)["detail"]
+                if d.get("clinched")]
+    if clinched:
+        out["title_clinched_seasons"] = clinched
+    return out
 
 
 def _constructor_slice(con, cid):

@@ -5,7 +5,7 @@
 鎖住驗收條件與紅線：
 - 前置三 gate（invariants／verdicts／golden）各自的 exit-1 行為：合成壞 invariant／抽走一條
   verdict／篡改 golden 一值 → gate False（且 main 走 gate 失敗時零產出）。
-- 35 冠軍＋2026 現役 22 人的聯集 53 頁全生成，雙分區索引完整。
+- 歷代冠軍（2026-11-03 起 36 位，含數學封王的安東內利）＋2026 現役的聯集頁全生成，雙分區索引完整。
 - §4.6 紅線：桿位／最快圈／生涯積分不得以「數據形式」出現在任何頁（只允許 na 佔位卡）。
 - golden value == len(detail)（衍生數字紀律）。
 - 譯名誠實 fallback（無譯名者原文-only + 頁尾註明；seed 有全名譯名）。
@@ -289,21 +289,23 @@ class GenerationTests(unittest.TestCase):
             self.assertTrue((self.tmp / "drivers" / slug / "index.html").is_file(),
                             f"{did} 車手頁未生成")
 
-    def test_index_lists_all_35_with_links(self):
+    def test_index_lists_all_champions_with_links(self):
         for did in dr.CHAMPION_IDS:
             slug = rc.driver_slug(did)
             self.assertIn(f'href="/drivers/{slug}/"', self.index, f"索引缺 {slug}")
 
-    def test_index_itemlist_has_35(self):
-        # 冠軍 ItemList 固定 35 不受 roster 擴編影響。
+    def test_index_itemlist_has_36(self):
+        # 冠軍 ItemList 不受 roster 擴編影響；2026-11-03 Charlie 裁「封王即算」，
+        # 安東內利 2026 數學封王計入 → 35→36（全站一致：冠軍清單、互鏈、最年輕冠軍）。
         m = re.search(r'"@type":"ItemList".*?"numberOfItems":(\d+)', self.index)
         self.assertTrue(m)
-        self.assertEqual(int(m.group(1)), 35)
+        self.assertEqual(int(m.group(1)), 36)
+        self.assertIn("antonelli", dr.CHAMPION_IDS)
         # 2026-08-24 tsunoda 擴編：現役 22→23。
         # ListItem = 冠軍 ItemList 的 35 + 現役 ItemList 的 len(ACTIVE_IDS) + BreadcrumbList 的 2（首頁／車手）。
         # 2026-11-03 ryo_hirakawa 擴編：現役 23→24。
         self.assertEqual(len(dr.ACTIVE_IDS), 24)
-        self.assertEqual(self.index.count('"@type":"ListItem"'), 35 + len(dr.ACTIVE_IDS) + 2)
+        self.assertEqual(self.index.count('"@type":"ListItem"'), 36 + len(dr.ACTIVE_IDS) + 2)
 
     def test_active_section_lists_all_22(self):
         self.assertIn("2026 現役陣容", self.index)

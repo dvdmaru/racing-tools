@@ -277,10 +277,33 @@ def _nice_ticks(maxv):
     return step, math.ceil(max(maxv, 1) / step) * step
 
 
-# ---------- 索引頁資料列（進行中賽季不顯示冠軍——踩過把榜首當冠軍的錯） ----------
+# ---------- 車手封王（2026-11-03 Charlie 裁「封王即算」；判定只在 f1stats，這裡只轉成文字） ----------
+
+def _title_clinch(year):
+    """進行中賽季已在數學上封王 → f1stats.driver_title_clinched_json 的 dict；否則（含已完成賽季）None。"""
+    return fs.driver_title_clinched_json(year)
+
+
+def _remaining_txt(hit):
+    """「剩餘 4 站正賽（無衝刺賽）」／「剩餘 3 站正賽與 1 場衝刺賽」。"""
+    races, sprints = hit["remaining_races"], hit["remaining_sprints"]
+    if sprints:
+        return f"剩餘 {races} 站正賽與 {sprints} 場衝刺賽"
+    return f"剩餘 {races} 站正賽（無衝刺賽）"
+
+
+def _clinch_math_txt(hit):
+    """封王算術一句話：剩餘最高可得分、第二名全拿的上限、與領先者積分比較。數字全來自 hit。"""
+    ceiling = _fmt(hit["rival_points"] + hit["remaining_max"])
+    return (f"{_remaining_txt(hit)}，單一車手最多還能拿 {_fmt(hit['remaining_max'])} 分，"
+            f"第二名即使全拿也只有 {ceiling} 分，少於 {_fmt(hit['points'])} 分")
+
+
+# ---------- 索引頁資料列（進行中賽季：車手冠軍只在已數學封王時列出；車隊冠軍一律不列） ----------
 
 def index_row(year):
-    """回一季的索引資料。未完賽（fs._is_completed=False）→ champion 一律 None、in_progress=True。"""
+    """回一季的索引資料。未完賽（fs._is_completed=False）→ in_progress=True、constructor_champ 一律
+    None；driver_champ 只在車手已數學封王時給（driver_champ_clinched=True），否則 None。"""
     completed = fs._is_completed(year)
     ds = _driver_standings(year)
     cs = _constructor_standings(year)
@@ -289,7 +312,18 @@ def index_row(year):
     row = {"year": year, "rounds": _season_rounds(year),
            "scheduled": len(_schedule(year)),
            "in_progress": not completed,
-           "driver_champ": None, "constructor_champ": None}
+           "driver_champ": None, "constructor_champ": None,
+           "driver_champ_clinched": False}
+    if not completed:
+        hit = _title_clinch(year)
+        if hit:
+            d = next((r["Driver"] for r in ds
+                      if r.get("Driver", {}).get("driverId") == hit["driver_id"]), None)
+            if d is not None:
+                row["driver_champ"] = {"id": d.get("driverId", ""),
+                                       "zh": zh_driver(d.get("driverId", "")),
+                                       "en": _driver_full(d), "drv": d}
+                row["driver_champ_clinched"] = True
     if completed:
         if ds:
             d = ds[0]["Driver"]
@@ -372,8 +406,9 @@ def points_gap(year):
 def season_narrative(year):
     """回 list[str] 純文字敘事句。名字用「譯名（原文）」或只原文（誠實 fallback）。
 
-    進行中賽季（fs._is_completed=False）：一律進行時態、榜首＝「暫居」而非「奪冠」、
-    末句標「賽季進行中・每週自動更新」；不得出現「奪下世界冠軍」「累計積分」等已定案語。
+    進行中賽季（fs._is_completed=False）：一律進行時態、末句標「賽季進行中・每週自動更新」；
+    車手榜首未數學封王＝「暫居」、已數學封王＝明寫「已在數學上確定奪得車手世界冠軍」並附算術
+    （2026-11-03 Charlie 裁「封王即算」）。車隊榜首一律「暫居」。不得出現「累計積分」等已定案語。
     無車隊榜的年代（<1958）：略過車隊句（誠實不寫不存在的錦標賽）。"""
     ds = _driver_standings(year)
     cs = _constructor_standings(year)
@@ -386,7 +421,15 @@ def season_narrative(year):
 
     if in_progress:
         scheduled = len(_schedule(year))
-        if len(ds) >= 2:
+        hit = _title_clinch(year)
+        if hit and len(ds) >= 2 and cd.get("driverId") == hit["driver_id"]:
+            sd = ds[1]["Driver"]
+            second_name = name_plain(zh_driver(sd.get("driverId", "")), _driver_full(sd))
+            lines.append(
+                f"{year} 賽季進行中，全季排定 {scheduled} 站、目前已完成 {rounds} 站。"
+                f"{champ_name} 以 {champ_pts} 分領先第二名 {second_name} {gap} 分；"
+                f"{_clinch_math_txt(hit)}，因此已在數學上確定奪得 {year} 年車手世界冠軍。")
+        elif len(ds) >= 2:
             sd = ds[1]["Driver"]
             second_name = name_plain(zh_driver(sd.get("driverId", "")), _driver_full(sd))
             lines.append(
@@ -1020,7 +1063,8 @@ def render_index(built_years=None):
                      if _index_has_page(year, built_years)
                      else f'<span class="mono">{year}</span>')
         if row["in_progress"]:
-            dchamp = '<span class="ip">進行中</span>'
+            dchamp = (f'{_index_champ_cell(row["driver_champ"])} <span class="ip">已封王・賽季進行中</span>'
+                      if row["driver_champ_clinched"] else '<span class="ip">進行中</span>')
             cchamp = '<span class="ip">進行中</span>'
             # T-01：進行中賽季顯示「已跑 / 全季」，避免把已跑站次誤讀為全季分站數
             rounds_cell = f'{row["rounds"]} / {row["scheduled"]}'
@@ -1041,14 +1085,17 @@ def render_index(built_years=None):
     canonical = f"{BASE}/seasons/"
     intro = (f'<div class="pg-sub">一級方程式 <b>{FIRST_YEAR}–{LAST_YEAR}</b> 共 '
              f'<b>{LAST_YEAR - FIRST_YEAR + 1}</b> 個賽季的車手與車隊世界冠軍、分站數一覽。'
-             '進行中的賽季只顯示「進行中」不列冠軍（榜首＝目前領先，非冠軍）。'
+             '進行中的賽季：車手冠軍在數學上已確定時才列出並標「已封王」（領先者積分大於其餘每位車手'
+             '現有積分加上剩餘全部正賽與衝刺賽的最高可得分，平手不算），否則只顯示「進行中」；'
+             '車隊冠軍等賽季結束才列。'
              '中文名採台灣慣用譯名並附原文，查無定版譯名者誠實只列原文。</div>')
     if built_years is not None and all(y in built_years for y in range(FIRST_YEAR, LAST_YEAR + 1)):
         avail_txt = '全部 <b>77</b> 季均已建詳細頁（點賽季年份進入）。'
     else:
         avail_txt = '目前僅 <b>2002</b> 賽季已建詳細頁（可點）；其餘賽季詳細頁陸續補上。'
     note = (f'<p class="note">{avail_txt}'
-            '冠軍認定一律取自資料源該季<b>最終官方積分榜</b>榜首，本站不自行計算。'
+            '已完成賽季的冠軍一律取自資料源該季<b>最終官方積分榜</b>榜首；進行中賽季的車手封王，'
+            '由本站用目前官方積分榜與剩餘賽曆判定（只做加法與比較）。'
             '分站數取自積分榜快照的最終站次（round）欄；'
             '進行中賽季顯示「已跑站次 / 全季排定站數」。'
             '車隊世界錦標賽 <b>1958</b> 年才設立，此前賽季車隊冠軍欄以「—」誠實留空。</p>')
@@ -1213,9 +1260,19 @@ def _championship_race_chart(year):
     return note_ok + svg
 
 
-def _gap_details(year, champ_pts, second_pts, gap, champ_name, second_name, in_progress=False):
+def _gap_details(year, champ_pts, second_pts, gap, champ_name, second_name, in_progress=False,
+                 clinch=None):
     board = "目前官方車手積分榜" if in_progress else "該季最終官方車手積分榜"
-    lead_lbl = "目前領先者" if in_progress else "冠軍"
+    lead_lbl = ("冠軍（已數學封王）" if clinch else "目前領先者") if in_progress else "冠軍"
+    clinch_html = ""
+    if clinch:
+        race_max, sprint_max = fs._points_maxima()
+        clinch_html = (
+            f'\n    <p class="prov">封王判定：{esc(_remaining_txt(clinch))}，單一車手最多還能拿 '
+            f'<b>{_fmt(clinch["remaining_max"])}</b> 分（正賽每場 {race_max} 分、衝刺賽每場 {sprint_max} 分）；'
+            f'第二名 {_fmt(clinch["rival_points"])} ＋ {_fmt(clinch["remaining_max"])} ＝ '
+            f'<b>{_fmt(clinch["rival_points"] + clinch["remaining_max"])}</b>，少於 {_fmt(clinch["points"])}。'
+            '其餘車手現有積分更低，同樣追不上。平手不算封王。</p>')
     return f"""<details class="how">
   <summary>怎麼算的</summary>
   <div class="how-body">
@@ -1223,7 +1280,7 @@ def _gap_details(year, champ_pts, second_pts, gap, champ_name, second_name, in_p
       <li title="來源：L1 standings（L0 raw＋Charlie 裁決覆寫）#pos1">{lead_lbl} {esc(champ_name)}：<b>{_fmt(champ_pts)}</b> 分（{board}榜首）</li>
       <li title="來源：L1 standings（L0 raw＋Charlie 裁決覆寫）#pos2">第二名 {esc(second_name)}：<b>{_fmt(second_pts)}</b> 分（同榜第 2 名）</li>
     </ol>
-    <p class="prov">分差 ＝ {_fmt(champ_pts)} − {_fmt(second_pts)} ＝ <b>{_fmt(gap)}</b>。兩個數字皆直接取自{board}，本站只做減法。</p>
+    <p class="prov">分差 ＝ {_fmt(champ_pts)} − {_fmt(second_pts)} ＝ <b>{_fmt(gap)}</b>。兩個數字皆直接取自{board}，本站只做減法。</p>{clinch_html}
   </div>
 </details>"""
 
@@ -1397,10 +1454,15 @@ def render_season(year, round_paths=None):
             cons_link = (f'<a href="/constructors/{rc.constructor_slug(cid)}/">{label}</a>'
                          if cid in CONSTRUCTOR_IDS else f'<span class="rel-off">{label}</span>')
 
-    # Hero（in_progress：進行中 tag＋已跑/排定＋「目前領先」非「冠軍」；<1958：無車隊冠軍格）
+    # Hero（in_progress：進行中 tag＋已跑/排定＋「目前領先」非「冠軍」——除非車手已數學封王；
+    # <1958：無車隊冠軍格）
+    clinch = _title_clinch(year) if in_progress else None
+    if clinch and clinch["driver_id"] != cd.get("driverId"):
+        clinch = None  # 積分榜榜首與判定對不上 → 不宣稱封王（保守）
     if in_progress:
         rounds_line = f'<span>已跑 / 排定 <span class="mono">{rounds} / {scheduled}</span></span>'
-        lead_line = f'<span>目前領先 {champ_link}</span>'
+        lead_line = (f'<span>車手冠軍 {champ_link}（已在數學上封王）</span>' if clinch
+                     else f'<span>目前領先 {champ_link}</span>')
         cons_line = (f'<span>車隊領先 {cons_link}</span>' if has_cons else "")
         h1 = f'{year} 賽季<span class="ip-tag">進行中</span>'
         kicker = "賽季 · Season · 進行中"
@@ -1411,8 +1473,15 @@ def render_season(year, round_paths=None):
                      else '<span class="dim">車隊冠軍 —（車隊世界錦標賽 1958 年才創立）</span>')
         h1 = f'{year} 賽季'
         kicker = "賽季 · Season"
-    banner = ('<p class="ip-banner">本頁為進行中賽季：榜首＝目前領先非冠軍，數據為目前官方快照，'
-              '賽季進行中・每週自動更新。</p>') if in_progress else ""
+    if clinch:
+        banner = (f'<p class="ip-banner">本頁為進行中賽季：{esc(name_plain(champ_zh, champ_en))}'
+                  f'已在數學上確定奪得 {year} 年車手世界冠軍；其餘名次與車隊榜首＝目前領先非最終，'
+                  '數據為目前官方快照，賽季進行中・每週自動更新。</p>')
+    elif in_progress:
+        banner = ('<p class="ip-banner">本頁為進行中賽季：榜首＝目前領先非冠軍，數據為目前官方快照，'
+                  '賽季進行中・每週自動更新。</p>')
+    else:
+        banner = ""
     hero = f"""<div class="ent-hero">
   <p class="ent-kicker">{kicker}</p>
   <h1 class="ent-h1">{h1}</h1>
@@ -1426,7 +1495,11 @@ def render_season(year, round_paths=None):
     # Hero stat 卡（in_progress 用「目前領先者」語意，完賽用「冠軍」語意）
     champ_name_plain = name_plain(champ_zh, champ_en)
     second_name_plain = name_plain(zh_driver(sd.get("driverId", "")), _driver_full(sd)) if sd else "—"
-    if in_progress:
+    if clinch:
+        pts_lbl, pts_why = ("冠軍目前積分", f"{esc(champ_name_plain)}，已在數學上確定奪得車手世界冠軍；"
+                            "取自目前官方車手積分榜榜首（賽季進行中，積分仍會變動）。")
+        wins_lbl, wins_why = "冠軍至今分站冠軍", "取自目前積分榜的 wins 欄（本季至今分站冠軍場次）。"
+    elif in_progress:
         pts_lbl, pts_why = "目前領先者積分", f"{esc(champ_name_plain)}，取自目前官方車手積分榜榜首（賽季進行中）。"
         wins_lbl, wins_why = "目前分站冠軍數", "取自目前積分榜的 wins 欄（本季至今分站冠軍場次）。"
     else:
@@ -1438,7 +1511,7 @@ def render_season(year, round_paths=None):
     <p class="na-why">{pts_why}</p></div>
   <div class="stat"><div class="stat-v mono">{_fmt(gap)}<span class="unit"> 分</span></div>
     <div class="stat-l">領先第二名</div>
-    {_gap_details(year, champ_pts, second_pts, gap, champ_name_plain, second_name_plain, in_progress)}</div>
+    {_gap_details(year, champ_pts, second_pts, gap, champ_name_plain, second_name_plain, in_progress, clinch)}</div>
   <div class="stat"><div class="stat-v mono">{ds[0].get("wins", "0")}<span class="unit"> 勝</span></div>
     <div class="stat-l">{wins_lbl}</div>
     <p class="na-why">{wins_why}</p></div>
@@ -1522,7 +1595,7 @@ def render_season(year, round_paths=None):
     out = PUB / "seasons" / str(year)
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
-    tag = "進行中" if in_progress else f"領先 {_fmt(gap)}"
+    tag = ("進行中・已封王" if clinch else "進行中") if in_progress else f"領先 {_fmt(gap)}"
     print(f"  ✓ /seasons/{year}/　{champ_en} {_fmt(champ_pts)}分（{tag}）· "
           f"{len(cats)} 類退賽{'' if has_cons else ' · 無車隊榜'}")
     return canonical
@@ -1601,9 +1674,20 @@ def render_driver_subpage(year, did, round_paths=None):
                    '<th>完賽名次</th><th>積分</th><th class="l">賽果登記</th>'
                    f'</tr></thead><tbody>{"".join(rrows)}</tbody></table></div>')
 
-    # 車手視角敘事（模板＋SOURCED 數字；in_progress 一律進行時態、無「奪冠」定案語）
+    # 車手視角敘事（模板＋SOURCED 數字；in_progress 一律進行時態；只有已數學封王的車手寫「奪得冠軍」）
     n_wins, n_pod = len(card["wins"]), len(card["podiums"])
-    if in_progress:
+    clinch = _title_clinch(year) if in_progress else None
+    if clinch and clinch["driver_id"] == did:
+        lines = [f"{name_txt} 在進行中的 {year} 賽季至今出賽 {len(races)} 站，"
+                 f"以 {card['points']} 分領先車手積分榜，已在數學上確定奪得 {year} 年車手世界冠軍"
+                 "（積分為目前快照，賽季進行中仍會變動）。"]
+        lines.append(f"至今拿下 {n_wins} 場分站冠軍、{n_pod} 次頒獎台。")
+        if rets:
+            lines.append(f"其中 {len(rets)} 站未完賽（賽果登記事由逐站列於下方，本站不直譯退賽因果）。")
+        else:
+            lines.append("至今每一站皆完賽，無退賽紀錄。")
+        lines.append("賽季進行中・每週自動更新。")
+    elif in_progress:
         lines = [f"{name_txt} 在進行中的 {year} 賽季至今出賽 {len(races)} 站，"
                  f"以 {card['points']} 分暫居車手積分榜第 {card['final_pos']} 位（榜次為目前領先，非最終名次）。"]
         lines.append(f"至今拿下 {n_wins} 場分站冠軍、{n_pod} 次頒獎台。")

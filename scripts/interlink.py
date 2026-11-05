@@ -136,7 +136,8 @@ def clear_caches():
 # ---------- 名單與譯名（與 gen-racing-drivers.py 同源，不另硬編） ----------
 
 def champion_ids():
-    """35 位歷代冠軍 id（canonical 來源＝crosscheck-report 的 coverage）。"""
+    """歷代車手冠軍 id（canonical 來源＝crosscheck-report 的 coverage；2026-11-03 起含進行中賽季
+    已數學封王者，36 位）。"""
     if "champion_ids" not in _CACHE:
         _CACHE["champion_ids"] = tuple(
             json.loads(REPORT.read_text(encoding="utf-8"))["coverage"]["expected_champion_ids"])

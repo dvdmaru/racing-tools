@@ -257,9 +257,14 @@ class GraphEdgesTests(unittest.TestCase):
         return n
 
     def test_won_championship_count_matches_sqlite(self):
+        # 2026-11-03 Charlie 裁「封王即算」：已完成賽季榜首（SQL 直數）＋進行中賽季已數學封王者。
         n = self._direct("SELECT count(*) FROM driver_standings ds JOIN seasons s "
                          "ON s.year=ds.season WHERE ds.position=1 AND s.status='completed'")
-        self.assertEqual(self.counts["won_championship"], n)
+        clinched = [e for e in self.edges if e["type"] == "won_championship"
+                    and e["to"] == "season:2026"]
+        self.assertEqual(clinched, [{"type": "won_championship", "from": "driver:antonelli",
+                                     "to": "season:2026"}])
+        self.assertEqual(self.counts["won_championship"], n + len(clinched))
 
     def test_drove_for_count_matches_sqlite(self):
         n = self._direct("SELECT count(*) FROM (SELECT DISTINCT season, driver_id, constructor_id "

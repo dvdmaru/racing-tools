@@ -19,8 +19,13 @@ DB = ROOT / "data" / "f1" / "db.sqlite"
 # 所有可發布的衍生公式必須先在這裡具名登記。這不是顯示用清單：_stat() 會 fail closed，
 # 避免生成器臨時塞一個沒有定義／沒有測試的公式 id。車隊頒獎台以「完賽車次」計，
 # 因此 shared-drive 年代依 (season, round, position_text, number) 去重，同場兩台車上台仍保留兩筆。
+# ⚠️ 車手冠軍公式 2026-11-03 升版（Charlie 裁「封王即算」）：舊 id count_seasons_driver_standing_eq_1
+# 只認已完成賽季，新 id 另把「進行中賽季已在數學上封王」計入。舊 id 刻意移出登記表——
+# 任何還在用舊 id 的路徑會在 _stat() fail closed，不會靜默沿用舊定義。
+DRIVER_TITLE_FORMULA = "count_seasons_driver_title_completed_or_clinched"
+
 FORMULAS = frozenset({
-    "count_seasons_driver_standing_eq_1",
+    DRIVER_TITLE_FORMULA,
     "count_seasons_constructor_standing_eq_1",
     "results_position_text_eq_1",
     "results_position_text_in_123",
@@ -77,6 +82,182 @@ def _stat(kind, formula, coverage, detail):
             "coverage": coverage, "detail": detail}
 
 
+# ---------- 車手世界冠軍：單一判定（2026-11-03 Charlie 裁「封王即算」） ----------
+# 本站「車手世界冠軍」＝賽季已完成且車手榜第 1，**或**進行中賽季已在數學上封王。
+# 車手冠軍的所有路徑（JSON 生涯檔路徑、DB 路徑、維基對審、不變量 I5、圖的邊、賽季頁文字）
+# 都經過下面這組函式，不另寫第二份判定。車隊冠軍不在射程內：仍只認已完成賽季。
+#
+# 數學封王的判定刻意保守：
+#   領先者積分 ＞ 其餘每一位車手的「現有積分＋剩餘全部正賽與衝刺賽的單場最高分總和」。
+#   嚴格大於，平手不算（不靠同分決勝規則）。剩餘場次＝賽曆上還沒有賽果的場次；
+#   單場最高分取自既有給分表（build-facts.py 的 POINTS_RACE／POINTS_SPRINT），不在此寫死。
+
+_POINTS_MAXIMA = None
+
+
+def _points_maxima():
+    """(正賽單場最高分, 衝刺賽單場最高分)，取自 build-facts.py 的現行給分表。
+
+    ⚠️ 給分表是現行規則（2026：正賽 25、衝刺賽 8、無最快圈加分）。只有進行中賽季會用到它；
+    哪天規則改版（例如加回最快圈加分），表要先改，否則封王判定會用舊上限。
+    """
+    global _POINTS_MAXIMA
+    if _POINTS_MAXIMA is None:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "build_facts_points_table", ROOT / "scripts" / "build-facts.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _POINTS_MAXIMA = (max(mod.POINTS_RACE.values()), max(mod.POINTS_SPRINT.values()))
+    return _POINTS_MAXIMA
+
+
+def driver_title_clinched(standings, remaining_races, remaining_sprints,
+                          race_max=None, sprint_max=None):
+    """純函式：進行中賽季的車手是否已在數學上封王。回 dict 或 None（未封王／無法判定）。
+
+    standings：[(driver_id, points), ...]，目前官方車手積分榜（順序不拘）。
+    remaining_races／remaining_sprints：賽曆上尚未有賽果的正賽／衝刺賽場數。
+    race_max／sprint_max：單場最高分；省略時取現行給分表。
+
+    判定：領先者積分 ＞ 其餘每位車手現分＋剩餘最高可得分。榜上沒列名的車手視為 0 分，
+    故只有一人上榜時也要嚴格大於「0＋剩餘最高可得分」。平手（含榜首並列）一律不算。
+    """
+    if remaining_races < 0 or remaining_sprints < 0:
+        raise ValueError(f"剩餘場次不得為負：races={remaining_races} sprints={remaining_sprints}")
+    if race_max is None or sprint_max is None:
+        rm, sm = _points_maxima()
+        race_max = rm if race_max is None else race_max
+        sprint_max = sm if sprint_max is None else sprint_max
+    rows = sorted(((d, float(p)) for d, p in standings), key=lambda t: (-t[1], t[0]))
+    if not rows:
+        return None
+    leader, lead_pts = rows[0]
+    remaining_max = remaining_races * race_max + remaining_sprints * sprint_max
+    rival, rival_pts = (rows[1] if len(rows) > 1 else (None, 0.0))
+    rival_pts = max(rival_pts, 0.0)  # 未上榜車手＝0 分，也是對手
+    if not lead_pts > rival_pts + remaining_max:
+        return None
+    return {"driver_id": leader, "points": lead_pts,
+            "rival_id": rival, "rival_points": rival_pts,
+            "remaining_races": remaining_races, "remaining_sprints": remaining_sprints,
+            "remaining_max": remaining_max}
+
+
+def _schedule_rounds(year):
+    """(全部正賽 round 集合, 有衝刺賽的 round 集合)，來源 raw/season-<year>-schedule.json。
+
+    缺檔回 None——判定端據此 fail closed（不封王），不猜賽曆。
+    """
+    sched = RAW / f"season-{year}-schedule.json"
+    if not sched.exists():
+        return None
+    races = _load(sched).get("Races", [])
+    return ({int(r["round"]) for r in races},
+            {int(r["round"]) for r in races if r.get("Sprint")})
+
+
+def _raw_rounds(subdir, year):
+    return {int(p.stem.split("-")[1]) for p in (RAW / subdir).glob(f"{year}-*.json")}
+
+
+def driver_title_clinched_json(year):
+    """JSON 路徑：讀 raw 積分榜／賽曆／賽果檔，判定進行中賽季 year 是否已封王。
+
+    已完成賽季不走這裡（回 None）。積分榜的站次與賽果檔最大站次不一致（積分榜落後或超前）
+    → 無法判定，回 None（保守）。
+    """
+    if _is_completed(year):
+        return None
+    sched = _schedule_rounds(year)
+    sp = RAW / "standings" / f"driver-{year}.json"
+    if sched is None or not sp.exists():
+        return None
+    race_rounds, sprint_rounds = sched
+    ran = _raw_rounds("results", year)
+    sprint_ran = _raw_rounds("sprint", year)
+    data = _load(sp)
+    if ran and str(data.get("round", "")) != str(max(ran)):
+        return None  # 積分榜與賽果不同步 → 不判
+    rows = [(r.get("Driver", {}).get("driverId"), r.get("points") or 0)
+            for r in data.get("DriverStandings", [])]
+    hit = driver_title_clinched(rows, len(race_rounds - ran), len(sprint_rounds - sprint_ran))
+    if hit is None:
+        return None
+    pos1 = [r.get("Driver", {}).get("driverId") for r in data.get("DriverStandings", [])
+            if r.get("position") == "1"]
+    return hit if pos1 == [hit["driver_id"]] else None
+
+
+def season_driver_champion_json(year):
+    """JSON 路徑：該季車手世界冠軍。回 {"driver_id", "clinched": bool, ...} 或 None。
+
+    已完成賽季＝積分榜 position=="1"（clinched=False，代表依賽季結束認定）；
+    進行中賽季＝driver_title_clinched_json() 判定已封王者（clinched=True），否則 None。
+    """
+    if not _is_completed(year):
+        hit = driver_title_clinched_json(year)
+        return dict(hit, clinched=True) if hit else None
+    sp = RAW / "standings" / f"driver-{year}.json"
+    if not sp.exists():
+        return None
+    for row in _load(sp).get("DriverStandings", []):
+        if row.get("position") == "1":
+            return {"driver_id": row.get("Driver", {}).get("driverId"), "clinched": False}
+    return None
+
+
+def driver_title_clinched_db(con, year):
+    """DB 路徑：讀 db 的 driver_standings／results／sprint_results（衝刺賽排程取 raw 賽曆），
+    判定進行中賽季 year 是否已封王。回 driver_title_clinched() 的 dict 或 None。
+
+    正賽排程＝db races 表 ∪ raw 賽曆（取聯集＝剩餘場次只會多算、不會少算）；raw 賽曆缺檔 →
+    無法得知剩餘衝刺賽 → 回 None。積分榜與賽果同步由不變量 I6 與週更 hard gate 擔保。
+    """
+    sched = _schedule_rounds(year)
+    if sched is None:
+        return None
+    race_rounds, sprint_rounds = sched
+    race_rounds = race_rounds | {r[0] for r in con.execute(
+        "SELECT round FROM races WHERE season=?", (year,)).fetchall()}
+    ran = {r[0] for r in con.execute(
+        "SELECT DISTINCT round FROM results WHERE season=?", (year,)).fetchall()}
+    sprint_ran = {r[0] for r in con.execute(
+        "SELECT DISTINCT round FROM sprint_results WHERE season=?", (year,)).fetchall()}
+    rows = con.execute(
+        "SELECT driver_id, points, position FROM driver_standings WHERE season=?",
+        (year,)).fetchall()
+    hit = driver_title_clinched([(r[0], r[1]) for r in rows],
+                                len(race_rounds - ran), len(sprint_rounds - sprint_ran))
+    if hit is None:
+        return None
+    pos1 = [r[0] for r in rows if r[2] == 1]
+    return hit if pos1 == [hit["driver_id"]] else None
+
+
+def driver_title_rows_db(con):
+    """DB 路徑：全庫車手世界冠軍列 [(season, driver_id, points, wins, clinched)]，依 season、driver_id 排。
+
+    已完成賽季＝driver_standings position=1；進行中賽季＝已在數學上封王的領先者（clinched=True）。
+    con 可為 Connection 或 Cursor（只用 execute／fetchall 與位置索引）。
+    """
+    out = [(r[0], r[1], r[2], r[3], False) for r in con.execute(
+        "SELECT ds.season, ds.driver_id, ds.points, ds.wins "
+        "FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
+        "WHERE ds.position=1 AND s.status='completed' ORDER BY ds.season, ds.driver_id").fetchall()]
+    for (year,) in con.execute(
+            "SELECT year FROM seasons WHERE status!='completed' ORDER BY year").fetchall():
+        hit = driver_title_clinched_db(con, year)
+        if hit is None:
+            continue
+        row = con.execute(
+            "SELECT points, wins FROM driver_standings WHERE season=? AND driver_id=?",
+            (year, hit["driver_id"])).fetchone()
+        out.append((year, hit["driver_id"], row[0], row[1], True))
+    out.sort(key=lambda t: (t[0], t[1]))
+    return out
+
+
 # ---------- 車手生涯（來源：drivers/<id>-results.json 逐場） ----------
 
 def driver_career(did):
@@ -127,19 +308,23 @@ def driver_career(did):
 
 
 def driver_championships(did):
-    """冠軍＝逐季『車手榜』position=='1'（不是勝場！）。來源是 standings 層，與賽果層獨立。"""
+    """冠軍＝逐季『車手榜』position=='1'（不是勝場！）且賽季已完成，或進行中賽季已在數學上封王
+    （JSON 路徑；判定見 season_driver_champion_json）。來源是 standings 層，與賽果層獨立。"""
     detail = []
     for p in sorted((RAW / "standings").glob("driver-*.json")):
         year = int(p.stem.split("-")[1])
-        data = _load(p)
-        if not _is_completed(year):
-            continue  # 進行中的賽季榜首是「領先」不是「冠軍」
-        for row in data.get("DriverStandings", []):
+        champ = season_driver_champion_json(year)
+        if not champ or champ["driver_id"] != did:
+            continue  # 未封王的進行中賽季：榜首是「領先」不是「冠軍」
+        for row in _load(p).get("DriverStandings", []):
             if row.get("Driver", {}).get("driverId") == did and row.get("position") == "1":
-                detail.append({"season": year, "points": row.get("points"),
-                               "wins_that_year": row.get("wins"),
-                               "source": f"data/f1/raw/standings/driver-{year}.json#pos1"})
-    return _stat("derived", "count_seasons_driver_standing_eq_1", "1950-2026", detail)
+                d = {"season": year, "points": row.get("points"),
+                     "wins_that_year": row.get("wins"),
+                     "source": f"data/f1/raw/standings/driver-{year}.json#pos1"}
+                if champ["clinched"]:
+                    d["clinched"] = True
+                detail.append(d)
+    return _stat("derived", DRIVER_TITLE_FORMULA, "1950-2026", detail)
 
 
 def driver_seasons(did):
@@ -225,27 +410,25 @@ def driver_career_db(did, con, as_of=None):
 
 
 def driver_championships_db(did, con, as_of=None):
-    """冠軍＝逐季車手榜 position==1 且該季已完成（DB 路徑）。與賽果層獨立（standings 表）。
+    """冠軍＝逐季車手榜 position==1 且該季已完成，或進行中賽季已在數學上封王（DB 路徑；
+    判定見 driver_title_rows_db）。與賽果層獨立（standings 表）。
 
     as_of：只計「截至 as_of 賽季（含）」奪得的冠軍——golden as_of 迴歸用。截斷是對明細
-    的賽季 filter（ds.season <= as_of_season），非減法。進行中的 as_of 賽季本就因
-    status!='completed' 不列入，故活躍車手的凍結值不受新賽果影響。
+    的賽季 filter（season <= as_of_season），非減法。⚠️ 截斷粒度是**賽季**：as_of 落在進行中
+    賽季時，該季是否計入看的是「目前」是否已封王（2026-11-03 起安東內利 as_of={2026,11}
+    的凍結值因此是 1 座），不是 as_of 那一站當下是否已封王。
     """
     ap = _as_of_pair(as_of)
-    sql = ("SELECT ds.season AS season, ds.points AS points, ds.wins AS wins "
-           "FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
-           "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed'")
-    params = [did]
-    if ap is not None:
-        sql += " AND ds.season <= ?"
-        params.append(ap[0])
-    sql += " ORDER BY ds.season"
     detail = []
-    for r in con.execute(sql, params).fetchall():
-        detail.append({"season": r["season"], "points": _fmt_points(r["points"]),
-                       "wins_that_year": r["wins"],
-                       "source": f"data/f1/raw/standings/driver-{r['season']}.json#pos1"})
-    return _stat("derived", "count_seasons_driver_standing_eq_1", "1950-2026", detail)
+    for season, d_id, points, wins, clinched in driver_title_rows_db(con):
+        if d_id != did or (ap is not None and season > ap[0]):
+            continue
+        d = {"season": season, "points": _fmt_points(points), "wins_that_year": wins,
+             "source": f"data/f1/raw/standings/driver-{season}.json#pos1"}
+        if clinched:
+            d["clinched"] = True
+        detail.append(d)
+    return _stat("derived", DRIVER_TITLE_FORMULA, "1950-2026", detail)
 
 
 def driver_seasons_db(did, con):

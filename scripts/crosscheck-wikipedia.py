@@ -9,8 +9,8 @@
   故不得宣稱「真正獨立的資料鏈」或「完整 oracle」。它抓得到某些錯，不保證抓得到全部。
 
 ★ Coverage 與盲區（S1-4，不得誇大）：
-  - 掃 **35 位歷代車手冠軍 ∪ 2026 現役 22 人**（聯集 53 人），不掃全 881 車手 →
-    不是整個 entity layer 的 oracle。
+  - 掃 **歷代車手冠軍 ∪ 2026 現役**（人數由 DB 現算，見 report.coverage.scope；2026-11-03 起
+    冠軍含進行中賽季已在數學上封王者，36 位），不掃全 881 車手 → 不是整個 entity layer 的 oracle。
   - 對照欄位＝championships（數字＋年份集合）、wins、podiums、entries。
   - 現役車手 volume 欄的 `{{F1stat}}` 由同一版 en.wikipedia Template:F1stat 快照解析；
     個別欄若模板無法解析，具名列入 coverage 縮減清單，絕不靜默跳過。
@@ -90,6 +90,18 @@ F1STAT_CACHE = WIKI_CACHE / "_f1stat.json"
 VERDICTS = ROOT / "config" / "f1-crosscheck-verdicts.json"
 REPORT = ROOT / "data" / "f1" / "crosscheck-report.json"
 
+
+def _load_f1stats():
+    """車手冠軍判定的單一來源（f1stats.driver_title_rows_db），本檔不另寫一份冠軍 SQL。"""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("f1stats", ROOT / "scripts" / "f1stats.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+fs = _load_f1stats()
+
 API = "https://en.wikipedia.org/w/api.php"
 UA = "racing-tools/1.0 (racing.twtools.cc; non-commercial encyclopedia crosscheck)"
 
@@ -106,9 +118,13 @@ RECORD_ONLY_FIELDS = ("poles", "fastest_laps")
 # ⚠️ entries 用 results_distinct_races（不重複、有賽果紀錄的場次），**不是**標準 GP entries——
 #    這是遷就資料能力的口徑，維基 races 欄對此欄永遠只會產可預期 diff（Sol 審 S1-3）。
 DEFINITION_REGISTRY = {
-    "count_seasons_driver_standing_eq_1": {
-        "formula": "count(seasons where driver_standings.position==1 and season completed)",
-        "coverage": "1950-2026", "unit": "季"},
+    # 2026-11-03 升版（Charlie 裁「封王即算」）：舊 id count_seasons_driver_standing_eq_1 只認已完成賽季。
+    fs.DRIVER_TITLE_FORMULA: {
+        "formula": ("count(seasons where driver_standings.position==1 and "
+                    "(season completed or leader mathematically clinched: leader_points > "
+                    "every other driver's points + remaining races*race_max + remaining sprints*sprint_max))"),
+        "coverage": "1950-2026", "unit": "季",
+        "caveat": "進行中賽季的封王判定嚴格大於（平手不算、不計同分決勝）；單場上限取現行給分表"},
     "results_position_text_eq_1": {
         "formula": "count(results where position_text=='1')",
         "coverage": "1950-2026", "unit": "場"},
@@ -122,8 +138,8 @@ DEFINITION_REGISTRY = {
 }
 # report 的每個 diff field → definition_id
 FIELD_DEFINITION_ID = {
-    "championships_count": "count_seasons_driver_standing_eq_1",
-    "championships_years": "count_seasons_driver_standing_eq_1",
+    "championships_count": fs.DRIVER_TITLE_FORMULA,
+    "championships_years": fs.DRIVER_TITLE_FORMULA,
     "wins": "results_position_text_eq_1",
     "podiums": "results_position_text_in_123",
     "entries": "results_distinct_races",
@@ -470,11 +486,8 @@ def parse_infobox(wikitext, f1stat_registry=None):
 # ---------------------------------------------------------------------------
 
 def champion_ids(cur):
-    """歷代車手冠軍：driver_standings position=1 且該季 completed（比照 I10）。"""
-    return [r[0] for r in cur.execute(
-        "SELECT DISTINCT ds.driver_id FROM driver_standings ds "
-        "JOIN seasons s ON s.year=ds.season "
-        "WHERE ds.position=1 AND s.status='completed' ORDER BY ds.driver_id")]
+    """歷代車手冠軍：已完成賽季榜首，或進行中賽季已在數學上封王（f1stats 單一判定）。"""
+    return sorted({r[1] for r in fs.driver_title_rows_db(cur)})
 
 
 def active_driver_ids(cur, season=2026):
@@ -507,14 +520,11 @@ def db_active_driver_ids(db_path=DEFAULT_DB, season=2026):
 
 
 def our_championship_years(cur, did):
-    """冠軍年份集合＝該車手在 completed 賽季拿到 driver_standings position=1 的年份。
+    """冠軍年份集合＝已完成賽季的車手榜第 1，或進行中賽季已在數學上封王的年份。
 
-    定義同 f1stats.driver_championships（count_seasons_driver_standing_eq_1）。
+    定義同 f1stats.driver_championships_db（fs.DRIVER_TITLE_FORMULA），直接呼叫同一判定。
     """
-    return [r[0] for r in cur.execute(
-        "SELECT ds.season FROM driver_standings ds JOIN seasons s ON s.year=ds.season "
-        "WHERE ds.driver_id=? AND ds.position=1 AND s.status='completed' "
-        "ORDER BY ds.season", (did,))]
+    return [r[0] for r in fs.driver_title_rows_db(cur) if r[1] == did]
 
 
 def our_counts(cur, did):
@@ -740,7 +750,8 @@ def build_report(db_path=DEFAULT_DB, extra_drivers=None, refresh=False, quiet=Fa
         "note": ("維基是**外部編纂對照路徑**（非獨立 oracle；上游可能共享官方賽果，獨立性未證實）；"
                  "能抓部分定義層/年份錯，維基自己也會錯；每個 diff 需人工具名+綁定裁決"),
         "coverage": {
-            "scope": "35 位歷代車手冠軍 ∪ 2026 現役 22 人（聯集 53 人；非全 881 車手）",
+            "scope": (f"{len(champs)} 位歷代車手冠軍 ∪ 2026 現役 {len(active)} 人"
+                      f"（聯集 {len(roster)} 人；非全 881 車手）"),
             "expected_champion_count": expected_champion_count,
             # 身分 manifest（R1）：DB SELECT DISTINCT 冠軍 id 排序後。gate 用它做 exact-set
             # 身分比對，不只比列數——藏一個重複列偽裝成足額會被抓（35 列 34 人 → FAIL）。
