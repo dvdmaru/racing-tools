@@ -50,6 +50,57 @@ def load_draft_excludes() -> set:
     return set(json.loads(p.read_text(encoding="utf-8")).get("exclude", []))
 
 
+def load_teardown_embeds() -> dict:
+    """config/teardown.json 的 embeds：slug → 3D 拆解頁設定（沒有檔案＝沒有任何內嵌）。"""
+    p = ROOT / "config" / "teardown.json"
+    if not p.exists():
+        return {}
+    return json.loads(p.read_text(encoding="utf-8")).get("embeds", {})
+
+
+def teardown_cta_html(slug: str, cfg: dict) -> str:
+    """文章裡通往 3D 拆解頁的入口：一張縮圖＋標題＋說明，整塊是一個連結。
+
+    樣式寫在 inline、只用主題變數（--line／--bg-glow／--accent／--dim），跟著五個配色主題變，
+    也不動共用 CSS（共用 CSS 一改，檔名 hash 變，全站百科頁都要重生）。
+    連結指向不帶 .html 的網址：Cloudflare static assets 會把 /x.html 轉址到 /x。
+    """
+    e = html_lib.escape
+    page = f"/articles/{slug}/{pathlib.Path(cfg['page']).stem}"
+    poster = f"/articles/{slug}/{cfg['poster']}"
+    w, h = cfg.get("poster_size", [1200, 675])
+    return (
+        '<figure class="teardown-cta" style="margin:26px 0">'
+        f'<a href="{e(page)}" style="display:block;border:1px solid var(--line);border-radius:12px;'
+        'overflow:hidden;background:var(--bg-glow);color:inherit;text-decoration:none">'
+        f'<img src="{e(poster)}" alt="{e(cfg["alt"])}" width="{w}" height="{h}" loading="lazy" decoding="async" '
+        'style="display:block;width:100%;height:auto;margin:0">'
+        '<span style="display:block;padding:14px 16px 15px">'
+        f'<span style="display:block;font-weight:700;color:var(--accent)">{e(cfg["title"])} →</span>'
+        f'<span style="display:block;margin-top:5px;font-size:.88em;line-height:1.6;color:var(--dim)">{e(cfg["note"])}</span>'
+        '</span></a></figure>'
+    )
+
+
+def inject_teardown(body_html: str, slug: str, embeds: dict) -> str:
+    """有設定的文章：在第一張 <figure> 之後插入 3D 拆解頁入口。
+
+    fail loud：設定了卻找不到頁面檔、縮圖或任何 <figure>，直接中斷建置——
+    安靜跳過會讓「以為上線了」與「頁面上根本沒有」長得一樣。
+    """
+    cfg = embeds.get(slug)
+    if not cfg:
+        return body_html
+    for key in ("page", "poster"):
+        if not (SRC / slug / cfg[key]).is_file():
+            raise FileNotFoundError(f"config/teardown.json: {slug} 的 {key} 檔不存在：articles/{slug}/{cfg[key]}")
+    i = body_html.find("</figure>")
+    if i < 0:
+        raise ValueError(f"config/teardown.json: {slug} 的文章裡沒有 <figure>，不知道 3D 入口要插在哪")
+    i += len("</figure>")
+    return body_html[:i] + "\n" + teardown_cta_html(slug, cfg) + body_html[i:]
+
+
 def load_approved_entries() -> dict:
     """讀取 default-deny 核准清單，回傳以 slug 為 key 的索引。"""
     p = ROOT / "config" / "approved.json"
@@ -906,6 +957,7 @@ def build():
 
     draft_excludes = load_draft_excludes()
     approved_entries = load_approved_entries()
+    teardown_embeds = load_teardown_embeds()
     articles = []
     for d in sorted(SRC.iterdir()):
         article_path = d / "index.md"
@@ -946,6 +998,8 @@ def build():
         # 車隊名 → 車隊頁互鏈。順序在車手／分站之後，兩者新增的 <a> 都是保護區；只有車隊
         # opt-in 放行每列表格第一個 td，文章 markdown 與 approved.json 仍完全唯讀。
         body_html, team_links = il.linkify_teams(body_html)
+        # 3D 拆解頁入口（config/teardown.json）：在互鏈之後插入，入口文字不會被連成車手／車隊連結
+        body_html = inject_teardown(body_html, slug, teardown_embeds)
         out_dir = PUB / "articles" / slug
         out_dir.mkdir(parents=True, exist_ok=True)
         for asset in d.iterdir():
