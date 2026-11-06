@@ -60,7 +60,7 @@ function wingGeo(c, t, m, span) {
   return g;
 }
 /** 沿 z 放樣的超橢圓斷面：sec＝[z, 半寬, 底, 頂]，n＝方圓程度（2＝橢圓，越大越方） */
-function loft(sec, n = 3, seg = 40, cx = 0) {
+export function loft(sec, n = 3, seg = 40, cx = 0) {
   const pos = [];
   const idx = [];
   const ring = (z, w, yb, yt) => {
@@ -100,8 +100,8 @@ function loft(sec, n = 3, seg = 40, cx = 0) {
   g.computeVertexNormals();
   return g;
 }
-const tube = (pts, r, seg = 48) => new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map((p) => new V3(...p)), false, 'catmullrom', 0.5), seg, r, 10, false);
-const curve = (pts) => new THREE.CatmullRomCurve3(pts.map((p) => new V3(...p)), false, 'catmullrom', 0.5);
+export const tube = (pts, r, seg = 48) => new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map((p) => new V3(...p)), false, 'catmullrom', 0.5), seg, r, 10, false);
+export const curve = (pts) => new THREE.CatmullRomCurve3(pts.map((p) => new V3(...p)), false, 'catmullrom', 0.5);
 const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
 /** 端板：在 y-z 平面上的圓角薄板 */
 function plateGeo(z0, z1, y0, y1, th = 0.012) {

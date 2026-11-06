@@ -5,7 +5,8 @@
 | 篇 | 文章 | 原始碼 | 狀態 |
 |---|---|---|---|
 | 1 | `articles/f1-101-power-unit`（2026 動力單元） | `pu-2026-*` | 已上線（PR #138）：`/articles/f1-101-power-unit/pu-3d` |
-| 2 | `articles/f1-101-active-aero`（2026 主動空力） | `aero-2026-*` | 接進文章（`/articles/f1-101-active-aero/aero-3d`） |
+| 2 | `articles/f1-101-active-aero`（2026 主動空力） | `aero-2026-*` | 已上線（PR #139）：`/articles/f1-101-active-aero/aero-3d` |
+| 3 | `articles/f1-101-brakes`（2026 煞車） | `brake-2026-*` | 接進文章（`/articles/f1-101-brakes/brake-3d`） |
 
 工具是 Claude Code skill [elvarofficial/teardown](https://github.com/elvarofficial/teardown)（MIT），
 釘在 commit `a91262ac1109051e014662d42ecb0b7bc1f113b1`（2026-10-31），裝在 `~/.claude/skills/teardown`
@@ -47,6 +48,19 @@
 
 ```
 node design/teardown/build.mjs design/teardown/aero-2026-live design/teardown/aero-2026-film
+```
+
+### 煞車（`brake-2026-shared/`）
+
+同一套結構；車身放樣借 `aero-2026-shared/car.js` 匯出的 `loft`／`tube`／`curve`，一圈與 MGU-K 回收量 import 動力單元的 `lapAt`／`stateAt`。
+`forcesAt(τ, {bal, bbw, harvest})` 算踏板、前後主缸、後卡鉗的相對壓力與後輪分工：電控在時後卡鉗＝後主缸 ×（1 − 馬達分擔），
+上限 1.2 倍（C11.6）；電控停用時後卡鉗＝後主缸（C11.6）。碟盤尺寸照 C11.3 取值（前 335、後 270、厚 32、孔 3 mm）。
+`stepThermal` 是示意熱模型（前盤約 270–1,016°C，對應 Brembo「窗口 350–550、重煞可破 1,000」）；`SELF_CHECK` 驗壓力規則、尺寸範圍與熱模型範圍。
+**規章沒有比賽中的壓力數字，畫面上只畫相對值、不顯示 bar。** 示意：車重、平衡預設 55%、熱模型參數、回收量。
+☠️ 控制台按鈕的鍵名不能跟零件按鈕撞（第一版條件按鈕叫 `bbw`，蓋掉了零件「電控」）；`console.js` 會在鍵名數不對時報錯。
+
+```
+node design/teardown/build.mjs design/teardown/brake-2026-live design/teardown/brake-2026-film
 ```
 
 ## 指令
