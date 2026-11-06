@@ -87,7 +87,7 @@
     <link>https://racing.twtools.cc/articles/f1-101-grid-to-finish/</link>
     <guid>https://racing.twtools.cc/articles/f1-101-grid-to-finish/</guid>
     <pubDate>Tue, 13 Oct 2026 00:00:00 +0800</pubDate>
-    <description>本站把 grid 顯示為發車位；把它減去同一列的 position，得到的是本站自訂的結果差，本文能查的資料源文件沒有定義它。單看這個數字，讀不出超了幾台，也讀不出配速。</description>
+    <description>同樣是 +5，可能是一台車跑過五個人，也可能有多台車先退賽。起點與終點的淨差不是場上超車紀錄。</description>
   </item>
   <item>
     <title>怎麼讀本站賽果表的『發車』欄：把它和本站排位表的名次並排</title>

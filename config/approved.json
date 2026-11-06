@@ -679,12 +679,12 @@
     },
     {
       "slug": "f1-101-timing-tower",
-      "article_sha256": "719519ce5810c5e14a6af8671e590bcf0d66c51274d92913520e0c93f91c034e",
+      "article_sha256": "50a76e65c358573e65e1497a210e9fed2f3ed22a33facad6b6dee67aa32ba41f",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-09-25T18:00:00+08:00",
-      "note": "F1 新手村第一批（10 篇之一）。Charlie 2026-09-25 指示「先做第一批，用 SVG 畫圖，使用 Conductor 模式」。流程：agy 研究席建事實包（只准 read_url，FIA 2026 規章＋formula1.com＋Pirelli）→Claude 查核棒逐條對 FIA 2026 規章原文（本機 pdftotext 純文字）與官方頁核對並補查缺口（agy 有錯：例如把衝刺站寫成奧斯汀／聖保羅，已依本站賽曆更正）→寫手只准用標 ✅／✏️改 的條目→agy 異源審稿（R1）與 Claude 修正棒逐條驗證再改（審稿席自己的建議也有錯，已駁回或改寫）→冷讀席（DeepSeek，只讀公開成品）→可讀性修正→圖片以 headless Chrome 手機寬實渲染逐張目視。Terra 異源複核（第二席）2026-09-25 跑了兩批共十篇：無 BLOCKER，共 15 條 MAJOR／MINOR 與疑慮；每條都由修正棒對 FIA 規章原文或事實包驗證後才改，14 條採納或部分採納，1 條駁回（『可酌減最多 4 圈』屬 2027 年條文，2026 現行不適用）。Terra 之後的修正輪未再複審。agy 第三輪審稿因額度 429 未能執行。桌檔與事實包：CoWork/roundtable/2026-09-25-racing-newbie-village/。核准者為 Charlie（PR 合併前需他本人授權）；本欄簽核依 Charlie 對本批的明示指示，由指揮位代為登錄。"
+      "approved_at": "2026-11-06T22:51:30+08:00",
+      "note": "2026-11-06 舊文第八批改寫；使用者明示「上線」授權本批發布。保留紫／綠與 interval 的官方定義，縮短延伸規章與重複限制；R1 數字帳本、內連、無源因果掃描與譯名 gate 通過。外部來源存活檢查受本機 DNS 失敗影響，另以官方網頁查核紀錄佐證；未把本機檢查誤記為通過。原始審稿履歷見 CoWork/roundtable/2026-09-25-racing-newbie-village/。"
     },
     {
       "slug": "f1-101-tyres",
@@ -1003,12 +1003,12 @@
     },
     {
       "slug": "f1-101-race-pace-reading",
-      "article_sha256": "a535e26f07c4b97118cf320f68f1450c8d651013a9f1dd1eb3b0d13cb9ad8114",
+      "article_sha256": "2fd0f98adac9b70a7b252d7895c7dc481d3547d2f7adf937e5552fc904a02662",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-09-28T15:34:56+08:00",
-      "note": "F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇不是規章題，主要來源是本站資料庫（2026 比利時大獎賽 Spa，round 10）：教讀者從單圈時間判讀比賽走勢，示範諾里斯賽末 10 圈配速在四人樣本中最快（起跑第 13、比安東內利晚 12 位），但正式名次僅第 7。這篇在修正過程中三次出現「修掉一個過度斷言、又不小心寫出另一個過度斷言」的教訓：agy/Terra 逐輪抓到標題與 FAQ 的「全場最快」全稱詞過廣（樣本只驗證 4 位車手）、把晚進站/起跑位置寫成確定的名次落後原因、把第 18/20/21 圈五位車手同步變慢的現象升格為「存在共同成因」、以及把「全場」這個詞在全文多處誤用成比抽樣範圍更廣的說法（第四輪一次性修正 10 處同型殘留）。審稿履歷：agy R1（2 BLOCKER：標題/FAQ「全場最快」過廣；1 MAJOR：晚進站因果無依據；1 MINOR：人數矛盾，已修）→Terra R1（1 MAJOR：「胎況無關」排他性因果，已修）→Terra R2（1 MAJOR：起跑位置擴張成「第一個原因/決定大半」，已修）→Terra R3（FAIL，1 BLOCKER＋1 MAJOR：「全場」範圍持續比抽樣範圍廣、因果語氣未收斂，第四輪修正棒逐字掃描全文修正 10 處同型殘留）→Terra R4（1 MAJOR：四人排序斷言超出數字支持——Leclerc 胎齡較新但均速比 Antonelli 慢，已修）→Terra R5（PASS，零 finding）。"
+      "approved_at": "2026-11-06T22:51:30+08:00",
+      "note": "2026-11-06 舊文第八批改寫；使用者明示「上線」授權本批發布。R1 數字復算、內連、無源因果與譯名 gate 通過；本機外部來源存活檢查因 DNS 無效，未記為通過。原始基線履歷：F1 新手村第五批（5 篇；本輪 Charlie 只說「新手村下一批，使用 Conductor 模式」，篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-09-28-racing-newbie-village-5/TOPICS.md）。前四批已覆蓋 38 篇，本批選題前先 grep 全站 55 篇文章排除重疊，只留站內查無、且有一手來源可查的 5 題，寧可少也不硬湊。流程：Claude 研究棒建事實包（含逐字引句與查無標記）→獨立 Claude 查核棒逐條核對（未照抄研究棒判斷，也抓到多處研究棒本身的錯，例如車手號碼題原本把 Vettel 用 5 號 8 季的事實漏看，誤判成「單純慣例」）→寫手只用 ✅／✏️改 條目→agy 異源審稿（七點對抗式）→Claude 修正棒逐條驗證後修正、同型全文掃描→DeepSeek 冷讀席（W32，只讀公開成品）→SVG headless Chrome 390px 手機寬實渲染→Terra（codex）異源複核多輪，直到零 finding 才停。PR #97 開出後自動模式分類器把指揮位自行簽核 approved.json 判定為 Self-Approval 並擋下（前四批同一動作曾放行，這次多了一層防護，見 feedback_bg_session_push_main_classifier 2026-09-28 節）；已在 PENDING.md 開 🔴 說明「回一句『合 racing #97』即同時視為對 approved.json 簽核的授權」。Charlie 於對話中回「合 racing #97」——本欄由指揮位依此明確、指名 PR 編號的原話代為登錄簽核，不是依批次級舊指示自行推定。approved_at 標記為本次簽核的實際時間。 本篇不是規章題，主要來源是本站資料庫（2026 比利時大獎賽 Spa，round 10）：教讀者從單圈時間判讀比賽走勢，示範諾里斯賽末 10 圈配速在四人樣本中最快（起跑第 13、比安東內利晚 12 位），但正式名次僅第 7。這篇在修正過程中三次出現「修掉一個過度斷言、又不小心寫出另一個過度斷言」的教訓：agy/Terra 逐輪抓到標題與 FAQ 的「全場最快」全稱詞過廣（樣本只驗證 4 位車手）、把晚進站/起跑位置寫成確定的名次落後原因、把第 18/20/21 圈五位車手同步變慢的現象升格為「存在共同成因」、以及把「全場」這個詞在全文多處誤用成比抽樣範圍更廣的說法（第四輪一次性修正 10 處同型殘留）。審稿履歷：agy R1（2 BLOCKER：標題/FAQ「全場最快」過廣；1 MAJOR：晚進站因果無依據；1 MINOR：人數矛盾，已修）→Terra R1（1 MAJOR：「胎況無關」排他性因果，已修）→Terra R2（1 MAJOR：起跑位置擴張成「第一個原因/決定大半」，已修）→Terra R3（FAIL，1 BLOCKER＋1 MAJOR：「全場」範圍持續比抽樣範圍廣、因果語氣未收斂，第四輪修正棒逐字掃描全文修正 10 處同型殘留）→Terra R4（1 MAJOR：四人排序斷言超出數字支持——Leclerc 胎齡較新但均速比 Antonelli 慢，已修）→Terra R5（PASS，零 finding）。"
     },
     {
       "slug": "f1-101-wheel-nut",
@@ -1264,12 +1264,12 @@
     },
     {
       "slug": "f1-101-grid-to-finish",
-      "article_sha256": "858e2262ef25637c1348f6b239e52a96bff929d173281e8840975380ac5d44e3",
+      "article_sha256": "df86181200614f34da100c15ef53a7030299bb0ad962ca78065de73c0a9adcab",
       "facts_sha256": null,
       "check_report_sha256": null,
       "approved_by": "charlie",
-      "approved_at": "2026-10-14T18:25:48+08:00",
-      "note": "F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：「進步幾名」是本站自訂的結果差，不是超車數。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-grid-to-finish.60.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
+      "approved_at": "2026-11-06T22:51:30+08:00",
+      "note": "2026-11-06 舊文第八批改寫；使用者明示「上線」授權本批發布。R1 數字復算、內連、無源因果與譯名 gate 通過；本機外部來源存活檢查因 DNS 無效，未記為通過。原始基線履歷：F1 新手村第十批（6 篇；Charlie 2026-10-13 原話「我們在新手村再多寫幾篇關於戰術跟數據怎麼讀的文章吧，主旨和來源核對照規則交給 Opus。然後 Codex 今天會重置，多使用 Terra & Sol」；篇目由指揮位擬定並標為猜的，見桌檔 CoWork/roundtable/2026-10-13-racing-newbie-village-10/TOPICS.md）。主題：「進步幾名」是本站自訂的結果差，不是超車數。Charlie 2026-10-14 回「合 racing #116」授權簽核、build、合併、部署。流程（指揮規則第 7、8、9、10 條）：缺口分析 Terra→研究 Terra（離線，只讀快照與站內 db）→獨立查核 Sol→論點與來源歸屬 Opus→R1／R1b／R1c 審表 Terra→骨架修正 Opus（多輪）→寫手 Sonnet（初稿凍結 40）→R2 Terra＋Sol→修正 Opus→冷讀 Opus→總編輯減法 Opus→R3／R3b Terra＋Sol。最後一輪判決：R3b：Terra PASS、Sol PASS。簽核 sha256 與桌目錄 drafts/f1-101-grid-to-finish.60.md 逐位元組一致。所有進稿數字經 Terra 以 python／sqlite 重算通過；OpenF1／Jolpica 資料為 2026-10-13 快照（桌目錄 evidence/snap/），審稿席離線複核。事實依據：站內資料庫、OpenF1 與 Jolpica 快照與文件、運動規章 Issue 09（2026-10-01）、Section A Issue 03。資料源身分只引 OpenF1 文件自述，Jolpica 不下組織身分。facts_sha256 為 null（事實包不進 repo，放桌目錄）。"
     },
     {
       "slug": "f1-101-championship-scenarios",

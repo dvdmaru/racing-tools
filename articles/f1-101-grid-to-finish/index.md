@@ -4,166 +4,84 @@ type: "guide"
 date: "2026-10-13"
 topic_ref: "manual"
 title: "賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀"
-subtitle: "本站把 grid 顯示為發車位；把它減去同一列的 position，得到的是本站自訂的結果差，本文能查的資料源文件沒有定義它。單看這個數字，讀不出超了幾台，也讀不出配速。"
-lede: "2025 年墨西哥城大獎賽這一場，把本站資料庫（2026-10-13 查詢）每一列的 grid（本站顯示為發車位）減去同一列的 position，貝爾曼和阿爾本都是 +5；這個結果差是本站自訂的，本文能查的資料源文件沒有定義它。2025 墨西哥城這一場 20 列的 grid 與 position 都恰好是 1 到 20，兩人反方向的車都是 0 台，所以 +5 各對應 5 台 grid 比他小、position 比他大的車：阿爾本那 5 台裡有 4 台的狀態欄寫著 Retired，貝爾曼那 5 台一台也沒有。"
+subtitle: "同樣是 +5，可能是一台車跑過五個人，也可能有多台車先退賽。起點與終點的淨差不是場上超車紀錄。"
+lede: "2025 年墨西哥城大獎賽，貝爾曼的 grid 9、同列 position 4；阿爾本是 17 與 12。本站把 grid 顯示為發車位，兩列相減都是 +5，組成卻不同：阿爾本對應的五台車中有四台 status 是 Retired，貝爾曼那五台則沒有。"
 ---
 
 # 賽果表的結果差，能直接當成超車數嗎？拿 2025 墨西哥城這一場來讀
 
-2025 年墨西哥城大獎賽的賽果表上，有 2 列的數字長得一樣。
+同一個 +5，可能看起來像同一種進步。2025 年墨西哥城大獎賽，貝爾曼的 grid 是 9、同列 position 是 4；阿爾本則是 17 與 12。本站把 grid 顯示為發車位，兩欄相減，兩人都是 +5。
 
-貝爾曼那一列：grid 欄 9，position 欄 4。阿爾本那一列：grid 欄 17，position 欄 12。兩列都是 grid 減 position，得數都是 +5。
+可是兩個 +5 的組成不同。阿爾本對應的五台車中有四台 status 是 Retired；貝爾曼對應的五台，沒有一台 Retired。這不是誰開得更好的判決，而是提醒讀者：一張結果表只記起點與結果，沒有保存每一次換位。
 
-+5 看起來像「進步 5 名」。但 2 個 +5 的組成不一樣。阿爾本的 +5 對應 5 台車，其中 4 台的狀態欄寫著 Retired。貝爾曼的 +5 也對應 5 台車，一台 Retired 也沒有。
+## 這個數字是本站自己算的
 
-這個 +5 是誰算的、怎麼拆，要從資料源說起。
+本文把同一列的 grid 減掉 position，稱為「結果差」。資料來源文件沒有把這個差值定義成指標；它是本站用來協助閱讀表格的計算。資料來源也沒有定義本文所用的 `position` 欄位語意，因此不把它稱作 FIA 規章的正式分類。
 
-## 「進步幾名」是誰算出來的？
+結果差只能說兩欄相距多少，不能說途中發生幾次超車、誰在哪一圈換位，也不能直接評斷配速。那些問題需要逐圈位置、事件或單圈資料；本站這張 results 表沒有那些欄位。
 
-賽果表每台車一列。本文會用到 5 個欄位：grid、position、position_text、laps、status。
+## 兩個 +5，先看五台車的狀態
 
-本站的賽季頁把 grid 顯示成「從第 N 位發車」，所以本文叫它發車位。把 grid 減去同一列的 position，得到的就是本文說的結果差。這是本站自訂的算法。本文能查的資料源文件，沒有這兩欄的正式定義，也沒有定義這個差值。
+2025 墨西哥城這一場有 20 列，grid 與 position 各自恰好涵蓋 1 到 20。對貝爾曼與阿爾本來說，都是五台 grid 比他小、position 比他大的車，反方向則都是零台。
 
-本站資料庫的 results 表，沒有逐圈名次、超車事件和圈速欄位。所以結果差能告訴你的，只有 2 個欄位差多少。誰超過誰，它答不出來。這一場跑得好不好，單看這個數字也下不了結論。
+| 車手 | grid | position | 結果差 | 那五台車的 status |
+| --- | ---: | ---: | ---: | --- |
+| 貝爾曼 | 9 | 4 | +5 | 4 Finished、1 Lapped |
+| 阿爾本 | 17 | 12 | +5 | 1 Lapped、4 Retired |
 
-資料取自本站賽果資料庫，查詢日 2026-10-13。墨西哥城這一場的 grid、position 等 6 欄，和資料源 Jolpica 的同場快照逐列相同，欄位清單見文末。
+表格沒有告訴我們阿爾本是否在場上超過那些後來退賽的車，也沒有告訴我們貝爾曼每一個位置怎麼拿到。它只說明：相同的淨差，不保證有相同的比賽過程。
 
-## 結果差拆成台數來看
+反方向也一樣。安東內利這場 grid 6、position 6，結果差為 0；但他有兩台車從前方落到後方，也有兩台車從後方來到前方。零不是「全場沒有換位」。
 
-結果差可以拆成 2 個台數相減：「grid 比他小、position 比他大」的台數，減去「grid 比他大、position 比他小」的台數。
+## 數字看起來像名次，仍要看 status 和 laps
 
-這個拆法有個前提：那一場的 grid 與 position，要各自恰好是 1 到 N，每個數字各出現一次。2025 年墨西哥城這一場的 N 是 20。
+再看結果差為 −5 的四列：漢米爾頓 3 到 8，哈賈爾 8 到 13，塞恩斯 12 到 17，勞森 15 的 `position_text` 則是 R。四個人的差值相同，status 與完成圈數不同。
 
-貝爾曼與阿爾本，反方向的車都是 0 台，所以兩個 +5 都是 5 減 0。差別在那 5 台的狀態欄，見下圖。
-
-<figure class="diagram">
-<svg viewBox="0 0 420 296" role="img" aria-label="示意圖：2025 年墨西哥城大獎賽，貝爾曼與阿爾本兩人結果差的組成，以狀態欄區分">
-<title>2025 墨西哥城：貝爾曼與阿爾本的結果差組成示意</title>
-<desc>2025 年墨西哥城大獎賽這一場（本站資料庫與 Jolpica 賽果快照，2026-10-13 取得），貝爾曼與阿爾本的本站自訂結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）都是 +5；這一場 grid 與 position 都恰為 1 到 20，兩人反方向的車都是 0 台，所以 +5 各對應 5 台 grid 比他小、position 比他大的車。左欄貝爾曼：皮亞斯特里、安東內利、羅素、漢米爾頓為 Finished，哈賈爾為 Lapped。右欄阿爾本：哈賈爾為 Lapped，塞恩斯、阿隆索、霍肯伯格、勞森為 Retired。狀態取自資料源 status 欄；圖不表示這些車何時、如何換位。</desc>
-<rect class="d-surface d-line-s" x="4" y="4" width="412" height="288" rx="10"/>
-<text class="d-fg" x="20" y="30" font-size="15">貝爾曼／阿爾本：grid 比他小、</text>
-<text class="d-fg" x="20" y="50" font-size="15">position 比他大的車與狀態欄</text>
-<text class="d-fg" x="20" y="82" font-size="15">貝爾曼</text>
-<text class="d-fg" x="220" y="82" font-size="15">阿爾本</text>
-<rect class="d-none d-line-s" x="14" y="92" width="192" height="26" rx="5"/>
-<text class="d-fg" x="24" y="111" font-size="14">皮亞斯特里</text>
-<text class="d-fg" x="118" y="111" font-size="14">Finished</text>
-<rect class="d-none d-line-s" x="14" y="124" width="192" height="26" rx="5"/>
-<text class="d-fg" x="24" y="143" font-size="14">安東內利</text>
-<text class="d-fg" x="118" y="143" font-size="14">Finished</text>
-<rect class="d-none d-line-s" x="14" y="156" width="192" height="26" rx="5"/>
-<text class="d-fg" x="24" y="175" font-size="14">羅素</text>
-<text class="d-fg" x="118" y="175" font-size="14">Finished</text>
-<rect class="d-none d-line-s" x="14" y="188" width="192" height="26" rx="5"/>
-<text class="d-fg" x="24" y="207" font-size="14">漢米爾頓</text>
-<text class="d-fg" x="118" y="207" font-size="14">Finished</text>
-<rect class="d-none d-line-s" x="14" y="220" width="192" height="26" rx="5"/>
-<text class="d-fg" x="24" y="239" font-size="14">哈賈爾</text>
-<text class="d-fg" x="118" y="239" font-size="14">Lapped</text>
-<rect class="d-none d-line-s" x="214" y="92" width="192" height="26" rx="5"/>
-<text class="d-fg" x="224" y="111" font-size="14">哈賈爾</text>
-<text class="d-fg" x="318" y="111" font-size="14">Lapped</text>
-<rect class="d-none d-accent-s" x="214" y="124" width="192" height="26" rx="5" stroke-width="3"/>
-<text class="d-fg" x="224" y="143" font-size="14">塞恩斯</text>
-<text class="d-fg" x="318" y="143" font-size="14">Retired</text>
-<rect class="d-none d-accent-s" x="214" y="156" width="192" height="26" rx="5" stroke-width="3"/>
-<text class="d-fg" x="224" y="175" font-size="14">阿隆索</text>
-<text class="d-fg" x="318" y="175" font-size="14">Retired</text>
-<rect class="d-none d-accent-s" x="214" y="188" width="192" height="26" rx="5" stroke-width="3"/>
-<text class="d-fg" x="224" y="207" font-size="14">霍肯伯格</text>
-<text class="d-fg" x="318" y="207" font-size="14">Retired</text>
-<rect class="d-none d-accent-s" x="214" y="220" width="192" height="26" rx="5" stroke-width="3"/>
-<text class="d-fg" x="224" y="239" font-size="14">勞森</text>
-<text class="d-fg" x="318" y="239" font-size="14">Retired</text>
-<text class="d-fg" x="20" y="274" font-size="14">粗外框：狀態欄是 Retired</text>
-</svg>
-<figcaption>圖：2025 年墨西哥城大獎賽這一場，貝爾曼與阿爾本的本站自訂結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）都是 +5；這一場 grid 與 position 都恰為 1 到 20，兩人反方向的車都是 0 台，所以 +5 各可拆成 5 台 grid 比他小、position 比他大的車。資料出自本站賽果資料庫與 Jolpica 賽果快照（2026-10-13 取得），自行計算；狀態取自資料源 status 欄，不代表這些車是被超越或自行退後。本站依資料庫與快照自行整理的示意，非依比例。</figcaption>
-</figure>
-
-同一個 +5，組成可以差這麼多。反過來，結果差是 0 也不代表什麼都沒發生。安東內利 grid 6、position 6，結果差是 0。可是 grid 比他小、position 比他大的車有 2 台，反方向也有 2 台。這個 0 是 2 減 2。
-
-阿爾本那 4 台 Retired，在退賽之前有沒有在場上被他超過？表上查不到。貝爾曼那 5 台也一樣：沒有 Retired，不代表都是在場上被他超過。每台車只有一列，沒有中間的紀錄。
-
-阿爾本那 5 台裡有 4 台 Retired，是墨西哥城這一場的樣子，不是通則。同樣的拆法放到 2025 年第 9 站，組成就不一樣：霍肯伯格 grid 15、position 5，結果差是 +10。grid 比他小、position 比他大的 10 台車裡，Retired 是 2 台，反方向是 0 台。本站資料庫在那一場只有 19 列，grid 與 position 各為 1 到 19，拆法照樣成立。
-
-## position 欄有數字，就等於有名次嗎？
-
-有 55 列的 position 欄寫著整數，position_text 欄卻是 R、D 或 W。
-
-範圍是本站資料庫 2025 年賽季的正賽結果，共 479 列，衝刺賽不在內。這 479 列的 position 欄全是整數。R、D、W 對應的 status，依序是 Retired、Disqualified、Did not start。
-
-所以本文寫「從第 X 到第 Y」，只用 position_text 是數字的其餘 424 列。
-
-這 424 列裡，還有 5 列的狀態是 Retired。光看 position_text 還不夠，status 與 laps 要一起看。
-
-## 負的結果差，狀態欄和圈數怎麼讀
-
-墨西哥城這一場，結果差是 −5 的有 4 列。把它們排在一起：
-
-| 車手 | grid | position | position_text | 狀態 | 圈數 |
-| --- | --- | --- | --- | --- | --- |
+| 車手 | grid | position | position_text | status | 圈數 |
+| --- | ---: | ---: | --- | --- | ---: |
 | 漢米爾頓 | 3 | 8 | 8 | Finished | 71 |
 | 哈賈爾 | 8 | 13 | 13 | Lapped | 70 |
 | 塞恩斯 | 12 | 17 | 17 | Retired | 67 |
 | 勞森 | 15 | 20 | R | Retired | 5 |
 
-表：2025 年墨西哥城大獎賽這一場，本站自訂結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）為 −5 的 4 列，自行計算。本站依資料庫自行整理的示意，非依比例。
+因此讀這張表時，不能只看相減後的數字。`position_text` 是數字時，才適合說「從第 X 到第 Y」；仍須一起交代 status 和圈數。若 `position_text` 是 R，直接把那列叫作「第 20 名」會失去資料原本保留的差異。
 
-4 列的 −5 一模一樣，狀態與圈數卻有 4 種。
+## 想看換位事件，要換資料源也換問題
 
-塞恩斯和勞森都是 Retired，寫法卻不同。塞恩斯的 position_text 是數字 17，可以寫成「從第 12 位到第 17 位」，後面要接上 Retired 和 67 圈。勞森只跑了 5 圈，position_text 是 R。這一列不寫成「第 20 名」，−5 也不拿來描述他。
+OpenF1 提供 overtakes 資料，並把它定義為兩位車手交換位置；文件也明說其中包含場上通過、進站造成的變化與賽後罰則造成的變化，且正賽資料可能不完整。它量的是事件，不是結果差。
 
-沒跑完為什麼還可能有名次，是分類規則的題目，見[F1 成績表怎麼讀：沒跑完的維斯塔潘，為什麼排第 20 名](/articles/f1-101-classification/)。回到這張表：同樣是 −5，要連同狀態欄和圈數一起讀。
+兩個指標都可以有用，但不能互相代替：結果差是起點和終點的淨值；overtake 是資料源記錄到的一次位置交換。要問「誰的名次變化最大」，前者可以開始回答；要問「誰在場上超過幾台車」，還需要更細的事件資料與範圍說明。
 
-## 換位事件在哪裡看？OpenF1 的 overtakes 怎麼定義
+## 讀表時，先問資料留下了哪一端
 
-賽果表一列一台車。哪台車在哪一圈換了位，這張表沒有。
+賽果表保留了起點和終點，卻沒有拍下過程。下一次看到「進步五名」或「掉了五名」，先看 status、laps 和 `position_text`，再決定這個數字能不能支撐你想問的問題。
 
-想看換位事件，得換一個資料源。OpenF1 有一組獨立的 overtakes 資料。OpenF1 的文件自述為非官方專案（unofficial project），與 Formula 1 公司無關。
-
-它的文件把 overtake 定義成一位車手與另一位車手交換位置。文件寫明「This includes both on-track passes and position changes resulting from pit stops or post-race penalties」。場上超越算，進站造成的換位算，賽後罰則造成的換位也算。文件另外寫到，這份資料只在正賽提供，也可能不完整。
-
-OpenF1 的 overtake 是一次一次的事件。本站的結果差，是 2 個欄位相減的淨值。兩者量的不是同一種東西。
+若要理解未完賽仍可能出現在結果表的原因，見[成績表怎麼讀](/articles/f1-101-classification/)；若要比較某一段誰跑得快，見[第七名卻是賽末最快](/articles/f1-101-race-pace-reading/)。
 
 ## 常見問題
 
 ### 結果差是正數，就代表超了那麼多台車嗎？
 
-這張表讀不出來。把同一列的 grid（本站顯示為發車位）減 position，得到的是本站自訂的結果差，本文能查的資料源文件沒有定義它。本站資料庫的 results 表，也沒有逐圈名次或超車事件欄位。2025 年墨西哥城這一場（20 列的 grid 與 position 都恰為 1 到 20），阿爾本的 +5 對應 5 台 grid 比他小、position 比他大的車，反方向是 0 台，其中 4 台狀態是 Retired。它們退賽前有沒有在場上被他超過，表上查不到。怎麼拆，見上面拆成台數的那一節。
+不能這樣讀。阿爾本這場的 +5 對應五台車，其中四台是 Retired；結果表無法還原它們在退賽前是否被他超過。
 
-### position 欄有數字，就代表有名次嗎？
+### 結果差為零，就代表全場沒有換位嗎？
 
-不一定。本站資料庫 2025 年賽季正賽 479 列裡，55 列的 position_text 是 R、D 或 W，position 欄照樣有整數。position_text 是數字、能寫「第 X 到第 Y」的是其餘 424 列，其中另有 5 列狀態是 Retired。要寫「第幾名」，先看 position_text，再看狀態與圈數。
+不是。安東內利這場的結果差為零，但正反方向各有兩台車；淨差為零只是起點與終點相同。
 
-### 同一列的 grid 與 position 相同，代表比賽中沒有換位嗎？
+### 可以直接跨場比較結果差嗎？
 
-這張表看不出來。結果表每台車只有一列，沒有比賽中間的紀錄。2025 年墨西哥城這一場，20 列的 grid 與 position 都恰為 1 到 20。安東內利 grid 6、position 6，本站自訂的結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）是 0：grid 比他大、position 比他小的有 2 台，grid 比他小、position 比他大的也有 2 台。
-
-### 不同場比賽的進步名次，可以直接比嗎？
-
-先數那一場有幾列。本站資料庫 2025 年第 9 站賽果只有 19 列，其餘 23 站各 20 列。缺的是排位表裡有、賽果表沒有的斯托爾，原因在本文能查的資料裡查無。列數不同，本站自訂的結果差（同一列的 grid，本站顯示為發車位，減去 position；本文能查的資料源文件未定義）可能的範圍也不同。跨場比較前，先揭露各場的結果列數；本文不把列數不同場次的結果差，直接當成同一尺度。
-
-## 接下來看什麼
-
-- [F1 成績表怎麼讀：沒跑完的維斯塔潘，為什麼排第 20 名](/articles/f1-101-classification/)：為什麼退賽也可能有名次
-- [諾里斯這 10 圈四人之中最快，名次卻只有第 7](/articles/f1-101-race-pace-reading/)：名次差之外，圈速要另外看
-- [F1 為什麼很難超車：髒空氣，以及 2026 年新增的幫手](/articles/f1-101-overtaking/)：超車為什麼難
-- [F1 排位賽怎麼淘汰：三節、兩次砍人、一個發車位置](/articles/f1-101-qualifying/)：發車位置的另一頭
+先看每場有多少結果列。本文 2025 年資料中，第 9 站只有 19 列，其餘 23 站各有 20 列；列數不同時，能出現的差值範圍也不同，不能把它們直接當成同一尺度。
 
 ## 資料來源
 
-一手來源：本文沒有引用 FIA 規章條文。
-
 本站資料：
 
-- 本站賽果資料庫（results 表，2025 年正賽），2026-10-13 唯讀查詢；本站 [各站賽果](/results/)
-- 本站賽季頁的顯示慣例：grid 為數字時顯示「從第 N 位發車」（本站程式碼，無公開網址）
+- 本站賽果資料庫（2025 年正賽 results 表）與[各站賽果](/results/)；本文的結果差、組成與計數均自行重算。
+- 本站季別頁的顯示慣例：grid 為數字時顯示「從第 N 位發車」。
 
-資料服務文件：
+資料服務文件（非 FIA／Formula 1 官方）：
 
-- [Jolpica Ergast 相容 API：2025 年第 20 站賽果](https://api.jolpi.ca/ergast/f1/2025/20/results.json)（快照取得 2026-10-13）
-- [OpenF1 文件：Overtakes 一節](https://openf1.org/docs/)（OpenF1 自述為非官方專案，與 Formula 1 公司無關；快照取得 2026-10-13）
+- [Jolpica Ergast 相容 API：2025 年第 20 站賽果](https://api.jolpi.ca/ergast/f1/2025/20/results.json)
+- [OpenF1 文件：Overtakes](https://openf1.org/docs/)
 
-二手來源：本文未使用媒體報導。
-
-查證日 2026-10-13。限制：本文能查的資料源文件沒有 grid、position 等欄位的正式定義，結果差（同一列的 grid，本站顯示為發車位，減去 position）是本站自訂的算法。數字限本站資料庫 2025 年正賽，以及第 20 站（墨西哥城）與第 9 站兩場；第 20 站 20 列的 driver_id、grid、position、position_text、laps、status 6 欄，與 Jolpica 快照的對應欄位逐列相同。結果差、台數拆解與 424 列等計數是自行計算，Retired 以資料源 status 欄的字面值計，包含 position_text 為數字的 Retired 列。OpenF1 對 overtakes 的說明取自其文件，本文沒有查它在 2025 墨西哥城這一場的實際資料。
+查證日：2026-11-06。範圍：2025 年正賽共 479 列；`position_text` 為數字 424 列，非數字 55 列（R／D／W），數字列中 5 列 status 為 Retired。本文不以結果差推論未被結果表記錄的換位過程。
