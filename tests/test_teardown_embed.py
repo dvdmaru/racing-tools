@@ -34,6 +34,7 @@ class ConfigTests(unittest.TestCase):
         # 陽性對照：設定檔讀不到時，下面每一條都會「零筆通過」
         self.assertIn("f1-101-power-unit", EMBEDS)
         self.assertIn("f1-101-active-aero", EMBEDS)
+        self.assertIn("f1-101-brakes", EMBEDS)
 
     def test_every_embed_is_an_approved_article_with_files(self):
         for slug, cfg in EMBEDS.items():

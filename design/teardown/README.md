@@ -6,7 +6,7 @@
 |---|---|---|---|
 | 1 | `articles/f1-101-power-unit`（2026 動力單元） | `pu-2026-*` | 已上線（PR #138）：`/articles/f1-101-power-unit/pu-3d` |
 | 2 | `articles/f1-101-active-aero`（2026 主動空力） | `aero-2026-*` | 已上線（PR #139）：`/articles/f1-101-active-aero/aero-3d` |
-| 3 | `articles/f1-101-brakes`（2026 煞車） | `brake-2026-*` | 原型，還沒有接進文章 |
+| 3 | `articles/f1-101-brakes`（2026 煞車） | `brake-2026-*` | 接進文章（`/articles/f1-101-brakes/brake-3d`） |
 
 工具是 Claude Code skill [elvarofficial/teardown](https://github.com/elvarofficial/teardown)（MIT），
 釘在 commit `a91262ac1109051e014662d42ecb0b7bc1f113b1`（2026-10-31），裝在 `~/.claude/skills/teardown`
