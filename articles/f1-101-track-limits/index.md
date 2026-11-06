@@ -5,22 +5,20 @@ date: "2026-09-25"
 topic_ref: "manual"
 title: "賽道界線：四輪出了白線會怎樣，為什麼裁判會盯著那條線"
 subtitle: "壓在白線上還算在賽道內，整輛車都沒碰到賽道才算離開。離開之後若賺到好處，賽事總監可以給車手機會把它還回去，賽會幹事也可能加罰。"
-lede: "2023 年奧地利站的方格旗落下幾個小時後，FIA 經審查追加 12 項罰則；當時待審的疑似出界紀錄超過 1,200 件。白線怎麼算，規章寫得很清楚：壓線還在賽道內，整輛車都沒碰到賽道才算離開。要靠人判斷的，是離開之後有沒有賺到好處、要不要罰。這篇講白線怎麼算、出界後可以怎麼回來，以及誰來決定罰不罰。"
+lede: "2023 年奧地利站結束幾個小時後，8 位車手又收到合計 12 項罰則，名次跟著改變。判斷賽道界線先看白線：它算賽道的一部分，整輛車都沒有接觸賽道才算離開。離開之後，車手還得安全回場、不留下持久優勢，是否處罰則由賽會幹事裁量。"
 ---
 
 # 賽道界線：四輪出了白線會怎樣，為什麼裁判會盯著那條線
 
-2023 年奧地利站，方格旗落下之後，比賽對車手來說結束了，對 FIA 來說還沒有。
+2023 年奧地利站，方格旗落下幾個小時後，塞恩斯（Carlos Sainz）又掉了兩個名次，降到第 6；漢米爾頓（Lewis Hamilton）賽後又被追加 10 秒罰時，降到第 8（[FIA 第 75 號裁決](https://www.fia.com/sites/default/files/decision-document/2023%20Austrian%20Grand%20Prix%20-%20Infringements%20-%20Leaving%20the%20track%20multiple%20times.pdf)、[第 76 號最終成績](https://www.fia.com/sites/default/files/decision-document/2023%20Austrian%20Grand%20Prix%20-%20Final%20Race%20Classification.pdf)）。奧斯頓馬丁（Aston Martin）抗議有些出界沒有被正確辨識與處罰，賽會重新審查後，對 8 位車手追加合計 12 項罰則（[Autosport，2023 年 7 月報導](https://www.autosport.com/f1/news/fia-hands-out-12-penalties-for-track-limit-offences-after-f1-austrian-gp/10490842/)）。
 
-FIA 是國際汽車運動總會，也就是 F1 規則的制定者。幾個小時之後，FIA 經審查追加 12 項罰則，對象是 8 位車手，原因是賽道界線。當時待審的疑似出界紀錄，總數超過 1,200 件（[formula1.com，2024 年 6 月報導](https://www.formula1.com/en/latest/article/explained-how-key-changes-to-the-red-bull-ring-look-to-avoid-last-years.2ubjMYkbT3HHpwuEJ7PoHw)）。
+當時待審的疑似出界紀錄超過 1,200 件，F1 官方隔年回顧紅牛環改造時也提到這個數字（[formula1.com，2024 年 6 月報導](https://www.formula1.com/en/latest/article/explained-how-key-changes-to-the-red-bull-ring-look-to-avoid-last-years.2ubjMYkbT3HHpwuEJ7PoHw)）。
 
-起因是 Aston Martin 車隊（奧斯頓馬丁）抗議，有些出界沒有被正確辨識與處罰。審完之後，塞恩斯降兩名，掉到第 6 名；漢米爾頓的罰時從 5 秒加重為 10 秒，降一名到第 8 名（[Autosport，2023 年 7 月報導](https://www.autosport.com/f1/news/fia-hands-out-12-penalties-for-track-limit-offences-after-f1-austrian-gp/10490842/)）。
-
-一條線的判定，就能讓名次在賽後改寫。所以要先弄清楚，那條線到底怎麼算。
+為什麼一條白線能讓賽後名次再改寫？得先分清兩件事：車有沒有離開賽道，以及離開後發生了什麼。
 
 ## 白線本身算賽道，整輛車都沒碰到賽道才算離開
 
-先講結論：壓在白線上不算出界。多數賽道用一條白線標出賽道的外緣。Motor Sport 雜誌 2024 年的報導說，這條線本身算賽道的一部分（[Motor Sport，2024 年 6 月](https://www.motorsportmagazine.com/articles/single-seaters/f1/what-are-f1-track-limits-rules-penalties-and-what-is-changing/)）。
+壓在白線上，車仍在賽道內。多數賽道用一條白線標出賽道的外緣。Motor Sport 雜誌 2024 年的報導說，這條線本身算賽道的一部分（[Motor Sport，2024 年 6 月](https://www.motorsportmagazine.com/articles/single-seaters/f1/what-are-f1-track-limits-rules-penalties-and-what-is-changing/)）。
 
 規章寫得更精確：只要車上還有任何一個部分碰著賽道，就不算離開。畫在賽道邊緣的白線算賽道，路緣石（kerb）不算（2026 年 F1 運動規章 B1.8.6 條）。路緣石就是彎道內外側那些紅白條紋的凸起。FIA 的附則 L 多補一個例外：夾在兩條白線之間的那段路緣石，在該條的判定上視為賽道（第四章 2c 條）。
 
@@ -74,21 +72,19 @@ FIA 是國際汽車運動總會，也就是 F1 規則的制定者。幾個小時
 
 賽車手為什麼會把車開到線邊？答案放在另一篇：[彎心是什麼](/articles/f1-101-apex-racing-line/)。
 
-## 出了界不一定犯規，回來時賺到好處才是問題
+## 離開賽道要有正當理由，回來時不能留下持久優勢
 
-新手常以為，出界就是犯規。條文沒有這麼寫。
+白線回答的是車在哪裡。車手能不能離開、離開後怎麼回來，還有另一組條件。
 
-B1.8.6 條開頭要求車手隨時盡力使用賽道，沒有正當理由不得離開。同一條的後段才處理離開之後的事：離開賽道的車手可以重新加入，但只能在安全時回來，而且不得取得任何持久優勢。附則 L 第四章 2c 條也有同樣的規定。
+B1.8.6 條要求車手隨時盡合理努力使用賽道，沒有正當理由不得離開。已經離開的車手可以重新加入，但只能在安全時回來，而且不得取得任何持久優勢。附則 L 第四章 2c 條也有同樣的規定。
 
-接著是這條裡最容易被誤讀的一句。原文是：賽事總監可以完全自行裁量，給車手一個機會，把因為離開賽道而得到的全部優勢歸還。
-
-注意動詞。條文寫的是「可以給機會」，不是「必須歸還」。要不要給機會由賽事總監決定。怎麼歸還，條文沒有寫。
+如果已經取得優勢，賽事總監可以完全自行裁量，給車手一個歸還全部優勢的機會。車手不一定會得到這個機會；條文也沒有指定歸還的方法。
 
 什麼叫「持久優勢」？條文沒有替它下定義，也沒有任何數字。所以同樣是出界，賺到的好處有多大、有沒有留到之後，都要由人來判斷。
 
 賽事總監就是比賽期間管理賽事的官員，他和賽會幹事各管什麼，見[賽道邊是誰在判](/articles/f1-101-stewards/)。
 
-## 沒有寫死的罰則表，幹事看完影像才決定罰不罰
+## 出界後的裁罰，由幹事依事件規則裁量
 
 出界之後的處理，走的是一般的事件流程。
 
@@ -102,9 +98,9 @@ B1.8.6 條開頭要求車手隨時盡力使用賽道，沒有正當理由不得�
 
 練習賽、排位賽和衝刺排位賽這類按單圈時間排名的場次另有條文。發生事件時，幹事可以刪除車手的圈速，或罰退起跑格位（B1.9.4 條）。這一條是一般授權，沒有寫「出界就刪圈速」。
 
-## 2024 年的做法是出界三次黑白旗，第四次 5 秒，第五次 10 秒
+## 2024 年報導的罰則階梯，不能直接當成 2026 年的規則
 
-規章沒有寫階梯，但 2024 年的媒體報導寫了一套。
+轉播裡常聽到「再出界一次就要罰」，說的通常是累計次數。這裡的具體階梯來自 2024 年媒體報導，適用年份要一起看。
 
 Motor Sport 2024 年 6 月的報導提到當年的做法：FIA 會在賽前挑出歷來常出問題，或最能賺時間的彎道來監看。在正賽中，同一位車手出界第三次，會被出示黑白旗，作為最後警告。第四次是 5 秒罰時，第五次是 10 秒罰時。Autosport 報導，2023 年奧地利站用的也是第四次 5 秒、第五次 10 秒。
 
@@ -114,7 +110,7 @@ Motor Sport 2024 年 6 月的報導提到當年的做法：FIA 會在賽前挑�
 
 同一篇報導還舉了 2021 年巴林站的例子。賽事總監 Masi 賽前修訂的說明寫，4 號彎出口的賽道界線，不以設定圈速為目的監看。正賽中領跑的漢米爾頓，在 4 號彎出界 29 次之後，才收到正式警告。
 
-這個例子這次只查到一家媒體報導。它至少說明，賽前公布的說明，會影響某個彎道怎麼被盯。
+這個例子只有該篇媒體報導支撐，不能外推其他賽事。看當場轉播時，白線仍是辨識離開賽道的起點；至於如何監看、累計幾次與採用什麼罰則，還得看該場官方說明。
 
 ## 常見問題
 
@@ -143,6 +139,8 @@ Motor Sport 2024 年 6 月的報導提到當年的做法：FIA 會在賽前挑�
 ## 資料來源
 
 一手文件：
+- [FIA 2023 奧地利站第 75 號裁決，賽後追加賽道界線罰則](https://www.fia.com/sites/default/files/decision-document/2023%20Austrian%20Grand%20Prix%20-%20Infringements%20-%20Leaving%20the%20track%20multiple%20times.pdf)：Decision 明列另加至完賽總時間；第 2 項為漢米爾頓追加 10 秒
+- [FIA 2023 奧地利站第 76 號最終成績](https://www.fia.com/sites/default/files/decision-document/2023%20Austrian%20Grand%20Prix%20-%20Final%20Race%20Classification.pdf)：塞恩斯第 6、漢米爾頓第 8
 - [FIA 2026 F1 Sporting Regulations Section B，Issue 08（2026-08-05）](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_08_-_2026-08-05_7.pdf)：B1.3.7 影像與電子輔助、B1.8.6 離開賽道、B1.9.1 至 B1.9.5 幹事裁量與處罰
 - [FIA International Sporting Code 附則 L，2026（2026 年 6 月公布）](https://www.fia.com/system/files/documents/appendix_l_2026_publie_le_24_juin_2026.pdf)：第四章 2b、2c、2d 條
 - [FIA International Sporting Code 附則 H，2026（2026-06-23 發布）](https://www.fia.com/system/files/documents/appendix_h_2026_published_23062026.pdf)：2.5.4.1 f) 黑白對角旗
