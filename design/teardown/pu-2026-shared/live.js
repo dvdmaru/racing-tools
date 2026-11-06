@@ -26,11 +26,14 @@ body{position:fixed;inset:0}
 .tourchip i{display:block;width:7px;height:7px;border-radius:50%;background:#d63a2f}
 .tourchip.on i{animation:blink 1.2s steps(2) infinite}
 @keyframes blink{50%{opacity:.15}}
+.back{position:absolute;left:36px;top:724px;display:flex;align-items:center;height:36px;padding:0 16px;border:1px solid #e6dcdc;border-radius:8px;background:#fff;color:#241a1c;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;pointer-events:auto}
+.back:hover{border-color:#d63a2f;color:#d63a2f}
 .turn{position:fixed;left:16px;right:16px;bottom:18px;text-align:center;font-size:14px;line-height:1.5;color:#786a6e;display:none}
 @media (orientation:portrait) and (max-width:820px){.turn{display:block}}
 `;
 
-export function runLive() {
+/** opts.back＝{href, text}：左下角「回到文章」的連結（站上的頁面從文章點進來，要有路回去） */
+export function runLive(opts = {}) {
   const style = document.createElement('style');
   style.textContent = CSS;
   document.head.appendChild(style);
@@ -68,6 +71,14 @@ export function runLive() {
   const tourChip = document.createElement('div');
   tourChip.className = 'tourchip';
   ui.root.appendChild(tourChip);
+  if (opts.back) {
+    const a = document.createElement('a');
+    a.className = 'back';
+    a.href = opts.back.href;
+    a.textContent = `← ${opts.back.text}`;
+    a.addEventListener('pointerdown', (e) => e.stopPropagation());
+    ui.root.appendChild(a);
+  }
   const note = document.createElement('div');
   note.className = 'turn';
   note.textContent = '把手機轉成橫向，可以看完整的控制台';

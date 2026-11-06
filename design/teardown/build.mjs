@@ -59,6 +59,8 @@ for (const arg of args) {
     minify: !process.env.SIMS_DEBUG,
     write: false,
     target: 'es2022',
+    // 中文原樣輸出（預設 ascii 會把每個中文字轉成 \uXXXX：檔案變大，頁面上的聲明也搜不到）
+    charset: 'utf8',
     legalComments: 'none',
     logLevel: 'warning',
   });
