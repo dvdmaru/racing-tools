@@ -33,6 +33,7 @@ class ConfigTests(unittest.TestCase):
     def test_has_at_least_one_embed(self):
         # 陽性對照：設定檔讀不到時，下面每一條都會「零筆通過」
         self.assertIn("f1-101-power-unit", EMBEDS)
+        self.assertIn("f1-101-active-aero", EMBEDS)
 
     def test_every_embed_is_an_approved_article_with_files(self):
         for slug, cfg in EMBEDS.items():
@@ -117,6 +118,11 @@ class PublishedOutputTests(unittest.TestCase):
                 for must in ('<meta name="robots" content="noindex">', '<html lang="zh-Hant">', "依公開資料重繪的示意模型"):
                     self.assertTrue(must in html, f"3D 頁缺：{must}")
                 self.assertFalse("e10600" in html.lower(), "F1 官方品牌紅不用（2026-07-19 IP 裁決）")
+                # 「回到文章」要回到自己那篇（第二篇是照第一篇抄的，最容易留著別篇的連結）
+                self.assertTrue(f'"/articles/{slug}/"' in html, "3D 頁的「回到文章」沒有指回這篇")
+                for other in EMBEDS:
+                    if other != slug:
+                        self.assertFalse(f'"/articles/{other}/"' in html, f"3D 頁連回了別篇：{other}")
                 # 離線可開：不載任何外部 script／stylesheet／字型
                 self.assertIsNone(re.search(r'<script[^>]+src=|<link[^>]+href=|url\((["\']?)https?:', html))
 
