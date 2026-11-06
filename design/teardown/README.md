@@ -1,7 +1,11 @@
 # teardown：可拆開的 3D 示意模型（原型）
 
-新手村文章的互動 3D 補充。第一篇：`articles/f1-101-power-unit`（2026 動力單元）。
-**目前是原型，還沒有接進文章、也沒有上線。**
+新手村文章的互動 3D 補充。
+
+| 篇 | 文章 | 原始碼 | 狀態 |
+|---|---|---|---|
+| 1 | `articles/f1-101-power-unit`（2026 動力單元） | `pu-2026-*` | 已上線（PR #138）：`/articles/f1-101-power-unit/pu-3d` |
+| 2 | `articles/f1-101-active-aero`（2026 主動空力） | `aero-2026-*` | 接進文章（`/articles/f1-101-active-aero/aero-3d`） |
 
 工具是 Claude Code skill [elvarofficial/teardown](https://github.com/elvarofficial/teardown)（MIT），
 釘在 commit `a91262ac1109051e014662d42ecb0b7bc1f113b1`（2026-10-31），裝在 `~/.claude/skills/teardown`
@@ -28,6 +32,22 @@
 一圈的車速、哪裡煞車、回收功率都是示意，畫面上標「示意」。`kin.js` 的 `SELF_CHECK` 在載入時驗規章數字。
 
 模型是「依公開資料重繪的示意模型」：通用造型、零塗裝、零標誌，比例與零件位置不是實物。
+
+### 主動空力（`aero-2026-shared/`）
+
+結構照動力單元：`kin.js`（規則，沒有 three.js）、`car.js`（幾何）、`stage.js`、`console.js`、`film.js`、`live.js`。
+一圈直接 import 動力單元的 `LAP`／`lapAt`，兩頁的車速對得上。
+
+規則寫成一支 `stepAero(a, τ, dt, {enabled, lowGrip, fail})`，影片的整圈表與互動頁的即時累加共用：
+三種狀態（B7.1.1 b、c、d）、已啟用通知（B7.1.2 a）、只在啟動區內部署（C3.10.10 w；C3.11.6 j）、
+低抓地只准前翼（B7.1.2 b）、切換 ≤ 400 毫秒（C3.10.10 o；C3.11.6 d）、兩個位置（C3.10.10 t；C3.11.6 h）、
+失效回 Corner Mode（C3.10.10 v；C3.11.6 i）。`SELF_CHECK` 對四種條件各跑一整圈驗這些條。
+示意（畫面標「示意」）：三個啟動區的位置與長度、切換時間 300 毫秒、失效後到該區結束前停在 Corner。
+**規章沒有攻角、阻力、下壓力的數字，畫面上一律不顯示**；翼片角度只是讓眼睛看得出兩個位置。
+
+```
+node design/teardown/build.mjs design/teardown/aero-2026-live design/teardown/aero-2026-film
+```
 
 ## 指令
 
