@@ -32,6 +32,10 @@ spec = importlib.util.spec_from_file_location("racinglib", ROOT / "scripts" / "r
 rc = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rc)
 
+adspec = importlib.util.spec_from_file_location("adslots", ROOT / "scripts" / "adslots.py")
+ads = importlib.util.module_from_spec(adspec)
+adspec.loader.exec_module(ads)
+
 ilspec = importlib.util.spec_from_file_location("interlink", ROOT / "scripts" / "interlink.py")
 il = importlib.util.module_from_spec(ilspec)
 ilspec.loader.exec_module(il)
@@ -408,6 +412,7 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
 {rc.ga_snippet()}
 <link rel="stylesheet" href="{rc.shared_css_href()}">
 {rc.THEME_PRELOAD_JS}
+<style>{ads.AD_CSS}</style>
 </head>
 <body>
 <div class="container">{rc.site_header_html('articles')}
@@ -422,11 +427,13 @@ def render_article(meta, body_html, slug, excerpt, faq, prev_nav=None, next_nav=
 {body_html}
   </article>
   {stability_html}
+  {ads.slot_html("native_end")}
   {nav_html}
   </main>
 {rc.site_footer_html()}
 </div>
 <script>{rc.PAGE_JS}</script>
+{ads.script_tag(PUB)}
 </body>
 </html>
 """
@@ -527,6 +534,13 @@ def _idx_card(a):
             f'<div class="dt">{m.get("date","")}</div></div></a>')
 
 
+def _with_native(cards):
+    """文章卡清單的第 3 格插入列表原生版位；不足 2 張就不放（版位不該比內容多）。"""
+    if len(cards) < 2:
+        return "".join(cards)
+    return "".join(cards[:2]) + ads.slot_html("native_list") + "".join(cards[2:])
+
+
 def _faq_sec(pairs):
     qa = "".join(f'<div class="qa"><h3>{html_lib.escape(q)}</h3><p>{html_lib.escape(a)}</p></div>'
                  for q, a in pairs)
@@ -592,7 +606,8 @@ def render_home(articles):
                   '</div>')
     art_sec = ""
     if articles:
-        cards = "".join(_idx_card(a) for a in articles[:6])
+        # 第 3 格是列表原生版位（總數維持 6 格；JSON-LD 的 ItemList 仍列出全部文章）
+        cards = _with_native([_idx_card(a) for a in articles[:5]])
         art_sec = ('<div class="rc-sec"><h2>深度文章</h2><span class="ln"></span>'
                    '<a class="tg" href="/articles/" style="text-decoration:none">全部文章 →</a></div>'
                    f'<div class="idx-grid">{cards}</div>')
@@ -618,19 +633,21 @@ def render_home(articles):
     {asof}
   </section>
   {next_chip}
+  {ads.slot_html("home_hero")}
   {standings_sec}
   {podium_sec}
   {tiles}
   {art_sec}
-  {_faq_sec(HOME_FAQ)}"""
+  {_faq_sec(HOME_FAQ)}
+  {ads.script_tag(PUB)}"""
     # page_shell 會自動掛「 | 賽車數據誌」suffix → 這裡只給描述性前半，避免站名重複
     return rc.page_shell(SITE["home_title"],
-                         desc, f"{BASE}/", jsonld, body, "home", extra_css=INDEX_CSS)
+                         desc, f"{BASE}/", jsonld, body, "home", extra_css=INDEX_CSS + ads.AD_CSS)
 
 
 def render_articles_index(articles):
     url = f"{BASE}/articles/"
-    cards = "".join(_idx_card(a) for a in articles)
+    cards = _with_native([_idx_card(a) for a in articles])
     item_list = {"@type": "ItemList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "url": f"{BASE}/articles/{a['slug']}/",
          "name": a["meta"].get("title", a["slug"])} for i, a in enumerate(articles)]}
@@ -641,9 +658,10 @@ def render_articles_index(articles):
                           rc.breadcrumb_node([("首頁", f"{BASE}/"), ("文章", url)])])
     body = (f'<h1 class="idx-h1">深度文章</h1>'
             f'<div class="idx-intro">規則解析 · 譯名對照 · 賽站專題——長文為主、逐項標註來源，共 {len(articles)} 篇、最新在前。</div>'
-            f'<div class="idx-grid">{cards}</div>')
+            f'<div class="idx-grid">{cards}</div>'
+            f'{ads.script_tag(PUB)}')
     return rc.page_shell("深度文章", f"賽車數據誌深度文章共 {len(articles)} 篇：F1 規則解析、譯名對照、賽站專題。",
-                         url, jsonld, body, "articles", extra_css=INDEX_CSS)
+                         url, jsonld, body, "articles", extra_css=INDEX_CSS + ads.AD_CSS)
 
 
 GUIDE_CSS = """

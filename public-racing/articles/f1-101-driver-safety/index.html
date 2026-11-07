@@ -31,6 +31,43 @@
 </script>
 <link rel="stylesheet" href="/assets/rc-4fe3d3a210.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+.ad-slot{position:relative;display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.ad-slot:hover,.ad-slot:focus-visible{border-color:var(--accent-line)}
+.ad-label{position:absolute;top:8px;right:8px;z-index:1;font-size:11px;line-height:1;padding:4px 7px;
+  border-radius:4px;background:rgba(0,0,0,.62);color:#fff;letter-spacing:1px}
+.ad-media{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;
+  background:linear-gradient(135deg,var(--accent-soft),var(--surface))}
+.ad-media-fb{display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;
+  font-weight:800;font-size:15px;color:var(--fg-soft)}
+.ad-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:16px;line-height:1.45;font-weight:800;margin:0}
+.ad-d{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  color:var(--dim);font-size:13px;line-height:1.7;margin:4px 0 0}
+.ad-cta{color:var(--accent);font-size:13px;font-weight:700;margin-top:6px;display:block}
+.ad-body{display:block}
+/* 橫式（主推位、文末）：固定高度，換卡不跳版；標籤壓在左側圖上，不擋文字 */
+.ad-row{display:flex}
+.ad-row .ad-label{left:8px;right:auto}
+.ad-row .ad-media{flex:0 0 auto;aspect-ratio:auto;height:100%}
+.ad-row .ad-body{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.ad-hero{height:132px;margin:14px 0 6px}
+.ad-hero .ad-media{width:251px}
+.ad-hero .ad-body{padding:14px 18px}
+.ad-end{height:112px;max-width:560px;margin:28px 0 8px}
+.ad-end .ad-media{width:213px}
+.ad-end .ad-body{padding:12px 16px}
+@media (max-width:719px){
+  .ad-hero{height:120px}
+  .ad-hero .ad-media,.ad-end .ad-media{width:120px}
+  .ad-row .ad-body{padding:10px 12px}
+  .ad-hero .ad-t{font-size:15px}
+  .ad-row .ad-d{-webkit-line-clamp:1}
+}
+/* 列表原生：外觀跟文章卡一樣 */
+.ad-native .ad-body{padding:14px 16px 16px}
+</style>
 </head>
 <body>
 <div class="container">
@@ -236,6 +273,7 @@
 <p>查證日：2026-09-25。限制：撞擊之後現場救援的官方流程與時間軸（醫療車何時出動、何時脫困），以及 FIA 2020 年巴林事故調查的數值結果，在已查的官方文字裡都找不到，所以文中不寫；Halo 的材質與重量規章沒有載明，也不寫；Halo 靜態測試的載重數字新舊資料不一致，文中不引；「Halo 救了幾個人」沒有 FIA 的正式宣告，能查到的是 formula1.com 的專欄與葛洛尚本人的評價。葛洛尚的中文譯名在站內譯名檔沒有登錄，本文暫用「葛洛尚」。</p>
   </article>
   
+  <a class="ad-slot ad-row ad-end" data-ad-slot="native_end" data-ad-id="fallback-racing-native_end" data-ad-name="籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據" data-ad-creative="fallback-racing-native_end" href="https://basketball.twtools.cc/" rel="noopener"><span class="ad-label">推廣</span><span class="ad-media ad-media-fb">籃球數據誌</span><span class="ad-body"><span class="ad-t">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</span><span class="ad-d">姊妹站</span></span></a>
   <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂賽車 第 14 / 17 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-brakes/"><span class="lbl">← 新手村上一篇</span>F1 煞車怎麼運作：攝氏 1,000 度的高溫，還有 2026 年分擔更多減速的…</a><a href="/articles/f1-101-ers-shutdown/" style="text-align:right"><span class="lbl">新手村下一篇 →</span>F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘</a></div></div><div class="art-nav"><a href="/articles/f1-101-downforce/"><span class="lbl">← 前一篇</span>F1 賽車真的能倒著開在天花板上嗎？下壓力讓車越快越黏地</a><a href="/articles/f1-101-flags/" style="text-align:right"><span class="lbl">後一篇 →</span>F1 賽道旁的旗子與燈號：每一面代表什麼、車手該怎麼做</a></div>
   </main>
   <div class="article-footer">
@@ -302,5 +340,6 @@ function setTheme(t) {
   if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
 })();
 </script>
+<script src="/assets/ad-d19dc7d98b.js" defer></script>
 </body>
 </html>
