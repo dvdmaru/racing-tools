@@ -13,7 +13,11 @@
   - 換檔要準時，不能等 racing 每週一次的重建；
   - 廣告文字不進 AI 讀到的 HTML，AI 不會把廣告當成本站內容引用。
 
-讀不到設定檔（網路、404、格式錯）→ 保留 build 時寫好的預設卡；預設卡尺寸與廣告卡一致，不跳版。
+平常的樣子（Charlie 11/7「版位留在那邊，回到網站正常的樣子，等真的有活動的時候再放內容」）：
+  - 沒有當期檔期、或讀不到設定檔 → 版位整個隱藏（HTML 帶 hidden），網站跟沒有版位時一樣；
+    首頁文章格照樣 6 篇（第 6 篇帶 data-ad-yield，列表原生真的出現時才讓位）。
+  - 有當期檔期 → 顯示。
+  - 網址加 ?ad-preview=1 → 預覽：不看檔期時間，設定檔裡的卡片與預設卡全部顯示，且不送 GA。
 """
 import hashlib
 import html as html_lib
@@ -32,6 +36,7 @@ FALLBACK = {
 AD_CSS = """
 .ad-slot{position:relative;display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
   border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.ad-slot[hidden],[data-ad-yield][hidden]{display:none!important}
 .ad-slot:hover,.ad-slot:focus-visible{border-color:var(--accent-line)}
 .ad-label{position:absolute;top:8px;right:8px;z-index:1;font-size:11px;line-height:1;padding:4px 7px;
   border-radius:4px;background:rgba(0,0,0,.62);color:#fff;letter-spacing:1px}
@@ -72,8 +77,9 @@ _JS = r"""(function(){
 var CONFIG_URL=%(url)s, SITE=%(site)s, RANK={paid:0,house:1,affiliate:2};
 var slots=[].slice.call(document.querySelectorAll('.ad-slot[data-ad-slot]'));
 if(!slots.length)return;
+var PREVIEW=/[?&]ad-preview=1(&|$)/.test(location.search);
 function ga(name,s){
-  if(typeof window.gtag!=='function')return;
+  if(PREVIEW||typeof window.gtag!=='function')return;   // 預覽不送 GA，免得灌髒曝光數字
   var p={promotion_id:s.dataset.adId,promotion_name:s.dataset.adName,
          creative_name:s.dataset.adCreative,creative_slot:s.dataset.adSlot};
   p.items=[{item_id:p.promotion_id,item_name:p.promotion_name,promotion_id:p.promotion_id,
@@ -133,24 +139,32 @@ function valid(c,now){
   if(!Array.isArray(c.sites)||c.sites.indexOf(SITE)<0)return false;
   if(!Array.isArray(c.slots))return false;
   var a=Date.parse(c.start), b=Date.parse(c.end);
-  return !isNaN(a)&&!isNaN(b)&&a<=now&&now<b;
+  if(isNaN(a)||isNaN(b))return false;
+  return PREVIEW||(a<=now&&now<b);                      // 預覽不看檔期時間
+}
+// 顯示一個版位；列表原生出現時，讓同一格清單的讓位卡隱藏（首頁維持 6 格）
+function show(s){
+  s.hidden=false;
+  var y=document.querySelector('[data-ad-yield="'+s.dataset.adSlot+'"]');
+  if(y)y.hidden=true;
+  watch(s);
 }
 function run(cfg){
   var now=Date.now(), used={};
   var list=(cfg&&Array.isArray(cfg.campaigns)?cfg.campaigns:[]).filter(function(c){return valid(c,now);});
   list.sort(function(p,q){return (RANK[p.tier]-RANK[q.tier])||(Date.parse(q.start)-Date.parse(p.start));});
   slots.forEach(function(s){
-    var slot=s.dataset.adSlot;
+    var slot=s.dataset.adSlot, shown=false;
     for(var i=0;i<list.length;i++){
       var c=list[i];
       if(c.slots.indexOf(slot)<0||used[c.id])continue;   // 同一則不在同一頁出現兩次
-      if(apply(s,c)){used[c.id]=true;break;}
+      if(apply(s,c)){used[c.id]=true;shown=true;break;}
     }
-    watch(s);
+    if(shown||PREVIEW)show(s);                         // 沒有檔期就維持隱藏（預覽時顯示預設卡）
   });
 }
 var done=false;
-function fallback(){if(done)return;done=true;slots.forEach(watch);}
+function fallback(){if(done)return;done=true;if(PREVIEW)slots.forEach(show);}
 try{
   var ctl=('AbortController' in window)?new AbortController():null;
   var to=setTimeout(function(){if(ctl)ctl.abort();fallback();},4000);
@@ -187,7 +201,7 @@ def script_tag(pub: pathlib.Path) -> str:
 
 
 def slot_html(slot: str) -> str:
-    """版位外殼＋預設卡。廣告內容由 ad-*.js 在瀏覽器端換上；讀不到就維持預設卡。"""
+    """版位外殼＋預設卡，預設隱藏。有當期檔期時由 ad-*.js 換上內容並顯示；預覽模式顯示預設卡。"""
     if slot not in FALLBACK:
         raise ValueError(f"unknown ad slot: {slot}")
     title, url = FALLBACK[slot]
@@ -198,7 +212,7 @@ def slot_html(slot: str) -> str:
     extra = ""
     cta = '<span class="ad-cta">去看看 →</span>' if slot == "home_hero" else ''
     return (f'<a class="ad-slot {kind}{extra}" data-ad-slot="{slot}" data-ad-id="{fid}" '
-            f'data-ad-name="{t}" data-ad-creative="{fid}" href="{url}" rel="noopener">'
+            f'data-ad-name="{t}" data-ad-creative="{fid}" href="{url}" rel="noopener" hidden>'
             f'<span class="ad-label">推廣</span>'
             f'<span class="ad-media ad-media-fb">{short}</span>'
             f'<span class="ad-body"><span class="ad-t">{t}</span>'

@@ -72,6 +72,28 @@ class PlacementTests(unittest.TestCase):
         self.assertTrue(all(c == "idx-card" for c in cards[:2]))
 
 
+class NormalLookTests(unittest.TestCase):
+    """沒有檔期時網站要跟原本一樣：版位隱藏、首頁照舊 6 篇文章。"""
+
+    def test_all_slots_hidden_in_html(self):
+        for p in [PUB / "index.html", PUB / "articles" / "index.html"] + _article_pages()[:5]:
+            html = p.read_text(encoding="utf-8")
+            for tag in re.findall(r'<a class="ad-slot[^>]*>', html):
+                self.assertTrue(tag.endswith(" hidden>"), (p, tag))
+
+    def test_home_keeps_six_articles_with_one_yield_card(self):
+        html = _read("index.html")
+        grid = html[html.index('<div class="idx-grid">'):]
+        self.assertEqual(len(re.findall(r'<a class="idx-card"', grid)), 6)
+        self.assertEqual(grid.count('data-ad-yield="native_list"'), 1)
+
+    def test_preview_skips_ga_and_time_window(self):
+        js = ads.JS_TEXT
+        self.assertIn("ad-preview=1", js)
+        self.assertIn("if(PREVIEW||typeof window.gtag!=='function')return;", js)
+        self.assertIn("return PREVIEW||(a<=now&&now<b);", js)
+
+
 class ScopeTests(unittest.TestCase):
     """版位例外只限首頁與文章相關頁：百科／數據頁不放版位、不載版位程式。"""
     NO_ADS = ["standings", "calendar", "results", "seasons", "drivers", "constructors",
@@ -98,6 +120,7 @@ class MarkupTests(unittest.TestCase):
             h = ads.slot_html(slot)
             with self.subTest(slot=slot):
                 self.assertIn('<span class="ad-label">推廣</span>', h)
+                self.assertIn(' hidden>', h, "平常要隱藏：沒有檔期時網站維持原本的樣子")
                 self.assertIn('rel="noopener"', h)
                 self.assertIn('href="https://', h)
                 self.assertNotIn("<h1", h)

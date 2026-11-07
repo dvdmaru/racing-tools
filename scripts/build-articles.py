@@ -606,8 +606,11 @@ def render_home(articles):
                   '</div>')
     art_sec = ""
     if articles:
-        # 第 3 格是列表原生版位（總數維持 6 格；JSON-LD 的 ItemList 仍列出全部文章）
-        cards = _with_native([_idx_card(a) for a in articles[:5]])
+        # 第 3 格是列表原生版位（平常隱藏）。平常照舊 6 篇；原生真的出現時第 6 篇讓位，總數維持 6 格。
+        six = [_idx_card(a) for a in articles[:6]]
+        if len(six) == 6:
+            six[5] = six[5].replace('<a class="idx-card" ', '<a class="idx-card" data-ad-yield="native_list" ', 1)
+        cards = _with_native(six)
         art_sec = ('<div class="rc-sec"><h2>深度文章</h2><span class="ln"></span>'
                    '<a class="tg" href="/articles/" style="text-decoration:none">全部文章 →</a></div>'
                    f'<div class="idx-grid">{cards}</div>')

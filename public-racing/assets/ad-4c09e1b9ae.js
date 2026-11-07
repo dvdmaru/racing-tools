@@ -3,8 +3,9 @@
 var CONFIG_URL="https://twtools.cc/ad-slots.json", SITE="racing", RANK={paid:0,house:1,affiliate:2};
 var slots=[].slice.call(document.querySelectorAll('.ad-slot[data-ad-slot]'));
 if(!slots.length)return;
+var PREVIEW=/[?&]ad-preview=1(&|$)/.test(location.search);
 function ga(name,s){
-  if(typeof window.gtag!=='function')return;
+  if(PREVIEW||typeof window.gtag!=='function')return;   // 預覽不送 GA，免得灌髒曝光數字
   var p={promotion_id:s.dataset.adId,promotion_name:s.dataset.adName,
          creative_name:s.dataset.adCreative,creative_slot:s.dataset.adSlot};
   p.items=[{item_id:p.promotion_id,item_name:p.promotion_name,promotion_id:p.promotion_id,
@@ -64,24 +65,32 @@ function valid(c,now){
   if(!Array.isArray(c.sites)||c.sites.indexOf(SITE)<0)return false;
   if(!Array.isArray(c.slots))return false;
   var a=Date.parse(c.start), b=Date.parse(c.end);
-  return !isNaN(a)&&!isNaN(b)&&a<=now&&now<b;
+  if(isNaN(a)||isNaN(b))return false;
+  return PREVIEW||(a<=now&&now<b);                      // 預覽不看檔期時間
+}
+// 顯示一個版位；列表原生出現時，讓同一格清單的讓位卡隱藏（首頁維持 6 格）
+function show(s){
+  s.hidden=false;
+  var y=document.querySelector('[data-ad-yield="'+s.dataset.adSlot+'"]');
+  if(y)y.hidden=true;
+  watch(s);
 }
 function run(cfg){
   var now=Date.now(), used={};
   var list=(cfg&&Array.isArray(cfg.campaigns)?cfg.campaigns:[]).filter(function(c){return valid(c,now);});
   list.sort(function(p,q){return (RANK[p.tier]-RANK[q.tier])||(Date.parse(q.start)-Date.parse(p.start));});
   slots.forEach(function(s){
-    var slot=s.dataset.adSlot;
+    var slot=s.dataset.adSlot, shown=false;
     for(var i=0;i<list.length;i++){
       var c=list[i];
       if(c.slots.indexOf(slot)<0||used[c.id])continue;   // 同一則不在同一頁出現兩次
-      if(apply(s,c)){used[c.id]=true;break;}
+      if(apply(s,c)){used[c.id]=true;shown=true;break;}
     }
-    watch(s);
+    if(shown||PREVIEW)show(s);                         // 沒有檔期就維持隱藏（預覽時顯示預設卡）
   });
 }
 var done=false;
-function fallback(){if(done)return;done=true;slots.forEach(watch);}
+function fallback(){if(done)return;done=true;if(PREVIEW)slots.forEach(show);}
 try{
   var ctl=('AbortController' in window)?new AbortController():null;
   var to=setTimeout(function(){if(ctl)ctl.abort();fallback();},4000);
