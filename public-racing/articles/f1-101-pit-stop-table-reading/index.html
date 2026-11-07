@@ -117,23 +117,22 @@
   <div class="art-meta"><span>2026 年 10 月 13 日</span><span>賽車數據誌</span></div>
   
   
-  <p class="art-lede">2026 新加坡正賽，漢米爾頓第 18 圈進站。OpenF1（非官方資料服務）的 lane_duration 記 24.0 秒，文件稱這是車在維修區車道內的時間。Jolpica（另一個資料源）的 duration 記 24.048 秒，文件寫這個時間包含維修區入口、出口與紅旗時間（原文附 if necessary）。兩家文件沒有宣告共用的起訖線。以上數字取自本站 2026-10-13 取得的快照。OpenF1 自稱與 Formula 1 公司無關，本文比較的是兩個資料源的欄位，不以它們冒充官方計時定義。</p>
+  <p class="art-lede">進站表裡的新舊欄位、跨源差值與空白，各代表什麼？從同一筆紀錄走到兩場快照的逐筆對照。</p>
   <article class="prose">
-<p>2026 年新加坡正賽，<a href="/drivers/hamilton/">漢米爾頓</a>第 18 圈進站。</p>
-<p>OpenF1 的進站表上，這一筆有三個看起來都像「進站時間」的欄位。<code>lane_duration</code> 是 24.0，<code>pit_duration</code> 也是 24.0，<code>stop_duration</code> 是空的。</p>
-<p>OpenF1 自稱是非官方專案，與 Formula 1 公司無關。同一圈在另一個資料源 Jolpica 的紀錄是 24.048。</p>
-<p>以上都取自 2026-10-13 取得的快照。這篇只讀欄位：每一欄量的是哪一段，兩個資料源能不能互相替代，空白的欄位怎麼讀。</p>
+<p><a href="/drivers/hamilton/">漢米爾頓</a>在 2026 新加坡正賽第 18 圈進站。打開 OpenF1 的那一列，兩欄都是 24.0，另一欄卻是空白；換到 Jolpica，看到的是 24.048。</p>
+<p>數字看起來差不多，卻還答不出技師換胎用了多久。要找車輛停住的時間，先得分清「在車道裡」和「靜止」是哪一欄。</p>
+<p>以下使用本站 2026 年 10 月 13 日取得的文件與資料快照。OpenF1 自稱非官方專案，與 Formula 1 公司無關；Jolpica 是另一個資料源。這是兩家欄位的對照，不是 FIA 的官方計時定義。</p>
 <h2>漢米爾頓第 18 圈那一筆，量的是哪一段？</h2>
 <p>先看 24.0。OpenF1 文件把 <code>lane_duration</code> 寫成「The time spent in the pit lane, in seconds.」，也就是車在維修區車道內的時間。這句沒有提入口或出口。</p>
 <p>同一列的 <code>pit_duration</code> 也是 24.0，但它不是第二段計時。OpenF1 文件（2026-10-13 快照）標示 <code>pit_duration</code> 已棄用，內容與 <code>lane_duration</code> 相同，並寫明 2026 賽季結束時移除。2026 新加坡正賽的 25 筆進站，這兩欄逐筆相等（本站自行計算）。</p>
-<p>所以那一列的兩個 24.0，是同一個值寫了兩次。兩個都不是文件所稱的靜止進站時間。文件把靜止進站時間放在另一欄 <code>stop_duration</code>，第 3 節再看它。</p>
-<h2>換成 Jolpica，能拿到靜止時間嗎？</h2>
+<p>於是，兩個 24.0 並不是兩段時間相加，而是同一個值寫在新舊欄位裡。真正標為靜止進站時間的是 <code>stop_duration</code>，那一格此時仍空著。</p>
+<h2>另一張表多了 0.048 秒，量的就不同了嗎？</h2>
 <p>在新加坡這一場，換成 Jolpica，仍然拿不到 OpenF1 文件所稱的靜止進站時間。</p>
 <p>2026 新加坡正賽、本站 2026-10-13 取得的兩份快照，以車手姓名加圈號配對，25 筆全部配上。Jolpica 的 <code>duration</code> 每一筆都比 OpenF1 的 <code>lane_duration</code> 多 0.001 到 0.098 秒（本站自行計算）。</p>
 <p>兩家文件的措辭不一樣。OpenF1 寫的是車道內的時間。Jolpica 對 <code>duration</code> 的說明是「Duration of the stop, including pit entry, exit and red flag time, if necessary (MM:ss.sss)」，意思是停站的持續時間，包含維修區入口、出口與紅旗時間。if necessary 這個條件語管到哪幾項，文件沒有寫。</p>
 <p>再換一場。2025 墨西哥城正賽的兩份快照各 27 筆，姓名加圈號配上 27 組。25 組兩源完全相同。其餘兩組是<a href="/drivers/sainz/">塞恩斯</a>第 46 圈差 0.046 秒、第 56 圈差 0.069 秒，Jolpica 都比較大（本站自行計算）。</p>
-<p>兩場的數字都很接近，讀起來像同一個數。但兩欄從哪裡量到哪裡，要看文件。兩家文件都沒有宣告兩欄等價，也沒有宣告共用的起訖線。光靠數字接近，還不能說兩欄量的是同一段。</p>
-<h2><code>stop_duration</code> 這一欄怎麼讀</h2>
+<p>這兩場恰好示範了不同程度的接近：有些列完全相同，有些差一點。但兩家文件都沒有宣告欄位等價或共用起訖線；數字接近，仍不能取代計時範圍的定義。</p>
+<h2>靜止時間有自己的欄位，但不保證每一筆都有</h2>
 <p>OpenF1 文件把 <code>stop_duration</code> 定義為「The stationary pit stop time, in seconds.」，也就是靜止進站時間，並寫明這一欄只從 2024 美國大獎賽起提供。</p>
 <p>2026 新加坡正賽、本站 2026-10-13 取得的 OpenF1 快照中，這一欄 25 筆全是空值（null）。OpenF1 文件沒有說明原因。</p>
 <p>同一批快照裡的 2025 墨西哥城正賽，27 筆中有 25 筆有值。OpenF1 文件自己的範例列取自這一場：車號 16、第 31 圈，<code>lane_duration</code> 是 22.215 秒，<code>stop_duration</code> 是 2.2 秒。</p>
@@ -155,14 +154,14 @@
 <figcaption>圖：OpenF1（非官方資料服務）文件範例列，2025 墨西哥城正賽車號 16 第 31 圈：lane_duration 22.215 秒、stop_duration 2.2 秒（2026-10-13 文件快照）。在 2026 新加坡正賽的 OpenF1 快照（2026-10-13 取得）中，stop_duration 25 筆皆為空值，OpenF1 文件未說明原因。本站依文件範例與快照製作的示意，非依比例。</figcaption>
 </figure>
 
-<p>所以「拆不出靜止時間」，說的是新加坡這一場。墨西哥城那一場多數筆有值；其他場次的情形，這兩場看不出來。文件只說這一欄從 2024 美國大獎賽起提供，沒有說每一場、每一筆都有值。</p>
+<p>差別到這裡才清楚：新加坡這場讀不到靜止時間，墨西哥城多數列讀得到。文件所說「從 2024 美國站起提供」，並沒有保證往後每場、每筆都填上；其他場次仍須各自檢查。</p>
 <p>墨西哥城那 2 筆空值，正是塞恩斯的第 46 圈和第 56 圈，也就是兩源有差的那兩筆。</p>
 <p>兩場還有一個共同點：<code>stop_duration</code> 空著的列，<code>lane_duration</code> 都只有一位小數；有值的列是兩到三位（本站自行計算）。兩份文件都沒有解釋這個現象。</p>
-<h2>這張表沒寫的事</h2>
+<h2>最長的一筆，也不能直接叫作換胎失誤</h2>
 <p>新加坡這 25 筆裡，<code>lane_duration</code> 最長的是<a href="/drivers/bottas/">博塔斯</a>第 28 圈的 29.2 秒，中位數是 24.3 秒（2026 新加坡 OpenF1 快照，本站自行計算）。表上看得出這一筆比中位數長，看不出長在哪裡。</p>
 <p>也不能直接把車道時間讀成進站損失。OpenF1 文件寫的是車道內的時間，Jolpica 文件寫的是停站持續時間，兩邊都沒有把這一欄定義成損失。</p>
 <p>進站損失怎麼估，同一場新加坡的另一篇有算：<a href="/articles/f1-2026-r17-singapore-ferrari-strategy-ledger/">新加坡站第 39 圈虛擬安全車期間，勒克萊爾進站，漢米爾頓則留在場上</a>。那篇自己標明，估算含新舊胎差，不是純進站損失。</p>
-<h2>想把兩張表接起來，鑰匙用哪一欄？</h2>
+<h2>要逐筆比對，先確認兩張表接的是同一個人</h2>
 <p>OpenF1 的進站列用車號（<code>driver_number</code>）標車手，Jolpica 的進站列用 <code>driverId</code>。圈號欄則分別叫 <code>lap_number</code> 和 <code>lap</code>。</p>
 <p>車號看起來最直接，但 2025 墨西哥城那份快照有兩人對不上。Jolpica 賽果的 <code>permanentNumber</code>，<a href="/drivers/max-verstappen/">維斯塔潘</a>是 3，OpenF1 車手表記 1。<a href="/drivers/norris/">諾里斯</a>在 Jolpica 賽果是 1，在 OpenF1 是 4。已取得的快照與文件都沒有說明原因。</p>
 <p>這兩場改用車手姓名加圈號配對。兩場配完之後，兩邊都沒有剩下的列，也沒有重複的「車手加圈號」。這個做法只適用這兩份快照，不是所有資料源的通用鍵。</p>
