@@ -31,6 +31,44 @@
 </script>
 <link rel="stylesheet" href="/assets/rc-4fe3d3a210.css">
 <script>try{var t=localStorage.getItem('rc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+.ad-slot{position:relative;display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.ad-slot[hidden],[data-ad-yield][hidden]{display:none!important}
+.ad-slot:hover,.ad-slot:focus-visible{border-color:var(--accent-line)}
+.ad-label{position:absolute;top:8px;right:8px;z-index:1;font-size:11px;line-height:1;padding:4px 7px;
+  border-radius:4px;background:rgba(0,0,0,.62);color:#fff;letter-spacing:1px}
+.ad-media{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;
+  background:linear-gradient(135deg,var(--accent-soft),var(--surface))}
+.ad-media-fb{display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;
+  font-weight:800;font-size:15px;color:var(--fg-soft)}
+.ad-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:16px;line-height:1.45;font-weight:800;margin:0}
+.ad-d{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  color:var(--dim);font-size:13px;line-height:1.7;margin:4px 0 0}
+.ad-cta{color:var(--accent);font-size:13px;font-weight:700;margin-top:6px;display:block}
+.ad-body{display:block}
+/* 橫式（主推位、文末）：固定高度，換卡不跳版；標籤壓在左側圖上，不擋文字 */
+.ad-row{display:flex}
+.ad-row .ad-label{left:8px;right:auto}
+.ad-row .ad-media{flex:0 0 auto;aspect-ratio:auto;height:100%}
+.ad-row .ad-body{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.ad-hero{height:132px;margin:14px 0 6px}
+.ad-hero .ad-media{width:251px}
+.ad-hero .ad-body{padding:14px 18px}
+.ad-end{height:112px;max-width:560px;margin:28px 0 8px}
+.ad-end .ad-media{width:213px}
+.ad-end .ad-body{padding:12px 16px}
+@media (max-width:719px){
+  .ad-hero{height:120px}
+  .ad-hero .ad-media,.ad-end .ad-media{width:120px}
+  .ad-row .ad-body{padding:10px 12px}
+  .ad-hero .ad-t{font-size:15px}
+  .ad-row .ad-d{-webkit-line-clamp:1}
+}
+/* 列表原生：外觀跟文章卡一樣 */
+.ad-native .ad-body{padding:14px 16px 16px}
+</style>
 </head>
 <body>
 <div class="container">
@@ -188,6 +226,7 @@
 <p>查證日 2026-10-05。限制：本文只據規章說明准用範圍，不對個別車隊實際用料下結論。C15.1.4 提到的檢驗程序收在 FIA-F1-DOC-114，該文件沒有取得，程序內容文中不寫。T1100 與 MR70 的規格數字條文沒有給，文中不補。「比模量大致是剛性除以密度」是站方白話，不是規章原文。Section C 其他章節對個別零件可能另有材料規定，本文沒有逐一比對。動力單元的材料規定（C15.6 到 C15.9）只帶一句，沒有展開。</p>
   </article>
   
+  <a class="ad-slot ad-row ad-end" data-ad-slot="native_end" data-ad-id="fallback-racing-native_end" data-ad-name="籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據" data-ad-creative="fallback-racing-native_end" href="https://basketball.twtools.cc/" rel="noopener" hidden><span class="ad-label">推廣</span><span class="ad-media ad-media-fb">籃球數據誌</span><span class="ad-body"><span class="ad-t">籃球數據誌 — NBA・台灣職籃・HBL 戰績與數據</span><span class="ad-d">姊妹站</span></span></a>
   <div class="guide-nav"><div class="gn-head"><a href="/guide/">新手村 · 回入口頁</a><span>看懂賽車 第 16 / 17 篇</span></div><div class="art-nav gn-pager"><a href="/articles/f1-101-ers-shutdown/"><span class="lbl">← 新手村上一篇</span>F1 高壓系統怎麼關：系統關了，狀態燈還要供電 15 分鐘</a><a href="/articles/f1-101-tyre-handling/" style="text-align:right"><span class="lbl">新手村下一篇 →</span>保溫毯條文沒寫幾度，寫的是 96 小時紀錄</a></div></div><div class="art-nav"><a href="/articles/f1-2026-r16-sepang-qualifying-gaps/"><span class="lbl">← 前一篇</span>雪邦排位前八名：維斯塔潘領先 0.298 秒，第 2 到第 8 名七台只差…</a><a href="/articles/f1-101-rule-changes/" style="text-align:right"><span class="lbl">後一篇 →</span>F1 新規通過了，哪天開始算數？最早生效日分三層</a></div>
   </main>
   <div class="article-footer">
@@ -254,5 +293,6 @@ function setTheme(t) {
   if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
 })();
 </script>
+<script src="/assets/ad-4c09e1b9ae.js" defer></script>
 </body>
 </html>

@@ -1,7 +1,11 @@
 # racing-tools — 賽車數據誌 (racing.twtools.cc)
 
-@RACING「賽車數據誌」F1 資料站的獨立 repo。100% 靜態、server-rendered、零 client fetch
-（為被 AI 引用設計，GEO/AEO）。架構 clone 自 baseball-tools（三層：資料 adapter＋JSON
+@RACING「賽車數據誌」F1 資料站的獨立 repo。100% 靜態、server-rendered、內容零 client fetch
+（為被 AI 引用設計，GEO/AEO）。**唯一例外是版位**（2026-11-07 Charlie 裁定「版位例外，瀏覽器端讀」）：
+首頁主推位、列表原生、文末原生由 `scripts/adslots.py` 產生預設卡，瀏覽器端再讀
+`https://twtools.cc/ad-slots.json` 換上當期檔期。版位只放首頁、`/articles/` 與文章頁，
+百科／數據頁一律不放、不載版位程式（`tests/test_ad_slots.py` 釘住，百科頁原有的零 client fetch 測試不動）。
+版位平常隱藏（沒有當期檔期時網站跟原本一樣），有檔期才出現；網址加 `?ad-preview=1` 可預覽樣子（不看檔期時間、不送 GA）。架構 clone 自 baseball-tools（三層：資料 adapter＋JSON
 快照 → 數據頁/文章管線 → CF Worker），2026-07-19 建站。
 
 **品牌紅線**：站名/域名不含 F1 字樣（「F1」「FORMULA 1」為 Formula One Licensing 註冊
