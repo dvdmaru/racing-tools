@@ -1369,6 +1369,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-11-03T10:16:51+08:00",
       "note": "Charlie在 R1 來源帳本、Agy 訂閱唯讀 R2 修正與 R3 GO 後明示「合併、部署」。範圍限 Lusail 已完賽的 2021、2023–2025 F1 正賽；2022 不列為舉辦屆次。2026 時程為預定，正賽台北 11/30（一）00:00。Claude 訂閱未登入，未記為查核；API fallback 為 0。"
+    },
+    {
+      "slug": "f1-verstappen-brazil-21st-second-grid-history",
+      "article_sha256": "8246ec2cf5abca0e7de085144b4e8cdb561b0a81a557d0c87cf46a6dc97c8d48",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-11-10T23:46:33.163369+08:00",
+      "note": "Charlie 2026-11-10明示上線。新文：2026-11-10:R1-18；原生Codex與Claude訂閱Opus最終及發布窄差異查核，證據見CoWork/Charlie/2026-11-10/racing-verstappen-brazil-grid-history。官方雙表/FIA文件與歷史快照核對；19為欄位差非超車數，非最新全史次數。facts/check_report非Jolpica純戰報管線故null。"
     }
   ]
 }

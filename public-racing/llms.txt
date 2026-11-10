@@ -15,6 +15,7 @@
 
 ## 最新文章
 
+- [維斯塔潘巴西站第 21 位起跑拿第 2：F1 後排起跑歷史對照](https://racing.twtools.cc/articles/f1-verstappen-brazil-21st-second-grid-history/)（2026-11-10）
 - [F1 卡達大獎賽賽道百科：Lusail 歷屆極點、冠軍與台北時間賽程](https://racing.twtools.cc/articles/f1-qatar-grand-prix-lusail-guide/)（2026-11-03）
 - [F1 拉斯維加斯大獎賽賽道百科：2023 年至今歷屆極點、冠軍與台北時間賽程](https://racing.twtools.cc/articles/f1-las-vegas-grand-prix-guide/)（2026-10-31）
 - [F1 300 場俱樂部前夕：培瑞茲第 299 場回顧](https://racing.twtools.cc/articles/f1-sergio-perez-299-race-career-review/)（2026-10-30）
@@ -24,7 +25,6 @@
 - [F1 美國站 COTA：歷屆桿位、冠軍與 2026 台北時間](https://racing.twtools.cc/articles/f1-cota-us-grand-prix-guide/)（2026-10-17）
 - [F1 盧安達 10 年協議：首場要等新賽道，算重返非洲嗎？](https://racing.twtools.cc/articles/f1-rwanda-african-grand-prix-africa-rounds-1958-1993/)（2026-10-15）
 - [OpenF1 輪胎分段圖：換色的地方，不一定對得上進站紀錄](https://racing.twtools.cc/articles/f1-101-tyre-stint-chart-reading/)（2026-10-13）
-- [一張排位表有 q1、q2、q3 三欄：跨欄相減，算出來的是什麼？](https://racing.twtools.cc/articles/f1-101-qualifying-gap-reading/)（2026-10-13）
 
 ## 文章與更新
 

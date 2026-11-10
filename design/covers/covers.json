@@ -191,6 +191,12 @@
       "html": "cover-qatar-lusail-guide.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-verstappen-brazil-21st-second-grid-history",
+      "html": "cover-verstappen-brazil-grid.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

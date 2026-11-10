@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>維斯塔潘巴西站第 21 位起跑拿第 2：F1 後排起跑歷史對照</title>
+    <link>https://racing.twtools.cc/articles/f1-verstappen-brazil-21st-second-grid-history/</link>
+    <guid>https://racing.twtools.cc/articles/f1-verstappen-brazil-21st-second-grid-history/</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0800</pubDate>
+    <description>第 20 位及之後起跑，最佳結果可以是冠軍。從 Watson 的長灘勝利到維斯塔潘的巴西亞軍，先把起跑格、完賽名次與發車表車數放在一起。</description>
+  </item>
+  <item>
     <title>F1 卡達大獎賽賽道百科：Lusail 歷屆極點、冠軍與台北時間賽程</title>
     <link>https://racing.twtools.cc/articles/f1-qatar-grand-prix-lusail-guide/</link>
     <guid>https://racing.twtools.cc/articles/f1-qatar-grand-prix-lusail-guide/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-dropped-scores/</guid>
     <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
     <description>依 8W 整理，1950–1990 年的車手總分只計最好的幾筆成績，1967–1980 年分前後半季各算。本站可重算的季裡，冠軍的官方積分有 20 季少於逐站加總；本站資料庫把各站得分直接加總比較，加總最高者不是冠軍的只有 1964、1988 兩季。</description>
-  </item>
-  <item>
-    <title>Vasseur 承認起跑選胎判斷錯的那場雪邦正賽，漢米爾頓怎麼拿到第 3 名？</title>
-    <link>https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/</link>
-    <guid>https://racing.twtools.cc/articles/f1-2026-r16-sepang-hamilton-podium-ledger/</guid>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 +0800</pubDate>
-    <description>2026 年 10 月 4 日巴林大獎賽在馬來西亞（Bahrain Grand Prix in Malaysia）第 16 站，全場 22 位車手、55 圈（計時圈號）。法拉利領隊 Vasseur 在車隊聲明裡承認，起跑選胎判斷錯了。第 8 圈結束時，漢米爾頓（Lewis Hamilton）的過線時刻比該圈最先過線的安東內利（Kimi Antonelli）晚 83.133 秒，這是計時過線差，不是官方車距；Jolpica 賽果列為第 3 名，落後維斯塔潘（Max Verstappen）4.919 秒。各段占多少，資料拆不開。</description>
   </item>
 </channel>
 </rss>
