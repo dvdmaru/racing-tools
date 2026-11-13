@@ -264,7 +264,8 @@ class GoldenDisciplineTests(unittest.TestCase):
         # 2026-08-24 R12 已賽/tsunoda 擴編：現役 roster 53→54，golden 隨之覆蓋 54 人。
         self.assertEqual(set(self.golden), set(dr.DRIVER_IDS))
         # 2026-11-03 R19 已賽/ryo_hirakawa 擴編：現役 roster 54→55，golden 隨之覆蓋 55 人。
-        self.assertEqual(len(self.golden), 55)
+        # 2026-11-13 R20 Camara 首賽：聯集55→56，既有R11基線不動。
+        self.assertEqual(len(self.golden), 56)
 
 
 # ---------- 產出完整性 ----------
@@ -283,7 +284,8 @@ class GenerationTests(unittest.TestCase):
     def test_all_53_driver_pages_generated(self):
         # 2026-08-24 R12 已賽/tsunoda 擴編：現役 roster 53→54，全 54 頁應生成。
         # 2026-11-03 R19 已賽/ryo_hirakawa 擴編：現役 roster 54→55，全 55 頁應生成。
-        self.assertEqual(len(self.pages), 55)
+        # 2026-11-13 R20 Camara 首賽：全56頁。
+        self.assertEqual(len(self.pages), 56)
         for did in dr.DRIVER_IDS:
             slug = rc.driver_slug(did)
             self.assertTrue((self.tmp / "drivers" / slug / "index.html").is_file(),
@@ -304,7 +306,8 @@ class GenerationTests(unittest.TestCase):
         # 2026-08-24 tsunoda 擴編：現役 22→23。
         # ListItem = 冠軍 ItemList 的 35 + 現役 ItemList 的 len(ACTIVE_IDS) + BreadcrumbList 的 2（首頁／車手）。
         # 2026-11-03 ryo_hirakawa 擴編：現役 23→24。
-        self.assertEqual(len(dr.ACTIVE_IDS), 24)
+        # 2026-11-13 R20 Camara 首賽：現役24→25。
+        self.assertEqual(len(dr.ACTIVE_IDS), 25)
         self.assertEqual(self.index.count('"@type":"ListItem"'), 36 + len(dr.ACTIVE_IDS) + 2)
 
     def test_active_section_lists_all_22(self):

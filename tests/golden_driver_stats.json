@@ -819,6 +819,20 @@
         "season": 2006,
         "round": 12
       }
+    },
+    "rafael_camara": {
+      "championships": 0,
+      "championship_years": [],
+      "wins": 0,
+      "podiums": 0,
+      "entries": 0,
+      "as_of": {
+        "season": 2026,
+        "round": 11
+      },
+      "approved_by": "charlie",
+      "approved_at": "2026-11-13",
+      "note": "本輪Charlie明示授權一併修正歷史資料差異、補齊R20，查核通過後直接上線；本筆按該整體授權補必要新車手，非另有逐值口頭裁決。R20首次results，R11既有基線前未出賽，統計全0；官方R20賽果與獨立資料席核驗，R20現值entries=1。其他既有golden數值與as_of完全保留。"
     }
   }
 }

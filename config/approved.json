@@ -1378,6 +1378,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-11-10T23:46:33.163369+08:00",
       "note": "Charlie 2026-11-10明示上線。新文：2026-11-10:R1-18；原生Codex與Claude訂閱Opus最終及發布窄差異查核，證據見CoWork/Charlie/2026-11-10/racing-verstappen-brazil-grid-history。官方雙表/FIA文件與歷史快照核對；19為欄位差非超車數，非最新全史次數。facts/check_report非Jolpica純戰報管線故null。"
+    },
+    {
+      "slug": "f1-abu-dhabi-grand-prix-yas-marina-guide",
+      "article_sha256": "7bdcb4403ac5865ff6961d6bf8ba3cfeb601fb3344f82215d4d8f492fd9df5d9",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-11-13T12:44:18.078208+08:00",
+      "note": "Charlie 2026-11-13明示上線，並授權修正歷史資料差異及補齊R20後直接發布。2026-11-13:R1-21新文；原生Codex與Claude訂閱Opus最終查核PASS，證據CoWork/Charlie/2026-11-13/racing-abu-dhabi-guide。外部官方來源feature，facts/check_report非Jolpica純戰報故null。"
     }
   ]
 }

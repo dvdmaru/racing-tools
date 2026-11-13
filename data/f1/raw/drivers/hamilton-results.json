@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 399,
+  "total": 400,
   "Races": [
     {
       "season": "2007",
@@ -23881,11 +23881,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "20",
+      "url": "https://en.wikipedia.org/wiki/2026_Brazilian_Grand_Prix",
+      "raceName": "Brazilian Grand Prix",
+      "Circuit": {
+        "circuitId": "interlagos",
+        "url": "https://en.wikipedia.org/wiki/Interlagos_Circuit",
+        "circuitName": "Autódromo José Carlos Pace",
+        "Location": {
+          "lat": "-23.7036",
+          "long": "-46.6997",
+          "locality": "São Paulo",
+          "country": "Brazil"
+        }
+      },
+      "date": "2026-11-08",
+      "time": "17:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "9",
+          "positionText": "9",
+          "points": "2",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": "20",
+          "laps": "70",
+          "status": "Lapped",
+          "Time": {
+            "millis": "5727931",
+            "time": "+4.427"
+          },
+          "FastestLap": {
+            "rank": "8",
+            "lap": "45",
+            "Time": {
+              "time": "1:13.724"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-11-03T01:38:18.772268+00:00",
+    "fetched_at": "2026-11-13T04:42:01.628218+00:00",
     "backfill": true
   }
 }
