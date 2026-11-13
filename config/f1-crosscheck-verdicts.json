@@ -312,12 +312,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 148,
-      "bound_wiki": 149,
-      "wiki_revid": 1383383604,
-      "bound_fingerprint": "a9ecc407d736ccc8aca47b1dbbf237914bab772d9dd4a242b736b9bfe1437333",
+      "bound_ours": 149,
+      "bound_wiki": 150,
+      "wiki_revid": 1385318937,
+      "bound_fingerprint": "b97fb5689c773e01867aab67b56fc42ca3df7f2c576e580f5e03736495ef490d",
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
-      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+1），reason 不變"
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+1），reason 不變；2026-11-13 機械重綁：R20兩側及starts等量+1，wiki−ours與ours−starts差距不變、definition_id及原reason不變；釘新版revid。"
     },
     {
       "key": "perez|entries",
@@ -326,12 +326,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 302,
-      "bound_wiki": 304,
-      "wiki_revid": 1383501557,
-      "bound_fingerprint": "c10e9c20f72638473c0f5cdfb588bf5336654116dfc01230b91d20016cbca3da",
+      "bound_ours": 303,
+      "bound_wiki": 305,
+      "wiki_revid": 1384827422,
+      "bound_fingerprint": "44be218fe552bcf51f06044b736add00a78d552f030bf605169db71d37e1fbaf",
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
-      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+2），reason 不變"
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+2），reason 不變；2026-11-13 機械重綁：R20兩側及starts等量+1，wiki−ours與ours−starts差距不變、definition_id及原reason不變；釘新版revid。"
     },
     {
       "key": "sainz|entries",
@@ -340,12 +340,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 251,
-      "bound_wiki": 252,
-      "wiki_revid": 1382638866,
-      "bound_fingerprint": "4cff360ab3ef03aeac248f754b608cf11e1c51692dba49e588cc82173fa6eb11",
+      "bound_ours": 252,
+      "bound_wiki": 253,
+      "wiki_revid": 1384443983,
+      "bound_fingerprint": "9b4c627db5092a3deec7cb62e9054829cab988557d9f2ab0b15def37ca93745e",
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
-      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+1），reason 不變"
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+1），reason 不變；2026-11-13 機械重綁：R20兩側及starts等量+1，wiki−ours與ours−starts差距不變、definition_id及原reason不變；釘新版revid。"
     },
     {
       "key": "stroll|entries",
@@ -354,12 +354,12 @@
       "by": "charlie",
       "date": "2026-08-13",
       "definition_id": "results_distinct_races",
-      "bound_ours": 210,
-      "bound_wiki": 212,
-      "wiki_revid": 1383408048,
-      "bound_fingerprint": "5c00fb9e55f71d414bbd8448998cbee248a6684fef873c39ff062f5208c68ef7",
+      "bound_ours": 211,
+      "bound_wiki": 213,
+      "wiki_revid": 1384449039,
+      "bound_fingerprint": "09686ace27fa038637c6c055beb34d6d203c7cd2d9a153262a4a040bb661da90",
       "note": "2026-08-13 Charlie 全批核准擴編裁決包（data/f1/grid-expansion-adjudication.md；Fable 全量機械重驗四腿通過後裁決）",
-      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+2），reason 不變"
+      "rebound": "2026-08-24 機械重綁 B(等量+1)：R12 出賽/維基例行編輯，差距不變量（wiki−ours 恆等）續成立，reason 不變；2026-11-03 機械重綁 B(兩側等量 +7)：R13–R19 出賽／維基例行編輯，wiki−ours 差距恆等（+2），reason 不變；2026-11-13 機械重綁：R20兩側及starts等量+1，wiki−ours與ours−starts差距不變、definition_id及原reason不變；釘新版revid。"
     },
     {
       "key": "ocon|entries",
@@ -370,9 +370,10 @@
       "definition_id": "results_distinct_races",
       "bound_ours": 198,
       "bound_wiki": 199,
-      "wiki_revid": 1383318503,
-      "bound_fingerprint": "b8c36c3ca810d2249d0ae7be7bd1d57954a65553da0ce0818525313321487cab",
-      "note": "2026-11-03 R19 後重產報告出現的新 diff；Charlie 裁決（after_approval.py 綁定）"
+      "wiki_revid": 1385150669,
+      "bound_fingerprint": "845bc44c3c9a48035fc481d924ef6592a53d61db9c41c28cc832f57ade3e7150",
+      "note": "2026-11-03 R19 後重產報告出現的新 diff；Charlie 裁決（after_approval.py 綁定）",
+      "rebound": "；2026-11-13 機械重綁：R20兩側及starts等量+0，wiki−ours與ours−starts差距不變、definition_id及原reason不變；釘新版revid。"
     }
   ]
 }

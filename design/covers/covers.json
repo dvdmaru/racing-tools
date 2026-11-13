@@ -197,6 +197,12 @@
       "html": "cover-verstappen-brazil-grid.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-abu-dhabi-grand-prix-yas-marina-guide",
+      "html": "cover-abu-dhabi-yas-marina-guide.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }

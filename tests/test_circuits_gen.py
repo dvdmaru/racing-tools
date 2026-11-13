@@ -169,9 +169,10 @@ class RegistryAndStatGateTests(unittest.TestCase):
         # 2026-10-12 R17 已賽：樣本再推進到美洲賽道（R18 美國站，10/25 才跑）。
         # 2026-10-27 R18 已賽：樣本再推進到羅德里格斯兄弟賽道（R19 墨西哥城站，11/1 才跑）。
         # 2026-11-03 R19 已賽：樣本再推進到 Interlagos（R20 巴西站，11/8 才跑）。
-        s = ci.circuit_summary("interlagos", self.con)
+        # 2026-11-13 R20 已賽：未賽樣本推進至 vegas（R21）。
+        s = ci.circuit_summary("vegas", self.con)
         scheduled = self.con.execute(
-            "SELECT count(*) FROM races WHERE circuit_id='interlagos'").fetchone()[0]
+            "SELECT count(*) FROM races WHERE circuit_id='vegas'").fetchone()[0]
         self.assertEqual(len(s["pending"]), 1)
         self.assertEqual(s["hosted"]["value"], scheduled - 1)
 
@@ -265,7 +266,8 @@ class GenerationTests(_Rendered):
         # 2026-10-12 R17 已賽：樣本再推進到美洲賽道（R18 美國站待賽）。
         # 2026-10-27 R18 已賽：樣本再推進到羅德里格斯兄弟賽道（R19 墨西哥城站待賽）。
         # 2026-11-03 R19 已賽：樣本再推進到 Interlagos（R20 巴西站待賽）。
-        html = self.page("interlagos")
+        # 2026-11-13 R20 已賽：未賽樣本推進至 vegas（R21）。
+        html = self.page("vegas")
         self.assertIn('<span class="pending">尚未舉行</span>', html)
         self.assertIn("不計入", html)
 

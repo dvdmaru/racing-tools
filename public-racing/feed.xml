@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 阿布達比大獎賽賽道百科：Yas Marina 歷屆極點、冠軍與台北時間賽程</title>
+    <link>https://racing.twtools.cc/articles/f1-abu-dhabi-grand-prix-yas-marina-guide/</link>
+    <guid>https://racing.twtools.cc/articles/f1-abu-dhabi-grand-prix-yas-marina-guide/</guid>
+    <pubDate>Fri, 13 Nov 2026 00:00:00 +0800</pubDate>
+    <description>2026 最終站預定台北 12 月 6 日（日）21:00 開跑。2009–2025 共 17 屆正賽，12 屆由極點車手奪冠；2021 改建前後的賽道規格分開看。</description>
+  </item>
+  <item>
     <title>維斯塔潘巴西站第 21 位起跑拿第 2：F1 後排起跑歷史對照</title>
     <link>https://racing.twtools.cc/articles/f1-verstappen-brazil-21st-second-grid-history/</link>
     <guid>https://racing.twtools.cc/articles/f1-verstappen-brazil-21st-second-grid-history/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-fines-sanctions/</guid>
     <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
     <description>罰款上限看是誰開的；停賽、除名、禁賽要看哪個機關能判；誰付、什麼時候繳，則看適用哪一條。</description>
-  </item>
-  <item>
-    <title>逐站加總分數最多，卻沒拿冠軍：1964、1988 年的 F1 積分榜</title>
-    <link>https://racing.twtools.cc/articles/f1-101-dropped-scores/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-dropped-scores/</guid>
-    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-    <description>依 8W 整理，1950–1990 年的車手總分只計最好的幾筆成績，1967–1980 年分前後半季各算。本站可重算的季裡，冠軍的官方積分有 20 季少於逐站加總；本站資料庫把各站得分直接加總比較，加總最高者不是冠軍的只有 1964、1988 兩季。</description>
   </item>
 </channel>
 </rss>

@@ -1,15 +1,15 @@
 {
   "season": 2026,
-  "fetched_at": "2026-11-03T01:37:12+00:00",
-  "data_through_round": 19,
+  "fetched_at": "2026-11-13T04:42:14+00:00",
+  "data_through_round": 20,
   "standings": {
     "season": "2026",
-    "round": "19",
+    "round": "20",
     "DriverStandings": [
       {
         "position": "1",
         "positionText": "1",
-        "points": "380",
+        "points": "390",
         "wins": "9",
         "Driver": {
           "driverId": "antonelli",
@@ -33,7 +33,7 @@
       {
         "position": "2",
         "positionText": "2",
-        "points": "261",
+        "points": "279",
         "wins": "3",
         "Driver": {
           "driverId": "max_verstappen",
@@ -57,31 +57,7 @@
       {
         "position": "3",
         "positionText": "3",
-        "points": "259",
-        "wins": "1",
-        "Driver": {
-          "driverId": "hamilton",
-          "permanentNumber": "44",
-          "code": "HAM",
-          "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
-          "givenName": "Lewis",
-          "familyName": "Hamilton",
-          "dateOfBirth": "1985-01-07",
-          "nationality": "British"
-        },
-        "Constructors": [
-          {
-            "constructorId": "ferrari",
-            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
-            "name": "Ferrari",
-            "nationality": "Italian"
-          }
-        ]
-      },
-      {
-        "position": "4",
-        "positionText": "4",
-        "points": "250",
+        "points": "262",
         "wins": "3",
         "Driver": {
           "driverId": "russell",
@@ -103,9 +79,33 @@
         ]
       },
       {
+        "position": "4",
+        "positionText": "4",
+        "points": "261",
+        "wins": "1",
+        "Driver": {
+          "driverId": "hamilton",
+          "permanentNumber": "44",
+          "code": "HAM",
+          "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+          "givenName": "Lewis",
+          "familyName": "Hamilton",
+          "dateOfBirth": "1985-01-07",
+          "nationality": "British"
+        },
+        "Constructors": [
+          {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          }
+        ]
+      },
+      {
         "position": "5",
         "positionText": "5",
-        "points": "245",
+        "points": "249",
         "wins": "1",
         "Driver": {
           "driverId": "leclerc",
@@ -129,8 +129,8 @@
       {
         "position": "6",
         "positionText": "6",
-        "points": "221",
-        "wins": "2",
+        "points": "246",
+        "wins": "3",
         "Driver": {
           "driverId": "norris",
           "permanentNumber": "1",
@@ -153,7 +153,7 @@
       {
         "position": "7",
         "positionText": "7",
-        "points": "144",
+        "points": "152",
         "wins": "0",
         "Driver": {
           "driverId": "piastri",
@@ -177,7 +177,7 @@
       {
         "position": "8",
         "positionText": "8",
-        "points": "107",
+        "points": "122",
         "wins": "0",
         "Driver": {
           "driverId": "hadjar",
@@ -201,7 +201,7 @@
       {
         "position": "9",
         "positionText": "9",
-        "points": "83",
+        "points": "89",
         "wins": "0",
         "Driver": {
           "driverId": "lawson",
@@ -351,7 +351,7 @@
       {
         "position": "15",
         "positionText": "15",
-        "points": "13",
+        "points": "14",
         "wins": "0",
         "Driver": {
           "driverId": "hulkenberg",
@@ -584,6 +584,30 @@
             "constructorId": "cadillac",
             "url": "https://en.wikipedia.org/wiki/Cadillac_in_Formula_One",
             "name": "Cadillac F1 Team",
+            "nationality": "American"
+          }
+        ]
+      },
+      {
+        "position": "25",
+        "positionText": "25",
+        "points": "0",
+        "wins": "0",
+        "Driver": {
+          "driverId": "rafael_camara",
+          "permanentNumber": "51",
+          "code": "CAM",
+          "url": "https://en.wikipedia.org/wiki/Rafael_C%C3%A2mara",
+          "givenName": "Rafael",
+          "familyName": "Camara",
+          "dateOfBirth": "2005-05-05",
+          "nationality": "Brazilian"
+        },
+        "Constructors": [
+          {
+            "constructorId": "haas",
+            "url": "https://en.wikipedia.org/wiki/Haas_F1_Team",
+            "name": "Haas F1 Team",
             "nationality": "American"
           }
         ]
