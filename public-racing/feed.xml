@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 連續登台紀錄：維斯塔潘已連 8 場，誰拿過最長的 19 場？</title>
+    <link>https://racing.twtools.cc/articles/f1-consecutive-podium-streaks/</link>
+    <guid>https://racing.twtools.cc/articles/f1-consecutive-podium-streaks/</guid>
+    <pubDate>Thu, 19 Nov 2026 00:00:00 +0800</pubDate>
+    <description>從 1950 年算到 2026 巴西站，查 10 場以上的歷史紀錄、維斯塔潘這一段的逐站名次，以及拉斯維加斯站後會怎麼變。</description>
+  </item>
+  <item>
     <title>F1 阿布達比大獎賽賽道百科：Yas Marina 歷屆極點、冠軍與台北時間賽程</title>
     <link>https://racing.twtools.cc/articles/f1-abu-dhabi-grand-prix-yas-marina-guide/</link>
     <guid>https://racing.twtools.cc/articles/f1-abu-dhabi-grand-prix-yas-marina-guide/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-101-registered-roles/</guid>
     <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
     <description>2026 年 ISC 列出七種須登記職位與一條異動更新義務；這份名單沒有排出一般上下級，也不能單獨決定誰會收到個人罰款。</description>
-  </item>
-  <item>
-    <title>賽會幹事能開多少罰款、不能判什麼？F1 處罰的機關分工</title>
-    <link>https://racing.twtools.cc/articles/f1-101-fines-sanctions/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-fines-sanctions/</guid>
-    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-    <description>罰款上限看是誰開的；停賽、除名、禁賽要看哪個機關能判；誰付、什麼時候繳，則看適用哪一條。</description>
   </item>
 </channel>
 </rss>
