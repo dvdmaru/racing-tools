@@ -203,6 +203,12 @@
       "html": "cover-abu-dhabi-yas-marina-guide.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-consecutive-podium-streaks",
+      "html": "cover-consecutive-podium-streaks.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
