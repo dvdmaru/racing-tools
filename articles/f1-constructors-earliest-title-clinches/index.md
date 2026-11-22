@@ -2,8 +2,6 @@
 slug: f1-constructors-earliest-title-clinches
 type: "feature"
 date: "2026-11-22"
-season: 2026
-round: 21
 topic_ref: "2026-11-22:R1"
 title: "F1 車隊冠軍最早提前幾站？紅牛與麥拉倫並列 6 站，2026 賓士提前 3 站"
 subtitle: "從 1963 年蓮花到 2026 年賓士，對照封王站、領先分差，以及正賽和衝刺賽還能追多少分。"
