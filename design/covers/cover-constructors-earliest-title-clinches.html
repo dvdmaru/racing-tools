@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+h1 { font-size: 114px; margin-top: 49px; }
+.sub { margin-top: 20px; }
+.series { display: grid; gap: 49px; margin-top: 82px; }
+.row { display: grid; grid-template-columns: 510px 1fr 190px; align-items: center; gap: 45px; }
+.label { font-size: 49px; font-weight: 700; }
+.blocks { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.blocks span { height: 38px; background: #765e65; }
+.current .blocks span:nth-child(-n+3) { background: #d63a2f; }
+.current .blocks span:nth-child(n+4) { background: #dfd0d1; }
+.row b { font: 700 78px/1 'Chakra Petch', system-ui, sans-serif; }
+.row small { font: 700 36px 'Noto Sans TC', sans-serif; }
+.current b { color: #ae3027; }
+.foot { font-size: 28px; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand">@RACING</div>
+  <h1>F1 車隊冠軍提前幾站？</h1>
+  <div class="sub">封王後剩下的大獎賽正賽</div>
+  <div class="series">
+    <div class="row"><span class="label">2023 紅牛</span><div class="blocks"><span></span><span></span><span></span><span></span><span></span><span></span></div><b>6 <small>站</small></b></div>
+    <div class="row"><span class="label">2025 麥拉倫</span><div class="blocks"><span></span><span></span><span></span><span></span><span></span><span></span></div><b>6 <small>站</small></b></div>
+    <div class="row current"><span class="label">2026 賓士</span><div class="blocks"><span></span><span></span><span></span><span></span><span></span><span></span></div><b>3 <small>站</small></b></div>
+  </div>
+  <div class="foot">歷年封王站對照｜依 F1 官方記錄與年度積分規則</div>
+</div>
+</body>
+</html>

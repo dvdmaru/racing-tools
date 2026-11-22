@@ -1396,6 +1396,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-11-19T11:10:51+08:00",
       "note": "2026-11-19 選題台 R1。Charlie 授權查核通過即上線；t1j 核對 11258f6，確認 Claude Opus 首輪與乾淨室、Agy Argon 的修正已處理，回覆上線。證據：CoWork/Charlie/2026-11-19/topic-desk/racing。外部來源 feature，未使用戰報 facts 管線。"
+    },
+    {
+      "slug": "f1-constructors-earliest-title-clinches",
+      "article_sha256": "30f986e8162a57f3e4b8f92086ff0856a4b9b6f350ce4068f0a7cd2871d048d0",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-11-22T16:28:54+08:00",
+      "note": "2026-11-22 選題台 R1。Charlie 授權查核通過後上線，t1t 查核後明示上線。核准稿 7b62045f；發稿移除兩個觸發跨年分站錯鏈的 frontmatter 欄位 season、round，正文、標題、摘要、封面及來源保持逐位元一致；Claude Opus／Agy Argon 賽後查核已結案，FIA Doc65 與 F1 官網賽果、車隊積分獨立互核。證據：CoWork/Charlie/2026-11-22/topic-desk/racing。外部來源 feature，未使用戰報 facts 管線。"
     }
   ]
 }

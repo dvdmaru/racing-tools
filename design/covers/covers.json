@@ -209,6 +209,12 @@
       "html": "cover-consecutive-podium-streaks.html",
       "allow": {},
       "allow_claims": {}
+    },
+    {
+      "slug": "f1-constructors-earliest-title-clinches",
+      "html": "cover-constructors-earliest-title-clinches.html",
+      "allow": {},
+      "allow_claims": {}
     }
   ]
 }
