@@ -1,15 +1,15 @@
 {
   "season": 2026,
-  "fetched_at": "2026-11-13T04:42:14+00:00",
-  "data_through_round": 20,
+  "fetched_at": "2026-11-24T03:36:39+00:00",
+  "data_through_round": 21,
   "standings": {
     "season": "2026",
-    "round": "20",
+    "round": "21",
     "ConstructorStandings": [
       {
         "position": "1",
         "positionText": "1",
-        "points": "652",
+        "points": "666",
         "wins": "12",
         "Constructor": {
           "constructorId": "mercedes",
@@ -21,7 +21,7 @@
       {
         "position": "2",
         "positionText": "2",
-        "points": "510",
+        "points": "517",
         "wins": "2",
         "Constructor": {
           "constructorId": "ferrari",
@@ -33,8 +33,8 @@
       {
         "position": "3",
         "positionText": "3",
-        "points": "415",
-        "wins": "3",
+        "points": "440",
+        "wins": "4",
         "Constructor": {
           "constructorId": "red_bull",
           "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
@@ -45,7 +45,7 @@
       {
         "position": "4",
         "positionText": "4",
-        "points": "398",
+        "points": "431",
         "wins": "3",
         "Constructor": {
           "constructorId": "mclaren",
@@ -69,7 +69,7 @@
       {
         "position": "6",
         "positionText": "6",
-        "points": "69",
+        "points": "87",
         "wins": "0",
         "Constructor": {
           "constructorId": "alpine",
@@ -105,7 +105,7 @@
       {
         "position": "9",
         "positionText": "9",
-        "points": "12",
+        "points": "16",
         "wins": "0",
         "Constructor": {
           "constructorId": "williams",

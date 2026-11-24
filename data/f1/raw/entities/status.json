@@ -2,7 +2,7 @@
   "Status": [
     {
       "statusId": "1",
-      "count": "8227",
+      "count": "8245",
       "status": "Finished"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "statusId": "31",
-      "count": "328",
+      "count": "331",
       "status": "Retired"
     },
     {
@@ -301,6 +301,11 @@
       "status": "Heat shield fire"
     },
     {
+      "statusId": "142",
+      "count": "18",
+      "status": "Did not start"
+    },
+    {
       "statusId": "45",
       "count": "17",
       "status": "+11 Laps"
@@ -309,11 +314,6 @@
       "statusId": "84",
       "count": "17",
       "status": "Battery"
-    },
-    {
-      "statusId": "142",
-      "count": "17",
-      "status": "Did not start"
     },
     {
       "statusId": "99",
@@ -684,7 +684,7 @@
   "total": 136,
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/status.json",
-    "fetched_at": "2026-11-13T04:41:54.724268+00:00",
+    "fetched_at": "2026-11-24T03:36:11.526356+00:00",
     "backfill": true
   }
 }
