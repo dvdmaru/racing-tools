@@ -102,11 +102,12 @@ class RoundLinkIndexTests(unittest.TestCase):
         2026-11-03 R19 已賽，樣本再推進：改用 R20 巴西站（Interlagos，11/8 才跑）；
         R19 墨西哥城站現在有頁、判定表應收。"""
         # 2026-11-13 R20 已賽：負向樣本推進R21，正向樣本推R20。
+        # 2026-11-24 R21 已賽：負向樣本推進R22（卡達站，11/29 才跑），正向樣本推R21。
         idx = il.round_link_index(2026)
-        self.assertNotIn("拉斯維加斯站", idx)
-        self.assertEqual(idx.get("巴西站"), (2026, 20))
+        self.assertNotIn("卡達站", idx)
+        self.assertEqual(idx.get("拉斯維加斯站"), (2026, 21))
         built = set(gs.season_round_numbers(2026))
-        self.assertNotIn(21, built, "前提：R21 要真的還沒有頁，否則這條在測空氣")
+        self.assertNotIn(22, built, "前提：R22 要真的還沒有頁，否則這條在測空氣")
         self.assertTrue(all(r in built for _y, r in idx.values()))
 
     def test_non_round_year_is_empty(self):
@@ -251,10 +252,11 @@ class LinkifyRoundsTests(unittest.TestCase):
         self.assertIn("/seasons/2026/rounds/19/", raced, "R19 已賽、有頁 → 應連")
         self.assertEqual([r for _y, r, _t in linked_raced], [19])
         # 2026-11-13 R20 已賽：未賽樣本推進R21。
-        src = "<p>下一站是拉斯維加斯站。</p>"
+        # 2026-11-24 R21 已賽：未賽樣本推進R22（卡達站）。
+        src = "<p>下一站是卡達站。</p>"
         out26, linked26 = il.linkify_rounds(src, 2026)
-        self.assertNotIn("/seasons/2026/rounds/21/", out26)
-        self.assertNotIn("拉斯維加斯站</a>", out26)
+        self.assertNotIn("/seasons/2026/rounds/22/", out26)
+        self.assertNotIn("卡達站</a>", out26)
         self.assertEqual(linked26, [])
 
     def test_headings_are_not_linked_using_the_real_title(self):
@@ -631,7 +633,8 @@ class RoundMentionFingerprintTests(unittest.TestCase):
         2026-11-03 R19 已賽，樣本再推進：改用巴西站（R20，Interlagos，11/8 才跑）。"""
         before = self._fp()
         # 2026-11-13 R20 已賽：未賽樣本推進R21。
-        self.add_article("synthetic-vegas", "下一站拉斯維加斯站的看點。", season="2026")
+        # 2026-11-24 R21 已賽：未賽樣本推進R22（卡達站）。
+        self.add_article("synthetic-qatar", "下一站卡達站的看點。", season="2026")
         self.assertEqual(before["rounds"], self._fp()["rounds"])
 
     def test_unapproved_article_does_not_change_fingerprint(self):

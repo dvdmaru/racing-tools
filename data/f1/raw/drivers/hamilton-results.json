@@ -1,6 +1,6 @@
 {
   "driverId": "hamilton",
-  "total": 400,
+  "total": 401,
   "Races": [
     {
       "season": "2007",
@@ -23938,11 +23938,68 @@
           }
         }
       ]
+    },
+    {
+      "season": "2026",
+      "round": "21",
+      "url": "https://en.wikipedia.org/wiki/2026_Las_Vegas_Grand_Prix",
+      "raceName": "Las Vegas Grand Prix",
+      "Circuit": {
+        "circuitId": "vegas",
+        "url": "https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix#Circuit",
+        "circuitName": "Las Vegas Strip Street Circuit",
+        "Location": {
+          "lat": "36.1147",
+          "long": "-115.173",
+          "locality": "Las Vegas",
+          "country": "USA"
+        }
+      },
+      "date": "2026-11-22",
+      "time": "04:00:00Z",
+      "Results": [
+        {
+          "number": "44",
+          "position": "7",
+          "positionText": "7",
+          "points": "6",
+          "Driver": {
+            "driverId": "hamilton",
+            "permanentNumber": "44",
+            "code": "HAM",
+            "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+            "givenName": "Lewis",
+            "familyName": "Hamilton",
+            "dateOfBirth": "1985-01-07",
+            "nationality": "British"
+          },
+          "Constructor": {
+            "constructorId": "ferrari",
+            "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari",
+            "name": "Ferrari",
+            "nationality": "Italian"
+          },
+          "grid": "11",
+          "laps": "50",
+          "status": "Finished",
+          "Time": {
+            "millis": "5272419",
+            "time": "+12.795"
+          },
+          "FastestLap": {
+            "rank": "10",
+            "lap": "44",
+            "Time": {
+              "time": "1:36.452"
+            }
+          }
+        }
+      ]
     }
   ],
   "_meta": {
     "url": "https://api.jolpi.ca/ergast/f1/drivers/hamilton/results.json",
-    "fetched_at": "2026-11-13T04:42:01.628218+00:00",
+    "fetched_at": "2026-11-24T03:36:18.866508+00:00",
     "backfill": true
   }
 }
