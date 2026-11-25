@@ -1405,6 +1405,15 @@
       "approved_by": "charlie",
       "approved_at": "2026-11-22T16:28:54+08:00",
       "note": "2026-11-22 選題台 R1。Charlie 授權查核通過後上線，t1t 查核後明示上線。核准稿 7b62045f；發稿移除兩個觸發跨年分站錯鏈的 frontmatter 欄位 season、round，正文、標題、摘要、封面及來源保持逐位元一致；Claude Opus／Agy Argon 賽後查核已結案，FIA Doc65 與 F1 官網賽果、車隊積分獨立互核。證據：CoWork/Charlie/2026-11-22/topic-desk/racing。外部來源 feature，未使用戰報 facts 管線。"
+    },
+    {
+      "slug": "f1-closest-race-finishes",
+      "article_sha256": "31b2910cb64df6f0f9eea951b35f59f2c84f752fdb2b181376a1efae4b242c4d",
+      "facts_sha256": null,
+      "check_report_sha256": null,
+      "approved_by": "charlie",
+      "approved_at": "2026-11-25T10:44:10+08:00",
+      "note": "2026-11-25 選題台 R1，適用 Charlie 授權佇列題雙席通過直接上線。Claude Opus 與 Agy Argon Low 差異查核結案，FIA 正式賽果與 F1 歷年官方結果逐站對照。證據：CoWork/Charlie/2026-11-25/topic-desk/racing。外部來源歷史專題，非純 Jolpica 戰報。"
     }
   ]
 }
