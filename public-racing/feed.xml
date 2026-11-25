@@ -6,6 +6,13 @@
   <description>一級方程式積分榜、台北時間賽曆、各站賽果，與規則解析、譯名對照等長青專題。繁體中文。</description>
   <language>zh-Hant</language>
   <item>
+    <title>F1 前五名最接近的完賽排行：拉斯維加斯 2.927 秒排第幾？</title>
+    <link>https://racing.twtools.cc/articles/f1-closest-race-finishes/</link>
+    <guid>https://racing.twtools.cc/articles/f1-closest-race-finishes/</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0800</pubDate>
+    <description>從 1950 年起回算世界錦標賽正賽，比較亞軍、季軍與第 5 名落後冠軍的秒數。</description>
+  </item>
+  <item>
     <title>F1 車隊冠軍最早提前幾站？紅牛與麥拉倫並列 6 站，2026 賓士提前 3 站</title>
     <link>https://racing.twtools.cc/articles/f1-constructors-earliest-title-clinches/</link>
     <guid>https://racing.twtools.cc/articles/f1-constructors-earliest-title-clinches/</guid>
@@ -137,13 +144,6 @@
     <guid>https://racing.twtools.cc/articles/f1-2026-r17-singapore-ferrari-strategy-ledger/</guid>
     <pubDate>Mon, 12 Oct 2026 00:00:00 +0800</pubDate>
     <description>終點勒克萊爾第 2、漢米爾頓第 6。Vasseur 與漢米爾頓都說車隊叫了進站；為什麼沒進，說法不只一個。</description>
-  </item>
-  <item>
-    <title>F1 輪胎配給與歸還：週末手上可用的胎怎麼變少？</title>
-    <link>https://racing.twtools.cc/articles/f1-101-tyre-set-returns/</link>
-    <guid>https://racing.twtools.cc/articles/f1-101-tyre-set-returns/</guid>
-    <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-    <description>FIA 沒有另作決定、沒有加測胎的標準賽制，每位車手配 13 套乾胎，練習賽三節後各收回 2 套；另有 Q3 規格 1 套、正賽指定規格 2 套兩條保留，進 Q3 的車週日最多剩 6 套（自行推算）</description>
   </item>
 </channel>
 </rss>
